@@ -1,0 +1,17 @@
+button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+section {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  
+  span {
+    margin-top: 0.5rem;
+    align-self: center;
+    text-align: center;
+  }
+}

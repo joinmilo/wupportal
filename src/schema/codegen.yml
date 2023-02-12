@@ -1,0 +1,11 @@
+schema: "http://localhost:8011/api/graphql"
+documents: ./src/**/*.graphql
+overwrite: true
+generates:
+  src/schema/schema.ts:
+    config:
+      addExplicitOverride: true
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-apollo-angular"

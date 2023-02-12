@@ -1,0 +1,16 @@
+<div>
+  <button mat-icon-button (click)="ref.dismissWithAction()"><app-icon icon="close"></app-icon></button>
+  <section>
+    <app-icon size="medium" icon="error_outline"
+      *ngIf="feedback.type === error || feedback.type === critical" 
+      color="warn"></app-icon>
+    <app-icon size="medium" icon="check_circle"
+      *ngIf="feedback.type === success"
+      color="success"></app-icon>
+    <app-icon size="medium" icon="warning"
+      *ngIf="feedback.type === info" 
+      color="info"></app-icon>
+    <span><strong>{{feedback.message}}</strong></span>
+    <span>{{feedback.action}}</span>
+  </section>
+</div>
