@@ -7,12 +7,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { IconComponent } from './components/icon/icon.component';
+import { LogoComponent } from './components/logo/logo.component';
 import { CoreEffects } from './state/core.effects';
 import * as fromCore from './state/core.reducer';
 
 const components: Type<any>[] = [
   FeedbackComponent,
   IconComponent,
+  LogoComponent,
 ];
 
 const framework: Type<any>[] = [

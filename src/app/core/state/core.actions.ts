@@ -9,9 +9,6 @@ export const CoreActions = createActionGroup({
     'Server Version Retrieved': (version?: Maybe<InformationDto>) => ({ version }),
     
     'Set Feedback': (feedback: Feedback) => ({ feedback }),
-    
-    'Logout': emptyProps(),
-    'Logged Out': emptyProps(),
   },
 });
 
