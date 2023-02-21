@@ -3,10 +3,12 @@ import { PageEntity } from 'src/schema/schema';
 import { PageActions } from './page.actions';
 
 export interface PageState {
-  page?: PageEntity,
+  page: PageEntity,
 }
 
-export const initialState: PageState = { };
+export const initialState: PageState = {
+  page: {}
+};
 
 export const pageReducer = createReducer(
   initialState,

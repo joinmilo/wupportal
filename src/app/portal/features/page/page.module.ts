@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalPageComponent } from './components/page/page.component';
 import { pageFeatureKey } from './constants/page.constants';
+import { PagePortalRoutingModule } from './page-routing.module';
 import { PageEffects } from './state/page.effects';
 import { pageReducer } from './state/page.reducer';
 
@@ -24,6 +25,7 @@ const materials: Type<any>[] = [
 
 const modules: Type<any>[] = [
   CoreModule,
+  PagePortalRoutingModule,
 ];
 
 @NgModule({

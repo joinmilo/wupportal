@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PortalNotFoundComponent } from './common/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,15 @@ const routes: Routes = [
     path: 'articles',
     loadChildren: () => import('./features/article/article.module')
       .then((imported) => imported.ArticlePortalModule),
+  },
+  {
+    path: '404',
+    component: PortalNotFoundComponent,
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/404',
   },
 ];
 

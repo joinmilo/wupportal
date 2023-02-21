@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalHeaderComponent } from './components/header/portal-header.component';
 import { PortalMenuComponent } from './components/menu/portal-menu.component';
+import { PortalNotFoundComponent } from './components/not-found/not-found.component';
 import { commonFeatureKey } from './constants/common.constants';
 import { CommonEffects } from './state/common.effects';
 import { commonReducer } from './state/common.reducer';
@@ -14,6 +15,7 @@ import { commonReducer } from './state/common.reducer';
 const components: Type<any>[] = [
   PortalHeaderComponent,
   PortalMenuComponent,
+  PortalNotFoundComponent,
 ];
 
 const framework: Type<any>[] = [
