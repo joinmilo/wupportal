@@ -2,16 +2,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { EventsRoutingModule } from './events-routing.module';
+import { PortalPageComponent } from './components/page/page.component';
+import { pageFeatureKey } from './constants/page.constants';
+import { PageEffects } from './state/page.effects';
+import { pageReducer } from './state/page.reducer';
 
 const components: Type<any>[] = [
-
+  PortalPageComponent
 ];
 
 const framework: Type<any>[] = [
   CommonModule,
-  EventsRoutingModule,
 ];
 
 const materials: Type<any>[] = [
@@ -28,6 +32,8 @@ const modules: Type<any>[] = [
     ...framework,
     ...materials,
     ...modules,
+    StoreModule.forFeature(pageFeatureKey, pageReducer),
+    EffectsModule.forFeature([PageEffects]),
   ],
 })
-export class EventsModule { }
+export class PagePortalModule { }

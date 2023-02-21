@@ -1,0 +1,29 @@
+fragment Page on PageEntity {
+  id
+  media {
+    ...Media
+  }
+  pageFeatures {
+    id
+    order
+    feature {
+      id
+      key
+    }
+  }
+  slug
+  titleImage {
+    ...Media
+  }
+  translatables {
+    id
+    content
+    shortDescription
+    name
+    language {
+      id
+      locale
+      name
+    }
+  }
+}

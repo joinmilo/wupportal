@@ -1,7 +1,31 @@
 query getMenu {
-  getMenuItems(params: {
-    
-  }) {
-
+  getMenuItems(
+    params: {
+      sort: "order"
+      expression: { entity: { path: "parent", value: null } }
+    }
+  ) {
+    result {
+      id
+      header
+      order
+      translatables {
+        id
+        name
+        language {
+          id
+          name
+        }
+      }
+      feature {
+        id
+      }
+      page {
+        id
+      }
+      subMenuItems {
+        id
+      }
+    }
   }
 }

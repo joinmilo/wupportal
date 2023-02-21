@@ -26,14 +26,11 @@ export type Scalars = {
 export type AddressEntity = {
   __typename?: 'AddressEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
-  deals?: Maybe<Array<Maybe<DealEntity>>>;
-  events?: Maybe<Array<Maybe<EventEntity>>>;
   houseNumber?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  organisations?: Maybe<Array<Maybe<OrganisationEntity>>>;
   place?: Maybe<Scalars['String']>;
   postalCode?: Maybe<Scalars['String']>;
   street?: Maybe<Scalars['String']>;
@@ -42,14 +39,11 @@ export type AddressEntity = {
 
 export type AddressEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  deals?: InputMaybe<Array<InputMaybe<DealEntityInput>>>;
-  events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
   houseNumber?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  organisations?: InputMaybe<Array<InputMaybe<OrganisationEntityInput>>>;
   place?: InputMaybe<Scalars['String']>;
   postalCode?: InputMaybe<Scalars['String']>;
   street?: InputMaybe<Scalars['String']>;
@@ -83,16 +77,13 @@ export type AnswerTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<AnswerEntity>;
   result?: Maybe<Scalars['String']>;
 };
 
 export type AnswerTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<AnswerEntityInput>;
   result?: InputMaybe<Scalars['String']>;
 };
 
@@ -179,38 +170,40 @@ export type ArticleCommentTranslatableEntityInput = {
 export type ArticleEntity = {
   __typename?: 'ArticleEntity';
   approved?: Maybe<Scalars['Boolean']>;
-  articleComments?: Maybe<Array<Maybe<ArticleCommentEntity>>>;
-  articleRating?: Maybe<Array<Maybe<ArticleRatingEntity>>>;
-  articleVisitors?: Maybe<Array<Maybe<ArticleVisitorEntity>>>;
+  author?: Maybe<UserContextEntity>;
   cardImage?: Maybe<MediaEntity>;
   category?: Maybe<ArticleCategoryEntity>;
+  comments?: Maybe<Array<Maybe<ArticleCommentEntity>>>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   media?: Maybe<Array<Maybe<MediaEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  pulbicAuthor?: Maybe<PublicAuthorEntity>;
+  publicAuthor?: Maybe<PublicAuthorEntity>;
+  ratings?: Maybe<Array<Maybe<ArticleRatingEntity>>>;
   seoDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   titleImage?: Maybe<MediaEntity>;
+  visitors?: Maybe<Array<Maybe<ArticleVisitorEntity>>>;
 };
 
 export type ArticleEntityInput = {
   approved?: InputMaybe<Scalars['Boolean']>;
-  articleComments?: InputMaybe<Array<InputMaybe<ArticleCommentEntityInput>>>;
-  articleRating?: InputMaybe<Array<InputMaybe<ArticleRatingEntityInput>>>;
-  articleVisitors?: InputMaybe<Array<InputMaybe<ArticleVisitorEntityInput>>>;
+  author?: InputMaybe<UserContextEntityInput>;
   cardImage?: InputMaybe<MediaEntityInput>;
   category?: InputMaybe<ArticleCategoryEntityInput>;
+  comments?: InputMaybe<Array<InputMaybe<ArticleCommentEntityInput>>>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  pulbicAuthor?: InputMaybe<PublicAuthorEntityInput>;
+  publicAuthor?: InputMaybe<PublicAuthorEntityInput>;
+  ratings?: InputMaybe<Array<InputMaybe<ArticleRatingEntityInput>>>;
   seoDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
   titleImage?: InputMaybe<MediaEntityInput>;
+  visitors?: InputMaybe<Array<InputMaybe<ArticleVisitorEntityInput>>>;
 };
 
 export type ArticleRatingEntity = {
@@ -239,16 +232,14 @@ export type ArticleVisitorEntity = {
   modified?: Maybe<Scalars['OffsetDateTime']>;
   parent?: Maybe<ArticleEntity>;
   visitor?: Maybe<VisitorEntity>;
-  visits?: Maybe<Scalars['String']>;
+  visits?: Maybe<Scalars['Int']>;
 };
 
 export type ArticleVisitorEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<ArticleEntityInput>;
-  visitor?: InputMaybe<VisitorEntityInput>;
-  visits?: InputMaybe<Scalars['String']>;
+  visits?: InputMaybe<Scalars['Int']>;
 };
 
 export type AssignmentEntity = {
@@ -270,7 +261,7 @@ export type AssignmentEntityInput = {
 
 export type AttendeeConfigurationEntity = {
   __typename?: 'AttendeeConfigurationEntity';
-  approved?: Maybe<Scalars['Boolean']>;
+  approval?: Maybe<Scalars['Boolean']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   events?: Maybe<Array<Maybe<EventEntity>>>;
   id?: Maybe<Scalars['String']>;
@@ -279,7 +270,7 @@ export type AttendeeConfigurationEntity = {
 };
 
 export type AttendeeConfigurationEntityInput = {
-  approved?: InputMaybe<Scalars['Boolean']>;
+  approval?: InputMaybe<Scalars['Boolean']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
@@ -336,12 +327,11 @@ export type ContactEntity = {
   deals?: Maybe<Array<Maybe<DealEntity>>>;
   developer?: Maybe<DeveloperEntity>;
   email?: Maybe<Scalars['String']>;
-  first_name?: Maybe<Scalars['String']>;
+  events?: Maybe<Array<Maybe<EventEntity>>>;
   id?: Maybe<Scalars['String']>;
-  last_name?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
   organisations?: Maybe<Array<Maybe<OrganisationEntity>>>;
-  password?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   preferredContact?: Maybe<Scalars['Boolean']>;
 };
@@ -351,19 +341,17 @@ export type ContactEntityInput = {
   deals?: InputMaybe<Array<InputMaybe<DealEntityInput>>>;
   developer?: InputMaybe<DeveloperEntityInput>;
   email?: InputMaybe<Scalars['String']>;
-  first_name?: InputMaybe<Scalars['String']>;
+  events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
-  last_name?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
   organisations?: InputMaybe<Array<InputMaybe<OrganisationEntityInput>>>;
-  password?: InputMaybe<Scalars['String']>;
   phone?: InputMaybe<Scalars['String']>;
   preferredContact?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ContestEntity = {
   __typename?: 'ContestEntity';
-  contestParticipation?: Maybe<Array<Maybe<ContestParticipationEntity>>>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   dueDate?: Maybe<Scalars['Date']>;
   id?: Maybe<Scalars['String']>;
@@ -371,6 +359,7 @@ export type ContestEntity = {
   multiSubmission?: Maybe<Scalars['Boolean']>;
   multiVote?: Maybe<Scalars['Boolean']>;
   offer?: Maybe<Scalars['Boolean']>;
+  participation?: Maybe<Array<Maybe<ContestParticipationEntity>>>;
   seoDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
@@ -380,7 +369,6 @@ export type ContestEntity = {
 };
 
 export type ContestEntityInput = {
-  contestParticipation?: InputMaybe<Array<InputMaybe<ContestParticipationEntityInput>>>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   dueDate?: InputMaybe<Scalars['Date']>;
   id?: InputMaybe<Scalars['String']>;
@@ -388,6 +376,7 @@ export type ContestEntityInput = {
   multiSubmission?: InputMaybe<Scalars['Boolean']>;
   multiVote?: InputMaybe<Scalars['Boolean']>;
   offer?: InputMaybe<Scalars['Boolean']>;
+  participation?: InputMaybe<Array<InputMaybe<ContestParticipationEntityInput>>>;
   seoDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
@@ -404,7 +393,7 @@ export type ContestParticipationEntity = {
   id?: Maybe<Scalars['String']>;
   media?: Maybe<Array<Maybe<MediaEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  translatable?: Maybe<Array<Maybe<ContestParticipationTranslatableEntity>>>;
+  translatables?: Maybe<Array<Maybe<ContestParticipationTranslatableEntity>>>;
   userContext?: Maybe<UserContextEntity>;
   winner?: Maybe<Scalars['Boolean']>;
 };
@@ -416,7 +405,7 @@ export type ContestParticipationEntityInput = {
   id?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translatable?: InputMaybe<Array<InputMaybe<ContestParticipationTranslatableEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<ContestParticipationTranslatableEntityInput>>>;
   userContext?: InputMaybe<UserContextEntityInput>;
   winner?: InputMaybe<Scalars['Boolean']>;
 };
@@ -427,16 +416,13 @@ export type ContestParticipationTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<ContestParticipationEntity>;
   textSubmission?: Maybe<Scalars['String']>;
 };
 
 export type ContestParticipationTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<ContestParticipationEntityInput>;
   textSubmission?: InputMaybe<Scalars['String']>;
 };
 
@@ -457,25 +443,6 @@ export type ContestStateEntityInput = {
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
-export type ContestTranslatableEntity = {
-  __typename?: 'ContestTranslatableEntity';
-  content?: Maybe<Scalars['String']>;
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<ContestEntity>;
-};
-
-export type ContestTranslatableEntityInput = {
-  content?: InputMaybe<Scalars['String']>;
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<ContestEntityInput>;
-};
-
 export type ContestTypeEntity = {
   __typename?: 'ContestTypeEntity';
   contests?: Maybe<Array<Maybe<ContestEntity>>>;
@@ -483,7 +450,7 @@ export type ContestTypeEntity = {
   id?: Maybe<Scalars['String']>;
   key?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  translatable?: Maybe<Array<Maybe<ContestTypeTranslatableEntity>>>;
+  translatables?: Maybe<Array<Maybe<ContestTypeTranslatableEntity>>>;
 };
 
 export type ContestTypeEntityInput = {
@@ -492,7 +459,7 @@ export type ContestTypeEntityInput = {
   id?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translatable?: InputMaybe<Array<InputMaybe<ContestTypeTranslatableEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<ContestTypeTranslatableEntityInput>>>;
 };
 
 export type ContestTypeTranslatableEntity = {
@@ -502,16 +469,13 @@ export type ContestTypeTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<ContestTypeEntity>;
 };
 
 export type ContestTypeTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<ContestTypeEntityInput>;
 };
 
 export type ContestVoteEntity = {
@@ -533,23 +497,23 @@ export type ContestVoteEntityInput = {
 
 export type DealCategoryEntity = {
   __typename?: 'DealCategoryEntity';
-  categoryTranslatable?: Maybe<Array<Maybe<DealCategoryTranslatableEntity>>>;
   color?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   deals?: Maybe<Array<Maybe<DealEntity>>>;
   icon?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  translatables?: Maybe<Array<Maybe<DealCategoryTranslatableEntity>>>;
 };
 
 export type DealCategoryEntityInput = {
-  categoryTranslatable?: InputMaybe<Array<InputMaybe<DealCategoryTranslatableEntityInput>>>;
   color?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   deals?: InputMaybe<Array<InputMaybe<DealEntityInput>>>;
   icon?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  translatables?: InputMaybe<Array<InputMaybe<DealCategoryTranslatableEntityInput>>>;
 };
 
 export type DealCategoryTranslatableEntity = {
@@ -559,27 +523,23 @@ export type DealCategoryTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<EventCategoryEntity>;
 };
 
 export type DealCategoryTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<EventCategoryEntityInput>;
 };
 
 export type DealEntity = {
   __typename?: 'DealEntity';
-  address?: Maybe<SuburbEntity>;
+  address?: Maybe<AddressEntity>;
   cardImage?: Maybe<MediaEntity>;
   category?: Maybe<DealCategoryEntity>;
   contact?: Maybe<ContactEntity>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   creator?: Maybe<UserContextEntity>;
-  dealVisitors?: Maybe<Array<Maybe<DealVisitorEntity>>>;
   id?: Maybe<Scalars['String']>;
   media?: Maybe<Array<Maybe<MediaEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
@@ -589,16 +549,16 @@ export type DealEntity = {
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   titleImage?: Maybe<MediaEntity>;
+  visitors?: Maybe<Array<Maybe<DealVisitorEntity>>>;
 };
 
 export type DealEntityInput = {
-  address?: InputMaybe<SuburbEntityInput>;
+  address?: InputMaybe<AddressEntityInput>;
   cardImage?: InputMaybe<MediaEntityInput>;
   category?: InputMaybe<DealCategoryEntityInput>;
   contact?: InputMaybe<ContactEntityInput>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   creator?: InputMaybe<UserContextEntityInput>;
-  dealVisitors?: InputMaybe<Array<InputMaybe<DealVisitorEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -608,27 +568,7 @@ export type DealEntityInput = {
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
   titleImage?: InputMaybe<MediaEntityInput>;
-};
-
-export type DealTranslatableEntity = {
-  __typename?: 'DealTranslatableEntity';
-  content?: Maybe<Scalars['String']>;
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<DealEntity>;
-};
-
-export type DealTranslatableEntityInput = {
-  content?: InputMaybe<Scalars['String']>;
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<DealEntityInput>;
+  visitors?: InputMaybe<Array<InputMaybe<DealVisitorEntityInput>>>;
 };
 
 export type DealVisitorEntity = {
@@ -645,8 +585,6 @@ export type DealVisitorEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<DealEntityInput>;
-  visitor?: InputMaybe<VisitorEntityInput>;
   visits?: InputMaybe<Scalars['Int']>;
 };
 
@@ -674,16 +612,13 @@ export type DeveloperTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<DeveloperEntity>;
 };
 
 export type DeveloperTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<DeveloperEntityInput>;
 };
 
 export type ErrorMessageEntity = {
@@ -707,21 +642,23 @@ export type ErrorMessageEntityInput = {
 
 export type EventCategoryEntity = {
   __typename?: 'EventCategoryEntity';
-  approved?: Maybe<Scalars['Boolean']>;
+  color?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   events?: Maybe<Array<Maybe<EventEntity>>>;
+  icon?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  translateable?: Maybe<Array<Maybe<EventCategoryTranslatableEntity>>>;
+  translatables?: Maybe<Array<Maybe<EventCategoryTranslatableEntity>>>;
 };
 
 export type EventCategoryEntityInput = {
-  approved?: InputMaybe<Scalars['Boolean']>;
+  color?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
+  icon?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translateable?: InputMaybe<Array<InputMaybe<EventCategoryTranslatableEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<EventCategoryTranslatableEntityInput>>>;
 };
 
 export type EventCategoryTranslatableEntity = {
@@ -731,16 +668,13 @@ export type EventCategoryTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<DealCategoryEntity>;
 };
 
 export type EventCategoryTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<DealCategoryEntityInput>;
 };
 
 export type EventCommentEntity = {
@@ -750,7 +684,7 @@ export type EventCommentEntity = {
   event?: Maybe<EventEntity>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  translateable?: Maybe<Array<Maybe<EventCommentTranslatableEntity>>>;
+  translatables?: Maybe<Array<Maybe<EventCommentTranslatableEntity>>>;
   userContext?: Maybe<UserContextEntity>;
 };
 
@@ -760,7 +694,7 @@ export type EventCommentEntityInput = {
   event?: InputMaybe<EventEntityInput>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translateable?: InputMaybe<Array<InputMaybe<EventCommentTranslatableEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<EventCommentTranslatableEntityInput>>>;
   userContext?: InputMaybe<UserContextEntityInput>;
 };
 
@@ -771,69 +705,64 @@ export type EventCommentTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<EventCommentEntity>;
 };
 
 export type EventCommentTranslatableEntityInput = {
   content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<EventCommentEntityInput>;
 };
 
 export type EventEntity = {
   __typename?: 'EventEntity';
   address?: Maybe<AddressEntity>;
-  attendee?: Maybe<Array<Maybe<AttendeeEntity>>>;
   attendeeConfiguration?: Maybe<AttendeeConfigurationEntity>;
-  cardImage?: Maybe<MediaEntity>;
+  attendees?: Maybe<Array<Maybe<AttendeeEntity>>>;
   category?: Maybe<EventCategoryEntity>;
   contact?: Maybe<ContactEntity>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   creator?: Maybe<UserContextEntity>;
-  entryFee: Scalars['Float'];
-  eventEventTargetGroups?: Maybe<Array<Maybe<EventTargetGroupEntity>>>;
+  entryFee?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['String']>;
   media?: Maybe<Array<Maybe<MediaEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   organisation?: Maybe<OrganisationEntity>;
-  rating?: Maybe<Array<Maybe<EventRatingEntity>>>;
+  ratings?: Maybe<Array<Maybe<EventRatingEntity>>>;
   schedules?: Maybe<Array<Maybe<ScheduleEntity>>>;
   seoDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
+  targetGroups?: Maybe<Array<Maybe<EventTargetGroupEntity>>>;
   titleImage?: Maybe<MediaEntity>;
   translatables?: Maybe<Array<Maybe<EventTranslatableEntity>>>;
   videoChatLink?: Maybe<Scalars['String']>;
-  visitor?: Maybe<Array<Maybe<EventVisitorEntity>>>;
+  visitors?: Maybe<Array<Maybe<EventVisitorEntity>>>;
 };
 
 export type EventEntityInput = {
   address?: InputMaybe<AddressEntityInput>;
-  attendee?: InputMaybe<Array<InputMaybe<AttendeeEntityInput>>>;
   attendeeConfiguration?: InputMaybe<AttendeeConfigurationEntityInput>;
-  cardImage?: InputMaybe<MediaEntityInput>;
+  attendees?: InputMaybe<Array<InputMaybe<AttendeeEntityInput>>>;
   category?: InputMaybe<EventCategoryEntityInput>;
   contact?: InputMaybe<ContactEntityInput>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   creator?: InputMaybe<UserContextEntityInput>;
-  entryFee: Scalars['Float'];
-  eventEventTargetGroups?: InputMaybe<Array<InputMaybe<EventTargetGroupEntityInput>>>;
+  entryFee?: InputMaybe<Scalars['Float']>;
   id?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   organisation?: InputMaybe<OrganisationEntityInput>;
-  rating?: InputMaybe<Array<InputMaybe<EventRatingEntityInput>>>;
+  ratings?: InputMaybe<Array<InputMaybe<EventRatingEntityInput>>>;
   schedules?: InputMaybe<Array<InputMaybe<ScheduleEntityInput>>>;
   seoDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
+  targetGroups?: InputMaybe<Array<InputMaybe<EventTargetGroupEntityInput>>>;
   titleImage?: InputMaybe<MediaEntityInput>;
   translatables?: InputMaybe<Array<InputMaybe<EventTranslatableEntityInput>>>;
   videoChatLink?: InputMaybe<Scalars['String']>;
-  visitor?: InputMaybe<Array<InputMaybe<EventVisitorEntityInput>>>;
+  visitors?: InputMaybe<Array<InputMaybe<EventVisitorEntityInput>>>;
 };
 
 export type EventRatingEntity = {
@@ -860,14 +789,14 @@ export type EventTargetGroupEntity = {
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  translateable?: Maybe<Array<Maybe<EventTargetGroupTranslatableEntity>>>;
+  translatables?: Maybe<Array<Maybe<EventTargetGroupTranslatableEntity>>>;
 };
 
 export type EventTargetGroupEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translateable?: InputMaybe<Array<InputMaybe<EventTargetGroupTranslatableEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<EventTargetGroupTranslatableEntityInput>>>;
 };
 
 export type EventTargetGroupTranslatableEntity = {
@@ -877,16 +806,13 @@ export type EventTargetGroupTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<EventTargetGroupEntity>;
 };
 
 export type EventTargetGroupTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<EventTargetGroupEntityInput>;
 };
 
 export type EventTranslatableEntity = {
@@ -926,8 +852,6 @@ export type EventVisitorEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<EventEntityInput>;
-  visitor?: InputMaybe<VisitorEntityInput>;
   visits?: InputMaybe<Scalars['Int']>;
 };
 
@@ -936,20 +860,20 @@ export type FeatureEntity = {
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   key?: Maybe<Scalars['String']>;
-  landingFeatures?: Maybe<Array<Maybe<PageFeatureEntity>>>;
   menuItem?: Maybe<Array<Maybe<MenuItemEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  translatable?: Maybe<Array<Maybe<FeatureTranslatableEntity>>>;
+  pageFeatures?: Maybe<Array<Maybe<PageFeatureEntity>>>;
+  translatables?: Maybe<Array<Maybe<FeatureTranslatableEntity>>>;
 };
 
 export type FeatureEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   key?: InputMaybe<Scalars['String']>;
-  landingFeatures?: InputMaybe<Array<InputMaybe<PageFeatureEntityInput>>>;
   menuItem?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translatable?: InputMaybe<Array<InputMaybe<FeatureTranslatableEntityInput>>>;
+  pageFeatures?: InputMaybe<Array<InputMaybe<PageFeatureEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<FeatureTranslatableEntityInput>>>;
 };
 
 export type FeatureTranslatableEntity = {
@@ -959,16 +883,13 @@ export type FeatureTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<FeatureEntity>;
 };
 
 export type FeatureTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<FeatureEntityInput>;
 };
 
 export type FilterSortPaginateInput = {
@@ -978,42 +899,6 @@ export type FilterSortPaginateInput = {
   search?: InputMaybe<Scalars['String']>;
   size?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Scalars['String']>;
-};
-
-export type FormTemplateEntity = {
-  __typename?: 'FormTemplateEntity';
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  translatables?: Maybe<Array<Maybe<FormTemplateTranslatableEntity>>>;
-};
-
-export type FormTemplateEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translatables?: InputMaybe<Array<InputMaybe<FormTemplateTranslatableEntityInput>>>;
-};
-
-export type FormTemplateTranslatableEntity = {
-  __typename?: 'FormTemplateTranslatableEntity';
-  content?: Maybe<Scalars['String']>;
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  name?: Maybe<Scalars['String']>;
-  parent?: Maybe<FormTemplateEntity>;
-};
-
-export type FormTemplateTranslatableEntityInput = {
-  content?: InputMaybe<Scalars['String']>;
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<FormTemplateEntityInput>;
 };
 
 export type FormTemplateTypeEntity = {
@@ -1074,157 +959,40 @@ export type InformationDto = {
   version?: Maybe<Scalars['String']>;
 };
 
-export type InquiryCategoryEntity = {
-  __typename?: 'InquiryCategoryEntity';
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  inquiries?: Maybe<Array<Maybe<InquiryEntity>>>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  translatables?: Maybe<Array<Maybe<InquiryCategoryTranslatableEntity>>>;
-};
-
-export type InquiryCategoryEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  inquiries?: InputMaybe<Array<InputMaybe<InquiryEntityInput>>>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translatables?: InputMaybe<Array<InputMaybe<InquiryCategoryTranslatableEntityInput>>>;
-};
-
-export type InquiryCategoryTranslatableEntity = {
-  __typename?: 'InquiryCategoryTranslatableEntity';
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  name?: Maybe<Scalars['String']>;
-  parent?: Maybe<InquiryCategoryEntity>;
-};
-
-export type InquiryCategoryTranslatableEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<InquiryCategoryEntityInput>;
-};
-
-export type InquiryEntity = {
-  __typename?: 'InquiryEntity';
-  category?: Maybe<InquiryCategoryEntity>;
-  content?: Maybe<Scalars['String']>;
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-};
-
-export type InquiryEntityInput = {
-  category?: InputMaybe<InquiryCategoryEntityInput>;
-  content?: InputMaybe<Scalars['String']>;
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-};
-
 export type LanguageEntity = {
   __typename?: 'LanguageEntity';
-  articleCategories?: Maybe<Array<Maybe<ArticleCategoryTranslatableEntity>>>;
-  articleComments?: Maybe<Array<Maybe<ArticleCommentTranslatableEntity>>>;
-  contestParticipations?: Maybe<Array<Maybe<ContestParticipationTranslatableEntity>>>;
-  contests?: Maybe<Array<Maybe<ContestTranslatableEntity>>>;
   created?: Maybe<Scalars['OffsetDateTime']>;
-  dealCategories?: Maybe<Array<Maybe<DealCategoryTranslatableEntity>>>;
-  deals?: Maybe<Array<Maybe<DealTranslatableEntity>>>;
-  eventCategorys?: Maybe<Array<Maybe<EventCategoryTranslatableEntity>>>;
-  eventComments?: Maybe<Array<Maybe<EventCommentTranslatableEntity>>>;
-  eventTargetGroups?: Maybe<Array<Maybe<EventTargetGroupTranslatableEntity>>>;
-  events?: Maybe<Array<Maybe<EventTranslatableEntity>>>;
-  features?: Maybe<Array<Maybe<FeatureTranslatableEntity>>>;
-  formTemplateTypes?: Maybe<Array<Maybe<FormTemplateTypeTranslatableEntity>>>;
-  formTemplates?: Maybe<Array<Maybe<FormTemplateTranslatableEntity>>>;
   id?: Maybe<Scalars['String']>;
-  inquiryCategory?: Maybe<Array<Maybe<InquiryCategoryTranslatableEntity>>>;
   locale?: Maybe<Scalars['String']>;
-  menues?: Maybe<Array<Maybe<MenuTranslatableEntity>>>;
-  messageDefinitions?: Maybe<Array<Maybe<MessageDefinitionTranslatableEntity>>>;
-  messageTemplates?: Maybe<Array<Maybe<MessageTemplateTranslatableEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  organisations?: Maybe<Array<Maybe<OrganisationTranslatableEntity>>>;
-  pages?: Maybe<Array<Maybe<PageTranslatableEntity>>>;
-  roles?: Maybe<Array<Maybe<RoleTranslatableEntity>>>;
-  surveys?: Maybe<Array<Maybe<SurveyTranslatableEntity>>>;
-  userContexts?: Maybe<Array<Maybe<UserContextTranslatableEntity>>>;
-  userFormTemplates?: Maybe<Array<Maybe<UserFormTemplateTranslatableEntity>>>;
 };
 
 export type LanguageEntityInput = {
-  articleCategories?: InputMaybe<Array<InputMaybe<ArticleCategoryTranslatableEntityInput>>>;
-  articleComments?: InputMaybe<Array<InputMaybe<ArticleCommentTranslatableEntityInput>>>;
-  contestParticipations?: InputMaybe<Array<InputMaybe<ContestParticipationTranslatableEntityInput>>>;
-  contests?: InputMaybe<Array<InputMaybe<ContestTranslatableEntityInput>>>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  dealCategories?: InputMaybe<Array<InputMaybe<DealCategoryTranslatableEntityInput>>>;
-  deals?: InputMaybe<Array<InputMaybe<DealTranslatableEntityInput>>>;
-  eventCategorys?: InputMaybe<Array<InputMaybe<EventCategoryTranslatableEntityInput>>>;
-  eventComments?: InputMaybe<Array<InputMaybe<EventCommentTranslatableEntityInput>>>;
-  eventTargetGroups?: InputMaybe<Array<InputMaybe<EventTargetGroupTranslatableEntityInput>>>;
-  events?: InputMaybe<Array<InputMaybe<EventTranslatableEntityInput>>>;
-  features?: InputMaybe<Array<InputMaybe<FeatureTranslatableEntityInput>>>;
-  formTemplateTypes?: InputMaybe<Array<InputMaybe<FormTemplateTypeTranslatableEntityInput>>>;
-  formTemplates?: InputMaybe<Array<InputMaybe<FormTemplateTranslatableEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
-  inquiryCategory?: InputMaybe<Array<InputMaybe<InquiryCategoryTranslatableEntityInput>>>;
   locale?: InputMaybe<Scalars['String']>;
-  menues?: InputMaybe<Array<InputMaybe<MenuTranslatableEntityInput>>>;
-  messageDefinitions?: InputMaybe<Array<InputMaybe<MessageDefinitionTranslatableEntityInput>>>;
-  messageTemplates?: InputMaybe<Array<InputMaybe<MessageTemplateTranslatableEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  organisations?: InputMaybe<Array<InputMaybe<OrganisationTranslatableEntityInput>>>;
-  pages?: InputMaybe<Array<InputMaybe<PageTranslatableEntityInput>>>;
-  roles?: InputMaybe<Array<InputMaybe<RoleTranslatableEntityInput>>>;
-  surveys?: InputMaybe<Array<InputMaybe<SurveyTranslatableEntityInput>>>;
-  userContexts?: InputMaybe<Array<InputMaybe<UserContextTranslatableEntityInput>>>;
-  userFormTemplates?: InputMaybe<Array<InputMaybe<UserFormTemplateTranslatableEntityInput>>>;
 };
 
 export type MediaEntity = {
   __typename?: 'MediaEntity';
-  articleCardImage?: Maybe<Array<Maybe<ArticleEntity>>>;
-  articleTitleImages?: Maybe<Array<Maybe<ArticleEntity>>>;
   base64?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
-  eventCards?: Maybe<Array<Maybe<EventEntity>>>;
-  eventTitleImages?: Maybe<Array<Maybe<EventEntity>>>;
   id?: Maybe<Scalars['String']>;
   mimeType?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  organisationCardImage?: Maybe<Array<Maybe<OrganisationEntity>>>;
-  organisationTitleImages?: Maybe<Array<Maybe<OrganisationEntity>>>;
-  pageTitleImages?: Maybe<Array<Maybe<PageEntity>>>;
-  userProfilePicture?: Maybe<Array<Maybe<UserContextEntity>>>;
-  userTitleImages?: Maybe<Array<Maybe<UserContextEntity>>>;
 };
 
 export type MediaEntityInput = {
-  articleCardImage?: InputMaybe<Array<InputMaybe<ArticleEntityInput>>>;
-  articleTitleImages?: InputMaybe<Array<InputMaybe<ArticleEntityInput>>>;
   base64?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  eventCards?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
-  eventTitleImages?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   mimeType?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  organisationCardImage?: InputMaybe<Array<InputMaybe<OrganisationEntityInput>>>;
-  organisationTitleImages?: InputMaybe<Array<InputMaybe<OrganisationEntityInput>>>;
-  pageTitleImages?: InputMaybe<Array<InputMaybe<PageEntityInput>>>;
-  userProfilePicture?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
-  userTitleImages?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
 };
 
 export type MemberEntity = {
@@ -1250,65 +1018,47 @@ export type MemberEntityInput = {
   user?: InputMaybe<UserContextEntityInput>;
 };
 
-export type MenuEntity = {
-  __typename?: 'MenuEntity';
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  menuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  subMenuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
-  translatable?: Maybe<Array<Maybe<MenuTranslatableEntity>>>;
-};
-
-export type MenuEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  menuItems?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  subMenuItems?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
-  translatable?: InputMaybe<Array<InputMaybe<MenuTranslatableEntityInput>>>;
-};
-
 export type MenuItemEntity = {
   __typename?: 'MenuItemEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
+  feature?: Maybe<FeatureEntity>;
+  header?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  module?: Maybe<FeatureEntity>;
   order?: Maybe<Scalars['Int']>;
   page?: Maybe<PageEntity>;
-  parent?: Maybe<MenuEntity>;
-  subMenu?: Maybe<MenuEntity>;
+  parent?: Maybe<MenuItemEntity>;
+  subMenuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
+  translatables?: Maybe<Array<Maybe<MenuItemTranslatableEntity>>>;
 };
 
 export type MenuItemEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
+  feature?: InputMaybe<FeatureEntityInput>;
+  header?: InputMaybe<Scalars['Boolean']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  module?: InputMaybe<FeatureEntityInput>;
   order?: InputMaybe<Scalars['Int']>;
   page?: InputMaybe<PageEntityInput>;
-  parent?: InputMaybe<MenuEntityInput>;
-  subMenu?: InputMaybe<MenuEntityInput>;
+  parent?: InputMaybe<MenuItemEntityInput>;
+  subMenuItems?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<MenuItemTranslatableEntityInput>>>;
 };
 
-export type MenuTranslatableEntity = {
-  __typename?: 'MenuTranslatableEntity';
+export type MenuItemTranslatableEntity = {
+  __typename?: 'MenuItemTranslatableEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<MenuEntity>;
 };
 
-export type MenuTranslatableEntityInput = {
+export type MenuItemTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<MenuEntityInput>;
 };
 
 export type MessageDefinitionEntity = {
@@ -1418,6 +1168,12 @@ export type Mutation = {
   deleteArticleCategories?: Maybe<Scalars['Boolean']>;
   deleteArticleCategory?: Maybe<Scalars['Boolean']>;
   deleteArticles?: Maybe<Scalars['Boolean']>;
+  deleteAssignment?: Maybe<Scalars['Boolean']>;
+  deleteAssignments?: Maybe<Scalars['Boolean']>;
+  deleteAttendee?: Maybe<Scalars['Boolean']>;
+  deleteAttendees?: Maybe<Scalars['Boolean']>;
+  deleteContact?: Maybe<Scalars['Boolean']>;
+  deleteContacts?: Maybe<Scalars['Boolean']>;
   deleteContest?: Maybe<Scalars['Boolean']>;
   deleteContestState?: Maybe<Scalars['Boolean']>;
   deleteContestStates?: Maybe<Scalars['Boolean']>;
@@ -1435,27 +1191,53 @@ export type Mutation = {
   deleteEvent?: Maybe<Scalars['Boolean']>;
   deleteEventCategories?: Maybe<Scalars['Boolean']>;
   deleteEventCategory?: Maybe<Scalars['Boolean']>;
+  deleteEventComment?: Maybe<Scalars['Boolean']>;
+  deleteEventComments?: Maybe<Scalars['Boolean']>;
+  deleteEventRating?: Maybe<Scalars['Boolean']>;
+  deleteEventRatings?: Maybe<Scalars['Boolean']>;
+  deleteEventTargetGroup?: Maybe<Scalars['Boolean']>;
+  deleteEventTargetGroups?: Maybe<Scalars['Boolean']>;
   deleteEvents?: Maybe<Scalars['Boolean']>;
   deleteMe?: Maybe<Scalars['Boolean']>;
   deleteMember?: Maybe<Scalars['Boolean']>;
   deleteMembers?: Maybe<Scalars['Boolean']>;
+  deleteMenuItem?: Maybe<Scalars['Boolean']>;
+  deleteMenuItems?: Maybe<Scalars['Boolean']>;
   deleteMessageDefinition?: Maybe<Scalars['Boolean']>;
   deleteMessageDefinitions?: Maybe<Scalars['Boolean']>;
   deleteMessageTemplate?: Maybe<Scalars['Boolean']>;
   deleteMessageTemplates?: Maybe<Scalars['Boolean']>;
+  deleteNotification?: Maybe<Scalars['Boolean']>;
+  deleteNotifications?: Maybe<Scalars['Boolean']>;
   deleteOrganisation?: Maybe<Scalars['Boolean']>;
+  deleteOrganisationComment?: Maybe<Scalars['Boolean']>;
+  deleteOrganisationComments?: Maybe<Scalars['Boolean']>;
+  deleteOrganisationRating?: Maybe<Scalars['Boolean']>;
+  deleteOrganisationRatings?: Maybe<Scalars['Boolean']>;
   deleteOrganisations?: Maybe<Scalars['Boolean']>;
+  deletePage?: Maybe<Scalars['Boolean']>;
+  deletePages?: Maybe<Scalars['Boolean']>;
   deletePublicAuthor?: Maybe<Scalars['Boolean']>;
   deletePublicAuthors?: Maybe<Scalars['Boolean']>;
   deleteQuestion?: Maybe<Scalars['Boolean']>;
+  deleteQuestionOption?: Maybe<Scalars['Boolean']>;
+  deleteQuestionOptions?: Maybe<Scalars['Boolean']>;
+  deleteQuestionType?: Maybe<Scalars['Boolean']>;
+  deleteQuestionTypes?: Maybe<Scalars['Boolean']>;
   deleteQuestions?: Maybe<Scalars['Boolean']>;
   deleteRole?: Maybe<Scalars['Boolean']>;
   deleteRoles?: Maybe<Scalars['Boolean']>;
+  deleteSchedule?: Maybe<Scalars['Boolean']>;
+  deleteSchedules?: Maybe<Scalars['Boolean']>;
   deleteSubscription?: Maybe<Scalars['Boolean']>;
   deleteSubscriptions?: Maybe<Scalars['Boolean']>;
   deleteSuburb?: Maybe<Scalars['Boolean']>;
   deleteSuburbs?: Maybe<Scalars['Boolean']>;
   deleteSurvey?: Maybe<Scalars['Boolean']>;
+  deleteSurveyResult?: Maybe<Scalars['Boolean']>;
+  deleteSurveyResults?: Maybe<Scalars['Boolean']>;
+  deleteSurveyState?: Maybe<Scalars['Boolean']>;
+  deleteSurveyStates?: Maybe<Scalars['Boolean']>;
   deleteSurveys?: Maybe<Scalars['Boolean']>;
   deleteUploads?: Maybe<UserEntity>;
   deleteUser?: Maybe<Scalars['Boolean']>;
@@ -1472,6 +1254,12 @@ export type Mutation = {
   saveArticleCategories?: Maybe<Array<Maybe<ArticleCategoryEntity>>>;
   saveArticleCategory?: Maybe<ArticleCategoryEntity>;
   saveArticles?: Maybe<Array<Maybe<ArticleEntity>>>;
+  saveAssignment?: Maybe<AssignmentEntity>;
+  saveAssignments?: Maybe<Array<Maybe<AssignmentEntity>>>;
+  saveAttendee?: Maybe<AttendeeEntity>;
+  saveAttendees?: Maybe<Array<Maybe<AttendeeEntity>>>;
+  saveContact?: Maybe<ContactEntity>;
+  saveContacts?: Maybe<Array<Maybe<ContactEntity>>>;
   saveContest?: Maybe<ContestEntity>;
   saveContestState?: Maybe<ContestStateEntity>;
   saveContestStates?: Maybe<Array<Maybe<ContestStateEntity>>>;
@@ -1489,27 +1277,53 @@ export type Mutation = {
   saveEvent?: Maybe<EventEntity>;
   saveEventCategories?: Maybe<Array<Maybe<EventCategoryEntity>>>;
   saveEventCategory?: Maybe<EventCategoryEntity>;
+  saveEventComment?: Maybe<EventCommentEntity>;
+  saveEventComments?: Maybe<Array<Maybe<EventCommentEntity>>>;
+  saveEventRating?: Maybe<EventRatingEntity>;
+  saveEventRatings?: Maybe<Array<Maybe<EventRatingEntity>>>;
+  saveEventTargetGroup?: Maybe<EventTargetGroupEntity>;
+  saveEventTargetGroups?: Maybe<Array<Maybe<EventTargetGroupEntity>>>;
   saveEvents?: Maybe<Array<Maybe<EventEntity>>>;
   saveMe?: Maybe<UserEntity>;
   saveMember?: Maybe<MemberEntity>;
   saveMembers?: Maybe<Array<Maybe<MemberEntity>>>;
+  saveMenuItem?: Maybe<MenuItemEntity>;
+  saveMenuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
   saveMessageDefinition?: Maybe<MessageDefinitionEntity>;
   saveMessageDefinitions?: Maybe<Array<Maybe<MessageDefinitionEntity>>>;
   saveMessageTemplate?: Maybe<MessageTemplateEntity>;
   saveMessageTemplates?: Maybe<Array<Maybe<MessageTemplateEntity>>>;
+  saveNotification?: Maybe<NotificationEntity>;
+  saveNotifications?: Maybe<Array<Maybe<NotificationEntity>>>;
   saveOrganisation?: Maybe<OrganisationEntity>;
+  saveOrganisationComment?: Maybe<OrganisationCommentEntity>;
+  saveOrganisationComments?: Maybe<Array<Maybe<OrganisationCommentEntity>>>;
+  saveOrganisationRating?: Maybe<OrganisationRatingEntity>;
+  saveOrganisationRatings?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
   saveOrganisations?: Maybe<Array<Maybe<OrganisationEntity>>>;
+  savePage?: Maybe<PageEntity>;
+  savePages?: Maybe<Array<Maybe<PageEntity>>>;
   savePublicAuthor?: Maybe<PublicAuthorEntity>;
   savePublicAuthors?: Maybe<Array<Maybe<PublicAuthorEntity>>>;
   saveQuestion?: Maybe<QuestionEntity>;
+  saveQuestionOption?: Maybe<QuestionOptionEntity>;
+  saveQuestionOptions?: Maybe<Array<Maybe<QuestionOptionEntity>>>;
+  saveQuestionType?: Maybe<QuestionTypeEntity>;
+  saveQuestionTypes?: Maybe<Array<Maybe<QuestionTypeEntity>>>;
   saveQuestions?: Maybe<Array<Maybe<QuestionEntity>>>;
   saveRole?: Maybe<RoleEntity>;
   saveRoles?: Maybe<Array<Maybe<RoleEntity>>>;
+  saveSchedule?: Maybe<ScheduleEntity>;
+  saveSchedules?: Maybe<Array<Maybe<ScheduleEntity>>>;
   saveSubscription?: Maybe<SubscriptionEntity>;
   saveSubscriptions?: Maybe<Array<Maybe<SubscriptionEntity>>>;
   saveSuburb?: Maybe<SuburbEntity>;
   saveSuburbs?: Maybe<Array<Maybe<SuburbEntity>>>;
   saveSurvey?: Maybe<SurveyEntity>;
+  saveSurveyResult?: Maybe<SurveyResultEntity>;
+  saveSurveyResults?: Maybe<Array<Maybe<SurveyResultEntity>>>;
+  saveSurveyState?: Maybe<SurveyStateEntity>;
+  saveSurveyStates?: Maybe<Array<Maybe<SurveyStateEntity>>>;
   saveSurveys?: Maybe<Array<Maybe<SurveyEntity>>>;
   saveUser?: Maybe<UserEntity>;
   saveUserContext?: Maybe<UserContextEntity>;
@@ -1586,6 +1400,42 @@ export type MutationDeleteArticleCategoryArgs = {
 
 /** Mutation root */
 export type MutationDeleteArticlesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAssignmentArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAssignmentsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAttendeeArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAttendeesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteContactArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteContactsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1693,6 +1543,42 @@ export type MutationDeleteEventCategoryArgs = {
 
 
 /** Mutation root */
+export type MutationDeleteEventCommentArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteEventCommentsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteEventRatingArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteEventRatingsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteEventTargetGroupArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteEventTargetGroupsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteEventsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -1712,6 +1598,18 @@ export type MutationDeleteMemberArgs = {
 
 /** Mutation root */
 export type MutationDeleteMembersArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteMenuItemArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteMenuItemsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1741,13 +1639,61 @@ export type MutationDeleteMessageTemplatesArgs = {
 
 
 /** Mutation root */
+export type MutationDeleteNotificationArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteNotificationsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteOrganisationArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
 
 
 /** Mutation root */
+export type MutationDeleteOrganisationCommentArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteOrganisationCommentsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteOrganisationRatingArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteOrganisationRatingsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteOrganisationsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeletePageArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeletePagesArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1771,6 +1717,30 @@ export type MutationDeleteQuestionArgs = {
 
 
 /** Mutation root */
+export type MutationDeleteQuestionOptionArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteQuestionOptionsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteQuestionTypeArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteQuestionTypesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteQuestionsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -1784,6 +1754,18 @@ export type MutationDeleteRoleArgs = {
 
 /** Mutation root */
 export type MutationDeleteRolesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteScheduleArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteSchedulesArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1815,6 +1797,30 @@ export type MutationDeleteSuburbsArgs = {
 /** Mutation root */
 export type MutationDeleteSurveyArgs = {
   id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteSurveyResultArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteSurveyResultsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteSurveyStateArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteSurveyStatesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1912,6 +1918,42 @@ export type MutationSaveArticleCategoryArgs = {
 /** Mutation root */
 export type MutationSaveArticlesArgs = {
   entities?: InputMaybe<Array<InputMaybe<ArticleEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAssignmentArgs = {
+  entity?: InputMaybe<AssignmentEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAssignmentsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<AssignmentEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAttendeeArgs = {
+  entity?: InputMaybe<AttendeeEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAttendeesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<AttendeeEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveContactArgs = {
+  entity?: InputMaybe<ContactEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveContactsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<ContactEntityInput>>>;
 };
 
 
@@ -2018,6 +2060,42 @@ export type MutationSaveEventCategoryArgs = {
 
 
 /** Mutation root */
+export type MutationSaveEventCommentArgs = {
+  entity?: InputMaybe<EventCommentEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveEventCommentsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<EventCommentEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveEventRatingArgs = {
+  entity?: InputMaybe<EventRatingEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveEventRatingsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<EventRatingEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveEventTargetGroupArgs = {
+  entity?: InputMaybe<EventTargetGroupEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveEventTargetGroupsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<EventTargetGroupEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveEventsArgs = {
   entities?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
 };
@@ -2038,6 +2116,18 @@ export type MutationSaveMemberArgs = {
 /** Mutation root */
 export type MutationSaveMembersArgs = {
   entities?: InputMaybe<Array<InputMaybe<MemberEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveMenuItemArgs = {
+  entity?: InputMaybe<MenuItemEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveMenuItemsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
 };
 
 
@@ -2066,14 +2156,62 @@ export type MutationSaveMessageTemplatesArgs = {
 
 
 /** Mutation root */
+export type MutationSaveNotificationArgs = {
+  entity?: InputMaybe<NotificationEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveNotificationsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<NotificationEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveOrganisationArgs = {
   entity?: InputMaybe<OrganisationEntityInput>;
 };
 
 
 /** Mutation root */
+export type MutationSaveOrganisationCommentArgs = {
+  entity?: InputMaybe<OrganisationCommentEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveOrganisationCommentsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<OrganisationCommentEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveOrganisationRatingArgs = {
+  entity?: InputMaybe<OrganisationRatingEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveOrganisationRatingsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<OrganisationRatingEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveOrganisationsArgs = {
   entities?: InputMaybe<Array<InputMaybe<OrganisationEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSavePageArgs = {
+  entity?: InputMaybe<PageEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSavePagesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<PageEntityInput>>>;
 };
 
 
@@ -2096,6 +2234,30 @@ export type MutationSaveQuestionArgs = {
 
 
 /** Mutation root */
+export type MutationSaveQuestionOptionArgs = {
+  entity?: InputMaybe<QuestionOptionEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveQuestionOptionsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<QuestionOptionEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveQuestionTypeArgs = {
+  entity?: InputMaybe<QuestionTypeEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveQuestionTypesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<QuestionTypeEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveQuestionsArgs = {
   entities?: InputMaybe<Array<InputMaybe<QuestionEntityInput>>>;
 };
@@ -2110,6 +2272,18 @@ export type MutationSaveRoleArgs = {
 /** Mutation root */
 export type MutationSaveRolesArgs = {
   entities?: InputMaybe<Array<InputMaybe<RoleEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveScheduleArgs = {
+  entity?: InputMaybe<ScheduleEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveSchedulesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<ScheduleEntityInput>>>;
 };
 
 
@@ -2140,6 +2314,30 @@ export type MutationSaveSuburbsArgs = {
 /** Mutation root */
 export type MutationSaveSurveyArgs = {
   entity?: InputMaybe<SurveyEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveSurveyResultArgs = {
+  entity?: InputMaybe<SurveyResultEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveSurveyResultsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<SurveyResultEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveSurveyStateArgs = {
+  entity?: InputMaybe<SurveyStateEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveSurveyStatesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<SurveyStateEntityInput>>>;
 };
 
 
@@ -2258,7 +2456,7 @@ export type OrganisationCommentEntity = {
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   organisation?: Maybe<OrganisationEntity>;
-  translateable?: Maybe<Array<Maybe<OrganisationCommentTranslatableEntity>>>;
+  translatables?: Maybe<Array<Maybe<OrganisationCommentTranslatableEntity>>>;
 };
 
 export type OrganisationCommentEntityInput = {
@@ -2267,7 +2465,7 @@ export type OrganisationCommentEntityInput = {
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   organisation?: InputMaybe<OrganisationEntityInput>;
-  translateable?: InputMaybe<Array<InputMaybe<OrganisationCommentTranslatableEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<OrganisationCommentTranslatableEntityInput>>>;
 };
 
 export type OrganisationCommentTranslatableEntity = {
@@ -2294,6 +2492,7 @@ export type OrganisationEntity = {
   address?: Maybe<AddressEntity>;
   approved?: Maybe<Scalars['Boolean']>;
   cardImage?: Maybe<MediaEntity>;
+  comments?: Maybe<Array<Maybe<OrganisationCommentEntity>>>;
   contact?: Maybe<ContactEntity>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   events?: Maybe<Array<Maybe<EventEntity>>>;
@@ -2302,19 +2501,19 @@ export type OrganisationEntity = {
   members?: Maybe<Array<Maybe<MemberEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  organisationComments?: Maybe<Array<Maybe<OrganisationCommentEntity>>>;
-  organisationRatings?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
-  organisationTranslatable?: Maybe<Array<Maybe<OrganisationTranslatableEntity>>>;
-  organisationVisitors?: Maybe<Array<Maybe<OrganisationVisitorEntity>>>;
+  ratings?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
   seoDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   titleImage?: Maybe<MediaEntity>;
+  translatables?: Maybe<Array<Maybe<OrganisationTranslatableEntity>>>;
+  visitors?: Maybe<Array<Maybe<OrganisationVisitorEntity>>>;
 };
 
 export type OrganisationEntityInput = {
   address?: InputMaybe<AddressEntityInput>;
   approved?: InputMaybe<Scalars['Boolean']>;
   cardImage?: InputMaybe<MediaEntityInput>;
+  comments?: InputMaybe<Array<InputMaybe<OrganisationCommentEntityInput>>>;
   contact?: InputMaybe<ContactEntityInput>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
@@ -2323,13 +2522,12 @@ export type OrganisationEntityInput = {
   members?: InputMaybe<Array<InputMaybe<MemberEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  organisationComments?: InputMaybe<Array<InputMaybe<OrganisationCommentEntityInput>>>;
-  organisationRatings?: InputMaybe<Array<InputMaybe<OrganisationRatingEntityInput>>>;
-  organisationTranslatable?: InputMaybe<Array<InputMaybe<OrganisationTranslatableEntityInput>>>;
-  organisationVisitors?: InputMaybe<Array<InputMaybe<OrganisationVisitorEntityInput>>>;
+  ratings?: InputMaybe<Array<InputMaybe<OrganisationRatingEntityInput>>>;
   seoDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   titleImage?: InputMaybe<MediaEntityInput>;
+  translatables?: InputMaybe<Array<InputMaybe<OrganisationTranslatableEntityInput>>>;
+  visitors?: InputMaybe<Array<InputMaybe<OrganisationVisitorEntityInput>>>;
 };
 
 export type OrganisationRatingEntity = {
@@ -2384,8 +2582,6 @@ export type OrganisationVisitorEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<OrganisationEntityInput>;
-  visitor?: InputMaybe<VisitorEntityInput>;
   visits?: InputMaybe<Scalars['Int']>;
 };
 
@@ -2393,27 +2589,31 @@ export type PageEntity = {
   __typename?: 'PageEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
+  isLanding?: Maybe<Scalars['Boolean']>;
+  media?: Maybe<Array<Maybe<MediaEntity>>>;
+  menuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   pageFeatures?: Maybe<Array<Maybe<PageFeatureEntity>>>;
-  pageMedia?: Maybe<Array<Maybe<MediaEntity>>>;
-  pageTrabslatables?: Maybe<Array<Maybe<PageTranslatableEntity>>>;
-  pageVisitor?: Maybe<Array<Maybe<PageVisitorEntity>>>;
   seoDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   titleImage?: Maybe<MediaEntity>;
+  translatables?: Maybe<Array<Maybe<PageTranslatableEntity>>>;
+  visitors?: Maybe<Array<Maybe<PageVisitorEntity>>>;
 };
 
 export type PageEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
+  isLanding?: InputMaybe<Scalars['Boolean']>;
+  media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
+  menuItems?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   pageFeatures?: InputMaybe<Array<InputMaybe<PageFeatureEntityInput>>>;
-  pageMedia?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
-  pageTrabslatables?: InputMaybe<Array<InputMaybe<PageTranslatableEntityInput>>>;
-  pageVisitor?: InputMaybe<Array<InputMaybe<PageVisitorEntityInput>>>;
   seoDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   titleImage?: InputMaybe<MediaEntityInput>;
+  translatables?: InputMaybe<Array<InputMaybe<PageTranslatableEntityInput>>>;
+  visitors?: InputMaybe<Array<InputMaybe<PageVisitorEntityInput>>>;
 };
 
 export type PageFeatureEntity = {
@@ -2443,7 +2643,6 @@ export type PageTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<PageEntity>;
   shortDescription?: Maybe<Scalars['String']>;
 };
 
@@ -2451,10 +2650,8 @@ export type PageTranslatableEntityInput = {
   content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<PageEntityInput>;
   shortDescription?: InputMaybe<Scalars['String']>;
 };
 
@@ -2472,8 +2669,6 @@ export type PageVisitorEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<PageEntityInput>;
-  visitor?: InputMaybe<VisitorEntityInput>;
   visits?: InputMaybe<Scalars['Int']>;
 };
 
@@ -2498,6 +2693,24 @@ export type PageableList_ArticleCategoryEntity = {
 export type PageableList_ArticleEntity = {
   __typename?: 'PageableList_ArticleEntity';
   result?: Maybe<Array<Maybe<ArticleEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_AssignmentEntity = {
+  __typename?: 'PageableList_AssignmentEntity';
+  result?: Maybe<Array<Maybe<AssignmentEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_AttendeeEntity = {
+  __typename?: 'PageableList_AttendeeEntity';
+  result?: Maybe<Array<Maybe<AttendeeEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_ContactEntity = {
+  __typename?: 'PageableList_ContactEntity';
+  result?: Maybe<Array<Maybe<ContactEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -2549,15 +2762,39 @@ export type PageableList_EventCategoryEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_EventCommentEntity = {
+  __typename?: 'PageableList_EventCommentEntity';
+  result?: Maybe<Array<Maybe<EventCommentEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_EventEntity = {
   __typename?: 'PageableList_EventEntity';
   result?: Maybe<Array<Maybe<EventEntity>>>;
   total: Scalars['Long'];
 };
 
+export type PageableList_EventRatingEntity = {
+  __typename?: 'PageableList_EventRatingEntity';
+  result?: Maybe<Array<Maybe<EventRatingEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_EventTargetGroupEntity = {
+  __typename?: 'PageableList_EventTargetGroupEntity';
+  result?: Maybe<Array<Maybe<EventTargetGroupEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_MemberEntity = {
   __typename?: 'PageableList_MemberEntity';
   result?: Maybe<Array<Maybe<MemberEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_MenuItemEntity = {
+  __typename?: 'PageableList_MenuItemEntity';
+  result?: Maybe<Array<Maybe<MenuItemEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -2573,9 +2810,33 @@ export type PageableList_MessageTemplateEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_NotificationEntity = {
+  __typename?: 'PageableList_NotificationEntity';
+  result?: Maybe<Array<Maybe<NotificationEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_OrganisationCommentEntity = {
+  __typename?: 'PageableList_OrganisationCommentEntity';
+  result?: Maybe<Array<Maybe<OrganisationCommentEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_OrganisationEntity = {
   __typename?: 'PageableList_OrganisationEntity';
   result?: Maybe<Array<Maybe<OrganisationEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_OrganisationRatingEntity = {
+  __typename?: 'PageableList_OrganisationRatingEntity';
+  result?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_PageEntity = {
+  __typename?: 'PageableList_PageEntity';
+  result?: Maybe<Array<Maybe<PageEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -2591,9 +2852,27 @@ export type PageableList_QuestionEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_QuestionOptionEntity = {
+  __typename?: 'PageableList_QuestionOptionEntity';
+  result?: Maybe<Array<Maybe<QuestionOptionEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_QuestionTypeEntity = {
+  __typename?: 'PageableList_QuestionTypeEntity';
+  result?: Maybe<Array<Maybe<QuestionTypeEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_RoleEntity = {
   __typename?: 'PageableList_RoleEntity';
   result?: Maybe<Array<Maybe<RoleEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_ScheduleEntity = {
+  __typename?: 'PageableList_ScheduleEntity';
+  result?: Maybe<Array<Maybe<ScheduleEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -2612,6 +2891,18 @@ export type PageableList_SuburbEntity = {
 export type PageableList_SurveyEntity = {
   __typename?: 'PageableList_SurveyEntity';
   result?: Maybe<Array<Maybe<SurveyEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_SurveyResultEntity = {
+  __typename?: 'PageableList_SurveyResultEntity';
+  result?: Maybe<Array<Maybe<SurveyResultEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_SurveyStateEntity = {
+  __typename?: 'PageableList_SurveyStateEntity';
+  result?: Maybe<Array<Maybe<SurveyStateEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -2676,6 +2967,12 @@ export type Query = {
   getArticleCategories?: Maybe<PageableList_ArticleCategoryEntity>;
   getArticleCategory?: Maybe<ArticleCategoryEntity>;
   getArticles?: Maybe<PageableList_ArticleEntity>;
+  getAssignment?: Maybe<AssignmentEntity>;
+  getAssignments?: Maybe<PageableList_AssignmentEntity>;
+  getAttendee?: Maybe<AttendeeEntity>;
+  getAttendees?: Maybe<PageableList_AttendeeEntity>;
+  getContact?: Maybe<ContactEntity>;
+  getContacts?: Maybe<PageableList_ContactEntity>;
   getContest?: Maybe<ContestEntity>;
   getContestState?: Maybe<ContestStateEntity>;
   getContestStates?: Maybe<PageableList_ContestStateEntity>;
@@ -2693,27 +2990,53 @@ export type Query = {
   getEvent?: Maybe<EventEntity>;
   getEventCategories?: Maybe<PageableList_EventCategoryEntity>;
   getEventCategory?: Maybe<EventCategoryEntity>;
+  getEventComment?: Maybe<EventCommentEntity>;
+  getEventComments?: Maybe<PageableList_EventCommentEntity>;
+  getEventRating?: Maybe<EventRatingEntity>;
+  getEventRatings?: Maybe<PageableList_EventRatingEntity>;
+  getEventTargetGroup?: Maybe<EventTargetGroupEntity>;
+  getEventTargetGroups?: Maybe<PageableList_EventTargetGroupEntity>;
   getEvents?: Maybe<PageableList_EventEntity>;
   getInformation?: Maybe<InformationDto>;
   getMember?: Maybe<MemberEntity>;
   getMembers?: Maybe<PageableList_MemberEntity>;
+  getMenuItem?: Maybe<MenuItemEntity>;
+  getMenuItems?: Maybe<PageableList_MenuItemEntity>;
   getMessageDefinition?: Maybe<MessageDefinitionEntity>;
   getMessageDefinitions?: Maybe<PageableList_MessageDefinitionEntity>;
   getMessageTemplate?: Maybe<MessageTemplateEntity>;
   getMessageTemplates?: Maybe<PageableList_MessageTemplateEntity>;
+  getNotification?: Maybe<NotificationEntity>;
+  getNotifications?: Maybe<PageableList_NotificationEntity>;
   getOrganisation?: Maybe<OrganisationEntity>;
+  getOrganisationComment?: Maybe<OrganisationCommentEntity>;
+  getOrganisationComments?: Maybe<PageableList_OrganisationCommentEntity>;
+  getOrganisationRating?: Maybe<OrganisationRatingEntity>;
+  getOrganisationRatings?: Maybe<PageableList_OrganisationRatingEntity>;
   getOrganisations?: Maybe<PageableList_OrganisationEntity>;
+  getPage?: Maybe<PageEntity>;
+  getPages?: Maybe<PageableList_PageEntity>;
   getPublicAuthor?: Maybe<PublicAuthorEntity>;
   getPublicAuthors?: Maybe<PageableList_PublicAuthorEntity>;
   getQuestion?: Maybe<QuestionEntity>;
+  getQuestionOption?: Maybe<QuestionOptionEntity>;
+  getQuestionOptions?: Maybe<PageableList_QuestionOptionEntity>;
+  getQuestionType?: Maybe<QuestionTypeEntity>;
+  getQuestionTypes?: Maybe<PageableList_QuestionTypeEntity>;
   getQuestions?: Maybe<PageableList_QuestionEntity>;
   getRole?: Maybe<RoleEntity>;
   getRoles?: Maybe<PageableList_RoleEntity>;
+  getSchedule?: Maybe<ScheduleEntity>;
+  getSchedules?: Maybe<PageableList_ScheduleEntity>;
   getSubscription?: Maybe<SubscriptionEntity>;
   getSubscriptions?: Maybe<PageableList_SubscriptionEntity>;
   getSuburb?: Maybe<SuburbEntity>;
   getSuburbs?: Maybe<PageableList_SuburbEntity>;
   getSurvey?: Maybe<SurveyEntity>;
+  getSurveyResult?: Maybe<SurveyResultEntity>;
+  getSurveyResults?: Maybe<PageableList_SurveyResultEntity>;
+  getSurveyState?: Maybe<SurveyStateEntity>;
+  getSurveyStates?: Maybe<PageableList_SurveyStateEntity>;
   getSurveys?: Maybe<PageableList_SurveyEntity>;
   getUser?: Maybe<UserEntity>;
   getUserContext?: Maybe<UserContextEntity>;
@@ -2767,6 +3090,42 @@ export type QueryGetArticleCategoryArgs = {
 
 /** Query root */
 export type QueryGetArticlesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetAssignmentArgs = {
+  entity?: InputMaybe<AssignmentEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetAssignmentsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetAttendeeArgs = {
+  entity?: InputMaybe<AttendeeEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetAttendeesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetContactArgs = {
+  entity?: InputMaybe<ContactEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetContactsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -2874,6 +3233,42 @@ export type QueryGetEventCategoryArgs = {
 
 
 /** Query root */
+export type QueryGetEventCommentArgs = {
+  entity?: InputMaybe<EventCommentEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetEventCommentsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetEventRatingArgs = {
+  entity?: InputMaybe<EventRatingEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetEventRatingsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetEventTargetGroupArgs = {
+  entity?: InputMaybe<EventTargetGroupEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetEventTargetGroupsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
 export type QueryGetEventsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
@@ -2887,6 +3282,18 @@ export type QueryGetMemberArgs = {
 
 /** Query root */
 export type QueryGetMembersArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetMenuItemArgs = {
+  entity?: InputMaybe<MenuItemEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetMenuItemsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -2916,13 +3323,61 @@ export type QueryGetMessageTemplatesArgs = {
 
 
 /** Query root */
+export type QueryGetNotificationArgs = {
+  entity?: InputMaybe<NotificationEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetNotificationsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
 export type QueryGetOrganisationArgs = {
   entity?: InputMaybe<OrganisationEntityInput>;
 };
 
 
 /** Query root */
+export type QueryGetOrganisationCommentArgs = {
+  entity?: InputMaybe<OrganisationCommentEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetOrganisationCommentsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetOrganisationRatingArgs = {
+  entity?: InputMaybe<OrganisationRatingEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetOrganisationRatingsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
 export type QueryGetOrganisationsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetPageArgs = {
+  entity?: InputMaybe<PageEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetPagesArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -2946,6 +3401,30 @@ export type QueryGetQuestionArgs = {
 
 
 /** Query root */
+export type QueryGetQuestionOptionArgs = {
+  entity?: InputMaybe<QuestionOptionEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetQuestionOptionsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetQuestionTypeArgs = {
+  entity?: InputMaybe<QuestionTypeEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetQuestionTypesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
 export type QueryGetQuestionsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
@@ -2959,6 +3438,18 @@ export type QueryGetRoleArgs = {
 
 /** Query root */
 export type QueryGetRolesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetScheduleArgs = {
+  entity?: InputMaybe<ScheduleEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetSchedulesArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -2990,6 +3481,30 @@ export type QueryGetSuburbsArgs = {
 /** Query root */
 export type QueryGetSurveyArgs = {
   entity?: InputMaybe<SurveyEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetSurveyResultArgs = {
+  entity?: InputMaybe<SurveyResultEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetSurveyResultsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetSurveyStateArgs = {
+  entity?: InputMaybe<SurveyStateEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetSurveyStatesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
 };
 
 
@@ -3312,16 +3827,13 @@ export type SurveyResultTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<SurveyResultEntity>;
 };
 
 export type SurveyResultTranslatableEntityInput = {
   comment?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<SurveyResultEntityInput>;
 };
 
 export type SurveyStateEntity = {
@@ -3391,6 +3903,7 @@ export type UserContextEntity = {
   __typename?: 'UserContextEntity';
   address?: Maybe<AddressEntity>;
   articleRating?: Maybe<Array<Maybe<ArticleRatingEntity>>>;
+  articles?: Maybe<Array<Maybe<ArticleEntity>>>;
   assignments?: Maybe<Array<Maybe<AssignmentEntity>>>;
   attendee?: Maybe<Array<Maybe<AttendeeEntity>>>;
   contacts?: Maybe<Array<Maybe<ContactEntity>>>;
@@ -3413,15 +3926,16 @@ export type UserContextEntity = {
   profilePicture?: Maybe<MediaEntity>;
   surveyResults?: Maybe<Array<Maybe<SurveyResultEntity>>>;
   titleImage?: Maybe<MediaEntity>;
+  translatables?: Maybe<Array<Maybe<UserContextTranslatableEntity>>>;
   uploads?: Maybe<Array<Maybe<MediaEntity>>>;
   user?: Maybe<UserEntity>;
-  userContextTranslateables?: Maybe<Array<Maybe<UserContextTranslatableEntity>>>;
   userFormTemplate?: Maybe<Array<Maybe<UserFormTemplateEntity>>>;
 };
 
 export type UserContextEntityInput = {
   address?: InputMaybe<AddressEntityInput>;
   articleRating?: InputMaybe<Array<InputMaybe<ArticleRatingEntityInput>>>;
+  articles?: InputMaybe<Array<InputMaybe<ArticleEntityInput>>>;
   assignments?: InputMaybe<Array<InputMaybe<AssignmentEntityInput>>>;
   attendee?: InputMaybe<Array<InputMaybe<AttendeeEntityInput>>>;
   contacts?: InputMaybe<Array<InputMaybe<ContactEntityInput>>>;
@@ -3444,9 +3958,9 @@ export type UserContextEntityInput = {
   profilePicture?: InputMaybe<MediaEntityInput>;
   surveyResults?: InputMaybe<Array<InputMaybe<SurveyResultEntityInput>>>;
   titleImage?: InputMaybe<MediaEntityInput>;
+  translatables?: InputMaybe<Array<InputMaybe<UserContextTranslatableEntityInput>>>;
   uploads?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   user?: InputMaybe<UserEntityInput>;
-  userContextTranslateables?: InputMaybe<Array<InputMaybe<UserContextTranslatableEntityInput>>>;
   userFormTemplate?: InputMaybe<Array<InputMaybe<UserFormTemplateEntityInput>>>;
 };
 
@@ -3457,16 +3971,13 @@ export type UserContextTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<UserContextEntity>;
 };
 
 export type UserContextTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<UserContextEntityInput>;
 };
 
 export type UserEntity = {
@@ -3512,7 +4023,7 @@ export type UserFormTemplateEntity = {
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  translateables?: Maybe<Array<Maybe<UserFormTemplateTranslatableEntity>>>;
+  translatables?: Maybe<Array<Maybe<UserFormTemplateTranslatableEntity>>>;
   type?: Maybe<FormTemplateTypeEntity>;
   userContext?: Maybe<UserContextEntity>;
 };
@@ -3522,7 +4033,7 @@ export type UserFormTemplateEntityInput = {
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  translateables?: InputMaybe<Array<InputMaybe<UserFormTemplateTranslatableEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<UserFormTemplateTranslatableEntityInput>>>;
   type?: InputMaybe<FormTemplateTypeEntityInput>;
   userContext?: InputMaybe<UserContextEntityInput>;
 };
@@ -3534,16 +4045,13 @@ export type UserFormTemplateTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<UserFormTemplateEntity>;
 };
 
 export type UserFormTemplateTranslatableEntityInput = {
   content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<UserFormTemplateEntityInput>;
 };
 
 export type VerificationEntity = {
@@ -3566,25 +4074,21 @@ export type VerificationEntityInput = {
 export type VisitorEntity = {
   __typename?: 'VisitorEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
-  eventVisitor?: Maybe<Array<Maybe<EventVisitorEntity>>>;
   id?: Maybe<Scalars['String']>;
   ipAddress?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  organisationVisitor?: Maybe<Array<Maybe<OrganisationVisitorEntity>>>;
-  surveyVisitor?: Maybe<Array<Maybe<SurveyVisitorEntity>>>;
   userAgent?: Maybe<Scalars['String']>;
 };
 
 export type VisitorEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  eventVisitor?: InputMaybe<Array<InputMaybe<EventVisitorEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   ipAddress?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  organisationVisitor?: InputMaybe<Array<InputMaybe<OrganisationVisitorEntityInput>>>;
-  surveyVisitor?: InputMaybe<Array<InputMaybe<SurveyVisitorEntityInput>>>;
   userAgent?: InputMaybe<Scalars['String']>;
 };
+
+export type MediaFragment = { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null };
 
 export type LoginMutationVariables = Exact<{
   username: Scalars['String'];
@@ -3606,6 +4110,59 @@ export type GetServerVersionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetServerVersionQuery = { __typename?: 'Query', getInformation?: { __typename?: 'InformationDto', version?: string | null } | null };
 
+export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, name?: string | null } | null } | null> | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null } | null> | null } | null };
+
+export type PageFragment = { __typename?: 'PageEntity', id?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+
+export type GetPageQueryVariables = Exact<{
+  isLanding?: InputMaybe<Scalars['Boolean']>;
+  slug?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetPageQuery = { __typename?: 'Query', getPage?: { __typename?: 'PageEntity', id?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
+
+export const MediaFragmentDoc = gql`
+    fragment Media on MediaEntity {
+  id
+  mimeType
+  name
+}
+    `;
+export const PageFragmentDoc = gql`
+    fragment Page on PageEntity {
+  id
+  media {
+    ...Media
+  }
+  pageFeatures {
+    id
+    order
+    feature {
+      id
+      key
+    }
+  }
+  slug
+  titleImage {
+    ...Media
+  }
+  translatables {
+    id
+    content
+    shortDescription
+    name
+    language {
+      id
+      locale
+      name
+    }
+  }
+}
+    ${MediaFragmentDoc}`;
 export const LoginDocument = gql`
     mutation login($username: String!, $password: String!) {
   createToken(username: $username, password: $password) {
@@ -3657,6 +4214,65 @@ export const GetServerVersionDocument = gql`
   })
   export class GetServerVersionGQL extends Apollo.Query<GetServerVersionQuery, GetServerVersionQueryVariables> {
     override document = GetServerVersionDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetMenuDocument = gql`
+    query getMenu {
+  getMenuItems(
+    params: {sort: "order", expression: {entity: {path: "parent", value: null}}}
+  ) {
+    result {
+      id
+      header
+      order
+      translatables {
+        id
+        name
+        language {
+          id
+          name
+        }
+      }
+      feature {
+        id
+      }
+      page {
+        id
+      }
+      subMenuItems {
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetMenuGQL extends Apollo.Query<GetMenuQuery, GetMenuQueryVariables> {
+    override document = GetMenuDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetPageDocument = gql`
+    query getPage($isLanding: Boolean, $slug: String) {
+  getPage(entity: {isLanding: $isLanding, slug: $slug}) {
+    ...Page
+  }
+}
+    ${PageFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetPageGQL extends Apollo.Query<GetPageQuery, GetPageQueryVariables> {
+    override document = GetPageDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

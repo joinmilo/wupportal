@@ -1,0 +1,5 @@
+fragment Media on MediaEntity {
+  id
+  mimeType
+  name
+}

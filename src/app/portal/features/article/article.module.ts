@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CoreModule } from 'src/app/core/core.module';
-import { EventsRoutingModule } from './articles-routing.module';
+import { ArticlePortalRoutingModule } from './article-routing.module';
 
 const components: Type<any>[] = [
 
@@ -11,7 +11,6 @@ const components: Type<any>[] = [
 
 const framework: Type<any>[] = [
   CommonModule,
-  EventsRoutingModule,
 ];
 
 const materials: Type<any>[] = [
@@ -19,6 +18,7 @@ const materials: Type<any>[] = [
 ];
 
 const modules: Type<any>[] = [
+  ArticlePortalRoutingModule,
   CoreModule,
 ];
 
@@ -30,4 +30,4 @@ const modules: Type<any>[] = [
     ...modules,
   ],
 })
-export class ArticlesModule { }
+export class ArticlePortalModule { }

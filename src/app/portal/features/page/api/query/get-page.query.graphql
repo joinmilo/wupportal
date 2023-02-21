@@ -1,0 +1,8 @@
+query getPage($isLanding: Boolean, $slug: String) {
+  getPage(entity: { 
+    isLanding: $isLanding,
+    slug: $slug
+  }) {
+    ...Page
+  }
+}

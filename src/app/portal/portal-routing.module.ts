@@ -3,14 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () => import('./features/page/page.module')
+      .then((imported) => imported.PagePortalModule),
+  },
+  {
     path: 'events',
-    loadChildren: () => import('./features/events/events.module')
-      .then((imported) => imported.EventsModule),
+    loadChildren: () => import('./features/event/event.module')
+      .then((imported) => imported.EventPortalModule),
   },
   {
     path: 'articles',
-    loadChildren: () => import('./features/articles/articles.module')
-      .then((imported) => imported.ArticlesModule),
+    loadChildren: () => import('./features/article/article.module')
+      .then((imported) => imported.ArticlePortalModule),
   },
 ];
 

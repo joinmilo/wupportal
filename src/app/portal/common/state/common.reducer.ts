@@ -1,16 +1,14 @@
 import { createReducer } from '@ngrx/store';
+import { MenuItemEntity } from 'src/schema/schema';
 
-export const commonFeatureKey = 'common';
-
-export interface State {
-
+export interface CommonState {
+  menu?: MenuItemEntity[],
 }
 
-export const initialState: State = {
-
+export const initialState: CommonState = {
 };
 
-export const reducer = createReducer(
+export const commonReducer = createReducer(
   initialState,
 
 );

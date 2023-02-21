@@ -2,13 +2,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalHeaderComponent } from './components/header/portal-header.component';
 import { PortalMenuComponent } from './components/menu/portal-menu.component';
-import { StoreModule } from '@ngrx/store';
-import * as fromCommon from './state/common.reducer';
-import { EffectsModule } from '@ngrx/effects';
+import { commonFeatureKey } from './constants/common.constants';
 import { CommonEffects } from './state/common.effects';
+import { commonReducer } from './state/common.reducer';
 
 const components: Type<any>[] = [
   PortalHeaderComponent,
@@ -33,7 +34,7 @@ const modules: Type<any>[] = [
     ...framework,
     ...materials,
     ...modules,
-    StoreModule.forFeature(fromCommon.commonFeatureKey, fromCommon.reducer),
+    StoreModule.forFeature(commonFeatureKey, commonReducer),
     EffectsModule.forFeature([CommonEffects]),
   ],
   exports: [
