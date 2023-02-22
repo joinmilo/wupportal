@@ -1,0 +1,30 @@
+query getFooter {
+  getMenuItems(
+    params: {
+      sort: "order"
+    }
+  ) {
+    result {
+      id
+      header
+      order
+      translatables {
+        id
+        name
+        language {
+          id
+          name
+        }
+      }
+      feature {
+        id
+      }
+      page {
+        id
+      }
+      subMenuItems {
+        id
+      }
+    }
+  }
+}

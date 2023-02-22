@@ -4084,6 +4084,11 @@ export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?:
 
 export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null };
 
+export type GetFooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFooterQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, name?: string | null } | null } | null> | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null } | null> | null } | null };
+
 export type PageFragment = { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
 export type GetEventsQueryVariables = Exact<{
@@ -4265,6 +4270,45 @@ export const GetMenuDocument = gql`
   })
   export class GetMenuGQL extends Apollo.Query<GetMenuQuery, GetMenuQueryVariables> {
     override document = GetMenuDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetFooterDocument = gql`
+    query getFooter {
+  getMenuItems(params: {sort: "order"}) {
+    result {
+      id
+      header
+      order
+      translatables {
+        id
+        name
+        language {
+          id
+          name
+        }
+      }
+      feature {
+        id
+      }
+      page {
+        id
+      }
+      subMenuItems {
+        id
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetFooterGQL extends Apollo.Query<GetFooterQuery, GetFooterQueryVariables> {
+    override document = GetFooterDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
