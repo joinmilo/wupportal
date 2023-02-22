@@ -10,7 +10,7 @@ import { FooterEffects } from './state/footer.effects';
 import { footerReducer } from './state/footer.reducer';
 
 const components: Type<any>[] = [
-  PortalFooterComponent,
+  PortalFooterComponent
 ];
 
 const framework: Type<any>[] = [
