@@ -4,11 +4,6 @@ import { PortalNotFoundComponent } from './common/components/not-found/not-found
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./features/page/page.module')
-      .then((imported) => imported.PagePortalModule),
-  },
-  {
     path: 'events',
     loadChildren: () => import('./features/event/event.module')
       .then((imported) => imported.EventPortalModule),
@@ -21,6 +16,11 @@ const routes: Routes = [
   {
     path: '404',
     component: PortalNotFoundComponent,
+  },
+  {
+    path: '',
+    loadChildren: () => import('./features/page/page.module')
+      .then((imported) => imported.PagePortalModule),
   },
   {
     path: '**',

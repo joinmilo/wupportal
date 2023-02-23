@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <span>{{category}}</span>
+    <app-icon icon="favorite"></app-icon>
+  </mat-card-header>
+  <app-image mat-card-image [image]="image"></app-image>
+  <mat-card-content>
+    <h2>{{title}}</h2>
+    <app-date-piece [date]="date" [dateTime]="dateTime"></app-date-piece>
+    <app-address-piece [address]="address"></app-address-piece>
+    <p>{{text}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <app-image [image]="creatorImage"></app-image>
+    <span>{{creator}}</span>
+  </mat-card-actions>
+</mat-card>

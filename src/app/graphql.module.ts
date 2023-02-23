@@ -3,7 +3,7 @@ import { ApolloLink, DefaultOptions, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { environment } from 'src/environments/environment';
+import { graphqlApi } from './core/constants/core.constants';
 
 import { AuthService } from './core/services/auth/auth.service';
 
@@ -15,7 +15,7 @@ import { AuthService } from './core/services/auth/auth.service';
       useFactory: (httpLink: HttpLink, authService: AuthService) => {
         const auth = setContext(() => ({ headers: { Authorization: `Bearer ${authService.tokens?.access ?? ''}` } }));
 
-        const link = ApolloLink.from([auth, httpLink.create({ uri: new URL('/api/graphql', environment.api).href })]);
+        const link = ApolloLink.from([auth, httpLink.create({ uri: new URL(graphqlApi).href })]);
         const cache = new InMemoryCache({
           addTypename: false
         });

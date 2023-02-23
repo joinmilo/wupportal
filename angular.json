@@ -30,7 +30,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/variables.scss",
+              "src/styles/theme/colors.theme.scss",
+              "src/styles/theme/theme.scss",
+              "src/styles/theme/components.theme.scss",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -99,7 +103,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/variables.scss",
+              "src/styles/styles.scss",
+              "src/styles/theme/colors.theme.scss",
+              "src/styles/theme/components.theme.scss",
+              "src/styles/theme/theme.scss"
             ],
             "scripts": []
           }

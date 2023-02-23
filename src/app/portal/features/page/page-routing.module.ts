@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PortalPageComponent } from './components/page/page.component';
+import { PageLandingComponent } from './components/landing/landing.component';
+import { PageComponent } from './components/page/page.component';
 import { pageSlug } from './constants/page.constants';
 
 const routes: Routes = [
   {
     path: '',
-    component: PortalPageComponent
+    component: PageLandingComponent
   },
   {
     path: `:${pageSlug}`,
-    component: PortalPageComponent
+    component: PageComponent
   },
 ];
 

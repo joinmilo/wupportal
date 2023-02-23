@@ -1,5 +1,6 @@
 fragment Page on PageEntity {
   id
+  callUrl
   media {
     ...Media
   }
@@ -17,6 +18,7 @@ fragment Page on PageEntity {
   }
   translatables {
     id
+    callText
     content
     shortDescription
     name

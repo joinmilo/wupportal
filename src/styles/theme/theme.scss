@@ -1,0 +1,33 @@
+
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+@import 'src/styles/theme/colors.theme.scss';
+
+$typography: (
+  mat.define-typography-config($font-family: 'Inter, "Helvetica Neue", sans-serif',
+    $headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+    $headline-2: mat.define-typography-level(56px, 56px, 500, $letter-spacing: -0.02em),
+    $headline-3: mat.define-typography-level(45px, 48px, 500, $letter-spacing: -0.005em),
+    $headline-4: mat.define-typography-level(34px, 40px, 500),
+    $headline-5: mat.define-typography-level(24px, 32px, 500),
+    $headline-6: mat.define-typography-level(20px, 32px, 500),
+    $subtitle-1: mat.define-typography-level(16px, 28px, 500),
+    $body-1: mat.define-typography-level(15px, 24px, 500),
+    $subtitle-2: mat.define-typography-level(14px, 24px, 500),
+    $body-2: mat.define-typography-level(14px, 20px, 500),
+    $caption: mat.define-typography-level(12px, 20px, 500),
+    $button: mat.define-typography-level(14px, 14px, 500))
+);
+
+$theme: mat-light-theme((
+  color: (
+    primary: mat-palette($theme-palette-primary, 500),
+    accent: mat-palette($theme-palette-accent, 500),
+    warn: mat-palette($theme-palette-warn, 500),
+  ),
+  typography: $typography,
+));
+
+@include mat.core();
+@include mat.all-component-themes($theme);
+@include mat.all-component-typographies($typography);

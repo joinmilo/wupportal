@@ -6,6 +6,8 @@ export const CommonActions = createActionGroup({
   events: {
     'get menu': emptyProps(),
     'menu retrieved': (menuItems: MenuItemEntity[]) => ({ menuItems }),
+
+    'not found': emptyProps(),
   },
 });
 

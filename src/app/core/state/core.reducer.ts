@@ -1,16 +1,15 @@
 import { createReducer } from '@ngrx/store';
+import { LanguageEntity } from 'src/schema/schema';
 
-export const coreFeatureKey = 'core';
-
-export interface State {
-
+export interface CoreState {
+  language?: LanguageEntity,
 }
 
-export const initialState: State = {
-
+export const initialState: CoreState = {
+  language: { locale: 'de' },
 };
 
-export const reducer = createReducer(
+export const coreReducer = createReducer(
   initialState,
 
 );
