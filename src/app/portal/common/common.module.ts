@@ -1,3 +1,4 @@
+import { PortalFooterComponent } from './components/footer/portal-footer.component';
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
@@ -13,6 +14,7 @@ import { CommonEffects } from './state/common.effects';
 import { commonReducer } from './state/common.reducer';
 
 const components: Type<any>[] = [
+  PortalFooterComponent,
   PortalHeaderComponent,
   PortalMenuComponent,
 ];

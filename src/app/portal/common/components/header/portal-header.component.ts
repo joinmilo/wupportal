@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./portal-header.component.scss']
 })
 export class PortalHeaderComponent {
-  
+
 }
