@@ -1,0 +1,13 @@
+<div class="container" #container>
+  <div class="left" *ngIf="totalPages > 1" (click)="currentPage !== 1 && changePage(-1)"
+    [ngClass]="{'disabled':currentPage === 1}"></div>
+
+  <div class="cards">
+    <div class="overflow" [ngStyle]="{'width': overflowWidth, 'left': pagePosition}">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  
+  <div class="right" *ngIf="totalPages > 1" (click)="currentPage !== totalPages && changePage(+1)"
+    [ngClass]="{'disabled':currentPage === totalPages}"></div>
+</div>

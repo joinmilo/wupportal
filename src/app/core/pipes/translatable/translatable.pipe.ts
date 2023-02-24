@@ -15,7 +15,7 @@ export class TranslatablePipe implements PipeTransform {
   ) {}
 
   public transform(
-      v?: TranslatableParent | Observable<TranslatableParent>,
+      v?: Maybe<TranslatableParent> | Observable<Maybe<TranslatableParent> | undefined>,
       field?: string): Observable<Maybe<string> | undefined> {
     return combineLatest([
       isObservable(v) ? v : of(v),

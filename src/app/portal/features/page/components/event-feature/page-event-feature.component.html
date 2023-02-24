@@ -1,0 +1,11 @@
+<div>
+  <span>Die neuesten Events</span>
+  <a [routerLink]="['/events']">mehr</a>
+</div>
+<app-portal-slider>
+  <app-card *ngFor="let event of (events | async)"
+    [address]="event.address"
+    [category]="event.category | translatable: 'name' | async"
+    [creator]="event.contact?.name">
+  </app-card>
+</app-portal-slider>

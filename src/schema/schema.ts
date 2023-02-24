@@ -324,28 +324,20 @@ export enum ConjunctionOperator {
 export type ContactEntity = {
   __typename?: 'ContactEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
-  deals?: Maybe<Array<Maybe<DealEntity>>>;
-  developer?: Maybe<DeveloperEntity>;
   email?: Maybe<Scalars['String']>;
-  events?: Maybe<Array<Maybe<EventEntity>>>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  organisations?: Maybe<Array<Maybe<OrganisationEntity>>>;
   phone?: Maybe<Scalars['String']>;
   preferredContact?: Maybe<Scalars['Boolean']>;
 };
 
 export type ContactEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  deals?: InputMaybe<Array<InputMaybe<DealEntityInput>>>;
-  developer?: InputMaybe<DeveloperEntityInput>;
   email?: InputMaybe<Scalars['String']>;
-  events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  organisations?: InputMaybe<Array<InputMaybe<OrganisationEntityInput>>>;
   phone?: InputMaybe<Scalars['String']>;
   preferredContact?: InputMaybe<Scalars['Boolean']>;
 };
@@ -586,39 +578,6 @@ export type DealVisitorEntityInput = {
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   visits?: InputMaybe<Scalars['Int']>;
-};
-
-export type DeveloperEntity = {
-  __typename?: 'DeveloperEntity';
-  contact?: Maybe<ContactEntity>;
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  translatables?: Maybe<Array<Maybe<DeveloperTranslatableEntity>>>;
-};
-
-export type DeveloperEntityInput = {
-  contact?: InputMaybe<ContactEntityInput>;
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translatables?: InputMaybe<Array<InputMaybe<DeveloperTranslatableEntityInput>>>;
-};
-
-export type DeveloperTranslatableEntity = {
-  __typename?: 'DeveloperTranslatableEntity';
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-};
-
-export type DeveloperTranslatableEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type ErrorMessageEntity = {
@@ -4092,6 +4051,10 @@ export type VisitorEntityInput = {
   userAgent?: InputMaybe<Scalars['String']>;
 };
 
+export type AddressFragment = { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number };
+
+export type ContactFragment = { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null };
+
 export type MediaFragment = { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null };
 
 export type LoginMutationVariables = Exact<{
@@ -4119,7 +4082,16 @@ export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, name?: string | null } | null } | null> | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null } | null> | null } | null };
 
+export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null };
+
 export type PageFragment = { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+
+export type GetEventsQueryVariables = Exact<{
+  params?: InputMaybe<FilterSortPaginateInput>;
+}>;
+
+
+export type GetEventsQuery = { __typename?: 'Query', getEvents?: { __typename?: 'PageableList_EventEntity', result?: Array<{ __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null } | null> | null } | null };
 
 export type GetPageQueryVariables = Exact<{
   isLanding?: InputMaybe<Scalars['Boolean']>;
@@ -4129,6 +4101,38 @@ export type GetPageQueryVariables = Exact<{
 
 export type GetPageQuery = { __typename?: 'Query', getPage?: { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
 
+export const AddressFragmentDoc = gql`
+    fragment Address on AddressEntity {
+  id
+  houseNumber
+  place
+  postalCode
+  street
+  latitude
+  longitude
+}
+    `;
+export const ContactFragmentDoc = gql`
+    fragment Contact on ContactEntity {
+  id
+  email
+  name
+  phone
+  preferredContact
+}
+    `;
+export const EventFragmentDoc = gql`
+    fragment Event on EventEntity {
+  id
+  address {
+    ...Address
+  }
+  contact {
+    ...Contact
+  }
+}
+    ${AddressFragmentDoc}
+${ContactFragmentDoc}`;
 export const MediaFragmentDoc = gql`
     fragment Media on MediaEntity {
   id
@@ -4261,6 +4265,26 @@ export const GetMenuDocument = gql`
   })
   export class GetMenuGQL extends Apollo.Query<GetMenuQuery, GetMenuQueryVariables> {
     override document = GetMenuDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetEventsDocument = gql`
+    query getEvents($params: FilterSortPaginateInput) {
+  getEvents(params: $params) {
+    result {
+      ...Event
+    }
+  }
+}
+    ${EventFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetEventsGQL extends Apollo.Query<GetEventsQuery, GetEventsQueryVariables> {
+    override document = GetEventsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

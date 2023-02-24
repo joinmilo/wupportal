@@ -6,7 +6,6 @@ import { CoreModule } from 'src/app/core/core.module';
 import { EventPortalRoutingModule } from './event-routing.module';
 
 const components: Type<any>[] = [
-
 ];
 
 const framework: Type<any>[] = [

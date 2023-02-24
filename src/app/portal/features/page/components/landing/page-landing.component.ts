@@ -5,8 +5,8 @@ import { selectCurrentPage } from '../../state/page.selectors';
 
 @Component({
   selector: 'app-page-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  templateUrl: './page-landing.component.html',
+  styleUrls: ['./page-landing.component.scss']
 })
 export class PageLandingComponent {
 

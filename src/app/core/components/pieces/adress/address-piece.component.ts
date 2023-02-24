@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AddressEntity } from 'src/schema/schema';
+import { AddressEntity, Maybe } from 'src/schema/schema';
 
 @Component({
   selector: 'app-address-piece',
@@ -9,6 +9,6 @@ import { AddressEntity } from 'src/schema/schema';
 export class AddressPieceComponent {
 
   @Input()
-  public address?: AddressEntity;
+  public address?: Maybe<AddressEntity>;
 
 }

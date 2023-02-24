@@ -1,0 +1,9 @@
+fragment Event on EventEntity {
+  id
+  address {
+    ...Address
+  }
+  contact {
+    ...Contact
+  }
+}

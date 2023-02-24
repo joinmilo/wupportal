@@ -1,0 +1,11 @@
+<div>
+  <app-image [image]="(page | async)?.titleImage" [rounded]="true"></app-image>
+  <section>
+    <h1 class="mat-headline-3">{{page | translatable: 'name' | async}}</h1>
+    <p>{{page | translatable: 'shortDescription' | async}}</p>
+    <button mat-raised-button color="primary" [routerLink]="(page | async)?.callUrl">
+      {{page | translatable: 'callText' | async}}
+    </button>
+  </section>
+</div>
+<app-page-features [features]="(page | async)?.pageFeatures"></app-page-features>

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Maybe } from 'graphql/jsutils/Maybe';
 
 @Component({
   selector: 'app-date-piece',
@@ -8,7 +9,7 @@ import { Component, Input } from '@angular/core';
 export class DatePieceComponent {
 
   @Input()
-  public date?: string;
+  public date?: Maybe<string>;
 
   @Input()
   public dateTime = true;

@@ -12,6 +12,9 @@ export class ImageComponent {
   @Input()
   public image?: Maybe<MediaEntity>;
 
+  @Input()
+  public rounded = false;
+
   public src = `${mediaBaseApi}/${this.image?.id}`;
 
 }

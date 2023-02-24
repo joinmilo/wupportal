@@ -1,0 +1,7 @@
+fragment Contact on ContactEntity {
+  id
+  email
+  name
+  phone
+  preferredContact
+}

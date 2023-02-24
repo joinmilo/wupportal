@@ -1,0 +1,25 @@
+div {
+  display: flex;
+  flex-flow: row-reverse wrap;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  gap: var(--gap);
+  padding: 10%;
+  width: 100%;
+
+  background-image: linear-gradient(to left, var(--color-primary-100), var(--color-primary-50));
+  clip-path: polygon(0 0, 100% 0%, 100% 90%, 0 100%);
+}
+
+section {
+  max-width: 30rem;
+  padding-bottom: var(--gap);
+}
+
+app-image {
+  max-height: 30rem;
+  max-width: 30rem;
+}

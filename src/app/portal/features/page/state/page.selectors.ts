@@ -8,3 +8,13 @@ export const selectCurrentPage = createSelector(
   selectPageState,
   state => state.page
 );
+
+export const selectRecentArticles = createSelector(
+  selectPageState,
+  state => state.recentArticles
+);
+
+export const selectRecentEvents = createSelector(
+  selectPageState,
+  state => state.recentEvents
+);

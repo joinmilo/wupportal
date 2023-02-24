@@ -1,4 +1,4 @@
-/** BUTTON **/
+/* BUTTON */
 
 //TODO: Necessary to set text color to contrast because of
 // https: //github.com/angular/components/issues/26056
@@ -16,4 +16,13 @@
 
 .mat-mdc-raised-button.mat-accent {
   --mdc-protected-button-label-text-color: var(--color-accent-contrast-500);
+}
+
+/* Card */
+
+mat-card {
+  border: 1px solid var(--color-border) !important;
+  box-shadow: none !important;
+  border-radius: var(--mdc-shape-medium) !important;
+  padding: 32px !important;
 }

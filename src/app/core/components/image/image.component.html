@@ -1,2 +1,6 @@
-<img *ngIf="image?.id" [src]="src" [alt]="image?.name">
-<img *ngIf="!image?.id" src="/assets/placeholder.webp">
+<img
+  *ngIf="image?.id"
+  [src]="src"
+  [alt]="image?.name"
+  [ngStyle]="{'border-radius': rounded ? 'var(--mdc-shape-small)' : '0'}">
+<img *ngIf="!image?.id" src="/assets/placeholder.webp" [ngStyle]="{'border-radius': rounded ? 'var(--mdc-shape-small)' : '0'}">

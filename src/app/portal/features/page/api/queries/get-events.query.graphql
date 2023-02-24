@@ -1,0 +1,7 @@
+query getEvents($params: FilterSortPaginateInput) {
+  getEvents(params: $params) {
+    result {
+      ...Event
+    }
+  }
+}
