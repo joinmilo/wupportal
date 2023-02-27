@@ -2,4 +2,14 @@ html, body {
   height: 100%; 
   background-color: var(--background-color);
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+main {
+  width: 80rem;
+  max-width: calc(100% - 2rem);
+  margin: 2rem auto;
+}

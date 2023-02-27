@@ -1,0 +1,21 @@
+
+.container {
+  display: flex;
+}
+
+.cards {
+  display: flex;
+  gap: var(--gap);
+
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+
+.button {
+  display: flex;
+
+  button {
+    height: 100% !important;
+  }
+}

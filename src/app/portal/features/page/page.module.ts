@@ -9,17 +9,20 @@ import { CoreModule } from 'src/app/core/core.module';
 import { PortalCommonModule } from '../../common/common.module';
 import { PageEventFeatureComponent } from './components/event-feature/page-event-feature.component';
 import { PageFeaturesComponent } from './components/features/page-features.component';
-import { PageLandingComponent } from './components/landing/page-landing.component';
-import { PageComponent } from './components/page/page.component';
 import { pageFeatureKey } from './constants/page.constants';
 import { PagePortalRoutingModule } from './page-routing.module';
+import { PageLandingComponent } from './pages/landing/page-landing.component';
+import { PageComponent } from './pages/page/page.component';
 import { PageEffects } from './state/page.effects';
 import { pageReducer } from './state/page.reducer';
 
 const components: Type<any>[] = [
-  PageComponent,
   PageEventFeatureComponent,
   PageFeaturesComponent,
+];
+
+const pages: Type<any>[] = [
+  PageComponent,
   PageLandingComponent,
 ];
 
@@ -39,7 +42,10 @@ const modules: Type<any>[] = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [
+    ...components,
+    ...pages
+  ],
   imports: [
     ...framework,
     ...materials,
@@ -47,5 +53,8 @@ const modules: Type<any>[] = [
     StoreModule.forFeature(pageFeatureKey, pageReducer),
     EffectsModule.forFeature([PageEffects]),
   ],
+  exports: [
+    ...components,
+  ]
 })
 export class PagePortalModule { }

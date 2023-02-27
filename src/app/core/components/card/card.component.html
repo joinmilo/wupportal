@@ -1,17 +1,35 @@
 <mat-card>
   <mat-card-header>
-    <span>{{category}}</span>
+    <span>
+      {{
+        data.category
+          ? data.category
+          : data.categoryTranslatables | translatable: data.categoryTranslatableField | async
+      }}
+    </span>
     <app-icon icon="favorite"></app-icon>
   </mat-card-header>
   <!-- <app-image mat-card-image [image]="image"></app-image> -->
   <mat-card-content>
-    <h2>{{title}}</h2>
-    <app-date-piece [date]="date" [dateTime]="dateTime"></app-date-piece>
-    <app-address-piece [address]="address"></app-address-piece>
-    <p>{{text}}</p>
+    <h2>
+      {{
+        data.title
+          ? data.title
+          : data.translatables | translatable: data.titleTranslatableField | async
+      }}
+    </h2>
+    <app-date-piece [date]="data.date" [dateTime]="data.dateTime"></app-date-piece>
+    <app-address-piece [address]="data.address"></app-address-piece>
+    <p>
+      {{
+        data.text
+          ? data.text
+          : data.translatables | translatable: data.textTranslatableField | async
+      }}
+    </p>
   </mat-card-content>
   <mat-card-actions>
     <!-- <app-image [image]="creatorImage"></app-image> -->
-    <span>{{creator}}</span>
+    <span>{{data.creator}}</span>
   </mat-card-actions>
 </mat-card>

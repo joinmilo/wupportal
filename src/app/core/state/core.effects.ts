@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { GetServerVersionGQL } from 'src/schema/schema';
-import { FeedbackService } from '../services/feedback/feedback.service';
+import { FeedbackService } from '../services/feedback.service';
 import { CoreActions } from './core.actions';
 
 @Injectable()

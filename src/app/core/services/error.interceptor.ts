@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { CoreActions } from '../../state/core.actions';
-import { FeedbackType } from '../feedback/feedback';
+import { CoreActions } from '../state/core.actions';
+import { FeedbackType } from '../typings/feedback';
 
 @Injectable({ providedIn: 'root' })
 export class ErrorInterceptor implements HttpInterceptor {

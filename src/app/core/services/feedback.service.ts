@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FeedbackComponent } from '../../components/feedback/feedback.component';
-import { Feedback, FeedbackType } from './feedback';
+import { FeedbackComponent } from '../components/feedback/feedback.component';
+import { Feedback, FeedbackType } from '../typings/feedback';
 
 @Injectable({ providedIn: 'root' })
 export class FeedbackService {

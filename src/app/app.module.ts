@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { AuthService } from './core/services/auth/auth.service';
-import { ErrorInterceptor } from './core/services/error/error.interceptor';
+import { AuthService } from './core/services/auth.service';
+import { ErrorInterceptor } from './core/services/error.interceptor';
 import { GraphQLModule } from './graphql.module';
 
 function init(authService: AuthService): () => Observable<unknown> {

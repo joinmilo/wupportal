@@ -1,0 +1,18 @@
+<div class="container" #container>
+
+  <div class="button">
+    <button mat-button (click)="scroll()" [disabled]="disableLeft">
+      <app-icon icon="chevron_left"></app-icon>
+    </button>
+  </div>
+
+  <div class="cards" #cards (scroll)="onScroll()">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="button">
+    <button mat-button (click)="scroll(true)" [disabled]="disableRight">
+      <app-icon icon="chevron_right"></app-icon>
+    </button>
+  </div>
+</div>

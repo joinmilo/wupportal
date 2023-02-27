@@ -5,7 +5,7 @@ import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { graphqlApi } from './core/constants/core.constants';
 
-import { AuthService } from './core/services/auth/auth.service';
+import { AuthService } from './core/services/auth.service';
 
 @NgModule({
   exports: [ApolloModule],

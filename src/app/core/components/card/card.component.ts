@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AddressEntity, Maybe, MediaEntity } from 'src/schema/schema';
+import { CardInput } from '../../typings/card';
 
 @Component({
   selector: 'app-card',
@@ -9,30 +9,6 @@ import { AddressEntity, Maybe, MediaEntity } from 'src/schema/schema';
 export class CardComponent {
 
   @Input()
-  public address?: Maybe<AddressEntity>;
-  
-  @Input()
-  public category?: Maybe<string>;
-
-  @Input()
-  public creator?: Maybe<string>;
-
-  @Input()
-  public creatorImage?: Maybe<MediaEntity>;
-  
-  @Input()
-  public date?: Maybe<string>;
-
-  @Input()
-  public dateTime = true;
-
-  @Input()
-  public image?: Maybe<MediaEntity>;
-
-  @Input()
-  public text?: Maybe<string>;
-
-  @Input()
-  public title?: Maybe<string>;
+  public data: CardInput = { dateTime: true };
 
 }

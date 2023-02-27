@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { Feedback, FeedbackType } from '../../services/feedback/feedback';
+import { Feedback, FeedbackType } from '../../typings/feedback';
 
 @Component({
   selector: 'app-feedback',

@@ -3,7 +3,7 @@ import { FetchResult } from '@apollo/client/core';
 import { EMPTY, Observable, of, Subscription, timer } from 'rxjs';
 import { delay, map, switchMap, tap } from 'rxjs/operators';
 import { LoginGQL, LoginMutation, Maybe, RefreshGQL, RefreshMutation, TokenDto } from 'src/schema/schema';
-import { Token } from './token';
+import { Token } from '../typings/token';
 
 
 const REFRESH_KEY = 'refresh';

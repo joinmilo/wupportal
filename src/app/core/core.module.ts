@@ -1,6 +1,7 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
@@ -13,9 +14,10 @@ import { ImageComponent } from './components/image/image.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { AddressPieceComponent } from './components/pieces/adress/address-piece.component';
 import { DatePieceComponent } from './components/pieces/date/date-piece.component';
+import { SliderComponent } from './components/slider/slider.component';
 import { coreFeatureKey } from './constants/core.constants';
-import { AddressPipe } from './pipes/address/address.pipe';
-import { TranslatablePipe } from './pipes/translatable/translatable.pipe';
+import { AddressPipe } from './pipes/address.pipe';
+import { TranslatablePipe } from './pipes/translatable.pipe';
 import { CoreEffects } from './state/core.effects';
 import { coreReducer } from './state/core.reducer';
 
@@ -27,6 +29,7 @@ const components: Type<any>[] = [
   IconComponent,
   ImageComponent,
   LogoComponent,
+  SliderComponent,
 ];
 
 const pipes: Type<any>[] = [
@@ -40,6 +43,7 @@ const framework: Type<any>[] = [
 ];
 
 const materials: Type<any>[] = [
+  MatButtonModule,
   MatCardModule,
   MatSnackBarModule,
 ];
