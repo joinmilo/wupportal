@@ -15,6 +15,7 @@ export class ImageComponent {
   @Input()
   public rounded = false;
 
+  @Input()
   public src = `${mediaBaseApi}/${this.image?.id}`;
 
 }
