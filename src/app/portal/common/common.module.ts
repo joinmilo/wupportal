@@ -7,14 +7,17 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalHeaderComponent } from './components/header/portal-header.component';
 import { PortalMenuComponent } from './components/menu/portal-menu.component';
-import { PortalNotFoundComponent } from './components/not-found/not-found.component';
 import { commonFeatureKey } from './constants/common.constants';
+import { PortalNotFoundComponent } from './pages/not-found/not-found.component';
 import { CommonEffects } from './state/common.effects';
 import { commonReducer } from './state/common.reducer';
 
 const components: Type<any>[] = [
   PortalHeaderComponent,
   PortalMenuComponent,
+];
+
+const pages: Type<any>[] = [
   PortalNotFoundComponent,
 ];
 
@@ -31,7 +34,10 @@ const modules: Type<any>[] = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [
+    ...components,
+    ...pages,
+  ],
   imports: [
     ...framework,
     ...materials,
