@@ -1,9 +1,8 @@
 div {
   display: flex;
   flex-flow: column;
-  height: 100%;
-}
 
-div {
-  flex: 2 1 auto;
+  div {
+    flex: 2 1 auto;
+  }
 }
