@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Maybe } from 'graphql/jsutils/Maybe';
-import { Observable } from 'rxjs';
-import { MenuItemEntity } from 'src/schema/schema';
+import { tap } from 'rxjs';
 import { CommonActions } from '../../state/common.actions';
 import { selectCurrentMenu } from '../../state/common.selectors';
 
@@ -13,7 +11,7 @@ import { selectCurrentMenu } from '../../state/common.selectors';
 })
 export class PortalFooterComponent {
 
-  footer: Observable<Maybe<MenuItemEntity[]> | undefined> = this.store.select(selectCurrentMenu);
+  public footer = this.store.select(selectCurrentMenu).pipe(tap(menu => console.log('menu', menu)));
 
   constructor(private store: Store) {
     this.store.dispatch(CommonActions.getMenu());

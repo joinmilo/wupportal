@@ -12,11 +12,11 @@ export class TranslatablePipe implements PipeTransform {
 
   constructor(
     private store: Store
-  ) {}
+  ) { }
 
   public transform(
-      v?: Maybe<TranslatableParent> | Maybe<Translatable[]> | Observable<Maybe<TranslatableParent> | undefined>,
-      field?: Maybe<string>): Observable<Maybe<string> | undefined> {
+    v?: Maybe<TranslatableParent> | Maybe<Translatable[]> | Observable<Maybe<TranslatableParent> | undefined>,
+    field?: Maybe<string>): Observable<Maybe<string> | undefined> {
     return combineLatest([
       isObservable(v) ? v : of(v),
       this.store.select(selectLanguage)

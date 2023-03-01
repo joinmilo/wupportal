@@ -1,2 +1,16 @@
-<p *ngFor="let menuItem of footer |async"> OII {{menuItem.id}}</p>
-<p>asdfadsfd</p>
+<footer>
+  <div *ngFor="let menuItem of footer | async" class="footer__nav">
+    <strong>{{menuItem | translatable: 'name' | async}}</strong>
+    <ul *ngFor="let subItem of menuItem.subMenuItems">{{subItem | translatable: 'name' | async}}</ul>
+  </div>
+  <div class="footer__nav-aside">
+    <div class="footer__nav-aside__images">
+      <img src="assets/google-play.svg">
+      <img src="assets/app-store.svg">
+    </div>
+    <div class="footer__nav-aside__icons">
+      <app-icon icon="image"></app-icon>
+      <app-icon icon="image"></app-icon>
+    </div>
+  </div>
+</footer>

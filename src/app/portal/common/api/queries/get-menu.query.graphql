@@ -14,6 +14,7 @@ query getMenu {
         name
         language {
           id
+          locale
           name
         }
       }
@@ -25,6 +26,15 @@ query getMenu {
       }
       subMenuItems {
         id
+        translatables{
+          id
+          name
+                  language {
+          id
+          locale
+          name
+        }
+        }
       }
     }
   }

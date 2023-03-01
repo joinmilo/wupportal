@@ -4080,7 +4080,7 @@ export type GetServerVersionQuery = { __typename?: 'Query', getInformation?: { _
 export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, name?: string | null } | null } | null> | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null } | null> | null } | null };
+export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null> | null } | null };
 
 export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null };
 
@@ -4243,6 +4243,7 @@ export const GetMenuDocument = gql`
         name
         language {
           id
+          locale
           name
         }
       }
@@ -4254,6 +4255,15 @@ export const GetMenuDocument = gql`
       }
       subMenuItems {
         id
+        translatables {
+          id
+          name
+          language {
+            id
+            locale
+            name
+          }
+        }
       }
     }
   }
