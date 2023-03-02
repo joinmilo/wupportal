@@ -8,8 +8,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-main {
+.main {
   width: 80rem;
-  max-width: calc(100% - 2rem);
-  margin: 2rem auto;
+  max-width: calc(100% - var(--gap));
+  margin: var(--gap) auto;
 }

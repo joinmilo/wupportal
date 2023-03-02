@@ -16,6 +16,18 @@ export class ImageComponent {
   public rounded = false;
 
   @Input()
-  public src = `${mediaBaseApi}/${this.image?.id}`;
+  public src?: string;
+
+  public get ref(): string {
+    if (this.src) {
+      return this.src;
+    }
+
+    if (this.image?.id) {
+      return `${mediaBaseApi}/${this.image?.id}`;
+    }
+
+    return '/assets/placeholder.webp';
+  }
 
 }

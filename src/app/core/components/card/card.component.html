@@ -9,7 +9,7 @@
     </span>
     <app-icon icon="favorite"></app-icon>
   </mat-card-header>
-  <!-- <app-image mat-card-image [image]="image"></app-image> -->
+  <app-image mat-card-image [image]="data.image"></app-image>
   <mat-card-content>
     <h2>
       {{
@@ -29,7 +29,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <!-- <app-image [image]="creatorImage"></app-image> -->
+    <app-image [image]="data.creatorImage"></app-image>
     <span>{{data.creator}}</span>
   </mat-card-actions>
 </mat-card>

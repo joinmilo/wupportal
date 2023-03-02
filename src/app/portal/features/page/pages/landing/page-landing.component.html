@@ -1,4 +1,4 @@
-<div>
+<header>
   <app-image [image]="(page | async)?.titleImage" [rounded]="true"></app-image>
   <section>
     <h1 class="mat-headline-3">{{page | translatable: 'name' | async}}</h1>
@@ -7,7 +7,7 @@
       {{page | translatable: 'callText' | async}}
     </button>
   </section>
-</div>
-<main>
+</header>
+<div class="main">
   <app-page-features [features]="(page | async)?.pageFeatures"></app-page-features>
-</main>
+</div>
