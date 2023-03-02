@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
+import { Maybe, MenuItemEntity } from 'src/schema/schema';
+import { PortalMenuService } from '../../services/portal-menu.service';
 import { CommonActions } from '../../state/common.actions';
 import { selectCurrentMenu } from '../../state/common.selectors';
 
@@ -11,10 +12,17 @@ import { selectCurrentMenu } from '../../state/common.selectors';
 })
 export class PortalFooterComponent {
 
-  public footer = this.store.select(selectCurrentMenu).pipe(tap(menu => console.log('menu', menu)));
+  public footer = this.store.select(selectCurrentMenu);
 
-  constructor(private store: Store) {
+  constructor(
+    private store: Store,
+    private menuService: PortalMenuService,
+  ) {
     this.store.dispatch(CommonActions.getMenu());
+  }
+
+  public route(item: Maybe<MenuItemEntity>) {
+    this.menuService.route(item);
   }
 }
 

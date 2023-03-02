@@ -13,3 +13,13 @@ body {
   max-width: calc(100% - var(--gap));
   margin: var(--gap) auto;
 }
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}

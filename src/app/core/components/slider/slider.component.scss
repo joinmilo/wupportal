@@ -1,3 +1,4 @@
+@import 'src/styles/mixins.scss';
 
 .container {
   display: flex;
@@ -17,5 +18,9 @@
 
   button {
     height: 100% !important;
+  }
+  
+  @include responsive(tablet) {
+    display: none;
   }
 }

@@ -3,6 +3,7 @@ import { PortalFooterComponent } from './components/footer/portal-footer.compone
 import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
@@ -25,6 +26,7 @@ const pages: Type<any>[] = [
 
 const framework: Type<any>[] = [
   CommonModule,
+  RouterModule,
 ];
 
 const materials: Type<any>[] = [

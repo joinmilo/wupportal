@@ -1,10 +1,10 @@
 <header>
-  <app-image [image]="(page | async)?.titleImage" [rounded]="true"></app-image>
-  <section>
-    <h1 class="mat-headline-3">{{page | translatable: 'name' | async}}</h1>
-    <p>{{page | translatable: 'shortDescription' | async}}</p>
+  <app-image [image]="(page | async)?.titleImage"></app-image>
+  <section class="main">
+    <h1 class="mat-headline-3">{{page | translatable: "name" | async}}</h1>
+    <p>{{page | translatable: "shortDescription" | async}}</p>
     <button mat-raised-button color="primary" [routerLink]="(page | async)?.callUrl">
-      {{page | translatable: 'callText' | async}}
+      {{page | translatable: "callText" | async}}
     </button>
   </section>
 </header>

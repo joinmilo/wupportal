@@ -26,7 +26,6 @@ const modules: Type<any>[] = [
     ...framework,
     ...materials,
     ...modules,
-
-  ]
+  ],
 })
 export class PortalModule { }
