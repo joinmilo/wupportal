@@ -1,0 +1,5 @@
+fragment Language on LanguageEntity {
+  id
+  locale
+  name
+}

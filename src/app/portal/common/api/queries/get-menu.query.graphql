@@ -6,36 +6,7 @@ query getMenu {
     }
   ) {
     result {
-      id
-      header
-      order
-      translatables {
-        id
-        name
-        language {
-          id
-          locale
-          name
-        }
-      }
-      feature {
-        id
-      }
-      page {
-        id
-      }
-      subMenuItems {
-        id
-        translatables{
-          id
-          name
-                  language {
-          id
-          locale
-          name
-        }
-        }
-      }
+      ...MenuItem
     }
   }
 }

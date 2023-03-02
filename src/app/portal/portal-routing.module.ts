@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { articlesFeatureKey, eventsFeatureKey } from './common/constants/common.constants';
 import { PortalNotFoundComponent } from './common/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: 'events',
+    path: eventsFeatureKey,
     loadChildren: () => import('./features/event/event.module')
       .then((imported) => imported.EventPortalModule),
   },
   {
-    path: 'articles',
+    path: articlesFeatureKey,
     loadChildren: () => import('./features/article/article.module')
       .then((imported) => imported.ArticlePortalModule),
   },

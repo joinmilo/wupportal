@@ -89,42 +89,23 @@ export type AnswerTranslatableEntityInput = {
 
 export type ArticleCategoryEntity = {
   __typename?: 'ArticleCategoryEntity';
-  articleCategories?: Maybe<Array<Maybe<ArticleCategoryTranslatableEntity>>>;
   articles?: Maybe<Array<Maybe<ArticleEntity>>>;
   color?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   icon?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  translatables?: Maybe<Array<Maybe<TranslatableEntity_BaseEntity>>>;
 };
 
 export type ArticleCategoryEntityInput = {
-  articleCategories?: InputMaybe<Array<InputMaybe<ArticleCategoryTranslatableEntityInput>>>;
   articles?: InputMaybe<Array<InputMaybe<ArticleEntityInput>>>;
   color?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   icon?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-};
-
-export type ArticleCategoryTranslatableEntity = {
-  __typename?: 'ArticleCategoryTranslatableEntity';
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-  name?: Maybe<Scalars['String']>;
-  parent?: Maybe<ArticleCategoryEntity>;
-};
-
-export type ArticleCategoryTranslatableEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<ArticleCategoryEntityInput>;
+  translatables?: InputMaybe<Array<InputMaybe<TranslatableEntity_BaseEntityInput>>>;
 };
 
 export type ArticleCommentEntity = {
@@ -3862,6 +3843,20 @@ export type TokenDto = {
   refresh?: Maybe<Scalars['String']>;
 };
 
+export type TranslatableEntity_BaseEntity = {
+  __typename?: 'TranslatableEntity_BaseEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+};
+
+export type TranslatableEntity_BaseEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
 export type UserContextEntity = {
   __typename?: 'UserContextEntity';
   address?: Maybe<AddressEntity>;
@@ -4055,6 +4050,8 @@ export type AddressFragment = { __typename?: 'AddressEntity', id?: string | null
 
 export type ContactFragment = { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null };
 
+export type LanguageFragment = { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null };
+
 export type MediaFragment = { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null };
 
 export type LoginMutationVariables = Exact<{
@@ -4077,10 +4074,12 @@ export type GetServerVersionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetServerVersionQuery = { __typename?: 'Query', getInformation?: { __typename?: 'InformationDto', version?: string | null } | null };
 
+export type MenuItemFragment = { __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null };
+
 export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null> | null } | null };
+export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null> | null } | null };
 
 export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null };
 
@@ -4101,6 +4100,52 @@ export type GetPageQueryVariables = Exact<{
 
 export type GetPageQuery = { __typename?: 'Query', getPage?: { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
 
+export const LanguageFragmentDoc = gql`
+    fragment Language on LanguageEntity {
+  id
+  locale
+  name
+}
+    `;
+export const MenuItemFragmentDoc = gql`
+    fragment MenuItem on MenuItemEntity {
+  id
+  header
+  order
+  feature {
+    id
+  }
+  page {
+    id
+  }
+  translatables {
+    id
+    name
+    language {
+      ...Language
+    }
+  }
+  subMenuItems {
+    id
+    feature {
+      id
+    }
+    page {
+      id
+    }
+    subMenuItems {
+      id
+    }
+    translatables {
+      id
+      name
+      language {
+        ...Language
+      }
+    }
+  }
+}
+    ${LanguageFragmentDoc}`;
 export const AddressFragmentDoc = gql`
     fragment Address on AddressEntity {
   id
@@ -4235,40 +4280,11 @@ export const GetMenuDocument = gql`
     params: {sort: "order", expression: {entity: {path: "parent", value: null}}}
   ) {
     result {
-      id
-      header
-      order
-      translatables {
-        id
-        name
-        language {
-          id
-          locale
-          name
-        }
-      }
-      feature {
-        id
-      }
-      page {
-        id
-      }
-      subMenuItems {
-        id
-        translatables {
-          id
-          name
-          language {
-            id
-            locale
-            name
-          }
-        }
-      }
+      ...MenuItem
     }
   }
 }
-    `;
+    ${MenuItemFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'

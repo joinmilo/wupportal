@@ -18,8 +18,8 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: black;
-}
 
-a:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }

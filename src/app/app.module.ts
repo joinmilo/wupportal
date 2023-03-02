@@ -16,6 +16,7 @@ import { CoreModule } from './core/core.module';
 import { AuthService } from './core/services/auth.service';
 import { ErrorInterceptor } from './core/services/error.interceptor';
 import { GraphQLModule } from './graphql.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 function init(authService: AuthService): () => Observable<unknown> {
   return () => authService.refresh();
@@ -70,6 +71,7 @@ const providers: any[] = [
     ...framework,
     ...libs,
     ...modules,
+    FontAwesomeModule,
   ],
   providers: [
     ...providers,
