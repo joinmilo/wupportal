@@ -10,10 +10,25 @@ import { mediaBaseApi } from '../../constants/core.constants';
 export class ImageComponent {
 
   @Input()
+  public alt?: string;
+
+  @Input()
   public image?: Maybe<MediaEntity>;
 
   @Input()
   public rounded = false;
+
+  @Input()
+  public roundedTopLeft = false;
+
+  @Input()
+  public roundedTopRight = false;
+
+  @Input()
+  public roundedBottomRight = false;
+
+  @Input()
+  public roundedBottomLeft = false;
 
   @Input()
   public src?: string;

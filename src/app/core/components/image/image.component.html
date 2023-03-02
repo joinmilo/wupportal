@@ -1,4 +1,9 @@
 <img
   [src]="ref"
-  [alt]="image?.name"
-  [ngStyle]="{'border-radius': rounded ? 'var(--mdc-shape-small)' : '0'}">
+  [alt]="alt ? alt : image?.name"
+  [ngStyle]="{
+    'border-top-left-radius': roundedTopLeft || rounded ? 'var(--mdc-shape-small)' : '0',
+    'border-top-right-radius': roundedTopRight || rounded ? 'var(--mdc-shape-small)' : '0',
+    'border-bottom-right-radius': roundedBottomRight || rounded ? 'var(--mdc-shape-small)' : '0',
+    'border-bottom-left-radius': roundedBottomLeft || rounded ? 'var(--mdc-shape-small)' : '0'
+  }">
