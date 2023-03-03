@@ -7,7 +7,7 @@
           : data.categoryTranslatables | translatable: data.categoryTranslatableField | async
       }}
     </span>
-    <app-icon icon="favorite"></app-icon>
+    <fa-icon size="2x" [icon]="['far', 'heart']"></fa-icon>
   </mat-card-header>
   <app-image mat-card-image [image]="data.image"></app-image>
   <mat-card-content>

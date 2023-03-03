@@ -1,7 +1,9 @@
 query getSocialMedia {
   getSocialMedias {
-    icon
-    name
-    url
+    result {
+      icon
+      name
+      url
+    }
   }
 }

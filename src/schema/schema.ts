@@ -87,6 +87,23 @@ export type AnswerTranslatableEntityInput = {
   result?: InputMaybe<Scalars['String']>;
 };
 
+export type AppStoreEntity = {
+  __typename?: 'AppStoreEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type AppStoreEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
 export type ArticleCategoryEntity = {
   __typename?: 'ArticleCategoryEntity';
   articles?: Maybe<Array<Maybe<ArticleEntity>>>;
@@ -95,7 +112,7 @@ export type ArticleCategoryEntity = {
   icon?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  translatables?: Maybe<Array<Maybe<TranslatableEntity_BaseEntity>>>;
+  translatables?: Maybe<Array<Maybe<ArticleCategoryTranslatableEntity>>>;
 };
 
 export type ArticleCategoryEntityInput = {
@@ -105,7 +122,26 @@ export type ArticleCategoryEntityInput = {
   icon?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  translatables?: InputMaybe<Array<InputMaybe<TranslatableEntity_BaseEntityInput>>>;
+  translatables?: InputMaybe<Array<InputMaybe<ArticleCategoryTranslatableEntityInput>>>;
+};
+
+export type ArticleCategoryTranslatableEntity = {
+  __typename?: 'ArticleCategoryTranslatableEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+  parent?: Maybe<ArticleCategoryEntity>;
+};
+
+export type ArticleCategoryTranslatableEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<LanguageEntityInput>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  parent?: InputMaybe<ArticleCategoryEntityInput>;
 };
 
 export type ArticleCommentEntity = {
@@ -899,6 +935,39 @@ export type InformationDto = {
   version?: Maybe<Scalars['String']>;
 };
 
+export type LabelEntity = {
+  __typename?: 'LabelEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  tagId?: Maybe<Scalars['String']>;
+  translatables?: Maybe<Array<Maybe<LabelTranslatablesEntity>>>;
+};
+
+export type LabelEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  tagId?: InputMaybe<Scalars['String']>;
+  translatables?: InputMaybe<Array<InputMaybe<LabelTranslatablesEntityInput>>>;
+};
+
+export type LabelTranslatablesEntity = {
+  __typename?: 'LabelTranslatablesEntity';
+  content?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+};
+
+export type LabelTranslatablesEntityInput = {
+  content?: InputMaybe<Scalars['String']>;
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
 export type LanguageEntity = {
   __typename?: 'LanguageEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
@@ -1104,6 +1173,8 @@ export type Mutation = {
   deleteAddresses?: Maybe<Scalars['Boolean']>;
   deleteAnswer?: Maybe<Scalars['Boolean']>;
   deleteAnswers?: Maybe<Scalars['Boolean']>;
+  deleteAppStore?: Maybe<Scalars['Boolean']>;
+  deleteAppStores?: Maybe<Scalars['Boolean']>;
   deleteArticle?: Maybe<Scalars['Boolean']>;
   deleteArticleCategories?: Maybe<Scalars['Boolean']>;
   deleteArticleCategory?: Maybe<Scalars['Boolean']>;
@@ -1138,6 +1209,10 @@ export type Mutation = {
   deleteEventTargetGroup?: Maybe<Scalars['Boolean']>;
   deleteEventTargetGroups?: Maybe<Scalars['Boolean']>;
   deleteEvents?: Maybe<Scalars['Boolean']>;
+  deleteLabel?: Maybe<Scalars['Boolean']>;
+  deleteLabels?: Maybe<Scalars['Boolean']>;
+  deleteLanguage?: Maybe<Scalars['Boolean']>;
+  deleteLanguages?: Maybe<Scalars['Boolean']>;
   deleteMe?: Maybe<Scalars['Boolean']>;
   deleteMember?: Maybe<Scalars['Boolean']>;
   deleteMembers?: Maybe<Scalars['Boolean']>;
@@ -1169,6 +1244,8 @@ export type Mutation = {
   deleteRoles?: Maybe<Scalars['Boolean']>;
   deleteSchedule?: Maybe<Scalars['Boolean']>;
   deleteSchedules?: Maybe<Scalars['Boolean']>;
+  deleteSocialMedia?: Maybe<Scalars['Boolean']>;
+  deleteSocialMedias?: Maybe<Scalars['Boolean']>;
   deleteSubscription?: Maybe<Scalars['Boolean']>;
   deleteSubscriptions?: Maybe<Scalars['Boolean']>;
   deleteSuburb?: Maybe<Scalars['Boolean']>;
@@ -1190,6 +1267,8 @@ export type Mutation = {
   saveAddresses?: Maybe<Array<Maybe<AddressEntity>>>;
   saveAnswer?: Maybe<AnswerEntity>;
   saveAnswers?: Maybe<Array<Maybe<AnswerEntity>>>;
+  saveAppStore?: Maybe<AppStoreEntity>;
+  saveAppStores?: Maybe<Array<Maybe<AppStoreEntity>>>;
   saveArticle?: Maybe<ArticleEntity>;
   saveArticleCategories?: Maybe<Array<Maybe<ArticleCategoryEntity>>>;
   saveArticleCategory?: Maybe<ArticleCategoryEntity>;
@@ -1224,6 +1303,10 @@ export type Mutation = {
   saveEventTargetGroup?: Maybe<EventTargetGroupEntity>;
   saveEventTargetGroups?: Maybe<Array<Maybe<EventTargetGroupEntity>>>;
   saveEvents?: Maybe<Array<Maybe<EventEntity>>>;
+  saveLabel?: Maybe<LabelEntity>;
+  saveLabels?: Maybe<Array<Maybe<LabelEntity>>>;
+  saveLanguage?: Maybe<LanguageEntity>;
+  saveLanguages?: Maybe<Array<Maybe<LanguageEntity>>>;
   saveMe?: Maybe<UserEntity>;
   saveMember?: Maybe<MemberEntity>;
   saveMembers?: Maybe<Array<Maybe<MemberEntity>>>;
@@ -1255,6 +1338,8 @@ export type Mutation = {
   saveRoles?: Maybe<Array<Maybe<RoleEntity>>>;
   saveSchedule?: Maybe<ScheduleEntity>;
   saveSchedules?: Maybe<Array<Maybe<ScheduleEntity>>>;
+  saveSocialMedia?: Maybe<SocialMediaEntity>;
+  saveSocialMedias?: Maybe<Array<Maybe<SocialMediaEntity>>>;
   saveSubscription?: Maybe<SubscriptionEntity>;
   saveSubscriptions?: Maybe<Array<Maybe<SubscriptionEntity>>>;
   saveSuburb?: Maybe<SuburbEntity>;
@@ -1316,6 +1401,18 @@ export type MutationDeleteAnswerArgs = {
 
 /** Mutation root */
 export type MutationDeleteAnswersArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAppStoreArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAppStoresArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1525,6 +1622,30 @@ export type MutationDeleteEventsArgs = {
 
 
 /** Mutation root */
+export type MutationDeleteLabelArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteLabelsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteLanguageArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteLanguagesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteMeArgs = {
   password?: InputMaybe<Scalars['String']>;
 };
@@ -1711,6 +1832,18 @@ export type MutationDeleteSchedulesArgs = {
 
 
 /** Mutation root */
+export type MutationDeleteSocialMediaArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteSocialMediasArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteSubscriptionArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
@@ -1834,6 +1967,18 @@ export type MutationSaveAnswerArgs = {
 /** Mutation root */
 export type MutationSaveAnswersArgs = {
   entities?: InputMaybe<Array<InputMaybe<AnswerEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAppStoreArgs = {
+  entity?: InputMaybe<AppStoreEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAppStoresArgs = {
+  entities?: InputMaybe<Array<InputMaybe<AppStoreEntityInput>>>;
 };
 
 
@@ -2042,6 +2187,30 @@ export type MutationSaveEventsArgs = {
 
 
 /** Mutation root */
+export type MutationSaveLabelArgs = {
+  entity?: InputMaybe<LabelEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveLabelsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<LabelEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveLanguageArgs = {
+  entity?: InputMaybe<LanguageEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveLanguagesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<LanguageEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveMeArgs = {
   entity?: InputMaybe<UserEntityInput>;
 };
@@ -2224,6 +2393,18 @@ export type MutationSaveScheduleArgs = {
 /** Mutation root */
 export type MutationSaveSchedulesArgs = {
   entities?: InputMaybe<Array<InputMaybe<ScheduleEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveSocialMediaArgs = {
+  entity?: InputMaybe<SocialMediaEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveSocialMediasArgs = {
+  entities?: InputMaybe<Array<InputMaybe<SocialMediaEntityInput>>>;
 };
 
 
@@ -2628,6 +2809,12 @@ export type PageableList_AnswerEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_AppStoreEntity = {
+  __typename?: 'PageableList_AppStoreEntity';
+  result?: Maybe<Array<Maybe<AppStoreEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_ArticleCategoryEntity = {
   __typename?: 'PageableList_ArticleCategoryEntity';
   result?: Maybe<Array<Maybe<ArticleCategoryEntity>>>;
@@ -2730,6 +2917,18 @@ export type PageableList_EventTargetGroupEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_LabelEntity = {
+  __typename?: 'PageableList_LabelEntity';
+  result?: Maybe<Array<Maybe<LabelEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_LanguageEntity = {
+  __typename?: 'PageableList_LanguageEntity';
+  result?: Maybe<Array<Maybe<LanguageEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_MemberEntity = {
   __typename?: 'PageableList_MemberEntity';
   result?: Maybe<Array<Maybe<MemberEntity>>>;
@@ -2820,6 +3019,12 @@ export type PageableList_ScheduleEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_SocialMediaEntity = {
+  __typename?: 'PageableList_SocialMediaEntity';
+  result?: Maybe<Array<Maybe<SocialMediaEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_SubscriptionEntity = {
   __typename?: 'PageableList_SubscriptionEntity';
   result?: Maybe<Array<Maybe<SubscriptionEntity>>>;
@@ -2907,6 +3112,8 @@ export type Query = {
   getAddresses?: Maybe<PageableList_AddressEntity>;
   getAnswer?: Maybe<AnswerEntity>;
   getAnswers?: Maybe<PageableList_AnswerEntity>;
+  getAppStore?: Maybe<AppStoreEntity>;
+  getAppStores?: Maybe<PageableList_AppStoreEntity>;
   getArticle?: Maybe<ArticleEntity>;
   getArticleCategories?: Maybe<PageableList_ArticleCategoryEntity>;
   getArticleCategory?: Maybe<ArticleCategoryEntity>;
@@ -2942,6 +3149,10 @@ export type Query = {
   getEventTargetGroups?: Maybe<PageableList_EventTargetGroupEntity>;
   getEvents?: Maybe<PageableList_EventEntity>;
   getInformation?: Maybe<InformationDto>;
+  getLabel?: Maybe<LabelEntity>;
+  getLabels?: Maybe<PageableList_LabelEntity>;
+  getLanguage?: Maybe<LanguageEntity>;
+  getLanguages?: Maybe<PageableList_LanguageEntity>;
   getMember?: Maybe<MemberEntity>;
   getMembers?: Maybe<PageableList_MemberEntity>;
   getMenuItem?: Maybe<MenuItemEntity>;
@@ -2972,6 +3183,8 @@ export type Query = {
   getRoles?: Maybe<PageableList_RoleEntity>;
   getSchedule?: Maybe<ScheduleEntity>;
   getSchedules?: Maybe<PageableList_ScheduleEntity>;
+  getSocialMedia?: Maybe<SocialMediaEntity>;
+  getSocialMedias?: Maybe<PageableList_SocialMediaEntity>;
   getSubscription?: Maybe<SubscriptionEntity>;
   getSubscriptions?: Maybe<PageableList_SubscriptionEntity>;
   getSuburb?: Maybe<SuburbEntity>;
@@ -3010,6 +3223,18 @@ export type QueryGetAnswerArgs = {
 
 /** Query root */
 export type QueryGetAnswersArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetAppStoreArgs = {
+  entity?: InputMaybe<AppStoreEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetAppStoresArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -3219,6 +3444,30 @@ export type QueryGetEventsArgs = {
 
 
 /** Query root */
+export type QueryGetLabelArgs = {
+  entity?: InputMaybe<LabelEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetLabelsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetLanguageArgs = {
+  entity?: InputMaybe<LanguageEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetLanguagesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
 export type QueryGetMemberArgs = {
   entity?: InputMaybe<MemberEntityInput>;
 };
@@ -3394,6 +3643,18 @@ export type QueryGetScheduleArgs = {
 
 /** Query root */
 export type QueryGetSchedulesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetSocialMediaArgs = {
+  entity?: InputMaybe<SocialMediaEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetSocialMediasArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -3659,6 +3920,25 @@ export type ScheduleEntityInput = {
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
+export type SocialMediaEntity = {
+  __typename?: 'SocialMediaEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type SocialMediaEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  icon?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
 /** Subscription root */
 export type Subscription = {
   __typename?: 'Subscription';
@@ -3832,8 +4112,6 @@ export type SurveyVisitorEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<SurveyEntityInput>;
-  visitor?: InputMaybe<VisitorEntityInput>;
   visits?: InputMaybe<Scalars['Int']>;
 };
 
@@ -3841,20 +4119,6 @@ export type TokenDto = {
   __typename?: 'TokenDto';
   access?: Maybe<Scalars['String']>;
   refresh?: Maybe<Scalars['String']>;
-};
-
-export type TranslatableEntity_BaseEntity = {
-  __typename?: 'TranslatableEntity_BaseEntity';
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-};
-
-export type TranslatableEntity_BaseEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type UserContextEntity = {
@@ -4038,14 +4302,6 @@ export type VisitorEntity = {
   userAgent?: Maybe<Scalars['String']>;
 };
 
-export type VisitorEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  ipAddress?: InputMaybe<Scalars['String']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  userAgent?: InputMaybe<Scalars['String']>;
-};
-
 export type AddressFragment = { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number };
 
 export type ContactFragment = { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null };
@@ -4080,6 +4336,11 @@ export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null> | null } | null };
+
+export type GetSocialMediaQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSocialMediaQuery = { __typename?: 'Query', getSocialMedias?: { __typename?: 'PageableList_SocialMediaEntity', result?: Array<{ __typename?: 'SocialMediaEntity', icon?: string | null, name?: string | null, url?: string | null } | null> | null } | null };
 
 export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null };
 
@@ -4291,6 +4552,28 @@ export const GetMenuDocument = gql`
   })
   export class GetMenuGQL extends Apollo.Query<GetMenuQuery, GetMenuQueryVariables> {
     override document = GetMenuDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetSocialMediaDocument = gql`
+    query getSocialMedia {
+  getSocialMedias {
+    result {
+      icon
+      name
+      url
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetSocialMediaGQL extends Apollo.Query<GetSocialMediaQuery, GetSocialMediaQueryVariables> {
+    override document = GetSocialMediaDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

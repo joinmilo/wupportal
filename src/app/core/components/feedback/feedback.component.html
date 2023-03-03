@@ -1,15 +1,17 @@
 <div>
-  <button mat-icon-button (click)="ref.dismissWithAction()"><app-icon icon="close"></app-icon></button>
+  <button mat-icon-button (click)="ref.dismissWithAction()">
+    <fa-icon [icon]="['fas', 'xmark']"></fa-icon>
+  </button>
   <section>
-    <app-icon size="medium" icon="error_outline"
-      *ngIf="feedback.type === error || feedback.type === critical" 
-      color="warn"></app-icon>
-    <app-icon size="medium" icon="check_circle"
-      *ngIf="feedback.type === success"
-      color="success"></app-icon>
-    <app-icon size="medium" icon="warning"
-      *ngIf="feedback.type === info" 
-      color="info"></app-icon>
+    <fa-icon *ngIf="feedback.type === error || feedback.type === critical"
+      size="2x" [icon]="['fas', 'circle-exclamation']"></fa-icon>
+
+    <fa-icon *ngIf="feedback.type === success"
+      size="2x" [icon]="['fas', 'circle-check']"></fa-icon>
+
+    <fa-icon *ngIf="feedback.type === info"
+      size="2x" [icon]="['fas', 'circle-info']"></fa-icon>
+
     <span><strong>{{feedback.message}}</strong></span>
     <span>{{feedback.action}}</span>
   </section>

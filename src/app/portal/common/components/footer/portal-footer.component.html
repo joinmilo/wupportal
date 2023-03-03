@@ -1,9 +1,8 @@
 <footer>
-  <nav *ngFor="let menuItem of footer | async">
+  <nav *ngFor="let menuItem of menu | async">
     <h3>{{menuItem | translatable: 'name' | async}}</h3>
-    <a *ngFor="let subItem of menuItem.subMenuItems"
-      (click)="route(subItem)">
-        {{subItem | translatable: 'name' | async}}
+    <a *ngFor="let subItem of menuItem.subMenuItems" (click)="route(subItem)">
+      {{subItem | translatable: 'name' | async}}
     </a>
   </nav>
   <aside>
@@ -12,8 +11,15 @@
       <app-image src="assets/app-store.svg"></app-image>
     </nav>
     <nav>
-      <app-icon icon="image"></app-icon>
-      <app-icon icon="image"></app-icon>
+      <a *ngFor="let item of socialMedia | async"
+        mat-icon-button 
+        [href]="item.url"
+        [title]="item.name">
+        <fa-icon
+          size="2x"
+          [icon]="['fab', icon(item.icon)]">
+        </fa-icon>
+      </a>
     </nav>
   </aside>
 </footer>

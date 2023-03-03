@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
@@ -30,6 +31,7 @@ const framework: Type<any>[] = [
 ];
 
 const materials: Type<any>[] = [
+  FontAwesomeModule,
   MatToolbarModule,
 ];
 
