@@ -1,0 +1,9 @@
+fragment App on AppEntity {
+  id
+  url
+  platform {
+    id
+    key
+    name
+  }
+}

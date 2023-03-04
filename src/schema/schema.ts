@@ -87,6 +87,23 @@ export type AnswerTranslatableEntityInput = {
   result?: InputMaybe<Scalars['String']>;
 };
 
+export type AppEntity = {
+  __typename?: 'AppEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  platform?: Maybe<AppPlatformEntity>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type AppEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  platform?: InputMaybe<AppPlatformEntityInput>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
 export type AppPlatformEntity = {
   __typename?: 'AppPlatformEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
@@ -1173,8 +1190,8 @@ export type Mutation = {
   deleteAddresses?: Maybe<Scalars['Boolean']>;
   deleteAnswer?: Maybe<Scalars['Boolean']>;
   deleteAnswers?: Maybe<Scalars['Boolean']>;
-  deleteAppPlatform?: Maybe<Scalars['Boolean']>;
-  deleteAppPlatforms?: Maybe<Scalars['Boolean']>;
+  deleteApp?: Maybe<Scalars['Boolean']>;
+  deleteApps?: Maybe<Scalars['Boolean']>;
   deleteArticle?: Maybe<Scalars['Boolean']>;
   deleteArticleCategories?: Maybe<Scalars['Boolean']>;
   deleteArticleCategory?: Maybe<Scalars['Boolean']>;
@@ -1267,8 +1284,8 @@ export type Mutation = {
   saveAddresses?: Maybe<Array<Maybe<AddressEntity>>>;
   saveAnswer?: Maybe<AnswerEntity>;
   saveAnswers?: Maybe<Array<Maybe<AnswerEntity>>>;
-  saveAppPlatform?: Maybe<AppPlatformEntity>;
-  saveAppPlatforms?: Maybe<Array<Maybe<AppPlatformEntity>>>;
+  saveApp?: Maybe<AppEntity>;
+  saveApps?: Maybe<Array<Maybe<AppEntity>>>;
   saveArticle?: Maybe<ArticleEntity>;
   saveArticleCategories?: Maybe<Array<Maybe<ArticleCategoryEntity>>>;
   saveArticleCategory?: Maybe<ArticleCategoryEntity>;
@@ -1406,13 +1423,13 @@ export type MutationDeleteAnswersArgs = {
 
 
 /** Mutation root */
-export type MutationDeleteAppPlatformArgs = {
+export type MutationDeleteAppArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
 
 
 /** Mutation root */
-export type MutationDeleteAppPlatformsArgs = {
+export type MutationDeleteAppsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1971,14 +1988,14 @@ export type MutationSaveAnswersArgs = {
 
 
 /** Mutation root */
-export type MutationSaveAppPlatformArgs = {
-  entity?: InputMaybe<AppPlatformEntityInput>;
+export type MutationSaveAppArgs = {
+  entity?: InputMaybe<AppEntityInput>;
 };
 
 
 /** Mutation root */
-export type MutationSaveAppPlatformsArgs = {
-  entities?: InputMaybe<Array<InputMaybe<AppPlatformEntityInput>>>;
+export type MutationSaveAppsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<AppEntityInput>>>;
 };
 
 
@@ -2809,9 +2826,9 @@ export type PageableList_AnswerEntity = {
   total: Scalars['Long'];
 };
 
-export type PageableList_AppPlatformEntity = {
-  __typename?: 'PageableList_AppPlatformEntity';
-  result?: Maybe<Array<Maybe<AppPlatformEntity>>>;
+export type PageableList_AppEntity = {
+  __typename?: 'PageableList_AppEntity';
+  result?: Maybe<Array<Maybe<AppEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -3112,8 +3129,8 @@ export type Query = {
   getAddresses?: Maybe<PageableList_AddressEntity>;
   getAnswer?: Maybe<AnswerEntity>;
   getAnswers?: Maybe<PageableList_AnswerEntity>;
-  getAppPlatform?: Maybe<AppPlatformEntity>;
-  getAppPlatforms?: Maybe<PageableList_AppPlatformEntity>;
+  getApp?: Maybe<AppEntity>;
+  getApps?: Maybe<PageableList_AppEntity>;
   getArticle?: Maybe<ArticleEntity>;
   getArticleCategories?: Maybe<PageableList_ArticleCategoryEntity>;
   getArticleCategory?: Maybe<ArticleCategoryEntity>;
@@ -3228,13 +3245,13 @@ export type QueryGetAnswersArgs = {
 
 
 /** Query root */
-export type QueryGetAppPlatformArgs = {
-  entity?: InputMaybe<AppPlatformEntityInput>;
+export type QueryGetAppArgs = {
+  entity?: InputMaybe<AppEntityInput>;
 };
 
 
 /** Query root */
-export type QueryGetAppPlatformsArgs = {
+export type QueryGetAppsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -4330,7 +4347,16 @@ export type GetServerVersionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetServerVersionQuery = { __typename?: 'Query', getInformation?: { __typename?: 'InformationDto', version?: string | null } | null };
 
+export type AppFragment = { __typename?: 'AppEntity', id?: string | null, url?: string | null, platform?: { __typename?: 'AppPlatformEntity', id?: string | null, key?: string | null, name?: string | null } | null };
+
 export type MenuItemFragment = { __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null };
+
+export type SocialMediaFragment = { __typename?: 'SocialMediaEntity', icon?: string | null, name?: string | null, url?: string | null };
+
+export type GetAppsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAppsQuery = { __typename?: 'Query', getApps?: { __typename?: 'PageableList_AppEntity', result?: Array<{ __typename?: 'AppEntity', id?: string | null, url?: string | null, platform?: { __typename?: 'AppPlatformEntity', id?: string | null, key?: string | null, name?: string | null } | null } | null> | null } | null };
 
 export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4368,6 +4394,17 @@ export type GetPageQueryVariables = Exact<{
 
 export type GetPageQuery = { __typename?: 'Query', getPage?: { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
 
+export const AppFragmentDoc = gql`
+    fragment App on AppEntity {
+  id
+  url
+  platform {
+    id
+    key
+    name
+  }
+}
+    `;
 export const LanguageFragmentDoc = gql`
     fragment Language on LanguageEntity {
   id
@@ -4414,6 +4451,13 @@ export const MenuItemFragmentDoc = gql`
   }
 }
     ${LanguageFragmentDoc}`;
+export const SocialMediaFragmentDoc = gql`
+    fragment SocialMedia on SocialMediaEntity {
+  icon
+  name
+  url
+}
+    `;
 export const AddressFragmentDoc = gql`
     fragment Address on AddressEntity {
   id
@@ -4542,6 +4586,26 @@ export const GetServerVersionDocument = gql`
       super(apollo);
     }
   }
+export const GetAppsDocument = gql`
+    query getApps {
+  getApps {
+    result {
+      ...App
+    }
+  }
+}
+    ${AppFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAppsGQL extends Apollo.Query<GetAppsQuery, GetAppsQueryVariables> {
+    override document = GetAppsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetMenuDocument = gql`
     query getMenu {
   getMenuItems(
@@ -4568,13 +4632,11 @@ export const GetSocialMediaDocument = gql`
     query getSocialMedia {
   getSocialMedias {
     result {
-      icon
-      name
-      url
+      ...SocialMedia
     }
   }
 }
-    `;
+    ${SocialMediaFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'

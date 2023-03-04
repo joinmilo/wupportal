@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Maybe, MenuItemEntity } from 'src/schema/schema';
 import { PortalMenuService } from '../../services/portal-menu.service';
 import { CommonActions } from '../../state/common.actions';
-import { selectAppStores, selectMenu, selectSocialMedia } from '../../state/common.selectors';
+import { selectApps, selectMenu, selectSocialMedia } from '../../state/common.selectors';
 
 @Component({
   selector: 'app-portal-footer',
@@ -13,7 +13,7 @@ import { selectAppStores, selectMenu, selectSocialMedia } from '../../state/comm
 })
 export class PortalFooterComponent {
 
-  public appStores = this.store.select(selectAppStores);
+  public apps = this.store.select(selectApps);
   public menu = this.store.select(selectMenu);
   public socialMedia = this.store.select(selectSocialMedia);
 
@@ -21,8 +21,9 @@ export class PortalFooterComponent {
     private store: Store,
     private menuService: PortalMenuService,
   ) {
+    this.store.dispatch(CommonActions.getApps());
     this.store.dispatch(CommonActions.getMenu());
-    this.store.dispatch(CommonActions.getSocialMedia())
+    this.store.dispatch(CommonActions.getSocialMedia());
   }
 
   public route(item: Maybe<MenuItemEntity>) {

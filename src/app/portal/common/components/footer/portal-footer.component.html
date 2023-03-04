@@ -7,8 +7,14 @@
   </nav>
   <aside>
     <nav>
-      <app-image src="assets/google-play.svg"></app-image>
-      <app-image src="assets/app-store.svg"></app-image>
+      <a *ngFor="let app of apps | async"
+        [href]="app.url"
+        [title]="app.platform?.name">
+        <app-image
+          [src]="app.platform?.key === 'google'
+            ? 'assets/google-play.svg'
+            : 'assets/app-store.svg'"></app-image>
+      </a>
     </nav>
     <nav>
       <a *ngFor="let item of socialMedia | async"

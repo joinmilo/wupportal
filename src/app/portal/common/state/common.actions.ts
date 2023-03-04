@@ -1,14 +1,17 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { MenuItemEntity, SocialMediaEntity } from 'src/schema/schema';
+import { AppEntity, MenuItemEntity, SocialMediaEntity } from 'src/schema/schema';
 
 export const CommonActions = createActionGroup({
   source: 'Portal Common',
   events: {
+    'get apps': emptyProps(),
+    'set apps': (apps: AppEntity[]) => ({ apps }),
+
     'get menu': emptyProps(),
-    'menu retrieved': (menuItems: MenuItemEntity[]) => ({ menuItems }),
+    'set menu': (menuItems: MenuItemEntity[]) => ({ menuItems }),
 
     'get social media': emptyProps(),
-    'social media retrieved': (socialMedia: SocialMediaEntity[]) => ({ socialMedia }),
+    'set social media': (socialMedia: SocialMediaEntity[]) => ({ socialMedia }),
 
     'not found': emptyProps(),
   },
