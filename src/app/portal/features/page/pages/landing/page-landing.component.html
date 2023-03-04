@@ -3,7 +3,7 @@
   <section class="main">
     <h1 class="mat-headline-3">{{page | translatable: "name" | async}}</h1>
     <p>{{page | translatable: "shortDescription" | async}}</p>
-    <button mat-raised-button color="primary" [routerLink]="(page | async)?.callUrl">
+    <button *ngIf="(page | async)?.callUrl" mat-raised-button color="primary" [routerLink]="(page | async)?.callUrl">
       {{page | translatable: "callText" | async}}
     </button>
   </section>

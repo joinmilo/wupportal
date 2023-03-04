@@ -19,6 +19,7 @@ import { AddressPieceComponent } from './components/pieces/adress/address-piece.
 import { DatePieceComponent } from './components/pieces/date/date-piece.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { coreFeatureKey } from './constants/core.constants';
+import { I18nDirective } from './directives/i18n.directive';
 import { AddressPipe } from './pipes/address.pipe';
 import { TranslatablePipe } from './pipes/translatable.pipe';
 import { CoreEffects } from './state/core.effects';
@@ -34,10 +35,14 @@ const components: Type<any>[] = [
   SliderComponent,
 ];
 
+const directives: Type<any>[] = [
+  I18nDirective
+];
+
 const pipes: Type<any>[] = [
   AddressPipe,
   TranslatablePipe,
-]
+];
 
 const framework: Type<any>[] = [
   CommonModule,
@@ -59,6 +64,7 @@ const libs: any = [
 @NgModule({
   declarations: [
     ...components,
+    ...directives,
     ...pipes,
   ],
   imports: [
@@ -68,6 +74,7 @@ const libs: any = [
   ],
   exports: [
     ...components,
+    ...directives,
     ...pipes,
   ],
 })
