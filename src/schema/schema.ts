@@ -87,21 +87,21 @@ export type AnswerTranslatableEntityInput = {
   result?: InputMaybe<Scalars['String']>;
 };
 
-export type AppStoreEntity = {
-  __typename?: 'AppStoreEntity';
+export type AppPlatformEntity = {
+  __typename?: 'AppPlatformEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
+  key?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
 };
 
-export type AppStoreEntityInput = {
+export type AppPlatformEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  url?: InputMaybe<Scalars['String']>;
 };
 
 export type ArticleCategoryEntity = {
@@ -1173,8 +1173,8 @@ export type Mutation = {
   deleteAddresses?: Maybe<Scalars['Boolean']>;
   deleteAnswer?: Maybe<Scalars['Boolean']>;
   deleteAnswers?: Maybe<Scalars['Boolean']>;
-  deleteAppStore?: Maybe<Scalars['Boolean']>;
-  deleteAppStores?: Maybe<Scalars['Boolean']>;
+  deleteAppPlatform?: Maybe<Scalars['Boolean']>;
+  deleteAppPlatforms?: Maybe<Scalars['Boolean']>;
   deleteArticle?: Maybe<Scalars['Boolean']>;
   deleteArticleCategories?: Maybe<Scalars['Boolean']>;
   deleteArticleCategory?: Maybe<Scalars['Boolean']>;
@@ -1267,8 +1267,8 @@ export type Mutation = {
   saveAddresses?: Maybe<Array<Maybe<AddressEntity>>>;
   saveAnswer?: Maybe<AnswerEntity>;
   saveAnswers?: Maybe<Array<Maybe<AnswerEntity>>>;
-  saveAppStore?: Maybe<AppStoreEntity>;
-  saveAppStores?: Maybe<Array<Maybe<AppStoreEntity>>>;
+  saveAppPlatform?: Maybe<AppPlatformEntity>;
+  saveAppPlatforms?: Maybe<Array<Maybe<AppPlatformEntity>>>;
   saveArticle?: Maybe<ArticleEntity>;
   saveArticleCategories?: Maybe<Array<Maybe<ArticleCategoryEntity>>>;
   saveArticleCategory?: Maybe<ArticleCategoryEntity>;
@@ -1406,13 +1406,13 @@ export type MutationDeleteAnswersArgs = {
 
 
 /** Mutation root */
-export type MutationDeleteAppStoreArgs = {
+export type MutationDeleteAppPlatformArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
 
 
 /** Mutation root */
-export type MutationDeleteAppStoresArgs = {
+export type MutationDeleteAppPlatformsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1971,14 +1971,14 @@ export type MutationSaveAnswersArgs = {
 
 
 /** Mutation root */
-export type MutationSaveAppStoreArgs = {
-  entity?: InputMaybe<AppStoreEntityInput>;
+export type MutationSaveAppPlatformArgs = {
+  entity?: InputMaybe<AppPlatformEntityInput>;
 };
 
 
 /** Mutation root */
-export type MutationSaveAppStoresArgs = {
-  entities?: InputMaybe<Array<InputMaybe<AppStoreEntityInput>>>;
+export type MutationSaveAppPlatformsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<AppPlatformEntityInput>>>;
 };
 
 
@@ -2809,9 +2809,9 @@ export type PageableList_AnswerEntity = {
   total: Scalars['Long'];
 };
 
-export type PageableList_AppStoreEntity = {
-  __typename?: 'PageableList_AppStoreEntity';
-  result?: Maybe<Array<Maybe<AppStoreEntity>>>;
+export type PageableList_AppPlatformEntity = {
+  __typename?: 'PageableList_AppPlatformEntity';
+  result?: Maybe<Array<Maybe<AppPlatformEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -3112,8 +3112,8 @@ export type Query = {
   getAddresses?: Maybe<PageableList_AddressEntity>;
   getAnswer?: Maybe<AnswerEntity>;
   getAnswers?: Maybe<PageableList_AnswerEntity>;
-  getAppStore?: Maybe<AppStoreEntity>;
-  getAppStores?: Maybe<PageableList_AppStoreEntity>;
+  getAppPlatform?: Maybe<AppPlatformEntity>;
+  getAppPlatforms?: Maybe<PageableList_AppPlatformEntity>;
   getArticle?: Maybe<ArticleEntity>;
   getArticleCategories?: Maybe<PageableList_ArticleCategoryEntity>;
   getArticleCategory?: Maybe<ArticleCategoryEntity>;
@@ -3228,13 +3228,13 @@ export type QueryGetAnswersArgs = {
 
 
 /** Query root */
-export type QueryGetAppStoreArgs = {
-  entity?: InputMaybe<AppStoreEntityInput>;
+export type QueryGetAppPlatformArgs = {
+  entity?: InputMaybe<AppPlatformEntityInput>;
 };
 
 
 /** Query root */
-export type QueryGetAppStoresArgs = {
+export type QueryGetAppPlatformsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -4344,6 +4344,13 @@ export type GetSocialMediaQuery = { __typename?: 'Query', getSocialMedias?: { __
 
 export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null };
 
+export type GetEventDetailsQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetEventDetailsQuery = { __typename?: 'Query', getEvent?: { __typename?: 'EventEntity', id?: string | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, color?: string | null, icon?: string | null } | null, address?: { __typename?: 'AddressEntity', id?: string | null } | null } | null };
+
 export type PageFragment = { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
 export type GetEventsQueryVariables = Exact<{
@@ -4574,6 +4581,32 @@ export const GetSocialMediaDocument = gql`
   })
   export class GetSocialMediaGQL extends Apollo.Query<GetSocialMediaQuery, GetSocialMediaQueryVariables> {
     override document = GetSocialMediaDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetEventDetailsDocument = gql`
+    query getEventDetails($id: String) {
+  getEvent(entity: {id: $id}) {
+    id
+    category {
+      id
+      color
+      icon
+    }
+    address {
+      id
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetEventDetailsGQL extends Apollo.Query<GetEventDetailsQuery, GetEventDetailsQueryVariables> {
+    override document = GetEventDetailsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

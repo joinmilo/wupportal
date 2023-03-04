@@ -4,6 +4,11 @@ import { CommonState } from './common.reducer';
 
 export const selectCommonState = createFeatureSelector<CommonState>(commonFeatureKey);
 
+export const selectAppStores = createSelector(
+  selectCommonState,
+  state => state.socialMedia
+);
+
 export const selectMenu = createSelector(
   selectCommonState,
   state => state.menu

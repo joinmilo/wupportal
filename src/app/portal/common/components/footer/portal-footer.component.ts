@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Maybe, MenuItemEntity } from 'src/schema/schema';
 import { PortalMenuService } from '../../services/portal-menu.service';
 import { CommonActions } from '../../state/common.actions';
-import { selectMenu, selectSocialMedia } from '../../state/common.selectors';
+import { selectAppStores, selectMenu, selectSocialMedia } from '../../state/common.selectors';
 
 @Component({
   selector: 'app-portal-footer',
@@ -13,6 +13,7 @@ import { selectMenu, selectSocialMedia } from '../../state/common.selectors';
 })
 export class PortalFooterComponent {
 
+  public appStores = this.store.select(selectAppStores);
   public menu = this.store.select(selectMenu);
   public socialMedia = this.store.select(selectSocialMedia);
 

@@ -26,8 +26,10 @@ const pages: Type<any>[] = [
   PageLandingComponent,
 ];
 
-const framework: Type<any>[] = [
+const framework: any[] = [
   CommonModule,
+  StoreModule.forFeature(pageFeatureKey, pageReducer),
+  EffectsModule.forFeature([PageEffects]),
 ];
 
 const materials: Type<any>[] = [
@@ -50,8 +52,6 @@ const modules: Type<any>[] = [
     ...framework,
     ...materials,
     ...modules,
-    StoreModule.forFeature(pageFeatureKey, pageReducer),
-    EffectsModule.forFeature([PageEffects]),
   ],
   exports: [
     ...components,
