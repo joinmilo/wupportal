@@ -1,6 +1,6 @@
 <div>
   <span appI18n="newActivities"></span>
-  <a [routerLink]="['/events']">mehr</a>
+  <a [routerLink]="['/events']" appI18n="more"></a>
 </div>
 <app-slider>
   <app-card *ngFor="let card of events | async" [data]="card"></app-card>
