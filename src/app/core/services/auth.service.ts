@@ -3,10 +3,8 @@ import { FetchResult } from '@apollo/client/core';
 import { EMPTY, Observable, of, Subscription, timer } from 'rxjs';
 import { delay, map, switchMap, tap } from 'rxjs/operators';
 import { LoginGQL, LoginMutation, Maybe, RefreshGQL, RefreshMutation, TokenDto } from 'src/schema/schema';
+import { refreshKey } from '../constants/core.constants';
 import { Token } from '../typings/token';
-
-
-const REFRESH_KEY = 'refresh';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -26,7 +24,7 @@ export class AuthService {
       return this.callRefresh(token);
     }
 
-    const tokenStr = localStorage.getItem(REFRESH_KEY);
+    const tokenStr = localStorage.getItem(refreshKey);
     if (tokenStr) {
       const refreshToken: Token = JSON.parse(tokenStr);
       if (this.expired(refreshToken.exp)) {
@@ -64,7 +62,7 @@ export class AuthService {
     this.tokens = tokens;
 
     if (tokens?.refresh) {
-      localStorage.setItem(REFRESH_KEY, atob(tokens.refresh.split('.')[1]));
+      localStorage.setItem(refreshKey, atob(tokens.refresh.split('.')[1]));
       return of(true);
     }
     

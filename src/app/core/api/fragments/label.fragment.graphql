@@ -1,0 +1,13 @@
+fragment Label on LabelEntity {
+  id
+  tagId
+  translatables {
+    id
+    content
+    language {
+      id
+      locale
+      name
+    }
+  }
+}

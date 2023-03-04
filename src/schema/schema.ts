@@ -4323,6 +4323,8 @@ export type AddressFragment = { __typename?: 'AddressEntity', id?: string | null
 
 export type ContactFragment = { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null };
 
+export type LabelFragment = { __typename?: 'LabelEntity', id?: string | null, tagId?: string | null, translatables?: Array<{ __typename?: 'LabelTranslatablesEntity', id?: string | null, content?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+
 export type LanguageFragment = { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null };
 
 export type MediaFragment = { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null };
@@ -4341,6 +4343,18 @@ export type RefreshMutationVariables = Exact<{
 
 
 export type RefreshMutation = { __typename?: 'Mutation', refreshToken?: { __typename?: 'TokenDto', access?: string | null, refresh?: string | null } | null };
+
+export type SaveLabelMutationVariables = Exact<{
+  entity: LabelEntityInput;
+}>;
+
+
+export type SaveLabelMutation = { __typename?: 'Mutation', saveLabel?: { __typename?: 'LabelEntity', id?: string | null, tagId?: string | null, translatables?: Array<{ __typename?: 'LabelTranslatablesEntity', id?: string | null, content?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
+
+export type GetLabelsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLabelsQuery = { __typename?: 'Query', getLabels?: { __typename?: 'PageableList_LabelEntity', result?: Array<{ __typename?: 'LabelEntity', id?: string | null, tagId?: string | null, translatables?: Array<{ __typename?: 'LabelTranslatablesEntity', id?: string | null, content?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
 export type GetServerVersionQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4394,6 +4408,21 @@ export type GetPageQueryVariables = Exact<{
 
 export type GetPageQuery = { __typename?: 'Query', getPage?: { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
 
+export const LabelFragmentDoc = gql`
+    fragment Label on LabelEntity {
+  id
+  tagId
+  translatables {
+    id
+    content
+    language {
+      id
+      locale
+      name
+    }
+  }
+}
+    `;
 export const AppFragmentDoc = gql`
     fragment App on AppEntity {
   id
@@ -4563,6 +4592,44 @@ export const RefreshDocument = gql`
   })
   export class RefreshGQL extends Apollo.Mutation<RefreshMutation, RefreshMutationVariables> {
     override document = RefreshDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SaveLabelDocument = gql`
+    mutation saveLabel($entity: LabelEntityInput!) {
+  saveLabel(entity: $entity) {
+    ...Label
+  }
+}
+    ${LabelFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SaveLabelGQL extends Apollo.Mutation<SaveLabelMutation, SaveLabelMutationVariables> {
+    override document = SaveLabelDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetLabelsDocument = gql`
+    query getLabels {
+  getLabels {
+    result {
+      ...Label
+    }
+  }
+}
+    ${LabelFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetLabelsGQL extends Apollo.Query<GetLabelsQuery, GetLabelsQueryVariables> {
+    override document = GetLabelsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
