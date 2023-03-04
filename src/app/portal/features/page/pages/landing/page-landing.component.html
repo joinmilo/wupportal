@@ -1,5 +1,5 @@
 <header>
-  <app-image [image]="(page | async)?.titleImage"></app-image>
+  <app-image [image]="(page | async)?.titleImage" [rounded]="true"></app-image>
   <section class="main">
     <h1 class="mat-headline-3">{{page | translatable: "name" | async}}</h1>
     <p>{{page | translatable: "shortDescription" | async}}</p>
