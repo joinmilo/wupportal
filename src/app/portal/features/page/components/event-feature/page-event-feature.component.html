@@ -1,9 +1,0 @@
-<div>
-  <h1 appI18n="newActivities"></h1>
-  <section>
-    <a [routerLink]="['/events']" appI18n="more" postFix="»"></a>
-  </section>
-</div>
-<app-slider>
-  <app-card *ngFor="let card of events | async" [data]="card"></app-card>
-</app-slider>

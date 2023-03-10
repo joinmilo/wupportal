@@ -2,26 +2,27 @@
 
 .container {
   display: flex;
-}
 
-.cards {
-  display: flex;
-  gap: var(--gap);
-  padding: 1rem;
+  :first-child, :last-child {
+    display: flex;
 
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
+    button {
+      height: 100% !important;
+    }
 
-
-.button {
-  display: flex;
-
-  button {
-    height: 100% !important;
+    @include responsive(tablet) {
+      display: none;
+    }
   }
-  
-  @include responsive(tablet) {
-    display: none;
+
+  :nth-child(2) {
+    display: flex;
+    gap: var(--gap);
+    padding: 1rem;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
   }
 }
+
+

@@ -12,7 +12,17 @@ export const selectCurrentPage = createSelector(
 
 export const selectRecentArticles = createSelector(
   selectPageState,
-  state => state.recentArticles
+  state => state.recentArticles?.map(article => ({
+    categoryTranslatables: article.category?.translatables,
+    categoryTranslatableField: 'name',
+    creator: article.publicAuthor ?? article.author?.user?.firstName,
+    creatorImage: article.author?.titleImage,
+    date: article.modified,
+    image: article.titleImage,
+    textTranslatableField: 'content', //TODO: take short description
+    titleTranslatableField: 'title',
+    translatables: article.translatables,
+  })) as CardInput[]
 );
 
 export const selectRecentEvents = createSelector(
@@ -23,7 +33,11 @@ export const selectRecentEvents = createSelector(
     categoryTranslatableField: 'name',
     creator: event.contact?.name,
     creatorImage: event.creator?.titleImage,
-    date: event.schedules?.filter(a => a?.startDate).sort((a, b) => Math.abs(Date.now() - a?.startDate) - Math.abs(Date.now() - b?.startDate)).shift(),
+    date: event.schedules
+      ?.filter(a => new Date(a?.startDate).toLocaleDateString() > Date.now().toLocaleString()
+       || new Date(a?.endDate).toLocaleDateString() > Date.now().toLocaleString())
+      ?.sort((a, b) => b?.startDate.localeCompare(a?.startDate))
+      ?.shift()?.startDate,
     dateTime: true,
     image: event.titleImage,
     textTranslatableField: 'description',

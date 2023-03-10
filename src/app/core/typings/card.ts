@@ -1,6 +1,5 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { AddressEntity, MediaEntity } from 'src/schema/schema';
-import { ScheduleEntity } from './../../../schema/schema';
 import { Translatable } from './translatable';
 
 
@@ -14,7 +13,7 @@ export type CardInput = {
 
   creator?: Maybe<string>,
   creatorImage?: Maybe<MediaEntity>,
-  date?: Maybe<ScheduleEntity>,
+  date?: Maybe<string>,
   dateTime: boolean,
   image?: Maybe<MediaEntity>,
 

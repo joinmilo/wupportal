@@ -1,0 +1,10 @@
+fragment EventCategory on EventCategoryEntity {
+  id
+  translatables {
+    id 
+    name
+    language {
+      ...Language
+    }
+  }
+}

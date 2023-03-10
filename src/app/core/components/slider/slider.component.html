@@ -1,18 +1,18 @@
 <div class="container" #container>
 
-  <div class="button">
+  <section>
     <button mat-button (click)="scroll()" [disabled]="disableLeft">
       <fa-icon size="2x" [icon]="['fas', 'chevron-left']"></fa-icon>
     </button>
-  </div>
+  </section>
 
-  <div class="cards" #cards (scroll)="onScroll()">
+  <section #content (scroll)="onScroll()">
     <ng-content></ng-content>
-  </div>
+  </section>
 
-  <div class="button">
+  <section>
     <button mat-button (click)="scroll(true)" [disabled]="disableRight">
       <fa-icon size="2x" [icon]="['fas', 'chevron-right']"></fa-icon>
     </button>
-  </div>
+  </section>
 </div>

@@ -26,7 +26,7 @@
         }}
       </h1>
       <app-date-piece [date]="data.date" [dateTime]="data.dateTime">Date</app-date-piece>
-      <app-address-piece [address]="data.address"></app-address-piece>
+      <app-address-piece *ngIf="data.address" [address]="data.address"></app-address-piece>
       <span appHtml>
         {{
           data.text

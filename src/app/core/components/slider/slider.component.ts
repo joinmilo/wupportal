@@ -11,8 +11,8 @@ import {
 })
 export class SliderComponent implements AfterViewInit {
 
-  @ViewChild('cards', { static: true, read: ElementRef })
-  private cardsContainer!: ElementRef;
+  @ViewChild('content', { static: true, read: ElementRef })
+  private content!: ElementRef;
 
   public disableRight = false;
 
@@ -31,20 +31,20 @@ export class SliderComponent implements AfterViewInit {
   }
 
   public onScroll() {
-    this.disableLeft = this.cardsContainer?.nativeElement.scrollLeft === 0;
-    this.disableRight = this.cardsContainer?.nativeElement.scrollLeftMax === this.cardsContainer?.nativeElement.scrollLeft;
+    this.disableLeft = this.content?.nativeElement.scrollLeft === 0;
+    this.disableRight = this.content?.nativeElement.scrollLeftMax === this.content?.nativeElement.scrollLeft;
   }
 
 
   public scroll(forward?: boolean): void {
     const scroll = this.calculateScroll();
     forward
-      ? this.cardsContainer.nativeElement.scrollLeft += scroll
-      : this.cardsContainer.nativeElement.scrollLeft -= scroll;
+      ? this.content.nativeElement.scrollLeft += scroll
+      : this.content.nativeElement.scrollLeft -= scroll;
   }
 
   public calculateScroll(): number {
-    const containerWidth = this.cardsContainer.nativeElement.offsetWidth;
+    const containerWidth = this.content.nativeElement.offsetWidth;
     if (this.template?.first?.elementRef?.nativeElement?.parentElement?.firstChild?.offsetWidth) {
       const elementWidth = (this.template.first.elementRef.nativeElement.parentElement.firstChild.offsetWidth + this.gap);
       return Math.floor(containerWidth / elementWidth) * elementWidth;

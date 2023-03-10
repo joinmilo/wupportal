@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { CommonActions } from 'src/app/portal/common/state/common.actions';
-import { EventEntity, GetEventsGQL, GetPageGQL, PageEntity } from 'src/schema/schema';
+import { ArticleEntity, EventEntity, GetArticlesGQL, GetEventsGQL, GetPageGQL, PageEntity } from 'src/schema/schema';
 import { PageActions, PageFeatureActions } from './page.actions';
 
 @Injectable()
@@ -22,6 +22,18 @@ export class PageEffects {
     map(response => PageActions.setCurrentPage(response.data.getPage as PageEntity))
   ));
 
+  getReventArticles = createEffect(() => this.actions.pipe(
+    ofType(PageFeatureActions.getRecentArticles),
+    switchMap(() => this.getArticlesService.watch({
+      params: {
+        sort: 'modified',
+        dir: 'desc',
+        size: 10,
+      }
+     }).valueChanges),
+    map(response => PageFeatureActions.setRecentArticles(response.data.getArticles?.result as ArticleEntity[]))
+  ));
+
   getReventEvents = createEffect(() => this.actions.pipe(
     ofType(PageFeatureActions.getRecentEvents),
     switchMap(() => this.getEventsService.watch({
@@ -36,6 +48,7 @@ export class PageEffects {
 
   constructor(
     private actions: Actions,
+    private getArticlesService: GetArticlesGQL,
     private getEventsService: GetEventsGQL,
     private getPageService: GetPageGQL,
   ) {}

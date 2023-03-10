@@ -12,6 +12,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { CardSliderComponent } from './components/card-slider/card-slider.component';
 import { CardComponent } from './components/card/card.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ImageComponent } from './components/image/image.component';
@@ -30,6 +31,7 @@ import { coreReducer } from './state/core.reducer';
 const components: Type<any>[] = [
   AddressPieceComponent,
   CardComponent,
+  CardSliderComponent,
   DatePieceComponent,
   FeedbackComponent,
   ImageComponent,

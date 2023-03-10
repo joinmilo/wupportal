@@ -6,11 +6,10 @@ fragment Event on EventEntity {
   contact {
     ...Contact
   }
-    translatables {
+  translatables {
     id
     name
     description
-    shortDescription
     language {
       id
       locale
@@ -18,10 +17,10 @@ fragment Event on EventEntity {
     }
   }
   category {
-    ...Category
+    ...EventCategory
   }
-  
-  schedules{
+
+  schedules {
     ...Schedules
   }
 }

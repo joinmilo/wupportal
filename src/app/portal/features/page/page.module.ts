@@ -7,7 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalCommonModule } from '../../common/common.module';
-import { PageEventFeatureComponent } from './components/event-feature/page-event-feature.component';
 import { PageFeaturesComponent } from './components/features/page-features.component';
 import { pageFeatureKey } from './constants/page.constants';
 import { PagePortalRoutingModule } from './page-routing.module';
@@ -17,7 +16,6 @@ import { PageEffects } from './state/page.effects';
 import { pageReducer } from './state/page.reducer';
 
 const components: Type<any>[] = [
-  PageEventFeatureComponent,
   PageFeaturesComponent,
 ];
 

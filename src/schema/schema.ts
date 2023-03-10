@@ -218,6 +218,7 @@ export type ArticleEntity = {
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   titleImage?: Maybe<MediaEntity>;
+  translatables?: Maybe<Array<Maybe<ArticleTranslatableEntity>>>;
   visitors?: Maybe<Array<Maybe<ArticleVisitorEntity>>>;
 };
 
@@ -237,6 +238,7 @@ export type ArticleEntityInput = {
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
   titleImage?: InputMaybe<MediaEntityInput>;
+  translatables?: InputMaybe<Array<InputMaybe<ArticleTranslatableEntityInput>>>;
   visitors?: InputMaybe<Array<InputMaybe<ArticleVisitorEntityInput>>>;
 };
 
@@ -257,6 +259,24 @@ export type ArticleRatingEntityInput = {
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   score?: InputMaybe<Scalars['Int']>;
   userContext?: InputMaybe<UserContextEntityInput>;
+};
+
+export type ArticleTranslatableEntity = {
+  __typename?: 'ArticleTranslatableEntity';
+  content?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ArticleTranslatableEntityInput = {
+  content?: InputMaybe<Scalars['String']>;
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type ArticleVisitorEntity = {
@@ -716,14 +736,17 @@ export type EventEntity = {
   contact?: Maybe<ContactEntity>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   creator?: Maybe<UserContextEntity>;
+  description?: Maybe<Scalars['String']>;
   entryFee?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['String']>;
   media?: Maybe<Array<Maybe<MediaEntity>>>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
   organisation?: Maybe<OrganisationEntity>;
   ratings?: Maybe<Array<Maybe<EventRatingEntity>>>;
   schedules?: Maybe<Array<Maybe<ScheduleEntity>>>;
   seoDescription?: Maybe<Scalars['String']>;
+  shortDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   targetGroups?: Maybe<Array<Maybe<EventTargetGroupEntity>>>;
@@ -741,14 +764,17 @@ export type EventEntityInput = {
   contact?: InputMaybe<ContactEntityInput>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   creator?: InputMaybe<UserContextEntityInput>;
+  description?: InputMaybe<Scalars['String']>;
   entryFee?: InputMaybe<Scalars['Float']>;
   id?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
   organisation?: InputMaybe<OrganisationEntityInput>;
   ratings?: InputMaybe<Array<InputMaybe<EventRatingEntityInput>>>;
   schedules?: InputMaybe<Array<InputMaybe<ScheduleEntityInput>>>;
   seoDescription?: InputMaybe<Scalars['String']>;
+  shortDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
   targetGroups?: InputMaybe<Array<InputMaybe<EventTargetGroupEntityInput>>>;
@@ -816,7 +842,6 @@ export type EventTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<EventEntity>;
   shortDescription?: Maybe<Scalars['String']>;
 };
 
@@ -824,10 +849,8 @@ export type EventTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<EventEntityInput>;
   shortDescription?: InputMaybe<Scalars['String']>;
 };
 
@@ -3925,20 +3948,20 @@ export type RoleTranslatableEntityInput = {
 export type ScheduleEntity = {
   __typename?: 'ScheduleEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
-  endDate?: Maybe<Scalars['Date']>;
+  endDate?: Maybe<Scalars['OffsetDateTime']>;
   event?: Maybe<EventEntity>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  startDate?: Maybe<Scalars['Date']>;
+  startDate?: Maybe<Scalars['OffsetDateTime']>;
 };
 
 export type ScheduleEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  endDate?: InputMaybe<Scalars['Date']>;
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
   event?: InputMaybe<EventEntityInput>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  startDate?: InputMaybe<Scalars['Date']>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type SocialMediaEntity = {
@@ -4225,11 +4248,11 @@ export type UserContextTranslatableEntityInput = {
 
 export type UserEntity = {
   __typename?: 'UserEntity';
-  approved?: Maybe<Scalars['Boolean']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   email?: Maybe<Scalars['String']>;
-  fullname?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   notifications?: Maybe<Array<Maybe<NotificationEntity>>>;
   password?: Maybe<Scalars['String']>;
@@ -4243,11 +4266,11 @@ export type UserEntity = {
 };
 
 export type UserEntityInput = {
-  approved?: InputMaybe<Scalars['Boolean']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   email?: InputMaybe<Scalars['String']>;
-  fullname?: InputMaybe<Scalars['String']>;
+  firstName?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   notifications?: InputMaybe<Array<InputMaybe<NotificationEntityInput>>>;
   password?: InputMaybe<Scalars['String']>;
@@ -4367,7 +4390,15 @@ export type GetServerVersionQuery = { __typename?: 'Query', getInformation?: { _
 
 export type AppFragment = { __typename?: 'AppEntity', id?: string | null, url?: string | null, platform?: { __typename?: 'AppPlatformEntity', id?: string | null, key?: string | null, name?: string | null } | null };
 
+export type ArticleFragment = { __typename?: 'ArticleEntity', id?: string | null, approved?: boolean | null, slug?: string | null, modified?: any | null, author?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null } | null } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, category?: { __typename?: 'ArticleCategoryEntity', id?: string | null, icon?: string | null, color?: string | null, translatables?: Array<{ __typename?: 'ArticleCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, publicAuthor?: { __typename?: 'PublicAuthorEntity', name?: string | null } | null, translatables?: Array<{ __typename?: 'ArticleTranslatableEntity', id?: string | null, content?: string | null, title?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+
+export type EventCategoryFragment = { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+
+export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null };
+
 export type MenuItemFragment = { __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null };
+
+export type SchedulesFragment = { __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null };
 
 export type SocialMediaFragment = { __typename?: 'SocialMediaEntity', icon?: string | null, name?: string | null, url?: string | null };
 
@@ -4375,6 +4406,20 @@ export type GetAppsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAppsQuery = { __typename?: 'Query', getApps?: { __typename?: 'PageableList_AppEntity', result?: Array<{ __typename?: 'AppEntity', id?: string | null, url?: string | null, platform?: { __typename?: 'AppPlatformEntity', id?: string | null, key?: string | null, name?: string | null } | null } | null> | null } | null };
+
+export type GetArticlesQueryVariables = Exact<{
+  params?: InputMaybe<FilterSortPaginateInput>;
+}>;
+
+
+export type GetArticlesQuery = { __typename?: 'Query', getArticles?: { __typename?: 'PageableList_ArticleEntity', result?: Array<{ __typename?: 'ArticleEntity', id?: string | null, approved?: boolean | null, slug?: string | null, modified?: any | null, author?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null } | null } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, category?: { __typename?: 'ArticleCategoryEntity', id?: string | null, icon?: string | null, color?: string | null, translatables?: Array<{ __typename?: 'ArticleCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, publicAuthor?: { __typename?: 'PublicAuthorEntity', name?: string | null } | null, translatables?: Array<{ __typename?: 'ArticleTranslatableEntity', id?: string | null, content?: string | null, title?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
+
+export type GetEventsQueryVariables = Exact<{
+  params?: InputMaybe<FilterSortPaginateInput>;
+}>;
+
+
+export type GetEventsQuery = { __typename?: 'Query', getEvents?: { __typename?: 'PageableList_EventEntity', result?: Array<{ __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null } | null> | null } | null };
 
 export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4386,12 +4431,6 @@ export type GetSocialMediaQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetSocialMediaQuery = { __typename?: 'Query', getSocialMedias?: { __typename?: 'PageableList_SocialMediaEntity', result?: Array<{ __typename?: 'SocialMediaEntity', icon?: string | null, name?: string | null, url?: string | null } | null> | null } | null };
 
-export type CategoryFragment = { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
-
-export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null };
-
-export type SchedulesFragment = { __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null };
-
 export type GetEventDetailsQueryVariables = Exact<{
   id?: InputMaybe<Scalars['String']>;
 }>;
@@ -4400,13 +4439,6 @@ export type GetEventDetailsQueryVariables = Exact<{
 export type GetEventDetailsQuery = { __typename?: 'Query', getEvent?: { __typename?: 'EventEntity', id?: string | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, color?: string | null, icon?: string | null } | null, address?: { __typename?: 'AddressEntity', id?: string | null } | null } | null };
 
 export type PageFragment = { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
-
-export type GetEventsQueryVariables = Exact<{
-  params?: InputMaybe<FilterSortPaginateInput>;
-}>;
-
-
-export type GetEventsQuery = { __typename?: 'Query', getEvents?: { __typename?: 'PageableList_EventEntity', result?: Array<{ __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null } | null> | null } | null };
 
 export type GetPageQueryVariables = Exact<{
   isLanding?: InputMaybe<Scalars['Boolean']>;
@@ -4442,6 +4474,13 @@ export const AppFragmentDoc = gql`
   }
 }
     `;
+export const MediaFragmentDoc = gql`
+    fragment Media on MediaEntity {
+  id
+  mimeType
+  name
+}
+    `;
 export const LanguageFragmentDoc = gql`
     fragment Language on LanguageEntity {
   id
@@ -4449,6 +4488,116 @@ export const LanguageFragmentDoc = gql`
   name
 }
     `;
+export const ArticleFragmentDoc = gql`
+    fragment Article on ArticleEntity {
+  id
+  approved
+  slug
+  modified
+  author {
+    user {
+      firstName
+      lastName
+    }
+  }
+  cardImage {
+    ...Media
+  }
+  category {
+    id
+    icon
+    color
+    translatables {
+      id
+      name
+      language {
+        ...Language
+      }
+    }
+  }
+  publicAuthor {
+    name
+  }
+  translatables {
+    id
+    content
+    title
+    language {
+      ...Language
+    }
+  }
+}
+    ${MediaFragmentDoc}
+${LanguageFragmentDoc}`;
+export const AddressFragmentDoc = gql`
+    fragment Address on AddressEntity {
+  id
+  houseNumber
+  place
+  postalCode
+  street
+  latitude
+  longitude
+}
+    `;
+export const ContactFragmentDoc = gql`
+    fragment Contact on ContactEntity {
+  id
+  email
+  name
+  phone
+  preferredContact
+}
+    `;
+export const EventCategoryFragmentDoc = gql`
+    fragment EventCategory on EventCategoryEntity {
+  id
+  translatables {
+    id
+    name
+    language {
+      ...Language
+    }
+  }
+}
+    ${LanguageFragmentDoc}`;
+export const SchedulesFragmentDoc = gql`
+    fragment Schedules on ScheduleEntity {
+  id
+  startDate
+  endDate
+}
+    `;
+export const EventFragmentDoc = gql`
+    fragment Event on EventEntity {
+  id
+  address {
+    ...Address
+  }
+  contact {
+    ...Contact
+  }
+  translatables {
+    id
+    name
+    description
+    language {
+      id
+      locale
+      name
+    }
+  }
+  category {
+    ...EventCategory
+  }
+  schedules {
+    ...Schedules
+  }
+}
+    ${AddressFragmentDoc}
+${ContactFragmentDoc}
+${EventCategoryFragmentDoc}
+${SchedulesFragmentDoc}`;
 export const MenuItemFragmentDoc = gql`
     fragment MenuItem on MenuItemEntity {
   id
@@ -4493,85 +4642,6 @@ export const SocialMediaFragmentDoc = gql`
   icon
   name
   url
-}
-    `;
-export const AddressFragmentDoc = gql`
-    fragment Address on AddressEntity {
-  id
-  houseNumber
-  place
-  postalCode
-  street
-  latitude
-  longitude
-}
-    `;
-export const ContactFragmentDoc = gql`
-    fragment Contact on ContactEntity {
-  id
-  email
-  name
-  phone
-  preferredContact
-}
-    `;
-export const CategoryFragmentDoc = gql`
-    fragment Category on EventCategoryEntity {
-  id
-  translatables {
-    id
-    name
-    language {
-      id
-      locale
-      name
-    }
-  }
-}
-    `;
-export const SchedulesFragmentDoc = gql`
-    fragment Schedules on ScheduleEntity {
-  id
-  startDate
-  endDate
-}
-    `;
-export const EventFragmentDoc = gql`
-    fragment Event on EventEntity {
-  id
-  address {
-    ...Address
-  }
-  contact {
-    ...Contact
-  }
-  translatables {
-    id
-    name
-    description
-    shortDescription
-    language {
-      id
-      locale
-      name
-    }
-  }
-  category {
-    ...Category
-  }
-  schedules {
-    ...Schedules
-  }
-}
-    ${AddressFragmentDoc}
-${ContactFragmentDoc}
-${CategoryFragmentDoc}
-${SchedulesFragmentDoc}`;
-export const MediaFragmentDoc = gql`
-    fragment Media on MediaEntity {
-  id
-  mimeType
-  name
 }
     `;
 export const PageFragmentDoc = gql`
@@ -4721,6 +4791,46 @@ export const GetAppsDocument = gql`
       super(apollo);
     }
   }
+export const GetArticlesDocument = gql`
+    query getArticles($params: FilterSortPaginateInput) {
+  getArticles(params: $params) {
+    result {
+      ...Article
+    }
+  }
+}
+    ${ArticleFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetArticlesGQL extends Apollo.Query<GetArticlesQuery, GetArticlesQueryVariables> {
+    override document = GetArticlesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetEventsDocument = gql`
+    query getEvents($params: FilterSortPaginateInput) {
+  getEvents(params: $params) {
+    result {
+      ...Event
+    }
+  }
+}
+    ${EventFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetEventsGQL extends Apollo.Query<GetEventsQuery, GetEventsQueryVariables> {
+    override document = GetEventsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetMenuDocument = gql`
     query getMenu {
   getMenuItems(
@@ -4784,26 +4894,6 @@ export const GetEventDetailsDocument = gql`
   })
   export class GetEventDetailsGQL extends Apollo.Query<GetEventDetailsQuery, GetEventDetailsQueryVariables> {
     override document = GetEventDetailsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const GetEventsDocument = gql`
-    query getEvents($params: FilterSortPaginateInput) {
-  getEvents(params: $params) {
-    result {
-      ...Event
-    }
-  }
-}
-    ${EventFragmentDoc}`;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class GetEventsGQL extends Apollo.Query<GetEventsQuery, GetEventsQueryVariables> {
-    override document = GetEventsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
