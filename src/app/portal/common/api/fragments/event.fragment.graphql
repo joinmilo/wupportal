@@ -3,6 +3,9 @@ fragment Event on EventEntity {
   address {
     ...Address
   }
+  cardImage {
+    ...Media
+  }
   contact {
     ...Contact
   }
@@ -10,6 +13,7 @@ fragment Event on EventEntity {
     id
     name
     description
+    shortDescription
     language {
       id
       locale

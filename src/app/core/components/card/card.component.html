@@ -1,21 +1,19 @@
 <div class="container">
   <mat-card>
     <mat-card-header>
-      <div>
-        <mat-chip-option>
-          <span>
-            {{
-              data.category
-                ? data.category
-                : data.categoryTranslatables | translatable: data.categoryTranslatableField | async
-            }}
-          </span>
-        </mat-chip-option>
-        <button mat-icon-button (click)="changeFavorite()" [ngClass]="isFavorite ? 'favorite' : ''">
-          <fa-icon click [icon]="isFavorite ? ['fas', 'heart'] : ['far', 'heart']"></fa-icon>
-        </button>
-        <app-image mat-card-image [image]="data.image" [roundedTopLeft]="true" [roundedTopRight]="true"></app-image>
-      </div>
+      <mat-chip-option>
+        <span>
+          {{
+            data.category
+              ? data.category
+              : data.categoryTranslatables | translatable: data.categoryTranslatableField | async
+          }}
+        </span>
+      </mat-chip-option>
+      <button mat-icon-button (click)="changeFavorite()" [ngClass]="isFavorite ? 'favorite' : ''">
+        <fa-icon click [icon]="isFavorite ? ['fas', 'heart'] : ['far', 'heart']"></fa-icon>
+      </button>
+      <app-image mat-card-image [image]="data.image" [roundedTopLeft]="true" [roundedTopRight]="true"></app-image>
     </mat-card-header>
     <mat-card-content>
       <h1>
@@ -27,7 +25,7 @@
       </h1>
       <app-date-piece [date]="data.date" [dateTime]="data.dateTime">Date</app-date-piece>
       <app-address-piece *ngIf="data.address" [address]="data.address"></app-address-piece>
-      <span appHtml>
+      <span>
         {{
           data.text
             ? data.text

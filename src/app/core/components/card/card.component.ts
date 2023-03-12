@@ -15,7 +15,7 @@ export class CardComponent {
 
   isFavorite = false;
 
-  changeFavorite() {
+  public changeFavorite() {
     this.isFavorite = !this.isFavorite;
   }
 }

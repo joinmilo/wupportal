@@ -27,10 +27,10 @@ fragment Article on ArticleEntity {
   publicAuthor {
     name
   }
-
   translatables {
     id
     content
+    shortDescription
     title
     language {
       ...Language

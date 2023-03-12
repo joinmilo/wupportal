@@ -18,8 +18,8 @@ export const selectRecentArticles = createSelector(
     creator: article.publicAuthor ?? article.author?.user?.firstName,
     creatorImage: article.author?.titleImage,
     date: article.modified,
-    image: article.titleImage,
-    textTranslatableField: 'content', //TODO: take short description
+    image: article.cardImage,
+    textTranslatableField: 'shortDescription', //TODO: take short description
     titleTranslatableField: 'title',
     translatables: article.translatables,
   })) as CardInput[]
@@ -39,8 +39,8 @@ export const selectRecentEvents = createSelector(
       ?.sort((a, b) => b?.startDate.localeCompare(a?.startDate))
       ?.shift()?.startDate,
     dateTime: true,
-    image: event.titleImage,
-    textTranslatableField: 'description',
+    image: event.cardImage,
+    textTranslatableField: 'shortDescription',
     titleTranslatableField: 'name',
     translatables: event.translatables,
   })) as CardInput[]
