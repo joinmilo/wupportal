@@ -1,0 +1,10 @@
+fragment Theme on ThemeEntity {
+  id
+  isDefault
+  name
+  variables {
+    id
+    key
+    value
+  }
+}

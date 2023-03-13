@@ -13,3 +13,8 @@ export const selectLanguage = createSelector(
   selectCoreState,
   state => state?.language
 );
+
+export const selectTheme = createSelector(
+  selectCoreState,
+  state => state?.currentTheme
+);

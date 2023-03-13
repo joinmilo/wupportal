@@ -370,6 +370,23 @@ export type ChannelEntityInput = {
   name?: InputMaybe<Scalars['String']>;
 };
 
+export type ConfigurationEntity = {
+  __typename?: 'ConfigurationEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  key?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+export type ConfigurationEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 export enum ConjunctionOperator {
   And = 'AND',
   AndNot = 'AND_NOT',
@@ -1229,6 +1246,8 @@ export type Mutation = {
   deleteAssignments?: Maybe<Scalars['Boolean']>;
   deleteAttendee?: Maybe<Scalars['Boolean']>;
   deleteAttendees?: Maybe<Scalars['Boolean']>;
+  deleteConfiguration?: Maybe<Scalars['Boolean']>;
+  deleteConfigurations?: Maybe<Scalars['Boolean']>;
   deleteContact?: Maybe<Scalars['Boolean']>;
   deleteContacts?: Maybe<Scalars['Boolean']>;
   deleteContest?: Maybe<Scalars['Boolean']>;
@@ -1302,6 +1321,8 @@ export type Mutation = {
   deleteSurveyState?: Maybe<Scalars['Boolean']>;
   deleteSurveyStates?: Maybe<Scalars['Boolean']>;
   deleteSurveys?: Maybe<Scalars['Boolean']>;
+  deleteTheme?: Maybe<Scalars['Boolean']>;
+  deleteThemes?: Maybe<Scalars['Boolean']>;
   deleteUploads?: Maybe<UserEntity>;
   deleteUser?: Maybe<Scalars['Boolean']>;
   deleteUserContext?: Maybe<Scalars['Boolean']>;
@@ -1323,6 +1344,8 @@ export type Mutation = {
   saveAssignments?: Maybe<Array<Maybe<AssignmentEntity>>>;
   saveAttendee?: Maybe<AttendeeEntity>;
   saveAttendees?: Maybe<Array<Maybe<AttendeeEntity>>>;
+  saveConfiguration?: Maybe<ConfigurationEntity>;
+  saveConfigurations?: Maybe<Array<Maybe<ConfigurationEntity>>>;
   saveContact?: Maybe<ContactEntity>;
   saveContacts?: Maybe<Array<Maybe<ContactEntity>>>;
   saveContest?: Maybe<ContestEntity>;
@@ -1396,6 +1419,8 @@ export type Mutation = {
   saveSurveyState?: Maybe<SurveyStateEntity>;
   saveSurveyStates?: Maybe<Array<Maybe<SurveyStateEntity>>>;
   saveSurveys?: Maybe<Array<Maybe<SurveyEntity>>>;
+  saveTheme?: Maybe<ThemeEntity>;
+  saveThemes?: Maybe<Array<Maybe<ThemeEntity>>>;
   saveUser?: Maybe<UserEntity>;
   saveUserContext?: Maybe<UserContextEntity>;
   saveUserContexts?: Maybe<Array<Maybe<UserContextEntity>>>;
@@ -1507,6 +1532,18 @@ export type MutationDeleteAttendeeArgs = {
 
 /** Mutation root */
 export type MutationDeleteAttendeesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteConfigurationArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteConfigurationsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1950,6 +1987,18 @@ export type MutationDeleteSurveysArgs = {
 
 
 /** Mutation root */
+export type MutationDeleteThemeArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteThemesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteUploadsArgs = {
   uploadIds?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -2073,6 +2122,18 @@ export type MutationSaveAttendeeArgs = {
 /** Mutation root */
 export type MutationSaveAttendeesArgs = {
   entities?: InputMaybe<Array<InputMaybe<AttendeeEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveConfigurationArgs = {
+  entity?: InputMaybe<ConfigurationEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveConfigurationsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<ConfigurationEntityInput>>>;
 };
 
 
@@ -2515,6 +2576,18 @@ export type MutationSaveSurveysArgs = {
 
 
 /** Mutation root */
+export type MutationSaveThemeArgs = {
+  entity?: InputMaybe<ThemeEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveThemesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<ThemeEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveUserArgs = {
   entity?: InputMaybe<UserEntityInput>;
 };
@@ -2885,6 +2958,12 @@ export type PageableList_AttendeeEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_ConfigurationEntity = {
+  __typename?: 'PageableList_ConfigurationEntity';
+  result?: Maybe<Array<Maybe<ConfigurationEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_ContactEntity = {
   __typename?: 'PageableList_ContactEntity';
   result?: Maybe<Array<Maybe<ContactEntity>>>;
@@ -3101,6 +3180,12 @@ export type PageableList_SurveyStateEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_ThemeEntity = {
+  __typename?: 'PageableList_ThemeEntity';
+  result?: Maybe<Array<Maybe<ThemeEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_UserContextEntity = {
   __typename?: 'PageableList_UserContextEntity';
   result?: Maybe<Array<Maybe<UserContextEntity>>>;
@@ -3168,6 +3253,8 @@ export type Query = {
   getAssignments?: Maybe<PageableList_AssignmentEntity>;
   getAttendee?: Maybe<AttendeeEntity>;
   getAttendees?: Maybe<PageableList_AttendeeEntity>;
+  getConfiguration?: Maybe<ConfigurationEntity>;
+  getConfigurations?: Maybe<PageableList_ConfigurationEntity>;
   getContact?: Maybe<ContactEntity>;
   getContacts?: Maybe<PageableList_ContactEntity>;
   getContest?: Maybe<ContestEntity>;
@@ -3241,6 +3328,8 @@ export type Query = {
   getSurveyState?: Maybe<SurveyStateEntity>;
   getSurveyStates?: Maybe<PageableList_SurveyStateEntity>;
   getSurveys?: Maybe<PageableList_SurveyEntity>;
+  getTheme?: Maybe<ThemeEntity>;
+  getThemes?: Maybe<PageableList_ThemeEntity>;
   getUser?: Maybe<UserEntity>;
   getUserContext?: Maybe<UserContextEntity>;
   getUserContexts?: Maybe<PageableList_UserContextEntity>;
@@ -3329,6 +3418,18 @@ export type QueryGetAttendeeArgs = {
 
 /** Query root */
 export type QueryGetAttendeesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetConfigurationArgs = {
+  entity?: InputMaybe<ConfigurationEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetConfigurationsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -3766,6 +3867,18 @@ export type QueryGetSurveysArgs = {
 
 
 /** Query root */
+export type QueryGetThemeArgs = {
+  entity?: InputMaybe<ThemeEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetThemesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
 export type QueryGetUserArgs = {
   entity?: InputMaybe<UserEntityInput>;
 };
@@ -4165,6 +4278,44 @@ export type SurveyVisitorEntityInput = {
   visits?: InputMaybe<Scalars['Int']>;
 };
 
+export type ThemeEntity = {
+  __typename?: 'ThemeEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  isDefault?: Maybe<Scalars['Boolean']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+  variables?: Maybe<Array<Maybe<ThemeVariableEntity>>>;
+};
+
+export type ThemeEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  isDefault?: InputMaybe<Scalars['Boolean']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  variables?: InputMaybe<Array<InputMaybe<ThemeVariableEntityInput>>>;
+};
+
+export type ThemeVariableEntity = {
+  __typename?: 'ThemeVariableEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  key?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  theme?: Maybe<ThemeEntity>;
+  value?: Maybe<Scalars['String']>;
+};
+
+export type ThemeVariableEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  theme?: InputMaybe<ThemeEntityInput>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 export type TokenDto = {
   __typename?: 'TokenDto';
   access?: Maybe<Scalars['String']>;
@@ -4360,7 +4511,9 @@ export type LabelFragment = { __typename?: 'LabelEntity', id?: string | null, ta
 
 export type LanguageFragment = { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null };
 
-export type MediaFragment = { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null };
+export type MediaFragment = { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null };
+
+export type ThemeFragment = { __typename?: 'ThemeEntity', id?: string | null, isDefault?: boolean | null, name?: string | null, variables?: Array<{ __typename?: 'ThemeVariableEntity', id?: string | null, key?: string | null, value?: string | null } | null> | null };
 
 export type LoginMutationVariables = Exact<{
   username: Scalars['String'];
@@ -4389,6 +4542,11 @@ export type GetLabelsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLabelsQuery = { __typename?: 'Query', getLabels?: { __typename?: 'PageableList_LabelEntity', result?: Array<{ __typename?: 'LabelEntity', id?: string | null, tagId?: string | null, translatables?: Array<{ __typename?: 'LabelTranslatablesEntity', id?: string | null, content?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
+export type GetThemeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetThemeQuery = { __typename?: 'Query', getThemes?: { __typename?: 'PageableList_ThemeEntity', result?: Array<{ __typename?: 'ThemeEntity', id?: string | null, isDefault?: boolean | null, name?: string | null, variables?: Array<{ __typename?: 'ThemeVariableEntity', id?: string | null, key?: string | null, value?: string | null } | null> | null } | null> | null } | null };
+
 export type GetServerVersionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4396,11 +4554,11 @@ export type GetServerVersionQuery = { __typename?: 'Query', getInformation?: { _
 
 export type AppFragment = { __typename?: 'AppEntity', id?: string | null, url?: string | null, platform?: { __typename?: 'AppPlatformEntity', id?: string | null, key?: string | null, name?: string | null } | null };
 
-export type ArticleFragment = { __typename?: 'ArticleEntity', id?: string | null, approved?: boolean | null, slug?: string | null, modified?: any | null, author?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null } | null } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, category?: { __typename?: 'ArticleCategoryEntity', id?: string | null, icon?: string | null, color?: string | null, translatables?: Array<{ __typename?: 'ArticleCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, publicAuthor?: { __typename?: 'PublicAuthorEntity', name?: string | null } | null, translatables?: Array<{ __typename?: 'ArticleTranslatableEntity', id?: string | null, content?: string | null, shortDescription?: string | null, title?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+export type ArticleFragment = { __typename?: 'ArticleEntity', id?: string | null, approved?: boolean | null, slug?: string | null, modified?: any | null, author?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null } | null } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, category?: { __typename?: 'ArticleCategoryEntity', id?: string | null, icon?: string | null, color?: string | null, translatables?: Array<{ __typename?: 'ArticleCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, publicAuthor?: { __typename?: 'PublicAuthorEntity', name?: string | null } | null, translatables?: Array<{ __typename?: 'ArticleTranslatableEntity', id?: string | null, content?: string | null, shortDescription?: string | null, title?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
 export type EventCategoryFragment = { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
-export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null };
+export type EventFragment = { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null };
 
 export type MenuItemFragment = { __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, feature?: { __typename?: 'FeatureEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null };
 
@@ -4418,14 +4576,14 @@ export type GetArticlesQueryVariables = Exact<{
 }>;
 
 
-export type GetArticlesQuery = { __typename?: 'Query', getArticles?: { __typename?: 'PageableList_ArticleEntity', result?: Array<{ __typename?: 'ArticleEntity', id?: string | null, approved?: boolean | null, slug?: string | null, modified?: any | null, author?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null } | null } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, category?: { __typename?: 'ArticleCategoryEntity', id?: string | null, icon?: string | null, color?: string | null, translatables?: Array<{ __typename?: 'ArticleCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, publicAuthor?: { __typename?: 'PublicAuthorEntity', name?: string | null } | null, translatables?: Array<{ __typename?: 'ArticleTranslatableEntity', id?: string | null, content?: string | null, shortDescription?: string | null, title?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
+export type GetArticlesQuery = { __typename?: 'Query', getArticles?: { __typename?: 'PageableList_ArticleEntity', result?: Array<{ __typename?: 'ArticleEntity', id?: string | null, approved?: boolean | null, slug?: string | null, modified?: any | null, author?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null } | null } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, category?: { __typename?: 'ArticleCategoryEntity', id?: string | null, icon?: string | null, color?: string | null, translatables?: Array<{ __typename?: 'ArticleCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, publicAuthor?: { __typename?: 'PublicAuthorEntity', name?: string | null } | null, translatables?: Array<{ __typename?: 'ArticleTranslatableEntity', id?: string | null, content?: string | null, shortDescription?: string | null, title?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
 export type GetEventsQueryVariables = Exact<{
   params?: InputMaybe<FilterSortPaginateInput>;
 }>;
 
 
-export type GetEventsQuery = { __typename?: 'Query', getEvents?: { __typename?: 'PageableList_EventEntity', result?: Array<{ __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null } | null> | null } | null };
+export type GetEventsQuery = { __typename?: 'Query', getEvents?: { __typename?: 'PageableList_EventEntity', result?: Array<{ __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedules?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null } | null> | null } | null };
 
 export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4444,7 +4602,7 @@ export type GetEventDetailsQueryVariables = Exact<{
 
 export type GetEventDetailsQuery = { __typename?: 'Query', getEvent?: { __typename?: 'EventEntity', id?: string | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, color?: string | null, icon?: string | null } | null, address?: { __typename?: 'AddressEntity', id?: string | null } | null } | null };
 
-export type PageFragment = { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+export type PageFragment = { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
 export type GetPageQueryVariables = Exact<{
   isLanding?: InputMaybe<Scalars['Boolean']>;
@@ -4452,7 +4610,7 @@ export type GetPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPageQuery = { __typename?: 'Query', getPage?: { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
+export type GetPageQuery = { __typename?: 'Query', getPage?: { __typename?: 'PageEntity', id?: string | null, callUrl?: string | null, slug?: string | null, media?: Array<{ __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null> | null, pageFeatures?: Array<{ __typename?: 'PageFeatureEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null } | null> | null, titleImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, translatables?: Array<{ __typename?: 'PageTranslatableEntity', id?: string | null, callText?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
 
 export const LabelFragmentDoc = gql`
     fragment Label on LabelEntity {
@@ -4466,6 +4624,18 @@ export const LabelFragmentDoc = gql`
       locale
       name
     }
+  }
+}
+    `;
+export const ThemeFragmentDoc = gql`
+    fragment Theme on ThemeEntity {
+  id
+  isDefault
+  name
+  variables {
+    id
+    key
+    value
   }
 }
     `;
@@ -4483,6 +4653,7 @@ export const AppFragmentDoc = gql`
 export const MediaFragmentDoc = gql`
     fragment Media on MediaEntity {
   id
+  credits
   mimeType
   name
 }
@@ -4760,6 +4931,26 @@ export const GetLabelsDocument = gql`
   })
   export class GetLabelsGQL extends Apollo.Query<GetLabelsQuery, GetLabelsQueryVariables> {
     override document = GetLabelsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetThemeDocument = gql`
+    query getTheme {
+  getThemes {
+    result {
+      ...Theme
+    }
+  }
+}
+    ${ThemeFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetThemeGQL extends Apollo.Query<GetThemeQuery, GetThemeQueryVariables> {
+    override document = GetThemeDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

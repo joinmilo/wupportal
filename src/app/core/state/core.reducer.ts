@@ -1,11 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
-import { LanguageEntity, Maybe } from 'src/schema/schema';
+import { LanguageEntity, Maybe, ThemeEntity } from 'src/schema/schema';
 import { Translatable } from '../typings/translatable';
 import { CoreActions } from './core.actions';
 
 export interface CoreState {
+  currentTheme?: Maybe<ThemeEntity>,
   language?: LanguageEntity,
   labels?: Map<string, Maybe<Translatable>[]>,
+  themes?: ThemeEntity[],
 }
 
 export const initialState: CoreState = {
@@ -31,5 +33,12 @@ export const coreReducer = createReducer(
 
     return { ...state, labels };
   }),
+
+  on(CoreActions.setThemes, (state, action): CoreState => (
+    { ...state,
+      currentTheme: action.themes?.find(theme => theme.isDefault),
+      themes: action.themes
+    }
+  )),
 
 );
