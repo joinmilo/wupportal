@@ -18,6 +18,13 @@
   --mdc-protected-button-label-text-color: var(--color-accent-contrast-500);
 }
 
+/* Form Fields*/
+.mdc-text-field {
+  background-color: var(--color-lightest) !important;
+  border-bottom-right-radius: var(--mdc-shape-small) !important;
+  border-bottom-left-radius: var(--mdc-shape-small) !important;
+}
+
 /* Card */
 
 mat-card {
