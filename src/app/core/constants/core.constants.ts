@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 
 export const coreFeatureKey = 'coreState';
-export const baseApi = `${environment.base}/api`;
+export const baseApi = `${environment.base}api`;
 
 export const graphqlApi = `${baseApi}/graphql`;
 
