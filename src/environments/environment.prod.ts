@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base: location.href,
+  base: `${location.protocol}//${location.host}/`,
 };
