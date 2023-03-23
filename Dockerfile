@@ -22,10 +22,10 @@ RUN \
   # deploy
   echo \
   'server {'  \
-    'client_max_body_size 0;' \
-    'listen 80 default_server;' \
+    'listen 80;' \
+    'listen [::]:80;' \
+    'root /usr/share/webapps/wooportal;' \
     'location / {' \
-      'alias /usr/share/webapps/wooportal;' \
       'try_files $uri /index.html;' \
     '}' \
   '}' \
