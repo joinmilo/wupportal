@@ -2,6 +2,7 @@
 @use '@angular/material' as mat;
 @import '@angular/material/theming';
 @import 'src/styles/theme/colors.theme.scss';
+@import 'src/styles/mixins.scss';
 
 $typography: (
   mat.define-typography-config($font-family: 'Inter, "Helvetica Neue", sans-serif',

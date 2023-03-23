@@ -2,7 +2,7 @@
   <app-image [src]="'assets/hero.jpg'"></app-image>
   <section>
     <div>
-      <h1 class="mat-headline-1 title-gradient">{{page | translatable: "name" | async}}</h1>
+      <div class="title title-gradient">{{page | translatable: "name" | async}}</div>
       <p>{{page | translatable: "shortDescription" | async}}</p>
       <button mat-raised-button color="primary" *ngIf="(page | async)?.callUrl" [routerLink]="(page | async)?.callUrl">
         {{page | translatable: "callText" | async}}

@@ -1,6 +1,4 @@
-@use '@angular/material' as mat;
 @import 'src/styles/mixins.scss';
-@import 'src/styles/theme/theme.scss'; 
 
 header {
   display: flex;
@@ -15,22 +13,17 @@ header {
   }
 
   section {
-    flex: 2 1 40rem;
-    align-self: center;
     display: flex;
+    align-self: center;
     justify-content: center;
+    
+    flex: 2 1 40rem;
     padding: 5%;
 
     button {
       color: var(--color-primary-contrast-700);
       background-color: var(--color-primary-700);
       margin-top: 1rem;
-    }
-  }
-
-  h1 {
-    @include responsive(phone) {
-      @include mat.typography-level($typography, 'headline-2');
     }
   }
 }
