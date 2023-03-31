@@ -31,7 +31,7 @@ import { FavoritePieceComponent } from './components/pieces/favorite/favorite-pi
 import { SliderComponent } from './components/slider/slider.component';
 import { coreFeatureKey } from './constants/core.constants';
 import { HtmlDirective } from './directives/html.directive';
-import { I18nDirective } from './directives/i18n.directive';
+import { AppLabelDirective } from './directives/label.directive';
 import { AddressPipe } from './pipes/address.pipe';
 import { TranslatablePipe } from './pipes/translatable.pipe';
 import { CoreEffects } from './state/core.effects';
@@ -54,8 +54,8 @@ const components: Type<any>[] = [
 ];
 
 const directives: Type<any>[] = [
+  AppLabelDirective,
   HtmlDirective,
-  I18nDirective
 ];
 
 const pipes: Type<any>[] = [

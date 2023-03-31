@@ -28,15 +28,6 @@ export const coreReducer = createReducer(
     }
   )),
 
-  on(CoreActions.labelSaved, (state, action): CoreState => {
-    const labels = new Map(state.labels);
-
-    action.entity.tagId && action.entity.translatables &&
-      labels.set(action.entity.tagId, action.entity.translatables);
-
-    return { ...state, labels };
-  }),
-
   on(CoreActions.setThemes, (state, action): CoreState => (
     {
       ...state,

@@ -5,7 +5,7 @@ import { LabelService } from '../services/label.service';
 @Directive({
   selector: '[appLabel]'
 })
-export class I18nDirective implements OnInit, OnDestroy {
+export class AppLabelDirective implements OnInit, OnDestroy {
 
   @Input()
   public appLabel?: string;
@@ -24,7 +24,7 @@ export class I18nDirective implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.labelService.lookup(this.appLabel)
-      .subscribe(label => this.el.nativeElement.innerHTML = `${this.preFix ?? ''} ${label} ${this.postFix ?? ''}`);
+      .subscribe(label => this.el.nativeElement.innerHTML = `${this.preFix ?? ''} ${label ?? ''} ${this.postFix ?? ''}`);
   }
 
   ngOnDestroy(): void {

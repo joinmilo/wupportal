@@ -8,8 +8,6 @@ export const CoreActions = createActionGroup({
     'init': emptyProps(),
 
     'set labels': (labels: LabelEntity[]) => ({ labels }),
-    'save label': (entity: LabelEntity) => ({ entity }),
-    'label saved': (entity: LabelEntity) => ({ entity }),
 
     'set feedback': (feedback: Feedback) => ({ feedback }),
     'set server version': (version?: Maybe<InformationDto>) => ({ version }),

@@ -37,14 +37,6 @@ export class CoreEffects implements OnInitEffects {
     map(response => CoreActions.setThemes(response.data.getThemes?.result as ThemeEntity[]))
   ));
 
-  saveLabel = createEffect(() => this.actions.pipe(
-    ofType(CoreActions.saveLabel),
-    switchMap(action => this.saveLabelService.mutate({
-      entity: action.entity
-    })),
-    map(response => CoreActions.labelSaved(response.data?.saveLabel as LabelEntity))
-  ));
-
   setFeedback = createEffect(() => this.actions.pipe(
     ofType(CoreActions.setFeedback),
     tap(action => this.feedbackService.open(action.feedback)),
