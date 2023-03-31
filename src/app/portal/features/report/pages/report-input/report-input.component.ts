@@ -2,11 +2,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { filter, map, Subject, takeUntil } from 'rxjs';
-import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ReportTypeEntity } from 'src/schema/schema';
 import { ReportActions } from '../../state/report.actions';
 import { selectCaptchaSitekey, selectReportTypes, selectSavedReport } from '../../state/report.selectors';
-import { CoreActions } from './../../../../../core/state/core.actions';
 
 @Component({
   selector: 'app-report-input',
@@ -38,10 +36,6 @@ export class ReportInputComponent implements OnDestroy {
     private fb: FormBuilder,
   ) {
     this.store.dispatch(ReportActions.getReportTypes());
-    this.store.dispatch(CoreActions.setFeedback({
-      type: FeedbackType.Error,
-      labelAction: 'bloodyFuckYOu'
-    }))
   }
 
   onSubmit(formDirective: FormGroupDirective) {
