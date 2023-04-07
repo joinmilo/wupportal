@@ -32,6 +32,7 @@ import { AddressPieceComponent } from './components/pieces/adress/address-piece.
 import { DatePieceComponent } from './components/pieces/date/date-piece.component';
 import { FavoritePieceComponent } from './components/pieces/favorite/favorite-piece.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { SubTitleComponent } from './components/sub-title/sub-title.component';
 import { coreFeatureKey } from './constants/core.constants';
 import { HtmlDirective } from './directives/html.directive';
 import { AppLabelDirective } from './directives/label.directive';
@@ -55,7 +56,7 @@ const components = [
   PageTitleComponent,
   SliderComponent,
   SponsoredCardComponent,
-  SliderComponent,
+  SubTitleComponent,
 ];
 
 const directives = [
