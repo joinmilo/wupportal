@@ -1,4 +1,5 @@
 import { environment } from 'src/environments/environment';
+import { MediaEntity } from 'src/schema/schema';
 
 export const coreFeatureKey = 'coreState';
 
@@ -10,6 +11,8 @@ export const graphqlApi = `${baseApi}/graphql`;
 export const mediaBaseApi = `${baseApi}/media`;
 export const mediaDownloadApi = `${mediaBaseApi}/download`;
 export const mediaExportApi = `${mediaBaseApi}/export`;
+export const mediaApi = (media: MediaEntity): string => `${mediaBaseApi}/${media?.id}`
+
 export const refreshKey = 'refresh';
 
 /**
@@ -27,3 +30,4 @@ export const mapCluster = 'mapCluster';
 export const mapLongitudeConfig = 'mapLongitude';
 export const mapLatitudeConfig = 'mapLatitude';
 export const mapZoomfactor = 'mapZoomfactor';
+export const portalNameConfig = 'portalName';

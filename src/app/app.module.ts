@@ -15,7 +15,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/services/auth.service';
 import { ErrorInterceptor } from './core/services/error.interceptor';
+import { FavIconService } from './core/services/favicon.service';
 import { ThemeService } from './core/services/theme.service';
+import { BrowserTitleService } from './core/services/title.service';
 import { GraphQLModule } from './graphql.module';
 
 function init(authService: AuthService): () => Observable<unknown> {
@@ -59,7 +61,7 @@ const providers = [
   {
     provide: APP_INITIALIZER,
     useFactory: init,
-    deps: [AuthService, ThemeService],
+    deps: [AuthService, BrowserTitleService, ThemeService, FavIconService],
     multi: true,
   },
   {

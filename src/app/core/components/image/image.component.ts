@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Maybe, MediaEntity } from 'src/schema/schema';
-import { mediaBaseApi } from '../../constants/core.constants';
+import { mediaApi } from '../../constants/core.constants';
 
 @Component({
   selector: 'app-image',
@@ -41,11 +41,9 @@ export class ImageComponent {
       return this.src;
     }
 
-    if (this.image?.id) {
-      return `${mediaBaseApi}/${this.image?.id}`;
-    }
-
-    return '/assets/placeholder.webp';
+    return this.image?.id
+      ? mediaApi(this.image)
+      : '/assets/placeholder.webp';
   }
 
 }
