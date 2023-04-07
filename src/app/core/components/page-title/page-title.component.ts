@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class PageTitleComponent {
 
   @Input()
-  public titleLabel?: string;
+  public title?: string;
 
 }

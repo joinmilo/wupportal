@@ -1,6 +1,6 @@
 <div class="main">
   <!-- TODO: Add Filter area -->
-  <!-- TODO: Add title -->
+  <app-page-title title="yourEventCalendar"></app-page-title>
   <mat-card>
     <app-calendar
      [dates]="startDates"
@@ -9,7 +9,7 @@
     </app-calendar>
   </mat-card>
   <section *ngIf="(cards | async)?.length">
-    <app-card-slider [cards]="cards | async" title="activities">
+    <app-card-slider [cards]="cards | async" [titleLabel]="title">
     </app-card-slider>
   </section>
 </div>

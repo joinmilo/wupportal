@@ -1,5 +1,5 @@
-<div *ngIf="title || link">
-  <app-sub-title [title]="title"></app-sub-title>
+<div *ngIf="titleLabel || link">
+  <app-sub-title [title]="titleLabel"></app-sub-title>
   <section *ngIf="link">
     <a [routerLink]="link" [appLabel]="linkLabel" postFix="»"></a>
   </section>

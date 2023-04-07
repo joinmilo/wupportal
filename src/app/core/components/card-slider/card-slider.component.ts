@@ -19,6 +19,6 @@ export class CardSliderComponent {
   public linkLabel?: string;
 
   @Input()
-  public title?: string;
+  public titleLabel?: string;
 
 }

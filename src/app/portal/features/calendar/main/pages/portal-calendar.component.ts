@@ -16,12 +16,16 @@ export class PortalCalendarComponent {
 
   public startDates = this.store.select(selectDistinctSchedules);
 
+  public title?: string;
+
   constructor(
     private store: Store,
   ) {}
 
   public daySelected(day: Period) {
     this.store.dispatch(CalendarActions.daySelected(day));
+    console.log('test', day);
+    this.title = day.startDate.toLocaleDateString();
   }
 
   public monthSelected(month: Period) {
