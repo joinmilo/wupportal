@@ -23,10 +23,6 @@ export class SearchComponent {
   
   @HostListener('document:click')
   public outsideClick(): void {
-    this.setSearching(false);
-  }
-
-  public setSearching(searching: boolean) {
-    this.store.dispatch(SearchActions.setSearchState(searching));
+    this.store.dispatch(SearchActions.setSearchState(false));
   }
 }
