@@ -12,7 +12,7 @@ export class DatePieceComponent {
   public date?: Maybe<string>;
 
   @Input()
-  public dateTime = true;
+  public dateTime? = true;
 
   @Input()
   public label = 'date';

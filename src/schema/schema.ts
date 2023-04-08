@@ -149,16 +149,13 @@ export type ArticleCategoryTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<ArticleCategoryEntity>;
 };
 
 export type ArticleCategoryTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<ArticleCategoryEntityInput>;
 };
 
 export type ArticleCommentEntity = {
@@ -2907,16 +2904,13 @@ export type OrganisationTranslatableEntity = {
   id?: Maybe<Scalars['String']>;
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  parent?: Maybe<OrganisationEntity>;
 };
 
 export type OrganisationTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  parent?: InputMaybe<OrganisationEntityInput>;
 };
 
 export type OrganisationVisitorEntity = {
@@ -4319,6 +4313,7 @@ export type SearchDto = {
   __typename?: 'SearchDto';
   feature?: Maybe<FeatureEntity>;
   id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type SocialMediaEntity = {
@@ -4488,17 +4483,14 @@ export type SurveyTranslatableEntity = {
   language?: Maybe<LanguageEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
-  parent?: Maybe<SurveyEntity>;
 };
 
 export type SurveyTranslatableEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
-  language?: InputMaybe<LanguageEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<SurveyEntityInput>;
 };
 
 export type SurveyVisitorEntity = {
@@ -4849,6 +4841,15 @@ export type GetDealsQueryVariables = Exact<{
 
 export type GetDealsQuery = { __typename?: 'Query', getDeals?: { __typename?: 'PageableList_DealEntity', result?: Array<{ __typename?: 'DealEntity', id?: string | null, price: number, cardImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, category?: { __typename?: 'DealCategoryEntity', id?: string | null, created?: any | null, translatables?: Array<{ __typename?: 'DealCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, translatables?: Array<{ __typename?: 'DealTranslatableEntity', id?: string | null, description?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
+export type GetEventQueryVariables = Exact<{
+  entity?: InputMaybe<EventEntityInput>;
+  scheduleBegin?: InputMaybe<Scalars['OffsetDateTime']>;
+  scheduleEnd?: InputMaybe<Scalars['OffsetDateTime']>;
+}>;
+
+
+export type GetEventQuery = { __typename?: 'Query', getEvent?: { __typename?: 'EventEntity', id?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'EventTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, translatables?: Array<{ __typename?: 'EventCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, schedule?: { __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null } | null };
+
 export type GetEventsQueryVariables = Exact<{
   params?: InputMaybe<FilterSortPaginateInput>;
   scheduleBegin?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -4906,13 +4907,6 @@ export type GetSchedulesQueryVariables = Exact<{
 
 
 export type GetSchedulesQuery = { __typename?: 'Query', getSchedules?: { __typename?: 'PageableList_ScheduleEntity', result?: Array<{ __typename?: 'ScheduleEntity', id?: string | null, startDate?: any | null, endDate?: any | null } | null> | null } | null };
-
-export type GetEventDetailsQueryVariables = Exact<{
-  id?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type GetEventDetailsQuery = { __typename?: 'Query', getEvent?: { __typename?: 'EventEntity', id?: string | null, category?: { __typename?: 'EventCategoryEntity', id?: string | null, color?: string | null, icon?: string | null } | null, address?: { __typename?: 'AddressEntity', id?: string | null } | null } | null };
 
 export type ReportFragment = { __typename?: 'ReportEntity', id?: string | null, name?: string | null, email?: string | null, captchaToken?: string | null, translatables?: Array<{ __typename?: 'ReportTranslatableEntity', id?: string | null, content?: string | null } | null> | null, type?: { __typename?: 'ReportTypeEntity', id?: string | null } | null };
 
@@ -5562,6 +5556,24 @@ export const GetDealsDocument = gql`
       super(apollo);
     }
   }
+export const GetEventDocument = gql`
+    query getEvent($entity: EventEntityInput, $scheduleBegin: OffsetDateTime, $scheduleEnd: OffsetDateTime) {
+  getEvent(entity: $entity) {
+    ...Event
+  }
+}
+    ${EventFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetEventGQL extends Apollo.Query<GetEventQuery, GetEventQueryVariables> {
+    override document = GetEventDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetEventsDocument = gql`
     query getEvents($params: FilterSortPaginateInput, $scheduleBegin: OffsetDateTime, $scheduleEnd: OffsetDateTime) {
   getEvents(params: $params) {
@@ -5717,32 +5729,6 @@ export const GetSchedulesDocument = gql`
   })
   export class GetSchedulesGQL extends Apollo.Query<GetSchedulesQuery, GetSchedulesQueryVariables> {
     override document = GetSchedulesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const GetEventDetailsDocument = gql`
-    query getEventDetails($id: String) {
-  getEvent(entity: {id: $id}) {
-    id
-    category {
-      id
-      color
-      icon
-    }
-    address {
-      id
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class GetEventDetailsGQL extends Apollo.Query<GetEventDetailsQuery, GetEventDetailsQueryVariables> {
-    override document = GetEventDetailsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

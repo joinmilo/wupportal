@@ -6,5 +6,5 @@ export type Translatable = {
 }
 
 export type TranslatableParent = {
-  translatables?: Maybe<Maybe<Translatable>[]> | undefined
+  translatables?: Maybe<Maybe<Translatable | undefined>[]> | undefined
 }

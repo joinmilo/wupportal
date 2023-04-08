@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Maybe } from 'src/schema/schema';
 import { CardInput } from '../../../typings/card';
 
 @Component({
@@ -9,6 +10,6 @@ import { CardInput } from '../../../typings/card';
 export class SponsoredCardComponent {
 
   @Input()
-  public data: CardInput = { dateTime: true };
+  public data?: Maybe<CardInput> = { dateTime: true };
   
 }

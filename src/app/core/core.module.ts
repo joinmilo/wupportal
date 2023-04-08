@@ -9,6 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
@@ -31,6 +32,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 import { AddressPieceComponent } from './components/pieces/adress/address-piece.component';
 import { DatePieceComponent } from './components/pieces/date/date-piece.component';
 import { FavoritePieceComponent } from './components/pieces/favorite/favorite-piece.component';
+import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { SubTitleComponent } from './components/sub-title/sub-title.component';
 import { coreFeatureKey } from './constants/core.constants';
@@ -54,6 +56,7 @@ const components = [
   ImageComponent,
   LogoComponent,
   PageTitleComponent,
+  RadioButtonComponent,
   SliderComponent,
   SponsoredCardComponent,
   SubTitleComponent,
@@ -88,6 +91,7 @@ const materials = [
   MatNativeDateModule,
   MatSnackBarModule,
   MatSelectModule,
+  MatRadioModule,
 ];
 
 const libs = [

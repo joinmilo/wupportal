@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { transformArticlesToCards, transformAuthorsToCards, transformContestsToCards, transformDealsToCards, transformEventsToCards, transformOrganisationsToCards, transformSurveysToCards } from '../../../core/utils/card.utils';
+import { articlesToCards, authorsToCards, contestsToCards, dealsToCards, eventsToCards, organisationsToCards, surveysToCards } from '../../../core/utils/card.utils';
 import { searchStateKey } from '../constants/search.constants';
 import { SearchState } from './search.reducer';
 
@@ -22,37 +22,37 @@ export const selectResultsPageActive = createSelector(
 
 export const selectFoundEvents = createSelector(
   selectSearchState,
-  state => transformEventsToCards(state.events)
+  state => eventsToCards(state.events)
 );
 
 export const selectFoundArticles = createSelector(
   selectSearchState,
-  state => transformArticlesToCards(state.articles)
+  state => articlesToCards(state.articles)
 );
 
 export const selectFoundOrganisations = createSelector(
   selectSearchState,
-  state => transformOrganisationsToCards(state.organisations)
+  state => organisationsToCards(state.organisations)
 );
 
 export const selectFoundAuthors = createSelector(
   selectSearchState,
-  state => transformAuthorsToCards(state.authors)
+  state => authorsToCards(state.authors)
 );
 
 export const selectFoundDeals = createSelector(
   selectSearchState,
-  state => transformDealsToCards(state.deals)
+  state => dealsToCards(state.deals)
 );
 
 export const selectFoundSurveys = createSelector(
   selectSearchState,
-  state => transformSurveysToCards(state.surveys)
+  state => surveysToCards(state.surveys)
 );
 
 export const selectFoundContests = createSelector(
   selectSearchState,
-  state => transformContestsToCards(state.contests)
+  state => contestsToCards(state.contests)
 );
 
 export const selectIsSearching = createSelector(

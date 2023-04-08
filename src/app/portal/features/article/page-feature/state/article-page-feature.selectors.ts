@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { transformArticlesToCards } from 'src/app/core/utils/card.utils';
+import { articlesToCards } from 'src/app/core/utils/card.utils';
 import { articlePageFeatureStateKey } from '../constants/article-page-feature.constant';
 import { ArticlePageFeatureState } from './article-page-feature.reducer';
 
@@ -12,5 +12,5 @@ export const selectRecentArticles = createSelector(
 
 export const selectRecentArticleCards = createSelector(
   selectRecentArticles,
-  recentArticles => transformArticlesToCards(recentArticles)
+  recentArticles => articlesToCards(recentArticles)
 );

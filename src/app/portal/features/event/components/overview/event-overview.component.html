@@ -1,0 +1,5 @@
+<div class="main">
+  <app-page-title title="activities"></app-page-title>
+  <app-sponsored-card *ngIf="sponsored | async" [data]="sponsored | async"></app-sponsored-card>
+  <app-event-filter-area></app-event-filter-area>
+</div>

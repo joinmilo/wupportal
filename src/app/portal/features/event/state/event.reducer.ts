@@ -4,6 +4,7 @@ import { EventActions } from './event.actions';
 
 export interface EventState {
   eventDetails?: Maybe<EventEntity>,
+  sponsoredEvent?: Maybe<EventEntity>,
 }
 
 export const initialState: EventState = { };
@@ -13,6 +14,10 @@ export const eventReducer = createReducer(
 
   on(EventActions.setEventDetails, (state, action): EventState => (
     { ...state, eventDetails: action.event }
+  )),
+
+  on(EventActions.setSponsoredEvent, (state, action): EventState => (
+    { ...state, sponsoredEvent: action.event }
   )),
   
 );
