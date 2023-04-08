@@ -2,7 +2,8 @@
   <mat-expansion-panel (click)="$event.stopPropagation();" *ngFor="let menuItem of menu | async">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <strong>{{menuItem | translatable: 'name' | async}}</strong>
+        <strong *ngIf="boldTitle">{{menuItem | translatable: 'name' | async}}</strong>
+        <span *ngIf="!boldTitle">{{menuItem | translatable: 'name' | async}}</span>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="submenu">

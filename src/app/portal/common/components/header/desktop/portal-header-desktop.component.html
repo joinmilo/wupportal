@@ -5,7 +5,7 @@
       [root]="true"
       [parent]="menuItem">
     </app-portal-menu-overlay>
-  </section> 
+  </section>
   <section>
 
       <div *ngIf="(isSearching | async) === false" [@fadeIn]>
@@ -19,17 +19,17 @@
 
       <app-search></app-search>
 
-      <div *ngIf="(isSearching | async) === false" [@fadeIn]>
-        <app-portal-header-language></app-portal-header-language>
+      <ng-container *ngIf="(isSearching | async) === false">
+        <app-portal-header-language [@fadeIn]></app-portal-header-language>
         
-        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" [@fadeIn]>
           <fa-icon [icon]="['far', 'circle-user']"></fa-icon>
         </button>
         <mat-menu #userMenu="matMenu">
           <app-portal-header-user></app-portal-header-user>
         </mat-menu>
         
-      </div>
+      </ng-container>
 
   </section>
 </header>
