@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subject, combineLatest, distinctUntilChanged, takeUntil } from 'rxjs';
+import { Subject, combineLatest, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { growOnSidesAnimation } from 'src/app/core/animations/animations';
 import { CommonActions } from 'src/app/portal/common/state/common.actions';
 import { Maybe, SearchDto } from 'src/schema/schema';
@@ -34,6 +34,7 @@ export class SearchInputComponent implements AfterViewInit, OnDestroy {
       this.control.valueChanges,
     ]).pipe(
       distinctUntilChanged(),
+      debounceTime(400),
       takeUntil(this.destroy)
     ).subscribe(([stateQuery, controlQuery]) => {
       stateQuery && controlQuery === undefined

@@ -3,24 +3,16 @@ header {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-
-  // section {
-  //   display: flex;
-  //   justify-content: space-around;
-  //   align-items: center;
-  //   flex: 2 1;
-  // }
 }
 
-
 ::ng-deep {
-
   .mobile-menu {
     app-portal-menu-accordion {
       mat-expansion-panel-header {
         padding: 0 1rem !important;
       }
     }
+
     app-portal-header-user {
       button {
         padding: 0 1rem !important;
