@@ -8,6 +8,9 @@ import { Component, Input } from '@angular/core';
 export class SubTitleComponent {
 
   @Input()
+  public titleLabel?: string;
+
+  @Input()
   public title?: string;
 
 }

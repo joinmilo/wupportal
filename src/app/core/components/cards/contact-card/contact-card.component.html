@@ -1,14 +1,14 @@
 <div class="container">
   <mat-card>
     <figure>
-      <app-image [image]="data.creatorImage" [circle]="true"></app-image>
+      <app-image [image]="element?.creatorImage" [circle]="true"></app-image>
     </figure>
     <mat-card-content>
       <h3>
-        {{data.creator}}
+        {{element?.creator}}
       </h3>
       <span>
-        {{data.email}}
+        {{element?.email}}
       </span>
     </mat-card-content>
     <app-favorite-piece></app-favorite-piece>

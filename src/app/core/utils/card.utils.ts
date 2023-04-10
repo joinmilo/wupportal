@@ -1,95 +1,121 @@
-import { CardInput } from 'src/app/core/typings/card';
+import { CardData, CardElement, CardEntity } from 'src/app/core/typings/card';
 import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SurveyEntity, UserContextEntity } from "src/schema/schema";
 
-export const eventsToCards = (events?: Maybe<Maybe<EventEntity>[]>): CardInput[] | undefined =>
-  events?.map(event => eventToCard(event));
+export const dataToElement = (entity: CardEntity, data: CardData): CardElement | undefined => {
+  switch(entity) {
+    case 'ArticleEntity':
+      return articleToCard(data as ArticleEntity);
+    case 'ContestEntity':
+      return contestToCard(data as ContestEntity);
+    case 'DealEntity':
+      return dealToCard(data as DealEntity);
+    case 'EventEntity':
+      return eventToCard(data as EventEntity);
+    case 'OrganisationEntity':
+      return organisationToCard(data as OrganisationEntity);
+    case 'SurveyEntity': 
+      return surveyToCard(data as SurveyEntity);
+    case 'UserContextEntity': 
+      return userToCard(data as UserContextEntity);
+  }
+}
 
-export const eventToCard = (event?: Maybe<EventEntity>): CardInput => ({
-  address: event?.address,
-  categoryTranslatables: event?.category?.translatables,
+export const articlesToCards = (entities?: Maybe<ArticleEntity[]>): CardElement[] | undefined =>
+  entities?.map(entity => articleToCard(entity));
+
+export const articleToCard = (entity?: Maybe<ArticleEntity>): CardElement => ({
+  id: entity?.id,
+  categoryTranslatables: entity?.category?.translatables,
   categoryTranslatableField: 'name',
-  creator: event?.contact?.name,
-  creatorImage: event?.creator?.titleImage,
-  date: event?.schedule?.startDate,
-  dateTime: true,
-  image: event?.cardImage,
-  textTranslatableField: 'shortDescription',
-  titleTranslatableField: 'name',
-  translatables: event?.translatables,
-});
-
-export const articlesToCards = (articles?: Maybe<ArticleEntity[]>): CardInput[] | undefined =>
-  articles?.map(article => articleToCard(article));
-
-export const articleToCard = (article: Maybe<ArticleEntity>): CardInput => ({
-  categoryTranslatables: article?.category?.translatables,
-  categoryTranslatableField: 'name',
-  date: article?.created,
+  date: entity?.created,
   dateTime: false,
-  creator: article?.publicAuthor?.name ?? article?.author?.user?.firstName,
-  creatorImage: article?.author?.titleImage,
-  image: article?.cardImage,
+  creator: entity?.publicAuthor?.name ?? entity?.author?.user?.firstName,
+  creatorImage: entity?.author?.titleImage,
+  image: entity?.cardImage,
   textTranslatableField: 'shortDescription',
   titleTranslatableField: 'title',
-  translatables: article?.translatables,
+  translatables: entity?.translatables,
 });
 
-export const organisationsToCards = (organisations?: Maybe<OrganisationEntity[]>): CardInput[] | undefined =>
-  organisations?.map(organisation => organisationToCard(organisation));
+export const contestsToCards = (entities?: Maybe<ContestEntity[]>): CardElement[] | undefined => 
+  entities?.map(entity => contestToCard(entity));
 
-export const organisationToCard = (organisation?: Maybe<OrganisationEntity>): CardInput => ({
-  email: organisation?.contact?.email,
-  creator: organisation?.name,
-  creatorImage: organisation?.avatar,
+export const contestToCard = (entity: Maybe<ContestEntity>): CardElement => ({
+  id: entity?.id,
+  image: entity?.cardImage,
+  date: entity?.dueDate,
   dateTime: true,
-  translatables: organisation?.translatables,
+  translatables: entity?.translatables,
+  textTranslatableField: 'shortDescription',
+  titleTranslatableField: 'name',
 });
 
-export const authorsToCards = (authors?: Maybe<UserContextEntity[]>): CardInput[] | undefined => 
-  authors?.map(author => authorToCard(author));
-
-export const authorToCard = (author?: Maybe<UserContextEntity>): CardInput => ({
-  email: author?.user?.email,
-  creator: author?.user?.lastName,
-  creatorImage: author?.avatar,
-  dateTime: true,
-});
-
-export const dealsToCards = (deals?: Maybe<DealEntity[]>): CardInput[] => {
-  return deals?.map(deal => dealToCard(deal)) as CardInput[];
+export const dealsToCards = (entities?: Maybe<DealEntity[]>): CardElement[] => {
+  return entities?.map(entity => dealToCard(entity)) as CardElement[];
 };
 
-export const dealToCard = (deal: Maybe<DealEntity>): CardInput => ({
-  creator: deal?.contact?.name,
-  date: deal?.created,
+export const dealToCard = (entity: Maybe<DealEntity>): CardElement => ({
+  id: entity?.id,
+  creator: entity?.contact?.name,
+  date: entity?.created,
   dateTime: true,
-  creatorImage: deal?.creator?.titleImage,
-  image: deal?.cardImage,
+  creatorImage: entity?.creator?.titleImage,
+  image: entity?.cardImage,
   textTranslatableField: 'shortDescription',
-  translatables: deal?.translatables,
+  translatables: entity?.translatables,
   titleTranslatableField: 'name',
 });
 
-export const contestsToCards = (contests?: Maybe<ContestEntity[]>): CardInput[] | undefined => 
-  contests?.map(contest => contestToCard(contest));
+export const eventsToCards = (entities?: Maybe<Maybe<EventEntity>[]>): CardElement[] | undefined =>
+  entities?.map(entity => eventToCard(entity));
 
-export const contestToCard = (contest: Maybe<ContestEntity>): CardInput => ({
-  image: contest?.cardImage,
-  date: contest?.dueDate,
+export const eventToCard = (entity?: Maybe<EventEntity>): CardElement => ({
+  id: entity?.id,
+  address: entity?.address,
+  categoryTranslatables: entity?.category?.translatables,
+  categoryTranslatableField: 'name',
+  creator: entity?.contact?.name,
+  creatorImage: entity?.creator?.titleImage,
+  date: entity?.schedule?.startDate,
   dateTime: true,
-  translatables: contest?.translatables,
+  image: entity?.cardImage,
   textTranslatableField: 'shortDescription',
   titleTranslatableField: 'name',
+  translatables: entity?.translatables,
 });
 
-export const surveysToCards = (surveys?: Maybe<SurveyEntity[]>): CardInput[] | undefined => 
-  surveys?.map(survey => surveyToCard(survey));
+export const organisationsToCards = (entities?: Maybe<OrganisationEntity[]>): CardElement[] | undefined =>
+  entities?.map(entity => organisationToCard(entity));
 
-export const surveyToCard = (survey: Maybe<SurveyEntity>): CardInput => ({
-  date: survey?.due_date,
+export const organisationToCard = (entity?: Maybe<OrganisationEntity>): CardElement => ({
+  id: entity?.id,
+  email: entity?.contact?.email,
+  creator: entity?.name,
+  creatorImage: entity?.avatar,
   dateTime: true,
-  image: survey?.cardImage,
-  translatables: survey?.translatables,
+  translatables: entity?.translatables,
+});
+
+export const surveysToCards = (entities?: Maybe<SurveyEntity[]>): CardElement[] | undefined => 
+  entities?.map(entity => surveyToCard(entity));
+
+export const surveyToCard = (entity: Maybe<SurveyEntity>): CardElement => ({
+  id: entity?.id,
+  date: entity?.due_date,
+  dateTime: true,
+  image: entity?.cardImage,
+  translatables: entity?.translatables,
   textTranslatableField: 'description',
   titleTranslatableField: 'name',
+});
+
+export const usersToCards = (entities?: Maybe<UserContextEntity[]>): CardElement[] | undefined => 
+  entities?.map(entity => userToCard(entity));
+
+export const userToCard = (entity?: Maybe<UserContextEntity>): CardElement => ({
+  id: entity?.id,
+  email: entity?.user?.email,
+  creator: entity?.user?.lastName,
+  creatorImage: entity?.avatar,
+  dateTime: true,
 });

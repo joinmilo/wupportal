@@ -3,59 +3,66 @@
   
   <section>
     <app-card-slider *ngIf="(articles | async)?.length"
-    titleLabel="blogposts"
-    [cardType]="types.content"
-    [cards]="articles | async" 
-    [link]="['/articles']"
-    linkLabel="more">
-  </app-card-slider>
+      entity="ArticleEntity"  
+      [data]="articles | async" 
+      titleLabel="blogposts"
+      [cardType]="types.content"
+      [link]="['/articles']"
+      linkLabel="more">
+    </app-card-slider>
 
-  <app-card-slider *ngIf="(events | async)?.length"
-    titleLabel="activities"
-    [cardType]="types.content"
-    [cards]="events | async"
-    [link]="['/events']"
-    linkLabel="more">
-  </app-card-slider>
+    <app-card-slider *ngIf="(events | async)?.length"
+      entity="EventEntity"
+      [data]="events | async"
+      titleLabel="activities"
+      [cardType]="types.content"
+      [link]="['/events']"
+      linkLabel="more">
+    </app-card-slider>
 
-  <app-card-slider *ngIf="(organisations | async)?.length"
-    titleLabel="organisations"
-    [cardType]="types.contact"
-    [cards]="organisations | async"
-    [link]="['/organisations']"
-    linkLabel="more">
-  </app-card-slider>
+    <app-card-slider *ngIf="(organisations | async)?.length"
+      entity="OrganisationEntity"
+      [data]="organisations | async"
+      titleLabel="organisations"
+      [cardType]="types.contact"
+      [link]="['/organisations']"
+      linkLabel="more">
+    </app-card-slider>
 
-  <app-card-slider *ngIf="(authors | async)?.length"
-    titleLabel="author"
-    [cardType]="types.contact"
-    [cards]="authors | async"
-    [link]="['/authors']"
-    linkLabel="more">
-  </app-card-slider>
+    <app-card-slider *ngIf="(authors | async)?.length"
+      entity="UserContextEntity"
+      [data]="authors | async"
+      titleLabel="author"
+      [cardType]="types.contact"
+      [link]="['/authors']"
+      linkLabel="more">
+    </app-card-slider>
 
-  <app-card-slider *ngIf="(deals | async)?.length"
-    titleLabel="deals"
-    [cardType]="types.content"
-    [cards]="deals | async"
-    [link]="['/deals']"
-    linkLabel="more">
-  </app-card-slider>
+    <app-card-slider *ngIf="(deals | async)?.length"
+      entity="DealEntity"
+      [data]="deals | async"
+      titleLabel="deals"
+      [cardType]="types.content"
+      [link]="['/deals']"
+      linkLabel="more">
+    </app-card-slider>
 
-  <app-card-slider *ngIf="(surveys | async)?.length"
-    titleLabel="surveys"
-    [cardType]="types.content"
-    [cards]="surveys | async"
-    [link]="['/deals']"
-    linkLabel="more">
-  </app-card-slider>
+    <app-card-slider *ngIf="(surveys | async)?.length"
+      entity="SurveyEntity"
+      [data]="surveys | async"
+      titleLabel="surveys"
+      [cardType]="types.content"
+      [link]="['/deals']"
+      linkLabel="more">
+    </app-card-slider>
 
-  <app-card-slider *ngIf="(contests | async)?.length"
-    title="contests"
-    [cardType]="types.content"
-    [cards]="contests | async"
-    [link]="['/contests']"
-    linkLabel="more">
-  </app-card-slider>
+    <app-card-slider *ngIf="(contests | async)?.length"
+      entity="SurveyEntity"
+      [data]="contests | async"
+      title="contests"
+      [cardType]="types.content"
+      [link]="['/contests']"
+      linkLabel="more">
+    </app-card-slider>
   </section>
 </div>

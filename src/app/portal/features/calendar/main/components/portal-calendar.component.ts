@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Period } from 'src/app/core/typings/month';
 import { CalendarActions } from '../state/calendar.actions';
-import { selectDistinctSchedules, selectEventCards } from '../state/calendar.selectors';
+import { selectDistinctSchedules, selectSelectedEvents } from '../state/calendar.selectors';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { selectDistinctSchedules, selectEventCards } from '../state/calendar.sel
 })
 export class PortalCalendarComponent implements OnDestroy {
 
-  public cards = this.store.select(selectEventCards);
+  public events = this.store.select(selectSelectedEvents);
 
   public startDates = this.store.select(selectDistinctSchedules);
 

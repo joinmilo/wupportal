@@ -1,4 +1,4 @@
-<app-sub-title title="activities"></app-sub-title>
+<app-sub-title titleLabel="activities"></app-sub-title>
 <mat-card>
   <app-calendar
     [dates]="startDates"
@@ -6,7 +6,9 @@
     (monthSelected)="monthSelected($event)">
   </app-calendar>
 
-  <section *ngIf="(cards | async)?.length">
-    <app-card-slider [cards]="cards | async"></app-card-slider>
+  <section *ngIf="(events | async)?.length">
+    <app-card-slider
+      entity="EventEntity"
+      [data]="events | async"></app-card-slider>
   </section>
 </mat-card>

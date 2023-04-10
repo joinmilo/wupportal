@@ -1,5 +1,5 @@
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { AddressEntity, MediaEntity } from 'src/schema/schema';
+import { AddressEntity, ArticleEntity, ContestEntity, DealEntity, EventEntity, MediaEntity, OrganisationEntity, SurveyEntity, UserContextEntity } from 'src/schema/schema';
 import { Translatable } from './translatable';
 
 export enum CardType {
@@ -8,7 +8,27 @@ export enum CardType {
   Sponsored = 'sponsored',
 }
 
-export type CardInput = {
+export type CardEntity = 'ArticleEntity'
+  | 'ContestEntity'
+  | 'DealEntity'
+  | 'EventEntity'
+  | 'OrganisationEntity'
+  | 'SurveyEntity'
+  | 'UserContextEntity';
+
+export type CardData = Maybe<ArticleEntity>
+  | Maybe<ContestEntity>
+  | Maybe<DealEntity>
+  | Maybe<EventEntity>
+  | Maybe<OrganisationEntity>
+  | Maybe<SurveyEntity>
+  | Maybe<UserContextEntity>
+  | undefined
+  | null;
+
+export type CardElement = {
+  id?: Maybe<string>,
+
   address?: Maybe<AddressEntity>,
 
   // Either 

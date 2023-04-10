@@ -1,13 +1,25 @@
-import { Component, Input } from '@angular/core';
-import { CardInput } from '../../../typings/card';
+import { Component, Input, OnInit } from '@angular/core';
+import { dataToElement } from 'src/app/core/utils/card.utils';
+import { CardData, CardElement, CardEntity } from '../../../typings/card';
 @Component({
   selector: 'app-contact-card',
   templateUrl: './contact-card.component.html',
   styleUrls: ['./contact-card.component.scss']
 })
-export class ContactCardComponent {
+export class ContactCardComponent implements OnInit {
 
   @Input()
-  public data: CardInput = { dateTime: true };
+  public entity?: CardEntity;
+
+  @Input()
+  public data?: CardData;
+
+  public element?: CardElement;
+
+  public ngOnInit(): void {
+    if (this.entity && this.data) {
+      this.element = dataToElement(this.entity, this.data);
+    }
+  }
 
 }

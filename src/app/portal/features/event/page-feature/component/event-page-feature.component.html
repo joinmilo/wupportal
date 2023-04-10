@@ -1,5 +1,6 @@
 <app-card-slider
-  [cards]="events | async"
+  entity="EventEntity"
+  [data]="events | async"
   titleLabel="newActivities"
   linkLabel="more"
   [link]="['/events']">

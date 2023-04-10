@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalCommonModule } from 'src/app/portal/common/common.module';
+import { EventCategoryViewComponent } from './components/category-view/event-category-view.component';
 import { EventDetailsComponent } from './components/details/event-details.component';
 import { EventFilterAreaComponent } from './components/filter-area/event-filter-area.component';
 import { EventOverviewComponent } from './components/overview/event-overview.component';
@@ -17,6 +18,7 @@ const components = [
   EventDetailsComponent,
   EventFilterAreaComponent,
   EventOverviewComponent,
+  EventCategoryViewComponent,
 ];
 
 const framework = [

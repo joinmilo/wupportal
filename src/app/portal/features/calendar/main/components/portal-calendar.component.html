@@ -8,8 +8,11 @@
      (monthSelected)="monthSelected($event)">
     </app-calendar>
   </mat-card>
-  <section *ngIf="(cards | async)?.length">
-    <app-card-slider [cards]="cards | async" [titleLabel]="title">
+  <section *ngIf="(events | async)?.length">
+    <app-card-slider
+      entity="EventEntity"
+      [data]="events | async"
+      [titleLabel]="title">
     </app-card-slider>
   </section>
 </div>

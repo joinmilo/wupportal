@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { EventDisplayType } from 'src/app/core/typings/display-type';
 import { RadioInput } from 'src/app/core/typings/radio-input';
 import { EventActions } from '../../state/event.actions';
-import { selectSponsoredCard } from '../../state/event.selectors';
+import { selectSponsoredEvent } from '../../state/event.selectors';
 
-export enum DisplayType {
-  Calendar = 'calendar',
-  Category = 'category',
-  List = 'list',
-  Map = 'map',
-}
 @Component({
   selector: 'app-event-filter-area',
   templateUrl: './event-filter-area.component.html',
@@ -17,22 +12,32 @@ export enum DisplayType {
 })
 export class EventFilterAreaComponent {
 
-  public sponsored = this.store.select(selectSponsoredCard);
+  public sponsored = this.store.select(selectSponsoredEvent);
 
   public inputs: RadioInput[] = [
     {
       icon: ['fas', 'shapes'],
       label: 'category',
-      value: DisplayType.Category
+      value: EventDisplayType.Category
+    },
+    {
+      icon: ['fas', 'list'],
+      label: 'list',
+      value: EventDisplayType.List
     },
     {
       icon: ['fas', 'calendar'],
       label: 'calendar',
-      value: DisplayType.Calendar
+      value: EventDisplayType.Calendar
+    },
+    {
+      icon: ['fas', 'map-location-dot'],
+      label: 'mapview',
+      value: EventDisplayType.Map
     },
   ];
 
-  public initValue = DisplayType.Calendar;
+  public initValue = EventDisplayType.Calendar;
   
   constructor(
     private store: Store, 
@@ -40,8 +45,8 @@ export class EventFilterAreaComponent {
     this.store.dispatch(EventActions.getSponsoredEvent());
   }
 
-  valueChanged($event: DisplayType) {
-    console.log($event);
+  public valueChanged(displayType: EventDisplayType) {
+    this.store.dispatch(EventActions.overviewDisplayChanged(displayType));
   }
 
 }

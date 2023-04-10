@@ -1,5 +1,6 @@
 <app-card-slider
-  [cards]="articles | async"
+  entity="ArticleEntity"
+  [data]="articles | async"
   titleLabel="newBlogposts"
   linkLabel="more"
   [link]="['/articles']">

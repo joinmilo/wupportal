@@ -10,9 +10,11 @@ import { RadioInput } from '../../../typings/radio-input';
 })
 export class RadioButtonComponent<T> implements OnInit {
 
-  public form = this.fb.group({
-    checked : [false],
-  });
+  // public form = this.fb.group({
+  //   checked : [false],
+  // });
+
+  public checked = false;
 
   @Input()
   public input?: RadioInput;
@@ -28,14 +30,8 @@ export class RadioButtonComponent<T> implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    console.log('here', this.value);
-    this.value?.subscribe(value => {
-      console.log('value', value);
-      console.log('this.input?.value', this.input?.value);
-      this.form.setValue({
-        checked: this.input?.value === value
-      })
-    });
+    this.value?.subscribe(value =>
+      this.checked = this.input?.value === value);
   }
 
   public changeSelect(event: MouseEvent): void {

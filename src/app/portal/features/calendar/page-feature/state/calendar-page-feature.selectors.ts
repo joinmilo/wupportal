@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { eventsToCards } from 'src/app/core/utils/card.utils';
 import { distinctStartDates } from 'src/app/core/utils/schedule.utils';
 import { calendarPageFeatureStateKey } from '../constants/calendar-page-feature.constant';
 import { CalendarPageFeatureState } from './calendar-page-feature.reducer';
@@ -10,11 +9,6 @@ export const selectSelectedEvents = createSelector(
   selectCalendarPageFeatureState,
   state => state.events
 );
-
-export const selectEventCards = createSelector(
-  selectSelectedEvents,
-  events => eventsToCards(events)
-)
 
 export const selectSchedules = createSelector(
   selectCalendarPageFeatureState,

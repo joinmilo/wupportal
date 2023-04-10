@@ -1,5 +1,6 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { EventEntity, Maybe } from 'src/schema/schema';
+import { EventDisplayType } from 'src/app/core/typings/display-type';
+import { EventEntity, FilterSortPaginateInput, Maybe } from 'src/schema/schema';
 
 export const EventActions = createActionGroup({
   source: 'Event',
@@ -9,6 +10,10 @@ export const EventActions = createActionGroup({
 
     'get sponsored event': emptyProps(),
     'set sponsored event': (event: Maybe<EventEntity>) => ({ event }),
+
+    'overview display changed': (displayType: EventDisplayType) => ({ displayType }),
+    'set params': (params: FilterSortPaginateInput) => ({ params }),
+    'set overview data': (events: EventEntity[]) => ({ events }),
   }
 });
 

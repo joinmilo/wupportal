@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Period } from 'src/app/core/typings/month';
 import { CalendarPageFeatureActions } from '../state/calendar-page-feature.actions';
-import { selectDistinctSchedules, selectEventCards } from '../state/calendar-page-feature.selectors';
+import { selectDistinctSchedules, selectSelectedEvents } from '../state/calendar-page-feature.selectors';
 
 @Component({
   selector: 'app-calendar-page-feature',
@@ -11,7 +11,7 @@ import { selectDistinctSchedules, selectEventCards } from '../state/calendar-pag
 })
 export class CalendarPageFeatureComponent {
   
-  public cards = this.store.select(selectEventCards);
+  public events = this.store.select(selectSelectedEvents);
 
   public startDates = this.store.select(selectDistinctSchedules);
 

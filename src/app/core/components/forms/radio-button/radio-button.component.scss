@@ -1,17 +1,14 @@
-span {
-  margin: 0 1rem;
+
+.checked {
+  color: var(--color-success-500);
 }
 
-mat-radio-button {
-  padding-right: -4px;
+span {
+  margin: 0 1rem;
 }
 
 :host ::ng-deep {
   .active.mat-mdc-raised-button {
     border: 1px solid var(--color-primary-500) !important;
-  }
-
-  .mdc-radio {
-    padding: unset !important;
   }
 }

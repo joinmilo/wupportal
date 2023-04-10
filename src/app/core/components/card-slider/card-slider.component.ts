@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CardInput, CardType } from 'src/app/core/typings/card';
+import { CardData, CardEntity, CardType } from 'src/app/core/typings/card';
 import { Maybe } from 'src/schema/schema';
 
 @Component({
@@ -10,7 +10,13 @@ import { Maybe } from 'src/schema/schema';
 export class CardSliderComponent {
 
   @Input()
-  public cards?: Maybe<CardInput[]>;
+  public cardType = CardType.Content;
+
+  @Input()
+  public entity?: CardEntity;
+
+  @Input()
+  public data?: Maybe<Maybe<CardData>[]>;
 
   @Input()
   public link?: string[];
@@ -22,11 +28,13 @@ export class CardSliderComponent {
   public titleLabel?: string;
 
   @Input()
-  public cardType = CardType.Content;
+  public title?: Maybe<string>;
 
   public types = {
     contact: CardType.Contact,
     content: CardType.Content,
     sponsored: CardType.Sponsored
   };
+
+
 }
