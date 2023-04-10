@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: eventsFeatureKey,
-    loadChildren: () => import('./features/event/event.module')
+    loadChildren: () => import('./features/event/main/event.module')
       .then((imported) => imported.EventPortalModule),
   },
   {
