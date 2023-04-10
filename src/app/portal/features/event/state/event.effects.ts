@@ -27,8 +27,7 @@ export class EventEffects {
         sponsored: true
       }
     }).valueChanges),
-    map(response => EventActions.setSponsoredEvent(response.data.getEvent as EventEntity)
-)
+    map(response => EventActions.setSponsoredEvent(response.data.getEvent as EventEntity))
   ));
 
   constructor(

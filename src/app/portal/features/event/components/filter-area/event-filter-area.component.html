@@ -1,4 +1,5 @@
-<app-radio-button
-  label="category"
-  [icon]="['fas', 'shapes']">
-</app-radio-button>
+<app-radio-button-group
+  [inputs]="inputs"
+  [initValue]="initValue"
+  (valueChanged)="valueChanged($event)"
+></app-radio-button-group>

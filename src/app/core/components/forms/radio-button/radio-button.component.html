@@ -1,0 +1,9 @@
+<form [formGroup]="form" (click)="changeSelect($event)">
+  <button mat-raised-button [class.active]="form.value.checked">
+    <fa-icon [icon]="input!.icon"></fa-icon>
+    <span [appLabel]="input?.label"></span>
+    <mat-radio-group formControlName="checked">
+      <mat-radio-button [value]="true"></mat-radio-button>
+    </mat-radio-group>
+  </button>
+</form>

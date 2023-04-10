@@ -26,13 +26,14 @@ import { ContactCardComponent } from './components/cards/contact-card/contact-ca
 import { ContentCardComponent } from './components/cards/content-card/content-card.component';
 import { SponsoredCardComponent } from './components/cards/sponsored-card/sponsored-card.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { RadioButtonGroupComponent } from './components/forms/radio-button-group/radio-button-group.component';
+import { RadioButtonComponent } from './components/forms/radio-button/radio-button.component';
 import { ImageComponent } from './components/image/image.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { AddressPieceComponent } from './components/pieces/adress/address-piece.component';
 import { DatePieceComponent } from './components/pieces/date/date-piece.component';
 import { FavoritePieceComponent } from './components/pieces/favorite/favorite-piece.component';
-import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { SubTitleComponent } from './components/sub-title/sub-title.component';
 import { coreFeatureKey } from './constants/core.constants';
@@ -57,6 +58,7 @@ const components = [
   LogoComponent,
   PageTitleComponent,
   RadioButtonComponent,
+  RadioButtonGroupComponent,
   SliderComponent,
   SponsoredCardComponent,
   SubTitleComponent,
