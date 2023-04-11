@@ -14,7 +14,7 @@ a {
     width: 3rem;
   }
 
-  app-image:last-of-type {
+  .logoText {
     width: 10rem;
 
     @include responsive(maxi) {
