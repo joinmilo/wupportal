@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { RadioInput } from 'src/app/core/typings/radio-input';
@@ -15,7 +15,7 @@ import { RadioInput } from 'src/app/core/typings/radio-input';
     },
   ]
 })
-export class RadioButtonGroupComponent<T> implements OnInit, ControlValueAccessor {
+export class RadioButtonGroupComponent<T> implements ControlValueAccessor {
 
   @Input()
   public initValue?: T;
@@ -31,10 +31,6 @@ export class RadioButtonGroupComponent<T> implements OnInit, ControlValueAccesso
   private currentValue = new Subject<T>();
 
   public value = this.currentValue.asObservable();
-
-  public ngOnInit(): void {
-    this.initValue && this.currentValue.next(this.initValue);
-  }
 
   public writeValue(value: T): void {
     this.next(value);

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RadioInput } from '../../../typings/radio-input';
 
@@ -10,10 +9,6 @@ import { RadioInput } from '../../../typings/radio-input';
 })
 export class RadioButtonComponent<T> implements OnInit {
 
-  // public form = this.fb.group({
-  //   checked : [false],
-  // });
-
   public checked = false;
 
   @Input()
@@ -22,14 +17,14 @@ export class RadioButtonComponent<T> implements OnInit {
   @Input()
   public value?: Observable<T>;
 
+  @Input()
+  public initValue?: T
+
   @Output()
   public valueChanged = new EventEmitter<T>();
 
-  constructor(
-    private fb: FormBuilder,
-  ) {}
-
   public ngOnInit(): void {
+    this.initValue && (this.checked = this.input?.value === this.initValue);
     this.value?.subscribe(value =>
       this.checked = this.input?.value === value);
   }

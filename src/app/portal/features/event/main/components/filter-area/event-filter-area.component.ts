@@ -37,12 +37,13 @@ export class EventFilterAreaComponent {
     },
   ];
 
-  public initValue = EventDisplayType.Calendar;
+  public initValue = EventDisplayType.Category;
   
   constructor(
     private store: Store, 
   ) {
     this.store.dispatch(EventActions.getSponsoredEvent());
+    this.store.dispatch(EventActions.overviewDisplayChanged(this.initValue));
   }
 
   public valueChanged(displayType: EventDisplayType) {

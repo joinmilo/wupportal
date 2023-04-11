@@ -38,7 +38,7 @@ export class EventOverviewComponent implements OnDestroy {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.destroy))
       .subscribe(queryParams => {
-        console.log(queryParams);
+        // console.log(queryParams);
         this.store.dispatch(EventActions.setParams({
           page: 0,
           size: 5,
