@@ -8,28 +8,28 @@
   </section>
   <section>
 
-      <div *ngIf="(isSearching | async) === false" [@fadeIn]>
-        <button mat-raised-button color="primary" [routerLink]="['/portal', 'register']">
-          <span appLabel="register"></span>
-        </button>
-        <button mat-raised-button color="primary" [routerLink]="['/portal', 'login']">
-            <span appLabel="login"></span>
-        </button>
-      </div>
+    <div *ngIf="(isSearching | async) === false" [@fadeIn]>
+      <button mat-raised-button color="primary" [routerLink]="['/portal', 'register']">
+        <span appLabel="register"></span>
+      </button>
+      <button mat-raised-button color="primary" [routerLink]="['/portal', 'login']">
+          <span appLabel="login"></span>
+      </button>
+    </div>
 
-      <app-search></app-search>
+    <app-search></app-search>
 
-      <ng-container *ngIf="(isSearching | async) === false">
-        <app-portal-header-language [@fadeIn]></app-portal-header-language>
-        
-        <button mat-icon-button [matMenuTriggerFor]="userMenu" [@fadeIn]>
-          <fa-icon [icon]="['far', 'circle-user']"></fa-icon>
-        </button>
-        <mat-menu #userMenu="matMenu">
-          <app-portal-header-user></app-portal-header-user>
-        </mat-menu>
-        
-      </ng-container>
+    <ng-container *ngIf="(isSearching | async) === false">
+      <app-portal-header-language [@fadeIn]></app-portal-header-language>
+      
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" [@fadeIn]>
+        <fa-icon [icon]="['far', 'circle-user']"></fa-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <app-portal-header-user></app-portal-header-user>
+      </mat-menu>
+      
+    </ng-container>
 
   </section>
 </header>
