@@ -19,7 +19,12 @@ export class EventListViewComponent {
     {
       field: 'id',
       label: 'name',
-    }
+    },
+    {
+      field: 'schedule.startDate',
+      label: 'test',
+      type: 'DATE'
+    },
   ];
 
   @ViewChild(MatPaginator)

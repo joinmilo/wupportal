@@ -17,15 +17,31 @@ export class RowDirective<T> implements OnInit {
     private el: ElementRef) { }
 
   public ngOnInit(): void {
-    const value = this.column?.field.split('.').reduce((obj, i) => obj?.[i], this.appRow);
-    // let content = '';
-    // switch(this.column?.type) {
-    //   case 'BOOLEAN':
-    //     content = this.boolean(value, )
-    //     break;
-    //   case 'DATE':
-
-    // }
-    this.el.nativeElement.innerHTML = 'test';
+    this.el.nativeElement.innerHTML = typeof this.column?.type === 'function'
+      ? this.column?.type(this.appRow)
+      : this.transform();
   }
+
+  private transform(): string {
+    const value = this.column?.field.split('.').reduce((obj, i) => obj?.[i], this.appRow);
+    switch(this.column?.type) {
+      case 'BOOLEAN':
+        return this.boolean(value);
+      case 'DATE':
+        return this.date(value);
+      default:
+        return value;
+    }
+  }
+
+  private boolean(value: boolean): string {
+    return value 
+      ? `<fa-icon [icon]="['fas', 'check']"></fa-icon>`
+      : `<fa-icon [icon]="['fas', 'cclose']"></fa-icon>`
+  }
+
+  private date(value: string): string {
+    return new Date(value).toLocaleDateString();
+  }
+
 }
