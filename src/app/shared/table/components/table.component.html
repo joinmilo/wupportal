@@ -1,42 +1,7 @@
-<div>
-  <mat-card>
-    <table mat-table [dataSource]="((data | async) || [])" matSort matSortActive="name" matSortDisableClear>
+<app-table-desktop
+  [data]="data"
+  [columns]="columns">
+</app-table-desktop>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header><strong appLabel="name"></strong></th>
-        <td mat-cell *matCellDef="let row">
-          {{ row.translatables | translatable: 'name' | async }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="creator">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Einrichtung</strong></th>
-        <td mat-cell *matCellDef="let row">
-          {{ row.translatables | translatable: 'name' | async }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Datum</strong></th>
-        <td mat-cell *matCellDef="let row">
-          {{ row.translatables | translatable: 'name' | async }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header><strong>Kategorie</strong></th>
-        <td mat-cell *matCellDef="let row">
-          {{ row.translatables | translatable: 'name' | async }}
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="columns;"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-    </table>
-  </mat-card>
-
-  <mat-card>
-    <mat-paginator [length]="(data | async)?.length" [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-  </mat-card>
-</div>
+<app-table-mobile>
+</app-table-mobile>

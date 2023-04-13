@@ -7,11 +7,15 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
+import { TableDesktopComponent } from './components/desktop/table-desktop.component';
+import { TableMobileComponent } from './components/mobile/table-mobile.component';
 import { TableComponent } from './components/table.component';
 
 
 const components = [
   TableComponent,
+  TableDesktopComponent,
+  TableMobileComponent,
 ];
 
 const framework = [

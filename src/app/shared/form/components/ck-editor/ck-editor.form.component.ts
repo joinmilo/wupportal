@@ -18,8 +18,7 @@ import { EditorConfig } from '@ckeditor/ckeditor5-core';
 
 export class CkEditorFormComponent implements ControlValueAccessor {
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public Editor: any = ClassicEditor;
+  public Editor = ClassicEditor;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public editorInstance: any;
   
@@ -49,6 +48,7 @@ export class CkEditorFormComponent implements ControlValueAccessor {
   }
 
   handleEditorReady(editor: unknown): void {
+    console.log(editor);
     this.editorInstance = editor;
   }
 

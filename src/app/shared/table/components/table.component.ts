@@ -1,6 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Column } from '../typings/table';
 
@@ -16,11 +14,5 @@ export class TableComponent {
 
   @Input()
   public columns?: Column[];
-
-  @ViewChild(MatPaginator)
-  public paginator!: MatPaginator;
-
-  @ViewChild(MatSort)
-  public sort!: MatSort;
 
 }

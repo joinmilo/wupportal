@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { Column } from '../../typings/table';
 
 @Component({
-  selector: 'app-table-desktop',
-  templateUrl: './table-desktop.component.html',
-  styleUrls: ['./table-desktop.component.scss']
+  selector: 'app-table-mobile',
+  templateUrl: './table-mobile.component.html',
+  styleUrls: ['./table-mobile.component.scss']
 })
-export class TableDesktopComponent {
+export class TableMobileComponent {
 
   @Input()
   public data?: Observable<any>;
@@ -22,6 +22,5 @@ export class TableDesktopComponent {
 
   @ViewChild(MatSort)
   public sort!: MatSort;
-
 
 }

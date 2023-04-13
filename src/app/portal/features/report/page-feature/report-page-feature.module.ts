@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalCommonModule } from 'src/app/portal/common/common.module';
+import { FormModule } from 'src/app/shared/form/form.module';
 import { ReportPageFeatureCaptchaComponent } from './components/captcha/report-page-feature-captcha.component';
 import { ReportPageFeatureComponent } from './components/page-feature/report-page-feature.component';
 import { reportPageFeatureStateKey } from './constants/report-page-feature.constant';
@@ -38,6 +39,7 @@ const materials = [
 const modules = [
   CoreModule,
   PortalCommonModule,
+  FormModule,
 ];
 
 const libs = [
