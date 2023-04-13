@@ -9,6 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { TitleModule } from 'src/app/shared/title/title.module';
 import { ReportFormComponent } from './components/report-form.component';
 import { reportStateKey } from './constants/report.constant';
 import { ReportPortalRoutingModule } from './report-routing.module';
@@ -35,6 +36,7 @@ const materials = [
 const modules = [
   CoreModule,
   ReportPortalRoutingModule,
+  TitleModule,
 ];
 
 const libs = [

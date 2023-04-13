@@ -1,8 +1,6 @@
 
-import { GuestArticleInputComponent } from './pages/guest-article-input/guest-article-input.component';
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
-import { NgModule, Type } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -13,22 +11,25 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { FormModule } from 'src/app/shared/form/form.module';
+import { TitleModule } from 'src/app/shared/title/title.module';
 import { guestArticleStateKey } from './constants/guest-article.constant';
 import { GuestArticlePortalRoutingModule } from './guest-article-routing.module';
+import { GuestArticleInputComponent } from './pages/guest-article-input/guest-article-input.component';
 import { ReportEffects } from './state/guest-article.effects';
 import { reportReducer } from './state/guest-article.reducer';
 
-const components: Type<any>[] = [
+const components = [
   GuestArticleInputComponent
 ];
 
-const framework: any[] = [
+const framework = [
   CommonModule,
   ReactiveFormsModule,
   FormsModule,
 ];
 
-const materials: Type<any>[] = [
+const materials = [
   MatFormFieldModule,
   MatSelectModule,
   MatButtonModule,
@@ -37,9 +38,11 @@ const materials: Type<any>[] = [
   MatExpansionModule,
 ];
 
-const modules: Type<any>[] = [
+const modules = [
   CoreModule,
-  GuestArticlePortalRoutingModule
+  FormModule,
+  GuestArticlePortalRoutingModule,
+  TitleModule,
 ];
 
 const libs = [
