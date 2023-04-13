@@ -2,7 +2,7 @@
   <app-sub-title *ngIf="titleLabel" [titleLabel]="titleLabel"></app-sub-title>
   <app-sub-title *ngIf="title" [title]="title"></app-sub-title>
   <section *ngIf="link">
-    <a [routerLink]="link" [appLabel]="linkLabel" postFix="»"></a>
+    <a [routerLink]="link" [appLabel]="linkLabel" suffix="»"></a>
   </section>
 </div>
 <ng-container [ngSwitch]="cardType">

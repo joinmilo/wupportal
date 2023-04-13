@@ -10,12 +10,16 @@ import { CoreModule } from 'src/app/core/core.module';
 import { TableDesktopComponent } from './components/desktop/table-desktop.component';
 import { TableMobileComponent } from './components/mobile/table-mobile.component';
 import { TableComponent } from './components/table.component';
-
+import { RowDirective } from './directives/table-row.directive';
 
 const components = [
   TableComponent,
   TableDesktopComponent,
   TableMobileComponent,
+];
+
+const directives = [
+  RowDirective,
 ];
 
 const framework = [
@@ -39,13 +43,19 @@ const libs = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [
+    ...components,
+    ...directives,
+  ],
   imports: [
     ...framework,
     ...materials,
     ...modules,
     ...libs,
   ],
-  exports: [...components],
+  exports: [
+    ...components,
+    ...directives,
+  ],
 })
 export class TableModule { }

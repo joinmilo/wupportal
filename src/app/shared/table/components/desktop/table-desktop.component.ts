@@ -9,19 +9,29 @@ import { Column } from '../../typings/table';
   templateUrl: './table-desktop.component.html',
   styleUrls: ['./table-desktop.component.scss']
 })
-export class TableDesktopComponent {
+export class TableDesktopComponent<T> {
+
+  private _columns?: Column<T>[];
+
+  public displayedColumns?: string[];
 
   @Input()
-  public data?: Observable<any>;
+  public data?: Observable<T[] | undefined>;
 
   @Input()
-  public columns?: Column[];
+  public set columns(columns: Column<T>[] | undefined) {
+    this._columns = columns;
+    this.displayedColumns = columns?.map(c => c.field);
+  }
+
+  public get columns(): Column<T>[] | undefined {
+    return this._columns;
+  }
 
   @ViewChild(MatPaginator)
   public paginator!: MatPaginator;
 
   @ViewChild(MatSort)
   public sort!: MatSort;
-
 
 }

@@ -20,7 +20,7 @@ import { FavoritePieceComponent } from './components/pieces/favorite/favorite-pi
 import { SliderComponent } from './components/slider/slider.component';
 import { coreStateKey } from './constants/core.constants';
 import { HtmlDirective } from './directives/html.directive';
-import { AppLabelDirective } from './directives/label.directive';
+import { LabelDirective } from './directives/label.directive';
 import { AddressPipe } from './pipes/address.pipe';
 import { TranslatablePipe } from './pipes/translatable.pipe';
 import { CoreEffects } from './state/core.effects';
@@ -38,7 +38,7 @@ const components = [
 ];
 
 const directives = [
-  AppLabelDirective,
+  LabelDirective,
   HtmlDirective,
 ];
 

@@ -9,13 +9,13 @@ import { Column } from '../../typings/table';
   templateUrl: './table-mobile.component.html',
   styleUrls: ['./table-mobile.component.scss']
 })
-export class TableMobileComponent {
+export class TableMobileComponent<T> {
 
   @Input()
-  public data?: Observable<any>;
+  public data?: Observable<T[]>;
 
   @Input()
-  public columns?: Column[];
+  public columns?: Column<T>[];
 
   @ViewChild(MatPaginator)
   public paginator!: MatPaginator;

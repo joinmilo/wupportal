@@ -7,12 +7,12 @@ import { Column } from '../typings/table';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent {
+export class TableComponent<T> {
 
   @Input()
-  public data?: Observable<any>;
+  public data?: Observable<T[] | undefined>;
 
   @Input()
-  public columns?: Column[];
+  public columns?: Column<T>[];
 
 }
