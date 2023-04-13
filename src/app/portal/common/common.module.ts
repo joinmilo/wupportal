@@ -64,7 +64,6 @@ const framework = [
 ];
 
 const materials = [
-  FontAwesomeModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatDatepickerModule,
@@ -83,6 +82,7 @@ const modules = [
 ];
 
 const libs = [
+  FontAwesomeModule,
   StoreModule.forFeature(commonStateKey, commonReducer),
   EffectsModule.forFeature([CommonEffects]),
 ]

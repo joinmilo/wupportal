@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReportInputComponent } from './pages/report-input/report-input.component';
+import { ReportFormComponent } from './components/report-form.component';
 
 const routes: Routes = [
 
   {
     path: '',
-    component: ReportInputComponent
+    component: ReportFormComponent
   },
 
 ];

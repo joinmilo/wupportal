@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: reportFeatureKey,
-    loadChildren: () => import('./features/report/report.module')
+    loadChildren: () => import('./features/report/main/report.module')
       .then((imported) => imported.ReportPortalModule),
   },
   {

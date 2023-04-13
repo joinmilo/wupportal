@@ -91,7 +91,6 @@ const framework = [
 ];
 
 const materials = [
-  FontAwesomeModule,
   MatButtonModule,
   MatCardModule,
   MatChipsModule,
@@ -106,6 +105,7 @@ const materials = [
 ];
 
 const libs = [
+  FontAwesomeModule,
   StoreModule.forFeature(coreStateKey, coreReducer),
   EffectsModule.forFeature([CoreEffects]),
   NgHcaptchaModule.forRoot({

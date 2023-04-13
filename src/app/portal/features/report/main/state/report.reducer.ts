@@ -1,6 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, ReportEntity } from 'src/schema/schema';
-import { ReportTypeEntity } from './../../../../../schema/schema';
+import { Maybe, ReportEntity, ReportTypeEntity } from 'src/schema/schema';
 import { ReportActions } from './report.actions';
 
 export interface ReportState {
@@ -19,5 +18,9 @@ export const reportReducer = createReducer(
 
   on(ReportActions.setCurrentTypes, (state, action): ReportState => (
     { ...state, types: action.types }
+  )),
+
+  on(ReportActions.reset, (state): ReportState => (
+    { ...state, savedReport: undefined }
   )),
 );

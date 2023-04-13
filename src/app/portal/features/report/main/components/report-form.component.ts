@@ -5,15 +5,15 @@ import { Subject, filter, map, takeUntil } from 'rxjs';
 import { hCaptchaSitekeyConfig } from 'src/app/core/constants/core.constants';
 import { selectConfiguration } from 'src/app/core/state/core.selectors';
 import { ReportTypeEntity } from 'src/schema/schema';
-import { ReportActions } from '../../state/report.actions';
-import { selectReportTypes, selectSavedReport } from '../../state/report.selectors';
+import { ReportActions } from '../state/report.actions';
+import { selectReportTypes, selectSavedReport } from '../state/report.selectors';
 
 @Component({
-  selector: 'app-report-input',
-  templateUrl: './report-input.component.html',
-  styleUrls: ['./report-input.component.scss'],
+  selector: 'app-report-form',
+  templateUrl: './report-form.component.html',
+  styleUrls: ['./report-form.component.scss'],
 })
-export class ReportInputComponent implements OnDestroy {
+export class ReportFormComponent implements OnDestroy {
 
   public form = this.fb.group({
     type: [{} as ReportTypeEntity, [Validators.required]],
@@ -40,7 +40,7 @@ export class ReportInputComponent implements OnDestroy {
     this.store.dispatch(ReportActions.getReportTypes());
   }
 
-  onSubmit(formDirective: FormGroupDirective) {
+  public onSubmit(formDirective: FormGroupDirective) {
     this.store.dispatch(ReportActions.saveReport({
       //TODO translatables content
       name: this.form.value.name,
@@ -50,9 +50,16 @@ export class ReportInputComponent implements OnDestroy {
       },
       captchaToken: this.form.value.captchaToken
     }));
+    
     this.store.select(selectSavedReport)
-      .pipe(takeUntil(this.destroy))
-      .subscribe(report => report?.id && formDirective.resetForm());
+      .pipe(
+        filter(report => !!report?.id),
+        takeUntil(this.destroy)
+      )
+      .subscribe(() => {
+        formDirective.resetForm();
+        this.store.dispatch(ReportActions.reset());
+      });
   }
 
   ngOnDestroy(): void {

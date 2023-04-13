@@ -1,7 +1,5 @@
-import { ReportInputComponent } from './pages/report-input/report-input.component';
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
-import { NgModule, Type } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,35 +9,39 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { ReportFormComponent } from './components/report-form.component';
 import { reportStateKey } from './constants/report.constant';
 import { ReportPortalRoutingModule } from './report-routing.module';
 import { ReportEffects } from './state/report.effects';
 import { reportReducer } from './state/report.reducer';
 
-const components: Type<any>[] = [
-  ReportInputComponent
+const components = [
+  ReportFormComponent
 ];
 
-const framework: any[] = [
+const framework = [
   CommonModule,
-  StoreModule.forFeature(reportStateKey, reportReducer),
-  EffectsModule.forFeature([ReportEffects]),
-  ReactiveFormsModule
+  ReactiveFormsModule,
 ];
 
-const materials: Type<any>[] = [
+const materials = [
   MatFormFieldModule,
   MatSelectModule,
-  FontAwesomeModule,
   MatButtonModule,
   MatSelectModule,
   MatInputModule
 ];
 
-const modules: Type<any>[] = [
+const modules = [
   CoreModule,
   ReportPortalRoutingModule,
 ];
+
+const libs = [
+  FontAwesomeModule,
+  StoreModule.forFeature(reportStateKey, reportReducer),
+  EffectsModule.forFeature([ReportEffects]),
+]
 
 @NgModule({
   declarations: [...components],
@@ -47,6 +49,7 @@ const modules: Type<any>[] = [
     ...framework,
     ...materials,
     ...modules,
+    ...libs,
   ],
   exports: [...components],
 })

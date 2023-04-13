@@ -26,14 +26,11 @@ const framework: any[] = [
   CommonModule,
   ReactiveFormsModule,
   FormsModule,
-  StoreModule.forFeature(guestArticleStateKey, reportReducer),
-  EffectsModule.forFeature([ReportEffects]),
 ];
 
 const materials: Type<any>[] = [
   MatFormFieldModule,
   MatSelectModule,
-  FontAwesomeModule,
   MatButtonModule,
   MatSelectModule,
   MatInputModule,
@@ -45,12 +42,19 @@ const modules: Type<any>[] = [
   GuestArticlePortalRoutingModule
 ];
 
+const libs = [
+  FontAwesomeModule,
+  StoreModule.forFeature(guestArticleStateKey, reportReducer),
+  EffectsModule.forFeature([ReportEffects]),
+]
+
 @NgModule({
   declarations: [...components],
   imports: [
     ...framework,
     ...materials,
     ...modules,
+    ...libs,
   ],
   exports: [...components],
 })

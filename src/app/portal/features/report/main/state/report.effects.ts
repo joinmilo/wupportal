@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
+import { CoreActions } from 'src/app/core/state/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { ReportTypeEntity, SaveReportGQL } from 'src/schema/schema';
-import { CoreActions } from '../../../../core/state/core.actions';
-import { GetReportTypesGQL, ReportEntity } from './../../../../../schema/schema';
+import { GetReportTypesGQL, ReportEntity, ReportTypeEntity, SaveReportGQL } from 'src/schema/schema';
 import { ReportActions } from './report.actions';
 
 @Injectable()

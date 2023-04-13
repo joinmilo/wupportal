@@ -33,7 +33,6 @@ const framework = [
 ];
 
 const materials = [
-  FontAwesomeModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatDividerModule,
@@ -46,6 +45,7 @@ const modules = [
 ];
 
 const libs = [
+  FontAwesomeModule,
   StoreModule.forFeature(searchStateKey, searchReducer),
   EffectsModule.forFeature([SearchEffects]),
 ]
