@@ -13,8 +13,6 @@ const routes: Routes = [
     path: '',
     component: EventOverviewComponent,
   },
-
-
 ];
 
 @NgModule({
