@@ -33,12 +33,9 @@ export const portalEventOverviewReducer = createReducer(
     { ...state, tableData: action.result }
   )),
 
-  on(
-    PortalEventOverviewActions.setParams,
-    (state, action): PortalEventOverviewState => (
-      { ...state, params: action.params }
-    )
-  ),
+  on(PortalEventOverviewActions.setParams, (state, action): PortalEventOverviewState => (
+    { ...state, params: action.params }
+  )),
 
   on(
     PortalEventOverviewActions.setParams,

@@ -51,11 +51,11 @@ export class PortalEventFilterAreaComponent implements OnDestroy {
   public display?: DisplayType;
 
   public displayQueryParam = displayQueryParam;
+  public categoryGroupQueryParam = categoryGroupQueryParam;
+  public currentOnlyQueryParam = currentOnlyQueryParam;
+  public freeOnlyQueryParam = freeOnlyQueryParam;
   public targetGroupQueryParam = targetGroupQueryParam;
   public suburbGroupQueryParam = suburbGroupQueryParam;
-  public categoryGroupQueryParam = categoryGroupQueryParam;
-  public freeOnlyQueryParam = freeOnlyQueryParam;
-  public currentOnlyQueryParam = currentOnlyQueryParam;
 
   private destroy = new Subject<void>();
   

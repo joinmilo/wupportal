@@ -48,7 +48,7 @@ export class PortalEventTableViewComponent {
   ) { }
 
   public sortPaginate(event: SortPaginate) {
-    this.store.dispatch(PortalEventOverviewActions.setTableParams(event))
+    this.store.dispatch(PortalEventOverviewActions.setTableParams(event));
   }
 
 }
