@@ -6,14 +6,14 @@
       [queryParamKey]="displayQueryParam">
     </app-radio-button-group>
     <button mat-raised-button
-      (click)="filterCollapsed = !filterCollapsed"
-      [class.active] = "!filterCollapsed">
+      (click)="filtersCollapsed = !filtersCollapsed"
+      [class.active] = "!filtersCollapsed">
       <fa-icon [icon]="['fas', 'filter']"></fa-icon>
       <span appLabel="filter"></span>
-      <fa-icon *ngIf="!filterCollapsed" class="active-icon" [icon]="['fas', 'check']"></fa-icon>
+      <fa-icon *ngIf="(filtersActive | async)" class="active-icon" [icon]="['fas', 'check']"></fa-icon>
     </button>
   </section>
-  <mat-card [@collapse]="!filterCollapsed">
+  <mat-card [@collapse]="!filtersCollapsed">
     <mat-card-content>
 
       <app-event-targetgroup-filter

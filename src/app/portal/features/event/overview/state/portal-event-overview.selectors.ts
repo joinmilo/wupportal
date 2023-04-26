@@ -10,6 +10,12 @@ export const selectSponsoredEvent = createSelector(
   state => state.sponsoredEvent
 );
 
+export const selectFiltersActive = createSelector(
+  selectPortalEventOverviewState,
+  state => !!(state.params?.expression?.conjunction?.operands?.length
+   || state.params?.expression?.entity?.value)
+);
+
 export const selectDisplayType = createSelector(
   selectPortalEventOverviewState,
   state => state.displayType

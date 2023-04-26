@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
-import { EventTargetGroupEntity, Maybe } from 'src/schema/schema';
+import { take, tap } from 'rxjs';
+import { Maybe } from 'src/schema/schema';
 import { EventFilterActions } from '../../state/event-filter.actions';
 import { selectTargetGroups } from '../../state/event-filter.selectors';
 
@@ -12,13 +12,13 @@ import { selectTargetGroups } from '../../state/event-filter.selectors';
   templateUrl: './event-targetgroup-filter.component.html',
   styleUrls: ['./event-targetgroup-filter.component.scss']
 })
-export class EventTargetgroupFilterComponent {
+export class EventTargetgroupFilterComponent implements OnInit {
 
   @Input()
   public queryParamKey?: string;
 
   @Output()
-  public valueChanged = new EventEmitter<Maybe<EventTargetGroupEntity[]> | undefined>();
+  public valueChanged = new EventEmitter<Maybe<string[]> | undefined>();
 
   public control = new FormControl();
 
@@ -33,13 +33,25 @@ export class EventTargetgroupFilterComponent {
     private router: Router,
   ) { }
 
-  public changeSelect(value: Maybe<EventTargetGroupEntity[]>) {
-    this.valueChanged.emit(value);
+  public ngOnInit(): void {
+    this.queryParamKey && this.activatedRoute.queryParams
+      .pipe(take(1))
+      .subscribe(params => {
+        if (this.queryParamKey) {
+          this.control.patchValue(typeof params[this.queryParamKey] === 'string'
+           ? [params[this.queryParamKey]]
+           : params[this.queryParamKey]);
+        }  
+      })
+  }
+
+  public changeSelect(targetGroupIds: Maybe<string[]>) {
+    this.valueChanged.emit(targetGroupIds);
     if (this.queryParamKey) {
       this.router.navigate([], {
         relativeTo: this.activatedRoute,
         queryParams: {
-          [this.queryParamKey || '']: value?.map(targetGroup => targetGroup.id)
+          [this.queryParamKey || '']: targetGroupIds
         },
         queryParamsHandling: 'merge',
       });

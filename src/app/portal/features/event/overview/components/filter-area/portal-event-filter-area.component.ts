@@ -8,7 +8,7 @@ import { categoryGroupQueryParam, currentOnlyQueryParam, freeOnlyQueryParam, sub
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { displayQueryParam } from '../../constants/portal-event-overview.constant';
 import { PortalEventOverviewActions } from '../../state/portal-event-overview.actions';
-import { selectSponsoredEvent } from '../../state/portal-event-overview.selectors';
+import { selectFiltersActive, selectSponsoredEvent } from '../../state/portal-event-overview.selectors';
 
 @Component({
   selector: 'app-portal-event-filter-area',
@@ -45,7 +45,8 @@ export class PortalEventFilterAreaComponent implements OnDestroy {
     },
   ];
 
-  public filterCollapsed = true;
+  public filtersActive = this.store.select(selectFiltersActive);
+  public filtersCollapsed = true;
 
   public display?: DisplayType;
 
