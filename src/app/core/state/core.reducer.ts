@@ -7,6 +7,7 @@ import { CoreActions } from './core.actions';
 export interface CoreState {
   configurations?: ConfigurationEntity[]
   currentTheme?: Maybe<ThemeEntity>,
+  ongoingRequests: number,
   language?: LanguageEntity,
   languages?: LanguageEntity[],
   labels?: Map<string, Maybe<Translatable>[]>,
@@ -14,11 +15,16 @@ export interface CoreState {
 }
 
 export const initialState: CoreState = {
+  ongoingRequests: 0,
   language: { locale: 'de' },
 };
 
 export const coreReducer = createReducer(
   initialState,
+
+  on(CoreActions.changeLanguage, (state, action): CoreState => (
+    { ...state, language: action.language }
+  )),
 
   on(CoreActions.setConfigurations, (state, action): CoreState => (
     { ...state, configurations: action.configurations }
@@ -47,8 +53,12 @@ export const coreReducer = createReducer(
     }
   )),
 
-  on(CoreActions.changeLanguage, (state, action): CoreState => (
-    { ...state, language: action.language }
+  on(CoreActions.addRequest, (state): CoreState => (
+    { ...state, ongoingRequests: state.ongoingRequests + 1 }
+  )),
+
+  on(CoreActions.removeRequest, (state): CoreState => (
+    { ...state, ongoingRequests: state.ongoingRequests - 1 }
   )),
 
 );

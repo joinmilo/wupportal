@@ -10,9 +10,11 @@ export const CoreActions = createActionGroup({
     'set feedback': (feedback: Feedback) => ({ feedback }),
     'set labels': (labels: LabelEntity[]) => ({ labels }),
     'set languages': (languages: LanguageEntity[]) => ({ languages }),
-    'set loading': (isLoading: boolean) => ({ isLoading }),
     'set server version': (version?: Maybe<InformationDto>) => ({ version }),
     'set themes': (themes: ThemeEntity[]) => ({ themes }),
+
+    'add request': emptyProps(),
+    'remove request': emptyProps(),
 
     'change language': (language: LanguageEntity) => ({ language }),
 

@@ -9,6 +9,17 @@ export const selectConfigurations = createSelector(
   state => state?.configurations
 );
 
+export const selectConfiguration = (key: string) =>
+  createSelector(
+    selectConfigurations,
+    configurations => configurations?.find(c => c?.key === key)
+  );
+
+export const selectIsLoading = createSelector(
+  selectCoreState,
+  state => state.ongoingRequests > 0,
+);
+
 export const selectLabels = createSelector(
   selectCoreState,
   state => state?.labels
@@ -28,9 +39,3 @@ export const selectTheme = createSelector(
   selectCoreState,
   state => state?.currentTheme
 );
-
-export const selectConfiguration = (key: string) =>
-  createSelector(
-    selectConfigurations,
-    configurations => configurations?.find(c => c?.key === key)
-  );
