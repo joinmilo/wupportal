@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectIsLoading } from '../core/state/core.selectors';
 
 @Component({
   selector: 'app-portal',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class PortalComponent {
 
+  public loading = this.store.select(selectIsLoading);
+
+  constructor(
+    private store: Store,
+  ) { }
 }

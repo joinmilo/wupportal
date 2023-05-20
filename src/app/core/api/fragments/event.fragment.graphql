@@ -12,7 +12,7 @@ fragment Event on EventEntity {
   translatables {
     id
     name
-    description
+    content
     shortDescription
     language {
       id

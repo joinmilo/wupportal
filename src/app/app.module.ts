@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PortalModule } from './portal/portal.module';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
@@ -56,7 +55,6 @@ const libs = [
 const materials = [
   MatAutocompleteModule,
   MatMenuModule,
-  MatProgressBarModule,
 ];
 
 const modules = [

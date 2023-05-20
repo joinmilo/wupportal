@@ -12,7 +12,7 @@ fragment Deal on DealEntity {
   }
   translatables {
     id
-    description
+    content
     shortDescription
     name
     language {

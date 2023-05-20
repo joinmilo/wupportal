@@ -1,4 +1,5 @@
-<div>
+<mat-progress-bar *ngIf="(loading | async)" mode="query"></mat-progress-bar>
+<div [ngClass]="{'loading': loading | async }">
   <app-portal-header></app-portal-header>
   <main>
     <router-outlet></router-outlet>
