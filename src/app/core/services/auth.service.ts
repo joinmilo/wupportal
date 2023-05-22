@@ -1,21 +1,25 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Inject, Injectable, Injector } from '@angular/core';
 import { FetchResult } from '@apollo/client/core';
 import { EMPTY, Observable } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { LoginGQL, LoginMutation, Maybe, RefreshMutation, TokenDto } from 'src/schema/schema';
-import { graphqlApi, refreshKey } from '../constants/core.constants';
+import { LoginGQL, LoginMutation, Maybe, RefreshGQL, RefreshMutation, TokenDto } from 'src/schema/schema';
+import { refreshKey } from '../constants/core.constants';
+import { APP_AUTH_TOKENS } from '../constants/inject-tokens';
 import { Token } from '../typings/token';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ 
+  providedIn: 'root'
+ })
 export class AuthService {
 
   public tokens?: Maybe<TokenDto>;
 
   constructor(
     private readonly injector: Injector,
-    private readonly httpService: HttpClient,
-  ) { }
+    @Inject(APP_AUTH_TOKENS) public initTokens: TokenDto,
+  ) {
+    this.tokens = { ...initTokens };
+  }
 
   public refresh(): Observable<TokenDto> {
     const token = this.tokens?.refresh;
@@ -38,22 +42,8 @@ export class AuthService {
     return EMPTY;
   }
 
-  // private callRefresh(refreshToken: string): Observable<TokenDto> {
-  //   return this.injector.get<RefreshGQL>(RefreshGQL).mutate({ refreshToken }).pipe(
-  //     map((response: FetchResult<RefreshMutation>) => response.data?.refreshToken as TokenDto),
-  //     tap((tokens: TokenDto) => this.store(tokens)),
-  //   );
-  // }
-
   private callRefresh(refreshToken: string): Observable<TokenDto> {
-    return this.httpService.post(new URL(graphqlApi).href, {
-      operationName: "refresh",
-      variables: {
-        refreshToken
-      },
-      query: "mutation refresh($refreshToken: String!) {\n  refreshToken(refreshToken: $refreshToken) {\n    access\n    refresh\n  }\n}"
-    }).pipe(
-      tap(() => console.log('httpClient')),
+    return this.injector.get<RefreshGQL>(RefreshGQL).mutate({ refreshToken }).pipe(
       map((response: FetchResult<RefreshMutation>) => response.data?.refreshToken as TokenDto),
       tap((tokens: TokenDto) => this.store(tokens)),
     );

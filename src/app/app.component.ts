@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FavIconService } from './core/services/favicon.service';
+import { ThemeService } from './core/services/theme.service';
+import { BrowserTitleService } from './core/services/title.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +11,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class AppComponent {
 
+
+  //TODO: Find a place to init them properly
+  constructor(
+    public browserTitleService: BrowserTitleService,
+    public themeService: ThemeService,
+    public favIconService: FavIconService
+  ) {
+
+  }
 }
