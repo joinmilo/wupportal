@@ -4,6 +4,11 @@ import { CoreState } from './core.reducer';
 
 export const selectCoreState = createFeatureSelector<CoreState>(coreStateKey);
 
+export const selectCurrenUser = createSelector(
+  selectCoreState,
+  state => state?.currentUser
+);
+
 export const selectConfigurations = createSelector(
   selectCoreState,
   state => state?.configurations

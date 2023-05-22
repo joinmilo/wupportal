@@ -1,33 +1,41 @@
 import { IMAGE_LOADER, NgOptimizedImage } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { FetchResult } from '@apollo/client/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { RefreshMutation, TokenDto } from 'src/schema/schema';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { mediaApi } from './core/constants/core.constants';
+import { graphqlApi, mediaApi, refreshKey } from './core/constants/core.constants';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { AuthService } from './core/services/auth.service';
-import { FavIconService } from './core/services/favicon.service';
-import { ThemeService } from './core/services/theme.service';
-import { BrowserTitleService } from './core/services/title.service';
 import { CustomImageLoader } from './core/typings/customImageLoader';
 import { GraphQLModule } from './graphql.module';
 import { PortalModule } from './portal/portal.module';
 
-function init(authService: AuthService): () => Observable<unknown> {
-  return () => authService.refresh();
+function init(httpService: HttpClient): () => Observable<unknown> {
+  return () => httpService.post(new URL(graphqlApi).href, {
+      operationName: "refresh",
+      variables: {
+        refreshToken: localStorage.getItem(refreshKey)
+      },
+      query: "mutation refresh($refreshToken: String!) {\n  refreshToken(refreshToken: $refreshToken) {\n    access\n    refresh\n  }\n}"
+    }).pipe(
+      tap(() => console.log('httpClient')),
+      map((response: FetchResult<RefreshMutation>) => response.data?.refreshToken as TokenDto),
+      // tap((tokens: TokenDto) => this.store(tokens)),
+    );
 }
 
 const components = [
@@ -66,12 +74,12 @@ const modules = [
 ];
 
 const providers = [
-  {
-    provide: APP_INITIALIZER,
-    useFactory: init,
-    deps: [AuthService, BrowserTitleService, ThemeService, FavIconService],
-    multi: true,
-  },
+  // {
+  //   provide: APP_INITIALIZER,
+  //   useFactory: init,
+  //   deps: [HttpClient],
+  //   multi: true,
+  // },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: LoadingInterceptor,

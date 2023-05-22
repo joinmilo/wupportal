@@ -14,9 +14,11 @@ export class UserEffects {
   register = createEffect(() => this.actions.pipe(
     ofType(UserActions.register),
     switchMap((action) => this.saveUserService.mutate({
-      entity: action.entity
+      entity: {
+        user: action.entity
+      }
     })),
-    map(response => UserActions.registered(response.data?.saveUser as UserEntity))
+    map(response => UserActions.registered(response.data?.saveUserContext?.user as UserEntity))
   ));
 
   registered = createEffect(() => this.actions.pipe(

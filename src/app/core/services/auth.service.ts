@@ -1,9 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { FetchResult } from '@apollo/client/core';
 import { EMPTY, Observable } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { LoginGQL, LoginMutation, Maybe, RefreshGQL, RefreshMutation, TokenDto } from 'src/schema/schema';
-import { refreshKey } from '../constants/core.constants';
+import { LoginGQL, LoginMutation, Maybe, RefreshMutation, TokenDto } from 'src/schema/schema';
+import { graphqlApi, refreshKey } from '../constants/core.constants';
 import { Token } from '../typings/token';
 
 @Injectable({ providedIn: 'root' })
@@ -13,6 +14,7 @@ export class AuthService {
 
   constructor(
     private readonly injector: Injector,
+    private readonly httpService: HttpClient,
   ) { }
 
   public refresh(): Observable<TokenDto> {
@@ -36,8 +38,22 @@ export class AuthService {
     return EMPTY;
   }
 
+  // private callRefresh(refreshToken: string): Observable<TokenDto> {
+  //   return this.injector.get<RefreshGQL>(RefreshGQL).mutate({ refreshToken }).pipe(
+  //     map((response: FetchResult<RefreshMutation>) => response.data?.refreshToken as TokenDto),
+  //     tap((tokens: TokenDto) => this.store(tokens)),
+  //   );
+  // }
+
   private callRefresh(refreshToken: string): Observable<TokenDto> {
-    return this.injector.get<RefreshGQL>(RefreshGQL).mutate({ refreshToken }).pipe(
+    return this.httpService.post(new URL(graphqlApi).href, {
+      operationName: "refresh",
+      variables: {
+        refreshToken
+      },
+      query: "mutation refresh($refreshToken: String!) {\n  refreshToken(refreshToken: $refreshToken) {\n    access\n    refresh\n  }\n}"
+    }).pipe(
+      tap(() => console.log('httpClient')),
       map((response: FetchResult<RefreshMutation>) => response.data?.refreshToken as TokenDto),
       tap((tokens: TokenDto) => this.store(tokens)),
     );

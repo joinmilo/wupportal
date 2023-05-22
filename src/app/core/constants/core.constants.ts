@@ -2,6 +2,10 @@ import { environment } from 'src/environments/environment';
 import { MediaEntity } from 'src/schema/schema';
 
 export const coreStateKey = 'coreState';
+
+/**
+ * Authentication
+ */
 export const refreshKey = 'refresh';
 
 /**

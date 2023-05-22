@@ -213,6 +213,7 @@ export type ArticleEntity = {
   media?: Maybe<Array<Maybe<MediaEntity>>>;
   metaDescription?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
   publicAuthor?: Maybe<PublicAuthorEntity>;
   ratings?: Maybe<Array<Maybe<ArticleRatingEntity>>>;
   shortDescription?: Maybe<Scalars['String']>;
@@ -237,6 +238,7 @@ export type ArticleEntityInput = {
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   metaDescription?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
   publicAuthor?: InputMaybe<PublicAuthorEntityInput>;
   ratings?: InputMaybe<Array<InputMaybe<ArticleRatingEntityInput>>>;
   shortDescription?: InputMaybe<Scalars['String']>;
@@ -426,8 +428,8 @@ export type ContactEntityInput = {
 export type ContestEntity = {
   __typename?: 'ContestEntity';
   cardImage?: Maybe<MediaEntity>;
+  content?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
-  description?: Maybe<Scalars['String']>;
   dueDate?: Maybe<Scalars['Date']>;
   id?: Maybe<Scalars['String']>;
   metaDescription?: Maybe<Scalars['String']>;
@@ -448,8 +450,8 @@ export type ContestEntity = {
 
 export type ContestEntityInput = {
   cardImage?: InputMaybe<MediaEntityInput>;
+  content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  description?: InputMaybe<Scalars['String']>;
   dueDate?: InputMaybe<Scalars['Date']>;
   id?: InputMaybe<Scalars['String']>;
   metaDescription?: InputMaybe<Scalars['String']>;
@@ -647,9 +649,9 @@ export type DealEntity = {
   cardImage?: Maybe<MediaEntity>;
   category?: Maybe<DealCategoryEntity>;
   contact?: Maybe<ContactEntity>;
+  content?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   creator?: Maybe<UserContextEntity>;
-  description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   media?: Maybe<Array<Maybe<MediaEntity>>>;
   metaDescription?: Maybe<Scalars['String']>;
@@ -670,9 +672,9 @@ export type DealEntityInput = {
   cardImage?: InputMaybe<MediaEntityInput>;
   category?: InputMaybe<DealCategoryEntityInput>;
   contact?: InputMaybe<ContactEntityInput>;
+  content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   creator?: InputMaybe<UserContextEntityInput>;
-  description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
   metaDescription?: InputMaybe<Scalars['String']>;
@@ -829,9 +831,9 @@ export type EventEntity = {
   category?: Maybe<EventCategoryEntity>;
   comments?: Maybe<Array<Maybe<EventCommentEntity>>>;
   contact?: Maybe<ContactEntity>;
+  content?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   creator?: Maybe<UserContextEntity>;
-  description?: Maybe<Scalars['String']>;
   entryFee?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['String']>;
   media?: Maybe<Array<Maybe<MediaEntity>>>;
@@ -866,9 +868,9 @@ export type EventEntityInput = {
   category?: InputMaybe<EventCategoryEntityInput>;
   comments?: InputMaybe<Array<InputMaybe<EventCommentEntityInput>>>;
   contact?: InputMaybe<ContactEntityInput>;
+  content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   creator?: InputMaybe<UserContextEntityInput>;
-  description?: InputMaybe<Scalars['String']>;
   entryFee?: InputMaybe<Scalars['Float']>;
   id?: InputMaybe<Scalars['String']>;
   media?: InputMaybe<Array<InputMaybe<MediaEntityInput>>>;
@@ -2984,6 +2986,7 @@ export type PageEntity = {
   menuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
   metaDescription?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
   pageFeatures?: Maybe<Array<Maybe<PageFeatureEntity>>>;
   shortDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
@@ -3003,6 +3006,7 @@ export type PageEntityInput = {
   menuItems?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
   metaDescription?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
   pageFeatures?: InputMaybe<Array<InputMaybe<PageFeatureEntityInput>>>;
   shortDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
@@ -3503,7 +3507,7 @@ export type Query = {
   getUserContext?: Maybe<UserContextEntity>;
   getUserContexts?: Maybe<PageableList_UserContextEntity>;
   getUsers?: Maybe<PageableList_UserEntity>;
-  me?: Maybe<UserEntity>;
+  me?: Maybe<UserContextEntity>;
   search?: Maybe<Array<Maybe<SearchDto>>>;
 };
 
@@ -4453,8 +4457,8 @@ export type SurveyEntity = {
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   state?: Maybe<SurveyStateEntity>;
-  surveyVisitors?: Maybe<Array<Maybe<SurveyVisitorEntity>>>;
   translatables?: Maybe<Array<Maybe<SurveyTranslatableEntity>>>;
+  visitors?: Maybe<Array<Maybe<SurveyVisitorEntity>>>;
 };
 
 export type SurveyEntityInput = {
@@ -4471,8 +4475,8 @@ export type SurveyEntityInput = {
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
   state?: InputMaybe<SurveyStateEntityInput>;
-  surveyVisitors?: InputMaybe<Array<InputMaybe<SurveyVisitorEntityInput>>>;
   translatables?: InputMaybe<Array<InputMaybe<SurveyTranslatableEntityInput>>>;
+  visitors?: InputMaybe<Array<InputMaybe<SurveyVisitorEntityInput>>>;
 };
 
 export type SurveyResultEntity = {
@@ -4855,7 +4859,7 @@ export type UserContextAuthorFragment = { __typename?: 'UserContextEntity', id?:
 
 export type UserContextFragment = { __typename?: 'UserContextEntity', id?: string | null, slug?: string | null, articles?: Array<{ __typename?: 'ArticleEntity', id?: string | null, approved?: boolean | null, created?: any | null, modified?: any | null, slug?: string | null, author?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null } | null } | null, cardImage?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, category?: { __typename?: 'ArticleCategoryEntity', id?: string | null, icon?: string | null, color?: string | null, translatables?: Array<{ __typename?: 'ArticleCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null, publicAuthor?: { __typename?: 'PublicAuthorEntity', id?: string | null, name?: string | null, email?: string | null, phone?: string | null } | null, translatables?: Array<{ __typename?: 'ArticleTranslatableEntity', id?: string | null, content?: string | null, shortDescription?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null, user?: { __typename?: 'UserEntity', firstName?: string | null, lastName?: string | null, email?: string | null } | null };
 
-export type UserFragment = { __typename?: 'UserEntity', id?: string | null, firstName?: string | null, lastName?: string | null, email?: string | null, password?: string | null, verified?: boolean | null, captchaToken?: string | null };
+export type UserFragment = { __typename?: 'UserEntity', id?: string | null, firstName?: string | null, lastName?: string | null, email?: string | null, verified?: boolean | null };
 
 export type CheckPasswordMutationVariables = Exact<{
   password?: InputMaybe<Scalars['String']>;
@@ -4902,11 +4906,11 @@ export type SaveReportMutationVariables = Exact<{
 export type SaveReportMutation = { __typename?: 'Mutation', saveReport?: { __typename?: 'ReportEntity', id?: string | null, name?: string | null, email?: string | null, captchaToken?: string | null, translatables?: Array<{ __typename?: 'ReportTranslatableEntity', id?: string | null, content?: string | null } | null> | null, type?: { __typename?: 'ReportTypeEntity', id?: string | null } | null } | null };
 
 export type SaveUserMutationVariables = Exact<{
-  entity: UserEntityInput;
+  entity: UserContextEntityInput;
 }>;
 
 
-export type SaveUserMutation = { __typename?: 'Mutation', saveUser?: { __typename?: 'UserEntity', id?: string | null, firstName?: string | null, lastName?: string | null, email?: string | null, password?: string | null, verified?: boolean | null, captchaToken?: string | null } | null };
+export type SaveUserMutation = { __typename?: 'Mutation', saveUserContext?: { __typename?: 'UserContextEntity', user?: { __typename?: 'UserEntity', id?: string | null, firstName?: string | null, lastName?: string | null, email?: string | null, verified?: boolean | null } | null } | null };
 
 export type SendPasswordResetMutationVariables = Exact<{
   email?: InputMaybe<Scalars['String']>;
@@ -5000,6 +5004,11 @@ export type GetLanguagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLanguagesQuery = { __typename?: 'Query', getLanguages?: { __typename?: 'PageableList_LanguageEntity', result?: Array<{ __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null> | null } | null };
 
+export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMeQuery = { __typename?: 'Query', me?: { __typename?: 'UserContextEntity', id?: string | null, avatar?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null, user?: { __typename?: 'UserEntity', id?: string | null, firstName?: string | null, lastName?: string | null, email?: string | null, verified?: boolean | null } | null } | null };
+
 export type GetMenuQueryVariables = Exact<{
   parent?: InputMaybe<Scalars['String']>;
 }>;
@@ -5091,7 +5100,7 @@ export type VerifyUserMutationVariables = Exact<{
 }>;
 
 
-export type VerifyUserMutation = { __typename?: 'Mutation', verify?: { __typename?: 'UserEntity', id?: string | null, firstName?: string | null, lastName?: string | null, email?: string | null, password?: string | null, verified?: boolean | null, captchaToken?: string | null } | null };
+export type VerifyUserMutation = { __typename?: 'Mutation', verify?: { __typename?: 'UserEntity', id?: string | null, firstName?: string | null, lastName?: string | null, email?: string | null, verified?: boolean | null } | null };
 
 export const AppFragmentDoc = gql`
     fragment App on AppEntity {
@@ -5574,9 +5583,7 @@ export const UserFragmentDoc = gql`
   firstName
   lastName
   email
-  password
   verified
-  captchaToken
 }
     `;
 export const CheckPasswordDocument = gql`
@@ -5686,9 +5693,11 @@ export const SaveReportDocument = gql`
     }
   }
 export const SaveUserDocument = gql`
-    mutation saveUser($entity: UserEntityInput!) {
-  saveUser(entity: $entity) {
-    ...User
+    mutation saveUser($entity: UserContextEntityInput!) {
+  saveUserContext(entity: $entity) {
+    user {
+      ...User
+    }
   }
 }
     ${UserFragmentDoc}`;
@@ -5978,6 +5987,31 @@ export const GetLanguagesDocument = gql`
   })
   export class GetLanguagesGQL extends Apollo.Query<GetLanguagesQuery, GetLanguagesQueryVariables> {
     override document = GetLanguagesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetMeDocument = gql`
+    query GetMe {
+  me {
+    id
+    avatar {
+      ...Media
+    }
+    user {
+      ...User
+    }
+  }
+}
+    ${MediaFragmentDoc}
+${UserFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetMeGQL extends Apollo.Query<GetMeQuery, GetMeQueryVariables> {
+    override document = GetMeDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

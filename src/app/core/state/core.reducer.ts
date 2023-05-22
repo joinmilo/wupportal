@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { LanguageEntity, Maybe, ThemeEntity } from 'src/schema/schema';
+import { LanguageEntity, Maybe, ThemeEntity, UserContextEntity } from 'src/schema/schema';
 import { Translatable } from '../typings/translatable';
 import { ConfigurationEntity } from './../../../schema/schema';
 import { CoreActions } from './core.actions';
@@ -7,6 +7,7 @@ import { CoreActions } from './core.actions';
 export interface CoreState {
   configurations?: ConfigurationEntity[]
   currentTheme?: Maybe<ThemeEntity>,
+  currentUser?: UserContextEntity,
   ongoingRequests: number,
   language?: LanguageEntity,
   languages?: LanguageEntity[],
@@ -59,6 +60,14 @@ export const coreReducer = createReducer(
 
   on(CoreActions.removeRequest, (state): CoreState => (
     { ...state, ongoingRequests: state.ongoingRequests - 1 }
+  )),
+
+  on(CoreActions.getMe, (state, action): CoreState => (
+    { ...state, currentUser: action.user }
+  )),
+
+  on(CoreActions.logout, (state): CoreState => (
+    { ...state, currentUser: undefined }
   )),
 
 );

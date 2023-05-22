@@ -51,7 +51,7 @@ export class TableDesktopComponent<T> implements AfterViewInit, OnDestroy {
       startWith({}),
       tap(() => this.emitSortPaginate()),
       takeUntil(this.destroy),
-    ).subscribe();
+    ).subscribe();  
   }
 
   private emitSortPaginate(): void {

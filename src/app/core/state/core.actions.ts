@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { ConfigurationEntity, InformationDto, LabelEntity, LanguageEntity, Maybe, ThemeEntity } from 'src/schema/schema';
+import { ConfigurationEntity, InformationDto, LabelEntity, LanguageEntity, Maybe, ThemeEntity, UserContextEntity } from 'src/schema/schema';
 import { Feedback } from '../typings/feedback';
 
 export const CoreActions = createActionGroup({
@@ -20,6 +20,7 @@ export const CoreActions = createActionGroup({
 
     'login': (email: string, password: string) => ({ email, password }),
     'logged in': emptyProps(),
+    'get me': (user: UserContextEntity) => ({ user }),
     'refresh expired': emptyProps(),
     'logout': emptyProps(),
   },
