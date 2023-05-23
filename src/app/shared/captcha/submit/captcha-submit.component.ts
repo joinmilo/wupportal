@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from "@angular/material/dialog";
+import { Store } from '@ngrx/store';
 import { Subject, filter } from "rxjs";
+import { selectIsLoading } from 'src/app/core/state/core.selectors';
 import { CaptchaDialogComponent } from '../dialog/captcha-dialog.component';
 
 @Component({
@@ -23,10 +25,13 @@ export class CaptchaSubmitComponent implements OnDestroy {
 
   public form = new FormGroup({});
 
+  public loading = this.store.select(selectIsLoading);
+
   private destroy = new Subject<void>();
 
   constructor(
     private dialog: MatDialog,
+    private store: Store,
   ) { }
 
   public submit(): void {

@@ -2,7 +2,7 @@
   <button mat-flat-button
     color="primary"
     type="submit"
-    [disabled]="disabled">
+    [disabled]="disabled || (loading | async)">
       <span [appLabel]="label"></span>
   </button>
 </form>
