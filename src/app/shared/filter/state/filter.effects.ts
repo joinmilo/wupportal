@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { EventTargetGroupEntity, GetEventTargetGroupsGQL } from 'src/schema/schema';
-import { EventFilterActions } from './event-filter.actions';
+import { FilterActions } from './filter.actions';
 
 @Injectable()
-export class EventFilterEffects {
+export class FilterEffects {
 
-  getEventTargetGroups = createEffect(() => this.actions.pipe(
-    ofType(EventFilterActions.getTargetGroups),
+  getTargetGroups = createEffect(() => this.actions.pipe(
+    ofType(FilterActions.getTargetGroups),
     switchMap(() => this.getTargetGroupsService.watch().valueChanges),
-    map(response => EventFilterActions.setTargetGroups(response.data.getEventTargetGroups?.result as EventTargetGroupEntity[]))
+    map(response => FilterActions.setTargetGroups(response.data.getEventTargetGroups?.result as EventTargetGroupEntity[]))
   ));
 
   constructor(

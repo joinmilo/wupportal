@@ -9,7 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { CardModule } from 'src/app/shared/card/card.module';
-import { EventFilterModule } from 'src/app/shared/event-filter/event-filter.module';
+import { FilterModule } from 'src/app/shared/filter/filter.module';
 import { FormModule } from 'src/app/shared/form/form.module';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
@@ -19,7 +19,7 @@ import { PortalEventOverviewComponent } from './components/overview/portal-event
 import { PortalEventTableViewComponent } from './components/table-view/portal-event-table-view.component';
 import { portalEventOverviewStateKey } from './constants/portal-event-overview.constant';
 import { PortalEventOverviewRoutingModule } from './portal-event-overview-routing.module';
-import { QueryRouterService } from './services/query-router.service';
+import { PortalEventOverviewFilterService } from './services/portal-event-overview-filter.service';
 import { PortalEventOverviewEffects } from './state/portal-event-overview.effects';
 import { portalEventOverviewReducer } from './state/portal-event-overview.reducer';
 
@@ -44,7 +44,7 @@ const materials = [
 const modules = [
   CoreModule,
   CardModule,
-  EventFilterModule,
+  FilterModule,
   PortalEventOverviewRoutingModule,
   FormModule,
   TableModule,
@@ -58,8 +58,8 @@ const libs = [
 ];
 
 const providers = [
-  QueryRouterService
-];
+  PortalEventOverviewFilterService,
+]
 
 @NgModule({
   declarations: [...components],
@@ -70,8 +70,6 @@ const providers = [
     ...libs,
   ],
   exports: [...components],
-  providers: [
-    ...providers
-  ]
+  providers: [...providers]
 })
 export class PortalEventOverviewModule { }

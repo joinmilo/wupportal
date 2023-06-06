@@ -9,11 +9,9 @@ export const PortalEventOverviewActions = createActionGroup({
     'set sponsored event': (event: Maybe<EventEntity>) => ({ event }),
 
     'display changed': (displayType?: DisplayType) => ({ displayType }),
-    'set params': (params: FilterSortPaginateInput) => ({ params }),
-    'set overview data': (events: EventEntity[]) => ({ events }),
+    'set overview data': (events: PageableList_EventEntity) => ({ events }),
 
-    'set table params': (params: FilterSortPaginateInput) => ({ params }),
-    'set table data': (result: PageableList_EventEntity) => ({ result }),
+    'params updated': (params: FilterSortPaginateInput) => ({ params }),
   }
 });
 

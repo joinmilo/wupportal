@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction, SortPaginate } from 'src/app/shared/table/typings/table';
+import { Column, RowAction } from 'src/app/shared/table/typings/table';
 import { EventEntity } from 'src/schema/schema';
-import { PortalEventOverviewActions } from '../../state/portal-event-overview.actions';
-import { selectTableData } from '../../state/portal-event-overview.selectors';
+import { selectOverviewData } from '../../state/portal-event-overview.selectors';
 
 @Component({
   selector: 'app-portal-event-table-view',
@@ -13,7 +12,7 @@ import { selectTableData } from '../../state/portal-event-overview.selectors';
 })
 export class PortalEventTableViewComponent {
 
-  public events = this.store.select(selectTableData);
+  public events = this.store.select(selectOverviewData);
 
   public actions: RowAction<EventEntity>[] = [
     { type: 'LIKE' },
@@ -46,9 +45,4 @@ export class PortalEventTableViewComponent {
     private store: Store,
     private translationService: TranslationService,
   ) { }
-
-  public sortPaginate(event: SortPaginate) {
-    this.store.dispatch(PortalEventOverviewActions.setTableParams(event));
-  }
-
 }

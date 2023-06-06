@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnDestroy {
   ) { }
 
   onSubmit(captchaToken: string, formDirective: FormGroupDirective) {
+
     this.store.dispatch(UserActions.register({
       email: this.form.value.email,
       password: this.form.value.password,

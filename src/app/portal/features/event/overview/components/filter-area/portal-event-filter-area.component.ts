@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { collapse } from 'src/app/core/animations/animations';
 import { DisplayType } from 'src/app/core/typings/overview-display';
-import { categoryGroupQueryParam, currentOnlyQueryParam, freeOnlyQueryParam, suburbGroupQueryParam, targetGroupQueryParam } from 'src/app/shared/event-filter/constants/event-filter.constants';
+import { FilterActions } from 'src/app/shared/filter/state/filter.actions';
+import { selectFiltersActive } from 'src/app/shared/filter/state/filter.selectors';
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { displayQueryParam } from '../../constants/portal-event-overview.constant';
+import { PortalEventOverviewFilterService } from '../../services/portal-event-overview-filter.service';
 import { PortalEventOverviewActions } from '../../state/portal-event-overview.actions';
-import { selectFiltersActive, selectSponsoredEvent } from '../../state/portal-event-overview.selectors';
+import { selectSponsoredEvent } from '../../state/portal-event-overview.selectors';
 
 @Component({
   selector: 'app-portal-event-filter-area',
@@ -49,19 +51,14 @@ export class PortalEventFilterAreaComponent implements OnDestroy {
   public filtersCollapsed = true;
 
   public display?: DisplayType;
-
   public displayQueryParam = displayQueryParam;
-  public categoryGroupQueryParam = categoryGroupQueryParam;
-  public currentOnlyQueryParam = currentOnlyQueryParam;
-  public freeOnlyQueryParam = freeOnlyQueryParam;
-  public targetGroupQueryParam = targetGroupQueryParam;
-  public suburbGroupQueryParam = suburbGroupQueryParam;
 
   private destroy = new Subject<void>();
   
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store, 
+    private filterService: PortalEventOverviewFilterService,
+    private store: Store,
   ) {
     this.store.dispatch(PortalEventOverviewActions.getSponsoredEvent());
 
@@ -71,6 +68,14 @@ export class PortalEventFilterAreaComponent implements OnDestroy {
         this.display = queryParams[this.displayQueryParam] || DisplayType.Category;
         this.store.dispatch(PortalEventOverviewActions.displayChanged(this.display));
       });
+
+    this.filterService.watchFilters()
+      .pipe(takeUntil(this.destroy))
+      .subscribe();
+  }
+
+  public clearFilters(): void {
+    this.store.dispatch(FilterActions.clearAll());
   }
 
   public ngOnDestroy(): void {

@@ -29,7 +29,9 @@ function refreshListener(response: any): void {
 }
 
 function refreshFailed(): void {
-  bootstrap();
+  bootstrap([
+    { provide: APP_AUTH_TOKENS, useValue: undefined }
+  ]);
 }
 
 function bootstrap(extraProviders?: StaticProvider[] | undefined): void {

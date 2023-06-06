@@ -10,12 +10,6 @@ export const selectSponsoredEvent = createSelector(
   state => state.sponsoredEvent
 );
 
-export const selectFiltersActive = createSelector(
-  selectPortalEventOverviewState,
-  state => !!(state.params?.expression?.conjunction?.operands?.length
-   || state.params?.expression?.entity?.value)
-);
-
 export const selectDisplayType = createSelector(
   selectPortalEventOverviewState,
   state => state.displayType
@@ -29,24 +23,14 @@ export const selectOverviewData = createSelector(
 export const selectOverviewDataCategories = createSelector(
   selectOverviewData,
   events => {
-    return events?.reduce((result, current) => {
-      const existing = result.find(category => category.id === current.category?.id);
+    return events?.result?.reduce((result, current) => {
+      const existing = result.find(category => category.id === current?.category?.id);
       
       existing
         ? existing.events?.push(current)
-        : result.push({ ...current.category, events: [current] } as EventCategoryEntity);
+        : result.push({ ...current?.category, events: [current] } as EventCategoryEntity);
 
       return result;
     }, [] as EventCategoryEntity[]);
   }
-);
-
-export const selectTableData = createSelector(
-  selectPortalEventOverviewState,
-  state => state.tableData
-);
-
-export const selectTableParams = createSelector(
-  selectPortalEventOverviewState,
-  state => state.tableParams
 );

@@ -3,8 +3,9 @@
   color: var(--color-success-500);
 }
 
-span {
-  margin: 0 1rem;
+div {
+  display: flex;
+  gap: 1rem;
 }
 
 :host ::ng-deep {

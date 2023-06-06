@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { EventTargetgroupFilterComponent } from './components/targetgroup/event-targetgroup-filter.component';
-import { eventFilterStateKey } from './constants/event-filter.constants';
-import { EventFilterEffects } from './state/event-filter.effects';
-import { eventFilterReducer } from './state/event-filter.reducer';
+import { FilterTargetgroupComponent } from './components/event-targetgroup/filter-targetgroup.component';
+import { filterStateKey } from './constants/filter.constants';
+import { FilterEffects } from './state/filter.effects';
+import { filterReducer } from './state/filter.reducer';
 
 const components = [
-  EventTargetgroupFilterComponent
+  FilterTargetgroupComponent
 ];
 
 const framework = [
@@ -20,6 +21,7 @@ const framework = [
 ];
 
 const materials = [
+  MatFormFieldModule,
   MatSelectModule,
 ];
 
@@ -28,9 +30,9 @@ const modules = [
 ];
 
 const libs = [
-  StoreModule.forFeature(eventFilterStateKey, eventFilterReducer),
-  EffectsModule.forFeature([EventFilterEffects]),
-]
+  StoreModule.forFeature(filterStateKey, filterReducer),
+  EffectsModule.forFeature([FilterEffects]),
+];
 
 @NgModule({
   declarations: [...components],
@@ -42,4 +44,4 @@ const libs = [
   ],
   exports: [...components],
 })
-export class EventFilterModule { }
+export class FilterModule { }

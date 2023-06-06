@@ -6,9 +6,15 @@
   </app-sponsored-card>
   <app-portal-event-filter-area></app-portal-event-filter-area>
   <ng-container [ngSwitch]="displayType | async">
+    
     <span *ngSwitchCase="'calendar'">Kalender</span>
-    <app-portal-event-category-view *ngSwitchCase="'category'"></app-portal-event-category-view>
+    
+    <app-portal-event-category-view *ngSwitchCase="'category'">
+    </app-portal-event-category-view>
+    
     <span *ngSwitchCase="'map'">Karte</span>
-    <app-portal-event-table-view *ngSwitchCase="'list'">Liste</app-portal-event-table-view>
+
+    <app-portal-event-table-view *ngSwitchCase="'list'">
+    </app-portal-event-table-view>
   </ng-container>
 </div>
