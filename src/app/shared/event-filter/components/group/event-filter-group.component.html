@@ -1,11 +1,8 @@
 <div class="container">
   <section>
-    <app-radio-button-group
-      [inputs]="inputs"
-      [initValue]="defaultDisplay"
-      [queryParamKey]="displayQueryParam"
-      (valueChanged)="displayChanged($event)">
-    </app-radio-button-group>
+
+    <ng-content></ng-content>
+    
     <button mat-raised-button
       (click)="filtersCollapsed = !filtersCollapsed"
       [class.active] = "!filtersCollapsed">
@@ -19,14 +16,14 @@
   <mat-card [@collapse]="!filtersCollapsed">
     <mat-card-content>
 
-      <app-filter-targetgroup>
-      </app-filter-targetgroup>
+      <app-event-filter-targetgroup>
+      </app-event-filter-targetgroup>
 
-      <app-filter-event-category>
-      </app-filter-event-category>
+      <app-event-filter-category>
+      </app-event-filter-category>
 
-      <app-filter-free-only>
-      </app-filter-free-only>
+      <app-event-filter-free-only>
+      </app-event-filter-free-only>
 
     </mat-card-content>
     <mat-card-actions>

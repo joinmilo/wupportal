@@ -1,6 +1,6 @@
-export const filterStateKey = 'filterState';
+export const eventFilterStateKey = 'eventFilterState';
 
-export const enum FilterQueryParams {
+export const enum EventFilterDefinition {
   targetGroups = 'targetgroups',
   suburbs = 'suburbs',
   categories = 'categories',

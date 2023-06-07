@@ -5,19 +5,19 @@ import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil, tap } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
-import { FilterQueryParams } from '../../constants/filter.constants';
-import { FilterActions } from '../../state/filter.actions';
-import { selectEventCategories } from '../../state/filter.selectors';
+import { EventFilterDefinition } from '../../constants/event-filter.constants';
+import { EventFilterActions } from '../../state/event-filter.actions';
+import { selectTargetGroups } from '../../state/event-filter.selectors';
 
 @Component({
-  selector: 'app-filter-event-category',
-  templateUrl: './filter-event-category.component.html',
-  styleUrls: ['./filter-event-category.component.scss']
+  selector: 'app-event-filter-targetgroup',
+  templateUrl: './event-filter-targetgroup.component.html',
+  styleUrls: ['./event-filter-targetgroup.component.scss']
 })
-export class FilterEventCategoryComponent implements OnInit, OnDestroy {
+export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
 
   @Input()
-  public queryParamKey = FilterQueryParams.categories;
+  public queryParamKey = EventFilterDefinition.targetGroups;
 
   @Output()
   public valueChanged = new EventEmitter<Maybe<string[]> | undefined>();
@@ -26,9 +26,9 @@ export class FilterEventCategoryComponent implements OnInit, OnDestroy {
 
   private destroy = new Subject<void>();
 
-  public categories = this.store.select(selectEventCategories).pipe(
-    tap(categories => !categories?.length
-      && this.store.dispatch(FilterActions.getEventCategories()))
+  public targetGroups = this.store.select(selectTargetGroups).pipe(
+    tap(targetGroups => !targetGroups?.length
+      && this.store.dispatch(EventFilterActions.getTargetGroups()))
   );
 
   constructor(
@@ -40,7 +40,7 @@ export class FilterEventCategoryComponent implements OnInit, OnDestroy {
     this.watchClear();
     this.watchValueChange();
   }
-  
+
   public ngOnInit(): void {
     this.queryParamKey && this.activatedRoute.queryParams
       .pipe(take(1))
@@ -58,9 +58,11 @@ export class FilterEventCategoryComponent implements OnInit, OnDestroy {
   private watchClear(): void {
     //TODO: This seems hacky to subscribe to actions within a component
     this.actions.pipe(
-      ofType(FilterActions.clearAll),
+      ofType(EventFilterActions.clearAll),
       takeUntil(this.destroy)
-    ).subscribe(() => this.control.patchValue(undefined));
+    ).subscribe(() => this.control.setValue(undefined, {
+      emitEvent: false,
+    }));
   }
 
   private watchValueChange(): void {
@@ -71,22 +73,22 @@ export class FilterEventCategoryComponent implements OnInit, OnDestroy {
           this.router.navigate([], {
             relativeTo: this.activatedRoute,
             queryParams: {
-              [this.queryParamKey || '']: ids
+              [this.queryParamKey]: ids
             },
             queryParamsHandling: 'merge',
           });
         }
 
         this.valueChanged.emit(ids);
-        this.store.dispatch(FilterActions.selectedEventCategories(ids));
+        this.store.dispatch(EventFilterActions.selectedTargetGroups(ids));
       });
   }
 
   public ngOnDestroy(): void {
-    this.control.patchValue(undefined);
+    this.control.setValue(undefined);
 
     this.destroy.next();
     this.destroy.complete();
   }
-
+  
 }

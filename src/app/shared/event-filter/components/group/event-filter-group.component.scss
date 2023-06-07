@@ -34,6 +34,7 @@ mat-card {
 mat-card-content {
   display: flex;
   flex-flow: wrap;
+  align-items: center;
   gap: 1rem;
 }
 

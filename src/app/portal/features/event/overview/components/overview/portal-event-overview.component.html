@@ -5,10 +5,16 @@
     [data]="sponsored | async">
   </app-sponsored-card>
 
-  <app-portal-event-filter-area>
-  </app-portal-event-filter-area>
-  
-  <ng-container [ngSwitch]="displayType | async">
+  <app-event-filter-group>
+    <app-radio-button-group
+      [inputs]="inputs"
+      [initValue]="displayType"
+      [queryParamKey]="displayQueryParam"
+      (valueChanged)="displayType = $event">
+    </app-radio-button-group>
+  </app-event-filter-group>
+
+  <ng-container [ngSwitch]="displayType">
     
     <span *ngSwitchCase="'calendar'">Kalender</span>
     
@@ -19,5 +25,6 @@
 
     <app-portal-event-table-view *ngSwitchCase="'list'">
     </app-portal-event-table-view>
+
   </ng-container>
 </div>

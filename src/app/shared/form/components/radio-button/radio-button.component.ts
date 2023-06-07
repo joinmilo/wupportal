@@ -30,7 +30,6 @@ export class RadioButtonComponent<T> implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    console.log('test', this.initValue);
     this.initValue && (this.checked = this.input?.value === this.initValue);
     this.value?.subscribe(value =>
       this.checked = this.input?.value === value);

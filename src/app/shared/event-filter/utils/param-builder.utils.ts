@@ -1,7 +1,7 @@
 import { ConjunctionOperator, FilterSortPaginateInput, Maybe, QueryExpressionInput, QueryOperator } from 'src/schema/schema';
-import { OverviewFilterQueryParams } from '../typings/query-param';
+import { EventFilterQueryParams } from '../typings/event-filter-query-param';
 
-export const createParams = (queryParams?: OverviewFilterQueryParams) => {
+export const createParams = (queryParams?: EventFilterQueryParams) => {
   const params = {
     expression: {
       conjunction: {
