@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction } from 'src/app/shared/table/typings/table';
+import { Column, RowAction, SortPaginate } from 'src/app/shared/table/typings/table';
 import { EventEntity } from 'src/schema/schema';
 import { selectOverviewData } from '../../state/portal-event-overview.selectors';
 
@@ -13,6 +13,9 @@ import { selectOverviewData } from '../../state/portal-event-overview.selectors'
 export class PortalEventTableViewComponent {
 
   public events = this.store.select(selectOverviewData);
+
+  @Output()
+  public sortPaginate = new EventEmitter<SortPaginate>();
 
   public actions: RowAction<EventEntity>[] = [
     { type: 'LIKE' },

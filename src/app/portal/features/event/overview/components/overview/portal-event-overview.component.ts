@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DisplayType } from 'src/app/core/typings/overview-display';
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
+import { FilterSortPaginateInput } from 'src/schema/schema';
 import { displayQueryParam } from '../../constants/portal-event-overview.constant';
 import { PortalEventOverviewFilterService } from '../../services/portal-event-overview-filter.service';
 import { PortalEventOverviewActions } from '../../state/portal-event-overview.actions';
@@ -48,8 +49,13 @@ export class PortalEventOverviewComponent {
     private filterService: PortalEventOverviewFilterService,
   ) {
     this.store.dispatch(PortalEventOverviewActions.getSponsoredEvent());
+    this.store.dispatch(PortalEventOverviewActions.updateParams({}));
 
-    this.filterService.watchFilters().subscribe();
+    // this.filterService.watchFilters().subscribe();
+  }
+
+  public updateParams(params: FilterSortPaginateInput) {
+    this.store.dispatch(PortalEventOverviewActions.updateParams(params));
   }
 
 }

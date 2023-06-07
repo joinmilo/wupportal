@@ -23,12 +23,12 @@ export const selectTargetGroups = createSelector(
   state => state.targetGroups
 );
 
-export const selectParams = createSelector(
+export const selectRawFilterParams = createSelector(
   selectEventFilterState,
   state => state?.params
 );
 
-export const selectFilterParams = createSelector(
-  selectParams,
+export const selectEventFilterParams = createSelector(
+  selectRawFilterParams,
   params => createParams(params)
 );

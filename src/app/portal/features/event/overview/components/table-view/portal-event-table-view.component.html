@@ -1,5 +1,6 @@
 <app-table
   [actions]="actions"
   [data]="events"
-  [columns]="columns">
+  [columns]="columns"
+  (sortPaginate)="sortPaginate.emit($event)">
 </app-table>

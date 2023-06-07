@@ -39,15 +39,12 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.queryParams && this.activatedRoute.queryParams
       .pipe(take(1))
-      .subscribe((params: SortPaginate) => {
-        this.initParams = {
-          dir: params.dir,
-          page: params.page ?? 0,
-          size: params.size ?? 10,
-          sort: params.sort
-        };
-        this.store.dispatch(TableActions.setSortPagination(this.initParams));
-      });
+      .subscribe((params: SortPaginate) => this.emitSortPaginate(this.initParams = {
+        dir: params.dir,
+        page: params.page ?? 0,
+        size: params.size ?? 10,
+        sort: params.sort
+      }));
   }
 
   public emitSortPaginate(sortPage: SortPaginate): void {

@@ -4,9 +4,8 @@ import { PortalEventOverviewActions } from './portal-event-overview.actions';
 
 export interface PortalEventOverviewState {
   overviewData?: PageableList_EventEntity,
+  params?: FilterSortPaginateInput,
   sponsoredEvent?: Maybe<EventEntity>,
-  tableData?: PageableList_EventEntity,
-  tableParams?: FilterSortPaginateInput,
 }
 
 export const initialState: PortalEventOverviewState = { };
@@ -16,6 +15,10 @@ export const portalEventOverviewReducer = createReducer(
 
   on(PortalEventOverviewActions.setSponsoredEvent, (state, action): PortalEventOverviewState => (
     { ...state, sponsoredEvent: action.event }
+  )),
+  
+  on(PortalEventOverviewActions.paramsUpdated, (state, action): PortalEventOverviewState => (
+    { ...state, params: action.params }
   )),
 
   on(PortalEventOverviewActions.setOverviewData, (state, action): PortalEventOverviewState => (

@@ -15,6 +15,11 @@ export const selectOverviewData = createSelector(
   state => state.overviewData
 );
 
+export const selectParams = createSelector(
+  selectPortalEventOverviewState,
+  state => state.params
+);
+
 export const selectOverviewDataCategories = createSelector(
   selectOverviewData,
   events => {

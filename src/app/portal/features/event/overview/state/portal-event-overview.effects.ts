@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { map, switchMap, tap, withLatestFrom } from 'rxjs';
 import { EventEntity, GetEventGQL, GetEventsGQL, PageableList_EventEntity } from 'src/schema/schema';
 import { PortalEventOverviewActions } from './portal-event-overview.actions';
+import { selectParams } from './portal-event-overview.selectors';
 
 @Injectable()
 export class PortalEventOverviewEffects {
@@ -17,8 +19,16 @@ export class PortalEventOverviewEffects {
     map(response => PortalEventOverviewActions.setSponsoredEvent(response.data.getEvent as EventEntity))
   ));
 
-  setParams = createEffect(() => this.actions.pipe(
+  updateParams = createEffect(() => this.actions.pipe(
+    ofType(PortalEventOverviewActions.updateParams),
+    withLatestFrom(this.store.select(selectParams)),
+    map(([action, currentParams]) => Object.assign({ ...currentParams } || {}, action.params)),
+    map(params => PortalEventOverviewActions.paramsUpdated(params))
+  ));
+
+  paramsUpdated = createEffect(() => this.actions.pipe(
     ofType(PortalEventOverviewActions.paramsUpdated),
+    tap(test => console.log(test)),
     switchMap(action => this.getEvents.watch({ 
       params: action.params,
     }).valueChanges),
@@ -29,5 +39,6 @@ export class PortalEventOverviewEffects {
     private actions: Actions,
     private getEvent: GetEventGQL,
     private getEvents: GetEventsGQL,
+    private store: Store,
   ) {}
 }

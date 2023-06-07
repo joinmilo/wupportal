@@ -9,6 +9,7 @@ export const PortalEventOverviewActions = createActionGroup({
 
     'set overview data': (events: PageableList_EventEntity) => ({ events }),
 
+    'update params': (params: FilterSortPaginateInput) => ({ params }),
     'params updated': (params: FilterSortPaginateInput) => ({ params }),
   }
 });
