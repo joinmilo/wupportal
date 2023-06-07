@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, take } from 'rxjs';
-import { TableActions } from '../state/table.actions';
 import { Column, PageableList, RowAction, SortPaginate } from '../typings/table';
 
 @Component({
@@ -50,8 +49,6 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   public emitSortPaginate(sortPage: SortPaginate): void {
     this.sortPaginate.emit(sortPage);
 
-    this.store.dispatch(TableActions.setSortPagination(sortPage));
-
     if (this.queryParams) {
       this.router.navigate([], {
         relativeTo: this.activatedRoute,
@@ -62,7 +59,6 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.store.dispatch(TableActions.setSortPagination(undefined));
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {

@@ -11,17 +11,17 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { EventFilterCategoryComponent } from './components/category/event-filter-category.component';
+import { EventFilterComponent } from './components/event-filter.component';
 import { EventFilterFreeOnlyComponent } from './components/free-only/event-filter-free-only.component';
-import { EventFilterGroupComponent } from './components/group/event-filter-group.component';
 import { EventFilterTargetgroupComponent } from './components/targetgroup/event-filter-targetgroup.component';
 import { eventFilterStateKey } from './constants/event-filter.constants';
 import { EventFilterEffects } from './state/event-filter.effects';
 import { eventFilterReducer } from './state/event-filter.reducer';
 
 const components = [
+  EventFilterComponent,
   EventFilterCategoryComponent,
   EventFilterFreeOnlyComponent,
-  EventFilterGroupComponent,
   EventFilterTargetgroupComponent,
 ];
 

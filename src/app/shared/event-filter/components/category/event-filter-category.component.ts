@@ -70,7 +70,6 @@ export class EventFilterCategoryComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy))
       .subscribe((ids: Maybe<string[]>) => {
         if (this.queryParamKey) {
-          console.log(this.queryParamKey, ids);
           this.router.navigate([], {
             relativeTo: this.activatedRoute,
             queryParams: {

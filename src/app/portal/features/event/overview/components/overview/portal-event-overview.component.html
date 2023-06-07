@@ -5,7 +5,7 @@
     [data]="sponsored | async">
   </app-sponsored-card>
 
-  <app-event-filter-group
+  <app-event-filter
     (paramsUpdated)="updateParams($event)">
     <app-radio-button-group
       [inputs]="inputs"
@@ -13,7 +13,7 @@
       [queryParamKey]="displayQueryParam"
       (valueChanged)="displayType = $event">
     </app-radio-button-group>
-  </app-event-filter-group>
+  </app-event-filter>
 
   <ng-container [ngSwitch]="displayType">
     

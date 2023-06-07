@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { map, switchMap, tap, withLatestFrom } from 'rxjs';
+import { map, switchMap, withLatestFrom } from 'rxjs';
 import { EventEntity, GetEventGQL, GetEventsGQL, PageableList_EventEntity } from 'src/schema/schema';
 import { PortalEventOverviewActions } from './portal-event-overview.actions';
 import { selectParams } from './portal-event-overview.selectors';
@@ -28,7 +28,6 @@ export class PortalEventOverviewEffects {
 
   paramsUpdated = createEffect(() => this.actions.pipe(
     ofType(PortalEventOverviewActions.paramsUpdated),
-    tap(test => console.log(test)),
     switchMap(action => this.getEvents.watch({ 
       params: action.params,
     }).valueChanges),

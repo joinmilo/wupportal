@@ -4,7 +4,6 @@ import { DisplayType } from 'src/app/core/typings/overview-display';
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { FilterSortPaginateInput } from 'src/schema/schema';
 import { displayQueryParam } from '../../constants/portal-event-overview.constant';
-import { PortalEventOverviewFilterService } from '../../services/portal-event-overview-filter.service';
 import { PortalEventOverviewActions } from '../../state/portal-event-overview.actions';
 import { selectSponsoredEvent } from '../../state/portal-event-overview.selectors';
 
@@ -46,12 +45,8 @@ export class PortalEventOverviewComponent {
   
   constructor(
     private store: Store,
-    private filterService: PortalEventOverviewFilterService,
   ) {
     this.store.dispatch(PortalEventOverviewActions.getSponsoredEvent());
-    this.store.dispatch(PortalEventOverviewActions.updateParams({}));
-
-    // this.filterService.watchFilters().subscribe();
   }
 
   public updateParams(params: FilterSortPaginateInput) {

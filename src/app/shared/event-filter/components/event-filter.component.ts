@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { collapse } from 'src/app/core/animations/animations';
@@ -7,14 +7,14 @@ import { selectEventFilterParams, selectFiltersActive } from 'src/app/shared/eve
 import { FilterSortPaginateInput } from 'src/schema/schema';
 
 @Component({
-  selector: 'app-event-filter-group',
-  templateUrl: './event-filter-group.component.html',
-  styleUrls: ['./event-filter-group.component.scss'],
+  selector: 'app-event-filter',
+  templateUrl: './event-filter.component.html',
+  styleUrls: ['./event-filter.component.scss'],
   animations: [
      collapse()
   ],
 })
-export class EventFilterGroupComponent implements OnDestroy {
+export class EventFilterComponent implements OnInit, OnDestroy {
 
   @Output()
   public paramsUpdated = new EventEmitter<FilterSortPaginateInput>();
@@ -29,7 +29,9 @@ export class EventFilterGroupComponent implements OnDestroy {
     private store: Store,
   ) {
     this.store.dispatch(EventFilterActions.init());
-
+  }
+  
+  ngOnInit(): void {
     this.store.select(selectEventFilterParams)
       .pipe(takeUntil(this.destroy))
       .subscribe(params => this.paramsUpdated.emit(params))
