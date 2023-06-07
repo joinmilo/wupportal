@@ -4,7 +4,10 @@
     entity="EventEntity"
     [data]="sponsored | async">
   </app-sponsored-card>
-  <app-portal-event-filter-area></app-portal-event-filter-area>
+
+  <app-portal-event-filter-area>
+  </app-portal-event-filter-area>
+  
   <ng-container [ngSwitch]="displayType | async">
     
     <span *ngSwitchCase="'calendar'">Kalender</span>

@@ -48,6 +48,7 @@ export class FilterTargetgroupComponent implements OnInit, OnDestroy {
         const value = typeof params[this.queryParamKey] === 'string'
           ? [params[this.queryParamKey]]
           : params[this.queryParamKey];
+
         this.control.setValue(value, {
           emitEvent: false,
         });

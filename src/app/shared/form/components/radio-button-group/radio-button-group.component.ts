@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, take } from 'rxjs';
 import { RadioInput } from '../../typings/radio-input';
 
 @Component({
@@ -15,7 +16,7 @@ import { RadioInput } from '../../typings/radio-input';
     },
   ]
 })
-export class RadioButtonGroupComponent<T> implements ControlValueAccessor {
+export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnInit {
 
   @Input()
   public initValue?: T;
@@ -35,14 +36,42 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor {
 
   public value = this.currentValue.asObservable();
 
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+  ) {}
+
+  public ngOnInit(): void {
+    if (this.queryParamKey) {
+      this.activatedRoute.queryParams
+        .pipe(take(1))
+        .subscribe(params => {
+          if (this.queryParamKey) {
+            this.initValue = params[this.queryParamKey] ?? this.initValue;
+            this.valueChanged.emit(this.initValue);
+          }
+        })
+    }
+  }
+
   public writeValue(value: T): void {
     this.next(value);
   }
 
-  public next(event: T) {
-    this.currentValue.next(event);
-    this.valueChanged.emit(event);
-    this.onChange && this.onChange(event);
+  public next(value: T) {
+    this.currentValue.next(value);
+    this.valueChanged.emit(value);
+    this.onChange && this.onChange(value);
+
+    if (this.queryParamKey) {
+      this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        queryParams: {
+          [this.queryParamKey]: value
+        },
+        queryParamsHandling: 'merge',
+      });
+    }
   }
 
   public registerOnChange(onChange: (value: T) => void): void {

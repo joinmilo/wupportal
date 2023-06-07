@@ -2,8 +2,9 @@
   <section>
     <app-radio-button-group
       [inputs]="inputs"
-      [initValue]="display"
-      [queryParamKey]="displayQueryParam">
+      [initValue]="defaultDisplay"
+      [queryParamKey]="displayQueryParam"
+      (valueChanged)="displayChanged($event)">
     </app-radio-button-group>
     <button mat-raised-button
       (click)="filtersCollapsed = !filtersCollapsed"

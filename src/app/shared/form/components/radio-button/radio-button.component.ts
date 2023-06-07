@@ -21,9 +21,6 @@ export class RadioButtonComponent<T> implements OnInit {
   @Input()
   public initValue?: T;
 
-  @Input()
-  public queryParamKey?: string;
-
   @Output()
   public valueChanged = new EventEmitter<T>();
 
@@ -33,6 +30,7 @@ export class RadioButtonComponent<T> implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    console.log('test', this.initValue);
     this.initValue && (this.checked = this.input?.value === this.initValue);
     this.value?.subscribe(value =>
       this.checked = this.input?.value === value);
@@ -41,16 +39,6 @@ export class RadioButtonComponent<T> implements OnInit {
   public changeSelect(event: MouseEvent): void {
     event.stopPropagation();
     this.valueChanged.emit(this.input?.value as T);
-
-    if (this.queryParamKey) {
-      this.router.navigate([], {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          [this.queryParamKey || '']: this.input?.value
-        },
-        queryParamsHandling: 'merge',
-      });
-    }
   }
 
 }

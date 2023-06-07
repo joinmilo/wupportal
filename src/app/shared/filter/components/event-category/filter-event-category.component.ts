@@ -41,18 +41,19 @@ export class FilterEventCategoryComponent implements OnInit, OnDestroy {
     this.watchValueChange();
   }
   
-    public ngOnInit(): void {
-      this.queryParamKey && this.activatedRoute.queryParams
-        .pipe(take(1))
-        .subscribe(params => {
-          const value = typeof params[this.queryParamKey] === 'string'
-            ? [params[this.queryParamKey]]
-            : params[this.queryParamKey];
-          this.control.setValue(value, {
-            emitEvent: false,
-          });
+  public ngOnInit(): void {
+    this.queryParamKey && this.activatedRoute.queryParams
+      .pipe(take(1))
+      .subscribe(params => {
+        const value = typeof params[this.queryParamKey] === 'string'
+          ? [params[this.queryParamKey]]
+          : params[this.queryParamKey];
+
+        this.control.setValue(value, {
+          emitEvent: false,
         });
-    }
+      });
+  }
 
   private watchClear(): void {
     //TODO: This seems hacky to subscribe to actions within a component

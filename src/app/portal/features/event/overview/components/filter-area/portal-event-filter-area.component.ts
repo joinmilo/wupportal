@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { collapse } from 'src/app/core/animations/animations';
@@ -50,28 +49,24 @@ export class PortalEventFilterAreaComponent implements OnDestroy {
   public filtersActive = this.store.select(selectFiltersActive);
   public filtersCollapsed = true;
 
-  public display?: DisplayType;
+  public defaultDisplay = DisplayType.Category;
   public displayQueryParam = displayQueryParam;
 
   private destroy = new Subject<void>();
   
   constructor(
-    private activatedRoute: ActivatedRoute,
     private filterService: PortalEventOverviewFilterService,
     private store: Store,
   ) {
     this.store.dispatch(PortalEventOverviewActions.getSponsoredEvent());
 
-    this.activatedRoute.queryParams
-      .pipe(takeUntil(this.destroy))
-      .subscribe(queryParams => {
-        this.display = queryParams[this.displayQueryParam] || DisplayType.Category;
-        this.store.dispatch(PortalEventOverviewActions.displayChanged(this.display));
-      });
-
     this.filterService.watchFilters()
       .pipe(takeUntil(this.destroy))
       .subscribe();
+  }
+
+  public displayChanged(value: DisplayType) {
+    this.store.dispatch(PortalEventOverviewActions.displayChanged(value));
   }
 
   public clearFilters(): void {
