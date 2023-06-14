@@ -5,9 +5,9 @@ import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil, tap } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
-import { EventFilterDefinition } from '../../constants/event-filter.constants';
 import { EventFilterActions } from '../../state/event-filter.actions';
 import { selectSuburbs } from '../../state/event-filter.selectors';
+import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
   selector: 'app-event-filter-suburb',
@@ -17,7 +17,7 @@ import { selectSuburbs } from '../../state/event-filter.selectors';
 export class EventFilterSuburbComponent implements OnInit, OnDestroy {
 
   @Input()
-  public queryParamKey = EventFilterDefinition.suburbs;
+  public queryParamKey = EventFilterQueryDefinition.suburbs;
 
   @Output()
   public valueChanged = new EventEmitter<Maybe<string[]> | undefined>();

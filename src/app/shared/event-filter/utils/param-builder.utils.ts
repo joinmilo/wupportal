@@ -1,6 +1,5 @@
 import { ConjunctionOperator, FilterSortPaginateInput, Maybe, QueryExpressionInput, QueryOperator } from 'src/schema/schema';
-import { EventFilterDefinition } from '../constants/event-filter.constants';
-import { EventFilterQueryParams } from '../typings/event-filter-query-param';
+import { EventFilterQueryDefinition, EventFilterQueryParams } from '../typings/event-filter-query-param';
 
 export const createParams = (queryParams: EventFilterQueryParams) => {
   const params = {
@@ -11,7 +10,7 @@ export const createParams = (queryParams: EventFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[EventFilterDefinition.categories]) {
+  if (queryParams[EventFilterQueryDefinition.categories]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.categories,
@@ -20,7 +19,7 @@ export const createParams = (queryParams: EventFilterQueryParams) => {
     );
   }
 
-  if (queryParams[EventFilterDefinition.suburbs]) {
+  if (queryParams[EventFilterQueryDefinition.suburbs]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.suburbs,
@@ -29,7 +28,7 @@ export const createParams = (queryParams: EventFilterQueryParams) => {
     );
   }
 
-  if (queryParams[EventFilterDefinition.targetGroups]) {
+  if (queryParams[EventFilterQueryDefinition.targetGroups]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.targetgroups,
@@ -38,17 +37,35 @@ export const createParams = (queryParams: EventFilterQueryParams) => {
     );
   }
 
-  if (!queryParams[EventFilterDefinition.past]) {
-    params.expression?.conjunction?.operands?.push({
-      entity: {
-        path: 'schedules.startDate',
-        operator: QueryOperator.GreaterOrEqual,
-        value: new Date().toISOString()
-      }
-    });
+  if (!queryParams[EventFilterQueryDefinition.past]) {
+    queryParams[EventFilterQueryDefinition.startDate]
+      || queryParams[EventFilterQueryDefinition.endDate]
+      ? params.expression?.conjunction?.operands?.push(
+          {
+            entity: {
+              path: 'schedules.startDate',
+              operator: QueryOperator.GreaterOrEqual,
+              value: queryParams?.start
+            }
+          },
+          {
+            entity: {
+              path: 'schedules.startDate',
+              operator: QueryOperator.LessOrEqual,
+              value: queryParams?.end
+            }
+          }
+        )
+      : params.expression?.conjunction?.operands?.push({
+          entity: {
+            path: 'schedules.startDate',
+            operator: QueryOperator.GreaterOrEqual,
+            value: new Date().toISOString()
+          }
+        })
   }
 
-  if (queryParams[EventFilterDefinition.freeOnly]) {
+  if (queryParams[EventFilterQueryDefinition.freeOnly]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'entryFee',

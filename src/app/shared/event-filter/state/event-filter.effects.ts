@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, take, tap } from 'rxjs';
 import { EventCategoryEntity, EventTargetGroupEntity, GetEventCategoriesGQL, GetEventTargetGroupsGQL, GetSuburbsGQL, SuburbEntity } from 'src/schema/schema';
-import { EventFilterDefinition } from '../constants/event-filter.constants';
+import { EventFilterQueryDefinition } from '../typings/event-filter-query-param';
 import { EventFilterActions } from './event-filter.actions';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class EventFilterEffects {
     take(1),
     map(queryParams => {
       const params: Record<string, unknown> = {};
-      Object.values(EventFilterDefinition).forEach((value) => {
+      Object.values(EventFilterQueryDefinition).forEach((value) => {
         switch (true) {
           case queryParams[value] === 'true' || queryParams[value] === 'false':
             params[value] = queryParams[value] === 'true';
@@ -34,16 +34,16 @@ export class EventFilterEffects {
   clearAll = createEffect(() => this.actions.pipe(
     ofType(EventFilterActions.clearAll),
     tap(() => {
-      const queryParams: Record<string, unknown> = {};
+      const queryParams: Record<string, undefined> = {};
 
-      Object.values(EventFilterDefinition).forEach((value) =>
+      Object.values(EventFilterQueryDefinition).forEach((value) =>
         queryParams[value] = undefined
       );
 
       this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams,
-      queryParamsHandling: 'merge',
+        relativeTo: this.activatedRoute,
+        queryParams,
+        queryParamsHandling: 'merge',
     });
   }),
   ), { dispatch: false });

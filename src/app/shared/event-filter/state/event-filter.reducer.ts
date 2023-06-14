@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { EventCategoryEntity, EventTargetGroupEntity, Maybe, SuburbEntity } from 'src/schema/schema';
-import { EventFilterDefinition } from '../constants/event-filter.constants';
-import { EventFilterQueryParams } from '../typings/event-filter-query-param';
+import { EventFilterQueryDefinition, EventFilterQueryParams } from '../typings/event-filter-query-param';
 import { EventFilterActions } from './event-filter.actions';
 
 export interface EventFilterState {
@@ -35,7 +34,7 @@ export const eventFilterReducer = createReducer(
       ...state,
       params: {
         ...state.params,
-        [EventFilterDefinition.categories]: action.categoryIds
+        [EventFilterQueryDefinition.categories]: action.categoryIds
       }
     }
   )),
@@ -49,7 +48,7 @@ export const eventFilterReducer = createReducer(
       ...state,
       params: {
         ...state.params,
-        [EventFilterDefinition.suburbs]: action.suburbIds
+        [EventFilterQueryDefinition.suburbs]: action.suburbIds
       }
     }
   )),
@@ -61,7 +60,7 @@ export const eventFilterReducer = createReducer(
   on(EventFilterActions.selectedTargetGroups, (state, action): EventFilterState => (
     { ...state,
       params: {...state.params,
-        [EventFilterDefinition.targetGroups]: action.targetGroupIds
+        [EventFilterQueryDefinition.targetGroups]: action.targetGroupIds
       } 
     }
   )),
@@ -71,7 +70,7 @@ export const eventFilterReducer = createReducer(
       ...state,
       params: {
         ...state.params,
-        [EventFilterDefinition.freeOnly]: action.value
+        [EventFilterQueryDefinition.freeOnly]: action.value
       }
     }
   )),
@@ -81,7 +80,18 @@ export const eventFilterReducer = createReducer(
       ...state,
       params: {
         ...state.params,
-        [EventFilterDefinition.past]: action.value
+        [EventFilterQueryDefinition.past]: action.value
+      }
+    }
+  )),
+
+  on(EventFilterActions.selectedPeriod, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterQueryDefinition.startDate]: action.period?.startDate.toISOString(),
+        [EventFilterQueryDefinition.endDate]: action.period?.endDate.toISOString()
       }
     }
   )),

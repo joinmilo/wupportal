@@ -8,9 +8,14 @@ export const selectEventFilterState = createFeatureSelector<EventFilterState>(ev
 export const selectFiltersActive = createSelector(
   selectEventFilterState,
   state => state?.params
-    && Object.values(state.params).some((value) => typeof value === 'boolean'
-      ? value
-      : !!value?.length)
+    && Object.values(state.params).some((value) => {
+      switch(true) {
+        case Array.isArray(value):
+          return !!(value as Array<unknown>)?.length;
+        default:
+          return !!value;
+      }
+    })
 );
 
 export const selectCategories = createSelector(

@@ -5,9 +5,9 @@ import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil, tap } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
-import { EventFilterDefinition } from '../../constants/event-filter.constants';
 import { EventFilterActions } from '../../state/event-filter.actions';
 import { selectTargetGroups } from '../../state/event-filter.selectors';
+import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
   selector: 'app-event-filter-targetgroup',
@@ -17,7 +17,7 @@ import { selectTargetGroups } from '../../state/event-filter.selectors';
 export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
 
   @Input()
-  public queryParamKey = EventFilterDefinition.targetGroups;
+  public queryParamKey = EventFilterQueryDefinition.targetGroups;
 
   @Output()
   public valueChanged = new EventEmitter<Maybe<string[]> | undefined>();

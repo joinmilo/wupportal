@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Period } from 'src/app/core/typings/period';
 import { Maybe } from 'src/schema/schema';
-import { EventFilterDefinition } from '../../constants/event-filter.constants';
 import { EventFilterActions } from '../../state/event-filter.actions';
+import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
   selector: 'app-event-filter-date',
@@ -20,10 +20,10 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
   public disabled?: Maybe<boolean>;
 
   @Input()
-  public queryParamStartKey = EventFilterDefinition.start;
+  public queryParamStartKey = EventFilterQueryDefinition.startDate;
 
   @Input()
-  public queryParamEndKey = EventFilterDefinition.end;
+  public queryParamEndKey = EventFilterQueryDefinition.endDate;
 
   @Output()
   public valueChanged = new EventEmitter<Period>();
@@ -102,19 +102,18 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
     this.form.controls.endDate.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe(endDate => {
-        if (this.form.value.startDate && endDate && this.emitEvent) {
-          endDate.setHours(23, 59, 59, 999);
+        if (!isNaN(this.form.value?.startDate?.valueOf() || NaN)
+          && !isNaN(endDate?.valueOf() || NaN)
+          && this.emitEvent) {
+          endDate?.setHours(23, 59, 59, 999);
+          this.form.value.startDate?.setHours(0, 0 , 0, 0);
           
           if (this.queryParamStartKey || this.queryParamEndKey) {
             this.router.navigate([], {
               relativeTo: this.activatedRoute,
               queryParams: {
-                [this.queryParamStartKey]: this.form.value.startDate && !isNaN(this.form.value.startDate.valueOf())
-                  ? this.form.value.startDate.toISOString()
-                  : undefined,
-                [this.queryParamEndKey]: !isNaN(endDate.valueOf())
-                  ? endDate.toISOString()
-                  : undefined,
+                [this.queryParamStartKey]: this.form.value.startDate?.toISOString(),
+                [this.queryParamEndKey]: endDate?.toISOString(),
               },
               queryParamsHandling: 'merge',
             });

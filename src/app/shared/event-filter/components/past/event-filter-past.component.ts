@@ -5,8 +5,8 @@ import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
-import { EventFilterDefinition } from '../../constants/event-filter.constants';
 import { EventFilterActions } from '../../state/event-filter.actions';
+import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
   selector: 'app-event-filter-past',
@@ -16,7 +16,7 @@ import { EventFilterActions } from '../../state/event-filter.actions';
 export class EventFilterPastComponent implements OnInit, OnDestroy {
 
   @Input()
-  public queryParamKey = EventFilterDefinition.past;
+  public queryParamKey = EventFilterQueryDefinition.past;
 
   @Output()
   public valueChanged = new EventEmitter<Maybe<boolean> | undefined>();
