@@ -5,8 +5,7 @@
     [data]="sponsored | async">
   </app-sponsored-card>
 
-  <app-event-filter
-    (paramsUpdated)="updateParams($event)">
+  <app-event-filter (paramsUpdated)="updateParams($event)">
     <app-radio-button-group
       [inputs]="inputs"
       [initValue]="displayType"
@@ -18,16 +17,17 @@
   <ng-container *ngIf="(events | async)?.total; else emptyResult">
     <ng-container [ngSwitch]="displayType">
       
-      <span *ngSwitchCase="'calendar'">Kalender</span>
+      <app-portal-event-overview-calendar *ngSwitchCase="'calendar'">
+      </app-portal-event-overview-calendar>
       
-      <app-portal-event-category-view *ngSwitchCase="'category'">
-      </app-portal-event-category-view>
+      <app-portal-event-overview-category *ngSwitchCase="'category'">
+      </app-portal-event-overview-category>
       
       <span *ngSwitchCase="'map'">Karte</span>
   
-      <app-portal-event-table-view *ngSwitchCase="'list'"
+      <app-portal-event-overview-table *ngSwitchCase="'list'"
         (sortPaginate)="updateParams($event)">
-      </app-portal-event-table-view>
+      </app-portal-event-overview-table>
   
     </ng-container>
   </ng-container>

@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { DisplayType } from 'src/app/core/typings/overview-display';
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { FilterSortPaginateInput } from 'src/schema/schema';
-import { displayQueryParam } from '../../constants/portal-event-overview.constant';
-import { PortalEventOverviewActions } from '../../state/portal-event-overview.actions';
-import { selectOverviewData, selectSponsoredEvent } from '../../state/portal-event-overview.selectors';
+import { displayQueryParam } from '../constants/portal-event-overview.constant';
+import { PortalEventOverviewActions } from '../state/portal-event-overview.actions';
+import { selectOverviewData, selectSponsoredEvent } from '../state/portal-event-overview.selectors';
 
 @Component({
   selector: 'app-portal-event-overview',

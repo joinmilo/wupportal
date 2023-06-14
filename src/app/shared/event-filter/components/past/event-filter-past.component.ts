@@ -1,11 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
-import { EventFilterActions } from '../../state/event-filter.actions';
 import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
@@ -26,35 +23,21 @@ export class EventFilterPastComponent implements OnInit, OnDestroy {
   private destroy = new Subject<void>();
 
   constructor(
-    private actions: Actions,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private store: Store,
   ) {
-
-    this.watchClear();
     this.watchValueChange();
   }
 
   public ngOnInit(): void {
     this.queryParamKey && this.activatedRoute.queryParams
-      .pipe(take(1))
+      .pipe(takeUntil(this.destroy))
       .subscribe(params => {
         const value = params[this.queryParamKey];
         this.control.setValue(value?.toLowerCase?.() === 'true', {
           emitEvent: false,
         });
       });
-  }
-
-  private watchClear(): void {
-    //TODO: This seems hacky to subscribe to actions within a component
-    this.actions.pipe(
-      ofType(EventFilterActions.clearAll),
-      takeUntil(this.destroy)
-    ).subscribe(() => this.control.setValue(undefined, {
-      emitEvent: false,
-    }));
   }
 
   private watchValueChange(): void {
@@ -72,7 +55,6 @@ export class EventFilterPastComponent implements OnInit, OnDestroy {
         }
 
         this.valueChanged.emit(value);
-        this.store.dispatch(EventFilterActions.selectedPast(value));
       });
   }
 

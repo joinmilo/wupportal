@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, take, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import { EventCategoryEntity, EventTargetGroupEntity, GetEventCategoriesGQL, GetEventTargetGroupsGQL, GetSuburbsGQL, SuburbEntity } from 'src/schema/schema';
 import { EventFilterQueryDefinition } from '../typings/event-filter-query-param';
 import { EventFilterActions } from './event-filter.actions';
@@ -9,24 +9,21 @@ import { EventFilterActions } from './event-filter.actions';
 @Injectable()
 export class EventFilterEffects {
 
-  init = createEffect(() => this.actions.pipe(
-    ofType(EventFilterActions.init),
-    switchMap(() => this.activatedRoute.queryParams),
-    take(1),
-    map(queryParams => {
+  update = createEffect(() => this.actions.pipe(
+    ofType(EventFilterActions.update),
+    map(action => {
       const params: Record<string, unknown> = {};
       Object.values(EventFilterQueryDefinition).forEach((value) => {
         switch (true) {
-          case queryParams[value] === 'true' || queryParams[value] === 'false':
-            params[value] = queryParams[value] === 'true';
+          case action.params[value] === 'true' || action.params[value] === 'false':
+            params[value] = action.params[value] === 'true';
             break;
           default:
-            params[value] = queryParams[value];
+            params[value] = action.params[value];
         }
       });
-
-      return EventFilterActions.initialized(params);
-    })
+      return EventFilterActions.updated(params);
+    })  
   ));
 
   // Normally this should be handled within the components but because of merge

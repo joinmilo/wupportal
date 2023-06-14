@@ -11,13 +11,13 @@ export class CalendarPageFeatureEffects {
   getEvents = createEffect(() => this.actions.pipe(
     ofType(CalendarPageFeatureActions.daySelected),
     switchMap((action) => this.calendarApiService.getEventsByDate(action.day as Period)),
-    map(events => CalendarPageFeatureActions.setEvents(events))
+    map(events => CalendarPageFeatureActions.setEvents(events)),
   ));
 
   getSchedules = createEffect(() => this.actions.pipe(
     ofType(CalendarPageFeatureActions.monthSelected),
     switchMap(action => this.calendarApiService.getMonthlySchedules(action.month as Period)),
-    map(schedules => CalendarPageFeatureActions.setSchedules(schedules))
+    map(schedules => CalendarPageFeatureActions.setSchedules(schedules)),
   ));
 
   constructor(

@@ -1,12 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Period } from 'src/app/core/typings/period';
 import { Maybe } from 'src/schema/schema';
-import { EventFilterActions } from '../../state/event-filter.actions';
 import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
@@ -40,13 +37,10 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
   private destroy = new Subject<void>();
 
   constructor(
-    private actions: Actions,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private store: Store,
   ) {
-    this.watchClear();
     this.watchValueChange();
   }
 
@@ -84,20 +78,6 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private watchClear(): void {
-    //TODO: This seems hacky to subscribe to actions within a component
-    this.actions.pipe(
-      ofType(EventFilterActions.clearAll),
-      takeUntil(this.destroy)
-    ).subscribe(() => {
-      this.emitEvent = false;
-      this.form.patchValue({
-        startDate: null,
-        endDate: null,
-      });
-    });
-  }
-
   private watchValueChange(): void {
     this.form.controls.endDate.valueChanges
       .pipe(takeUntil(this.destroy))
@@ -125,7 +105,6 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
           } as Period;
   
           this.valueChanged.emit(period);
-          this.store.dispatch(EventFilterActions.selectedPeriod(period));
         }
         this.emitEvent = true;
       });
@@ -133,8 +112,8 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
 
   public ngOnDestroy(): void {
     this.form.setValue({
-      startDate: undefined,
-      endDate: undefined,
+      startDate: null,
+      endDate: null,
     });
 
     this.destroy.next();

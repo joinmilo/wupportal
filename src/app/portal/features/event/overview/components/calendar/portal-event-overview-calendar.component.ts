@@ -3,11 +3,11 @@ import { Store } from '@ngrx/store';
 import { selectOverviewDataCategories } from '../../state/portal-event-overview.selectors';
 
 @Component({
-  selector: 'app-portal-event-category-view',
-  templateUrl: './portal-event-category-view.component.html',
-  styleUrls: ['./portal-event-category-view.component.scss']
+  selector: 'app-portal-event-overview-calendar',
+  templateUrl: './portal-event-overview-calendar.component.html',
+  styleUrls: ['./portal-event-overview-calendar.component.scss']
 })
-export class PortalEventCategoryViewComponent {
+export class PortalEventOverviewCalendarComponent {
 
   public categories = this.store.select(selectOverviewDataCategories);
   

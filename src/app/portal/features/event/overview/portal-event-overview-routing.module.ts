@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PortalEventOverviewComponent } from './components/overview/portal-event-overview.component';
+import { PortalEventOverviewComponent } from './components/portal-event-overview.component';
 
 const routes: Routes = [
   {

@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Subject, take, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
 import { EventFilterActions } from '../../state/event-filter.actions';
 import { selectTargetGroups } from '../../state/event-filter.selectors';
@@ -32,18 +31,16 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
   );
 
   constructor(
-    private actions: Actions,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private store: Store,
   ) {
-    this.watchClear();
     this.watchValueChange();
   }
 
   public ngOnInit(): void {
     this.queryParamKey && this.activatedRoute.queryParams
-      .pipe(take(1))
+      .pipe(takeUntil(this.destroy))
       .subscribe(params => {
         const value = typeof params[this.queryParamKey] === 'string'
           ? [params[this.queryParamKey]]
@@ -53,16 +50,6 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
           emitEvent: false,
         });
       });
-  }
-
-  private watchClear(): void {
-    //TODO: This seems hacky to subscribe to actions within a component
-    this.actions.pipe(
-      ofType(EventFilterActions.clearAll),
-      takeUntil(this.destroy)
-    ).subscribe(() => this.control.setValue(undefined, {
-      emitEvent: false,
-    }));
   }
 
   private watchValueChange(): void {
@@ -80,7 +67,6 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
         }
 
         this.valueChanged.emit(ids);
-        this.store.dispatch(EventFilterActions.selectedTargetGroups(ids));
       });
   }
 

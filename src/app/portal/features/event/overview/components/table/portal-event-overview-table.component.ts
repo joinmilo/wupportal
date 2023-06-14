@@ -6,11 +6,11 @@ import { EventEntity } from 'src/schema/schema';
 import { selectOverviewData } from '../../state/portal-event-overview.selectors';
 
 @Component({
-  selector: 'app-portal-event-table-view',
-  templateUrl: './portal-event-table-view.component.html',
-  styleUrls: ['./portal-event-table-view.component.scss']
+  selector: 'app-portal-event-overview-table',
+  templateUrl: './portal-event-overview-table.component.html',
+  styleUrls: ['./portal-event-overview-table.component.scss']
 })
-export class PortalEventTableViewComponent {
+export class PortalEventOverviewTableComponent {
 
   public events = this.store.select(selectOverviewData);
 
