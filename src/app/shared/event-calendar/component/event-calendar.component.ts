@@ -34,7 +34,6 @@ export class EventCalendarComponent implements OnChanges, OnDestroy {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes && changes['additionalFilter'] && this.additionalFilter) {
-      console.log('test', this.additionalFilter)
       this.store.dispatch(EventCalendarActions.filterUpdated(this.additionalFilter));
     }
   }
