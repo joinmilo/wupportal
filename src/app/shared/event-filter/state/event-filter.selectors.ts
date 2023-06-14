@@ -18,6 +18,11 @@ export const selectCategories = createSelector(
   state => state.categories
 );
 
+export const selectSuburbs = createSelector(
+  selectEventFilterState,
+  state => state.suburbs
+);
+
 export const selectTargetGroups = createSelector(
   selectEventFilterState,
   state => state.targetGroups

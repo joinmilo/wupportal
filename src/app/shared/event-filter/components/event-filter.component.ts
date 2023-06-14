@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, map, takeUntil } from 'rxjs';
 import { collapse } from 'src/app/core/animations/animations';
 import { EventFilterActions } from 'src/app/shared/event-filter/state/event-filter.actions';
-import { selectEventFilterParams, selectFiltersActive } from 'src/app/shared/event-filter/state/event-filter.selectors';
+import { selectEventFilterParams, selectFiltersActive, selectRawFilterParams } from 'src/app/shared/event-filter/state/event-filter.selectors';
 import { FilterSortPaginateInput } from 'src/schema/schema';
 
 @Component({
@@ -19,6 +19,9 @@ export class EventFilterComponent implements OnInit, OnDestroy {
   @Output()
   public paramsUpdated = new EventEmitter<FilterSortPaginateInput>();
 
+  public disbleDateFilter = this.store.select(selectRawFilterParams)
+    .pipe(map(params => !!params.past));
+  
   public filtersActive = this.store.select(selectFiltersActive);
 
   public filtersCollapsed = true;

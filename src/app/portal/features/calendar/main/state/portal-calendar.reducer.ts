@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Period } from 'src/app/shared/calendar/typings/month';
+import { Period } from 'src/app/core/typings/period';
 import { EventEntity, Maybe, ScheduleEntity } from 'src/schema/schema';
 import { PortalCalendarActions } from './portal-calendar.actions';
 

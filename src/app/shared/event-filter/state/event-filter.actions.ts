@@ -1,5 +1,6 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { EventCategoryEntity, EventTargetGroupEntity, Maybe } from 'src/schema/schema';
+import { Period } from 'src/app/core/typings/period';
+import { EventCategoryEntity, EventTargetGroupEntity, Maybe, SuburbEntity } from 'src/schema/schema';
 import { EventFilterQueryParams } from '../typings/event-filter-query-param';
 
 export const EventFilterActions = createActionGroup({
@@ -8,16 +9,23 @@ export const EventFilterActions = createActionGroup({
     'init': emptyProps(),
     'initialized': (params: EventFilterQueryParams) => ({ params }),
     'clear all': emptyProps(),
-
-    'get target groups': emptyProps(),
-    'set target groups': (result : EventTargetGroupEntity[]) => ({ result }),
-    'selected target groups': (targetGroupIds?: Maybe<string[]>) => ({ targetGroupIds }),
-
+    
     'get categories': emptyProps(),
     'set categories': (result: EventCategoryEntity[]) => ({ result }),
     'selected categories': (categoryIds?: Maybe<string[]>) => ({ categoryIds }),
 
+    'get suburbs': emptyProps(),
+    'set suburbs': (result: SuburbEntity[]) => ({ result }),
+    'selected suburbs': (suburbIds?: Maybe<string[]>) => ({ suburbIds }),
+    
+    'get target groups': emptyProps(),
+    'set target groups': (result : EventTargetGroupEntity[]) => ({ result }),
+    'selected target groups': (targetGroupIds?: Maybe<string[]>) => ({ targetGroupIds }),
+
+    'selected period': (period?: Period) => ({ period }),
     'selected free only': (value?: boolean) => ({ value }),
+    'selected past': (value?: boolean) => ({ value }),
+ 
   }
 });
 

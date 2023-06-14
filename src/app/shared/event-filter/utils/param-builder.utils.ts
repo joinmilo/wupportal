@@ -1,7 +1,8 @@
 import { ConjunctionOperator, FilterSortPaginateInput, Maybe, QueryExpressionInput, QueryOperator } from 'src/schema/schema';
+import { EventFilterDefinition } from '../constants/event-filter.constants';
 import { EventFilterQueryParams } from '../typings/event-filter-query-param';
 
-export const createParams = (queryParams?: EventFilterQueryParams) => {
+export const createParams = (queryParams: EventFilterQueryParams) => {
   const params = {
     expression: {
       conjunction: {
@@ -10,7 +11,7 @@ export const createParams = (queryParams?: EventFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams?.categories) {
+  if (queryParams[EventFilterDefinition.categories]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.categories,
@@ -19,7 +20,7 @@ export const createParams = (queryParams?: EventFilterQueryParams) => {
     );
   }
 
-  if (queryParams?.suburbs) {
+  if (queryParams[EventFilterDefinition.suburbs]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.suburbs,
@@ -28,7 +29,7 @@ export const createParams = (queryParams?: EventFilterQueryParams) => {
     );
   }
 
-  if (queryParams?.targetgroups) {
+  if (queryParams[EventFilterDefinition.targetGroups]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.targetgroups,
@@ -37,7 +38,7 @@ export const createParams = (queryParams?: EventFilterQueryParams) => {
     );
   }
 
-  if (queryParams && queryParams['current-only']) {
+  if (!queryParams[EventFilterDefinition.past]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'schedules.startDate',
@@ -47,7 +48,7 @@ export const createParams = (queryParams?: EventFilterQueryParams) => {
     });
   }
 
-  if (queryParams && queryParams['free-only']) {
+  if (queryParams[EventFilterDefinition.freeOnly]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'entryFee',

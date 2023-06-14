@@ -22,8 +22,17 @@
       <app-event-filter-category>
       </app-event-filter-category>
 
-      <app-event-filter-free-only>
-      </app-event-filter-free-only>
+      <app-event-filter-suburb>
+      </app-event-filter-suburb>
+
+      <app-event-filter-date [disabled]="(disbleDateFilter | async)">
+      </app-event-filter-date>
+
+      <app-event-filter-past>
+      </app-event-filter-past>
+
+      <app-event-filter-free>
+      </app-event-filter-free>
 
     </mat-card-content>
     <mat-card-actions>

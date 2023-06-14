@@ -1,5 +1,5 @@
 import { Maybe } from 'src/schema/schema';
-import { Period } from '../../shared/calendar/typings/month';
+import { Period } from '../typings/period';
 
 export const monthPeriod = (date?: Maybe<Date>): Maybe<Period> | undefined => {
   if (date) {

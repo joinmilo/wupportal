@@ -1,16 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
-import { EventCategoryEntity, EventTargetGroupEntity, Maybe } from 'src/schema/schema';
+import { EventCategoryEntity, EventTargetGroupEntity, Maybe, SuburbEntity } from 'src/schema/schema';
 import { EventFilterDefinition } from '../constants/event-filter.constants';
 import { EventFilterQueryParams } from '../typings/event-filter-query-param';
 import { EventFilterActions } from './event-filter.actions';
 
 export interface EventFilterState {
   categories?: Maybe<EventCategoryEntity[]>,
+  suburbs?: Maybe<SuburbEntity[]>,
   targetGroups?: Maybe<EventTargetGroupEntity[]>,
-  params?: EventFilterQueryParams,
+  params: EventFilterQueryParams,
 }
 
-export const initialState: EventFilterState = { };
+export const initialState: EventFilterState = {
+  params: {}
+};
 
 export const eventFilterReducer = createReducer(
   initialState,
@@ -20,7 +23,7 @@ export const eventFilterReducer = createReducer(
   )),
 
   on(EventFilterActions.clearAll, (state): EventFilterState => (
-    { ...state, params: undefined }
+    { ...state, params: {} }
   )),
 
   on(EventFilterActions.setCategories, (state, action): EventFilterState => (
@@ -33,6 +36,20 @@ export const eventFilterReducer = createReducer(
       params: {
         ...state.params,
         [EventFilterDefinition.categories]: action.categoryIds
+      }
+    }
+  )),
+
+  on(EventFilterActions.setSuburbs, (state, action): EventFilterState => (
+    { ...state, suburbs: action.result }
+  )),
+
+  on(EventFilterActions.selectedSuburbs, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterDefinition.suburbs]: action.suburbIds
       }
     }
   )),
@@ -55,6 +72,16 @@ export const eventFilterReducer = createReducer(
       params: {
         ...state.params,
         [EventFilterDefinition.freeOnly]: action.value
+      }
+    }
+  )),
+
+  on(EventFilterActions.selectedPast, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterDefinition.past]: action.value
       }
     }
   )),

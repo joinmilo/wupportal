@@ -31,13 +31,11 @@ export class PortalMenuEffects {
   navigateMenu = createEffect(() => this.actions.pipe(
     ofType(PortalMenuActions.navigateMenu),
     tap(action => {
-      if (action?.item?.feature?.key) {
-        this.router.navigate(['portal', action.item.feature.key]);
-      }
-
-      if (action?.item?.page?.slug) {
-        this.router.navigate([`/${action.item.page.slug}`]);
-      }
+      action?.item?.feature?.key
+        ? action?.item?.page?.slug
+          ? this.router.navigate(['/portal', action.item.feature.key, action.item.page.slug])
+          : this.router.navigate(['/portal', action.item.feature.key])
+        : this.router.navigate(['/portal', '404']);
     }),
   ), { dispatch: false });
 

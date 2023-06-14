@@ -1,9 +1,11 @@
 export const eventFilterStateKey = 'eventFilterState';
 
-export const enum EventFilterDefinition {
-  targetGroups = 'targetgroups',
-  suburbs = 'suburbs',
+export enum EventFilterDefinition {
   categories = 'categories',
+  end = 'end',
   freeOnly = 'free-only',
-  currentOnly = 'current-only'
+  past = 'past',
+  start = 'start',
+  suburbs = 'suburbs',
+  targetGroups = 'targetgroups',
 }

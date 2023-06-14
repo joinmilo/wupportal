@@ -32,26 +32,20 @@ mat-card {
 }
 
 /* Calendar */
-.mat-calendar-body-cell:not(.mat-calendar-body-disabled) {
-  &>.mat-calendar-body-cell-content {
-    background-color: var(--color-primary-500) !important;
-    color: var(--color-primary-contrast-500) !important;
-    font-weight: bold;
-  }
+.mat-calendar-body-in-range::before {
+  background: var(--color-primary-100) !important;
 }
 
-.mat-calendar-body-cell {
-  top: 25% !important;
-  left: 25% !important;
-  width: 50% !important;
-  height: 50% !important;
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+  color: var(--color-primary-contrast-500) !important;
+}
 
-  @include responsive(phone) {
-    top: 5% !important;
-    left: 5% !important;
-    width: 90% !important;
-    height: 90% !important;
-  }
+// .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+//   color: var(--color-primary-contrast-500) !important;
+// }
+
+.mat-calendar-body-in-preview {
+  color: var(--color-primary-contrast-500) !important;
 }
 
 /* Form Fields*/

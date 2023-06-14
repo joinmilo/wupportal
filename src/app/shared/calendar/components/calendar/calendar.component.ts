@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { Period } from 'src/app/core/typings/period';
 import { dayPeriod, monthPeriod } from 'src/app/core/utils/date.utils';
 import { Maybe } from 'src/schema/schema';
 import { CalendarService } from '../../services/calendar.service';
-import { Period } from '../../typings/month';
 import { CalendarHeaderComponent } from '../header/calendar-header.component';
 
 @Component({
@@ -18,7 +18,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   private destroy = new Subject<void>();
 
-  //Make Observable out of it
   @Input()
   public dates?: Observable<Maybe<Date[]> | undefined>;
  

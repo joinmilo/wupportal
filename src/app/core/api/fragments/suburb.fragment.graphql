@@ -1,0 +1,4 @@
+fragment Suburb on SuburbEntity {
+  id
+  name
+}

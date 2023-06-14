@@ -34,7 +34,7 @@ export class PortalEventTableViewComponent {
       sort: true,
     },
     {
-      field: 'schedules.startDate',
+      field: 'schedule.startDate',
       label: 'date',
       type: 'DATETIME'
     },

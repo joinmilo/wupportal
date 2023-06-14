@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Period } from '../../../core/typings/period';
 import { monthPeriod } from '../../../core/utils/date.utils';
-import { Period } from '../typings/month';
 
 @Injectable()
 export class CalendarService {

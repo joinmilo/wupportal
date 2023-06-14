@@ -15,18 +15,24 @@
     </app-radio-button-group>
   </app-event-filter>
 
-  <ng-container [ngSwitch]="displayType">
-    
-    <span *ngSwitchCase="'calendar'">Kalender</span>
-    
-    <app-portal-event-category-view *ngSwitchCase="'category'">
-    </app-portal-event-category-view>
-    
-    <span *ngSwitchCase="'map'">Karte</span>
-
-    <app-portal-event-table-view *ngSwitchCase="'list'"
-      (sortPaginate)="updateParams($event)">
-    </app-portal-event-table-view>
-
+  <ng-container *ngIf="(events | async)?.total; else emptyResult">
+    <ng-container [ngSwitch]="displayType">
+      
+      <span *ngSwitchCase="'calendar'">Kalender</span>
+      
+      <app-portal-event-category-view *ngSwitchCase="'category'">
+      </app-portal-event-category-view>
+      
+      <span *ngSwitchCase="'map'">Karte</span>
+  
+      <app-portal-event-table-view *ngSwitchCase="'list'"
+        (sortPaginate)="updateParams($event)">
+      </app-portal-event-table-view>
+  
+    </ng-container>
   </ng-container>
+  <ng-template #emptyResult>
+    <span appLabel="noEventsChangeFilterOrComeLater"></span>
+    <!-- TODO: Link to notifications! "Notify me when new events come online!" -->
+  </ng-template>
 </div>

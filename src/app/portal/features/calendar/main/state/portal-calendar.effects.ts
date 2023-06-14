@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { Period } from 'src/app/shared/calendar/typings/month';
+import { Period } from 'src/app/core/typings/period';
 import { PortalCalendarApiService } from '../services/calendar-api.service';
 import { PortalCalendarActions } from './portal-calendar.actions';
 

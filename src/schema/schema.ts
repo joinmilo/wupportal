@@ -5035,6 +5035,8 @@ export type ScheduleFragment = { __typename?: 'ScheduleEntity', id?: string | nu
 
 export type SocialMediaFragment = { __typename?: 'SocialMediaEntity', icon?: string | null, name?: string | null, url?: string | null };
 
+export type SuburbFragment = { __typename?: 'SuburbEntity', id?: string | null, name?: string | null };
+
 export type SurveyFragment = { __typename?: 'SurveyEntity', id?: string | null, dueDate?: any | null, slug?: string | null, uploads?: Array<{ __typename?: 'SurveyMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null } | null> | null, translatables?: Array<{ __typename?: 'SurveyTranslatableEntity', id?: string | null, name?: string | null, description?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
 export type ThemeFragment = { __typename?: 'ThemeEntity', id?: string | null, isDefault?: boolean | null, name?: string | null, variables?: Array<{ __typename?: 'ThemeVariableEntity', id?: string | null, key?: string | null, value?: string | null } | null> | null };
@@ -5238,6 +5240,11 @@ export type GetSocialMediaQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetSocialMediaQuery = { __typename?: 'Query', getSocialMedias?: { __typename?: 'PageableList_SocialMediaEntity', result?: Array<{ __typename?: 'SocialMediaEntity', icon?: string | null, name?: string | null, url?: string | null } | null> | null } | null };
+
+export type GetSuburbsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSuburbsQuery = { __typename?: 'Query', getSuburbs?: { __typename?: 'PageableList_SuburbEntity', result?: Array<{ __typename?: 'SuburbEntity', id?: string | null, name?: string | null } | null> | null } | null };
 
 export type GetSurveysQueryVariables = Exact<{
   params?: InputMaybe<FilterSortPaginateInput>;
@@ -5740,6 +5747,12 @@ export const SocialMediaFragmentDoc = gql`
   icon
   name
   url
+}
+    `;
+export const SuburbFragmentDoc = gql`
+    fragment Suburb on SuburbEntity {
+  id
+  name
 }
     `;
 export const SurveyFragmentDoc = gql`
@@ -6378,6 +6391,26 @@ export const GetSocialMediaDocument = gql`
   })
   export class GetSocialMediaGQL extends Apollo.Query<GetSocialMediaQuery, GetSocialMediaQueryVariables> {
     override document = GetSocialMediaDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetSuburbsDocument = gql`
+    query getSuburbs {
+  getSuburbs {
+    result {
+      ...Suburb
+    }
+  }
+}
+    ${SuburbFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetSuburbsGQL extends Apollo.Query<GetSuburbsQuery, GetSuburbsQueryVariables> {
+    override document = GetSuburbsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
