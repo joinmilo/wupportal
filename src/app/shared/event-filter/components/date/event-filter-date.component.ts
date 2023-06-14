@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Period } from 'src/app/core/typings/period';
 import { Maybe } from 'src/schema/schema';
+import { EventFilterActions } from '../../state/event-filter.actions';
 import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
@@ -40,6 +42,7 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
+    private store: Store,
   ) {
     this.watchValueChange();
   }
@@ -105,17 +108,13 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
           } as Period;
   
           this.valueChanged.emit(period);
+          this.store.dispatch(EventFilterActions.selectedPeriod(period));
         }
         this.emitEvent = true;
       });
   }
 
   public ngOnDestroy(): void {
-    this.form.setValue({
-      startDate: null,
-      endDate: null,
-    });
-
     this.destroy.next();
     this.destroy.complete();
   }

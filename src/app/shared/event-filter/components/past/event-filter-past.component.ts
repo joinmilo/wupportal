@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
+import { EventFilterActions } from '../../state/event-filter.actions';
 import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
@@ -25,6 +27,7 @@ export class EventFilterPastComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private store: Store,
   ) {
     this.watchValueChange();
   }
@@ -55,12 +58,11 @@ export class EventFilterPastComponent implements OnInit, OnDestroy {
         }
 
         this.valueChanged.emit(value);
+        this.store.dispatch(EventFilterActions.selectedPast(value));
       });
   }
 
   public ngOnDestroy(): void {
-    this.control.setValue(undefined);
-
     this.destroy.next();
     this.destroy.complete();
   }

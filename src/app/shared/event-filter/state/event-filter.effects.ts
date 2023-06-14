@@ -9,20 +9,20 @@ import { EventFilterActions } from './event-filter.actions';
 @Injectable()
 export class EventFilterEffects {
 
-  update = createEffect(() => this.actions.pipe(
-    ofType(EventFilterActions.update),
+  updateAll = createEffect(() => this.actions.pipe(
+    ofType(EventFilterActions.updateAll),
     map(action => {
       const params: Record<string, unknown> = {};
       Object.values(EventFilterQueryDefinition).forEach((value) => {
         switch (true) {
-          case action.params[value] === 'true' || action.params[value] === 'false':
-            params[value] = action.params[value] === 'true';
+          case action.queryParams[value] === 'true' || action.queryParams[value] === 'false':
+            params[value] = action.queryParams[value] === 'true';
             break;
           default:
-            params[value] = action.params[value];
+            params[value] = action.queryParams[value];
         }
       });
-      return EventFilterActions.updated(params);
+      return EventFilterActions.allUpdated(params);
     })  
   ));
 

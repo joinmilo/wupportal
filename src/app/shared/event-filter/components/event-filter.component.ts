@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, debounceTime, take, takeUntil } from 'rxjs';
 import { collapse } from 'src/app/core/animations/animations';
 import { EventFilterActions } from 'src/app/shared/event-filter/state/event-filter.actions';
 import { selectEventFilterParams, selectFiltersActive, selectRawFilterParams } from 'src/app/shared/event-filter/state/event-filter.selectors';
@@ -33,13 +33,10 @@ export class EventFilterComponent implements OnInit, OnDestroy {
   private destroy = new Subject<void>();
   
   constructor(
-    private store: Store,
     private activatedRoute: ActivatedRoute,
+    private store: Store,
   ) {
-
-    this.activatedRoute.queryParams.pipe(
-      takeUntil(this.destroy)
-    ).subscribe(params => this.store.dispatch(EventFilterActions.update(params)));
+    this.updateWithQueryParams();
   }
   
   public ngOnInit(): void {
@@ -53,6 +50,19 @@ export class EventFilterComponent implements OnInit, OnDestroy {
         this.disbleDateFilter = !!params?.past;
         this.rawParamsUpdated.emit(params);
       });
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  public onBrowserNavigation() {
+    this.updateWithQueryParams();
+  }
+
+  private updateWithQueryParams() {
+    this.activatedRoute.queryParams
+      .pipe(
+        debounceTime(0), //TODO: race condition between browser navigation and queryparams
+        take(1)
+    ).subscribe(params => this.store.dispatch(EventFilterActions.updateAll(params)));
   }
 
   public clearFilters(): void {

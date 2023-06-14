@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { EventCategoryEntity, EventTargetGroupEntity, Maybe, SuburbEntity } from 'src/schema/schema';
-import { EventFilterQueryParams } from '../typings/event-filter-query-param';
+import { EventFilterQueryDefinition, EventFilterQueryParams } from '../typings/event-filter-query-param';
 import { EventFilterActions } from './event-filter.actions';
 
 export interface EventFilterState {
@@ -17,7 +17,7 @@ export const initialState: EventFilterState = {
 export const eventFilterReducer = createReducer(
   initialState,
 
-  on(EventFilterActions.updated, (state, action): EventFilterState => (
+  on(EventFilterActions.allUpdated, (state, action): EventFilterState => (
     { ...state, params: action.params }
   )),
 
@@ -29,12 +29,71 @@ export const eventFilterReducer = createReducer(
     { ...state, categories: action.result }
   )),
 
+  on(EventFilterActions.selectedCategories, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterQueryDefinition.categories]: action.categoryIds
+      }
+    }
+  )),
+
   on(EventFilterActions.setSuburbs, (state, action): EventFilterState => (
     { ...state, suburbs: action.result }
   )),
 
+  on(EventFilterActions.selectedSuburbs, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterQueryDefinition.suburbs]: action.suburbIds
+      }
+    }
+  )),
+
   on(EventFilterActions.setTargetGroups, (state, action): EventFilterState => (
     { ...state, targetGroups: action.result }
+  )),
+
+  on(EventFilterActions.selectedTargetGroups, (state, action): EventFilterState => (
+    { ...state,
+      params: {...state.params,
+        [EventFilterQueryDefinition.targetGroups]: action.targetGroupIds
+      } 
+    }
+  )),
+
+  on(EventFilterActions.selectedFreeOnly, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterQueryDefinition.freeOnly]: action.value
+      }
+    }
+  )),
+
+  on(EventFilterActions.selectedPast, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterQueryDefinition.past]: action.value
+      }
+    }
+  )),
+
+  on(EventFilterActions.selectedPeriod, (state, action): EventFilterState => (
+    {
+      ...state,
+      params: {
+        ...state.params,
+        [EventFilterQueryDefinition.startDate]: action.period?.startDate.toISOString(),
+        [EventFilterQueryDefinition.endDate]: action.period?.endDate.toISOString()
+      }
+    }
   )),
 
 );

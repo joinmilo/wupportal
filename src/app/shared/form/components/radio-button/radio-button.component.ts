@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { RadioInput } from '../../typings/radio-input';
 
 @Component({
@@ -8,31 +6,22 @@ import { RadioInput } from '../../typings/radio-input';
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss']
 })
-export class RadioButtonComponent<T> implements OnInit {
-
+export class RadioButtonComponent<T> implements OnChanges {
   public checked = false;
 
   @Input()
   public input?: RadioInput;
 
   @Input()
-  public value?: Observable<T>;
-
-  @Input()
-  public initValue?: T;
+  public value?: T;
 
   @Output()
   public valueChanged = new EventEmitter<T>();
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-  ) {}
-
-  public ngOnInit(): void {
-    this.initValue && (this.checked = this.input?.value === this.initValue);
-    this.value?.subscribe(value =>
-      this.checked = this.input?.value === value);
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes && changes['value']) {
+      this.checked = this.input?.value === this.value
+    }
   }
 
   public changeSelect(event: MouseEvent): void {

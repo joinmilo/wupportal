@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, take } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { RadioInput } from '../../typings/radio-input';
 
 @Component({
@@ -16,10 +16,10 @@ import { RadioInput } from '../../typings/radio-input';
     },
   ]
 })
-export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnInit {
+export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnInit, OnDestroy {
 
   @Input()
-  public initValue?: T;
+  public value?: T;
   
   @Input()
   public inputs?: RadioInput[];
@@ -30,11 +30,9 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
   @Output()
   public valueChanged = new EventEmitter<T>();
 
-  private onChange?: (value: T) => void;
+  private onChange?: (value?: T) => void;
 
-  private currentValue = new Subject<T>();
-
-  public value = this.currentValue.asObservable();
+  private destroy = new Subject<void>();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -44,13 +42,8 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
   public ngOnInit(): void {
     if (this.queryParamKey) {
       this.activatedRoute.queryParams
-        .pipe(take(1))
-        .subscribe(params => {
-          if (this.queryParamKey) {
-            this.initValue = params[this.queryParamKey] ?? this.initValue;
-            this.valueChanged.emit(this.initValue);
-          }
-        })
+        .pipe(takeUntil(this.destroy))
+        .subscribe(params => this.emit(params[this.queryParamKey || '']));
     }
   }
 
@@ -58,28 +51,35 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
     this.next(value);
   }
 
-  public next(value: T) {
-    this.currentValue.next(value);
-    this.valueChanged.emit(value);
-    this.onChange && this.onChange(value);
-
-    if (this.queryParamKey) {
-      this.router.navigate([], {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          [this.queryParamKey]: value
-        },
-        queryParamsHandling: 'merge',
-      });
-    }
+  public next(value?: T) {
+    this.queryParamKey
+      ? this.router.navigate([], {
+          relativeTo: this.activatedRoute,
+          queryParams: {
+            [this.queryParamKey]: value
+          },
+          queryParamsHandling: 'merge',
+        })
+      : this.emit(value);
   }
 
-  public registerOnChange(onChange: (value: T) => void): void {
+  private emit(value?: T): void {
+    this.value = value;
+    this.valueChanged.emit(value);
+    this.onChange && this.onChange(value);
+  }
+
+  public registerOnChange(onChange: (value?: T) => void): void {
     this.onChange = onChange;
   }
 
   public registerOnTouched(): void {
     return;
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
 }

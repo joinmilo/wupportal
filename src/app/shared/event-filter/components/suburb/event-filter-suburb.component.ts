@@ -67,12 +67,11 @@ export class EventFilterSuburbComponent implements OnInit, OnDestroy {
         }
 
         this.valueChanged.emit(ids);
+        this.store.dispatch(EventFilterActions.selectedSuburbs(ids));
       });
   }
 
   public ngOnDestroy(): void {
-    this.control.setValue(undefined);
-
     this.destroy.next();
     this.destroy.complete();
   }

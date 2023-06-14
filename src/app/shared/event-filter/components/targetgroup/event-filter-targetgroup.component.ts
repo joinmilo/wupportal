@@ -67,12 +67,11 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
         }
 
         this.valueChanged.emit(ids);
+        this.store.dispatch(EventFilterActions.selectedTargetGroups(ids));
       });
   }
 
   public ngOnDestroy(): void {
-    this.control.setValue(undefined);
-
     this.destroy.next();
     this.destroy.complete();
   }

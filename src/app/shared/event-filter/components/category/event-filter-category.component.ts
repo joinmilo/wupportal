@@ -67,12 +67,11 @@ export class EventFilterCategoryComponent implements OnInit, OnDestroy {
         }
 
         this.valueChanged.emit(ids);
+        this.store.dispatch(EventFilterActions.selectedCategories(ids));
       });
   }
 
   public ngOnDestroy(): void {
-    this.control.setValue(undefined);
-
     this.destroy.next();
     this.destroy.complete();
   }

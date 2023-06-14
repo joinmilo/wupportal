@@ -8,7 +8,7 @@
   <app-event-filter (paramsUpdated)="updateParams($event)">
     <app-radio-button-group
       [inputs]="inputs"
-      [initValue]="displayType"
+      [value]="displayType"
       [queryParamKey]="displayQueryParam"
       (valueChanged)="displayType = $event">
     </app-radio-button-group>
