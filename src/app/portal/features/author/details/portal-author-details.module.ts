@@ -11,7 +11,7 @@ import { FormModule } from 'src/app/shared/form/form.module';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalAuthorDetailsComponent } from './component/portal-author-details.component';
-import { authorDetailsStateKey } from './constants/portal-author-details.constant';
+import { authorDetailsStateKey } from './constants/portal-author-details.constants';
 import { PortalAuthorDetailsRoutingModule } from './portal-author-details-routing.module';
 import { AuthorDetailsEffects } from './state/portal-author-details.effects';
 import { authorReducer } from './state/portal-author-details.reducer';

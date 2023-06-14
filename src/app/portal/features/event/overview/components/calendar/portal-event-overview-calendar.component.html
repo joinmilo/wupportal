@@ -1,5 +1,7 @@
 
 <mat-card>
-  <app-calendar>
-  </app-calendar>
+  <app-event-calendar
+    [additionalFilter]="params | async"
+    (events)="selectedEvents($event)">
+  </app-event-calendar>
 </mat-card>

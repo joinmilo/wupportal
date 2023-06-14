@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { portalEventDetailsStateKey } from '../constants/event-details.constant';
+import { portalEventDetailsStateKey } from '../constants/event-details.constants';
 import { PortalEventDetailsState } from './portal-event-details.reducer';
 
 export const selectPortalEventDetailsState = createFeatureSelector<PortalEventDetailsState>(portalEventDetailsStateKey);

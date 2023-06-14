@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { portalGuestArticleStateKey } from '../constants/portal-guest-article.constant';
+import { portalGuestArticleStateKey } from '../constants/portal-guest-article.constants';
 import { PortalGuestArticleState } from './portal-guest-article.reducer';
 
 export const selectPortalGuestArticleState = createFeatureSelector<PortalGuestArticleState>(portalGuestArticleStateKey);

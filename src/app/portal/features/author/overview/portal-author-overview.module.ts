@@ -9,7 +9,7 @@ import { FormModule } from 'src/app/shared/form/form.module';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalAuthorOverviewComponent } from './components/portal-author-overview.component';
-import { authorOverviewStateKey } from './constants/portal-author-overview.constant';
+import { authorOverviewStateKey } from './constants/portal-author-overview.constants';
 import { PortalAuthorOverviewRoutingModule } from './portal-author-overview-routing.module';
 import { AuthorEffects } from './state/portal-author-overview.effects';
 import { authorReducer } from './state/portal-author-overview.reducer';

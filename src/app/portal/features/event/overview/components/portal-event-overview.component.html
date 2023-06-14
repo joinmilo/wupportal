@@ -5,7 +5,9 @@
     [data]="sponsored | async">
   </app-sponsored-card>
 
-  <app-event-filter (paramsUpdated)="updateParams($event)">
+  <app-event-filter 
+    (paramsUpdated)="updateParams($event)"
+    (rawParamsUpdated)="updateRawParams($event)">
     <app-radio-button-group
       [inputs]="inputs"
       [value]="displayType"
@@ -14,7 +16,7 @@
     </app-radio-button-group>
   </app-event-filter>
 
-  <ng-container *ngIf="(events | async)?.total; else emptyResult">
+  <ng-container>
     <ng-container [ngSwitch]="displayType">
       
       <app-portal-event-overview-calendar *ngSwitchCase="'calendar'">
@@ -31,8 +33,4 @@
   
     </ng-container>
   </ng-container>
-  <ng-template #emptyResult>
-    <span appLabel="noEventsChangeFilterOrComeLater"></span>
-    <!-- TODO: Link to notifications! "Notify me when new events come online!" -->
-  </ng-template>
 </div>

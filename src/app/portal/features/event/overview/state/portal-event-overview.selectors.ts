@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { distinctStartDates } from 'src/app/core/utils/schedule.utils';
 import { EventCategoryEntity } from 'src/schema/schema';
-import { portalEventOverviewStateKey } from '../constants/portal-event-overview.constant';
+import { portalEventOverviewStateKey } from '../constants/portal-event-overview.constants';
 import { PortalEventOverviewState } from './portal-event-overview.reducer';
 
 export const selectPortalEventOverviewState = createFeatureSelector<PortalEventOverviewState>(portalEventOverviewStateKey);
@@ -13,11 +14,6 @@ export const selectSponsoredEvent = createSelector(
 export const selectOverviewData = createSelector(
   selectPortalEventOverviewState,
   state => state.overviewData
-);
-
-export const selectParams = createSelector(
-  selectPortalEventOverviewState,
-  state => state.params
 );
 
 export const selectOverviewDataCategories = createSelector(
@@ -33,4 +29,24 @@ export const selectOverviewDataCategories = createSelector(
       return result;
     }, [] as EventCategoryEntity[]);
   }
+);
+
+export const selectParams = createSelector(
+  selectPortalEventOverviewState,
+  state => state.params
+);
+
+export const selectRawParams = createSelector(
+  selectPortalEventOverviewState,
+  state => state.rawFilterParams
+);
+
+export const selectSchedules = createSelector(
+  selectPortalEventOverviewState,
+  state => state.schedules
+);
+
+export const selectDistinctSchedules = createSelector(
+  selectSchedules,
+  schedules => distinctStartDates(schedules)
 );

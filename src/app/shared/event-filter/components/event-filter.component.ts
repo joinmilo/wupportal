@@ -6,7 +6,7 @@ import { collapse } from 'src/app/core/animations/animations';
 import { EventFilterActions } from 'src/app/shared/event-filter/state/event-filter.actions';
 import { selectEventFilterParams, selectFiltersActive, selectRawFilterParams } from 'src/app/shared/event-filter/state/event-filter.selectors';
 import { FilterSortPaginateInput } from 'src/schema/schema';
-import { EventFilterQueryParams } from '../typings/event-filter-query-param';
+import { EventFilterQueryParams } from '../../../core/typings/filter-query-param';
 
 @Component({
   selector: 'app-event-filter',

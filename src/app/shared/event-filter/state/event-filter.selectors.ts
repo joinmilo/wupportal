@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { eventFilterStateKey } from '../constants/event-filter.constants';
-import { createParams } from '../utils/param-builder.utils';
+import { createEventParams } from '../utils/param-builder.utils';
 import { EventFilterState } from './event-filter.reducer';
 
 export const selectEventFilterState = createFeatureSelector<EventFilterState>(eventFilterStateKey);
@@ -40,5 +40,5 @@ export const selectRawFilterParams = createSelector(
 
 export const selectEventFilterParams = createSelector(
   selectRawFilterParams,
-  params => createParams(params)
+  params => createEventParams(params)
 );

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { eventSlug } from '../../constants/event-details.constant';
+import { eventSlug } from '../../constants/event-details.constants';
 import { PortalEventDetailsActions } from '../../state/portal-event-details.actions';
 import { selectEventsComments } from '../../state/portal-event-details.selectors';
 

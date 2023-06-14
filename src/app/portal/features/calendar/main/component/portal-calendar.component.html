@@ -2,16 +2,13 @@
   <app-page-title title="yourEventCalendar"></app-page-title>
   <!-- TODO: Add Filter area -->
   <mat-card>
-    <app-calendar
-     [dates]="startDates"
-     (daySelected)="daySelected($event)"
-     (monthSelected)="monthSelected($event)">
-    </app-calendar>
+    <app-event-calendar (events)="selectedEvents($event)">
+    </app-event-calendar>
   </mat-card>
-  <section *ngIf="(events | async)?.length">
+  <section *ngIf="events?.length">
     <app-card-slider
       entity="EventEntity"
-      [data]="events | async"
+      [data]="events"
       [titleLabel]="title">
     </app-card-slider>
   </section>

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, tap } from 'rxjs';
 import { EventCategoryEntity, EventTargetGroupEntity, GetEventCategoriesGQL, GetEventTargetGroupsGQL, GetSuburbsGQL, SuburbEntity } from 'src/schema/schema';
-import { EventFilterQueryDefinition } from '../typings/event-filter-query-param';
+import { EventFilterQueryDefinition } from '../../../core/typings/filter-query-param';
 import { EventFilterActions } from './event-filter.actions';
 
 @Injectable()

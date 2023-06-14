@@ -2,14 +2,17 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EventEntity, Maybe } from 'src/schema/schema';
 
+
 @Component({
-  selector: 'app-calendar-page-feature',
-  templateUrl: './calendar-page-feature.component.html',
-  styleUrls: ['./calendar-page-feature.component.scss']
+  selector: 'app-portal-calendar',
+  templateUrl: './portal-calendar.component.html',
+  styleUrls: ['./portal-calendar.component.scss']
 })
-export class CalendarPageFeatureComponent {
-  
+export class PortalCalendarComponent {
+
   public events?: Maybe<EventEntity>[];
+
+  public title?: string;
 
   constructor(
     private store: Store,

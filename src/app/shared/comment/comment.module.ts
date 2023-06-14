@@ -26,7 +26,6 @@ const libs = [
     declarations: [...components],
       imports: [
       ...framework,
-      // ...materials,
       ...modules,
       ...libs,
     ],

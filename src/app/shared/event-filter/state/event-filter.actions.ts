@@ -2,7 +2,7 @@ import { Params } from '@angular/router';
 import { createActionGroup, emptyProps } from '@ngrx/store';
 import { Period } from 'src/app/core/typings/period';
 import { EventCategoryEntity, EventTargetGroupEntity, Maybe, SuburbEntity } from 'src/schema/schema';
-import { EventFilterQueryParams } from '../typings/event-filter-query-param';
+import { EventFilterQueryParams } from '../../../core/typings/filter-query-param';
 
 export const EventFilterActions = createActionGroup({
   source: 'Event Filter',

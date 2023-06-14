@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { Subject, takeUntil } from 'rxjs';
 import { MediaEntity } from '../../../../../../schema/schema';
-import { authorSlug } from '../constants/portal-author-details.constant';
+import { authorSlug } from '../constants/portal-author-details.constants';
 import { AuthorDetailsActions } from '../state/portal-author-details.actions';
 import { selectAuthorDetails } from '../state/portal-author-details.selectors';
 

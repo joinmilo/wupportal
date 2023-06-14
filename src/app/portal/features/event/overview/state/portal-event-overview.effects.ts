@@ -22,14 +22,8 @@ export class PortalEventOverviewEffects {
   updateParams = createEffect(() => this.actions.pipe(
     ofType(PortalEventOverviewActions.updateParams),
     withLatestFrom(this.store.select(selectParams)),
-    map(([action, currentParams]) => Object.assign({ ...currentParams } || {}, action.params)),
-    map(params => PortalEventOverviewActions.paramsUpdated(params))
-  ));
-
-  paramsUpdated = createEffect(() => this.actions.pipe(
-    ofType(PortalEventOverviewActions.paramsUpdated),
-    switchMap(action => this.getEvents.watch({ 
-      params: action.params,
+    switchMap(([, params]) => this.getEvents.watch({ 
+      params,
     }).valueChanges),
     map(response => PortalEventOverviewActions.setOverviewData(response.data.getEvents as PageableList_EventEntity))
   ));

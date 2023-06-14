@@ -1,4 +1,4 @@
-import { IMAGE_LOADER, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -12,12 +12,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { mediaApi } from './core/constants/core.constants';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { CustomImageLoader } from './core/typings/customImageLoader';
 import { GraphQLModule } from './graphql.module';
 import { PortalModule } from './portal/portal.module';
 
@@ -72,16 +70,6 @@ const providers = [
     useClass: ErrorInterceptor,
     multi: true,
   },
-  {
-    provide: IMAGE_LOADER,
-    useValue: (config: CustomImageLoader) => {
-      return config.loaderParams?.src
-        ? config.loaderParams.src
-        : config.loaderParams && config.loaderParams.media && config.loaderParams.media.id
-          ? mediaApi(config.loaderParams.media)
-          : '/assets/placeholder.webp';
-    }
-  }
 ];
 
 @NgModule({

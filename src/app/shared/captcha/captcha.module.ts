@@ -5,9 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgHcaptchaModule } from 'ng-hcaptcha';
 import { CoreModule } from 'src/app/core/core.module';
-import { CaptchaDialogComponent } from './dialog/captcha-dialog.component';
-import { CaptchaFormComponent } from './form/captcha-form.component';
-import { CaptchaSubmitComponent } from './submit/captcha-submit.component';
+import { CaptchaDialogComponent } from './components/dialog/captcha-dialog.component';
+import { CaptchaFormComponent } from './components/form/captcha-form.component';
+import { CaptchaSubmitComponent } from './components/submit/captcha-submit.component';
 
 
 const components = [

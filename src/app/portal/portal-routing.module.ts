@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, eventsFeatureKey, guestArticlesFeatureKey, reportsFeatureKey } from '../core/constants/core.constants';
-import { authorSlug } from './features/author/details/constants/portal-author-details.constant';
-import { eventSlug } from './features/event/details/constants/event-details.constant';
+import { authorSlug } from './features/author/details/constants/portal-author-details.constants';
+import { eventSlug } from './features/event/details/constants/event-details.constants';
 
 const routes: Routes = [
   {

@@ -1,14 +1,11 @@
 <app-sub-title titleLabel="activities"></app-sub-title>
 <mat-card>
-  <app-calendar
-    [dates]="startDates"
-    (daySelected)="daySelected($event)"
-    (monthSelected)="monthSelected($event)">
-  </app-calendar>
+  <app-event-calendar (events)="selectedEvents($event)">
+  </app-event-calendar>
 
-  <section *ngIf="(events | async)?.length">
+  <section *ngIf="events?.length">
     <app-card-slider
       entity="EventEntity"
-      [data]="events | async"></app-card-slider>
+      [data]="events"></app-card-slider>
   </section>
 </mat-card>

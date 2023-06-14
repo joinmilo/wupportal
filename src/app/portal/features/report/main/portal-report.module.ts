@@ -14,7 +14,7 @@ import { CardModule } from 'src/app/shared/card/card.module';
 import { FormModule } from 'src/app/shared/form/form.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalReportFormComponent } from './components/portal-report-form.component';
-import { reportStateKey } from './constants/report.constant';
+import { reportStateKey } from './constants/report.constants';
 import { PortalReportRoutingModule } from './portal-report-routing.module';
 import { ReportEffects } from './state/report.effects';
 import { reportReducer } from './state/report.reducer';

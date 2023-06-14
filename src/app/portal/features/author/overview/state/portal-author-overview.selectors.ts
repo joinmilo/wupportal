@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { authorOverviewStateKey } from '../constants/portal-author-overview.constant';
+import { authorOverviewStateKey } from '../constants/portal-author-overview.constants';
 import { PortalAuthorOverviewState } from './portal-author-overview.reducer';
 
 

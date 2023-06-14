@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { reportStateKey } from '../constants/report.constant';
+import { reportStateKey } from '../constants/report.constants';
 import { ReportState } from './report.reducer';
 
 export const selectReportState = createFeatureSelector<ReportState>(reportStateKey);

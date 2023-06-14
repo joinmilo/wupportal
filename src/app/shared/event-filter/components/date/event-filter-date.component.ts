@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Period } from 'src/app/core/typings/period';
 import { Maybe } from 'src/schema/schema';
+import { EventFilterQueryDefinition } from '../../../../core/typings/filter-query-param';
 import { EventFilterActions } from '../../state/event-filter.actions';
-import { EventFilterQueryDefinition } from '../../typings/event-filter-query-param';
 
 @Component({
   selector: 'app-event-filter-date',

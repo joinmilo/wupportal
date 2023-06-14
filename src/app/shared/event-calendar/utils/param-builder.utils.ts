@@ -1,7 +1,12 @@
+import { Period } from 'src/app/core/typings/period';
 import { ConjunctionOperator, FilterSortPaginateInput, Maybe, QueryExpressionInput, QueryOperator } from 'src/schema/schema';
 import { EventFilterQueryDefinition, EventFilterQueryParams } from '../../../core/typings/filter-query-param';
 
-export const createEventParams = (queryParams: EventFilterQueryParams) => {
+export const createCalendarParams = (
+  queryParams?: Maybe<EventFilterQueryParams>,
+  period?: Maybe<Period>,
+  isEvent = true,
+  ) => {
   const params = {
     expression: {
       conjunction: {
@@ -10,66 +15,57 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[EventFilterQueryDefinition.categories]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.categories]) {
 
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.categories,
-        'category.id'
+        isEvent ? 'category.id' : 'event.category.id'
       )
     );
   }
 
-  if (queryParams[EventFilterQueryDefinition.suburbs]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.suburbs]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.suburbs,
-        'address.suburb.id'
+        isEvent ? 'address.suburb.id' : 'event.address.suburb.id'
       )
     );
   }
 
-  if (queryParams[EventFilterQueryDefinition.targetGroups]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.targetGroups]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.targetgroups,
-        'targetGroups.id'
+        isEvent ? 'targetGroups.id' : 'event.targetGroups.id'
       )
     );
   }
 
-  if (!queryParams[EventFilterQueryDefinition.past]) {
-    queryParams[EventFilterQueryDefinition.startDate]
-      || queryParams[EventFilterQueryDefinition.endDate]
-      ? params.expression?.conjunction?.operands?.push(
-          {
-            entity: {
-              path: 'schedules.startDate',
-              operator: QueryOperator.GreaterOrEqual,
-              value: queryParams?.start
-            }
-          },
-          {
-            entity: {
-              path: 'schedules.startDate',
-              operator: QueryOperator.LessOrEqual,
-              value: queryParams?.end
-            }
-          }
-        )
-      : params.expression?.conjunction?.operands?.push({
-          entity: {
-            path: 'schedules.startDate',
-            operator: QueryOperator.GreaterOrEqual,
-            value: new Date().toISOString()
-          }
-        });
+  if (period) {
+    params.expression?.conjunction?.operands?.push(
+      {
+        entity: {
+          path: isEvent ? 'schedules.startDate' : 'startDate',
+          operator: QueryOperator.GreaterOrEqual,
+          value: period?.startDate.toISOString(),
+        }
+      },
+      {
+        entity: {
+          path: isEvent ? 'schedules.startDate' : 'startDate',
+          operator: QueryOperator.LessOrEqual,
+          value: period?.endDate.toISOString(),
+        }
+      }
+    )
   }
 
-  if (queryParams[EventFilterQueryDefinition.freeOnly]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.freeOnly]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
-        path: 'entryFee',
+        path: isEvent ? 'entryFee' : 'event.entryFee',
         operator: QueryOperator.Equal,
         value: null
       }
