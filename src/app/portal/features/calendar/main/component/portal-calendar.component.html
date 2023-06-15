@@ -2,7 +2,9 @@
   <app-page-title title="yourEventCalendar"></app-page-title>
   <!-- TODO: Add Filter area -->
   <mat-card>
-    <app-event-calendar (events)="selectedEvents($event)">
+    <app-event-calendar 
+      (events)="events = $event"
+      (daySelected)="title = $event.startDate.toLocaleDateString()">
     </app-event-calendar>
   </mat-card>
   <section *ngIf="events?.length">

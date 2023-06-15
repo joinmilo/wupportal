@@ -28,7 +28,9 @@ export class CalendarHeaderComponent implements OnDestroy {
     @Inject(MAT_DATE_FORMATS) private _dateFormats: MatDateFormats,
     cdr: ChangeDetectorRef,
   ) {
-    calendar.stateChanges.pipe(takeUntil(this.destroy)).subscribe(() => cdr.markForCheck());
+    calendar.stateChanges
+      .pipe(takeUntil(this.destroy))
+      .subscribe(() => cdr.markForCheck());
   }
 
   //TODO: apply translations

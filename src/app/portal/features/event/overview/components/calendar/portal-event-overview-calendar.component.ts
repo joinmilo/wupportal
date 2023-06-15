@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { tap } from 'rxjs';
 import { EventEntity } from 'src/schema/schema';
 import { selectRawParams } from '../../state/portal-event-overview.selectors';
 
@@ -14,16 +13,12 @@ export class PortalEventOverviewCalendarComponent {
 
   public events?: Maybe<EventEntity>[];
 
-  public params = this.store.select(selectRawParams)
-    .pipe(tap(test => console.log('here ever', test)));
+  public params = this.store.select(selectRawParams);
+
+  public title?: string;
   
   constructor(
     private store: Store,
   ) { }
-
-  public selectedEvents(events?: Maybe<EventEntity>[]): void {
-    this.events = events;
-    console.log(this.events);
-  }
 
 }

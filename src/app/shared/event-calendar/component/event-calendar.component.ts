@@ -18,7 +18,13 @@ export class EventCalendarComponent implements OnChanges, OnDestroy {
   public additionalFilter?: Maybe<EventFilterQueryParams>
 
   @Output()
+  public daySelected = new EventEmitter<Period>();
+
+  @Output()
   public events = new EventEmitter<Maybe<EventEntity>[] | undefined>();
+
+  @Output()
+  public monthSelected = new EventEmitter<Period>();
 
   public startDates = this.store.select(selectDistinctSchedules);
 
@@ -38,11 +44,13 @@ export class EventCalendarComponent implements OnChanges, OnDestroy {
     }
   }
 
-  public daySelected(day: Period) {
+  public daySelectionUpdate(day: Period) {
+    this.daySelected.emit(day);
     this.store.dispatch(EventCalendarActions.daySelected(day));
   }
 
-  public monthSelected(month: Period) {
+  public monthSelectionUpdate(month: Period) {
+    this.monthSelected.emit(month);
     this.store.dispatch(EventCalendarActions.monthSelected(month));
   }
 

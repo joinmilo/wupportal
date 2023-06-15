@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { EventEntity, Maybe } from 'src/schema/schema';
 
 
@@ -13,13 +12,4 @@ export class PortalCalendarComponent {
   public events?: Maybe<EventEntity>[];
 
   public title?: string;
-
-  constructor(
-    private store: Store,
-  ) {}
-
-  public selectedEvents(events?: Maybe<EventEntity>[]): void {
-    this.events = events;
-  }
-
 }
