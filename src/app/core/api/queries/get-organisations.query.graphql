@@ -3,5 +3,6 @@ query getOrganisations($params: FilterSortPaginateInput) {
     result {
       ...Organisation
     }
+    total
   }
 }

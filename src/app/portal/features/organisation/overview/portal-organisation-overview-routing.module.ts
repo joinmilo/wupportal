@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PortalOrganisationOverviewComponent } from './components/portal-Organisation-overview.component';
+import { PortalOrganisationOverviewComponent } from './components/portal-organisation-overview.component';
 
 const routes: Routes = [
   {

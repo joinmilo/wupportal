@@ -8,6 +8,10 @@ div {
   gap: 1rem;
 }
 
+fa-icon {
+  color: var(--color-primary-500)
+}
+
 :host ::ng-deep {
   .active.mat-mdc-raised-button {
     border: 1px solid var(--color-primary-500) !important;

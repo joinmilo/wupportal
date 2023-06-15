@@ -1,0 +1,28 @@
+<div>
+  <app-table-sort
+    [options]="sortOptions"
+    [queryParams]="queryParams"
+    (sortChange)="sortChange($event)">
+  </app-table-sort>
+  <section>
+    <ng-container [ngSwitch]="cardType">
+      <ng-container *ngSwitchCase="types.contact">
+        <app-contact-card *ngFor="let card of (data | async)?.result" [entity]="entity" [data]="card"></app-contact-card>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.content">
+        <app-content-card *ngFor="let card of (data | async)?.result" [entity]="entity" [data]="card"></app-content-card>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.sponsored">
+        <app-sponsored-card *ngFor="let card of (data | async)?.result" [entity]="entity" [data]="card"></app-sponsored-card>
+      </ng-container>
+    </ng-container>
+  </section>
+  <mat-card>
+    <mat-paginator
+      [length]="(data | async)?.total"
+      [pageSize]="initParams.size"
+      [pageIndex]="initParams.page"
+      [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </mat-card>
+</div>

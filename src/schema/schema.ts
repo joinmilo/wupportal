@@ -2988,6 +2988,7 @@ export type OrganisationEntity = {
   name?: Maybe<Scalars['String']>;
   ratings?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
   slug?: Maybe<Scalars['String']>;
+  sponsored?: Maybe<Scalars['Boolean']>;
   translatables?: Maybe<Array<Maybe<OrganisationTranslatableEntity>>>;
   uploads?: Maybe<Array<Maybe<OrganisationMediaEntity>>>;
   visitors?: Maybe<Array<Maybe<OrganisationVisitorEntity>>>;
@@ -3008,6 +3009,7 @@ export type OrganisationEntityInput = {
   name?: InputMaybe<Scalars['String']>;
   ratings?: InputMaybe<Array<InputMaybe<OrganisationRatingEntityInput>>>;
   slug?: InputMaybe<Scalars['String']>;
+  sponsored?: InputMaybe<Scalars['Boolean']>;
   translatables?: InputMaybe<Array<InputMaybe<OrganisationTranslatableEntityInput>>>;
   uploads?: InputMaybe<Array<InputMaybe<OrganisationMediaEntityInput>>>;
   visitors?: InputMaybe<Array<InputMaybe<OrganisationVisitorEntityInput>>>;
@@ -5207,12 +5209,19 @@ export type GetMenuQueryVariables = Exact<{
 
 export type GetMenuQuery = { __typename?: 'Query', getMenuItems?: { __typename?: 'PageableList_MenuItemEntity', result?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, header?: boolean | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null, parent?: { __typename?: 'MenuItemEntity', id?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null, order?: number | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, key?: string | null } | null, page?: { __typename?: 'PageEntity', id?: string | null } | null, subMenuItems?: Array<{ __typename?: 'MenuItemEntity', id?: string | null } | null> | null, translatables?: Array<{ __typename?: 'MenuItemTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null> | null } | null };
 
+export type GetOrganisationQueryVariables = Exact<{
+  entity?: InputMaybe<OrganisationEntityInput>;
+}>;
+
+
+export type GetOrganisationQuery = { __typename?: 'Query', getOrganisation?: { __typename?: 'OrganisationEntity', id?: string | null, name?: string | null, slug?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, uploads?: Array<{ __typename?: 'OrganisationMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null } | null> | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'OrganisationTranslatableEntity', id?: string | null, description?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null };
+
 export type GetOrganisationsQueryVariables = Exact<{
   params?: InputMaybe<FilterSortPaginateInput>;
 }>;
 
 
-export type GetOrganisationsQuery = { __typename?: 'Query', getOrganisations?: { __typename?: 'PageableList_OrganisationEntity', result?: Array<{ __typename?: 'OrganisationEntity', id?: string | null, name?: string | null, slug?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, uploads?: Array<{ __typename?: 'OrganisationMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null } | null> | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'OrganisationTranslatableEntity', id?: string | null, description?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
+export type GetOrganisationsQuery = { __typename?: 'Query', getOrganisations?: { __typename?: 'PageableList_OrganisationEntity', total: any, result?: Array<{ __typename?: 'OrganisationEntity', id?: string | null, name?: string | null, slug?: string | null, address?: { __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, place?: string | null, postalCode?: string | null, street?: string | null, latitude: number, longitude: number } | null, uploads?: Array<{ __typename?: 'OrganisationMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, mimeType?: string | null, name?: string | null } | null } | null> | null, contact?: { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null } | null, translatables?: Array<{ __typename?: 'OrganisationTranslatableEntity', id?: string | null, description?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
 export type GetPageQueryVariables = Exact<{
   isLanding?: InputMaybe<Scalars['Boolean']>;
@@ -6289,12 +6298,31 @@ export const GetMenuDocument = gql`
       super(apollo);
     }
   }
+export const GetOrganisationDocument = gql`
+    query getOrganisation($entity: OrganisationEntityInput) {
+  getOrganisation(entity: $entity) {
+    ...Organisation
+  }
+}
+    ${OrganisationFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOrganisationGQL extends Apollo.Query<GetOrganisationQuery, GetOrganisationQueryVariables> {
+    override document = GetOrganisationDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetOrganisationsDocument = gql`
     query getOrganisations($params: FilterSortPaginateInput) {
   getOrganisations(params: $params) {
     result {
       ...Organisation
     }
+    total
   }
 }
     ${OrganisationFragmentDoc}`;

@@ -31,6 +31,10 @@ mat-card {
   overflow: hidden;
 }
 
+fa-icon {
+  color: var(--color-primary-500)
+}
+
 mat-card-content {
   display: flex;
   flex-flow: wrap;

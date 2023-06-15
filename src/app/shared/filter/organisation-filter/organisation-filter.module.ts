@@ -60,4 +60,4 @@ const libs = [
   ],
   exports: [...components],
 })
-export class EventFilterModule { }
+export class OrganisationFilterModule { }

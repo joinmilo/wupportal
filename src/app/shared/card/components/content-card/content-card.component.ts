@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CardData, CardElement, CardEntity } from 'src/app/shared/card/typings/card';
+import { Maybe } from 'src/schema/schema';
 import { dataToElement } from '../../utils/card.utils';
 
 @Component({
@@ -13,12 +14,12 @@ import { dataToElement } from '../../utils/card.utils';
 export class ContentCardComponent implements OnInit {
 
   @Input()
-  public entity?: CardEntity;
+  public entity?: Maybe<CardEntity>;
 
   @Input()
-  public data?: CardData;
+  public data?: Maybe<CardData>;
 
-  public element?: CardElement;
+  public element?: Maybe<CardElement>;
 
   public ngOnInit(): void {
     if (this.entity && this.data) {

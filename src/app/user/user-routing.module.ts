@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { slug } from '../core/constants/core.constants';
 import { LoginComponent } from './components/login/login.component';
 import { PasswordSendMailComponent } from './components/password-send-mail/password-send-mail.component';
 import { PasswordSetNewComponent } from './components/password-set-new/password-set-new.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { VerificationSendMailComponent } from './components/verification-send-mail/verification-send-mail.component';
 import { VerificationComponent } from './components/verification/verification.component';
-import { tokenSlug } from './constants/user.constants';
 
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
     component: PasswordSendMailComponent
   },
   {
-    path: `password/:${tokenSlug}`,
+    path: `password/:${slug}`,
     component: PasswordSetNewComponent
   },
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
     component: VerificationSendMailComponent
   },
   {
-    path: `verification/:${tokenSlug}`,
+    path: `verification/:${slug}`,
     component: VerificationComponent
   },
 ];

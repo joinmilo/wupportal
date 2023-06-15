@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Observable, take } from 'rxjs';
 import { Column, PageableList, RowAction, SortPaginate } from '../typings/table';
 
@@ -21,7 +20,10 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   public data?: Observable<PageableList<T> | undefined>;
 
   @Input()
-  public initParams?: SortPaginate;
+  public initParams: SortPaginate = {
+    page: 0,
+    size: 10
+  };
 
   @Input()
   public queryParams = true;
@@ -32,23 +34,20 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private store: Store,
   ) {}
 
   public ngOnInit(): void {
     this.queryParams && this.activatedRoute.queryParams
       .pipe(take(1))
-      .subscribe((params: SortPaginate) => this.emitSortPaginate(this.initParams = {
+      .subscribe((params: SortPaginate) => this.sortPaginate.emit(this.initParams = {
         dir: params.dir,
-        page: params.page ?? 0,
-        size: params.size ?? 10,
+        page: params.page ?? this.initParams.page,
+        size: params.size ?? this.initParams.size,
         sort: params.sort
       }));
   }
 
   public emitSortPaginate(sortPage: SortPaginate): void {
-    this.sortPaginate.emit(sortPage);
-
     if (this.queryParams) {
       this.router.navigate([], {
         relativeTo: this.activatedRoute,
@@ -56,9 +55,11 @@ export class TableComponent<T> implements OnInit, OnDestroy {
         queryParamsHandling: 'merge',
       });
     }
+    this.sortPaginate.emit(sortPage)
   }
 
   public ngOnDestroy(): void {
+
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {
@@ -70,4 +71,4 @@ export class TableComponent<T> implements OnInit, OnDestroy {
       queryParamsHandling: 'merge'
     });
   }
-}
+} 

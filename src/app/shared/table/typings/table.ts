@@ -1,3 +1,4 @@
+import { SortDirection } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
 
@@ -30,9 +31,20 @@ export type RowAction<T> = {
   type?: RowActionType,
 };
 
-export type SortPaginate = {
-  dir?: Maybe<string>,
+export type Sort = {
+  dir?: Maybe<SortDirection>,
+  sort?: Maybe<string>,
+}
+
+export type Paginate = {
   page?: Maybe<number>,
   size?: Maybe<number>,
-  sort?: Maybe<string>,
+}
+
+export interface SortPaginate extends Sort, Paginate { }
+
+export type SortOption = {
+  field: string,
+  label: string,
+  dir?: SortDirection,
 }

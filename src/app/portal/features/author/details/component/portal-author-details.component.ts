@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { Subject, takeUntil } from 'rxjs';
+import { slug } from 'src/app/core/constants/core.constants';
 import { MediaEntity } from '../../../../../../schema/schema';
-import { authorSlug } from '../constants/portal-author-details.constants';
 import { AuthorDetailsActions } from '../state/portal-author-details.actions';
 import { selectAuthorDetails } from '../state/portal-author-details.selectors';
 
@@ -29,7 +29,7 @@ export class PortalAuthorDetailsComponent implements OnInit, OnDestroy {
     this.activatedRoute.paramMap
       .pipe(takeUntil(this.destroy))
       .subscribe(params =>
-        this.store.dispatch(AuthorDetailsActions.getDetails(params.get(authorSlug))));
+        this.store.dispatch(AuthorDetailsActions.getDetails(params.get(slug))));
 
     this.author.pipe(takeUntil(this.destroy))
       .subscribe(author => this.media = author?.uploads?.find(upload => upload?.title)?.media);

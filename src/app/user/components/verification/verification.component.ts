@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take, tap } from 'rxjs';
-import { tokenSlug } from '../../constants/user.constants';
+import { slug } from 'src/app/core/constants/core.constants';
 import { UserActions } from '../../state/user.actions';
 import { selectUserVerified } from '../../state/user.selectors';
 
@@ -23,7 +23,7 @@ export class VerificationComponent implements OnInit {
   public ngOnInit(): void {
     this.route.paramMap.pipe(
       take(1),
-      tap(params => this.store.dispatch(UserActions.verify(params.get(tokenSlug))))
+      tap(params => this.store.dispatch(UserActions.verify(params.get(slug))))
     ).subscribe();
   }
 }

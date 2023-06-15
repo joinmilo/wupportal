@@ -3,8 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take, tap } from 'rxjs';
+import { slug } from 'src/app/core/constants/core.constants';
 import { UserActions } from 'src/app/user/state/user.actions';
-import { tokenSlug } from '../../constants/user.constants';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class PasswordSetNewComponent {
     take(1),
     tap(params => {
       this.store.dispatch(UserActions.resetPassword(
-        params.get(tokenSlug),
+        params.get(slug),
         this.form.value.password as string
       ))
     })).subscribe();

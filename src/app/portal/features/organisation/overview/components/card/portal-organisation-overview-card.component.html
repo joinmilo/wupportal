@@ -1,0 +1,7 @@
+<app-table-card
+  entity="OrganisationEntity"
+  [data]="organisations"
+  [cardType]="cardType"
+  [sortOptions]="sortOptions"
+  (sortPaginate)="sortPaginate.emit($event)">
+</app-table-card>

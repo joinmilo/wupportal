@@ -37,8 +37,8 @@ export class PortalEventOverviewComponent {
     },
     {
       icon: ['fas', 'list'],
-      label: 'list',
-      value: DisplayType.List
+      label: 'table',
+      value: DisplayType.Table
     },
   ];
 

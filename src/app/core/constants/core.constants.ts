@@ -63,3 +63,9 @@ export const pwBitStrengthConfig = 'pwBitStrength';
  */
 export const accessDeniedError = 'AccessDeniedException'
 export const tokenExpiredError = 'TokenExpiredException'
+
+
+/**
+ * Slug params
+ */
+export const slug = 'slug';

@@ -40,6 +40,7 @@ export type CardElement = {
   date?: Maybe<string>,
   dateTime: boolean,
   image?: Maybe<MediaEntity>,
+  phone?: Maybe<string>,
 
   url?: Maybe<string | undefined>[],
 

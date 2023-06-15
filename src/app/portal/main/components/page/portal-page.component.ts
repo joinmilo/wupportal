@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { switchMap, tap } from 'rxjs';
-import { pageSlug } from '../../constants/portal-main.constants';
+import { slug } from 'src/app/core/constants/core.constants';
 import { PortalMainActions } from '../../state/portal-main.actions';
 import { selectCurrentPage } from '../../state/portal-main.selectors';
 
@@ -14,8 +14,8 @@ import { selectCurrentPage } from '../../state/portal-main.selectors';
 export class PortalPageComponent {
 
   public page = this.route.paramMap.pipe(
-    tap(params => params.get(pageSlug)
-      && this.store.dispatch(PortalMainActions.getPage(params.get(pageSlug)))),
+    tap(params => params.get(slug)
+      && this.store.dispatch(PortalMainActions.getPage(params.get(slug)))),
     switchMap(() => this.store.select(selectCurrentPage))
   );
 

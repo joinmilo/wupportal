@@ -94,10 +94,11 @@ export const organisationsToCards = (entities?: Maybe<OrganisationEntity[]>): Ca
 
 export const organisationToCard = (entity?: Maybe<OrganisationEntity>): CardElement => ({
   id: entity?.id,
-  email: entity?.contact?.email,
   creator: entity?.name,
-  image: entity?.uploads?.find(upload => upload?.card)?.media,
   dateTime: true,
+  email: entity?.contact?.email,
+  image: entity?.uploads?.find(upload => upload?.card)?.media,
+  phone: entity?.contact?.phone,
   translatables: entity?.translatables,
   url: ['/portal', organisationsFeatureKey, entity?.slug],
 });

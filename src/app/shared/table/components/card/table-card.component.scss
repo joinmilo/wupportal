@@ -1,0 +1,20 @@
+div {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+
+app-table-sort {
+  align-self: flex-end;
+}
+
+mat-card {
+  padding: 1rem;
+}
+
+section {
+  display: flex;
+  gap: 1rem;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
