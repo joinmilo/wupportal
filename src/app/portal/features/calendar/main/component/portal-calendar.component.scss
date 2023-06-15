@@ -10,7 +10,10 @@ app-page-title {
   margin-bottom: var(--gap);
 }
 
+
+
 mat-card {
+  margin-top: 1rem;
   width: 40rem;
   max-width: calc(100% - var(--gap));
 }

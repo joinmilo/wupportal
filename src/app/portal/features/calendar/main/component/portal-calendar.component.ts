@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EventFilterQueryParams } from 'src/app/core/typings/filter-query-param';
 import { EventEntity, Maybe } from 'src/schema/schema';
 
 
@@ -10,6 +11,9 @@ import { EventEntity, Maybe } from 'src/schema/schema';
 export class PortalCalendarComponent {
 
   public events?: Maybe<EventEntity>[];
-
+  
+  public params?: EventFilterQueryParams;
+  
   public title?: string;
+
 }
