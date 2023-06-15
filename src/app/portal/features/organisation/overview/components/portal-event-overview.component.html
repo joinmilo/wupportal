@@ -1,0 +1,36 @@
+<div class="main">
+  <app-page-title title="activities"></app-page-title>
+  <app-sponsored-card *ngIf="(sponsored | async)?.id"
+    entity="EventEntity"
+    [data]="sponsored | async">
+  </app-sponsored-card>
+
+  <app-event-filter 
+    (paramsUpdated)="updateParams($event)"
+    (rawParamsUpdated)="updateRawParams($event)">
+    <app-radio-button-group
+      [inputs]="inputs"
+      [value]="displayType"
+      [queryParamKey]="displayQueryParam"
+      (valueChanged)="displayType = $event">
+    </app-radio-button-group>
+  </app-event-filter>
+
+  <ng-container>
+    <ng-container [ngSwitch]="displayType">
+      
+      <app-portal-event-overview-calendar *ngSwitchCase="'calendar'">
+      </app-portal-event-overview-calendar>
+      
+      <app-portal-event-overview-category *ngSwitchCase="'category'">
+      </app-portal-event-overview-category>
+      
+      <span *ngSwitchCase="'map'">Karte</span>
+  
+      <app-portal-event-overview-table *ngSwitchCase="'list'"
+        (sortPaginate)="updateParams($event)">
+      </app-portal-event-overview-table>
+  
+    </ng-container>
+  </ng-container>
+</div>

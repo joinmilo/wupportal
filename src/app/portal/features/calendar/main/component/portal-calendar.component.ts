@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventFilterQueryParams } from 'src/app/core/typings/filter-query-param';
+import { EventFilterQueryParams } from 'src/app/core/typings/filter-param';
 import { EventEntity, Maybe } from 'src/schema/schema';
 
 

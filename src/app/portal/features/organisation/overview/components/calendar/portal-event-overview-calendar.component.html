@@ -1,0 +1,14 @@
+
+<mat-card>
+  <app-event-calendar
+    [additionalFilter]="params | async"
+    (events)="events = $event"
+    (daySelected)="title = $event.startDate.toLocaleDateString()">
+  </app-event-calendar>
+  <app-card-slider
+    *ngIf="events?.length"
+    entity="EventEntity"
+    [data]="events"
+    [titleLabel]="title">
+  </app-card-slider>
+</mat-card>
