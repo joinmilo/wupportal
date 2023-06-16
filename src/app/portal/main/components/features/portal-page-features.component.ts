@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { articlesFeatureKey, calendarFeatureKey, eventsFeatureKey, reportsFeatureKey } from 'src/app/core/constants/core.constants';
+import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, formsFeatureKey, guestArticlesFeatureKey, mapFeatureKey, mediaFeatureKey, organisationsFeatureKey, reportsFeatureKey, surveysFeatureKey } from 'src/app/core/constants/core.constants';
 import { Maybe, PageFeatureEntity } from 'src/schema/schema';
 
 @Component({
@@ -13,10 +13,19 @@ export class PortalPageFeaturesComponent implements OnInit {
   public pageFeatures?: Maybe<Maybe<PageFeatureEntity>[]>;
 
   public features = {
-    article: articlesFeatureKey,
+    articles: articlesFeatureKey,
+    authors: authorsFeatureKey,
     calendar: calendarFeatureKey,
-    event: eventsFeatureKey,
-    report: reportsFeatureKey,
+    contests: contestsFeatureKey,
+    deals: dealsFeatureKey,
+    events: eventsFeatureKey,
+    forms: formsFeatureKey,
+    guestArticle: guestArticlesFeatureKey,
+    map: mapFeatureKey,
+    media: mediaFeatureKey,
+    organisations: organisationsFeatureKey,
+    reports: reportsFeatureKey,
+    surveys: surveysFeatureKey,
   }
 
   public ngOnInit(): void {

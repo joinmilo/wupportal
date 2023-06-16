@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { distinctStartDates } from 'src/app/core/utils/schedule.utils';
-import { SuburbOrganisation } from '../../typings/portal-overview-organisation-suburb';
 import { portalOrganisationOverviewStateKey } from '../constants/portal-organisation-overview.constants';
+import { SuburbOrganisation } from '../typings/portal-overview-organisation-suburb';
 import { PortalOrganisationOverviewState } from './portal-organisation-overview.reducer';
 
 export const selectPortalOrganisationOverviewState = createFeatureSelector<PortalOrganisationOverviewState>(portalOrganisationOverviewStateKey);

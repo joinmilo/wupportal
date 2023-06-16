@@ -1,10 +1,10 @@
 <div>
   <ng-container *ngFor="let pageFeature of pageFeatures">
     <ng-container [ngSwitch]="pageFeature?.feature?.key">
-      <app-article-page-feature *ngSwitchCase="features.article"></app-article-page-feature>
+      <app-article-page-feature *ngSwitchCase="features.articles"></app-article-page-feature>
       <app-calendar-page-feature *ngSwitchCase="features.calendar"></app-calendar-page-feature>
-      <app-event-page-feature *ngSwitchCase="features.event"></app-event-page-feature>
-      <app-report-page-feature *ngSwitchCase="features.report"></app-report-page-feature>
+      <app-event-page-feature *ngSwitchCase="features.events"></app-event-page-feature>
+      <app-report-page-feature *ngSwitchCase="features.reports"></app-report-page-feature>
     </ng-container>
   </ng-container>
 </div>
