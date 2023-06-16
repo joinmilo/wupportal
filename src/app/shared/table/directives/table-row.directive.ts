@@ -40,6 +40,7 @@ export class RowDirective<T> implements OnInit, OnDestroy {
     const value = this.column?.field?.split('.').reduce((obj, field) => (obj as never)?.[field], this.appRow);
     if (value !== undefined && value !== null) {
       switch(this.column?.type) {
+        //TODO: Use phone piece and add type
         case 'ADDRESS':
           this.address(value as AddressEntity);
           break;

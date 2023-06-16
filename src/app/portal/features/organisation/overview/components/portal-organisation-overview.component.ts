@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OrganisationFilterQueryParams } from 'src/app/core/typings/filter-param';
 import { DisplayType } from 'src/app/core/typings/overview-display';
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { FilterSortPaginateInput } from 'src/schema/schema';
@@ -54,10 +53,6 @@ export class PortalOrganisationOverviewComponent {
 
   public updateParams(params: FilterSortPaginateInput) {
     this.store.dispatch(PortalOrganisationOverviewActions.updateParams(params));
-  }
-
-  public updateRawParams(params: OrganisationFilterQueryParams) {
-    this.store.dispatch(PortalOrganisationOverviewActions.updateRawParams(params));
   }
 
 }

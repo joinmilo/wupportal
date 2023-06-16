@@ -12,7 +12,7 @@ import { PortalAuthorOverviewComponent } from './components/portal-author-overvi
 import { authorOverviewStateKey } from './constants/portal-author-overview.constants';
 import { PortalAuthorOverviewRoutingModule } from './portal-author-overview-routing.module';
 import { AuthorEffects } from './state/portal-author-overview.effects';
-import { authorReducer } from './state/portal-author-overview.reducer';
+import { portalAuthorOverviewReducer } from './state/portal-author-overview.reducer';
 
 const components = [
   PortalAuthorOverviewComponent,
@@ -35,7 +35,7 @@ const modules = [
 
 const libs = [
   FontAwesomeModule,
-  StoreModule.forFeature(authorOverviewStateKey, authorReducer),
+  StoreModule.forFeature(authorOverviewStateKey, portalAuthorOverviewReducer),
   EffectsModule.forFeature([AuthorEffects]),
 ]
 

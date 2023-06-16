@@ -1,18 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe } from 'graphql/jsutils/Maybe';
-import { UserContextEntity } from 'src/schema/schema';
+import { Maybe, PageableList_UserContextEntity } from 'src/schema/schema';
 import { PortalAuthorOverviewActions } from './portal-author-overview.actions';
 
 export interface PortalAuthorOverviewState {
-  showAuthors?: Maybe<UserContextEntity[]>
+  authors?: Maybe<PageableList_UserContextEntity>,
 }
 
 export const initialState: PortalAuthorOverviewState = { };
 
-export const authorReducer = createReducer(
+export const portalAuthorOverviewReducer = createReducer(
   initialState,
 
-  on(PortalAuthorOverviewActions.setRecentAuthors, (state, action): PortalAuthorOverviewState => (
-    {...state, showAuthors: action.authors}
+  on(PortalAuthorOverviewActions.setOverviewData, (state, action): PortalAuthorOverviewState => (
+    { ...state, authors: action.authors}
   )),  
 );

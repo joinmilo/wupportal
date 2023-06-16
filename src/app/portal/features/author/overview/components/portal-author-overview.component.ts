@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
-import { CardData, CardEntity, CardType } from 'src/app/shared/card/typings/card';
+import { CardType } from 'src/app/shared/card/typings/card';
+import { SortOption, SortPaginate } from 'src/app/shared/table/typings/table';
 import { PortalAuthorOverviewActions } from '../state/portal-author-overview.actions';
 import { selectAuthors } from '../state/portal-author-overview.selectors';
 
@@ -12,25 +12,28 @@ import { selectAuthors } from '../state/portal-author-overview.selectors';
 })
 export class PortalAuthorOverviewComponent {
 
-  public authors = this.store.select(selectAuthors).pipe(
-    tap(result => !result
-      && this.store.dispatch(PortalAuthorOverviewActions.getRecentAuthors()))
-  )
-  
-  public title?: string;
+  public authors = this.store.select(selectAuthors);
 
-  public types = {
-    contact: CardType.Contact,
-  }
+  public cardType = CardType.Contact;
 
-  @Input()
-  public entity?: CardEntity;
-
-  @Input()
-  public data?: CardData;
+  public sortOptions: SortOption[] = [
+    {
+      label: 'name',
+      field: 'user.firstName',
+    },
+    {
+      label: 'name',
+      field: 'user.firstName',
+      dir: 'desc'
+    },
+  ];
 
   constructor(
     private store: Store,
   ) {}
+
+  public updateParams(params: SortPaginate) {
+    this.store.dispatch(PortalAuthorOverviewActions.updateParams(params));
+  }
 
 }

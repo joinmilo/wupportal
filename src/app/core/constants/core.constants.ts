@@ -14,31 +14,10 @@ export const refreshKey = 'refresh';
 export const defaultAnimationDuration = 400;
 
 /**
- * Features
+ * API errors
  */
-export const articlesFeatureKey = 'articles';
-export const authorsFeatureKey = 'authors';
-export const calendarFeatureKey = 'calendar';
-export const contestsFeatureKey = 'contests';
-export const dealsFeatureKey = 'deals';
-export const eventsFeatureKey = 'events';
-export const formsFeatureKey = 'forms';
-export const guestArticlesFeatureKey = 'guestarticle';
-export const mapFeatureKey = 'map';
-export const mediaFeatureKey = 'media';
-export const organisationsFeatureKey = 'organisations';
-export const reportsFeatureKey = 'reports';
-export const surveysFeatureKey = 'surveys';
-
-/**
- * URLs
- */
-export const baseApi = `${environment.base}api`;
-export const graphqlApi = `${baseApi}/graphql`;
-export const mediaBaseApi = `${baseApi}/media`;
-export const mediaDownloadApi = `${mediaBaseApi}/download`;
-export const mediaExportApi = `${mediaBaseApi}/export`;
-export const mediaApi = (media: MediaEntity): string => `${mediaBaseApi}/${media?.id}`
+export const accessDeniedError = 'AccessDeniedException'
+export const tokenExpiredError = 'TokenExpiredException'
 
 /**
  * Configuration keys
@@ -59,13 +38,41 @@ export const portalNameConfig = 'portalName';
 export const pwBitStrengthConfig = 'pwBitStrength';
 
 /**
- * API errors
+ * Features
  */
-export const accessDeniedError = 'AccessDeniedException'
-export const tokenExpiredError = 'TokenExpiredException'
+export const articlesFeatureKey = 'articles';
+export const authorsFeatureKey = 'authors';
+export const calendarFeatureKey = 'calendar';
+export const contestsFeatureKey = 'contests';
+export const dealsFeatureKey = 'deals';
+export const eventsFeatureKey = 'events';
+export const formsFeatureKey = 'forms';
+export const guestArticlesFeatureKey = 'guestarticle';
+export const mapFeatureKey = 'map';
+export const mediaFeatureKey = 'media';
+export const organisationsFeatureKey = 'organisations';
+export const reportsFeatureKey = 'reports';
+export const surveysFeatureKey = 'surveys';
 
+/**
+ * Roles
+ */
+export const adminKey = 'admin';
+export const auhorKey = 'author';
+export const organizerKey = 'organizer';
+export const translatorKey = 'translator';
 
 /**
  * Slug params
  */
 export const slug = 'slug';
+
+/**
+ * URLs
+ */
+export const baseApi = `${environment.base}api`;
+export const graphqlApi = `${baseApi}/graphql`;
+export const mediaBaseApi = `${baseApi}/media`;
+export const mediaDownloadApi = `${mediaBaseApi}/download`;
+export const mediaExportApi = `${mediaBaseApi}/export`;
+export const mediaApi = (media: MediaEntity): string => `${mediaBaseApi}/${media?.id}`

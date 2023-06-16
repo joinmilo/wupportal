@@ -37,7 +37,7 @@ export class PortalOrganisationOverviewCardComponent {
       field: 'modified',
       dir: 'desc'
     },
-  ]
+  ];
   
   constructor(
     private store: Store,

@@ -123,7 +123,7 @@ export const usersToCards = (entities?: Maybe<UserContextEntity[]>): CardElement
 export const userToCard = (entity?: Maybe<UserContextEntity>): CardElement => ({
   id: entity?.id,
   email: entity?.user?.email,
-  creator: entity?.user?.lastName,
+  creator: `${entity?.user?.firstName} ${entity?.user?.lastName}`,
   creatorImage: entity?.uploads?.find(upload => upload?.profilePicture)?.media,
   dateTime: true,
   url: ['/portal', authorsFeatureKey, entity?.slug],

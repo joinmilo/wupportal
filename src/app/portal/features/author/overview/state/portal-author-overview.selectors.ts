@@ -7,5 +7,5 @@ export const selectPortalAuthorOverviewState = createFeatureSelector<PortalAutho
 
 export const selectAuthors = createSelector (
   selectPortalAuthorOverviewState,
-  state => state.showAuthors
+  state => state.authors
 )

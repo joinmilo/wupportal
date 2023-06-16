@@ -36,11 +36,6 @@ export const selectParams = createSelector(
   state => state.params
 );
 
-export const selectRawParams = createSelector(
-  selectPortalOrganisationOverviewState,
-  state => state.rawFilterParams
-);
-
 export const selectSchedules = createSelector(
   selectPortalOrganisationOverviewState,
   state => state.schedules
