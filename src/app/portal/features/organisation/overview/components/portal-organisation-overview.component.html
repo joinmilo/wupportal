@@ -16,7 +16,7 @@
     </app-radio-button-group>
   </app-organisation-filter>
 
-  <ng-container>
+  <ng-container *ngIf="(organisations | async)?.total; else emptyResult">
     <ng-container [ngSwitch]="displayType">
       
       <app-portal-organisation-overview-card *ngSwitchCase="'card'"
@@ -24,11 +24,18 @@
       </app-portal-organisation-overview-card>
       
       <span *ngSwitchCase="'map'">Karte</span>
+
+      <app-portal-organisation-overview-suburb *ngSwitchCase="'suburb'">
+      </app-portal-organisation-overview-suburb>
   
-      <!-- <app-portal-event-overview-table *ngSwitchCase="'table'"
+      <app-portal-organisation-overview-table *ngSwitchCase="'table'"
         (sortPaginate)="updateParams($event)">
-      </app-portal-event-overview-table> -->
+      </app-portal-organisation-overview-table>
   
     </ng-container>
   </ng-container>
+  <ng-template #emptyResult>
+    <app-portal-organisation-overview-empty>
+    </app-portal-organisation-overview-empty>
+  </ng-template>
 </div>

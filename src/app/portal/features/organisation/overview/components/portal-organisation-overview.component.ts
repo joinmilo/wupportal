@@ -32,7 +32,7 @@ export class PortalOrganisationOverviewComponent {
     },
     {
       icon: ['fas', 'tree-city'],
-      label: 'suburb',
+      label: 'suburbs',
       value: DisplayType.Suburb
     },
     {
@@ -42,7 +42,7 @@ export class PortalOrganisationOverviewComponent {
     },
   ];
 
-  public events = this.store.select(selectOverviewData);
+  public organisations = this.store.select(selectOverviewData);
 
   public sponsored = this.store.select(selectSponsoredOrganisation);
   

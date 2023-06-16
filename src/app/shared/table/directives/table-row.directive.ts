@@ -1,8 +1,9 @@
 import { Directive, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
+import { AddressPieceComponent } from 'src/app/core/components/pieces/adress/address-piece.component';
 import { CategoryPieceComponent } from 'src/app/core/components/pieces/category/category-piece.component';
 import { Category } from 'src/app/core/typings/category';
-import { Maybe } from 'src/schema/schema';
+import { AddressEntity, Maybe } from 'src/schema/schema';
 import { TableBooleanRowComponent } from '../components/rows/table-boolean-row.component';
 import { Column } from '../typings/table';
 
@@ -39,6 +40,9 @@ export class RowDirective<T> implements OnInit, OnDestroy {
     const value = this.column?.field?.split('.').reduce((obj, field) => (obj as never)?.[field], this.appRow);
     if (value !== undefined && value !== null) {
       switch(this.column?.type) {
+        case 'ADDRESS':
+          this.address(value as AddressEntity);
+          break;
         case 'CATEGORY':
           this.category(value as Category);
           break;
@@ -60,6 +64,12 @@ export class RowDirective<T> implements OnInit, OnDestroy {
     } else {
       this.display = ' - ';
     }
+  }
+  
+  private address(address: AddressEntity): void {
+    this.viewContainer
+      .createComponent(AddressPieceComponent)
+      .instance.address = address;
   }
 
   private category(category: Category) {

@@ -1,44 +1,29 @@
-<div class="container">
-  <section>
+<app-filter-area
+  [filtersActive]="filtersActive | async"
+  (filtersCleared)="clearFilters()">
 
-    <ng-content></ng-content>
+  <!-- The parent content, e.g. display filters, etc. -->
+  <ng-content></ng-content>
+
+  <!-- The filters to use in this filter area -->
+  <ng-container filters>
+    <app-event-filter-targetgroup>
+    </app-event-filter-targetgroup>
     
-    <button mat-raised-button
-      (click)="filtersCollapsed = !filtersCollapsed"
-      [class.active] = "!filtersCollapsed">
-        <div>
-          <fa-icon [icon]="['fas', 'filter']"></fa-icon>
-          <span appLabel="filter"></span>
-          <fa-icon *ngIf="(filtersActive | async)" class="active-icon" [icon]="['fas', 'check']"></fa-icon>
-        </div>
-    </button>
-  </section>
-  <mat-card [@collapse]="!filtersCollapsed">
-    <mat-card-content>
+    <app-event-filter-category>
+    </app-event-filter-category>
+    
+    <app-suburb-filter (valueChanged)="suburbSelected($event)">
+    </app-suburb-filter>
+    
+    <app-event-filter-date [disabled]="disbleDateFilter">
+    </app-event-filter-date>
+    
+    <app-event-filter-past>
+    </app-event-filter-past>
+    
+    <app-event-filter-free>
+    </app-event-filter-free>
+  </ng-container>
 
-      <app-event-filter-targetgroup>
-      </app-event-filter-targetgroup>
-
-      <app-event-filter-category>
-      </app-event-filter-category>
-
-      <app-suburb-filter (valueChanged)="suburbSelected($event)">
-      </app-suburb-filter>
-
-      <app-event-filter-date [disabled]="disbleDateFilter">
-      </app-event-filter-date>
-
-      <app-event-filter-past>
-      </app-event-filter-past>
-
-      <app-event-filter-free>
-      </app-event-filter-free>
-
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-stroked-button color="primary" (click)="clearFilters()">
-        <span appLabel="clearAllFilters"></span>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+</app-filter-area>

@@ -6,4 +6,7 @@ fragment Address on AddressEntity {
   street
   latitude
   longitude
+  suburb {
+    ...Suburb
+  }
 }

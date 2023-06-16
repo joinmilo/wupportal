@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { distinctStartDates } from 'src/app/core/utils/schedule.utils';
+import { SuburbOrganisation } from '../../typings/portal-overview-organisation-suburb';
 import { portalOrganisationOverviewStateKey } from '../constants/portal-organisation-overview.constants';
 import { PortalOrganisationOverviewState } from './portal-organisation-overview.reducer';
 
@@ -13,6 +14,21 @@ export const selectSponsoredOrganisation = createSelector(
 export const selectOverviewData = createSelector(
   selectPortalOrganisationOverviewState,
   state => state.overviewData
+);
+
+export const selectOverviewDataSuburbs = createSelector(
+  selectOverviewData,
+  organisations => {
+    return organisations?.result?.reduce((result, current) => {
+      const existing = result.find(suburb => suburb.id === current?.address?.suburb?.id);
+
+      existing
+        ? existing.organisations?.push(current)
+        : result.push({ ...current?.address?.suburb, organisations: [current] } as SuburbOrganisation);
+
+      return result;
+    }, [] as SuburbOrganisation[]);
+  }
 );
 
 export const selectParams = createSelector(

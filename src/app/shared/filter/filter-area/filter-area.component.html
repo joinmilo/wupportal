@@ -1,0 +1,30 @@
+<div class="container">
+  <section>
+
+    <!-- The grand-parent content, e.g. display filters, etc. -->
+    <ng-content></ng-content>
+    
+    <button mat-raised-button
+      (click)="filtersCollapsed = !filtersCollapsed"
+      [class.active] = "!filtersCollapsed">
+        <div>
+          <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+          <span appLabel="filter"></span>
+          <fa-icon *ngIf="filtersActive" class="active-icon" [icon]="['fas', 'check']"></fa-icon>
+        </div>
+    </button>
+  </section>
+  <mat-card [@collapse]="!filtersCollapsed">
+    <mat-card-content>
+
+      <!-- The filters to use in this filter area -->
+      <ng-content select="[filters]"></ng-content>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="clearFilters()">
+        <span appLabel="clearAllFilters"></span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

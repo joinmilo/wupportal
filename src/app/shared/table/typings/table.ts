@@ -2,7 +2,8 @@ import { SortDirection } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { Maybe } from 'src/schema/schema';
 
-export type ColumnType = 'BOOLEAN'
+export type ColumnType = 'ADDRESS'
+  | 'BOOLEAN'
   | 'CATEGORY'
   | 'DATE'
   | 'DATETIME'

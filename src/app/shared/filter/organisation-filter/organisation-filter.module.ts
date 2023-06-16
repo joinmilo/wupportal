@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { FilterAreaComponent } from '../filter-area/filter-area.component';
 import { SuburbFilterModule } from '../suburb-filter/suburb-filter.module';
 import { OrganisationFilterActiveComponent } from './components/active/organisation-filter-active.component';
 import { OrganisationFilterComponent } from './components/organisation-filter.component';
@@ -41,7 +42,9 @@ const materials = [
 
 const modules = [
   CoreModule,
-  SuburbFilterModule
+  SuburbFilterModule,
+
+  FilterAreaComponent,
 ];
 
 const libs = [

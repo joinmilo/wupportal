@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Observable, startWith, take } from 'rxjs';
 import { CardData, CardEntity, CardType } from 'src/app/shared/card/typings/card';
 import { Maybe } from 'src/schema/schema';
 import { PageableList, Sort, SortOption, SortPaginate } from '../../typings/table';
@@ -54,8 +54,8 @@ export class TableCardComponent implements AfterViewInit {
   ) {}
 
   public ngAfterViewInit(): void {
-    this.queryParams
-      ? this.activatedRoute.queryParams
+    if (this.queryParams) {
+      this.activatedRoute.queryParams
         .pipe(take(1))
         .subscribe((queryParams: SortPaginate) => {
           this.initParams = {
@@ -69,10 +69,12 @@ export class TableCardComponent implements AfterViewInit {
           this.paginator.pageSize = this.initParams.size;
 
           this.sortPaginate.emit(this.initParams);
-        })
-      : this.emit();
+        });
+    }
 
-    this.paginator.page.subscribe(() => this.emit());
+    this.paginator.page
+      .pipe(startWith({}))
+      .subscribe(() => this.emit());
   }
 
   public sortChange(sort: Sort): void {

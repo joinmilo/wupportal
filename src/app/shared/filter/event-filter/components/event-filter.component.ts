@@ -28,8 +28,6 @@ export class EventFilterComponent implements OnInit, OnDestroy {
   
   public filtersActive = this.store.select(selectFiltersActive);
 
-  public filtersCollapsed = true;
-
   private destroy = new Subject<void>();
   
   constructor(

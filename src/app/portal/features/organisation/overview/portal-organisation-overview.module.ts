@@ -14,7 +14,10 @@ import { FormModule } from 'src/app/shared/form/form.module';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalOrganisationOverviewCardComponent } from './components/card/portal-organisation-overview-card.component';
+import { PortalOrganisationOverviewEmptyComponent } from './components/empty/portal-organisation-overview-empty.component';
 import { PortalOrganisationOverviewComponent } from './components/portal-organisation-overview.component';
+import { PortalOrganisationOverviewSuburbComponent } from './components/suburb/portal-organisation-overview-suburb.component';
+import { PortalOrganisationOverviewTableComponent } from './components/table/portal-organisation-overview-table.component';
 import { portalOrganisationOverviewStateKey } from './constants/portal-organisation-overview.constants';
 import { PortalOrganisationOverviewRoutingModule } from './portal-organisation-overview-routing.module';
 import { PortalOrganisationOverviewEffects } from './state/portal-organisation-overview.effects';
@@ -23,8 +26,9 @@ import { portalOrganisationOverviewReducer } from './state/portal-organisation-o
 const components = [
   PortalOrganisationOverviewComponent,
   PortalOrganisationOverviewCardComponent,
-  // PortalOrganisationOverviewSuburbComponent,
-  // PortalOrganisationOverviewEmptyComponent,
+  PortalOrganisationOverviewEmptyComponent,
+  PortalOrganisationOverviewTableComponent,
+  PortalOrganisationOverviewSuburbComponent,
   // PortalOrganisationOverviewTableComponent,
 ];
 
