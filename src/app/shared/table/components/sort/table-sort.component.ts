@@ -55,7 +55,7 @@ export class TableSortComponent implements OnInit, OnDestroy {
   
           if (this.queryParams) {
             this.router.navigate([], {
-              relativeTo: this.activatedRoute,
+              
               queryParams: {
                 dir: option.dir,
                 sort: option.field,

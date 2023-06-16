@@ -37,7 +37,7 @@ export class EventFilterEffects {
         .forEach((value) => queryParams[value] = null );
 
       this.router.navigate([], {
-        relativeTo: this.activatedRoute,
+        
         queryParams,
         queryParamsHandling: 'merge',
     });

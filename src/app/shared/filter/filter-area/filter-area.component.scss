@@ -1,13 +1,12 @@
 .container {
   display: flex;
   flex-flow: column;
-  gap: var(--gap);
+  gap: 1rem;
 
   > section {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    gap: 1rem;
 
     button {
 
@@ -42,6 +41,11 @@ mat-card-content {
   gap: 1rem;
 }
 
-mat-card-actions > section {
-  width: 100%;
+mat-card-actions {
+  justify-content: flex-end;
+
+  > section {
+    width: 100%;
+  }
 }
+  

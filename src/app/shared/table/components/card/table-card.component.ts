@@ -91,7 +91,7 @@ export class TableCardComponent implements AfterViewInit {
 
     if (this.queryParams) {
       this.router.navigate([], {
-        relativeTo: this.activatedRoute,
+        
         queryParams: sortPage,
         queryParamsHandling: 'merge',
       });

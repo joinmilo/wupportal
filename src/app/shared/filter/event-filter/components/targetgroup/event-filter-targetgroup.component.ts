@@ -58,7 +58,7 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
       .subscribe((ids: Maybe<string[]>) => {
         if (this.queryParamKey) {
           this.router.navigate([], {
-            relativeTo: this.activatedRoute,
+            
             queryParams: {
               [this.queryParamKey]: ids
             },

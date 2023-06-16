@@ -49,7 +49,7 @@ export class EventFilterFreeComponent implements OnInit, OnDestroy {
       .subscribe((value: boolean) => {
         if (this.queryParamKey) {
           this.router.navigate([], {
-            relativeTo: this.activatedRoute,
+            
             queryParams: {
               [this.queryParamKey]: value
             },

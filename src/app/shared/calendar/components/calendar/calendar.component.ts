@@ -85,7 +85,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
         this.monthSelected.emit(month);
         if (this.queryParams) {
           this.router.navigate([], {
-            relativeTo: this.activatedRoute,
+            
             queryParams: {
               [CalendarQueryDefinition.selectedMonth]: month.startDate.toISOString(),
             },
@@ -108,7 +108,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
     if (this.queryParams) {
       this.router.navigate([], {
-        relativeTo: this.activatedRoute,
+        
         queryParams: {
           [CalendarQueryDefinition.selectedDay]: date?.toISOString(),
         },
@@ -119,7 +119,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   
   public ngOnDestroy(): void {
     this.router.navigate([], {
-      relativeTo: this.activatedRoute,
+      
       queryParams: {
         [CalendarQueryDefinition.selectedDay]: null,
         [CalendarQueryDefinition.selectedMonth]: null,

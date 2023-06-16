@@ -66,7 +66,6 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
         this.form.controls.endDate.disable();
         if (this.queryParamStartKey || this.queryParamEndKey) {
           this.router.navigate([], {
-            relativeTo: this.activatedRoute,
             queryParams: {
               [this.queryParamStartKey]: null,
               [this.queryParamEndKey]: null,
@@ -93,7 +92,6 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
           
           if (this.queryParamStartKey || this.queryParamEndKey) {
             this.router.navigate([], {
-              relativeTo: this.activatedRoute,
               queryParams: {
                 [this.queryParamStartKey]: this.form.value.startDate?.toISOString(),
                 [this.queryParamEndKey]: endDate?.toISOString(),

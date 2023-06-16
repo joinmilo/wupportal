@@ -54,7 +54,7 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
   public next(value?: T) {
     this.queryParamKey
       ? this.router.navigate([], {
-          relativeTo: this.activatedRoute,
+          
           queryParams: {
             [this.queryParamKey]: value
           },
