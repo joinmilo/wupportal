@@ -21,7 +21,7 @@ export const EventFilterActions = createActionGroup({
     'set target groups': (result : EventTargetGroupEntity[]) => ({ result }),
     'selected target groups': (targetGroupIds?: Maybe<string[]>) => ({ targetGroupIds }),
 
-    'selected period': (period?: Period) => ({ period }),
+    'selected period': (period?: Maybe<Period>) => ({ period }),
     'selected free only': (value?: boolean) => ({ value }),
     'selected past': (value?: boolean) => ({ value }),
  

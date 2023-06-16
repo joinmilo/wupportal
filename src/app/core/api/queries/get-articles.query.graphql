@@ -3,5 +3,6 @@ query getArticles($params: FilterSortPaginateInput) {
     result {
       ...Article
     }
+    total
   }
 }

@@ -4,18 +4,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { DateRangeFilterComponent } from '../date-range-filter/date-range-filter.component';
 import { FilterAreaComponent } from '../filter-area/filter-area.component';
 import { SuburbFilterModule } from '../suburb-filter/suburb-filter.module';
 import { EventFilterCategoryComponent } from './components/category/event-filter-category.component';
-import { EventFilterDateComponent } from './components/date/event-filter-date.component';
 import { EventFilterComponent } from './components/event-filter.component';
 import { EventFilterFreeComponent } from './components/free/event-filter-free.component';
 import { EventFilterPastComponent } from './components/past/event-filter-past.component';
@@ -27,7 +25,6 @@ import { eventFilterReducer } from './state/event-filter.reducer';
 const components = [
   EventFilterComponent,
   EventFilterCategoryComponent,
-  EventFilterDateComponent,
   EventFilterFreeComponent,
   EventFilterPastComponent,
   EventFilterTargetgroupComponent,
@@ -42,9 +39,7 @@ const materials = [
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
-  MatDatepickerModule,
   MatFormFieldModule,
-  MatNativeDateModule,
   MatSelectModule,
 ];
 
@@ -52,7 +47,8 @@ const modules = [
   CoreModule,
   SuburbFilterModule,
 
-  FilterAreaComponent
+  DateRangeFilterComponent,
+  FilterAreaComponent,
 ];
 
 const libs = [

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, debounceTime, take, takeUntil } from 'rxjs';
 import { collapse } from 'src/app/core/animations/animations';
+import { Period } from 'src/app/core/typings/period';
 import { EventFilterActions } from 'src/app/shared/filter/event-filter/state/event-filter.actions';
 import { selectEventFilterParams, selectFiltersActive, selectRawFilterParams } from 'src/app/shared/filter/event-filter/state/event-filter.selectors';
 import { FilterSortPaginateInput, Maybe } from 'src/schema/schema';
@@ -50,7 +51,11 @@ export class EventFilterComponent implements OnInit, OnDestroy {
       });
   }
 
-  public suburbSelected(suburbIds: Maybe<string[]> | undefined): void {
+  public periodSelected(period?: Maybe<Period>): void {
+    this.store.dispatch(EventFilterActions.selectedPeriod(period));
+  }
+
+  public suburbSelected(suburbIds?: Maybe<string[]>): void {
     this.store.dispatch(EventFilterActions.selectedSuburbs(suburbIds));
   }
 

@@ -1,28 +1,39 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Period } from 'src/app/core/typings/period';
 import { Maybe } from 'src/schema/schema';
-import { EventFilterQueryDefinition } from '../../../../../core/typings/filter-param';
-import { EventFilterActions } from '../../state/event-filter.actions';
+import { FilterQueryDefinition } from '../../../core/typings/filter-param';
 
 @Component({
-  selector: 'app-event-filter-date',
-  templateUrl: './event-filter-date.component.html',
-  styleUrls: ['./event-filter-date.component.scss']
+  selector: 'app-date-range-filter',
+  templateUrl: './date-range-filter.component.html',
+  styleUrls: ['./date-range-filter.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+  ]
 })
-export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
+export class DateRangeFilterComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   public disabled?: Maybe<boolean>;
 
   @Input()
-  public queryParamStartKey = EventFilterQueryDefinition.startDate;
+  public queryParamStartKey = FilterQueryDefinition.startDate;
 
   @Input()
-  public queryParamEndKey = EventFilterQueryDefinition.endDate;
+  public queryParamEndKey = FilterQueryDefinition.endDate;
 
   @Output()
   public valueChanged = new EventEmitter<Period>();
@@ -42,7 +53,6 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private store: Store,
   ) {
     this.watchValueChange();
   }
@@ -106,7 +116,6 @@ export class EventFilterDateComponent implements OnInit, OnChanges, OnDestroy {
           } as Period;
   
           this.valueChanged.emit(period);
-          this.store.dispatch(EventFilterActions.selectedPeriod(period));
         }
         this.emitEvent = true;
       });

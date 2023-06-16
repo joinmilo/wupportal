@@ -1,0 +1,33 @@
+<div class="main">
+  <app-page-title title="articles"></app-page-title>
+  <app-sponsored-card *ngIf="(sponsored | async)?.id"
+    entity="EventEntity"
+    [data]="sponsored | async">
+  </app-sponsored-card>
+
+  <app-article-filter 
+    (paramsUpdated)="updateParams($event)">
+    <app-radio-button-group
+      [inputs]="inputs"
+      [value]="displayType"
+      [queryParamKey]="displayQueryParam"
+      (valueChanged)="displayType = $event">
+    </app-radio-button-group>
+  </app-article-filter>
+
+  <ng-container *ngIf="(articles | async)?.total; else emptyResult">
+    <ng-container [ngSwitch]="displayType">
+      
+      <app-portal-article-overview-category *ngSwitchCase="'category'">
+      </app-portal-article-overview-category>
+  
+      <app-portal-article-overview-table *ngSwitchCase="'table'"
+        (sortPaginate)="updateParams($event)">
+      </app-portal-article-overview-table>
+  
+    </ng-container>
+  </ng-container>
+  <ng-template #emptyResult>
+    <app-portal-article-overview-empty></app-portal-article-overview-empty>
+  </ng-template>
+</div>

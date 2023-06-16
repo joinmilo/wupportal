@@ -2,22 +2,36 @@ import { Maybe } from 'src/schema/schema';
 
 export enum FilterQueryDefinition {
   suburbs = 'suburbs',
+  endDate = 'end',
+  startDate = 'start',
 }
 
+export enum ArticleFilterQueryDefinition {
+  articleCategories = 'article-categories',
+}
+
+export type ArticleFilterQueryParams = {
+  [ArticleFilterQueryDefinition.articleCategories]?: Maybe<string[]>,
+  [FilterQueryDefinition.endDate]?: Maybe<string>,
+  [EventFilterQueryDefinition.freeOnly]?: Maybe<boolean | string>,
+  [FilterQueryDefinition.startDate]?: Maybe<string>,
+  [EventFilterQueryDefinition.past]?: Maybe<boolean | string>,
+  [EventFilterQueryDefinition.targetGroups]?: Maybe<string[]>,
+  [FilterQueryDefinition.suburbs]?: Maybe<string[]>,
+};
+
 export enum EventFilterQueryDefinition {
-  categories = 'categories',
-  endDate = 'end',
+  eventCategories = 'event-categories',
   freeOnly = 'free-only',
   past = 'past',
-  startDate = 'start',
   targetGroups = 'targetgroups',
 }
 
 export type EventFilterQueryParams = {
-  [EventFilterQueryDefinition.categories]?: Maybe<string[]>,
-  [EventFilterQueryDefinition.endDate]?: Maybe<string>,
+  [EventFilterQueryDefinition.eventCategories]?: Maybe<string[]>,
+  [FilterQueryDefinition.endDate]?: Maybe<string>,
   [EventFilterQueryDefinition.freeOnly]?: Maybe<boolean | string>,
-  [EventFilterQueryDefinition.startDate]?: Maybe<string>,
+  [FilterQueryDefinition.startDate]?: Maybe<string>,
   [EventFilterQueryDefinition.past]?: Maybe<boolean | string>,
   [EventFilterQueryDefinition.targetGroups]?: Maybe<string[]>,
   [FilterQueryDefinition.suburbs]?: Maybe<string[]>,

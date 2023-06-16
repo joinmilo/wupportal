@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, tap } from 'rxjs';
 import { EventFilterQueryDefinition, FilterQueryDefinition } from 'src/app/core/typings/filter-param';
@@ -37,7 +37,6 @@ export class EventFilterEffects {
         .forEach((value) => queryParams[value] = null );
 
       this.router.navigate([], {
-        
         queryParams,
         queryParamsHandling: 'merge',
     });
@@ -58,7 +57,6 @@ export class EventFilterEffects {
 
   constructor(
     private actions: Actions,
-    private activatedRoute: ActivatedRoute,
     private getCategoriesService: GetEventCategoriesGQL,
     private getTargetGroupsService: GetEventTargetGroupsGQL,
     private router: Router,

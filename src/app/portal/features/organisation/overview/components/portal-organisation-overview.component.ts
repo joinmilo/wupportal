@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { displayQueryParam } from 'src/app/core/constants/core.constants';
 import { DisplayType } from 'src/app/core/typings/overview-display';
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { FilterSortPaginateInput } from 'src/schema/schema';
-import { displayQueryParam } from '../constants/portal-organisation-overview.constants';
 import { PortalOrganisationOverviewActions } from '../state/portal-organisation-overview.actions';
 import { selectOverviewData, selectSponsoredOrganisation } from '../state/portal-organisation-overview.selectors';
 

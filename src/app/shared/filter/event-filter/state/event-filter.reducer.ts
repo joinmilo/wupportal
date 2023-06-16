@@ -34,7 +34,7 @@ export const eventFilterReducer = createReducer(
       ...state,
       params: {
         ...state.params,
-        [EventFilterQueryDefinition.categories]: action.categoryIds
+        [EventFilterQueryDefinition.eventCategories]: action.categoryIds
       }
     }
   )),
@@ -86,8 +86,8 @@ export const eventFilterReducer = createReducer(
       ...state,
       params: {
         ...state.params,
-        [EventFilterQueryDefinition.startDate]: action.period?.startDate.toISOString(),
-        [EventFilterQueryDefinition.endDate]: action.period?.endDate.toISOString()
+        [FilterQueryDefinition.startDate]: action.period?.startDate.toISOString(),
+        [FilterQueryDefinition.endDate]: action.period?.endDate.toISOString()
       }
     }
   )),

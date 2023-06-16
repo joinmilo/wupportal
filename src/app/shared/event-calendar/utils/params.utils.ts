@@ -16,11 +16,11 @@ export const createCalendarParams = (
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams && queryParams[EventFilterQueryDefinition.categories]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.eventCategories]) {
 
     params.expression?.conjunction?.operands?.push(
       createListParam(
-        queryParams?.categories,
+        queryParams[EventFilterQueryDefinition.eventCategories],
         isEvent ? 'category.id' : 'event.category.id'
       )
     );
@@ -29,7 +29,7 @@ export const createCalendarParams = (
   if (queryParams && queryParams[FilterQueryDefinition.suburbs]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
-        queryParams?.suburbs,
+        queryParams[FilterQueryDefinition.suburbs],
         isEvent ? 'address.suburb.id' : 'event.address.suburb.id'
       )
     );
@@ -38,7 +38,7 @@ export const createCalendarParams = (
   if (queryParams && queryParams[EventFilterQueryDefinition.targetGroups]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
-        queryParams?.targetgroups,
+        queryParams[EventFilterQueryDefinition.targetGroups],
         isEvent ? 'targetGroups.id' : 'event.targetGroups.id'
       )
     );

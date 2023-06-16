@@ -16,7 +16,7 @@ import { selectCategories } from '../../state/event-filter.selectors';
 export class EventFilterCategoryComponent implements OnInit, OnDestroy {
 
   @Input()
-  public queryParamKey = EventFilterQueryDefinition.categories;
+  public queryParamKey = EventFilterQueryDefinition.eventCategories;
 
   @Output()
   public valueChanged = new EventEmitter<Maybe<string[]> | undefined>();

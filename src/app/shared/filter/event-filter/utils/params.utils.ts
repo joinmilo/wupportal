@@ -11,11 +11,11 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[EventFilterQueryDefinition.categories]) {
+  if (queryParams[EventFilterQueryDefinition.eventCategories]) {
 
     params.expression?.conjunction?.operands?.push(
       createListParam(
-        queryParams?.categories,
+        queryParams[EventFilterQueryDefinition.eventCategories],
         'category.id'
       )
     );
@@ -24,7 +24,7 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
   if (queryParams[FilterQueryDefinition.suburbs]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
-        queryParams?.suburbs,
+        queryParams[FilterQueryDefinition.suburbs],
         'address.suburb.id'
       )
     );
@@ -33,15 +33,15 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
   if (queryParams[EventFilterQueryDefinition.targetGroups]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
-        queryParams?.targetgroups,
+        queryParams[EventFilterQueryDefinition.targetGroups],
         'targetGroups.id'
       )
     );
   }
 
   if (!queryParams[EventFilterQueryDefinition.past]) {
-    queryParams[EventFilterQueryDefinition.startDate]
-      || queryParams[EventFilterQueryDefinition.endDate]
+    queryParams[FilterQueryDefinition.startDate]
+      || queryParams[FilterQueryDefinition.endDate]
       ? params.expression?.conjunction?.operands?.push(
           {
             entity: {

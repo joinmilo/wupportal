@@ -12,10 +12,10 @@ import { selectOverviewData } from '../../state/portal-event-overview.selectors'
 })
 export class PortalEventOverviewTableComponent {
 
-  public events = this.store.select(selectOverviewData);
-
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
+
+  public events = this.store.select(selectOverviewData);
 
   public actions: RowAction<EventEntity>[] = [
     { type: 'LIKE' },

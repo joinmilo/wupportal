@@ -1,0 +1,5 @@
+query getArticle($entity: ArticleEntityInput) {
+  getArticle(entity: $entity) {
+    ...Article
+  }
+}

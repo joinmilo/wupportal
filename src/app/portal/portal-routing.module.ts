@@ -16,8 +16,8 @@ const routes: Routes = [
   
   {
     path: articlesFeatureKey,
-    loadChildren: () => import('./features/article/main/portal-article.module')
-      .then((imported) => imported.PortalArticleModule),
+    loadChildren: () => import('./features/article/overview/portal-article-overview.module')
+      .then((imported) => imported.PortalArticleOverviewModule),
   },
   
   {

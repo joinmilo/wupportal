@@ -63,9 +63,10 @@ export const organizerKey = 'organizer';
 export const translatorKey = 'translator';
 
 /**
- * Slug params
+ * Slug / Query params
  */
 export const slug = 'slug';
+export const displayQueryParam = 'display';
 
 /**
  * URLs
