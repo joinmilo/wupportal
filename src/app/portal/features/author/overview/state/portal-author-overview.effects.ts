@@ -6,7 +6,7 @@ import { GetUserContextsGQL, PageableList_UserContextEntity, QueryOperator } fro
 import { PortalAuthorOverviewActions } from './portal-author-overview.actions';
 
 @Injectable()
-export class AuthorEffects {
+export class PortalAuthorOverviewEffects {
 
   getAuthors = createEffect(() => this.actions.pipe(
     ofType(PortalAuthorOverviewActions.updateParams),

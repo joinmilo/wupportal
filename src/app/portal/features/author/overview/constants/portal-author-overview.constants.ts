@@ -1,3 +1,1 @@
-export const authorOverviewStateKey = 'portalAuthorOverviewState';
-
-export const authorId = 'id';
+export const portalAuthorOverviewStateKey = 'portalAuthorOverviewState';

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
@@ -9,9 +8,9 @@ import { FormModule } from 'src/app/shared/form/form.module';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalAuthorOverviewComponent } from './components/portal-author-overview.component';
-import { authorOverviewStateKey } from './constants/portal-author-overview.constants';
+import { portalAuthorOverviewStateKey } from './constants/portal-author-overview.constants';
 import { PortalAuthorOverviewRoutingModule } from './portal-author-overview-routing.module';
-import { AuthorEffects } from './state/portal-author-overview.effects';
+import { PortalAuthorOverviewEffects } from './state/portal-author-overview.effects';
 import { portalAuthorOverviewReducer } from './state/portal-author-overview.reducer';
 
 const components = [
@@ -21,8 +20,6 @@ const components = [
 const framework = [
   CommonModule,
 ];
-
-// const materials = [ ];
 
 const modules = [
   CoreModule,
@@ -34,16 +31,14 @@ const modules = [
 ];
 
 const libs = [
-  FontAwesomeModule,
-  StoreModule.forFeature(authorOverviewStateKey, portalAuthorOverviewReducer),
-  EffectsModule.forFeature([AuthorEffects]),
+  StoreModule.forFeature(portalAuthorOverviewStateKey, portalAuthorOverviewReducer),
+  EffectsModule.forFeature([PortalAuthorOverviewEffects]),
 ]
 
 @NgModule({
   declarations: [...components],
   imports: [
     ...framework,
-    // ...materials,
     ...modules,
     ...libs,
   ],
