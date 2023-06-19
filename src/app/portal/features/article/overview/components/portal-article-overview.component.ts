@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { displayQueryParam } from 'src/app/core/constants/core.constants';
+import { displayQueryParam, guestArticlesFeatureKey } from 'src/app/core/constants/core.constants';
 import { DisplayType } from 'src/app/core/typings/overview-display';
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { FilterSortPaginateInput } from 'src/schema/schema';
@@ -34,6 +34,8 @@ export class PortalArticleOverviewComponent {
   public articles = this.store.select(selectOverviewData);
 
   public sponsored = this.store.select(selectSponsoredArticle);
+
+  public guestArticlesFeatureKey = guestArticlesFeatureKey;
   
   constructor(
     private store: Store,

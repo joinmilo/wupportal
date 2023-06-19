@@ -2,37 +2,42 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslationService } from 'src/app/core/services/translation.service';
 import { Column, RowAction, SortPaginate } from 'src/app/shared/table/typings/table';
-import { ArticleEntity, FilterSortPaginateInput } from 'src/schema/schema';
-import { PortalArticleOverviewActions } from '../../state/portal-article-overview.actions';
-import { selectOverviewData } from '../../state/portal-article-overview.selectors';
+import { DealEntity, FilterSortPaginateInput } from 'src/schema/schema';
+import { PortalDealOverviewActions } from '../../state/portal-deal-overview.actions';
+import { selectOverviewData } from '../../state/portal-deal-overview.selectors';
 
 @Component({
-  selector: 'app-portal-article-overview-table',
-  templateUrl: './portal-article-overview-table.component.html',
-  styleUrls: ['./portal-article-overview-table.component.scss']
+  selector: 'app-portal-deal-overview-table',
+  templateUrl: './portal-deal-overview-table.component.html',
+  styleUrls: ['./portal-deal-overview-table.component.scss']
 })
-export class PortalArticleOverviewTableComponent {
+export class PortalDealOverviewTableComponent {
 
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
 
-  public articles = this.store.select(selectOverviewData);
+  public deals = this.store.select(selectOverviewData);
 
-  public actions: RowAction<ArticleEntity>[] = [
+  public actions: RowAction<DealEntity>[] = [
     { type: 'LIKE' },
     { type: 'SHARE' }
   ];
 
-  public columns: Column<ArticleEntity>[] = [
+  public columns: Column<DealEntity>[] = [
     {
       field: 'translatables.name',
       label: 'title',
       type: row => this.translationService.translatable(row.translatables, 'name')
     },
     {
-      field: 'author.user.lastName',
+      field: 'creator.user.lastName',
       label: 'author',
-      type: row => `${row.author?.user?.firstName} ${row.author?.user?.lastName}`
+      type: row => `${row.creator?.user?.firstName} ${row.creator?.user?.lastName}`
+    },
+    {
+      field: 'contact',
+      label: 'email',
+      sort: true,
     },
     {
       field: 'modified',
@@ -53,6 +58,6 @@ export class PortalArticleOverviewTableComponent {
   ) { }
 
   public updateParams(params: FilterSortPaginateInput) {
-    this.store.dispatch(PortalArticleOverviewActions.updateParams(params));
+    this.store.dispatch(PortalDealOverviewActions.updateParams(params));
   }
 }

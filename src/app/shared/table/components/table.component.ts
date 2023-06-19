@@ -50,7 +50,6 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   public emitSortPaginate(sortPage: SortPaginate): void {
     if (this.queryParams) {
       this.router.navigate([], {
-        
         queryParams: sortPage,
         queryParamsHandling: 'merge',
       });
@@ -59,16 +58,11 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-
-    this.router.navigate([], {
-      
-      queryParams: {
-        dir: null,
-        page: null,
-        size: null,
-        sort: null,
-      },
-      queryParamsHandling: 'merge'
+    this.emitSortPaginate({
+      dir: null,
+      page: null,
+      size: null,
+      sort: null,
     });
   }
 } 

@@ -10,22 +10,28 @@ export enum ArticleFilterQueryDefinition {
   articleCategories = 'article-categories',
 }
 
-export type ArticleFilterQueryParams = {
-  [ArticleFilterQueryDefinition.articleCategories]?: Maybe<string[]>,
-  [FilterQueryDefinition.endDate]?: Maybe<string>,
-  [EventFilterQueryDefinition.freeOnly]?: Maybe<boolean | string>,
-  [FilterQueryDefinition.startDate]?: Maybe<string>,
-  [EventFilterQueryDefinition.past]?: Maybe<boolean | string>,
-  [EventFilterQueryDefinition.targetGroups]?: Maybe<string[]>,
-  [FilterQueryDefinition.suburbs]?: Maybe<string[]>,
-};
-
 export enum EventFilterQueryDefinition {
   eventCategories = 'event-categories',
   freeOnly = 'free-only',
   past = 'past',
   targetGroups = 'targetgroups',
 }
+
+export enum DealFilterQueryDefinition {
+  dealCategories = 'deal-categories',
+  offerOnly = 'offer-only',
+  searchOnly = 'search-only',
+}
+
+export enum OrganisationFilterQueryDefinition {
+  activeEvents = 'active-events',
+}
+
+export type ArticleFilterQueryParams = {
+  [ArticleFilterQueryDefinition.articleCategories]?: Maybe<string[]>,
+  [FilterQueryDefinition.endDate]?: Maybe<string>,
+  [FilterQueryDefinition.startDate]?: Maybe<string>,
+};
 
 export type EventFilterQueryParams = {
   [EventFilterQueryDefinition.eventCategories]?: Maybe<string[]>,
@@ -37,9 +43,11 @@ export type EventFilterQueryParams = {
   [FilterQueryDefinition.suburbs]?: Maybe<string[]>,
 };
 
-export enum OrganisationFilterQueryDefinition {
-  activeEvents = 'active-events',
-}
+export type DealFilterQueryParams = {
+  [DealFilterQueryDefinition.dealCategories]?: Maybe<string[]>,
+  [DealFilterQueryDefinition.offerOnly]?: Maybe<boolean | string>,
+  [DealFilterQueryDefinition.searchOnly]?: Maybe<boolean | string>,
+};
 
 export type OrganisationFilterQueryParams = {
   [OrganisationFilterQueryDefinition.activeEvents]?: Maybe<boolean | string>,

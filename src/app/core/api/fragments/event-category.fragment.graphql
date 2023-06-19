@@ -1,7 +1,7 @@
 fragment EventCategory on EventCategoryEntity {
   id
-  icon
   color
+  icon
   translatables {
     id 
     name

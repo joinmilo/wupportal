@@ -1,0 +1,22 @@
+<app-filter-area
+  [filtersActive]="filtersActive | async"
+  (filtersCleared)="clearFilters()">
+
+  <!-- The parent content, e.g. display filters, etc. -->
+  <ng-content></ng-content>
+
+  <!-- The filters to use in this filter area -->
+  <ng-container filters>
+
+    <app-deal-filter-category>
+    </app-deal-filter-category>
+
+    <app-deal-filter-offer [disabled]="disableOfferFilter">
+    </app-deal-filter-offer>
+
+    <app-deal-filter-search [disabled]="disableSearchFilter">
+    </app-deal-filter-search>
+
+  </ng-container>
+
+</app-filter-area>

@@ -1,21 +1,24 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { OrganisationFilterQueryDefinition } from 'src/app/core/typings/filter-param';
+import { DealFilterQueryDefinition } from 'src/app/core/typings/filter-param';
 import { Maybe } from 'src/schema/schema';
-import { OrganisationFilterActions } from '../../state/organisation-filter.actions';
+import { DealFilterActions } from '../../state/deal-filter.actions';
 
 @Component({
-  selector: 'app-organisation-filter-active',
-  templateUrl: './organisation-filter-active.component.html',
-  styleUrls: ['./organisation-filter-active.component.scss']
+  selector: 'app-deal-filter-offer',
+  templateUrl: './deal-filter-offer.component.html',
+  styleUrls: ['./deal-filter-offer.component.scss']
 })
-export class OrganisationFilterActiveComponent implements OnInit, OnDestroy {
+export class DealFilterOfferComponent implements OnInit, OnChanges, OnDestroy {
+  
+  @Input()
+  public disabled?: Maybe<boolean>;
 
   @Input()
-  public queryParamKey = OrganisationFilterQueryDefinition.activeEvents;
+  public queryParamKey = DealFilterQueryDefinition.offerOnly;
 
   @Output()
   public valueChanged = new EventEmitter<Maybe<boolean> | undefined>();
@@ -43,6 +46,14 @@ export class OrganisationFilterActiveComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['disabled']) {
+      this.disabled
+        ? this.control.disable()
+        : this.control.enable();
+    }
+  }
+
   private watchValueChange(): void {
     this.control.valueChanges
       .pipe(takeUntil(this.destroy))
@@ -58,7 +69,7 @@ export class OrganisationFilterActiveComponent implements OnInit, OnDestroy {
         }
 
         this.valueChanged.emit(value);
-        this.store.dispatch(OrganisationFilterActions.selectedActiveOnly(value));
+        this.store.dispatch(DealFilterActions.selectedOfferOnly(value));
       });
   }
 

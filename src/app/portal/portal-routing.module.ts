@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, eventsFeatureKey, guestArticlesFeatureKey, organisationsFeatureKey, reportsFeatureKey, slug } from '../core/constants/core.constants';
+import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, dealsFeatureKey, eventsFeatureKey, guestArticlesFeatureKey, organisationsFeatureKey, reportsFeatureKey, slug } from '../core/constants/core.constants';
 
 const routes: Routes = [
   {
@@ -18,6 +18,12 @@ const routes: Routes = [
     path: articlesFeatureKey,
     loadChildren: () => import('./features/article/overview/portal-article-overview.module')
       .then((imported) => imported.PortalArticleOverviewModule),
+  },
+
+  {
+    path: dealsFeatureKey,
+    loadChildren: () => import('./features/deal/overview/portal-deal-overview.module')
+      .then((imported) => imported.PortalDealOverviewModule),
   },
   
   {

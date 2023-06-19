@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, startWith, take } from 'rxjs';
@@ -11,7 +11,7 @@ import { PageableList, Sort, SortOption, SortPaginate } from '../../typings/tabl
   templateUrl: './table-card.component.html',
   styleUrls: ['./table-card.component.scss']
 })
-export class TableCardComponent implements AfterViewInit {
+export class TableCardComponent implements AfterViewInit, OnDestroy {
 
   @Input()
   public data?: Observable<Maybe<PageableList<Maybe<CardData>>> | undefined>;
@@ -83,7 +83,7 @@ export class TableCardComponent implements AfterViewInit {
     this.emit();
   }
 
-  emit() {
+  private emit(): void {
     const sortPage = Object.assign({
       page: this.paginator.pageIndex,
       size: this.paginator.pageSize,
@@ -91,13 +91,29 @@ export class TableCardComponent implements AfterViewInit {
 
     if (this.queryParams) {
       this.router.navigate([], {
-        
         queryParams: sortPage,
         queryParamsHandling: 'merge',
       });
     }
 
     this.sortPaginate.emit(sortPage);
+  }
+
+  ngOnDestroy(): void {
+    const emptyProps = {
+      dir: null,
+      sort: null,
+      page: null,
+      size: null,
+    };
+    this.sortPaginate.emit(emptyProps);
+
+    if (this.queryParams) {
+      this.router.navigate([], {
+        queryParams: emptyProps,
+        queryParamsHandling: 'merge',
+      });
+    }
   }
 
 }

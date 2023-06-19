@@ -1,6 +1,8 @@
 fragment DealCategory on DealCategoryEntity {
   id
   created
+  color
+  icon
   translatables {
     id
     name

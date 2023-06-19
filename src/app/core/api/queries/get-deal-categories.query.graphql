@@ -1,0 +1,7 @@
+query getDealCategories {
+  getDealCategories {
+    result {
+      ...DealCategory
+    }
+  }
+}

@@ -5,6 +5,12 @@
     [data]="sponsored | async">
   </app-sponsored-card>
 
+  <button mat-flat-button
+    color="primary"
+    [routerLink]="['/portal', guestArticlesFeatureKey]">
+    <span appLabel="writeOwnStory"></span>
+  </button>
+
   <app-article-filter 
     (paramsUpdated)="updateParams($event)">
     <app-radio-button-group
