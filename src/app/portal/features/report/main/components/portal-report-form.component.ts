@@ -41,7 +41,6 @@ export class PortalReportFormComponent implements OnDestroy {
 
   public onSubmit(captchaToken: string, formDirective: FormGroupDirective) {
     this.store.dispatch(ReportActions.saveReport({
-      //TODO translatables content
       name: this.form.value.name,
       email: this.form.value.email,
       type: {

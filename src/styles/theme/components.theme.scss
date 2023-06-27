@@ -48,6 +48,11 @@ mat-card {
   color: var(--color-primary-contrast-500) !important;
 }
 
+/* CKEditor */
+.ck-editor__editable_inline {
+  min-height: 500px;
+}
+
 /* Form Fields*/
 .mdc-text-field {
   background-color: var(--color-lightest) !important;

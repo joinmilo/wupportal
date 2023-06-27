@@ -18,8 +18,6 @@ export class PortalGuestArticleFormComponent implements OnDestroy {
     phone: ['', [Validators.required]],
     // publicAuthor: [{} as PublicAuthorEntity],
     // category: [{} as ArticleCategoryEntity],
-    title: ['', [Validators.required]],
-    captchaToken: ['', [Validators.required]],
     content: ['', [Validators.required]]
   });
 
@@ -35,9 +33,9 @@ export class PortalGuestArticleFormComponent implements OnDestroy {
     this.store.dispatch(PortalGuestArticleActions.setArticleCategories());
   }
 
-  onSubmit(formDirective: FormGroupDirective) {
+  onSubmit(captchaToken: string, formDirective: FormGroupDirective) {
     this.store.dispatch(PortalGuestArticleActions.saveArticle({
-      //TODO translatables content and title
+      //TODO translatables content and name
       publicAuthor: {
         name: this.form.value.name,
         email: this.form.value.email,
@@ -46,11 +44,14 @@ export class PortalGuestArticleFormComponent implements OnDestroy {
       // category: {
       //   id: this.form.value.category?.id
       // },
-      captchaToken: this.form.value.captchaToken
+      captchaToken: captchaToken
     }));
+
     this.store.select(selectSavedArticle)
       .pipe(takeUntil(this.destroy))
       .subscribe(article => article?.id && formDirective.resetForm());
+
+    
   }
 
   ngOnDestroy(): void {

@@ -1,22 +1,22 @@
 <main class="main">
   <app-page-title titleLabel="guestArticle"></app-page-title>
-  <form class="border-box" [formGroup]="form" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
-    <mat-accordion multi>
-      <mat-expansion-panel>
+  <form [formGroup]="form" #formDirective="ngForm">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
-          <mat-panel-title appLabel="article"></mat-panel-title>
-          <mat-panel-description>Pflicht</mat-panel-description>
+          <mat-panel-title appLabel="yourArticle"></mat-panel-title>
+          <mat-panel-description appLabel="writeYourStory"></mat-panel-description>
         </mat-expansion-panel-header>
         <mat-form-field appearance="outline">
-          <mat-label appLabel="title"></mat-label>
-          <input matInput id="name" formControlName="title" placeholder="Wooportal">
+          <mat-label appLabel="name"></mat-label>
+          <input matInput id="name" formControlName="name">
         </mat-form-field>
         <app-ck-editor-form formControlName="content"></app-ck-editor-form>
       </mat-expansion-panel>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title appLabel="yourInfo"></mat-panel-title>
-          <mat-panel-description>Pflicht</mat-panel-description>
+          <!-- <mat-panel-description>Pflicht</mat-panel-description> -->
         </mat-expansion-panel-header>
         <section>
           <div>
@@ -37,19 +37,10 @@
           </div>
         </section>
       </mat-expansion-panel>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title></mat-panel-title>
-          <mat-panel-description>Optional</mat-panel-description>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
     </mat-accordion>
-      <app-captcha-form formControlName="captchaToken"></app-captcha-form>
-    <div>
-      <button mat-flat-button [disabled]="form.invalid" type="submit" mat-flat-button color="primary">
-        <fa-icon click [icon]=" ['far', 'envelope']"></fa-icon>
-        <label appLabel="send"></label>
-      </button>
-    </div>
+    <app-captcha-submit
+      [disabled]="form.invalid"
+      (verified)="onSubmit($event, formDirective)">
+    </app-captcha-submit>
   </form>
 </main>

@@ -4,6 +4,13 @@ main {
   gap: var(--gap)
 }
 
+:host ::ng-deep {
+
+  mat-expansion-panel.mat-expanded {
+    border-left: solid var(--color-primary-600);
+  }
+}
+
 form {
   display: flex;
   gap: 2rem;
