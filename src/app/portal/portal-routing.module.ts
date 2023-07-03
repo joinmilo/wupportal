@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: guestArticlesFeatureKey,
-    loadChildren: () => import('./features/guest-article/portal-guest-article.module')
+    loadChildren: () => import('./features/guest-article/main/portal-guest-article.module')
         .then((imported) => imported.PortalGuestArticleModule),
   },
   {

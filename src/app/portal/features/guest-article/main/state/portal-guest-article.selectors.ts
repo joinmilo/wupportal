@@ -8,8 +8,3 @@ export const selectSavedArticle = createSelector(
   selectPortalGuestArticleState,
   state => state.savedArticle
 );
-
-export const selectArticleCategories = createSelector(
-  selectPortalGuestArticleState,
-  state => state.categories
-);

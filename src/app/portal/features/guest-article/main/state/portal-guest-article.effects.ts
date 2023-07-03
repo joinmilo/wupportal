@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
+import { CoreActions } from 'src/app/core/state/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { ArticleCategoryEntity, ArticleEntity, SaveArticleGQL } from 'src/schema/schema';
-import { GetArticleCategoriesGQL } from '../../../../../schema/schema';
-import { CoreActions } from '../../../../core/state/core.actions';
+import { ArticleEntity, GetArticleCategoriesGQL, SaveArticleGQL } from 'src/schema/schema';
 import { PortalGuestArticleActions } from './portal-guest-article.actions';
 
 @Injectable()
@@ -24,12 +23,6 @@ export class PortalGuestArticleEffects {
       type: FeedbackType.Success,
       labelMessage: 'articleReceived'
     }))
-  ));
-
-  getCurrentCategories = createEffect(() => this.actions.pipe(
-    ofType(PortalGuestArticleActions.getArticleCategories),
-    switchMap(() => this.getArticleCategoriesService.watch().valueChanges),
-    map(response => PortalGuestArticleActions.setArticleCategories(response.data.getArticleCategories?.result as ArticleCategoryEntity[]))
   ));
 
   constructor(

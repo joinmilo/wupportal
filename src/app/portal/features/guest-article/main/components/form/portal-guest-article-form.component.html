@@ -1,31 +1,33 @@
 <main class="main">
-  <app-page-title titleLabel="guestArticle"></app-page-title>
-  <form [formGroup]="form" #formDirective="ngForm">
+  <app-page-title title="yourStory"></app-page-title>
+  <form [formGroup]="form">
     <mat-accordion>
+
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
-          <mat-panel-title appLabel="yourArticle"></mat-panel-title>
+          <mat-panel-title appLabel="content"></mat-panel-title>
           <mat-panel-description appLabel="writeYourStory"></mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-form-field appearance="outline">
-          <mat-label appLabel="name"></mat-label>
-          <input matInput id="name" formControlName="name">
-        </mat-form-field>
-        <app-ck-editor-form formControlName="content"></app-ck-editor-form>
+        <section>
+          <mat-form-field appearance="outline">
+            <mat-label appLabel="title"></mat-label>
+            <input matInput id="name" formControlName="name">
+          </mat-form-field>
+          <app-ck-editor-form formControlName="content"></app-ck-editor-form>
+        </section>
       </mat-expansion-panel>
+
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title appLabel="yourInfo"></mat-panel-title>
-          <!-- <mat-panel-description>Pflicht</mat-panel-description> -->
+          <mat-panel-title appLabel="informations"></mat-panel-title>
+          <mat-panel-description appLabel="enterYourData"></mat-panel-description>
         </mat-expansion-panel-header>
         <section>
-          <div>
-            <mat-form-field appearance="outline">
-              <mat-label appLabel="fullname"></mat-label>
-              <input matInput id="name" formControlName="name" placeholder="Max Mustermann">
-            </mat-form-field>
-          </div>
-          <div>
+          <mat-form-field appearance="outline">
+            <mat-label appLabel="fullname"></mat-label>
+            <input matInput id="name" formControlName="name" placeholder="Max Mustermann">
+          </mat-form-field>
+          <fieldset>
             <mat-form-field appearance="outline">
               <mat-label appLabel="email"></mat-label>
               <input matInput id="email" formControlName="email" placeholder="m.mustermann@example.com">
@@ -34,13 +36,13 @@
               <mat-label appLabel="phone"></mat-label>
               <input matInput id="phone" formControlName="phone" placeholder="0174-1234567">
             </mat-form-field>
-          </div>
+          </fieldset>
         </section>
       </mat-expansion-panel>
     </mat-accordion>
     <app-captcha-submit
       [disabled]="form.invalid"
-      (verified)="onSubmit($event, formDirective)">
+      (verified)="onSubmit($event)">
     </app-captcha-submit>
   </form>
 </main>

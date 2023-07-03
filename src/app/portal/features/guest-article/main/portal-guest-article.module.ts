@@ -14,7 +14,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { CaptchaModule } from 'src/app/shared/captcha/captcha.module';
 import { FormModule } from 'src/app/shared/form/form.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
-import { PortalGuestArticleFormComponent } from './components/guest-article-form/portal-guest-article-form.component';
+import { PortalGuestArticleFormComponent } from './components/form/portal-guest-article-form.component';
 import { portalGuestArticleStateKey } from './constants/portal-guest-article.constants';
 import { PortalGuestArticleRoutingModule } from './portal-guest-article-routing.module';
 import { PortalGuestArticleEffects } from './state/portal-guest-article.effects';
