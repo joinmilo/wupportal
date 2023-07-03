@@ -16,6 +16,7 @@ export type MarkerDefinition = {
 };
 
 export type PointOfInterest = {
+  id: string,
   address?: Maybe<AddressEntity>,
 
   category?: Maybe<string>,

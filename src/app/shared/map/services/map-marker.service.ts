@@ -39,6 +39,7 @@ export class MapMarkerService {
 
   public dealToMarker(entity?: Maybe<DealEntity>): Marker {
     return this.createMarker({
+      id: entity?.id as string,
       address: entity?.address,
       categoryTranslatableField: 'name',
       categoryTranslatables: entity?.category?.translatables,
@@ -57,6 +58,7 @@ export class MapMarkerService {
 
   public eventToMarker(entity?: Maybe<EventEntity>): Marker {
     return this.createMarker({
+      id: entity?.id as string,
       address: entity?.address,
       categoryTranslatableField: 'name',
       categoryTranslatables: entity?.category?.translatables,
@@ -75,6 +77,7 @@ export class MapMarkerService {
 
   public organistionToMarker(entity?: Maybe<OrganisationEntity>): Marker {
     return this.createMarker({
+      id: entity?.id as string,
       address: entity?.address,
       title: entity?.name,
       color: markerColorOrganisations,
@@ -84,15 +87,16 @@ export class MapMarkerService {
     })
   }
   
-  public createMarker(poi: PointOfInterest) {
-    const markerIcon = divIcon({
+  public createMarker(poi: PointOfInterest): Marker {
+    const icon = divIcon({
       ...iconOptions,
       html: this.componentService.createMarkerElement(poi.color || defaultMarkerColor, poi.icon)
     });
     const popup = this.componentService.createPopupElement(poi);
 
-    return marker(latLng(poi.address?.latitude || 0, poi.address?.longitude || 0), { icon: markerIcon })
+    return marker(latLng(poi.address?.latitude || 0, poi.address?.longitude || 0), { icon })
       .bindPopup(popup, popupOptions)
+      .on('mouseover', event => event.target.openPopup());
   }
 
   public cleanup(): void {
