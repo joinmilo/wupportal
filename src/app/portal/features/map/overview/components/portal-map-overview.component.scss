@@ -76,19 +76,4 @@ mat-drawer {
     bottom: 2rem;
   }
 
-  mat-button-toggle-group {
-    position: absolute;
-    left: 1rem;
-    bottom: 2rem;
-
-    border-radius: var(--mdc-shape-medium);
-  }
-
-}
-
-:host ::ng-deep {
-  .mat-button-toggle-checked {
-    background-color: var(--color-primary-500) !important;
-    color: var(--color-primary-contrast-500) !important;
-  }
 }
