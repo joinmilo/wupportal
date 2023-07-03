@@ -11,6 +11,9 @@ export class ArticlePageFeatureEffects {
     ofType(GuestArticlePageFeatureActions.getRecentGuestArticles),
     switchMap(() => this.getArticlesService.watch({
       params: {
+        dir: 'desc',
+        sort: 'modified',
+        size: 10,
         expression: {
           entity: {
             path: 'publicAuthor',

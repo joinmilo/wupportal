@@ -6,10 +6,6 @@ div {
   gap: var(--gap);
 }
 
-app-survey-filter {
-  margin-left: auto;
-}
-
 @include responsive(phone) {
   app-sponsored-card {
     display: none;
