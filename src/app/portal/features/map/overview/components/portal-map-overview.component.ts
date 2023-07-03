@@ -6,8 +6,8 @@ import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-p
 import { RadioInput } from 'src/app/shared/form/typings/radio-input';
 import { MapComponent } from 'src/app/shared/map/components/map.component';
 import { Maybe } from 'src/schema/schema';
-import { MapFeatureActions } from '../state/map.actions';
-import { selectActiveEntityFilter, selectResult } from '../state/map.selector';
+import { MapFeatureActions } from '../state/portal-map-overview.actions';
+import { selectActiveEntityFilter, selectResult } from '../state/portal-map-overview.selector';
 
 @Component({
   selector: 'app-portal-map-overview',
@@ -56,7 +56,7 @@ export class PortalMapOverviewComponent{
 
   public menuToggled(): void {
     // See: https://stackoverflow.com/questions/53796791/resize-sidenav-content-when-toggle-sidenav-with-material-angular-and-leaflet
-    // TODO: try openedChange, maybe its fired after animation is done
+    // TODO: try openedChange, maybe its fired after animation is done or trigger rerender during animation
     this.map?.rerender();
   }
 }

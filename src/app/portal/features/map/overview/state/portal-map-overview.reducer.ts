@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-param';
 import { DealEntity, EventEntity, FilterSortPaginateInput, OrganisationEntity } from 'src/schema/schema';
-import { MapFeatureActions } from './map.actions';
+import { MapFeatureActions } from './portal-map-overview.actions';
 
 export interface MapState {
   activeEntity?: MapEntityFilter;
@@ -17,7 +17,7 @@ export const initialState: MapState = {
   filterParams: {}
 };
 
-export const mapReducer = createReducer(
+export const portalMapOverviewReducer = createReducer(
   initialState,
 
   on(MapFeatureActions.setEntityFilter, (state, action): MapState => ({

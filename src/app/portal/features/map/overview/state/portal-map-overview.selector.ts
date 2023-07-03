@@ -1,10 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-param';
 import { MarkerDefinition } from 'src/app/shared/map/typings/map';
-import { mapFeatureKey } from '../constants/map.constants';
-import { MapState } from './map.reducer';
+import { portalPortalOverviewState } from '../constants/portal-map-overview.constants';
+import { MapState } from './portal-map-overview.reducer';
 
-export const selectMapState = createFeatureSelector<MapState>(mapFeatureKey);
+export const selectMapState = createFeatureSelector<MapState>(portalPortalOverviewState);
 
 export const selectActiveEntityFilter = createSelector(
   selectMapState, (state) => state.activeEntity

@@ -5,7 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { MarkerDefinition } from 'src/app/shared/map/typings/map';
 import { TablePaginatorComponent } from 'src/app/shared/table/components/paginator/table-paginator.component';
 import { Maybe } from 'src/schema/schema';
-import { selectResult } from '../../state/map.selector';
+import { selectResult } from '../../state/portal-map-overview.selector';
 
 
 @Component({

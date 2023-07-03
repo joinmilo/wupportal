@@ -45,8 +45,8 @@ const routes: Routes = [
   },
   {
     path: mapFeatureKey,
-    loadChildren: () => import('./features/map/overview/map.module')
-      .then((imported) => imported.MapPortalModule),
+    loadChildren: () => import('./features/map/overview/portal-map-overview.module')
+      .then((imported) => imported.PortalMapOverviewModule),
   },
   {
     path: 'notifications',

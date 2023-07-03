@@ -3,7 +3,7 @@ import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-p
 import { DealEntity, EventEntity, FilterSortPaginateInput, OrganisationEntity, } from 'src/schema/schema';
 
 export const MapFeatureActions = createActionGroup({
-  source: 'Map Feature',
+  source: 'Portal Map Overview',
   events: {
     'set entity filter': (entity: MapEntityFilter) => ({ entity }),
     'set filter params': (params: FilterSortPaginateInput) => ({ params }),

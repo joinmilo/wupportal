@@ -11,11 +11,11 @@ import {
   GetOrganisationsGQL,
   OrganisationEntity
 } from 'src/schema/schema';
-import { MapFeatureActions } from './map.actions';
-import { selectActiveEntityFilter } from './map.selector';
+import { MapFeatureActions } from './portal-map-overview.actions';
+import { selectActiveEntityFilter } from './portal-map-overview.selector';
 
 @Injectable()
-export class MapEffects {
+export class PortalMapOverviewEffects {
 
   getEvents = createEffect(() => this.actions.pipe(
     ofType(MapFeatureActions.setFilterParams),

@@ -19,10 +19,10 @@ import { TableModule } from 'src/app/shared/table/table.module';
 import { PortalMapOverviewFilterComponent } from './components/filter/portal-map-overview-filter.component';
 import { PortalMapOverviewListComponent } from './components/list/portal-map-overview-list.component';
 import { PortalMapOverviewComponent } from './components/portal-map-overview.component';
-import { mapFeatureKey } from './constants/map.constants';
-import { MapPortalRoutingModule } from './map-routing.module';
-import { MapEffects } from './state/map.effects';
-import { mapReducer } from './state/map.reducer';
+import { portalPortalOverviewState } from './constants/portal-map-overview.constants';
+import { PortalMapOverviewRoutingModule } from './portal-map-overview-routing.module';
+import { PortalMapOverviewEffects } from './state/portal-map-overview.effects';
+import { portalMapOverviewReducer } from './state/portal-map-overview.reducer';
 
 const components = [
   PortalMapOverviewFilterComponent,
@@ -36,8 +36,8 @@ const pages = [
 const framework = [
   CommonModule,
   ReactiveFormsModule,
-  StoreModule.forFeature(mapFeatureKey, mapReducer),
-  EffectsModule.forFeature([MapEffects])
+  StoreModule.forFeature(portalPortalOverviewState, portalMapOverviewReducer),
+  EffectsModule.forFeature([PortalMapOverviewEffects])
 ];
 
 const materials = [
@@ -54,7 +54,7 @@ const modules = [
   EventFilterModule,
   FormModule,
   OrganisationFilterModule,
-  MapPortalRoutingModule,
+  PortalMapOverviewRoutingModule,
   MapModule,
   TableModule,
 ]
@@ -78,4 +78,4 @@ const libs = [
     ...components
   ],
 })
-export class MapPortalModule {}
+export class PortalMapOverviewModule {}

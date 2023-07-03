@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-param';
 import { FilterSortPaginateInput, Maybe } from 'src/schema/schema';
-import { MapFeatureActions } from '../../state/map.actions';
-import { selectActiveEntityFilter, selectResult } from '../../state/map.selector';
+import { MapFeatureActions } from '../../state/portal-map-overview.actions';
+import { selectActiveEntityFilter, selectResult } from '../../state/portal-map-overview.selector';
 
 @Component({
   selector: 'app-portal-map-overview-filter',

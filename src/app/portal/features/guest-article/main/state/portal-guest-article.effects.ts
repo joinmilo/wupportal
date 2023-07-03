@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { CoreActions } from 'src/app/core/state/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { ArticleEntity, GetArticleCategoriesGQL, SaveArticleGQL } from 'src/schema/schema';
+import { ArticleEntity, SaveArticleGQL } from 'src/schema/schema';
 import { PortalGuestArticleActions } from './portal-guest-article.actions';
 
 @Injectable()
@@ -28,6 +28,5 @@ export class PortalGuestArticleEffects {
   constructor(
     private actions: Actions,
     private saveArticleService: SaveArticleGQL,
-    private getArticleCategoriesService: GetArticleCategoriesGQL
   ) { }
 }
