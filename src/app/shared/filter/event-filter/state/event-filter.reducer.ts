@@ -8,12 +8,10 @@ export interface EventFilterState {
   categories?: Maybe<EventCategoryEntity[]>,
   suburbs?: Maybe<SuburbEntity[]>,
   targetGroups?: Maybe<EventTargetGroupEntity[]>,
-  params: EventFilterQueryParams,
+  params?: EventFilterQueryParams,
 }
 
-export const initialState: EventFilterState = {
-  params: {}
-};
+export const initialState: EventFilterState = { };
 
 export const eventFilterReducer = createReducer(
   initialState,

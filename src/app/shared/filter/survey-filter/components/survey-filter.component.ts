@@ -31,9 +31,7 @@ export class SurveyFilterComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store,
-  ) {
-    this.updateWithQueryParams();
-  }
+  ) { }
   
   public ngOnInit(): void {
     this.store.select(selectSurveyFilterParams)
@@ -52,7 +50,7 @@ export class SurveyFilterComponent implements OnInit, OnDestroy {
       .pipe(
         debounceTime(0), //TODO: race condition between browser navigation and queryparams
         take(1)
-    ).subscribe(params => this.store.dispatch(SurveyFilterActions.updateAll(params)));
+      ).subscribe(params => this.store.dispatch(SurveyFilterActions.browserNavigated(params)));
   }
 
   public clearFilters(): void {

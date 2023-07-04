@@ -4,12 +4,10 @@ import { OrganisationFilterQueryDefinition, OrganisationFilterQueryParams } from
 import { OrganisationFilterActions } from './organisation-filter.actions';
 
 export interface OrganisationFilterState {
-  params: OrganisationFilterQueryParams,
+  params?: OrganisationFilterQueryParams,
 }
 
-export const initialState: OrganisationFilterState = {
-  params: {}
-};
+export const initialState: OrganisationFilterState = {};
 
 export const organisationFilterReducer = createReducer(
   initialState,

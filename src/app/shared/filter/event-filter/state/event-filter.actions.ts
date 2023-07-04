@@ -7,7 +7,9 @@ import { EventCategoryEntity, EventTargetGroupEntity, Maybe } from 'src/schema/s
 export const EventFilterActions = createActionGroup({
   source: 'Event Filter',
   events: {
-    'update all': (queryParams: Params) => ({ queryParams }),
+    'init': emptyProps(),
+    'query params initialized': (params: Params) => ({ params }),
+    'browser navigated': (params: Params) => ({ params }),
     'all updated': (params: EventFilterQueryParams) => ({ params }),
     'clear all': emptyProps(),
     

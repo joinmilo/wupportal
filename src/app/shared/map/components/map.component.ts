@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
@@ -25,10 +25,20 @@ import { MarkerDefinition } from '../typings/map';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit, OnChanges, OnDestroy {
+export class MapComponent implements OnInit, OnDestroy {
 
   @Input()
-  public markerDefinition?: Maybe<MarkerDefinition[] | MarkerDefinition>;
+  public set markerDefinition(markerDefinition: Maybe<MarkerDefinition[] | MarkerDefinition> | undefined) {
+    this.markers = Array.isArray(markerDefinition)
+      ? this.markerService.definitionsToMarkers(markerDefinition)
+      : markerDefinition
+        ? this.markerService.definitionToMarker(markerDefinition)
+        : [];
+
+    if (this.markers?.length) {
+      this.bounds = new FeatureGroup(this.markers as Layer[]).getBounds();
+    }
+  }
   
   @Input()
   public queryParams = true;
@@ -67,7 +77,6 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.dataToMarkers();
     this.initQueryParams();
   }
 
@@ -86,30 +95,11 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
           )
           : null;
       })
-    ).subscribe(bounds => {
-      this.bounds = bounds
-        ? bounds
-        : this.markers?.length
-          ? new FeatureGroup(this.markers as Layer[]).getBounds()
-          : latLngBounds(defaultBounds);
-    });
-  }
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['markerDefinition']) {
-      this.dataToMarkers();
-      if (this.markers?.length) {
-        this.bounds = new FeatureGroup(this.markers as Layer[]).getBounds();
-      }
-    }
-  }
-
-  public dataToMarkers(): void {
-    this.markers = Array.isArray(this.markerDefinition)
-      ? this.markerService.definitionsToMarkers(this.markerDefinition)
-      : this.markerDefinition
-        ? this.markerService.definitionToMarker(this.markerDefinition)
-        : [];
+    ).subscribe(bounds => this.bounds = bounds
+      ? bounds
+      : this.markers?.length
+        ? new FeatureGroup(this.markers as Layer[]).getBounds()
+        : latLngBounds(defaultBounds));
   }
 
   public onMapReady(map: Map) {
@@ -125,6 +115,7 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
     if (this.queryParams) {
       const bounds = this.map?.getBounds();
       this.router.navigate([], {
+        relativeTo: this.activatedRoute,
         queryParams: {
           [MapQueryParams.southWestLat]: bounds?.getSouthWest()?.lat?.toFixed(7),
           [MapQueryParams.southWestLng]: bounds?.getSouthWest()?.lng?.toFixed(7),
@@ -132,7 +123,6 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
           [MapQueryParams.northEastLng]: bounds?.getNorthEast()?.lng?.toFixed(7),
         },
         queryParamsHandling: 'merge',
-        replaceUrl: true,
       });
     }
   }

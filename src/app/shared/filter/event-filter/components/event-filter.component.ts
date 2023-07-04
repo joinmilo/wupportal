@@ -35,7 +35,6 @@ export class EventFilterComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private store: Store,
   ) {
-    this.updateWithQueryParams();
   }
   
   public ngOnInit(): void {
@@ -61,15 +60,11 @@ export class EventFilterComponent implements OnInit, OnDestroy {
 
   @HostListener('window:popstate', ['$event'])
   public onBrowserNavigation(): void {
-    this.updateWithQueryParams();
-  }
-
-  private updateWithQueryParams(): void {
     this.activatedRoute.queryParams
       .pipe(
         debounceTime(0), //TODO: race condition between browser navigation and queryparams
         take(1)
-    ).subscribe(params => this.store.dispatch(EventFilterActions.updateAll(params)));
+    ).subscribe(params => this.store.dispatch(EventFilterActions.browserNavigated(params)));
   }
 
   public clearFilters(): void {

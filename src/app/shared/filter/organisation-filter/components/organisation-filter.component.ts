@@ -31,9 +31,7 @@ export class OrganisationFilterComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store,
-  ) {
-    this.updateWithQueryParams();
-  }
+  ) { }
   
   public ngOnInit(): void {
     this.store.select(selectOrganisationFilterParams)
@@ -51,15 +49,11 @@ export class OrganisationFilterComponent implements OnInit, OnDestroy {
 
   @HostListener('window:popstate', ['$event'])
   public onBrowserNavigation(): void {
-    this.updateWithQueryParams();
-  }
-
-  private updateWithQueryParams(): void {
     this.activatedRoute.queryParams
       .pipe(
         debounceTime(0), //TODO: race condition between browser navigation and queryparams
         take(1)
-    ).subscribe(params => this.store.dispatch(OrganisationFilterActions.updateAll(params)));
+      ).subscribe(params => this.store.dispatch(OrganisationFilterActions.browserNavigated(params)));
   }
 
   public clearFilters(): void {

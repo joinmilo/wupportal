@@ -3,12 +3,10 @@ import { SurveyFilterQueryDefinition, SurveyFilterQueryParams } from 'src/app/co
 import { SurveyFilterActions } from './survey-filter.actions';
 
 export interface SurveyFilterState {
-  params: SurveyFilterQueryParams,
+  params?: SurveyFilterQueryParams,
 }
 
-export const initialState: SurveyFilterState = {
-  params: {}
-};
+export const initialState: SurveyFilterState = {};
 
 export const surveyFilterReducer = createReducer(
   initialState,

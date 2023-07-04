@@ -1,7 +1,7 @@
 import { SurveyFilterQueryDefinition, SurveyFilterQueryParams } from 'src/app/core/typings/filter-params/survey-filter-param';
 import { FilterSortPaginateInput, QueryOperator } from 'src/schema/schema';
 
-export const createSurveyParams = (queryParams: SurveyFilterQueryParams) => {
+export const createSurveyParams = (queryParams?: SurveyFilterQueryParams) => {
   const params = {
     expression: {
       conjunction: {
@@ -10,7 +10,7 @@ export const createSurveyParams = (queryParams: SurveyFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-   if (!queryParams[SurveyFilterQueryDefinition.past]) {
+   if (!queryParams || !queryParams[SurveyFilterQueryDefinition.past]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'dueDate',

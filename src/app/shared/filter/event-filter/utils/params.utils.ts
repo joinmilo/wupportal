@@ -3,7 +3,7 @@ import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter
 import { createListParam } from 'src/app/core/utils/params.utils';
 import { FilterSortPaginateInput, QueryOperator } from 'src/schema/schema';
 
-export const createEventParams = (queryParams: EventFilterQueryParams) => {
+export const createEventParams = (queryParams?: EventFilterQueryParams) => {
   const params = {
     expression: {
       conjunction: {
@@ -12,7 +12,7 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[EventFilterQueryDefinition.eventCategories]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.eventCategories]) {
 
     params.expression?.conjunction?.operands?.push(
       createListParam(
@@ -22,7 +22,7 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
     );
   }
 
-  if (queryParams[FilterQueryDefinition.suburbs]) {
+  if (queryParams && queryParams[FilterQueryDefinition.suburbs]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams[FilterQueryDefinition.suburbs],
@@ -31,7 +31,7 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
     );
   }
 
-  if (queryParams[EventFilterQueryDefinition.targetGroups]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.targetGroups]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams[EventFilterQueryDefinition.targetGroups],
@@ -40,9 +40,9 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
     );
   }
 
-  if (!queryParams[EventFilterQueryDefinition.past]) {
-    queryParams[FilterQueryDefinition.startDate]
-      || queryParams[FilterQueryDefinition.endDate]
+  if (!queryParams || !queryParams[EventFilterQueryDefinition.past]) {
+    queryParams && queryParams[FilterQueryDefinition.startDate]
+      || queryParams && queryParams[FilterQueryDefinition.endDate]
       ? params.expression?.conjunction?.operands?.push(
           {
             entity: {
@@ -68,7 +68,7 @@ export const createEventParams = (queryParams: EventFilterQueryParams) => {
         });
   }
 
-  if (queryParams[EventFilterQueryDefinition.freeOnly]) {
+  if (queryParams && queryParams[EventFilterQueryDefinition.freeOnly]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'entryFee',

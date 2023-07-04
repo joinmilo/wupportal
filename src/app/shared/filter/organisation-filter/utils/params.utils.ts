@@ -3,7 +3,7 @@ import { OrganisationFilterQueryDefinition, OrganisationFilterQueryParams } from
 import { createListParam } from 'src/app/core/utils/params.utils';
 import { FilterSortPaginateInput, QueryOperator } from 'src/schema/schema';
 
-export const createOrganisationParams = (queryParams: OrganisationFilterQueryParams) => {
+export const createOrganisationParams = (queryParams?: OrganisationFilterQueryParams) => {
   const params = {
     expression: {
       conjunction: {
@@ -12,7 +12,7 @@ export const createOrganisationParams = (queryParams: OrganisationFilterQueryPar
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[FilterQueryDefinition.suburbs]) {
+  if (queryParams && queryParams[FilterQueryDefinition.suburbs]) {
     params.expression?.conjunction?.operands?.push(
       createListParam(
         queryParams?.suburbs,
@@ -21,7 +21,7 @@ export const createOrganisationParams = (queryParams: OrganisationFilterQueryPar
     );
   }
 
-  if (queryParams[OrganisationFilterQueryDefinition.activeEvents]) {
+  if (queryParams && queryParams[OrganisationFilterQueryDefinition.activeEvents]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'events.schedules.startDate',

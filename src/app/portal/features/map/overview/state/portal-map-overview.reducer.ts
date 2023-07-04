@@ -5,7 +5,7 @@ import { MapFeatureActions } from './portal-map-overview.actions';
 
 export interface MapState {
   activeEntity?: MapEntityFilter;
-  filterParams: FilterSortPaginateInput;
+  filterParams?: FilterSortPaginateInput;
 
   events?: EventEntity[]
   organisations?: OrganisationEntity[]
@@ -14,7 +14,6 @@ export interface MapState {
 
 export const initialState: MapState = {
   activeEntity: MapEntityFilter.Events,
-  filterParams: {}
 };
 
 export const portalMapOverviewReducer = createReducer(

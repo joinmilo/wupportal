@@ -6,6 +6,9 @@ import { Maybe } from 'src/schema/schema';
 export const OrganisationFilterActions = createActionGroup({
   source: 'Organisation Filter',
   events: {
+    'init': emptyProps(),
+    'query params initialized': (params: Params) => ({ params }),
+    'browser navigated': (params: Params) => ({ params }),
     'update all': (queryParams: Params) => ({ queryParams }),
     'all updated': (params: OrganisationFilterQueryParams) => ({ params }),
     'clear all': emptyProps(),
