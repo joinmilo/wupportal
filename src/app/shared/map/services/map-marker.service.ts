@@ -96,7 +96,8 @@ export class MapMarkerService {
 
     return marker(latLng(poi.address?.latitude || 0, poi.address?.longitude || 0), { icon })
       .bindPopup(popup, popupOptions)
-      .on('mouseover', event => event.target.openPopup());
+      .on('mouseover', event => event.target.openPopup())
+      .on('mouseout', event => event.target.closePopup());
   }
 
   public cleanup(): void {
