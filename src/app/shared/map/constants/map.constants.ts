@@ -13,7 +13,7 @@ export const markerIconOrganisations = 'people-group';
 
 export const tileLayerOptions = {
   opacity: 0.7,  // TODO: Adjust when adding final map
-  minZoom: 8,
+  minZoom: 4,
   maxZoom: 19,
   detectRetina: true,
 };

@@ -98,6 +98,9 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['markerDefinition']) {
       this.dataToMarkers();
+      if (this.markers?.length) {
+        this.bounds = new FeatureGroup(this.markers as Layer[]).getBounds();
+      }
     }
   }
 
