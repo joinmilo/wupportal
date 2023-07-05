@@ -6,12 +6,10 @@ import { DealFilterActions } from './deal-filter.actions';
 
 export interface DealFilterState {
   categories?: Maybe<DealCategoryEntity[]>,
-  params: DealFilterQueryParams,
+  params?: DealFilterQueryParams,
 }
 
-export const initialState: DealFilterState = {
-  params: {}
-};
+export const initialState: DealFilterState = { };
 
 export const dealFilterReducer = createReducer(
   initialState,

@@ -39,7 +39,7 @@ export class PortalOrganisationOverviewTableComponent {
     },
     {
       field: 'address',
-      label: 'addres',
+      label: 'address',
       type: 'ADDRESS'
     },
   ];

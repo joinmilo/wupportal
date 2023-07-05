@@ -7,7 +7,9 @@ import { DealCategoryEntity } from 'src/schema/schema';
 export const DealFilterActions = createActionGroup({
   source: 'Deal Filter',
   events: {
-    'update all': (queryParams: Params) => ({ queryParams }),
+    'init': emptyProps(),
+    'query params initialized': (params: Params) => ({ params }),
+    'browser navigated': (params: Params) => ({ params }),
     'all updated': (params: DealFilterQueryParams) => ({ params }),
     'clear all': emptyProps(),
 

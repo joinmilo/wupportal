@@ -7,7 +7,9 @@ import { ArticleCategoryEntity, Maybe } from 'src/schema/schema';
 export const ArticleFilterActions = createActionGroup({
   source: 'Article Filter',
   events: {
-    'update all': (queryParams: Params) => ({ queryParams }),
+    'init': emptyProps(),
+    'query params initialized': (params: Params) => ({ params }),
+    'browser navigated': (params: Params) => ({ params }),
     'all updated': (params: ArticleFilterQueryParams) => ({ params }),
     'clear all': emptyProps(),
     

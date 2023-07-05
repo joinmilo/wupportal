@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
@@ -78,6 +77,5 @@ export class EventFilterEffects {
     private getCategoriesService: GetEventCategoriesGQL,
     private getTargetGroupsService: GetEventTargetGroupsGQL,
     private router: Router,
-    private store: Store,
   ) { }
 }

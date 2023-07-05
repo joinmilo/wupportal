@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, tap } from 'rxjs';
+import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { ArticleFilterQueryDefinition } from 'src/app/core/typings/filter-params/article-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { ArticleCategoryEntity, GetArticleCategoriesGQL } from 'src/schema/schema';
@@ -10,21 +10,36 @@ import { ArticleFilterActions } from './article-filter.actions';
 @Injectable()
 export class ArticleFilterEffects {
 
-  updateAll = createEffect(() => this.actions.pipe(
-    ofType(ArticleFilterActions.updateAll),
+  ngrxOnInitEffects() {
+    return ArticleFilterActions.init();
+  }
+
+  init = createEffect(() => this.actions.pipe(
+    ofType(ArticleFilterActions.init),
+    switchMap(() => this.activatedRoute.queryParams),
+    debounceTime(0), //TODO: race condition activated route and ngrxOnInitEffects
+    take(1),
+    map(params => ArticleFilterActions.queryParamsInitialized(params))
+  ));
+
+  updateByQueryParams = createEffect(() => this.actions.pipe(
+    ofType(
+      ArticleFilterActions.queryParamsInitialized,
+      ArticleFilterActions.browserNavigated
+    ),
     map(action => {
       const params: Record<string, unknown> = {};
       Object.values(ArticleFilterQueryDefinition).forEach((value) => {
         switch (true) {
-          case action.queryParams[value] === 'true' || action.queryParams[value] === 'false':
-            params[value] = action.queryParams[value] === 'true';
+          case action.params[value] === 'true' || action.params[value] === 'false':
+            params[value] = action.params[value] === 'true';
             break;
           default:
-            params[value] = action.queryParams[value];
+            params[value] = action.params[value];
         }
       });
       return ArticleFilterActions.allUpdated(params);
-    })  
+    })
   ));
 
   // Normally this should be handled within the components but because of merge
@@ -52,6 +67,7 @@ export class ArticleFilterEffects {
 
   constructor(
     private actions: Actions,
+    private activatedRoute: ActivatedRoute,
     private getCategoriesService: GetArticleCategoriesGQL,
     private router: Router,
   ) { }

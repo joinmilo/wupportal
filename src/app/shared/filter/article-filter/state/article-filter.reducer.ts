@@ -6,12 +6,10 @@ import { ArticleFilterActions } from './article-filter.actions';
 
 export interface ArticleFilterState {
   categories?: Maybe<ArticleCategoryEntity[]>,
-  params: ArticleFilterQueryParams,
+  params?: ArticleFilterQueryParams,
 }
 
-export const initialState: ArticleFilterState = {
-  params: {}
-};
+export const initialState: ArticleFilterState = { };
 
 export const articleFilterReducer = createReducer(
   initialState,

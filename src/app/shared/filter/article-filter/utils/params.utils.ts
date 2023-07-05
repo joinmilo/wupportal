@@ -4,7 +4,7 @@ import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter
 import { createListParam } from 'src/app/core/utils/params.utils';
 import { FilterSortPaginateInput, QueryOperator } from 'src/schema/schema';
 
-export const createArticleParams = (queryParams: ArticleFilterQueryParams) => {
+export const createArticleParams = (queryParams?: ArticleFilterQueryParams) => {
   const params = {
     expression: {
       conjunction: {
@@ -13,7 +13,7 @@ export const createArticleParams = (queryParams: ArticleFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[ArticleFilterQueryDefinition.articleCategories]) {
+  if (queryParams && queryParams[ArticleFilterQueryDefinition.articleCategories]) {
 
     params.expression?.conjunction?.operands?.push(
       createListParam(
@@ -23,8 +23,8 @@ export const createArticleParams = (queryParams: ArticleFilterQueryParams) => {
     );
   }
 
-  if (queryParams[FilterQueryDefinition.startDate]
-      || queryParams[FilterQueryDefinition.endDate]) {
+  if (queryParams && (queryParams[FilterQueryDefinition.startDate]
+      || queryParams[FilterQueryDefinition.endDate])) {
     params.expression?.conjunction?.operands?.push(
       {
         entity: {

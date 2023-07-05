@@ -1,7 +1,7 @@
 import { DealFilterQueryDefinition, DealFilterQueryParams } from 'src/app/core/typings/filter-params/deal-filter-param';
 import { FilterSortPaginateInput } from 'src/schema/schema';
 
-export const createDealParams = (queryParams: DealFilterQueryParams) => {
+export const createDealParams = (queryParams?: DealFilterQueryParams) => {
   const params = {
     expression: {
       conjunction: {
@@ -10,14 +10,14 @@ export const createDealParams = (queryParams: DealFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[DealFilterQueryDefinition.offerOnly]) {
+  if (queryParams && queryParams[DealFilterQueryDefinition.offerOnly]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'offer',
         value: 'true'
       }
     });
-  } else if (queryParams[DealFilterQueryDefinition.searchOnly]) {
+  } else if (queryParams && queryParams[DealFilterQueryDefinition.searchOnly]) {
     params.expression?.conjunction?.operands?.push({
       entity: {
         path: 'offer',

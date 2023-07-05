@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, tap } from 'rxjs';
+import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { DealFilterQueryDefinition } from 'src/app/core/typings/filter-params/deal-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { DealCategoryEntity, GetDealCategoriesGQL } from 'src/schema/schema';
@@ -10,17 +10,32 @@ import { DealFilterActions } from './deal-filter.actions';
 @Injectable()
 export class DealFilterEffects {
 
-  updateAll = createEffect(() => this.actions.pipe(
-    ofType(DealFilterActions.updateAll),
+  ngrxOnInitEffects() {
+    return DealFilterActions.init();
+  }
+
+  init = createEffect(() => this.actions.pipe(
+    ofType(DealFilterActions.init),
+    switchMap(() => this.activatedRoute.queryParams),
+    debounceTime(0), //TODO: race condition activated route and ngrxOnInitEffects
+    take(1),
+    map(params => DealFilterActions.queryParamsInitialized(params))
+  ));
+
+  updateByQueryParams = createEffect(() => this.actions.pipe(
+    ofType(
+      DealFilterActions.queryParamsInitialized,
+      DealFilterActions.browserNavigated
+    ),
     map(action => {
       const params: Record<string, unknown> = {};
       Object.values(DealFilterQueryDefinition).forEach((value) => {
         switch (true) {
-          case action.queryParams[value] === 'true' || action.queryParams[value] === 'false':
-            params[value] = action.queryParams[value] === 'true';
+          case action.params[value] === 'true' || action.params[value] === 'false':
+            params[value] = action.params[value] === 'true';
             break;
           default:
-            params[value] = action.queryParams[value];
+            params[value] = action.params[value];
         }
       });
       return DealFilterActions.allUpdated(params);
@@ -52,6 +67,7 @@ export class DealFilterEffects {
 
   constructor(
     private actions: Actions,
+    private activatedRoute: ActivatedRoute,
     private getCategoriesService: GetDealCategoriesGQL,
     private router: Router,
   ) { }
