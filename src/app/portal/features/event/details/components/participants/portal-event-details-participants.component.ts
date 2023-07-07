@@ -15,9 +15,9 @@ import { PortalEventDetailsFriendsShowComponent } from '../friends-show/portal-e
 })
 export class PortalEventDetailsParticipantsComponent implements OnInit, OnDestroy {
 
-  public friends?: (Maybe<UserContextEntity> | undefined)[] | undefined;
+  public friends?: (Maybe<UserContextEntity> | undefined)[];
 
-  public attendingFriends?: (Maybe<UserContextEntity> | undefined)[] | undefined;
+  public attendingFriends?: (Maybe<UserContextEntity> | undefined)[];
 
   public currentUser = this.store.select(selectCurrentUser);
 
@@ -30,7 +30,9 @@ export class PortalEventDetailsParticipantsComponent implements OnInit, OnDestro
       .subscribe(friends => this.friends = friends);
 
     this.store.select(selectAttendingFriends)
-      .subscribe(attendingFriends => this.attendingFriends = attendingFriends);
+      .subscribe(attendingFriends => {this.attendingFriends = attendingFriends
+        console.log('dsada', this.attendingFriends)
+        });
   }
 
   public showAllFriends(): void {
