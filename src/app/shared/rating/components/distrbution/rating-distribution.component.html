@@ -1,0 +1,15 @@
+<div>
+  <section>
+    <span>{{key}}</span>
+    <span *ngIf="key === '1'" appLabel="star"></span>
+    <span *ngIf="key !== '1'" appLabel="stars"></span>
+  </section>
+  
+  <mat-progress-bar
+    mode="determinate"
+    [value]="value"
+    [bufferValue]="0">
+  </mat-progress-bar>
+
+  <section>{{ value.toFixed() }}%</section>
+</div>

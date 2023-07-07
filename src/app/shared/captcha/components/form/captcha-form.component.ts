@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { NgHcaptchaComponent } from 'ng-hcaptcha';
 import { filter, map } from 'rxjs';
 import { hCaptchaSitekeyConfig } from 'src/app/core/constants/core.constants';
-import { selectConfiguration } from 'src/app/core/state/core.selectors';
+import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { Maybe } from 'src/schema/schema';
 
 @Component({

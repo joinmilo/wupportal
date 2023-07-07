@@ -5,7 +5,8 @@ import { Store } from '@ngrx/store';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { accessDeniedError, tokenExpiredError } from '../constants/core.constants';
-import { CoreActions } from '../state/core.actions';
+import { CoreUserActions } from '../state/actions/core-user.actions';
+import { CoreActions } from '../state/actions/core.actions';
 import { FeedbackType } from '../typings/feedback';
 import { ApiResponse } from '../typings/response';
 
@@ -29,7 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       && response.body?.errors?.every(error => error.extensions.exception !== accessDeniedError)) {
 
         if (response.body?.errors?.some(error => error.extensions.exception === tokenExpiredError)) {
-          this.store.dispatch(CoreActions.refreshExpired());
+          this.store.dispatch(CoreUserActions.refreshExpired());
         }
         
         this.store.dispatch(CoreActions.setFeedback({

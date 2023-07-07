@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
 import { AppEntity, GetAppsGQL, GetSocialMediaGQL, SocialMediaEntity } from 'src/schema/schema';
 import { PortalFooterActions } from './portal-footer.actions';
 
 @Injectable()
-export class PortalFooterEffects {
+export class PortalFooterEffects implements OnInitEffects {
 
   ngrxOnInitEffects(): Action {
     return PortalFooterActions.init();

@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { CoreActions } from 'src/app/core/state/core.actions';
+import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 
 @Component({
   selector: 'app-login-required',
@@ -26,7 +26,7 @@ export class LoginRequiredComponent {
   ) {}
   
   public onSubmit() {
-    this.store.dispatch(CoreActions.login(
+    this.store.dispatch(CoreUserActions.login(
       this.form.value.email ?? '',
       this.form.value.password ?? '',
     ));

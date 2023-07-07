@@ -4,8 +4,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { filter, map, switchMap, tap } from 'rxjs';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { SendVerificationGQL, UserEntity, VerifyUserGQL } from '../../../schema/schema';
+import { CoreActions } from '../../core/state/actions/core.actions';
 import { ResetPasswordGQL, SaveUserGQL, SendPasswordResetGQL } from './../../../schema/schema';
-import { CoreActions } from './../../core/state/core.actions';
 import { UserActions } from './user.actions';
 
 @Injectable()

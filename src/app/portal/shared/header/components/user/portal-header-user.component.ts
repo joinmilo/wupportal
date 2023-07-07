@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CoreActions } from 'src/app/core/state/core.actions';
-import { selectCurrentUser } from 'src/app/core/state/core.selectors';
+import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 
 @Component({
   selector: 'app-portal-header-user',
@@ -11,8 +11,8 @@ import { selectCurrentUser } from 'src/app/core/state/core.selectors';
 export class PortalHeaderUserComponent {
   public currentUser = this.store.select(selectCurrentUser);
 
-  public logout(): void{
-    this.store.dispatch(CoreActions.logout())
+  public logout(): void {
+    this.store.dispatch(CoreUserActions.logout())
   }
 
   constructor(private store: Store) {}

@@ -18,6 +18,8 @@ export class AddressPieceComponent {
   public addressClicked = new EventEmitter<Maybe<AddressEntity>>();
 
   public onClick(): void {
-    this.addressClicked.emit(this.address);
+    if (this.address) {
+      this.addressClicked.emit(this.address);
+    }
   }
 }

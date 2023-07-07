@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from "@angular/material/dialog";
 import { Store } from '@ngrx/store';
 import { Subject, filter } from "rxjs";
-import { selectIsLoading } from 'src/app/core/state/core.selectors';
+import { selectIsLoading } from 'src/app/core/state/selectors/core.selectors';
 import { CaptchaDialogComponent } from '../dialog/captcha-dialog.component';
 
 @Component({

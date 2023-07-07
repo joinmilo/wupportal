@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs';
 import { GetMenuGQL, MenuItemEntity } from 'src/schema/schema';
 import { PortalMenuActions } from './portal-menu.actions';
 
 @Injectable()
-export class PortalMenuEffects {
+export class PortalMenuEffects implements OnInitEffects {
 
   ngrxOnInitEffects(): Action {
     return PortalMenuActions.init();

@@ -1,37 +1,34 @@
 <div>
   <section>
 
-    <app-portal-event-calendar *ngIf="event?.schedule?.startDate" [event]="event"></app-portal-event-calendar>
+    <app-portal-event-details-calendar>
+    </app-portal-event-details-calendar>
 
-    <div *ngIf="!event?.schedule?.startDate">
-      <fa-icon size="lg" [icon]="['far', 'calendar']"></fa-icon>
-      <i appLabel="noFixedDates"></i>
-    </div>
-
-    <app-address-piece *ngIf="event?.address" [address]="event?.address"
+    <app-address-piece
+      [address]="event?.address"
+      [link]="event?.videoChatLink"
       (addressClicked)="onAddressClicked()">
     </app-address-piece>
 
-    <app-address-piece *ngIf="event?.videoChatLink" [link]="event?.videoChatLink">
-    </app-address-piece>
-
-    <app-mail-piece *ngIf="event?.contact?.email" [mail]="event?.contact?.email">
+    <app-mail-piece *ngIf="event?.contact?.email"
+      [mail]="event?.contact?.email">
     </app-mail-piece>
 
-    <app-phone-piece *ngIf="event?.contact?.phone" [phone]="event?.contact?.phone">
+    <app-phone-piece *ngIf="event?.contact?.phone"
+      [phone]="event?.contact?.phone">
     </app-phone-piece>
   </section>
 
   <section>
-    <span>
+    <article>
       <fa-icon size="1x" class="grey" [icon]="['fas', 'ticket']"></fa-icon>
-      {{ event?.entryFee || '' }}
+      <span *ngIf="event?.entryFee">{{ event?.entryFee || '' }} EUR</span>
       <span *ngIf="!event?.entryFee" appLabel="admissionFree"></span>
-    </span>
+    </article>
 
     <app-portal-event-details-attendee
-      *ngIf="event?.attendeeConfiguration"
-    ></app-portal-event-details-attendee>
+      *ngIf="event?.attendeeConfiguration">
+    </app-portal-event-details-attendee>
   </section>
   
 </div>

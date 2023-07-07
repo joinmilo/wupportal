@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { Subject, takeUntil } from 'rxjs';
-import { selectCurrentUser } from 'src/app/core/state/core.selectors';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { UserContextEntity } from 'src/schema/schema';
 
 @Component({

@@ -96,6 +96,7 @@ export const organisationsToCards = (entities?: Maybe<OrganisationEntity[]>): Ca
 
 export const organisationToCard = (entity?: Maybe<OrganisationEntity>): CardElement => ({
   id: entity?.id,
+  creator: entity?.name, 
   title: entity?.name,
   address: entity?.address,
   dateTime: true,

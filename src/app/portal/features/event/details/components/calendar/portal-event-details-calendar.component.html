@@ -1,0 +1,36 @@
+<div *ngIf="event?.hasSchedules; else noSchedules">
+  <section>
+    <fa-icon size="lg" [icon]="['far', 'calendar']"></fa-icon>
+    <button mat-button
+      [matMenuTriggerFor]="menu"
+      (menuClosed)="this.selectedSchedule = undefined;">
+
+      <i *ngIf="event?.schedule">{{event?.schedule?.startDate| date: 'short' }}</i>
+      <i *ngIf="!event?.schedule" appLabel="schedulesInThePast"></i>
+    </button>
+  </section>
+</div>
+
+<ng-template #noSchedules>
+  <section>
+    <fa-icon size="lg" [icon]="['far', 'calendar']"></fa-icon>
+    <i appLabel="noFixedDates"></i>
+  </section>
+</ng-template>
+
+<mat-menu #menu="matMenu">
+  <div>
+    <app-calendar
+      [queryParams]="false"
+      [dates]="startDates"
+      (click)="$event.stopPropagation()"
+      (monthSelected)="monthSelected($event)"
+      (daySelected)="daySelected($event)">
+    </app-calendar>
+    <div class="date" *ngIf="selectedSchedule">
+      <span>{{selectedSchedule.startDate | date: 'short'}}</span>
+      <span appLabel="to"></span>
+      <span>{{selectedSchedule.endDate | date: 'short'}}</span>
+    </div>
+  </div>
+</mat-menu>

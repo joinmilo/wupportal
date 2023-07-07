@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { OrganisationFilterQueryDefinition } from 'src/app/core/typings/filter-params/organisation-filter-param';
 import { OrganisationFilterActions } from './organisation-filter.actions';
 
 @Injectable()
-export class OrganisationFilterEffects {
+export class OrganisationFilterEffects implements OnInitEffects {
 
   ngrxOnInitEffects() {
     return OrganisationFilterActions.init();

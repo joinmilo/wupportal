@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { combineLatest, filter, isObservable, map, Observable, of } from 'rxjs';
 import { ConfigurationEntity, LanguageEntity, Maybe } from 'src/schema/schema';
 import { defaultLocaleConfig } from '../constants/core.constants';
-import { selectConfiguration, selectLabels, selectLanguage } from '../state/core.selectors';
+import { selectConfiguration, selectLabels, selectLanguage } from '../state/selectors/core.selectors';
 import { Translatable } from '../typings/translatable';
 
 @Injectable({ providedIn: 'root' })

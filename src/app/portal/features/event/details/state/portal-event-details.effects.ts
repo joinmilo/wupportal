@@ -3,14 +3,15 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs';
-import { CoreActions } from 'src/app/core/state/core.actions';
-import { selectCurrentUser } from 'src/app/core/state/core.selectors';
+import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
+import { CoreActions } from 'src/app/core/state/actions/core.actions';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { PortalMenuActions } from 'src/app/portal/shared/menu/state/portal-menu.actions';
 import { DeleteAttendeeGQL, EventCommentEntity, EventEntity, EventRatingEntity, GetEventCommentsGQL, GetEventGQL, GetSchedulesGQL, Maybe, QueryOperator, SaveAttendeeGQL, SaveEventCommentGQL, SaveEventRatingGQL, ScheduleEntity } from 'src/schema/schema';
 import { ConjunctionOperator } from './../../../../../../schema/schema';
 import { PortalEventDetailsActions } from './portal-event-details.actions';
-import { selectEventAttendeeConfiguration, selectEventDetails, selectEventUserAttendee } from './portal-event-details.selectors';
+import { selectEventAttendeeConfiguration, selectEventDetails, selectEventUserAttendee, selectEventUserRating } from './portal-event-details.selectors';
 
 @Injectable()
 export class PortalEventDetailsEffects {
@@ -48,7 +49,7 @@ export class PortalEventDetailsEffects {
 
   detailsUpdated = createEffect(() => this.actions.pipe(
     ofType(PortalEventDetailsActions.detailsUpdated),
-    map(() => CoreActions.updateUser())
+    map(() => CoreUserActions.updateUser())
   ));
 
   getComments = createEffect(() => this.actions.pipe(
@@ -71,8 +72,20 @@ export class PortalEventDetailsEffects {
 
   saveEventRating = createEffect(() => this.actions.pipe(
     ofType(PortalEventDetailsActions.saveEventRating),
-    switchMap((action) => this.saveEventRatingService.mutate({
-      entity: action.entity
+    withLatestFrom(
+      this.store.select(selectEventDetails),
+      this.store.select(selectCurrentUser),
+      this.store.select(selectEventUserRating),
+    ),
+    map(([action, event, user, rating]) => rating?.id
+      ? { ...action.entity, id: rating.id }
+      : { ...action.entity,
+          event: { id: event?.id },
+          userContext: { id: user?.id}
+        }
+    ),
+    switchMap((entity) => this.saveEventRatingService.mutate({
+      entity: entity
     })),
     map(response => PortalEventDetailsActions.eventRatingSaved(response.data?.saveEventRating as EventRatingEntity))
   ));

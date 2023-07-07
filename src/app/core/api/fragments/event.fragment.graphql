@@ -1,15 +1,10 @@
 fragment Event on EventEntity {
   id
   entryFee
+  hasSchedules
   slug
 
   videoChatLink
-  calculatedRatings{
-    ...RatingDto
-  }
-  lastComment {
-    ...EventComment
-  }
 
   address {
     ...Address
@@ -25,11 +20,17 @@ fragment Event on EventEntity {
       }
     }
   }
-  contact {
-    ...Contact
+  calculatedRatings{
+    ...RatingDto
   }
   category {
     ...EventCategory
+  }
+  contact {
+    ...Contact
+  }
+  lastComment {
+    ...EventComment
   }
   organisation {
     ...Organisation
@@ -38,16 +39,12 @@ fragment Event on EventEntity {
     id
     score
     userContext{
-    id
+      id
     }
   }
   schedule(begin: $scheduleBegin, end: $scheduleEnd) {
     ...Schedule
   }
-  organisation {
-    ...Organisation
-  }
-
   translatables {
     id
     name

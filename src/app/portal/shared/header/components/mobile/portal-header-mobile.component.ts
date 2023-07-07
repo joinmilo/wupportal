@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { fadeInAnimation } from 'src/app/core/animations/animations';
-import { selectCurrentUser } from 'src/app/core/state/core.selectors';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { selectIsSearching } from 'src/app/portal/shared/search/state/search.selectors';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
 

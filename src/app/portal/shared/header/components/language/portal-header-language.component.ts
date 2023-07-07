@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CoreActions } from 'src/app/core/state/core.actions';
-import { selectCurrentUser, selectLanguages } from 'src/app/core/state/core.selectors';
+import { CoreActions } from 'src/app/core/state/actions/core.actions';
+import { selectLanguages } from 'src/app/core/state/selectors/core.selectors';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { LanguageEntity } from 'src/schema/schema';
 
 @Component({

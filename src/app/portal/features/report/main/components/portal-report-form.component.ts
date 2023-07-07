@@ -3,7 +3,7 @@ import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, filter, map, takeUntil } from 'rxjs';
 import { hCaptchaSitekeyConfig } from 'src/app/core/constants/core.constants';
-import { selectConfiguration } from 'src/app/core/state/core.selectors';
+import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { ReportTypeEntity } from 'src/schema/schema';
 import { ReportActions } from '../state/report.actions';
 import { selectReportTypes, selectSavedReport } from '../state/report.selectors';

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { locationURL } from 'src/app/core/constants/core.constants';
+import { locationNavigationURL } from 'src/app/core/constants/core.constants';
 import { AddressEntity } from 'src/schema/schema';
 import { PointOfInterest } from '../../typings/map';
 
@@ -15,7 +15,7 @@ export class MapPopupComponent {
 
   public openGoogleMaps(address: Maybe<AddressEntity>) {
     if (address?.latitude && address?.longitude) {
-      window.open(locationURL(address.latitude, address.longitude));
+      window.open(locationNavigationURL(address.latitude, address.longitude));
     }
   }
 }

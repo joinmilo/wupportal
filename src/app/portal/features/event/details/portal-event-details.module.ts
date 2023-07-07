@@ -26,14 +26,15 @@ import { MediaSliderComponent } from 'src/app/shared/sliders/media-slider/media-
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalEventDetailsAttendeeComponent } from './components/attendee/portal-event-details-attendee.component';
-import { PortalEventDetailsCalendarComponent } from './components/calendar/portal-event-calendar.component';
+import { PortalEventDetailsCalendarComponent } from './components/calendar/portal-event-details-calendar.component';
 import { PortalEventCommentsComponent } from './components/comments/portal-event-comments.component';
 import { PortalEventDetailsInviteFriendsComponent } from './components/invite-friends/portal-event-details-invite-friends.component';
 import { PortalEventDetailsOrganisationComponent } from './components/organisation/portal-event-details-organisation.component';
 import { PortalEventDetailsParticipantsComponent } from './components/participants/portal-event-details-participants.component';
 import { PortalEventDetailsComponent } from './components/portal-event-details.component';
-import { ShowFriendsComponent } from './components/show-friends/show-friends.component';
-import { PortalEventDetailsSummrayComponent } from './components/summary/portal-event-details-summary.component';
+import { PortalEventDetailsRatingComponent } from './components/rating/portal-event-details-rating.component';
+import { PortalEventDetailsShowFriendsComponent } from './components/show-friends/portal-event-details-show-friends.component';
+import { PortalEventDetailsSummaryComponent } from './components/summary/portal-event-details-summary.component';
 import { portalEventDetailsStateKey } from './constants/event-details.constant';
 import { PortalEventDetailsRoutingModule } from './portal-event-details-routing.module';
 import { PortalEventDetailsEffects } from './state/portal-event-details.effects';
@@ -41,14 +42,15 @@ import { portalEventDetailsReducer } from './state/portal-event-details.reducer'
 
 const components = [
   PortalEventDetailsComponent,
-  PortalEventDetailsSummrayComponent,
-  PortalEventDetailsParticipantsComponent,
-  ShowFriendsComponent,
-  PortalEventDetailsOrganisationComponent,
-  PortalEventDetailsInviteFriendsComponent,
-  PortalEventDetailsCalendarComponent,
   PortalEventDetailsAttendeeComponent,
+  PortalEventDetailsCalendarComponent,
   PortalEventCommentsComponent,
+  PortalEventDetailsInviteFriendsComponent,
+  PortalEventDetailsOrganisationComponent,
+  PortalEventDetailsParticipantsComponent,
+  PortalEventDetailsRatingComponent,
+  PortalEventDetailsSummaryComponent,
+  PortalEventDetailsShowFriendsComponent,
 ];
 
 const framework = [

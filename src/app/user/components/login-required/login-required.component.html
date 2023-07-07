@@ -1,5 +1,5 @@
 <div class="main">
-  <form class="border-box" [formGroup]="form" #formDirective="ngForm">
+  <form class="border-box" [formGroup]="form" #formDirective="ngForm" (ngSubmit)="onSubmit()">
   
     <h2 class="mat-headline-5" appLabel="loginForThisFeature"></h2>
     <p appLabel="loginRequiredText"></p>

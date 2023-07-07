@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectIsLoading } from '../core/state/core.selectors';
+import { selectIsLoading } from '../core/state/selectors/core.selectors';
 
 @Component({
   selector: 'app-portal',

@@ -12,20 +12,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { CoreModule } from "../../core/core.module";
 import { CaptchaModule } from '../captcha/captcha.module';
-import { RatingAverageComponent } from './average/rating-average.component';
-import { ProgressBarComponent } from './progress-bar/rating-progress-bar.component';
-import { RatingComponent } from './rating.component';
-import { SaveRatingDialogComponent } from './save-rating-dialog/save-rating-dialog.component';
-import { SaveRatingComponent } from './save-rating/save-rating.component';
-import { StarEvaluationComponent } from './star-evaluation/star-evaluation.component';
+import { RatingDistributionComponent } from './components/distrbution/rating-distribution.component';
+import { RatingFormComponent } from './components/form/rating-form.component';
+import { RatingComponent } from './components/rating.component';
 
 const components = [
   RatingComponent,
-  SaveRatingComponent,
-  RatingAverageComponent,
-  SaveRatingDialogComponent,
-  StarEvaluationComponent,
-  ProgressBarComponent
+  RatingFormComponent,
+  RatingDistributionComponent
 ];
 
 const framework = [

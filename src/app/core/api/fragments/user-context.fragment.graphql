@@ -6,6 +6,22 @@ fragment UserContext on UserContextEntity {
     ...Article
   }
 
+  articleRatings {
+    id
+    score
+    article {
+      id
+    }
+  }
+
+  eventRatings {
+    id
+    score
+    event {
+      id
+    }
+  }
+
   friendRequester {
     ...Friend
   }
@@ -13,7 +29,15 @@ fragment UserContext on UserContextEntity {
   friendAddressee {
     ...Friend
   }
-  
+
+  organisationRatings {
+    id
+    score
+    organisation {
+      id
+    }
+  }
+
   uploads {
     profilePicture
     title
@@ -28,11 +52,11 @@ fragment UserContext on UserContextEntity {
     lastName
     email
     notifications {
-      ...Notification  
+      ...Notification
     }
   }
 
   userFormTemplate {
-      ...Form
+    ...Form
   }
 }

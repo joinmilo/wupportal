@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Period } from 'src/app/core/typings/period';
 import { dayPeriod, monthPeriod } from 'src/app/core/utils/date.utils';
 import { Maybe } from 'src/schema/schema';
@@ -15,10 +15,10 @@ import { CalendarHeaderComponent } from '../header/calendar-header.component';
   styleUrls: ['./calendar.component.scss'],
   providers: [CalendarService]
 })
-export class CalendarComponent implements OnInit, OnDestroy {
+export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
   
   @Input()
-  public dates?: Observable<Maybe<Date[]> | undefined>;
+  public dates?: Maybe<Date[]>;
 
   @Input()
   public queryParams = true;
@@ -51,6 +51,10 @@ export class CalendarComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.watchQueryParams();
     this.watchMonthSelection();
+    this.watchDateFilter();
+  }
+
+  public ngOnChanges(): void {
     this.watchDateFilter();
   }
 
@@ -98,9 +102,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
   private watchDateFilter(): void {
     // This overrrides the dateFilter to refresh date filter async
     // see: https://stackoverflow.com/questions/59762201/how-to-have-material-calenders-date-picker-filter-method-work-with-observables
-    this.dates?.pipe(takeUntil(this.destroy))
-      .subscribe(dates => this.dateFilter = (calendarDate: Date) =>
-        !!dates?.some(date => date.toDateString() === calendarDate.toDateString()))
+    this.dateFilter = (calendarDate: Date) =>
+      !!this.dates?.some(date => date.toDateString() === calendarDate.toDateString())
   }
   public selectedChange(date: Maybe<Date>): void {
     this.daySelected.emit(dayPeriod(date) as Period);

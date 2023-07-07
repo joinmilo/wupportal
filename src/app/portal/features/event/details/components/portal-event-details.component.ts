@@ -3,10 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { eventsFeatureKey, slug } from 'src/app/core/constants/core.constants';
-import { selectCurrentUser } from 'src/app/core/state/core.selectors';
 import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
 import { MarkerDefinition } from 'src/app/shared/map/typings/map';
-import { EventEntity, Maybe, MediaEntity, UserContextEntity } from 'src/schema/schema';
+import { EventEntity, Maybe, MediaEntity } from 'src/schema/schema';
 import { PortalEventDetailsActions } from '../state/portal-event-details.actions';
 import { selectEventDetails } from '../state/portal-event-details.selectors';
 
@@ -17,9 +16,9 @@ import { selectEventDetails } from '../state/portal-event-details.selectors';
 })
 export class PortalEventDetailsComponent implements OnInit, OnDestroy {
 
-  public url = eventsFeatureKey;
+  public categoryUrl = eventsFeatureKey;
 
-  public queryParams = EventFilterQueryDefinition.eventCategories;
+  public categoryQueryParams = EventFilterQueryDefinition.eventCategories;
 
   public event?: Maybe<EventEntity>;
 
@@ -28,8 +27,6 @@ export class PortalEventDetailsComponent implements OnInit, OnDestroy {
   public media?: Maybe<Maybe<MediaEntity>[]>;
 
   private destroy = new Subject<void>();
-
-  public currentUser?: Maybe<UserContextEntity> | undefined;
 
   public marker?: Maybe<MarkerDefinition>;
 
@@ -55,25 +52,6 @@ export class PortalEventDetailsComponent implements OnInit, OnDestroy {
         ?.slice(0, 3) as MediaEntity[];
     });
 
-    this.store.select(selectCurrentUser).pipe(takeUntil(this.destroy))
-      .subscribe(user => this.currentUser = user);
-  }
-
-  public saveRating(score: number): void {
-    this.store.dispatch(PortalEventDetailsActions.saveEventRating({
-      id: this.event?.ratings?.filter(rating => rating?.userContext?.id == this.currentUser?.id)?.[0]?.id,
-      event: {id: this.event?.id},
-      userContext: {id: this.currentUser?.id, uploads: this.currentUser?.uploads},
-      score,
-    }));
-  }
-
-  saveComment($event: string) {
-    this.store.dispatch(PortalEventDetailsActions.saveEventComment({
-      content: $event,
-      event: {id: this.event?.id},
-      userContext:  this.currentUser
-    }))
   }
 
   ngOnDestroy(): void {

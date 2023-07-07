@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, finalize } from 'rxjs';
-import { CoreActions } from '../state/core.actions';
+import { CoreActions } from '../state/actions/core.actions';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingInterceptor implements HttpInterceptor {

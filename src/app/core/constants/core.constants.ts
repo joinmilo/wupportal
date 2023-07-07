@@ -1,8 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { Maybe, MediaEntity } from 'src/schema/schema';
 
-export const coreStateKey = 'coreState';
-
 /**
  * Authentication
  */
@@ -29,6 +27,7 @@ export const logoConfig = 'logo';
 export const logoTextConfig = 'logoText';
 export const mapLongitudeConfig = 'mapLongitude';
 export const mapLatitudeConfig = 'mapLatitude';
+export const maxRating = 'maxRating';
 export const portalNameConfig = 'portalName';
 export const pwBitStrengthConfig = 'pwBitStrength';
 
@@ -64,16 +63,24 @@ export const slug = 'slug';
 export const displayQueryParam = 'display';
 
 /**
+ * State keys
+ */
+export const appStateKey = 'appState';
+
+/**
  * URLs
  */
 export const baseApi = `${environment.base}api`;
 export const graphqlApi = `${baseApi}/graphql`;
+
+export const locationNavigationURL = (latitude: number, longtitude: number): string =>
+ `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longtitude}`;
+export const locationTileLayerURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+
 export const mediaBaseApi = `${baseApi}/media`;
 export const mediaDownloadBaseApi = `${mediaBaseApi}/download`;
 export const mediaExportBaseApi = `${mediaBaseApi}/export`;
 export const mediaApi = (media: Maybe<MediaEntity>): string => `${mediaBaseApi}/${media?.id}`
 export const mediaDownloadApi = (media?: Maybe<MediaEntity>): string => `${mediaDownloadBaseApi}/${media?.id}`
-export const tileLayerURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 export const mediaExportApi = `${mediaBaseApi}/export`;
-export const locationURL = (latitude: number, longtitude: number): string =>
- `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longtitude}`;
+

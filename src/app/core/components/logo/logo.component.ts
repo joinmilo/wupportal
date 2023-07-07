@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { logoConfig, logoTextConfig } from '../../constants/core.constants';
-import { selectConfiguration } from '../../state/core.selectors';
+import { selectConfiguration } from '../../state/selectors/core.selectors';
 
 @Component({
   selector: 'app-logo',

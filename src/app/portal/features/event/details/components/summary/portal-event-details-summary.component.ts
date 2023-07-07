@@ -10,7 +10,7 @@ import { selectEventDetails } from '../../state/portal-event-details.selectors';
   templateUrl: './portal-event-details-summary.component.html',
   styleUrls: ['./portal-event-details-summary.component.scss'],
 })
-export class PortalEventDetailsSummrayComponent implements OnInit, OnDestroy {
+export class PortalEventDetailsSummaryComponent implements OnInit, OnDestroy {
 
   public event?: Maybe<EventEntity> | undefined;
 

@@ -1,6 +1,6 @@
 <app-calendar
   [queryParams]="queryParams"
-  [dates]="startDates"
+  [dates]="startDates | async"
   (daySelected)="daySelectionUpdate($event)"
   (monthSelected)="monthSelectionUpdate($event)">
 </app-calendar>

@@ -12,8 +12,8 @@ import {
   tileLayer
 } from 'leaflet';
 import { combineLatest, map, take } from 'rxjs';
-import { mapLatitudeConfig, mapLongitudeConfig, tileLayerURL } from 'src/app/core/constants/core.constants';
-import { selectConfiguration } from 'src/app/core/state/core.selectors';
+import { locationTileLayerURL, mapLatitudeConfig, mapLongitudeConfig } from 'src/app/core/constants/core.constants';
+import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { MapQueryParams } from 'src/app/core/typings/filter-params/map-filter-param';
 import { Maybe } from 'src/schema/schema';
 import { defaultBounds, markerClusterOptions, tileLayerOptions } from '../constants/map.constants';
@@ -71,7 +71,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
       this.leafletOptions = {
         ...mapOptions,
-        layers: [tileLayer(tileLayerURL, tileLayerOptions)]
+        layers: [tileLayer(locationTileLayerURL, tileLayerOptions)]
       }
     });
   }

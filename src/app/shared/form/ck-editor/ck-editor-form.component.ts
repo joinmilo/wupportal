@@ -42,23 +42,23 @@ export class CkEditorFormComponent implements ControlValueAccessor {
 
   public onChange?: (value: string) => void;
 
-  writeValue(value: string): void {
+  public writeValue(value: string): void {
     this.model.editorData = value;
   }
 
-  registerOnChange(onChange: (value: string) => void): void {
+  public registerOnChange(onChange: (value: string) => void): void {
     this.onChange = onChange;
   }
 
-  registerOnTouched(): void {
+  public registerOnTouched(): void {
     return;
   }
 
-  handleEditorReady(editor: unknown): void {
+  public handleEditorReady(editor: unknown): void {
     this.editorInstance = editor;
   }
 
-  handleEditorChange(): void {
+  public handleEditorChange(): void {
     const data = this.editorInstance.getData();
     this.onChange && this.onChange(data);
   }

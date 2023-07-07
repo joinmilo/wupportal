@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MediaEntity } from 'src/schema/schema';
 import { faviconConfig, mediaApi } from '../constants/core.constants';
-import { selectConfiguration } from '../state/core.selectors';
+import { selectConfiguration } from '../state/selectors/core.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class FavIconService {

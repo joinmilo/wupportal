@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectTheme } from '../state/core.selectors';
+import { selectTheme } from '../state/selectors/core.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {

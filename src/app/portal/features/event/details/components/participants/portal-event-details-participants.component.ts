@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
+import { selectCurrentUser, selectFriends } from 'src/app/core/state/selectors/user.selectors';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
-import { selectCurrentUser, selectFriends } from '../../../../../../core/state/core.selectors';
 import { selectAttendingFriends } from '../../state/portal-event-details.selectors';
 import { PortalEventDetailsInviteFriendsComponent } from '../invite-friends/portal-event-details-invite-friends.component';
-import { ShowFriendsComponent } from '../show-friends/show-friends.component';
+import { PortalEventDetailsShowFriendsComponent } from '../show-friends/portal-event-details-show-friends.component';
 
 @Component({
   selector: 'app-portal-event-details-participants',
@@ -34,7 +34,7 @@ export class PortalEventDetailsParticipantsComponent implements OnInit, OnDestro
   }
 
   public showAllFriends(): void {
-    this.dialog.open(ShowFriendsComponent, {
+    this.dialog.open(PortalEventDetailsShowFriendsComponent, {
       data: this.attendingFriends
     });
   }

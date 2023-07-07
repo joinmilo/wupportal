@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { selectCurrentUser } from 'src/app/core/state/core.selectors';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { Maybe, NotificationEntity } from 'src/schema/schema';
 
 @Component({

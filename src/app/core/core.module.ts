@@ -19,7 +19,7 @@ import { DatePieceComponent } from './components/pieces/date/date-piece.componen
 import { FavoritePieceComponent } from './components/pieces/favorite/favorite-piece.component';
 import { MailPieceComponent } from './components/pieces/mail/mail-piece.component';
 import { PhonePieceComponent } from './components/pieces/phone/phone-piece.component';
-import { coreStateKey } from './constants/core.constants';
+import { appStateKey } from './constants/core.constants';
 import { HtmlDirective } from './directives/html.directive';
 import { LabelDirective } from './directives/label.directive';
 import { MediaDirective } from './directives/media.directive';
@@ -29,8 +29,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { StripTagsPipe } from './pipes/strip-tags.pipe';
 import { TranslatablePipe } from './pipes/translatable.pipe';
 import { TruncateWordsPipe } from './pipes/truncate-words.pipe';
-import { CoreEffects } from './state/core.effects';
-import { coreReducer } from './state/core.reducer';
+import { CoreUserEffects } from './state/effects/core-user.effects';
+import { CoreEffects } from './state/effects/core.effects';
+import { appReducers } from './state/reducers/reducer';
 
 const components = [
   AddressPieceComponent,
@@ -72,8 +73,8 @@ const materials = [
 
 const libs = [
   FontAwesomeModule,
-  StoreModule.forFeature(coreStateKey, coreReducer),
-  EffectsModule.forFeature([CoreEffects]),
+  StoreModule.forFeature(appStateKey, appReducers),
+  EffectsModule.forFeature([CoreEffects, CoreUserEffects]),
   NgOptimizedImage,
 ];
 

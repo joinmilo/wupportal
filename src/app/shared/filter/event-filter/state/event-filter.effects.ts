@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
@@ -8,7 +8,7 @@ import { EventCategoryEntity, EventTargetGroupEntity, GetEventCategoriesGQL, Get
 import { EventFilterActions } from './event-filter.actions';
 
 @Injectable()
-export class EventFilterEffects {
+export class EventFilterEffects implements OnInitEffects {
 
   ngrxOnInitEffects() {
     return EventFilterActions.init();

@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { CaptchaModule } from 'src/app/shared/captcha/captcha.module';
+import { CkEditorFormComponent } from 'src/app/shared/form/ck-editor/ck-editor-form.component';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalGuestArticleFormComponent } from './components/form/portal-guest-article-form.component';
 import { portalGuestArticleStateKey } from './constants/portal-guest-article.constants';
@@ -41,6 +42,7 @@ const materials = [
 const modules = [
   CoreModule,
   CaptchaModule,
+  CkEditorFormComponent,
   PortalGuestArticleRoutingModule,
   TitleModule,
 ];
