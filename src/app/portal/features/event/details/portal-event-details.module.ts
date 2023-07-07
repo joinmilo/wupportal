@@ -27,7 +27,8 @@ import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalEventDetailsAttendeeComponent } from './components/attendee/portal-event-details-attendee.component';
 import { PortalEventDetailsCalendarComponent } from './components/calendar/portal-event-details-calendar.component';
-import { PortalEventCommentsComponent } from './components/comments/portal-event-comments.component';
+import { PortalEventDetailsCommentComponent } from './components/comment/portal-event-details-comments.component';
+import { PortalEventDetailsCommentsComponent } from './components/comments/portal-event-details-comments.component';
 import { PortalEventDetailsInviteFriendsComponent } from './components/invite-friends/portal-event-details-invite-friends.component';
 import { PortalEventDetailsOrganisationComponent } from './components/organisation/portal-event-details-organisation.component';
 import { PortalEventDetailsParticipantsComponent } from './components/participants/portal-event-details-participants.component';
@@ -44,7 +45,8 @@ const components = [
   PortalEventDetailsComponent,
   PortalEventDetailsAttendeeComponent,
   PortalEventDetailsCalendarComponent,
-  PortalEventCommentsComponent,
+  PortalEventDetailsCommentComponent,
+  PortalEventDetailsCommentsComponent,
   PortalEventDetailsInviteFriendsComponent,
   PortalEventDetailsOrganisationComponent,
   PortalEventDetailsParticipantsComponent,

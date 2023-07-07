@@ -42,10 +42,12 @@ export class PortalEventDetailsComponent implements OnInit, OnDestroy {
     ).subscribe(event => {
       this.event = event;
       this.titleImage = event?.uploads?.find(upload => upload?.title)?.media;
+      
       this.marker = {
         entity: 'EventEntity',
         data: [event]
       };
+
       this.media = event?.uploads
         ?.filter(upload => !upload?.card && !upload?.title)
         ?.map(eventMedia => eventMedia?.media)

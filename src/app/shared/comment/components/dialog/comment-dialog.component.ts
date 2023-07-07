@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-comment-dialog',
@@ -16,10 +15,9 @@ export class CommentDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<CommentDialogComponent>,
-    private fb: FormBuilder,
-    private Store: Store) { }
+    private fb: FormBuilder) { }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.dialogRef.close(this.form.value.content);
   }
 }

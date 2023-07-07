@@ -7,11 +7,11 @@ import { PortalEventDetailsActions } from '../../state/portal-event-details.acti
 import { selectEventComments } from '../../state/portal-event-details.selectors';
 
 @Component({
-  selector: 'app-portal-event-comments',
-  templateUrl: './portal-event-comments.component.html',
-  styleUrls: ['./portal-event-comments.component.scss']
+  selector: 'app-portal-event-details-comments',
+  templateUrl: './portal-event-details-comments.component.html',
+  styleUrls: ['./portal-event-details-comments.component.scss']
 })
-export class PortalEventCommentsComponent implements OnInit, OnDestroy {
+export class PortalEventDetailsCommentsComponent implements OnInit, OnDestroy {
   
   public comments = this.store.select(selectEventComments);
 

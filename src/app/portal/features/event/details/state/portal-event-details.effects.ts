@@ -17,9 +17,7 @@ import { selectEventAttendeeConfiguration, selectEventDetails, selectEventUserAt
 export class PortalEventDetailsEffects {
 
   getDetails = createEffect(() => this.actions.pipe(
-    ofType(
-      PortalEventDetailsActions.getDetails,
-    ),
+    ofType(PortalEventDetailsActions.getDetails),
     switchMap((action) => this.getEventService.watch({
       entity: {
         slug: action.slug
@@ -188,8 +186,19 @@ export class PortalEventDetailsEffects {
 
   saveEventComment = createEffect(() => this.actions.pipe(
     ofType(PortalEventDetailsActions.saveEventComment),
-    switchMap((action) => this.saveEventCommentService.mutate({
-      entity: action.entity
+    withLatestFrom(
+      this.store.select(selectEventDetails),
+      this.store.select(selectCurrentUser),
+    ),
+    map(([action, event, user]) => (
+      {
+        ...action.entity,
+        event: { id: event?.id },
+        userContext: { id: user?.id }
+      }
+    )),
+    switchMap(entity => this.saveEventCommentService.mutate({
+      entity
     })),
     map(response => PortalEventDetailsActions.eventCommentSaved(response.data?.saveEventComment as EventCommentEntity))
   ));

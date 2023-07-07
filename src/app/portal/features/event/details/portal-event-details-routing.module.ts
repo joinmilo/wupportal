@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PortalEventCommentsComponent } from './components/comments/portal-event-comments.component';
+import { PortalEventDetailsCommentsComponent } from './components/comments/portal-event-details-comments.component';
 import { PortalEventDetailsComponent } from './components/portal-event-details.component';
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'comments',
-    component: PortalEventCommentsComponent
+    component: PortalEventDetailsCommentsComponent
   }, 
 ];
 

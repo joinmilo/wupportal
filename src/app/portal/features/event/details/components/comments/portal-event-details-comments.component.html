@@ -1,5 +1,6 @@
 <div class="main">
   <app-page-title titleLabel="comments"></app-page-title>
+
   <section>
     <button mat-raised-button color="accent"
         [routerLink]="['../']">
@@ -9,13 +10,14 @@
       <span appLabel="writeComment"></span>
     </button>
   </section>
+
   <section class="border-box">
-    <div *ngFor="let comment of (comments | async); let last = last">
-      <app-comment 
-        [userContext]="comment.userContext"
-        [created]="comment.created"
-        [content]="comment.content"
-      ></app-comment>
+    <div *ngFor="let comment of (comments | async); let last = last">  
+      
+      <app-comment-entry 
+        [comment]="comment">
+      </app-comment-entry>
+
       <mat-divider *ngIf="!last"></mat-divider>
     </div>
   </section>

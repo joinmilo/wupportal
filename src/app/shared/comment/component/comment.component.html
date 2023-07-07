@@ -1,8 +1,0 @@
-<article>
-  <section>
-    <app-avatar [user]="userContext"></app-avatar>
-    <span>{{userContext?.user?.firstName}} {{userContext?.user?.lastName}}</span>
-  </section>
-  <app-date-piece *ngIf="created" [date]="created"></app-date-piece>
-  <p>{{ content }}</p>
-</article>

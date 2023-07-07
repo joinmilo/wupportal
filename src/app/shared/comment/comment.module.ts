@@ -10,13 +10,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from "../../core/core.module";
 import { CaptchaModule } from '../captcha/captcha.module';
 import { AvatarComponent } from '../image/avatar/avatar.component';
-import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
-import { CommentComponent } from './component/comment.component';
-import { SaveCommentComponent } from './write-comment/save-comment.component';
+import { CommentDialogComponent } from './components/dialog/comment-dialog.component';
+import { CommentEntryComponent } from './components/entry/comment-entry.component';
+import { CommentFormComponent } from './components/form/comment-form.component';
 
 const components = [
-  CommentComponent,
-  SaveCommentComponent,
+  CommentEntryComponent,
+  CommentFormComponent,
   CommentDialogComponent
 ];
 
