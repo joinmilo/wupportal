@@ -3,15 +3,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
 
 @Component({
-  selector: 'app-portal-event-details-invite-friends',
-  templateUrl: 'portal-event-details-invite-friends.component.html',
-  styleUrls: ['./portal-event-details-invite-friends.component.scss'],
+  selector: 'app-portal-event-details-friends-invite',
+  templateUrl: 'portal-event-details-friends-invite.component.html',
+  styleUrls: ['./portal-event-details-friends-invite.component.scss'],
 })
-export class PortalEventDetailsInviteFriendsComponent implements OnInit {
+export class PortalEventDetailsFriendsInviteComponent implements OnInit {
 
   public filteredFriends: Maybe<UserContextEntity>[] = [];
   public selectedFriends: Maybe<UserContextEntity>[] = [];
-  public value = "";
+  public value = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA)

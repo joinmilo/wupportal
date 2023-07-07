@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
 import { selectCurrentUser, selectFriends } from 'src/app/core/state/selectors/user.selectors';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
 import { selectAttendingFriends } from '../../state/portal-event-details.selectors';
-import { PortalEventDetailsInviteFriendsComponent } from '../invite-friends/portal-event-details-invite-friends.component';
-import { PortalEventDetailsShowFriendsComponent } from '../show-friends/portal-event-details-show-friends.component';
+import { PortalEventDetailsFriendsInviteComponent } from '../friends-invite/portal-event-details-friends-invite.component';
+import { PortalEventDetailsFriendsShowComponent } from '../friends-show/portal-event-details-friends-show.component';
 
 @Component({
   selector: 'app-portal-event-details-participants',
@@ -34,13 +34,13 @@ export class PortalEventDetailsParticipantsComponent implements OnInit, OnDestro
   }
 
   public showAllFriends(): void {
-    this.dialog.open(PortalEventDetailsShowFriendsComponent, {
+    this.dialog.open(PortalEventDetailsFriendsShowComponent, {
       data: this.attendingFriends
     });
   }
 
   public inviteFriends(): void {
-    this.dialog.open(PortalEventDetailsInviteFriendsComponent, {
+    this.dialog.open(PortalEventDetailsFriendsInviteComponent, {
       data: this.friends?.filter(friend =>
         !this.attendingFriends?.includes(friend))
     });

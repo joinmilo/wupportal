@@ -29,12 +29,12 @@ import { PortalEventDetailsAttendeeComponent } from './components/attendee/porta
 import { PortalEventDetailsCalendarComponent } from './components/calendar/portal-event-details-calendar.component';
 import { PortalEventDetailsCommentComponent } from './components/comment/portal-event-details-comments.component';
 import { PortalEventDetailsCommentsComponent } from './components/comments/portal-event-details-comments.component';
-import { PortalEventDetailsInviteFriendsComponent } from './components/invite-friends/portal-event-details-invite-friends.component';
+import { PortalEventDetailsFriendsInviteComponent } from './components/friends-invite/portal-event-details-friends-invite.component';
+import { PortalEventDetailsFriendsShowComponent } from './components/friends-show/portal-event-details-friends-show.component';
 import { PortalEventDetailsOrganisationComponent } from './components/organisation/portal-event-details-organisation.component';
 import { PortalEventDetailsParticipantsComponent } from './components/participants/portal-event-details-participants.component';
 import { PortalEventDetailsComponent } from './components/portal-event-details.component';
 import { PortalEventDetailsRatingComponent } from './components/rating/portal-event-details-rating.component';
-import { PortalEventDetailsShowFriendsComponent } from './components/show-friends/portal-event-details-show-friends.component';
 import { PortalEventDetailsSummaryComponent } from './components/summary/portal-event-details-summary.component';
 import { portalEventDetailsStateKey } from './constants/event-details.constant';
 import { PortalEventDetailsRoutingModule } from './portal-event-details-routing.module';
@@ -47,12 +47,12 @@ const components = [
   PortalEventDetailsCalendarComponent,
   PortalEventDetailsCommentComponent,
   PortalEventDetailsCommentsComponent,
-  PortalEventDetailsInviteFriendsComponent,
+  PortalEventDetailsFriendsInviteComponent,
   PortalEventDetailsOrganisationComponent,
   PortalEventDetailsParticipantsComponent,
   PortalEventDetailsRatingComponent,
   PortalEventDetailsSummaryComponent,
-  PortalEventDetailsShowFriendsComponent,
+  PortalEventDetailsFriendsShowComponent,
 ];
 
 const framework = [

@@ -3,11 +3,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
 
 @Component({
-  selector: 'app-portal-event-details-show-friends',
-  templateUrl: 'portal-event-details-show-friends.component.html',
-  styleUrls: ['./portal-event-details-show-friends.component.scss'],
+  selector: 'app-portal-event-details-friends-show',
+  templateUrl: 'portal-event-details-friends-show.component.html',
+  styleUrls: ['./portal-event-details-friends-show.component.scss'],
 })
-export class PortalEventDetailsShowFriendsComponent {
+export class PortalEventDetailsFriendsShowComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
