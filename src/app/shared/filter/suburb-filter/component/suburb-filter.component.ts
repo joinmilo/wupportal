@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { Maybe } from 'src/schema/schema';
 import { SuburbFilterActions } from '../state/suburb-filter.actions';
@@ -25,16 +25,14 @@ export class SuburbFilterComponent implements OnInit, OnDestroy {
 
   private destroy = new Subject<void>();
 
-  public suburbs = this.store.select(selectSuburbs).pipe(
-    tap(suburbs => !suburbs?.length
-      && this.store.dispatch(SuburbFilterActions.getSuburbs()))
-  );
+  public suburbs = this.store.select(selectSuburbs);
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private store: Store,
   ) {
+    this.store.dispatch(SuburbFilterActions.getSuburbs())
     this.watchValueChange();
   }
   

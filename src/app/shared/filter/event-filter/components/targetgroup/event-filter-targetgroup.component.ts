@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
 import { Maybe } from 'src/schema/schema';
 import { EventFilterActions } from '../../state/event-filter.actions';
@@ -25,16 +25,14 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
 
   private destroy = new Subject<void>();
 
-  public targetGroups = this.store.select(selectTargetGroups).pipe(
-    tap(targetGroups => !targetGroups?.length
-      && this.store.dispatch(EventFilterActions.getTargetGroups()))
-  );
+  public targetGroups = this.store.select(selectTargetGroups);
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private store: Store,
   ) {
+    this.store.dispatch(EventFilterActions.getTargetGroups())
     this.watchValueChange();
   }
 

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { DealFilterQueryDefinition } from 'src/app/core/typings/filter-params/deal-filter-param';
 import { Maybe } from 'src/schema/schema';
 import { DealFilterActions } from '../../state/deal-filter.actions';
@@ -25,16 +25,14 @@ export class DealFilterCategoryComponent implements OnInit, OnDestroy {
 
   private destroy = new Subject<void>();
 
-  public categories = this.store.select(selectCategories).pipe(
-    tap(categories => !categories?.length
-      && this.store.dispatch(DealFilterActions.getCategories()))
-  );
+  public categories = this.store.select(selectCategories);
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private store: Store,
   ) {
+    this.store.dispatch(DealFilterActions.getCategories());
     this.watchValueChange();
   }
   
