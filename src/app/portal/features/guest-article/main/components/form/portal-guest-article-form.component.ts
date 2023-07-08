@@ -11,9 +11,10 @@ import { PortalGuestArticleActions } from '../../state/portal-guest-article.acti
 export class PortalGuestArticleFormComponent {
 
   public form = this.fb.group({
-    name: ['', [Validators.required]],
+    title: ['', [Validators.required]],
     content: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+    name: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     phone: [''],
   });
 
@@ -24,6 +25,7 @@ export class PortalGuestArticleFormComponent {
 
   public onSubmit(captchaToken: string) {
     this.store.dispatch(PortalGuestArticleActions.saveArticle({
+      name: this.form.value.title,
       content: this.form.value.content, 
       publicAuthor: {
         name: this.form.value.name,

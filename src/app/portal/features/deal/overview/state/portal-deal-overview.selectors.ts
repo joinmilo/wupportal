@@ -38,7 +38,7 @@ export const selectOverviewDataMarkers = createSelector(
       entity: 'DealEntity'
     } as MarkerDefinition
   )
-)
+);
 
 export const selectParams = createSelector(
   selectPortalDealOverviewState,
