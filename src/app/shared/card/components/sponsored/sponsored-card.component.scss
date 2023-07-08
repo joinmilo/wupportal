@@ -2,7 +2,6 @@ mat-card {
   width: 72rem; //TODO
   display: flex;
   flex-direction: row;
-  height: 22rem;
   gap: var(--gap);
 
 }
@@ -36,10 +35,7 @@ mat-card-header {
 mat-card-content {
   display: flex;
   flex-flow: column wrap;
-
-  padding-left: .5rem; //for shadow of avatar
-  padding-right: var(--gap);
-  padding-bottom: 0 !important;
+  gap: 1rem;
 
   section {
     height: 11.5rem;

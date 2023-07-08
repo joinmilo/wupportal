@@ -1,0 +1,14 @@
+div {
+  display: flex;
+}
+
+app-map {
+  height: 60vh;
+  width: 100%;
+}
+
+:host ::ng-deep {
+  .leaflet-container {
+    border-radius: var(--mdc-shape-small) !important;
+  }
+}

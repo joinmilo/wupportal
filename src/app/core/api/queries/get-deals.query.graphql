@@ -3,5 +3,6 @@ query getDeals($params: FilterSortPaginateInput) {
     result {
       ...Deal
     }
+    total
   }
 }

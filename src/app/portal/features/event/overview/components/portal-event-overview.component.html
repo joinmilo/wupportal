@@ -25,8 +25,8 @@
       <app-portal-event-overview-category *ngSwitchCase="'category'">
       </app-portal-event-overview-category>
       
-      <span *ngSwitchCase="'map'">Karte</span>
-      <!-- TODO: Add map -->
+      <app-portal-event-overview-map *ngSwitchCase="'map'">
+      </app-portal-event-overview-map>
   
       <app-portal-event-overview-table *ngSwitchCase="'table'"
         (sortPaginate)="updateParams($event)">

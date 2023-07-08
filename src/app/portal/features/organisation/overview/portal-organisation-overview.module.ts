@@ -11,11 +11,13 @@ import { CoreModule } from 'src/app/core/core.module';
 import { CardModule } from 'src/app/shared/card/card.module';
 import { OrganisationFilterModule } from 'src/app/shared/filter/organisation-filter/organisation-filter.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
+import { MapModule } from 'src/app/shared/map/map.module';
 import { CardSliderComponent } from 'src/app/shared/sliders/card-slider/card-slider.component';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalOrganisationOverviewCardComponent } from './components/card/portal-organisation-overview-card.component';
 import { PortalOrganisationOverviewEmptyComponent } from './components/empty/portal-organisation-overview-empty.component';
+import { PortalOrganisationOverviewMapComponent } from './components/map/portal-organisation-overview-map.component';
 import { PortalOrganisationOverviewComponent } from './components/portal-organisation-overview.component';
 import { PortalOrganisationOverviewSuburbComponent } from './components/suburb/portal-organisation-overview-suburb.component';
 import { PortalOrganisationOverviewTableComponent } from './components/table/portal-organisation-overview-table.component';
@@ -28,6 +30,7 @@ const components = [
   PortalOrganisationOverviewComponent,
   PortalOrganisationOverviewCardComponent,
   PortalOrganisationOverviewEmptyComponent,
+  PortalOrganisationOverviewMapComponent,
   PortalOrganisationOverviewTableComponent,
   PortalOrganisationOverviewSuburbComponent,
 ];
@@ -47,6 +50,7 @@ const modules = [
   CoreModule,
   CardModule,
   CardSliderComponent,
+  MapModule,
   OrganisationFilterModule,
   PortalOrganisationOverviewRoutingModule,
   RadioButtonFormModule,

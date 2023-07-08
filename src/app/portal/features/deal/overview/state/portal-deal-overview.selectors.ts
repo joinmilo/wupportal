@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { MarkerDefinition } from 'src/app/shared/map/typings/map';
 import { DealCategoryEntity } from 'src/schema/schema';
 import { portalDealOverviewStateKey } from '../constants/portal-deal-overview.constants';
 import { PortalDealOverviewState } from './portal-deal-overview.reducer';
@@ -29,6 +30,15 @@ export const selectOverviewDataCategories = createSelector(
     }, [] as DealCategoryEntity[]);
   }
 );
+
+export const selectOverviewDataMarkers = createSelector(
+  selectOverviewData,
+  deals => ({
+      data: deals?.result,
+      entity: 'DealEntity'
+    } as MarkerDefinition
+  )
+)
 
 export const selectParams = createSelector(
   selectPortalDealOverviewState,

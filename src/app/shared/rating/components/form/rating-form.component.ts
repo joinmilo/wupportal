@@ -52,7 +52,7 @@ export class RatingFormComponent implements OnInit, OnChanges, OnDestroy {
   public icon(index: number): IconProp {
     const value = this.hoveredValue ?? this.currentValue ?? 0;
 
-    if (value >= index + .5 && value < index + 1) {
+    if (index - value >= 0.5 && index - value < 1) {
       return ['fas', 'star-half-alt']
     } else if (value >= index) {
       return ['fas', 'star'];

@@ -121,7 +121,6 @@ export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
   
   public ngOnDestroy(): void {
     this.router.navigate([], {
-      
       queryParams: {
         [CalendarQueryDefinition.selectedDay]: null,
         [CalendarQueryDefinition.selectedMonth]: null,

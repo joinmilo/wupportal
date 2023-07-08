@@ -28,8 +28,8 @@
       <app-portal-deal-overview-category *ngSwitchCase="'category'">
       </app-portal-deal-overview-category>
 
-      <span *ngSwitchCase="'map'">Karte</span>
-      <!-- TODO: Add map -->
+      <app-portal-deal-overview-map *ngSwitchCase="'map'">
+      </app-portal-deal-overview-map>
   
       <app-portal-deal-overview-table *ngSwitchCase="'table'"
         (sortPaginate)="updateParams($event)">

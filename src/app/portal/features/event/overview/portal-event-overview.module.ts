@@ -8,12 +8,14 @@ import { CardModule } from 'src/app/shared/card/card.module';
 import { EventCalendarModule } from 'src/app/shared/event-calendar/event-calendar.module';
 import { EventFilterModule } from 'src/app/shared/filter/event-filter/event-filter.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
+import { MapModule } from 'src/app/shared/map/map.module';
 import { CardSliderComponent } from 'src/app/shared/sliders/card-slider/card-slider.component';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalEventOverviewCalendarComponent } from './components/calendar/portal-event-overview-calendar.component';
 import { PortalEventOverviewCategoryComponent } from './components/category/portal-event-overview-category.component';
 import { PortalEventOverviewEmptyComponent } from './components/empty/portal-event-overview-empty.component';
+import { PortalEventOverviewMapComponent } from './components/map/portal-event-overview-map.component';
 import { PortalEventOverviewComponent } from './components/portal-event-overview.component';
 import { PortalEventOverviewTableComponent } from './components/table/portal-event-overview-table.component';
 import { portalEventOverviewStateKey } from './constants/portal-event-overview.constants';
@@ -26,6 +28,7 @@ const components = [
   PortalEventOverviewCalendarComponent,
   PortalEventOverviewCategoryComponent,
   PortalEventOverviewEmptyComponent,
+  PortalEventOverviewMapComponent,
   PortalEventOverviewTableComponent,
 ];
 
@@ -43,6 +46,7 @@ const modules = [
   CardSliderComponent,
   EventCalendarModule,
   EventFilterModule,
+  MapModule,
   PortalEventOverviewRoutingModule,
   RadioButtonFormModule,
   TableModule,

@@ -22,7 +22,8 @@
         (sortPaginate)="updateParams($event)">
       </app-portal-organisation-overview-card>
       
-      <span *ngSwitchCase="'map'">Karte</span>
+      <app-portal-organisation-overview-map *ngSwitchCase="'map'">
+      </app-portal-organisation-overview-map>
 
       <app-portal-organisation-overview-suburb *ngSwitchCase="'suburb'">
       </app-portal-organisation-overview-suburb>

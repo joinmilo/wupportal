@@ -30,9 +30,7 @@ export class PortalEventDetailsParticipantsComponent implements OnInit, OnDestro
       .subscribe(friends => this.friends = friends);
 
     this.store.select(selectAttendingFriends)
-      .subscribe(attendingFriends => {this.attendingFriends = attendingFriends
-        console.log('dsada', this.attendingFriends)
-        });
+      .subscribe(attendingFriends => this.attendingFriends = attendingFriends);
   }
 
   public showAllFriends(): void {

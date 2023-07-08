@@ -31,11 +31,13 @@ export class PortalDealOverviewTableComponent {
     },
     {
       field: 'creator.user.lastName',
-      label: 'author',
-      type: row => `${row.creator?.user?.firstName} ${row.creator?.user?.lastName}`
+      label: 'createdBy',
+      type: row => row.creator?.user?.firstName && row.creator?.user?.lastName
+        ? `${row.creator?.user?.firstName} ${row.creator?.user?.lastName}`
+        : row.contact?.name
     },
     {
-      field: 'contact',
+      field: 'contact.email',
       label: 'email',
       sort: true,
     },

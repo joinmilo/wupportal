@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { distinctStartDates } from 'src/app/core/utils/schedule.utils';
+import { MarkerDefinition } from 'src/app/shared/map/typings/map';
 import { portalOrganisationOverviewStateKey } from '../constants/portal-organisation-overview.constants';
 import { SuburbOrganisation } from '../typings/portal-overview-organisation-suburb';
 import { PortalOrganisationOverviewState } from './portal-organisation-overview.reducer';
@@ -29,6 +30,15 @@ export const selectOverviewDataSuburbs = createSelector(
       return result;
     }, [] as SuburbOrganisation[]);
   }
+);
+
+export const selectOverviewDataMarkers = createSelector(
+  selectOverviewData,
+  deals => ({
+    data: deals?.result,
+    entity: 'OrganisationEntity'
+  } as MarkerDefinition
+  )
 );
 
 export const selectParams = createSelector(

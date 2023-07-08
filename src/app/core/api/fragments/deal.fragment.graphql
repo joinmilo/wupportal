@@ -1,9 +1,20 @@
 fragment Deal on DealEntity {
   id
+  created
+  price
+  slug
+
   address {
     ...Address
   }
-  price
+  creator {
+    id
+    user {
+      id
+      firstName
+      lastName
+    }
+  }
   uploads {
     title
     card
@@ -17,8 +28,6 @@ fragment Deal on DealEntity {
   category {
     ...DealCategory
   }
-  created
-  slug
   translatables {
     id
     content

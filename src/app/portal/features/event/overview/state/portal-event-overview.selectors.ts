@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { distinctStartDates } from 'src/app/core/utils/schedule.utils';
+import { MarkerDefinition } from 'src/app/shared/map/typings/map';
 import { EventCategoryEntity } from 'src/schema/schema';
 import { portalEventOverviewStateKey } from '../constants/portal-event-overview.constants';
 import { PortalEventOverviewState } from './portal-event-overview.reducer';
@@ -29,6 +30,15 @@ export const selectOverviewDataCategories = createSelector(
       return result;
     }, [] as EventCategoryEntity[]);
   }
+);
+
+export const selectOverviewDataMarkers = createSelector(
+  selectOverviewData,
+  deals => ({
+    data: deals?.result,
+    entity: 'EventEntity'
+  } as MarkerDefinition
+  )
 );
 
 export const selectParams = createSelector(

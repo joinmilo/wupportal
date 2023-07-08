@@ -8,11 +8,13 @@ import { CoreModule } from 'src/app/core/core.module';
 import { CardModule } from 'src/app/shared/card/card.module';
 import { DealFilterModule } from 'src/app/shared/filter/deal-filter/deal-filter.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
+import { MapModule } from 'src/app/shared/map/map.module';
 import { CardSliderComponent } from 'src/app/shared/sliders/card-slider/card-slider.component';
 import { TableModule } from 'src/app/shared/table/table.module';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalDealOverviewCategoryComponent } from './components/category/portal-deal-overview-category.component';
 import { PortalDealOverviewEmptyComponent } from './components/empty/portal-deal-overview-empty.component';
+import { PortalDealOverviewMapComponent } from './components/map/portal-deal-overview-map.component';
 import { PortalDealOverviewComponent } from './components/portal-deal-overview.component';
 import { PortalDealOverviewTableComponent } from './components/table/portal-deal-overview-table.component';
 import { portalDealOverviewStateKey } from './constants/portal-deal-overview.constants';
@@ -24,6 +26,7 @@ const components = [
   PortalDealOverviewComponent,
   PortalDealOverviewCategoryComponent,
   PortalDealOverviewEmptyComponent,
+  PortalDealOverviewMapComponent,
   PortalDealOverviewTableComponent,
 ]
 
@@ -41,6 +44,7 @@ const modules = [
   CardModule,
   CardSliderComponent,
   DealFilterModule,
+  MapModule,
   PortalDealOverviewRoutingModule,
   RadioButtonFormModule,
   TableModule,
