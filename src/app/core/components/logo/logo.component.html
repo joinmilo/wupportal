@@ -2,6 +2,7 @@
   <img [appMedia]="(logoConfig | async)?.media"
     alt="logo">
   <img *ngIf="(logoTextConfig | async)?.media?.id"
+    class="logo-text"
     [appMedia]="(logoTextConfig | async)?.media"
     alt="logo-text">
 </a>

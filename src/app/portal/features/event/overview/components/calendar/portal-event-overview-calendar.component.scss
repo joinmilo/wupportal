@@ -1,4 +1,9 @@
 mat-card {
-  width: 40rem;
+  width: 50rem;
+  max-width: calc(100% - var(--gap));
   margin: auto;
+}
+
+div {
+  padding: 1rem;
 }
