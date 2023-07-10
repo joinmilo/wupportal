@@ -125,8 +125,8 @@ export class CalendarComponent implements OnInit, OnChanges, OnDestroy {
         [CalendarQueryDefinition.selectedDay]: null,
         [CalendarQueryDefinition.selectedMonth]: null,
       },
-      queryParamsHandling: 'merge'
-    });
+      queryParamsHandling: 'merge',
+    }).then(()=> window.scrollTo(0,0));
 
     this.destroy.next();  
     this.destroy.complete();
