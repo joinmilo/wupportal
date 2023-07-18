@@ -13,8 +13,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** Built-in scalar representing an instant in time */
-  Date: any;
   /** A 64-bit signed integer */
   Long: any;
   /** Built-in scalar for map-like structures */
@@ -455,7 +453,6 @@ export type ContestEntity = {
   contact?: Maybe<ContactEntity>;
   content?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
-  dueDate?: Maybe<Scalars['Date']>;
   id?: Maybe<Scalars['String']>;
   metaDescription?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
@@ -464,22 +461,20 @@ export type ContestEntity = {
   name?: Maybe<Scalars['String']>;
   offer?: Maybe<Scalars['Boolean']>;
   participation?: Maybe<Array<Maybe<ContestParticipationEntity>>>;
+  participationEndDate?: Maybe<Scalars['OffsetDateTime']>;
   shortDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
-  startDate?: Maybe<Scalars['Date']>;
-  state?: Maybe<ContestStateEntity>;
   translatables?: Maybe<Array<Maybe<ContestTranslatableEntity>>>;
   type?: Maybe<ContestTypeEntity>;
   uploads?: Maybe<Array<Maybe<ContestMediaEntity>>>;
-  voteable?: Maybe<Scalars['Boolean']>;
+  voteEndDate?: Maybe<Scalars['OffsetDateTime']>;
 };
 
 export type ContestEntityInput = {
   contact?: InputMaybe<ContactEntityInput>;
   content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  dueDate?: InputMaybe<Scalars['Date']>;
   id?: InputMaybe<Scalars['String']>;
   metaDescription?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -488,15 +483,14 @@ export type ContestEntityInput = {
   name?: InputMaybe<Scalars['String']>;
   offer?: InputMaybe<Scalars['Boolean']>;
   participation?: InputMaybe<Array<InputMaybe<ContestParticipationEntityInput>>>;
+  participationEndDate?: InputMaybe<Scalars['OffsetDateTime']>;
   shortDescription?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   sponsored?: InputMaybe<Scalars['Boolean']>;
-  startDate?: InputMaybe<Scalars['Date']>;
-  state?: InputMaybe<ContestStateEntityInput>;
   translatables?: InputMaybe<Array<InputMaybe<ContestTranslatableEntityInput>>>;
   type?: InputMaybe<ContestTypeEntityInput>;
   uploads?: InputMaybe<Array<InputMaybe<ContestMediaEntityInput>>>;
-  voteable?: InputMaybe<Scalars['Boolean']>;
+  voteEndDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type ContestMediaEntity = {
@@ -578,23 +572,6 @@ export type ContestParticipationTranslatableEntityInput = {
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   textSubmission?: InputMaybe<Scalars['String']>;
-};
-
-export type ContestStateEntity = {
-  __typename?: 'ContestStateEntity';
-  contests?: Maybe<Array<Maybe<ContestEntity>>>;
-  created?: Maybe<Scalars['OffsetDateTime']>;
-  id?: Maybe<Scalars['String']>;
-  key?: Maybe<Scalars['String']>;
-  modified?: Maybe<Scalars['OffsetDateTime']>;
-};
-
-export type ContestStateEntityInput = {
-  contests?: InputMaybe<Array<InputMaybe<ContestEntityInput>>>;
-  created?: InputMaybe<Scalars['OffsetDateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  key?: InputMaybe<Scalars['String']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type ContestTranslatableEntity = {
@@ -1456,8 +1433,6 @@ export type Mutation = {
   deleteContact?: Maybe<Scalars['Boolean']>;
   deleteContacts?: Maybe<Scalars['Boolean']>;
   deleteContest?: Maybe<Scalars['Boolean']>;
-  deleteContestState?: Maybe<Scalars['Boolean']>;
-  deleteContestStates?: Maybe<Scalars['Boolean']>;
   deleteContestType?: Maybe<Scalars['Boolean']>;
   deleteContestTypes?: Maybe<Scalars['Boolean']>;
   deleteContestVote?: Maybe<Scalars['Boolean']>;
@@ -1562,8 +1537,6 @@ export type Mutation = {
   saveContact?: Maybe<ContactEntity>;
   saveContacts?: Maybe<Array<Maybe<ContactEntity>>>;
   saveContest?: Maybe<ContestEntity>;
-  saveContestState?: Maybe<ContestStateEntity>;
-  saveContestStates?: Maybe<Array<Maybe<ContestStateEntity>>>;
   saveContestType?: Maybe<ContestTypeEntity>;
   saveContestTypes?: Maybe<Array<Maybe<ContestTypeEntity>>>;
   saveContestVote?: Maybe<ContestVoteEntity>;
@@ -1810,18 +1783,6 @@ export type MutationDeleteContactsArgs = {
 /** Mutation root */
 export type MutationDeleteContestArgs = {
   id?: InputMaybe<Scalars['String']>;
-};
-
-
-/** Mutation root */
-export type MutationDeleteContestStateArgs = {
-  id?: InputMaybe<Scalars['String']>;
-};
-
-
-/** Mutation root */
-export type MutationDeleteContestStatesArgs = {
-  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -2447,18 +2408,6 @@ export type MutationSaveContactsArgs = {
 /** Mutation root */
 export type MutationSaveContestArgs = {
   entity?: InputMaybe<ContestEntityInput>;
-};
-
-
-/** Mutation root */
-export type MutationSaveContestStateArgs = {
-  entity?: InputMaybe<ContestStateEntityInput>;
-};
-
-
-/** Mutation root */
-export type MutationSaveContestStatesArgs = {
-  entities?: InputMaybe<Array<InputMaybe<ContestStateEntityInput>>>;
 };
 
 
@@ -3351,12 +3300,6 @@ export type PageableList_ContestEntity = {
   total: Scalars['Long'];
 };
 
-export type PageableList_ContestStateEntity = {
-  __typename?: 'PageableList_ContestStateEntity';
-  result?: Maybe<Array<Maybe<ContestStateEntity>>>;
-  total: Scalars['Long'];
-};
-
 export type PageableList_ContestTypeEntity = {
   __typename?: 'PageableList_ContestTypeEntity';
   result?: Maybe<Array<Maybe<ContestTypeEntity>>>;
@@ -3649,8 +3592,6 @@ export type Query = {
   getContact?: Maybe<ContactEntity>;
   getContacts?: Maybe<PageableList_ContactEntity>;
   getContest?: Maybe<ContestEntity>;
-  getContestState?: Maybe<ContestStateEntity>;
-  getContestStates?: Maybe<PageableList_ContestStateEntity>;
   getContestType?: Maybe<ContestTypeEntity>;
   getContestTypes?: Maybe<PageableList_ContestTypeEntity>;
   getContestVote?: Maybe<ContestVoteEntity>;
@@ -3869,18 +3810,6 @@ export type QueryGetContactsArgs = {
 /** Query root */
 export type QueryGetContestArgs = {
   entity?: InputMaybe<ContestEntityInput>;
-};
-
-
-/** Query root */
-export type QueryGetContestStateArgs = {
-  entity?: InputMaybe<ContestStateEntityInput>;
-};
-
-
-/** Query root */
-export type QueryGetContestStatesArgs = {
-  params?: InputMaybe<FilterSortPaginateInput>;
 };
 
 
@@ -5129,7 +5058,7 @@ export type ConfigurationFragment = { __typename?: 'ConfigurationEntity', id?: s
 
 export type ContactFragment = { __typename?: 'ContactEntity', id?: string | null, email?: string | null, name?: string | null, phone?: string | null, preferredContact?: boolean | null, website?: string | null };
 
-export type ContestFragment = { __typename?: 'ContestEntity', id?: string | null, dueDate?: any | null, slug?: string | null, uploads?: Array<{ __typename?: 'ContestMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, extension?: string | null, mimeType?: string | null, name?: string | null, size?: any | null } | null } | null> | null, translatables?: Array<{ __typename?: 'ContestTranslatableEntity', id?: string | null, name?: string | null, content?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
+export type ContestFragment = { __typename?: 'ContestEntity', id?: string | null, modified?: any | null, created?: any | null, participationEndDate?: any | null, slug?: string | null, uploads?: Array<{ __typename?: 'ContestMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, extension?: string | null, mimeType?: string | null, name?: string | null, size?: any | null } | null } | null> | null, translatables?: Array<{ __typename?: 'ContestTranslatableEntity', id?: string | null, name?: string | null, content?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
 export type DealCategoryFragment = { __typename?: 'DealCategoryEntity', id?: string | null, color?: string | null, icon?: string | null, created?: any | null, translatables?: Array<{ __typename?: 'DealCategoryTranslatableEntity', id?: string | null, name?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null };
 
@@ -5335,7 +5264,7 @@ export type GetContestsQueryVariables = Exact<{
 }>;
 
 
-export type GetContestsQuery = { __typename?: 'Query', getContests?: { __typename?: 'PageableList_ContestEntity', result?: Array<{ __typename?: 'ContestEntity', id?: string | null, dueDate?: any | null, slug?: string | null, uploads?: Array<{ __typename?: 'ContestMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, extension?: string | null, mimeType?: string | null, name?: string | null, size?: any | null } | null } | null> | null, translatables?: Array<{ __typename?: 'ContestTranslatableEntity', id?: string | null, name?: string | null, content?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
+export type GetContestsQuery = { __typename?: 'Query', getContests?: { __typename?: 'PageableList_ContestEntity', result?: Array<{ __typename?: 'ContestEntity', id?: string | null, modified?: any | null, created?: any | null, participationEndDate?: any | null, slug?: string | null, uploads?: Array<{ __typename?: 'ContestMediaEntity', title?: boolean | null, card?: boolean | null, media?: { __typename?: 'MediaEntity', id?: string | null, credits?: string | null, extension?: string | null, mimeType?: string | null, name?: string | null, size?: any | null } | null } | null> | null, translatables?: Array<{ __typename?: 'ContestTranslatableEntity', id?: string | null, name?: string | null, content?: string | null, shortDescription?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
 export type GetDealCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5564,7 +5493,9 @@ export const ConfigurationFragmentDoc = gql`
 export const ContestFragmentDoc = gql`
     fragment Contest on ContestEntity {
   id
-  dueDate
+  modified
+  created
+  participationEndDate
   uploads {
     title
     card

@@ -1,6 +1,8 @@
 fragment Contest on ContestEntity {
   id
-  dueDate
+  modified
+  created
+  participationEndDate
   uploads {
     title
     card
