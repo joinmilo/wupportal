@@ -31,7 +31,9 @@ export class OrganisationFilterComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store,
-  ) { }
+  ) {
+    this.store.dispatch(OrganisationFilterActions.init());
+  }
   
   public ngOnInit(): void {
     this.store.select(selectOrganisationFilterParams)

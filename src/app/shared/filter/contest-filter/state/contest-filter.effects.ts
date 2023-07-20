@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, tap } from 'rxjs';
+import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { ContestFilterQueryDefinition } from 'src/app/core/typings/filter-params/contest-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { ContestTypeEntity, GetContestTypesGQL } from 'src/schema/schema';
@@ -10,17 +10,28 @@ import { ContestFilterActions } from './contest-filter.actions';
 @Injectable()
 export class ContestFilterEffects {
 
-  updateAll = createEffect(() => this.actions.pipe(
-    ofType(ContestFilterActions.updateAll),
+  init = createEffect(() => this.actions.pipe(
+    ofType(ContestFilterActions.init),
+    switchMap(() => this.activatedRoute.queryParams),
+    debounceTime(0), //TODO: race condition activated route and ngrxOnInitEffects
+    take(1),
+    map(params => ContestFilterActions.queryParamsInitialized(params))
+  ));
+
+  updateByQueryParams = createEffect(() => this.actions.pipe(
+    ofType(
+      ContestFilterActions.queryParamsInitialized,
+      ContestFilterActions.browserNavigated
+    ),
     map(action => {
       const params: Record<string, unknown> = {};
       Object.values(ContestFilterQueryDefinition).forEach((value) => {
         switch (true) {
-          case action.queryParams[value] === 'true' || action.queryParams[value] === 'false':
-            params[value] = action.queryParams[value] === 'true';
+          case action.params[value] === 'true' || action.params[value] === 'false':
+            params[value] = action.params[value] === 'true';
             break;
           default:
-            params[value] = action.queryParams[value];
+            params[value] = action.params[value];
         }
       });
       return ContestFilterActions.allUpdated(params);
@@ -52,6 +63,7 @@ export class ContestFilterEffects {
 
   constructor(
     private actions: Actions,
+    private activatedRoute: ActivatedRoute,
     private getTypesService: GetContestTypesGQL,
     private router: Router,
   ) { }

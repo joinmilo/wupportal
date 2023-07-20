@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { SurveyFilterQueryDefinition } from 'src/app/core/typings/filter-params/survey-filter-param';
 import { SurveyFilterActions } from './survey-filter.actions';
 
 @Injectable()
-export class SurveyFilterEffects implements OnInitEffects {
-
-  ngrxOnInitEffects() {
-    return SurveyFilterActions.init();
-  }
+export class SurveyFilterEffects {
 
   init = createEffect(() => this.actions.pipe(
     ofType(SurveyFilterActions.init),

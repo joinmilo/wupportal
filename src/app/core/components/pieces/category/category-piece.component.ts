@@ -33,10 +33,12 @@ export class CategoryPieceComponent {
   }
 
   public route(): void {
-    this.router.navigate(this.url || [''], {
-      queryParams: {
-        [this.queryParam || '']: this.category?.id
-      }
-    });
+    if (this.url) {
+      this.router.navigate(this.url, {
+        queryParams: {
+          [this.queryParam || '']: this.category?.id
+        }
+      });
+    }
   }
 }

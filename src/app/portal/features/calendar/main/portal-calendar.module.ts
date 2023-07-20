@@ -39,4 +39,6 @@ const modules = [
   ],
   exports: [...components],
 })
-export class PortalCalendarModule { }
+export class PortalCalendarModule {
+
+}

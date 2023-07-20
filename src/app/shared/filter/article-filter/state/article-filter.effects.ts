@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { debounceTime, map, switchMap, take, tap } from 'rxjs';
 import { ArticleFilterQueryDefinition } from 'src/app/core/typings/filter-params/article-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
@@ -8,11 +8,7 @@ import { ArticleCategoryEntity, GetArticleCategoriesGQL } from 'src/schema/schem
 import { ArticleFilterActions } from './article-filter.actions';
 
 @Injectable()
-export class ArticleFilterEffects implements OnInitEffects {
-
-  ngrxOnInitEffects() {
-    return ArticleFilterActions.init();
-  }
+export class ArticleFilterEffects {
 
   init = createEffect(() => this.actions.pipe(
     ofType(ArticleFilterActions.init),

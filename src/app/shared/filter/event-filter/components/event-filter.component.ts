@@ -35,6 +35,7 @@ export class EventFilterComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private store: Store,
   ) {
+    this.store.dispatch(EventFilterActions.init());
   }
   
   public ngOnInit(): void {

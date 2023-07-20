@@ -35,7 +35,9 @@ export class DealFilterComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store,
-  ) { }
+  ) {
+    this.store.dispatch(DealFilterActions.init());
+  }
   
   public ngOnInit(): void {
     this.store.select(selectDealFilterParams)

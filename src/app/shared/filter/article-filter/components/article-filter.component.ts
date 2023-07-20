@@ -14,7 +14,7 @@ import { FilterSortPaginateInput, Maybe } from 'src/schema/schema';
   templateUrl: './article-filter.component.html',
   styleUrls: ['./article-filter.component.scss'],
   animations: [
-     collapse()
+    collapse()
   ],
 })
 export class ArticleFilterComponent implements OnInit, OnDestroy {
@@ -32,7 +32,9 @@ export class ArticleFilterComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store,
-  ) { }
+  ) {
+    this.store.dispatch(ArticleFilterActions.init());
+  }
   
   public ngOnInit(): void {
     this.store.select(selectArticleFilterParams)

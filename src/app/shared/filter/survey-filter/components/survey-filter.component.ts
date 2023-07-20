@@ -31,21 +31,18 @@ export class SurveyFilterComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store,
-  ) { }
+  ) {
+    this.store.dispatch(SurveyFilterActions.init());
+  }
   
   public ngOnInit(): void {
     this.store.select(selectSurveyFilterParams)
       .pipe(takeUntil(this.destroy))
       .subscribe(params => this.paramsUpdated.emit(params));
-
   }
 
-  @HostListener('window:popstate', ['$survey'])
+  @HostListener('window:popstate', ['$event'])
   public onBrowserNavigation(): void {
-    this.updateWithQueryParams();
-  }
-
-  private updateWithQueryParams(): void {
     this.activatedRoute.queryParams
       .pipe(
         debounceTime(0), //TODO: race condition between browser navigation and queryparams
