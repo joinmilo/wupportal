@@ -1,0 +1,49 @@
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
+import { AccountActions } from '../../state/account.actions';
+import { selectSavedAccount } from '../../state/account.selectors';
+
+@Component({
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: [
+    '../form.scss',
+    './registration.component.scss'
+  ],
+})
+export class RegistrationComponent implements OnDestroy {
+
+  public form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+    termsAccepted: [false, [Validators.requiredTrue]],
+  });
+
+  private destroy = new Subject<void>();
+
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+  ) { }
+
+  onSubmit(captchaToken: string, formDirective: FormGroupDirective) {
+
+    this.store.dispatch(AccountActions.register({
+      email: this.form.value.email,
+      password: this.form.value.password,
+      termsAccepted: this.form.value.termsAccepted,
+      captchaToken,
+    }));
+
+    this.store.select(selectSavedAccount)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(user => user?.id && formDirective.resetForm());
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
+  }
+}

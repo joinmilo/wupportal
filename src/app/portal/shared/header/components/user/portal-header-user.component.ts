@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
+import { accountUrl } from 'src/app/core/constants/core.constants';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
-import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
+import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selectors';
 
 @Component({
   selector: 'app-portal-header-user',
@@ -9,11 +12,21 @@ import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
   styleUrls: ['./portal-header-user.component.scss'],
 })
 export class PortalHeaderUserComponent {
-  public currentUser = this.store.select(selectCurrentUser);
 
-  public logout(): void {
-    this.store.dispatch(CoreUserActions.logout())
+  constructor(
+    private router: Router,
+    private store: Store) { }
+
+  public route(route?: string): void {
+    this.store.select(selectIsAuthenticated)
+      .pipe(take(1))
+      .subscribe(isAuthenticated => isAuthenticated
+        ? this.router.navigate([accountUrl, route])
+        : this.store.dispatch(CoreUserActions.requireLogin()));
   }
 
-  constructor(private store: Store) {}
+  public logout(): void {
+    this.store.dispatch(CoreUserActions.logout());
+    this.router.navigate(['/']);
+  }
 }

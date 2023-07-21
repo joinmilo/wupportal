@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
 import { maxRating } from 'src/app/core/constants/core.constants';
+import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selectors';
 import { Maybe, RatingDto } from 'src/schema/schema';
@@ -27,7 +27,6 @@ export class RatingComponent {
     .pipe(map(config => Number(config?.value)))
 
   constructor(
-    private router: Router,
     private store: Store) { }
 
   public rated(value: number): void {
@@ -35,6 +34,6 @@ export class RatingComponent {
       .pipe(take(1))
       .subscribe(isAuthenticated => isAuthenticated
         ? this.rating.emit(value)
-        : this.router.navigate(['/user', 'login-required']));
+        : this.store.dispatch(CoreUserActions.requireLogin()));
   }
 }

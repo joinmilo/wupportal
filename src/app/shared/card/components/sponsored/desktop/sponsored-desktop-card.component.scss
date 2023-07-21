@@ -55,7 +55,7 @@ mat-card-content {
 
     img {
       width: 2rem;
-      height: 2rem;
+      aspect-ratio: 1/1;
       object-fit: cover;
     }
   }

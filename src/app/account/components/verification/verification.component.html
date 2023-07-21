@@ -1,0 +1,34 @@
+<div class="main">
+  <section class="border-box">
+    <h2 class="mat-headline-5"
+      [appLabel]="(verified | async)
+        ? 'congratulations'
+        : 'failure'"></h2>
+    <fa-icon
+      [style]="(verified | async)
+        ? ('color: var(--color-success-500)')
+        : ('color: var(--color-warn-500)') " size="5x"
+      [icon]="(verified | async)
+        ? ['fas', 'check']
+        : ['fas', 'xmark']">
+    </fa-icon>
+    <p [appLabel]="(verified | async)
+        ? 'verificationSuccess'
+        : 'verificationFailure'"></p>
+    <button *ngIf="(verified | async)"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['../login']">
+        <span appLabel="login"></span>
+    </button>
+    <button *ngIf="(verified | async) === false"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['../verification']">
+        <span appLabel="sendNewMail"></span>
+    </button>
+    <small *ngIf="(verified | async) === false">
+      <a [routerLink]="['../login']" appLabel="backToLogin"></a>
+    </small>
+  </section>
+</div>

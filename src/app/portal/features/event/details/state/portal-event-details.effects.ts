@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs';
@@ -33,7 +32,7 @@ export class PortalEventDetailsEffects {
       PortalEventDetailsActions.attendeeSaved,
       PortalEventDetailsActions.eventRatingSaved,
       PortalEventDetailsActions.eventCommentSaved
-      ),
+    ),
     withLatestFrom(this.store.select(selectEventDetails)),
     switchMap(([, eventDetails]) => this.getEventService.watch({
       entity: {
@@ -142,7 +141,7 @@ export class PortalEventDetailsEffects {
       this.store.select(selectEventAttendeeConfiguration),
     ),
     tap(([, currentUser,]) => !currentUser?.id
-      && this.router.navigate(['/user', 'login-required'])),
+      && this.store.dispatch(CoreUserActions.requireLogin())),
     filter(([, currentUser,]) => !!currentUser?.id),
     switchMap(([, currentUser, configuration]) => this.saveAttendeeService.mutate({
       entity: {
@@ -221,6 +220,5 @@ export class PortalEventDetailsEffects {
     private saveAttendeeService: SaveAttendeeGQL,
     private saveEventRatingService: SaveEventRatingGQL,
     private saveEventCommentService: SaveEventCommentGQL,
-    private router: Router,
   ) { }
 }

@@ -17,8 +17,7 @@
         <fa-icon size="1x" [icon]="['fas', 'user-plus']"></fa-icon>
         <span appLabel="inviteFriends"></span>
       </button>
-      <button mat-flat-button color="primary" *ngIf="!((currentUser | async)?.id)"
-        [routerLink]="['/user', 'login-required']">
+      <button mat-flat-button color="primary" *ngIf="!((currentUser | async)?.id)" (click)="requireLogin()">
         <fa-icon size="1x" [icon]="['fas', 'user-plus']"></fa-icon>
         <span appLabel="inviteFriends"></span>
       </button>

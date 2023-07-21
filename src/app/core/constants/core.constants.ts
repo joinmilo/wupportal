@@ -49,6 +49,12 @@ export const reportsFeatureKey = 'reports';
 export const surveysFeatureKey = 'surveys';
 
 /**
+ * Module base urls
+ */
+export const accountUrl = 'account';
+export const userUrl = 'user';
+
+/**
  * Roles
  */
 export const adminKey = 'admin';

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AccountComponent } from './account/account.component';
 import { PortalComponent } from './portal/portal.component';
-import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {
@@ -13,10 +13,10 @@ const routes: Routes = [
   },
   
     {
-    path: 'user',
-    loadChildren: () => import('./user/user.module')
-      .then((imported) => imported.UserModule),
-    component: UserComponent,
+    path: 'account',
+      loadChildren: () => import('./account/account.module')
+      .then((imported) => imported.AccountModule),
+    component: AccountComponent,
   },
 
   {

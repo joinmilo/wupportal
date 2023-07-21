@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
+import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectCurrentUser, selectFriends } from 'src/app/core/state/selectors/user.selectors';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
 import { selectAttendingFriends } from '../../state/portal-event-details.selectors';
@@ -23,7 +24,9 @@ export class PortalEventDetailsParticipantsComponent implements OnInit, OnDestro
 
   private destroy = new Subject<void>();
 
-  constructor(public dialog: MatDialog, private store: Store) { }
+  constructor(
+    private dialog: MatDialog,
+    private store: Store,) { }
 
   public ngOnInit(): void {
     this.store.select(selectFriends)
@@ -31,6 +34,10 @@ export class PortalEventDetailsParticipantsComponent implements OnInit, OnDestro
 
     this.store.select(selectAttendingFriends)
       .subscribe(attendingFriends => this.attendingFriends = attendingFriends);
+  }
+
+  public requireLogin(): void {
+    this.store.dispatch(CoreUserActions.requireLogin());
   }
 
   public showAllFriends(): void {

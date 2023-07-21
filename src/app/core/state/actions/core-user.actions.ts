@@ -11,6 +11,7 @@ export const CoreUserActions = createActionGroup({
     'get me': (user: UserContextEntity) => ({ user }),
     'refresh expired': emptyProps(),
     'logout': emptyProps(),
+    'require login': emptyProps(),
   },
 });
 

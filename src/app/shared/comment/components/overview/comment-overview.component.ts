@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
+import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selectors';
 import { Maybe } from 'src/schema/schema';
 import { Comment } from '../../typings/comment';
@@ -47,7 +48,7 @@ export class CommentOverviewComponent implements OnDestroy {
                 this.enteredComment.emit(result);
               }
             })
-        : this.router.navigate(['/user', 'login-required']));
+        : this.store.dispatch(CoreUserActions.requireLogin()));
   }
 
   public routeBack(): void {
