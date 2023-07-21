@@ -1,9 +1,10 @@
-<div>
-  <app-table-sort
-    [options]="sortOptions"
-    [queryParams]="queryParams"
-    (sortChange)="sortChange($event)">
-  </app-table-sort>
+<app-table-sort *ngIf="sortOptions"
+  [options]="sortOptions"
+  [queryParams]="queryParams"
+  (sortChange)="sortChange($event)">
+</app-table-sort>
+
+<ng-container *ngIf="(data | async)?.result; else noData">
   <section>
     <ng-container [ngSwitch]="cardType">
       <ng-container *ngSwitchCase="types.contact">
@@ -24,4 +25,8 @@
       [pageIndex]="initParams.page">
     </app-table-paginator>
   </mat-card>
-</div>
+</ng-container>
+
+<ng-template #noData>
+  <span [appLabel]="noDataLabel"></span>
+</ng-template>

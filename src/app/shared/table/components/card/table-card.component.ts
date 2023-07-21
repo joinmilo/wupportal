@@ -17,6 +17,9 @@ export class TableCardComponent implements AfterViewInit, OnDestroy {
   public data?: Observable<Maybe<PageableList<Maybe<CardData>>> | undefined>;
 
   @Input()
+  public noDataLabel = 'noData';
+
+  @Input()
   public sortOptions?: SortOption[];
 
   @Input()
