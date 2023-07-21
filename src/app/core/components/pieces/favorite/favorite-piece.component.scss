@@ -6,7 +6,9 @@ div {
 button {
 
   &.favorite {
-    color: var(--color-warn-400);
+    fa-icon {
+      color: var(--color-warn-400);
+    }
   }
 
   &:active {
