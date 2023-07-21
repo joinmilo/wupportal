@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { CaptchaModule } from 'src/app/shared/captcha/captcha.module';
 import { CkEditorFormComponent } from 'src/app/shared/form/ck-editor/ck-editor-form.component';
+import { FileUploadFormComponent } from 'src/app/shared/form/file-upload/file-upload-form.component';
 import { TitleModule } from 'src/app/shared/title/title.module';
 import { PortalGuestArticleFormComponent } from './components/form/portal-guest-article-form.component';
 import { PortalGuestArticleSuccessComponent } from './components/success/portal-guest-article-success.component';
@@ -46,6 +47,7 @@ const modules = [
   CoreModule,
   CaptchaModule,
   CkEditorFormComponent,
+  FileUploadFormComponent,
   PortalGuestArticleRoutingModule,
   TitleModule,
 ];

@@ -9,7 +9,7 @@
   <form [formGroup]="form">
     <mat-accordion>
 
-      <mat-expansion-panel>
+      <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
           <mat-panel-title appLabel="content"></mat-panel-title>
           <mat-panel-description appLabel="writeYourStory"></mat-panel-description>
@@ -43,6 +43,16 @@
               <input matInput id="phone" formControlName="phone" placeholder="0174-1234567">
             </mat-form-field>
           </fieldset>
+        </section>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title appLabel="uploads"></mat-panel-title>
+          <mat-panel-description appLabel="uploadPicturesOrFiles"></mat-panel-description>
+        </mat-expansion-panel-header>
+        <section>
+          <app-file-upload-form></app-file-upload-form>
         </section>
       </mat-expansion-panel>
     </mat-accordion>
