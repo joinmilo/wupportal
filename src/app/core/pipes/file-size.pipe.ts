@@ -9,7 +9,7 @@ export class FileSizePipe implements PipeTransform {
   public transform(size?: Maybe<number>): string {
     const kilobyte = 1024;
     const megabyte = kilobyte * 1024;
-    const gigabyte = kilobyte * 1024;
+    const gigabyte = megabyte * 1024;
 
     if (size) {
       if (size >= gigabyte) {

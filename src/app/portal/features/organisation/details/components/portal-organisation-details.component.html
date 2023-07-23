@@ -18,8 +18,10 @@
       <p [innerHtml]="organisation | translatable : 'description' | async"></p>
     </section>
 
-    <app-media-slider *ngIf="media && media.length" [media]="media" [link]="['./media']">
-    </app-media-slider>
+    <app-file-slider *ngIf="media && media.length"
+      [media]="media"
+      [link]="['./media']">
+    </app-file-slider>
 
     <app-card-slider *ngIf="(members | async)?.length"
       [cardType]="cardType"

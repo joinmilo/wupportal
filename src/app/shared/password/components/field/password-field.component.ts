@@ -10,7 +10,7 @@ import { Maybe } from 'src/schema/schema';
 })
 export class PasswordFormComponent implements ControlValueAccessor, OnInit, OnDestroy {
   
-    public control = new FormControl('');
+  public control = new FormControl('');
 
   private onChange?: (value?: Maybe<string>) => void;
   private onTouched?: () => void;

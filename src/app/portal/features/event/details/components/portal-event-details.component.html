@@ -29,10 +29,10 @@
     <app-portal-event-details-organisation *ngIf="event?.organisation">
     </app-portal-event-details-organisation>
 
-    <app-media-slider *ngIf="media && media.length"
+    <app-file-slider *ngIf="media && media.length"
       [media]="media"
       [link]="['./media']">
-    </app-media-slider>
+    </app-file-slider>
 
     <app-portal-event-details-rating>
     </app-portal-event-details-rating>

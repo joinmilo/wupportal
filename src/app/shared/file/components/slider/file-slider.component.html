@@ -1,4 +1,4 @@
-<div *ngIf="titleLabel || link || title">
+<div *ngIf="(titleLabel || link || title) && media?.length">
   <app-details-title *ngIf="titleLabel" [titleLabel]="titleLabel"></app-details-title>
   <app-details-title *ngIf="title" [title]="title"></app-details-title>
   <section *ngIf="link">
@@ -6,9 +6,9 @@
   </section>
 </div>
 
-<app-slider>
+<app-slider *ngIf="media?.length">
   <ng-container *ngFor="let element of media">
-    <ng-container [ngSwitch]="mimeTypeDefinition(element)">
+    <ng-container [ngSwitch]="mimeType(element)">
       
       <audio *ngSwitchCase="'AUDIO'" controls>
         <source [appMedia]="element" [type]="element?.mimeType">
@@ -19,13 +19,11 @@
         (click)="openImage(element)"/>
       
       <app-file-card *ngSwitchCase="'PDF'"
-        [media]="element"
-        mimeType="PDF">
+        [media]="element">
       </app-file-card>
       
       <app-file-card *ngSwitchCase="'WORD'"
-        [media]="element"
-        mimeType="WORD">
+        [media]="element">
       </app-file-card>
       
       <video *ngSwitchCase="'VIDEO'" width="400" controls>

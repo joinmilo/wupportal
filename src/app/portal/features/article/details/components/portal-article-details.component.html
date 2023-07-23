@@ -30,10 +30,10 @@
     <app-portal-article-details-author *ngIf="article?.author">
     </app-portal-article-details-author>
 
-    <app-media-slider *ngIf="media && media.length"
+    <app-file-slider *ngIf="media && media.length"
       [media]="media"
       [link]="['./media']">
-    </app-media-slider>
+    </app-file-slider>
 
     <app-portal-article-details-rating>
     </app-portal-article-details-rating>
