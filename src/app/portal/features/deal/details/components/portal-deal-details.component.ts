@@ -36,7 +36,6 @@ export class PortalDealDetailsComponent implements OnInit, OnDestroy {
     private store: Store) { }
 
   public ngOnInit(): void {
-    console.log("helo");
     this.activatedRoute.params.pipe(
       tap(params => this.store.dispatch(PortalDealDetailsActions.getDetails(params[slug] || ''))),
       switchMap(() => this.store.select(selectDealDetails)),

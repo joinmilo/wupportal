@@ -10,14 +10,16 @@ import { SliderHeaderComponent } from '../sliders/slider-header/slider-header.co
 import { SliderComponent } from '../sliders/slider/slider.component';
 import { TitleModule } from '../title/title.module';
 import { FileCardComponent } from './components/card/file-card.component';
+import { FileFormComponent } from './components/form/file-form.component';
 import { FileSliderComponent } from './components/slider/file-slider.component';
-import { FileUploadFormComponent } from './components/upload/file-upload-form.component';
+import { FileUploadComponent } from './components/upload/file-upload.component';
 
 
 const components = [
   FileCardComponent,
   FileSliderComponent,
-  FileUploadFormComponent,
+  FileUploadComponent,
+  FileFormComponent,
 ];
 
 const framework = [

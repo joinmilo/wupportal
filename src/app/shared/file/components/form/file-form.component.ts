@@ -1,12 +1,12 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 
 @Component({
-  selector: 'app-file-upload-form',
-  templateUrl: './file-upload-form.component.html',
-  styleUrls: ['./file-upload-form.component.scss'],
+  selector: 'app-file-form',
+  templateUrl: './file-form.component.html',
+  styleUrls: ['./file-form.component.scss'],
   // providers: [
   //   {
   //     provide: NG_VALUE_ACCESSOR,
@@ -15,24 +15,19 @@ import { FeedbackType } from 'src/app/core/typings/feedback';
   //   }
   // ],
 })
-export class FileUploadFormComponent {
+export class FileFormComponent {
 
   @Output()
   public uploads: EventEmitter<File[]> = new EventEmitter();
 
   @Input()
-  public maxFiles? = 5;
+  public maxFiles?= 5;
 
   // default 2mb
   @Input()
   public maxFileSize = 1024 * 1024 * 2
 
-  public errorMessage?: string;
-
   public files: File[] = [];
-
-  public isDraggedOver = false;
-
 
   public labelVariables = new Map([
     ['maxFiles', this.maxFiles?.toString()],
@@ -40,70 +35,40 @@ export class FileUploadFormComponent {
   ]);
 
   public notBeLargerLabel = 'filesCannotBeLargerThanX';
+  public notMoreThanLabel = 'notMoreThanXFiles';
 
   constructor(
     private store: Store,
   ) { }
 
-  @HostListener('dragover', ['$event'])
-  public onDragOver(evt: DragEvent) {
-    evt.preventDefault();
-    evt.stopPropagation();
-    if (!this.maxFiles || this.files.length < this.maxFiles) {
-      this.isDraggedOver = true;
-    }
-  }
+  public addFiles(newFiles: File[]) {
 
-  @HostListener('dragleave', ['$event'])
-  public onDragLeave(evt: DragEvent) {
-    evt.preventDefault();
-    evt.stopPropagation();
-    this.isDraggedOver = false;
-  }
+    const files = [...this.files, ...newFiles];
 
-  @HostListener('drop', ['$event'])
-  public onDrop(evt: DragEvent) {
-    evt.preventDefault();
-    evt.stopPropagation();
-    this.isDraggedOver = false;
-
-    if ((!this.maxFiles || this.files.length < this.maxFiles)
-      && evt?.dataTransfer?.files?.length) {
-        this.addFiles(evt.dataTransfer.files);
-    }
-  }
-
-  public onFileBrowse(event: Event) {
-    const files = (event?.target as HTMLInputElement)?.files;
-    if (files?.length) {
-      this.addFiles(files);
-    }
-  }
-
-  public addFiles(fileList: FileList) {
-
-    const newFiles = [...Array.from(fileList)];
     if (newFiles.some(file => file.size > this.maxFileSize)) {
       this.store.dispatch(CoreActions.setFeedback({
         type: FeedbackType.Error,
         labelMessage: this.notBeLargerLabel,
         labelAction: 'chooseOtherFile',
         labelVariables: this.labelVariables,
-      }))
-    } else {
-      const files = [...this.files, ...Array.from(fileList)];
-  
-      if (!this.maxFiles || files?.length <= this.maxFiles) {
-        this.files = files;
-        this.uploads.emit(this.files);
-      }
+      }));
+    } else if (this.maxFiles && files?.length > this.maxFiles) {
+      this.store.dispatch(CoreActions.setFeedback({
+        type: FeedbackType.Error,
+        labelMessage: this.notMoreThanLabel,
+        labelAction: 'chooseLessFiles',
+        labelVariables: this.labelVariables,
+      }));
     }
-    
+    else {
+      this.files = files;
+      this.uploads.emit(this.files);
+    }
 
   }
 
   public removeFile(fileIndex: number) {
-    this.files.splice(fileIndex);
+    this.files.splice(fileIndex, 1);
     this.uploads.emit(this.files);
   }
 

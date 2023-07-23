@@ -34,7 +34,6 @@ export class LabelDirective implements OnInit, OnChanges, OnDestroy {
       takeUntil(this.destroy),
       switchMap((label) => this.labelService.label(label)),
       map(label => {
-        console.log('label', this.variables);
         if (this.variables?.entries()) {
           this.variables.forEach((value, key) => label = label?.replaceAll(`$\{${key?.toString()}}`, (value?.toString() || '')))
         }

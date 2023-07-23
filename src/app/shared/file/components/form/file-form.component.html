@@ -1,0 +1,21 @@
+<div>
+  <app-file-upload
+    [disabled]="!!maxFiles && files.length >= maxFiles"
+    (uploads)="addFiles($event)">
+  </app-file-upload>
+  <small [appLabel]="notMoreThanLabel" [variables]="labelVariables"></small>
+  <small [appLabel]="notBeLargerLabel" [variables]="labelVariables"></small>
+</div>
+
+<div>
+  <app-details-title *ngIf="files.length" titleLabel="files">
+  </app-details-title>
+
+  <section>
+    <app-file-card *ngFor="let file of files; let i = index;"
+      [file]="file"
+      action="DELETE"
+      (deleted)="removeFile(i)">
+    </app-file-card>
+  </section>
+</div>
