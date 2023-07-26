@@ -209,6 +209,7 @@ export type ArticleEntity = {
   comments?: Maybe<Array<Maybe<ArticleCommentEntity>>>;
   content?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
+  favoritingUsers?: Maybe<Array<Maybe<UserContextEntity>>>;
   id?: Maybe<Scalars['String']>;
   lastArticleComment?: Maybe<ArticleCommentEntity>;
   metaDescription?: Maybe<Scalars['String']>;
@@ -233,6 +234,7 @@ export type ArticleEntityInput = {
   comments?: InputMaybe<Array<InputMaybe<ArticleCommentEntityInput>>>;
   content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
+  favoritingUsers?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   metaDescription?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -695,6 +697,7 @@ export type DealEntity = {
   content?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   creator?: Maybe<UserContextEntity>;
+  favoritingUsers?: Maybe<Array<Maybe<UserContextEntity>>>;
   id?: Maybe<Scalars['String']>;
   metaDescription?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
@@ -716,6 +719,7 @@ export type DealEntityInput = {
   content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   creator?: InputMaybe<UserContextEntityInput>;
+  favoritingUsers?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   metaDescription?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -895,6 +899,7 @@ export type EventEntity = {
   created?: Maybe<Scalars['OffsetDateTime']>;
   creator?: Maybe<UserContextEntity>;
   entryFee?: Maybe<Scalars['Float']>;
+  favoritingUsers?: Maybe<Array<Maybe<UserContextEntity>>>;
   hasSchedules?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
   lastEventComment?: Maybe<EventCommentEntity>;
@@ -931,6 +936,7 @@ export type EventEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   creator?: InputMaybe<UserContextEntityInput>;
   entryFee?: InputMaybe<Scalars['Float']>;
+  favoritingUsers?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   metaDescription?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -1198,6 +1204,7 @@ export type LabelTranslatablesEntityInput = {
 
 export type LanguageEntity = {
   __typename?: 'LanguageEntity';
+  active?: Maybe<Scalars['Boolean']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   locale?: Maybe<Scalars['String']>;
@@ -1206,6 +1213,7 @@ export type LanguageEntity = {
 };
 
 export type LanguageEntityInput = {
+  active?: InputMaybe<Scalars['Boolean']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   locale?: InputMaybe<Scalars['String']>;
@@ -1215,6 +1223,7 @@ export type LanguageEntityInput = {
 
 export type MediaEntity = {
   __typename?: 'MediaEntity';
+  base64?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   credits?: Maybe<Scalars['String']>;
   extension?: Maybe<Scalars['String']>;
@@ -1226,6 +1235,7 @@ export type MediaEntity = {
 };
 
 export type MediaEntityInput = {
+  base64?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   credits?: InputMaybe<Scalars['String']>;
   extension?: InputMaybe<Scalars['String']>;
@@ -3004,6 +3014,7 @@ export type OrganisationEntity = {
   created?: Maybe<Scalars['OffsetDateTime']>;
   description?: Maybe<Scalars['String']>;
   events?: Maybe<Array<Maybe<EventEntity>>>;
+  favoritingUsers?: Maybe<Array<Maybe<UserContextEntity>>>;
   id?: Maybe<Scalars['String']>;
   lastOrganisationComment?: Maybe<OrganisationCommentEntity>;
   members?: Maybe<Array<Maybe<MemberEntity>>>;
@@ -3026,6 +3037,7 @@ export type OrganisationEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   description?: InputMaybe<Scalars['String']>;
   events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
+  favoritingUsers?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
   members?: InputMaybe<Array<InputMaybe<MemberEntityInput>>>;
   metaDescription?: InputMaybe<Scalars['String']>;
@@ -4854,9 +4866,12 @@ export type UserContextEntity = {
   eventComment?: Maybe<Array<Maybe<EventCommentEntity>>>;
   eventRatings?: Maybe<Array<Maybe<EventRatingEntity>>>;
   events?: Maybe<Array<Maybe<EventEntity>>>;
+  favoriteArticles?: Maybe<Array<Maybe<ArticleEntity>>>;
+  favoriteAuthors?: Maybe<Array<Maybe<UserContextEntity>>>;
+  favoriteDeals?: Maybe<Array<Maybe<DealEntity>>>;
   favoriteEvents?: Maybe<Array<Maybe<EventEntity>>>;
-  favoriteOffers?: Maybe<Array<Maybe<EventEntity>>>;
   favoriteOrganisations?: Maybe<Array<Maybe<OrganisationEntity>>>;
+  favoritingUsers?: Maybe<Array<Maybe<UserContextEntity>>>;
   friendAddressee?: Maybe<Array<Maybe<FriendEntity>>>;
   friendRequester?: Maybe<Array<Maybe<FriendEntity>>>;
   id?: Maybe<Scalars['String']>;
@@ -4886,9 +4901,12 @@ export type UserContextEntityInput = {
   eventComment?: InputMaybe<Array<InputMaybe<EventCommentEntityInput>>>;
   eventRatings?: InputMaybe<Array<InputMaybe<EventRatingEntityInput>>>;
   events?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
+  favoriteArticles?: InputMaybe<Array<InputMaybe<ArticleEntityInput>>>;
+  favoriteAuthors?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
+  favoriteDeals?: InputMaybe<Array<InputMaybe<DealEntityInput>>>;
   favoriteEvents?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
-  favoriteOffers?: InputMaybe<Array<InputMaybe<EventEntityInput>>>;
   favoriteOrganisations?: InputMaybe<Array<InputMaybe<OrganisationEntityInput>>>;
+  favoritingUsers?: InputMaybe<Array<InputMaybe<UserContextEntityInput>>>;
   friendAddressee?: InputMaybe<Array<InputMaybe<FriendEntityInput>>>;
   friendRequester?: InputMaybe<Array<InputMaybe<FriendEntityInput>>>;
   id?: InputMaybe<Scalars['String']>;
@@ -5364,7 +5382,9 @@ export type GetLabelsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLabelsQuery = { __typename?: 'Query', getLabels?: { __typename?: 'PageableList_LabelEntity', result?: Array<{ __typename?: 'LabelEntity', id?: string | null, tagId?: string | null, translatables?: Array<{ __typename?: 'LabelTranslatablesEntity', id?: string | null, content?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
-export type GetLanguagesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetLanguagesQueryVariables = Exact<{
+  params?: InputMaybe<FilterSortPaginateInput>;
+}>;
 
 
 export type GetLanguagesQuery = { __typename?: 'Query', getLanguages?: { __typename?: 'PageableList_LanguageEntity', result?: Array<{ __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null> | null } | null };
@@ -7053,8 +7073,8 @@ export const GetLabelsDocument = gql`
     }
   }
 export const GetLanguagesDocument = gql`
-    query getLanguages {
-  getLanguages {
+    query getLanguages($params: FilterSortPaginateInput) {
+  getLanguages(params: $params) {
     result {
       ...Language
     }

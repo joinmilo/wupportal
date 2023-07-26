@@ -31,7 +31,16 @@ export class CoreEffects implements OnInitEffects {
 
   getLanguages = createEffect(() => this.actions.pipe(
     ofType(CoreActions.init),
-    switchMap(() => this.getLanguagesService.watch().valueChanges),
+    switchMap(() => this.getLanguagesService.watch({
+      params: {
+        expression: {
+          entity: {
+            path: 'active',
+            value: 'true'
+          }
+        }
+      }
+    }).valueChanges),
     filter(response => !!response?.data?.getLanguages?.result?.length),
     map(response => CoreActions.setLanguages(response.data.getLanguages?.result as LanguageEntity[]))
   ));

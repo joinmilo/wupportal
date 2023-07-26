@@ -1,5 +1,5 @@
-query getLanguages {
-  getLanguages {
+query getLanguages($params: FilterSortPaginateInput) {
+  getLanguages(params: $params) {
     result {
       ...Language
     }
