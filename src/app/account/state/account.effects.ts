@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { filter, map, switchMap, tap } from 'rxjs';
 import { accountUrl } from 'src/app/core/constants/core.constants';
-import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ResetPasswordGQL, SaveUserGQL, SendPasswordResetGQL, SendVerificationGQL, UserEntity, VerifyUserGQL } from '../../../schema/schema';
 import { CoreActions } from '../../core/state/actions/core.actions';
@@ -90,13 +89,6 @@ export class AccountEffects {
       }))
     )
   );
-
-  requireLogin = createEffect(() => this.actions.pipe(
-    ofType(
-      CoreUserActions.requireLogin
-    ),
-    tap(() => this.router.navigate([`/${accountUrl}`, 'login-required'])),
-  ), { dispatch: false });
 
   constructor(
     private router: Router,

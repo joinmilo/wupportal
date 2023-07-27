@@ -21,17 +21,16 @@ export class FileFormComponent {
   public uploads: EventEmitter<File[]> = new EventEmitter();
 
   @Input()
-  public maxFiles?= 5;
+  public maxFiles? = 5;
 
-  // default 2mb
   @Input()
-  public maxFileSize = 1024 * 1024 * 2
+  public maxFileSize = 1024 * 1024 * 4 //4mb
 
   public files: File[] = [];
 
   public labelVariables = new Map([
     ['maxFiles', this.maxFiles?.toString()],
-    ['maxFileSize', '2mb']
+    ['maxFileSize', '4mb']
   ]);
 
   public notBeLargerLabel = 'filesCannotBeLargerThanX';

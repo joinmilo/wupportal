@@ -20,7 +20,10 @@
       </ng-container>
       <small>{{ media?.size | fileSize }}</small>
     </section>
-    <span class="name">{{ name() }}</span>
+    <ng-container [ngSwitch]="mimeType">
+      <!-- <img *ngSwitchCase="'IMAGE'" > -->
+      <span *ngSwitchDefault class="name">{{ name() }}</span>
+    </ng-container>
     <ng-container [ngSwitch]="action">
       <button mat-button
         (click)="download()"

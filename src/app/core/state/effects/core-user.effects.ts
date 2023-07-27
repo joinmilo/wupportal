@@ -8,7 +8,7 @@ import { CoreActions } from '../actions/core.actions';
 
 import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
-import { refreshKey } from '../../constants/core.constants';
+import { accountUrl, refreshKey } from '../../constants/core.constants';
 import { AuthService } from '../../services/auth.service';
 import { FeedbackType } from '../../typings/feedback';
 import { CoreUserActions } from '../actions/core-user.actions';
@@ -69,6 +69,11 @@ export class CoreUserEffects {
     ),
     tap(() => this.router.navigate([''])),
     tap(() => this.authService.clear()),
+  ), { dispatch: false });
+
+  requireLogin = createEffect(() => this.actions.pipe(
+    ofType(CoreUserActions.requireLogin),
+    tap(() => this.router.navigate([`/${accountUrl}`, 'login-required'])),
   ), { dispatch: false });
 
   constructor(

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
 import { CardType } from 'src/app/shared/card/typings/card';
 import { SortPaginate } from 'src/app/shared/table/typings/table';
 import { PortalFavoritesActions } from '../../state/portal-favorites.actions';
@@ -16,8 +15,7 @@ export class PortalFavoriteDealsComponent {
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
 
-  public favoriteDeals = this.store.select(selectFavoriteDeals)
-    .pipe(tap(result => console.log('result', result)),);
+  public favoriteDeals = this.store.select(selectFavoriteDeals);
 
   public cardType = CardType.Content;
   

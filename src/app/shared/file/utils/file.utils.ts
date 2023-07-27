@@ -1,12 +1,14 @@
 import { Maybe, MediaEntity } from 'src/schema/schema';
 import { MimeTypeDefinition } from '../typings/file';
 
-export const fileToMedia = (file?: Maybe<File>) => ({
-  mimeType: (file as File).type,
-  name: (file as File).name,
-  size: (file as File).size,
-  modified: (file as File).lastModified
+export const fileToMedia = (file?: Maybe<File>) => {
+  return ({
+    mimeType: (file as File).type,
+    name: (file as File).name,
+    size: (file as File).size,
+    modified: (file as File).lastModified,
 }) as MediaEntity;
+}
 
 export const mimeTypeDefinition = (element?: Maybe<MediaEntity>): Maybe<MimeTypeDefinition> => {
   if (element?.mimeType?.includes('audio')) {
