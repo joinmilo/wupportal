@@ -24,7 +24,7 @@
   <span [appLabel]="noDataLabel"></span>
 </ng-template>
 
-<mat-card>
+<mat-card *ngIf="paginate">
   <app-table-paginator
     [length]="(data | async)?.total"
     [pageSize]="initParams.size"

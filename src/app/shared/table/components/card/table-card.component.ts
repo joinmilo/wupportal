@@ -17,17 +17,11 @@ export class TableCardComponent implements AfterViewInit, OnDestroy {
   public data?: Observable<Maybe<PageableList<Maybe<CardData>>> | undefined>;
 
   @Input()
-  public noDataLabel = 'noData';
-
-  @Input()
-  public sortOptions?: SortOption[];
-
-  @Input()
   public cardType = CardType.Content;
 
   @Input()
   public entity?: CardEntity;
-
+  
   @Input()
   public initParams: SortPaginate = {
     page: 0,
@@ -35,7 +29,13 @@ export class TableCardComponent implements AfterViewInit, OnDestroy {
   };
 
   @Input()
+  public noDataLabel = 'noData';
+  
+  @Input()
   public queryParams = true;
+
+  @Input()
+  public sortOptions?: SortOption[];
 
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
@@ -68,8 +68,10 @@ export class TableCardComponent implements AfterViewInit, OnDestroy {
             sort: queryParams?.sort
           };
 
-          this.paginator.pageIndex = this.initParams.page;
-          this.paginator.pageSize = this.initParams.size;
+          if (this.paginator) {
+            this.paginator.pageIndex = this.initParams.page;
+            this.paginator.pageSize = this.initParams.size;
+          }
 
           this.sortPaginate.emit(this.initParams);
         });
