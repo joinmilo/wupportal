@@ -35,6 +35,9 @@ export class TableCardComponent implements AfterViewInit, OnDestroy {
   public queryParams = true;
 
   @Input()
+  public paginate = true;
+
+  @Input()
   public sortOptions?: SortOption[];
 
   @Output()
