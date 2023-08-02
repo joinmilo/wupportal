@@ -12,6 +12,9 @@ import { mimeTypeDefinition } from '../../utils/media.utils';
 export class MediaViewerComponent implements OnInit{
 
   public currentIndex = 0;
+  public currentMedia?: Maybe<MediaEntity>;
+
+  public mimeType?: Maybe<MimeTypeDefinition>;
 
   constructor(
     public dialogRef: MatDialogRef<MediaViewerComponent>,
@@ -19,17 +22,10 @@ export class MediaViewerComponent implements OnInit{
   ) { }
 
   public ngOnInit(): void {
-    if (this.data.currentIndex) {
-      this.currentIndex = this.data.currentIndex;
+    if (!isNaN(this.data.currentIndex as number)) {
+        this.currentIndex = this.data.currentIndex as number;
+        this.setCurrentMedia();
     }
-  }
-
-  public mimeType(element?: Maybe<MediaEntity>): Maybe<MimeTypeDefinition> {
-    return mimeTypeDefinition(element);
-  }
-
-  public getCurrentImage(): MediaEntity{
-    return this.data.media[this.currentIndex];
   }
 
   public next(event: MouseEvent): void {
@@ -39,6 +35,8 @@ export class MediaViewerComponent implements OnInit{
     this.currentIndex = next < this.data.media.length
       ? next
       : 0;
+
+    this.setCurrentMedia();
   }
 
   public previous(event: MouseEvent): void {
@@ -48,6 +46,13 @@ export class MediaViewerComponent implements OnInit{
     this.currentIndex = previous <= 0
       ? this.data.media.length - 1
       : previous;
+
+    this.setCurrentMedia();
+  }
+
+  private setCurrentMedia(): void {
+    this.currentMedia = this.data.media[this.currentIndex];
+    this.mimeType = mimeTypeDefinition(this.currentMedia);
   }
 
   public closeDialog(): void {

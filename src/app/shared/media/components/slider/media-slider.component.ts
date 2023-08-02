@@ -44,17 +44,24 @@ export class MediaSliderComponent {
     return mimeTypeDefinition(element);
   }
 
-  public openImageViewer(media: Maybe<MediaEntity>): void {
+  public open(media: Maybe<MediaEntity>): void {
     if (media?.mimeType?.includes('image')) {
-      const images = this.media?.filter(element => element?.mimeType?.includes('image'));
-      this.dialog.open(MediaViewerComponent, {
-        data: {
-          media: images,
-          currentIndex: images?.findIndex(image => image?.id === media.id)
-        } as MediaViewerData,
-        panelClass: 'media-dialog',
-        autoFocus: false,
-      });
+      this.openDialog('image', media);
+    } else if (media?.mimeType?.includes('video')) {
+      this.openDialog('video', media);
     }
+  }
+
+  public openDialog(mimeType: string, media: Maybe<MediaEntity>): void {
+    const filtered = this.media?.filter(element => element?.mimeType?.includes(mimeType));
+
+    this.dialog.open(MediaViewerComponent, {
+      data: {
+        media: filtered,
+        currentIndex: filtered?.findIndex(element => element?.id === media?.id)
+      } as MediaViewerData,
+      panelClass: 'media-dialog',
+      autoFocus: false,
+    });
   }
 }

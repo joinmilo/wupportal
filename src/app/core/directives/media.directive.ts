@@ -1,4 +1,4 @@
-import { Directive, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Maybe, MediaEntity } from 'src/schema/schema';
 import { mediaApi } from '../constants/core.constants';
 
@@ -14,6 +14,8 @@ export class MediaDirective implements OnChanges {
   @Input()
   public appMedia?: Maybe<MediaEntity>;
 
+  constructor(private elemRef: ElementRef) {}
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes && (changes['appMedia'] || changes['src'])) {
       this.url();
@@ -23,6 +25,12 @@ export class MediaDirective implements OnChanges {
   private url(): void {
     if (this.appMedia?.id) {
       this.src = mediaApi(this.appMedia);
+
+      if (this.elemRef.nativeElement?.parentElement?.tagName === 'VIDEO') {
+        // When dynamically changing video URL,
+        // Angular won't update the video src unless we call load()
+        this.elemRef.nativeElement?.parentElement?.load();
+      }
     }
   }
 

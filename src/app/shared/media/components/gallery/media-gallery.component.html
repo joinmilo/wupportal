@@ -17,7 +17,7 @@
 
       <ng-container *ngSwitchCase="'image'">
         <app-media-card *ngFor="let element of images; let i = index;"
-          [media]="element" (clicked)="openImageViewer(i)">
+          [media]="element" (clicked)="openViewer(i, images)">
         </app-media-card>
       </ng-container>
 
@@ -27,7 +27,8 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'video'" >
-        <app-media-card *ngFor="let element of videos" [media]="element">
+        <app-media-card *ngFor="let element of videos; let i = index;"
+          [media]="element" (clicked)="openViewer(i, videos)">
         </app-media-card>
       </ng-container>
 

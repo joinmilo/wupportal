@@ -7,22 +7,22 @@
     <fa-icon size="2xl" [icon]="['fas', 'chevron-left']"></fa-icon>
   </button>
 
-  <ng-container [ngSwitch]="mimeType(getCurrentImage())">
+  <ng-container [ngSwitch]="mimeType">
 
     <audio *ngSwitchCase="'AUDIO'" controls>
-      <source [appMedia]="getCurrentImage()" [type]="getCurrentImage().mimeType">
+      <source [appMedia]="currentMedia" [type]="currentMedia?.mimeType">
     </audio>
 
-    <img *ngSwitchCase="'IMAGE'" [appMedia]="getCurrentImage()"/>
+    <img *ngSwitchCase="'IMAGE'" [appMedia]="currentMedia"/>
 
-    <app-media-card *ngSwitchCase="'PDF'" [media]="getCurrentImage()">
+    <app-media-card *ngSwitchCase="'PDF'" [media]="currentMedia">
     </app-media-card>
 
-    <app-media-card *ngSwitchCase="'WORD'" [media]="getCurrentImage()">
+    <app-media-card *ngSwitchCase="'WORD'" [media]="currentMedia">
     </app-media-card>
 
-    <video *ngSwitchCase="'VIDEO'" width="900" controls>
-      <source [appMedia]="getCurrentImage()" [type]="getCurrentImage().mimeType">
+    <video *ngSwitchCase="'VIDEO'" controls autoplay>
+      <source [appMedia]="currentMedia" [type]="currentMedia?.mimeType">
     </video>
 
   </ng-container>

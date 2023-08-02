@@ -8,7 +8,7 @@
 
 <app-slider *ngIf="media?.length">
   <ng-container *ngFor="let element of media">
-    <app-media-card [media]="element" (clicked)="openImageViewer(element)">
+    <app-media-card [media]="element" (clicked)="open(element)">
     </app-media-card>
   </ng-container>
 </app-slider>

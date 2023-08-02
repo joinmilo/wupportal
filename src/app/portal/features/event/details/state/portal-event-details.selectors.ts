@@ -56,6 +56,6 @@ export const selectSchedules = createSelector(
 
 export const selectEventMedia = createSelector(
   selectEventDetails,
-  state => state?.uploads?.map(upload => upload?.media)
+  state => state?.uploads?.map(upload => upload?.media ?? {})
 );
 

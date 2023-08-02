@@ -37,12 +37,6 @@ export class MediaCardComponent implements OnInit {
     this.mimeType = mimeTypeDefinition(this.media);
   }
 
-  public name(): Maybe<string> | undefined {
-    return this.media?.extension
-      ? `${this.media?.name}.${this.media?.extension}`
-      : this.media?.name;
-  }
-
   public click(): void {
     this.clicked.emit(this.media);
   }
