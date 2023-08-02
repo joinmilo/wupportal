@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Maybe, MediaEntity } from 'src/schema/schema';
 import { MediaViewerData, MimeTypeDefinition } from '../../typings/media';
@@ -28,7 +28,18 @@ export class MediaViewerComponent implements OnInit{
     }
   }
 
-  public next(event: MouseEvent): void {
+  @HostListener('document:keydown', ['$event'])
+  public navigateKeyboard(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') {
+      this.previous(event);
+    }
+    
+    if (event.key === 'ArrowRight') {
+      this.next(event)
+    }
+  }
+
+  public next(event: UIEvent): void {
     event.stopPropagation();
 
     const next = this.currentIndex + 1;
@@ -39,11 +50,11 @@ export class MediaViewerComponent implements OnInit{
     this.setCurrentMedia();
   }
 
-  public previous(event: MouseEvent): void {
+  public previous(event: UIEvent): void {
     event.stopPropagation();
 
     const previous = this.currentIndex - 1;
-    this.currentIndex = previous <= 0
+    this.currentIndex = previous < 0
       ? this.data.media.length - 1
       : previous;
 
