@@ -60,11 +60,11 @@ mat-card-header {
   }
 
   .pdf {
-    color: #e5252a;
+    color: var(--color-pdf);
   }
 
   .word {
-    color: #005dc3;
+    color: var(--color-ms-word);
   }
 
 }

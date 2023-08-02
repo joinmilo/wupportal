@@ -26,4 +26,8 @@ div {
     --mdc-linear-progress-active-indicator-color: var(--color-evaluation);
     --mdc-linear-progress-track-height: 1rem;
   }
+
+  .mdc-linear-progress__buffer-bar {
+    background-color: var(--color-light) !important;
+  }
 }
