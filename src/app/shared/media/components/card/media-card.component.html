@@ -8,7 +8,7 @@
 
     <div *ngSwitchCase="'IMAGE'"
       class="image-wrapper">
-      <img alt="media-card" [appMedia]="media" />
+      <img alt="media-card" [src]="media?.url" />
     </div>
 
     <ng-container *ngSwitchCase="'IMAGE'">
@@ -18,12 +18,9 @@
       </app-media-attribution>
     </ng-container>
 
-    <video *ngSwitchCase="'VIDEO'"
-      controls>
-      <source
-        [type]="media?.mimeType"
-        [appMedia]="media"/>
-    </video>
+    <app-media-video *ngSwitchCase="'VIDEO'"
+      [media]="media">
+    </app-media-video>
 
     <fa-icon *ngSwitchCase="'WORD'"
       [icon]="['far', 'file-word']"

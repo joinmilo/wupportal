@@ -1,6 +1,6 @@
 <div class="container">
-  <img class="border-image" 
-  [src]="profilePicture ? '' : '/assets/placeholder.webp'" [appMedia]="profilePicture"
+  <img *ngIf="profilePicture" class="border-image"
+    [src]="profilePicture.url"
     alt="profile-picture">
   <section>
     <app-details-title titleLabel="from"></app-details-title>

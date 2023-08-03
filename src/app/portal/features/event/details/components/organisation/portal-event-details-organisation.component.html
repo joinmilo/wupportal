@@ -1,8 +1,7 @@
 <div>
   <img 
     class="border-image" 
-    [src]="media ? '' : '/assets/placeholder.webp'"
-    [appMedia]="media" alt="organisation-image">
+    [src]="media?.url" alt="organisation-image">
   <section>
     <app-details-title [title]="event?.organisation?.name"></app-details-title>
     <button 

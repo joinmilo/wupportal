@@ -1,5 +1,13 @@
 fragment Media on MediaEntity {
   id
+  created
+  extension
+  mimeType
+  modified
+  name
+  size
+  url
+
   attribution {
     id
     title
@@ -7,9 +15,4 @@ fragment Media on MediaEntity {
     source
     license
   }
-  extension
-  mimeType
-  name
-  size
-  modified
 }

@@ -17,6 +17,7 @@ import { MediaFormComponent } from './components/form/media-form.component';
 import { MediaGalleryComponent } from './components/gallery/media-gallery.component';
 import { MediaSliderComponent } from './components/slider/media-slider.component';
 import { MediaUploadComponent } from './components/upload/media-upload.component';
+import { MediaVideoComponent } from './components/video/media-video.component';
 import { MediaViewerComponent } from './components/viewer/media-viewer.component';
 
 
@@ -28,6 +29,7 @@ const components = [
   MediaSliderComponent,
   MediaUploadComponent,
   MediaViewerComponent,
+  MediaVideoComponent,
 ];
 
 const framework = [

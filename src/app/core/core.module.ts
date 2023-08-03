@@ -23,7 +23,6 @@ import { WebsitePieceComponent } from './components/pieces/website/website-piece
 import { appStateKey } from './constants/core.constants';
 import { HtmlDirective } from './directives/html.directive';
 import { LabelDirective } from './directives/label.directive';
-import { MediaDirective } from './directives/media.directive';
 import { AddressPipe } from './pipes/address.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -49,7 +48,7 @@ const components = [
 const directives = [
   LabelDirective,
   HtmlDirective,
-  MediaDirective,
+  // MediaDirective,
 ];
 
 const pipes = [

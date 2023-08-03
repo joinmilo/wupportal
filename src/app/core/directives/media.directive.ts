@@ -1,6 +1,5 @@
 import { Directive, ElementRef, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Maybe, MediaEntity } from 'src/schema/schema';
-import { mediaApi } from '../constants/core.constants';
 
 @Directive({
   selector: '[appMedia]'
@@ -24,7 +23,7 @@ export class MediaDirective implements OnChanges {
 
   private url(): void {
     if (this.appMedia?.id) {
-      this.src = mediaApi(this.appMedia);
+      this.src = this.appMedia.url as string;
 
       if (this.elemRef.nativeElement?.parentElement?.tagName === 'VIDEO') {
         // When dynamically changing video URL,

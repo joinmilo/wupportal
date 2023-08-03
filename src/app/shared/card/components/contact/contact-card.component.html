@@ -1,6 +1,6 @@
 <mat-card>
   <figure [routerLink]="element?.url">
-    <img class="border-image" [src]="element?.image ? '' : '/assets/placeholder.webp'" [appMedia]="element?.image"
+    <img class="border-image" [src]="element?.image ? element?.image?.url : '/assets/placeholder.webp'"
       alt="contact-card">
   </figure>
     <h1 [routerLink]="element?.url">

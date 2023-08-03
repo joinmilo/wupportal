@@ -5,7 +5,7 @@
   <app-card-actions>
   </app-card-actions>
   <figure>
-    <img alt="content-card" [src]="element?.image ? '' : '/assets/placeholder.webp'" [appMedia]="element?.image">
+    <img alt="content-card" [src]="element?.image ? element?.image?.url : '/assets/placeholder.webp'">
   </figure>
   <mat-card-content>
     <header>
@@ -27,7 +27,7 @@
       }}
     </span>
     <section>
-      <img *ngIf="element?.creatorImage" class="border-image" alt="content-card" [appMedia]="element?.creatorImage">
+      <img *ngIf="element?.creatorImage" class="border-image" alt="content-card" [src]="element?.creatorImage?.url">
       <span>{{element?.creator}}</span>
     </section>
   </mat-card-content>

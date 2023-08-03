@@ -24,3 +24,8 @@ export const mimeTypeDefinition = (element?: Maybe<MediaEntity>): Maybe<MimeType
   }
   return null;
 }
+
+export const isValidYoutubeUrl = (url?: Maybe<string>): boolean => {
+  const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/)?([a-zA-Z0-9_-]{11})/;
+  return !!url && youtubeRegex.test(url);
+}

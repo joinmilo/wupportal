@@ -1,0 +1,11 @@
+<ng-container *ngIf="media">
+  <iframe *ngIf="isYoutube; else videoTemplate" [src]="url" frameborder="0">
+  </iframe>
+  <ng-template #videoTemplate>
+    <video controls #video>
+      <source
+        [type]="media.mimeType"
+        [src]="url"/>
+    </video>
+  </ng-template>
+</ng-container>

@@ -1,5 +1,5 @@
 <figure>
-  <img class="border-image" [src]="element?.image ? '' : '/assets/placeholder.webp'" [appMedia]="element?.creatorImage"
+  <img class="border-image" [src]="element?.image ? element?.image?.url : '/assets/placeholder.webp'"
     alt="member-card">
 </figure>
 <span class="mat-subtitle-1">

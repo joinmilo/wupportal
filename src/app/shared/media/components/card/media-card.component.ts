@@ -25,7 +25,7 @@ export class MediaCardComponent implements OnInit {
   @Output()
   public deleted = new EventEmitter<Maybe<MediaEntity>>();
 
-  public iconSize: SizeProp = '7x';
+  public iconSize: SizeProp = '5x';
 
   public mimeType?: Maybe<MimeTypeDefinition>;
 

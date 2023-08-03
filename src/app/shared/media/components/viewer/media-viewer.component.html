@@ -2,7 +2,7 @@
   <fa-icon size="2x" [icon]="['fas', 'xmark']"></fa-icon>
 </button>
 
-<div (click)="closeDialog()">
+<div (click)="closeDialog()"class="content-area">
   <button mat-button (click)="previous($event);">
     <fa-icon size="2xl" [icon]="['fas', 'chevron-left']"></fa-icon>
   </button>
@@ -10,10 +10,10 @@
   <ng-container [ngSwitch]="mimeType">
 
     <audio *ngSwitchCase="'AUDIO'" controls>
-      <source [appMedia]="currentMedia" [type]="currentMedia?.mimeType">
+      <source [src]="currentMedia?.url" [type]="currentMedia?.mimeType">
     </audio>
 
-    <img *ngSwitchCase="'IMAGE'" [appMedia]="currentMedia"/>
+    <img *ngSwitchCase="'IMAGE'" [src]="currentMedia?.url"/>
 
     <app-media-card *ngSwitchCase="'PDF'" [media]="currentMedia">
     </app-media-card>
@@ -21,9 +21,10 @@
     <app-media-card *ngSwitchCase="'WORD'" [media]="currentMedia">
     </app-media-card>
 
-    <video *ngSwitchCase="'VIDEO'" controls autoplay>
-      <source [appMedia]="currentMedia" [type]="currentMedia?.mimeType">
-    </video>
+    <div *ngSwitchCase="'VIDEO'" class="video-wrapper">
+      <app-media-video [media]="currentMedia">
+      </app-media-video>
+    </div>
 
   </ng-container>
 

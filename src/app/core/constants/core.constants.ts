@@ -87,7 +87,6 @@ export const locationTileLayerURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/
 export const mediaBaseApi = `${baseApi}/media`;
 export const mediaDownloadBaseApi = `${mediaBaseApi}/download`;
 export const mediaExportBaseApi = `${mediaBaseApi}/export`;
-export const mediaApi = (media: Maybe<MediaEntity>): string => `${mediaBaseApi}/${media?.id}`
 export const mediaDownloadApi = (media?: Maybe<MediaEntity>): string => `${mediaDownloadBaseApi}/${media?.id}`
 export const mediaExportApi = `${mediaBaseApi}/export`;
 
