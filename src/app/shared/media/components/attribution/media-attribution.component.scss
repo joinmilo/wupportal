@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  font-size: small;
+  gap: 0.2rem;
+  max-width: 95%;
+
+  * {
+    white-space: nowrap;
+  }
+}
+
+.attribution-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

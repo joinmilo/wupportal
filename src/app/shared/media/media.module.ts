@@ -11,6 +11,7 @@ import { RadioButtonFormModule } from '../form/radio-button/radio-button-form.mo
 import { SliderHeaderComponent } from '../sliders/slider-header/slider-header.component';
 import { SliderComponent } from '../sliders/slider/slider.component';
 import { TitleModule } from '../title/title.module';
+import { MediaAttributionComponent } from './components/attribution/media-attribution.component';
 import { MediaCardComponent } from './components/card/media-card.component';
 import { MediaFormComponent } from './components/form/media-form.component';
 import { MediaGalleryComponent } from './components/gallery/media-gallery.component';
@@ -20,6 +21,7 @@ import { MediaViewerComponent } from './components/viewer/media-viewer.component
 
 
 const components = [
+  MediaAttributionComponent,
   MediaCardComponent,
   MediaFormComponent,
   MediaGalleryComponent,

@@ -12,9 +12,10 @@
     </div>
 
     <ng-container *ngSwitchCase="'IMAGE'">
-      <div *ngIf="media?.credits" class="card-box">
-        <small>© {{ media?.credits }}</small>
-      </div>
+      <app-media-attribution *ngIf="media?.attribution"
+        class="card-box"
+        [attribution]="media?.attribution">
+      </app-media-attribution>
     </ng-container>
 
     <video *ngSwitchCase="'VIDEO'"

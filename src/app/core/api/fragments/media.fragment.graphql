@@ -1,6 +1,12 @@
 fragment Media on MediaEntity {
   id
-  credits
+  attribution {
+    id
+    title
+    author
+    source
+    license
+  }
   extension
   mimeType
   name
