@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Maybe, MediaEntity } from 'src/schema/schema';
 import { isValidYoutubeUrl } from '../../utils/media.utils';
@@ -8,7 +8,7 @@ import { isValidYoutubeUrl } from '../../utils/media.utils';
   templateUrl: './media-video.component.html',
   styleUrls: ['./media-video.component.scss'],
 })
-export class MediaVideoComponent implements OnInit, OnChanges {
+export class MediaVideoComponent implements OnChanges {
   
   @Input()
   public media?: Maybe<MediaEntity>;
@@ -27,12 +27,6 @@ export class MediaVideoComponent implements OnInit, OnChanges {
 
   constructor(
     private sanitizer: DomSanitizer) { }
-
-  public ngOnInit(): void {
-    this.isYoutube = isValidYoutubeUrl(this.media?.url);
-
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media?.url as string);
-  }
 
   public ngOnChanges(): void {
     this.isYoutube = isValidYoutubeUrl(this.media?.url);
