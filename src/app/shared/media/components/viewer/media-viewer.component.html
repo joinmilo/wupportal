@@ -13,7 +13,7 @@
       <source [src]="currentMedia?.url" [type]="currentMedia?.mimeType">
     </audio>
 
-    <img *ngSwitchCase="'IMAGE'" [src]="currentMedia?.url"/>
+    <img *ngSwitchCase="'IMAGE'" [src]="currentMedia?.url" [appAttribution]="currentMedia?.attribution"/>
 
     <app-media-card *ngSwitchCase="'PDF'" [media]="currentMedia">
     </app-media-card>

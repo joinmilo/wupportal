@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
+import { MediaModule } from '../media/media.module';
 import { ShareModule } from '../share/share.module';
 import { CardActionsComponent } from './components/actions/card-actions.component';
 import { ContactCardComponent } from './components/contact/contact-card.component';
@@ -40,6 +41,7 @@ const materials = [
 
 const modules = [
   CoreModule,
+  MediaModule,
 ];
 
 const libs = [

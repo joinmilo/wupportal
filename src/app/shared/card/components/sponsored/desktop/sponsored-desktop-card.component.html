@@ -5,7 +5,9 @@
   <app-card-actions>
   </app-card-actions>
   <figure>
-    <img alt="content-card" [src]="element?.image ? element?.image?.url : '/assets/placeholder.webp'">
+    <img [src]="element?.image ? element?.image?.url : '/assets/placeholder.webp'"
+      alt="content-card"
+      [appAttribution]="element?.image?.attribution">
   </figure>
   <mat-card-content>
     <header>

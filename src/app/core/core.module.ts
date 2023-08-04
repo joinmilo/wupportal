@@ -48,7 +48,6 @@ const components = [
 const directives = [
   LabelDirective,
   HtmlDirective,
-  // MediaDirective,
 ];
 
 const pipes = [

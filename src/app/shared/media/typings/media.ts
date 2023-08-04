@@ -13,3 +13,8 @@ export type MediaViewerData = {
   media: MediaEntity[],
   currentIndex?: number
 };
+
+export type AttributionDirection = 'TOP-LEFT'
+  | 'TOP-RIGHT'
+  | 'BOTTOM-RIGHT'
+  | 'BOTTOM-LEFT';

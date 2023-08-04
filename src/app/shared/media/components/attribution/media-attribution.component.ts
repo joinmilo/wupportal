@@ -1,14 +1,42 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { Maybe, MediaAttributionEntity } from 'src/schema/schema';
+import { AttributionDirection } from '../../typings/media';
 
 @Component({
   selector: 'app-media-attribution',
   templateUrl: './media-attribution.component.html',
   styleUrls: ['./media-attribution.component.scss'],
 })
-export class MediaAttributionComponent {
+export class MediaAttributionComponent implements OnInit {
 
   @Input()
   public attribution?: Maybe<MediaAttributionEntity>;
+
+  @Input()
+  public direction: AttributionDirection = 'BOTTOM-RIGHT';
+
+  constructor(
+    private elementRef: ElementRef,
+  ) {}
+
+  public ngOnInit(): void {
+    this.elementRef.nativeElement?.setAttribute('style', this.directionStyle());
+
+    this.elementRef?.nativeElement?.parentElement?.setAttribute('style', 'position: relative;');
+  }
+
+  public directionStyle(): string {
+    switch (this.direction) {
+      case 'TOP-LEFT':
+        return 'top: 3px; left: 3px;';
+      case 'TOP-RIGHT':
+        return 'top: 3px; right: 3px;';
+      case 'BOTTOM-LEFT':
+        return 'bottom: 3px; left: 3px';
+      case 'BOTTOM-RIGHT':
+      default:
+        return 'bottom: 1px; right: 1px;';
+    }
+  }
 
 }

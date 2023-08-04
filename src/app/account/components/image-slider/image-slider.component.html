@@ -1,6 +1,8 @@
 <div>
   <section *ngFor="let img of images">
-    <img [src]="img.path" *ngIf="selectedImage === img.path" [@fadeInFromRight]>
+    <img *ngIf="selectedImage === img.path"
+      [src]="img.path"
+      [@fadeInFromRight]>
     <p [appLabel]="img.description" *ngIf="selectedImage === img.path" [@fadeInFromRight]></p>
   </section>
   <div>

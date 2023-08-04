@@ -8,15 +8,8 @@
 
     <div *ngSwitchCase="'IMAGE'"
       class="image-wrapper">
-      <img alt="media-card" [src]="media?.url" />
+      <img alt="media-card" [src]="media?.url" [appAttribution]="media?.attribution" />
     </div>
-
-    <ng-container *ngSwitchCase="'IMAGE'">
-      <app-media-attribution *ngIf="media?.attribution"
-        class="card-box"
-        [attribution]="media?.attribution">
-      </app-media-attribution>
-    </ng-container>
 
     <app-media-video *ngSwitchCase="'VIDEO'"
       [media]="media">

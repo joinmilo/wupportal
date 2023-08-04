@@ -5,7 +5,9 @@
     </app-category-piece>
     <app-card-actions>
     </app-card-actions>
-    <img alt="content-card" [src]="element?.image ? element?.image?.url : '/assets/placeholder.webp'">
+    <img [src]="element?.image ? element?.image?.url : '/assets/placeholder.webp'"
+      alt="content-card"
+      [appAttribution]="element?.image?.attribution">
   </mat-card-header>
   <mat-card-content>
     <section>

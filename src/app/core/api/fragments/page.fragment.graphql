@@ -4,7 +4,7 @@ fragment Page on PageEntity {
   slug
   uploads {
     title
-    media{
+    media {
       ...Media
     }
   }
