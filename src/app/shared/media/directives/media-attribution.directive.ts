@@ -26,7 +26,6 @@ export class MediaAttributionDirective implements OnChanges {
 
       component.attribution = this.appAttribution;
       component.direction = this.direction;
-
     }
   }
 
