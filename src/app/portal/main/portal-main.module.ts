@@ -7,7 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { TitleImageComponent } from 'src/app/shared/image/title/title-image.component';
-import { MediaModule } from 'src/app/shared/media/media.module';
 import { PortalArticlePageFeatureModule } from '../features/article/page-feature/portal-article-page-feature.module';
 import { PortalAuthorPageFeatureModule } from '../features/author/page-feature/portal-author-page-feature.module';
 import { PortalCalendarPageFeatureModule } from '../features/calendar/page-feature/portal-calendar-page-feature.module';
@@ -61,7 +60,6 @@ const materials = [
 
 const modules = [
   CoreModule,
-  MediaModule,
   PortalMainRoutingModule,
   TitleImageComponent,
 ];
