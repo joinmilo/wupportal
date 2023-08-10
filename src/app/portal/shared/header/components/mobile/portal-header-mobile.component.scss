@@ -21,6 +21,11 @@ header {
   }
 }
 
+.admin-button {
+  display: flex;
+  gap: 1rem;
+}
+
 section {
   display: flex;
   gap: .25rem;

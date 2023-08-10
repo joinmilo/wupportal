@@ -81,7 +81,7 @@ export class FirstLoginFormComponent implements OnInit, OnDestroy {
             [
               {
                 user: { id: this.currentUser?.user?.id },
-                role: { keyword: 'author' },
+                role: { code: 'author' },
                 accepted: false,
                 content: this.form.value.content
               }

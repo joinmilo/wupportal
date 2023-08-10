@@ -5,7 +5,7 @@ fragment MenuItem on MenuItemEntity {
   icon
   feature {
     id
-    keyword
+    code
   }
   parent {
     id
@@ -27,7 +27,7 @@ fragment MenuItem on MenuItemEntity {
     icon
     feature {
       id
-      keyword
+      code
     }
     page {
       id

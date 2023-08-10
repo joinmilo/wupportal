@@ -15,7 +15,7 @@ export class PortalAuthorOverviewEffects {
         ...action.params, expression: {
           entity: {
             operator: QueryOperator.NotEqual,
-            path: 'user.roles.keyword',
+            path: 'user.roles.code',
             value: translatorKey
           }
         },

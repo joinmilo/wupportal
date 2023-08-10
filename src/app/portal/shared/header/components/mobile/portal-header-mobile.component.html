@@ -20,8 +20,21 @@
       <div class="mobile-menu">
         <app-portal-menu-accordion (itemSelected)="trigger.closeMenu()"></app-portal-menu-accordion>
         <mat-divider></mat-divider>
+
+        <ng-container>
+          <button mat-menu-item>
+            <div class="admin-button">
+              <fa-icon [icon]="['fas', 'gauge']"></fa-icon>
+              <span appLabel="adminArea"></span>
+            </div>
+          </button>
+          <mat-divider></mat-divider>
+        </ng-container>
+
         <app-header-user></app-header-user>
+
         <mat-divider></mat-divider>
+
         <section *ngIf="!currentUser?.id">          
           <button mat-stroked-button color="primary" [routerLink]="['/', accountUrl, 'register']">
             <span appLabel="register"></span>
@@ -30,13 +43,15 @@
             <span appLabel="login"></span>
           </button>          
         </section>
+
         <section *ngIf="currentUser?.id">
           <app-media-avatar [user]="currentUser"></app-media-avatar>
           <div class="currentUser">
-          <span>{{ currentUser?.user?.firstName }} {{ currentUser?.user?.lastName }}</span>
-          <small>{{ currentUser?.user?.email }}</small>
+            <span>{{ currentUser?.user?.firstName }} {{ currentUser?.user?.lastName }}</span>
+            <small>{{ currentUser?.user?.email }}</small>
           </div>
         </section>
+
       </div>
     </mat-menu>
   </div>

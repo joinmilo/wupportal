@@ -11,7 +11,7 @@ export class ThemeService {
     this.store.select(selectTheme)
       .subscribe(theme => theme?.variables?.forEach(variable =>
         document.documentElement.style.setProperty(
-          variable?.keyword as string, variable?.value as string)));
+          variable?.code as string, variable?.value as string)));
   }
 
 }
