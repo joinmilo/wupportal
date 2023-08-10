@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs';
+import { portalUrl } from 'src/app/core/constants/core.constants';
 import { GetMenuGQL, MenuItemEntity } from 'src/schema/schema';
 import { PortalMenuActions } from './portal-menu.actions';
 
@@ -32,16 +33,16 @@ export class PortalMenuEffects implements OnInitEffects {
     ofType(PortalMenuActions.navigateMenu),
     tap(action => {
       action?.item?.feature?.keyword
-        ? this.router.navigate(['/portal', action.item.feature.keyword])
+        ? this.router.navigate(['/', portalUrl, action.item.feature.keyword])
         : action?.item?.page?.slug
-          ? this.router.navigate(['/portal', action.item.page.slug])
-          : this.router.navigate(['/portal', '404']);
+          ? this.router.navigate(['/', portalUrl, action.item.page.slug])
+          : this.router.navigate(['/', portalUrl, '404']);
     }),
   ), { dispatch: false });
 
   notFound = createEffect(() => this.actions.pipe(
     ofType(PortalMenuActions.notFound),
-    tap(() => this.router.navigate(['/portal', '404'])),
+    tap(() => this.router.navigate(['/', portalUrl, '404'])),
   ), { dispatch: false });
 
   constructor(

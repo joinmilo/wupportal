@@ -1,0 +1,7 @@
+@import 'src/styles/mixins.scss';
+
+app-admin-desktop {
+  @include responsive(tablet) {
+    display: none;
+  }
+}

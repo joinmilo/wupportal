@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { portalUrl } from 'src/app/core/constants/core.constants';
 import { EventEntity, Maybe, MediaEntity } from 'src/schema/schema';
 import { selectEventDetails } from '../../state/portal-event-details.selectors';
 
@@ -16,6 +17,8 @@ export class PortalEventDetailsOrganisationComponent implements OnInit, OnDestro
   public media?: Maybe<MediaEntity> | undefined;
 
   private destroy = new Subject<void>();
+
+  public portalUrl = portalUrl;
 
   constructor(private store: Store) { }
 

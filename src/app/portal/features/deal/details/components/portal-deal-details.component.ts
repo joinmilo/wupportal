@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { dealsFeatureKey, slug } from 'src/app/core/constants/core.constants';
+import { dealsFeatureKey, portalUrl, slug } from 'src/app/core/constants/core.constants';
 import { DealFilterQueryDefinition } from 'src/app/core/typings/filter-params/deal-filter-param';
 import { MarkerDefinition } from 'src/app/shared/map/typings/map';
 import { DealEntity, Maybe, MediaEntity } from 'src/schema/schema';
@@ -30,6 +30,8 @@ export class PortalDealDetailsComponent implements OnInit, OnDestroy {
   private destroy = new Subject<void>();
 
   public marker?: Maybe<MarkerDefinition>;
+
+  public portalUrl = portalUrl;
 
   constructor(
     private activatedRoute: ActivatedRoute,

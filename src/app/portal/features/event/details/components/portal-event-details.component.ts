@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { eventsFeatureKey, slug } from 'src/app/core/constants/core.constants';
+import { eventsFeatureKey, portalUrl, slug } from 'src/app/core/constants/core.constants';
 import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
 import { MarkerDefinition } from 'src/app/shared/map/typings/map';
 import { EventEntity, Maybe, MediaEntity } from 'src/schema/schema';
@@ -29,6 +29,8 @@ export class PortalEventDetailsComponent implements OnInit, OnDestroy {
   private destroy = new Subject<void>();
 
   public marker?: Maybe<MarkerDefinition>;
+
+  public portalUrl = portalUrl;
 
   constructor(
     private activatedRoute: ActivatedRoute,

@@ -7,7 +7,7 @@
     <app-details-title [title]="author()"></app-details-title>
   </div>
   <button mat-stroked-button color="primary"
-      [routerLink]="['/portal', authorsFeatureKey, article?.author?.slug]">
+      [routerLink]="['/', portalUrl, authorsFeatureKey, article?.author?.slug]">
     <span appLabel="toAuthor"></span>
   </button>
 </section>

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
@@ -8,25 +7,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
+import { HeaderBackComponent } from 'src/app/shared/header/back/header-back.component';
+import { HeaderLanguageComponent } from 'src/app/shared/header/language/header-language.component';
+import { HeaderNotificationComponent } from 'src/app/shared/header/notification/header-notification.component';
+import { HeaderUserComponent } from 'src/app/shared/header/user/header-user.component';
 import { MediaModule } from 'src/app/shared/media/media.module';
 import { PortalMenuModule } from '../menu/portal-menu.module';
 import { PortalSearchModule } from '../search/search.module';
-import { PortalHeaderBackComponent } from './components/back/portal-header-back.component';
 import { PortalHeaderDesktopComponent } from './components/desktop/portal-header-desktop.component';
-import { PortalHeaderComponent } from './components/header/portal-header.component';
-import { PortalHeaderLanguageComponent } from './components/language/portal-header-language.component';
 import { PortalHeaderMobileComponent } from './components/mobile/portal-header-mobile.component';
-import { PortalHeaderNotificationComponent } from './components/notification/portal-header-notification.component';
-import { PortalHeaderUserComponent } from './components/user/portal-header-user.component';
+import { PortalHeaderComponent } from './components/portal-header.component';
 
 const components = [
   PortalHeaderComponent,
-  PortalHeaderBackComponent,
   PortalHeaderDesktopComponent,
-  PortalHeaderLanguageComponent,
   PortalHeaderMobileComponent,
-  PortalHeaderNotificationComponent,
-  PortalHeaderUserComponent,
 ];
 
 const framework = [
@@ -35,7 +30,6 @@ const framework = [
 ];
 
 const materials = [
-  MatBadgeModule,
   MatButtonModule,
   MatDividerModule,
   MatMenuModule,
@@ -44,6 +38,10 @@ const materials = [
 
 const modules = [
   CoreModule,
+  HeaderBackComponent,
+  HeaderLanguageComponent,
+  HeaderNotificationComponent,
+  HeaderUserComponent,
   MediaModule,
   PortalMenuModule,
   PortalSearchModule,

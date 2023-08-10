@@ -8,7 +8,7 @@
       <app-favorite-piece>
       </app-favorite-piece>
     </section>
-    <app-category-piece *ngIf="deal?.category" [category]="deal?.category" [url]="['/portal', categoryUrl]"
+    <app-category-piece *ngIf="deal?.category" [category]="deal?.category" [url]="['/', portalUrl, categoryUrl]"
       [queryParam]="categoryQueryParams">
     </app-category-piece>
   </div>

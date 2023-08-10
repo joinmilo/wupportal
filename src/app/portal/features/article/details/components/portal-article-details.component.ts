@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { articlesFeatureKey, slug } from 'src/app/core/constants/core.constants';
+import { articlesFeatureKey, portalUrl, slug } from 'src/app/core/constants/core.constants';
 import { ArticleFilterQueryDefinition } from 'src/app/core/typings/filter-params/article-filter-param';
 import { MarkerDefinition } from 'src/app/shared/map/typings/map';
 import { ArticleEntity, Maybe, MediaEntity } from 'src/schema/schema';
@@ -26,9 +26,11 @@ export class PortalArticleDetailsComponent implements OnInit, OnDestroy {
 
   public media?: Maybe<Maybe<MediaEntity>[]>;
 
-  private destroy = new Subject<void>();
-
   public marker?: Maybe<MarkerDefinition>;
+
+  public portalUrl = portalUrl;
+
+  private destroy = new Subject<void>();
 
   constructor(
     private activatedRoute: ActivatedRoute,

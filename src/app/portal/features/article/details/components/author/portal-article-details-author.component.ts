@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { authorsFeatureKey } from 'src/app/core/constants/core.constants';
+import { authorsFeatureKey, portalUrl } from 'src/app/core/constants/core.constants';
 import { ArticleEntity, Maybe, MediaEntity } from 'src/schema/schema';
 import { selectArticleDetails } from '../../state/portal-article-details.selectors';
 
@@ -18,8 +18,10 @@ export class PortalArticleDetailsAuthorComponent implements OnInit, OnDestroy {
 
   public authorsFeatureKey = authorsFeatureKey;
 
-  private destroy = new Subject<void>();
+  public portalUrl = portalUrl;
 
+  private destroy = new Subject<void>();
+  
   constructor(private store: Store) { }
 
   public ngOnInit(): void {

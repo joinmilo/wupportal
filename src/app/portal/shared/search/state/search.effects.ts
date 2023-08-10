@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, switchMap, tap } from 'rxjs';
+import { portalUrl } from 'src/app/core/constants/core.constants';
 import { ArticleEntity, ConjunctionOperator, ContestEntity, DealEntity, EventEntity, GetArticlesGQL, GetContestsGQL, GetDealsGQL, GetEventsGQL, GetOrganisationsGQL, GetSurveysGQL, GetUserContextsGQL, OrganisationEntity, QueryOperator, SearchDto, SearchGQL, SurveyEntity, UserContextEntity } from 'src/schema/schema';
 import { SearchActions } from './search.actions';
 import { selectResultsPageActive, selectSearchQuery } from './search.selectors';
@@ -25,7 +26,7 @@ export class SearchEffects {
 
   navigateResultPage = createEffect(() => this.actions.pipe(
     ofType(SearchActions.navigateResultPage),
-    tap(() => this.router.navigate(['/portal', 'search', 'result'])),
+    tap(() => this.router.navigate(['/', portalUrl, 'search', 'result'])),
   ), { dispatch: false });
 
   searchDetails = createEffect(() => this.actions.pipe(

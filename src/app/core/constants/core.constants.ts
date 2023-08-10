@@ -40,7 +40,6 @@ export const calendarFeatureKey = 'calendar';
 export const contestsFeatureKey = 'contests';
 export const dealsFeatureKey = 'deals';
 export const eventsFeatureKey = 'events';
-export const favoritesFeatureKey = 'favorites';
 export const formsFeatureKey = 'forms';
 export const guestArticlesFeatureKey = 'guestarticle';
 export const mapFeatureKey = 'map';
@@ -53,6 +52,8 @@ export const surveysFeatureKey = 'surveys';
  * Module base urls
  */
 export const accountUrl = 'account';
+export const adminUrl = 'admin';
+export const portalUrl = 'portal';
 export const userUrl = 'user';
 
 /**

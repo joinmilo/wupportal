@@ -9,7 +9,7 @@
       </app-favorite-piece>
     </section>
 
-    <app-category-piece [category]="event?.category" [url]="['/portal', categoryUrl]"
+    <app-category-piece [category]="event?.category" [url]="['/', portalUrl, categoryUrl]"
       [queryParam]="categoryQueryParams">
     </app-category-piece>
   </div>

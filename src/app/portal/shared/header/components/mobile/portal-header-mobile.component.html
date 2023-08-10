@@ -1,13 +1,16 @@
 <header>
-  <app-portal-header-back></app-portal-header-back>
+  <app-header-back></app-header-back>
+
+  <app-search></app-search>
 
   <ng-container *ngIf="(isSearching | async) === false">
-    <app-portal-header-language *ngIf="!currentUser?.id" [@fadeIn]></app-portal-header-language>
-    <app-portal-header-notification *ngIf="currentUser?.id" [@fadeIn]></app-portal-header-notification>
     <app-logo [@fadeIn]></app-logo>
   </ng-container>
-  
-  <app-search></app-search>
+
+  <ng-container *ngIf="(isSearching | async) === false">
+    <app-header-language *ngIf="!currentUser?.id" [@fadeIn]></app-header-language>
+    <app-header-notification *ngIf="currentUser?.id" [@fadeIn]></app-header-notification>
+  </ng-container>
   
   <div>
     <button mat-icon-button [matMenuTriggerFor]="menu" #trigger="matMenuTrigger">
@@ -17,7 +20,7 @@
       <div class="mobile-menu">
         <app-portal-menu-accordion (itemSelected)="trigger.closeMenu()"></app-portal-menu-accordion>
         <mat-divider></mat-divider>
-        <app-portal-header-user></app-portal-header-user>
+        <app-header-user></app-header-user>
         <mat-divider></mat-divider>
         <section *ngIf="!currentUser?.id">          
           <button mat-stroked-button color="primary" [routerLink]="['/', accountUrl, 'register']">

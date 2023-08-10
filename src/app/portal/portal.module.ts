@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LoadingComponent } from '../shared/loading/loading.component';
+import { PortalComponent } from './component/portal.component';
 import { PortalRoutingModule } from './portal-routing.module';
-import { PortalComponent } from './portal.component';
 import { PortalFooterModule } from './shared/footer/portal-footer.module';
 import { PortalHeaderModule } from './shared/header/portal-header.module';
 
@@ -13,12 +12,8 @@ const components = [
 
 const framework = [
   CommonModule,
-  PortalRoutingModule
+  PortalRoutingModule,
 ];
-
-const materials = [
-  MatProgressBarModule,
-]
 
 const modules = [
   PortalHeaderModule,
@@ -31,7 +26,6 @@ const modules = [
   declarations: [...components],
   imports: [
     ...framework,
-    ...materials,
     ...modules,
   ],
 })

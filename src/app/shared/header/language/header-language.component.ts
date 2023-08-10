@@ -1,16 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
+import { CoreModule } from 'src/app/core/core.module';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectLanguages } from 'src/app/core/state/selectors/core.selectors';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { LanguageEntity } from 'src/schema/schema';
 
 @Component({
-  selector: 'app-portal-header-language',
-  templateUrl: './portal-header-language.component.html',
-  styleUrls: ['./portal-header-language.component.scss'],
+  selector: 'app-header-language',
+  templateUrl: './header-language.component.html',
+  styleUrls: ['./header-language.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CoreModule,
+
+    MatButtonModule,
+    MatMenuModule,
+    FontAwesomeModule,
+  ]
 })
-export class PortalHeaderLanguageComponent {
+export class HeaderLanguageComponent {
   
   public currentUser = this.store.select(selectCurrentUser);
 
