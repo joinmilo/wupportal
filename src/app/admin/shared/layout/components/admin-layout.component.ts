@@ -3,11 +3,11 @@ import { Store } from '@ngrx/store';
 import { selectIsLoading } from 'src/app/core/state/selectors/core.selectors';
 
 @Component({
-  selector: 'app-portal',
-  templateUrl: './portal.component.html',
-  styleUrls: ['./portal.component.scss']
+  selector: 'app-admin-layout',
+  templateUrl: './admin-layout.component.html',
+  styleUrls: ['./admin-layout.component.scss']
 })
-export class PortalComponent {
+export class AdminLayoutComponent {
 
   public loading = this.store.select(selectIsLoading);
 

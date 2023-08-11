@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { AccountComponent } from './account/account.component';
-import { AdminComponent } from './admin/components/admin/admin.component';
+import { AccountLayoutComponent } from './account/components/layout/account-layout.component';
+import { AdminLayoutComponent } from './admin/shared/layout/components/admin-layout.component';
 import { accountUrl, adminUrl, portalUrl, userUrl } from './core/constants/core.constants';
-import { PortalComponent } from './portal/component/portal.component';
+import { PortalLayoutComponent } from './portal/shared/layout/portal-layout.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -12,19 +11,19 @@ const routes: Routes = [
     path: portalUrl,
     loadChildren: () => import('./portal/portal.module')
       .then((imported) => imported.PortalModule),
-    component: PortalComponent,
+    component: PortalLayoutComponent,
   },
   {
     path: adminUrl,
     loadChildren: () => import('./admin/admin.module')
       .then((imported) => imported.AdminModule),
-    component: AdminComponent,
+    component: AdminLayoutComponent,
   },
   {
     path: accountUrl,
       loadChildren: () => import('./account/account.module')
       .then((imported) => imported.AccountModule),
-    component: AccountComponent,
+    component: AccountLayoutComponent,
   },
   {
     path: userUrl,

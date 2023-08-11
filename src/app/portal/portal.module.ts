@@ -1,14 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LoadingComponent } from '../shared/layout/loading/loading.component';
-import { PortalComponent } from './component/portal.component';
 import { PortalRoutingModule } from './portal-routing.module';
-import { PortalFooterModule } from './shared/footer/portal-footer.module';
-import { PortalHeaderModule } from './shared/header/portal-header.module';
-
-const components = [
-  PortalComponent
-];
+import { PortalLayoutComponent } from './shared/layout/portal-layout.component';
 
 const framework = [
   CommonModule,
@@ -16,14 +9,10 @@ const framework = [
 ];
 
 const modules = [
-  PortalHeaderModule,
-  PortalFooterModule,
-
-  LoadingComponent,
+  PortalLayoutComponent,
 ];
 
 @NgModule({
-  declarations: [...components],
   imports: [
     ...framework,
     ...modules,

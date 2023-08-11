@@ -4,7 +4,7 @@ mat-drawer-container {
 }
 
 .mat-drawer-side {
-  // box-shadow: 0px 2px 8px 0px #00000026;
+  box-shadow: 0px 1px 4px 0px #00000026;
 }
 
 div {
@@ -23,8 +23,4 @@ app-portal-header {
 main {
   margin-top: var(--header-height);
   flex: 2 0 calc(100vh - var(--header-height));
-}
-
-app-portal-footer {
-  margin-top: auto;
 }

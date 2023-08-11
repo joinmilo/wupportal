@@ -21,9 +21,9 @@ import { LoadingComponent } from '../shared/layout/loading/loading.component';
 import { TitleModule } from '../shared/layout/title/title.module';
 import { MediaModule } from '../shared/widgets/media/media.module';
 import { UserPortalRoutingModule } from './account-routing.module';
-import { AccountComponent } from './account.component';
 import { FirstLoginFormComponent } from './components/first-login-form/first-login-form.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import { AccountLayoutComponent } from './components/layout/account-layout.component';
 import { LoginRequiredComponent } from './components/login-required/login-required.component';
 import { LoginComponent } from './components/login/login.component';
 import { PasswordSendMailComponent } from './components/password-send-mail/password-send-mail.component';
@@ -36,6 +36,7 @@ import { AccountEffects } from './state/account.effects';
 import { accountReducer } from './state/account.reducer';
 
 const components = [
+  AccountLayoutComponent,
   ImageSliderComponent,
   LoginComponent,
   FirstLoginFormComponent,
@@ -43,7 +44,6 @@ const components = [
   PasswordSetNewComponent,
   PasswordSendMailComponent,
   RegistrationComponent,
-  AccountComponent,
   VerificationComponent,
   VerificationSendMailComponent,
 ];
