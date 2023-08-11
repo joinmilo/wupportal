@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 
 import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { ConfigurationEntity, GetConfigurationsGQL, GetLabelsGQL, GetLanguagesGQL, GetServerVersionGQL, GetThemeGQL, LabelEntity, LanguageEntity, ThemeEntity } from 'src/schema/schema';
+import { AppEntity, ConfigurationEntity, GetAppsGQL, GetConfigurationsGQL, GetLabelsGQL, GetLanguagesGQL, GetServerInformationGQL, GetSocialMediaGQL, GetThemeGQL, LabelEntity, LanguageEntity, SocialMediaEntity, ThemeEntity } from 'src/schema/schema';
 import { FeedbackService } from '../../services/feedback.service';
 import { CoreActions } from '../actions/core.actions';
 
@@ -14,7 +14,13 @@ export class CoreEffects implements OnInitEffects {
   ngrxOnInitEffects(): Action {
     return CoreActions.init();
   }
-  
+
+  getApps = createEffect(() => this.actions.pipe(
+    ofType(CoreActions.init),
+    switchMap(() => this.getAppsService.watch().valueChanges),
+    map(response => CoreActions.setApps(response.data.getApps?.result as AppEntity[]))
+  ));
+
   getConfigurations = createEffect(() => this.actions.pipe(
     ofType(CoreActions.init),
     switchMap(() => this.getCofigurationsService.watch().valueChanges),
@@ -45,11 +51,17 @@ export class CoreEffects implements OnInitEffects {
     map(response => CoreActions.setLanguages(response.data.getLanguages?.result as LanguageEntity[]))
   ));
 
-  getServerVersion = createEffect(() => this.actions.pipe(
+  getServerInfo = createEffect(() => this.actions.pipe(
     ofType(CoreActions.init),
-    switchMap(() => this.getServerVersionService.watch().valueChanges),
+    switchMap(() => this.getServerInfoService.watch().valueChanges),
     filter(response => !!response?.data?.getInformation?.version),
-    map(response => CoreActions.setServerVersion(response.data.getInformation))
+    map(response => CoreActions.setServerInfo(response.data.getInformation))
+  ));
+
+  getSocialMedia = createEffect(() => this.actions.pipe(
+    ofType(CoreActions.init),
+    switchMap(() => this.getSocialMediaService.watch().valueChanges),
+    map(response => CoreActions.setSocialMedia(response.data.getSocialMedias?.result as SocialMediaEntity[]))
   ));
 
   getTheme = createEffect(() => this.actions.pipe(
@@ -67,10 +79,12 @@ export class CoreEffects implements OnInitEffects {
   constructor(
     private actions: Actions,
     private feedbackService: FeedbackService,
+    private getAppsService: GetAppsGQL,
     private getCofigurationsService: GetConfigurationsGQL,
     private getLabelsService: GetLabelsGQL,
     private getLanguagesService: GetLanguagesGQL,
-    private getServerVersionService: GetServerVersionGQL,
+    private getServerInfoService: GetServerInformationGQL,
+    private getSocialMediaService: GetSocialMediaGQL,
     private getThemeService: GetThemeGQL,
     ) { }
 }

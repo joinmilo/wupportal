@@ -1,4 +1,4 @@
-query getServerVersion {
+query getServerInformation {
   getInformation {
     version
   }

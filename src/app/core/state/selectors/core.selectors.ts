@@ -12,6 +12,11 @@ export const selectConfiguration = (code: string) =>
     configurations => configurations?.find(c => c?.code === code)
   );
 
+export const selectApps = createSelector(
+  selectCoreState,
+  state => state.apps
+);
+
 export const selectIsLoading = createSelector(
   selectCoreState,
   state => state.ongoingRequests > 0,
@@ -30,6 +35,16 @@ export const selectLanguage = createSelector(
 export const selectLanguages = createSelector(
   selectCoreState,
   state => state?.languages
+);
+
+export const selectServerInfo = createSelector(
+  selectCoreState,
+  state => state.serverInfo
+);
+
+export const selectSocialMedia = createSelector(
+  selectCoreState,
+  state => state.socialMedia
 );
 
 export const selectTheme = createSelector(

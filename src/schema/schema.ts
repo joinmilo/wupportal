@@ -6082,10 +6082,10 @@ export type SearchQueryVariables = Exact<{
 
 export type SearchQuery = { __typename?: 'Query', search?: Array<{ __typename?: 'SearchDto', slug?: string | null, feature?: { __typename?: 'FeatureEntity', id?: string | null, code?: string | null } | null } | null> | null };
 
-export type GetServerVersionQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetServerInformationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetServerVersionQuery = { __typename?: 'Query', getInformation?: { __typename?: 'InformationDto', version?: string | null } | null };
+export type GetServerInformationQuery = { __typename?: 'Query', getInformation?: { __typename?: 'InformationDto', version?: string | null } | null };
 
 export type VerifyAddressMutationVariables = Exact<{
   entity?: InputMaybe<AddressEntityInput>;
@@ -8189,8 +8189,8 @@ export const SearchDocument = gql`
       super(apollo);
     }
   }
-export const GetServerVersionDocument = gql`
-    query getServerVersion {
+export const GetServerInformationDocument = gql`
+    query getServerInformation {
   getInformation {
     version
   }
@@ -8200,8 +8200,8 @@ export const GetServerVersionDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetServerVersionGQL extends Apollo.Query<GetServerVersionQuery, GetServerVersionQueryVariables> {
-    override document = GetServerVersionDocument;
+  export class GetServerInformationGQL extends Apollo.Query<GetServerInformationQuery, GetServerInformationQueryVariables> {
+    override document = GetServerInformationDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
