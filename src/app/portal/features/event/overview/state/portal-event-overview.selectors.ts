@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { distinctStartDates } from 'src/app/core/utils/schedule.utils';
-import { MarkerDefinition } from 'src/app/shared/map/typings/map';
+import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { EventCategoryEntity } from 'src/schema/schema';
 import { portalEventOverviewStateKey } from '../constants/portal-event-overview.constants';
 import { PortalEventOverviewState } from './portal-event-overview.reducer';

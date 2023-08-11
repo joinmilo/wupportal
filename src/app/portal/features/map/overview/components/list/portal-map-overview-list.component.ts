@@ -2,8 +2,8 @@ import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { MarkerDefinition } from 'src/app/shared/map/typings/map';
-import { TablePaginatorComponent } from 'src/app/shared/table/components/paginator/table-paginator.component';
+import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
+import { TablePaginatorComponent } from 'src/app/shared/widgets/table/components/paginator/table-paginator.component';
 import { Maybe } from 'src/schema/schema';
 import { selectResult } from '../../state/portal-map-overview.selector';
 

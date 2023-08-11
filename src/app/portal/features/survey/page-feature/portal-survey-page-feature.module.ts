@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { CardSliderComponent } from 'src/app/shared/sliders/card-slider/card-slider.component';
+import { CardSliderComponent } from 'src/app/shared/widgets/sliders/card-slider/card-slider.component';
 import { SurveyPageFeatureComponent } from './component/survey-page-feature.component';
 import { surveyPageFeatureStateKey } from './constants/survey-page-feature.constants';
 import { SurveyPageFeatureEffects } from './state/survey-page-feature.effects';

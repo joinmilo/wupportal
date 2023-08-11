@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CardType } from 'src/app/shared/card/typings/card';
+import { CardType } from 'src/app/shared/widgets/card/typings/card';
 import { selectOverviewDataSuburbs } from '../../state/portal-organisation-overview.selectors';
 
 @Component({

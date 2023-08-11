@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { CoreModule } from 'src/app/core/core.module';
-import { TitleModule } from '../../title/title.module';
+import { TitleModule } from '../../layout/title/title.module';
 import { NotificationComponent } from './component/notification.component';
 import { NotificationRoutingModule } from './notification-routing.module';
 

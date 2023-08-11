@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
-import { CardType } from 'src/app/shared/card/typings/card';
+import { CardType } from 'src/app/shared/widgets/card/typings/card';
 import { AuthorPageFeatureActions } from '../state/author-page-feature.actions';
 import { selectRecentAuthors } from '../state/author-page-feature.selectors';
 

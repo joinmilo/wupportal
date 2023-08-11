@@ -13,16 +13,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { CardModule } from 'src/app/shared/card/card.module';
-import { CommentModule } from 'src/app/shared/comment/comment.module';
+import { CommentModule } from 'src/app/shared/form/comment/comment.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
-import { MapModule } from 'src/app/shared/map/map.module';
-import { MediaModule } from 'src/app/shared/media/media.module';
-import { PriceComponent } from 'src/app/shared/price/price.component';
-import { RatingModule } from 'src/app/shared/rating/rating.module';
-import { ShareModule } from 'src/app/shared/share/share.module';
-import { TableModule } from 'src/app/shared/table/table.module';
-import { TitleModule } from 'src/app/shared/title/title.module';
+import { RatingModule } from 'src/app/shared/form/rating/rating.module';
+import { PriceComponent } from 'src/app/shared/layout/price/price.component';
+import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { CardModule } from 'src/app/shared/widgets/card/card.module';
+import { MapModule } from 'src/app/shared/widgets/map/map.module';
+import { MediaModule } from 'src/app/shared/widgets/media/media.module';
+import { ShareModule } from 'src/app/shared/widgets/share/share.module';
+import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { PortalDealDetailsCreatorComponent } from './components/creator/portal-deal-details-creator.component';
 import { PortalDealDetailsComponent } from './components/portal-deal-details.component';
 import { PortalDealDetailsSummaryComponent } from './components/summary/portal-deal-details-summary.component';
@@ -57,9 +57,9 @@ const materials = [
 ];
 
 const modules = [
+  CardModule,
   CoreModule,
   CommentModule,
-  CardModule,
   MediaModule,
   RadioButtonFormModule,
   PortalDealDetailsRoutingModule,

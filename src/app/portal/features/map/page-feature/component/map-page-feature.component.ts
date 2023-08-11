@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
-import { MarkerDefinition } from 'src/app/shared/map/typings/map';
+import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { MapPageFeatureActions } from '../state/map-page-feature.actions';
 import { selectSponsoredDeal, selectSponsoredEvent, selectSponsoredOrganisation } from '../state/map-page-feature.selectors';
 

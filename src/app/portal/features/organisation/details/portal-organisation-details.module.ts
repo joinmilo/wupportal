@@ -13,17 +13,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { CalendarModule } from 'src/app/shared/calendar/calendar.module';
-import { CardModule } from 'src/app/shared/card/card.module';
-import { CommentModule } from 'src/app/shared/comment/comment.module';
+import { CommentModule } from 'src/app/shared/form/comment/comment.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
-import { MapModule } from 'src/app/shared/map/map.module';
-import { MediaModule } from 'src/app/shared/media/media.module';
-import { RatingModule } from 'src/app/shared/rating/rating.module';
-import { ShareModule } from 'src/app/shared/share/share.module';
-import { CardSliderComponent } from 'src/app/shared/sliders/card-slider/card-slider.component';
-import { TableModule } from 'src/app/shared/table/table.module';
-import { TitleModule } from 'src/app/shared/title/title.module';
+import { RatingModule } from 'src/app/shared/form/rating/rating.module';
+import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { CalendarModule } from 'src/app/shared/widgets/calendar/calendar.module';
+import { CardModule } from 'src/app/shared/widgets/card/card.module';
+import { MapModule } from 'src/app/shared/widgets/map/map.module';
+import { MediaModule } from 'src/app/shared/widgets/media/media.module';
+import { ShareModule } from 'src/app/shared/widgets/share/share.module';
+import { CardSliderComponent } from 'src/app/shared/widgets/sliders/card-slider/card-slider.component';
+import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { PortalOrganisationDetailsCommentComponent } from './components/comment/portal-organisation-details-comments.component';
 import { PortalOrganisationDetailsCommentsComponent } from './components/comments/portal-organisation-details-comments.component';
 import { PortalOrganisationDetailsMembersComponent } from './components/members/portal-organisation-details-members.component';
@@ -50,7 +50,6 @@ const framework = [
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
-  CalendarModule,
   MapModule,
 ];
 
@@ -67,6 +66,7 @@ const materials = [
 ];
 
 const modules = [
+  CalendarModule,
   CardSliderComponent,
   CoreModule,
   CommentModule,

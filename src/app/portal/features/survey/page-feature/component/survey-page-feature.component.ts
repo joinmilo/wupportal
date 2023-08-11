@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CardType } from 'src/app/shared/card/typings/card';
+import { CardType } from 'src/app/shared/widgets/card/typings/card';
 import { SurveyPageFeatureActions } from '../state/survey-page-feature.actions';
 import { selectRecentSurveys } from '../state/survey-page-feature.selectors';
 

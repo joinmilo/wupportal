@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { articlesFeatureKey, portalUrl, slug } from 'src/app/core/constants/core.constants';
 import { ArticleFilterQueryDefinition } from 'src/app/core/typings/filter-params/article-filter-param';
-import { MarkerDefinition } from 'src/app/shared/map/typings/map';
+import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { ArticleEntity, Maybe, MediaEntity } from 'src/schema/schema';
 import { PortalArticleDetailsActions } from '../state/portal-article-details.actions';
 import { selectArticleDetails } from '../state/portal-article-details.selectors';

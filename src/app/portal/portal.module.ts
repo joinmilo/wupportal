@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LoadingComponent } from '../shared/loading/loading.component';
+import { LoadingComponent } from '../shared/layout/loading/loading.component';
 import { PortalComponent } from './component/portal.component';
 import { PortalRoutingModule } from './portal-routing.module';
 import { PortalFooterModule } from './shared/footer/portal-footer.module';

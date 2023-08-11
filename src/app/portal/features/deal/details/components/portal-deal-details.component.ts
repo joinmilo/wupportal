@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { dealsFeatureKey, portalUrl, slug } from 'src/app/core/constants/core.constants';
 import { DealFilterQueryDefinition } from 'src/app/core/typings/filter-params/deal-filter-param';
-import { MarkerDefinition } from 'src/app/shared/map/typings/map';
+import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { DealEntity, Maybe, MediaEntity } from 'src/schema/schema';
 import { PortalDealDetailsActions } from '../state/portal-deal-details.actions';
 import { selectDealDetails } from '../state/portal-deal-details.selectors';

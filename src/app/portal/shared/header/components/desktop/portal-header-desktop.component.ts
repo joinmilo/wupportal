@@ -6,7 +6,7 @@ import { fadeInAnimation } from 'src/app/core/animations/animations';
 import { accountUrl, adminUrl } from 'src/app/core/constants/core.constants';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { selectPortalMenu } from 'src/app/portal/shared/menu/state/portal-menu.selectors';
-import { selectIsSearching } from 'src/app/portal/shared/search/state/search.selectors';
+import { selectIsSearching } from 'src/app/shared/pages/search/state/search.selectors';
 import { UserContextEntity } from 'src/schema/schema';
 
 @Component({

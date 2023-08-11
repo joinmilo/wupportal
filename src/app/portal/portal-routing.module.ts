@@ -100,7 +100,7 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    loadChildren: () => import('./shared/search/search.module')
+    loadChildren: () => import('../shared/pages/search/search.module')
       .then((imported) => imported.PortalSearchModule),
   },
   {

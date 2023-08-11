@@ -6,10 +6,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { CardModule } from 'src/app/shared/card/card.module';
 import { SurveyFilterModule } from 'src/app/shared/filter/survey-filter/survey-filter.module';
-import { TableModule } from 'src/app/shared/table/table.module';
-import { TitleModule } from 'src/app/shared/title/title.module';
+import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { CardModule } from 'src/app/shared/widgets/card/card.module';
+import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { PortalSurveyOverviewEmptyComponent } from './components/empty/portal-survey-overview-empty.component';
 import { PortalSurveyOverviewComponent } from './components/overview/portal-survey-overview.component';
 import { portalSurveyOverviewStateKey } from './constants/portal-survey-overview.constant';
@@ -31,8 +31,8 @@ const materials = [
 ];
 
 const modules = [
-  CoreModule,
   CardModule,
+  CoreModule,
   MatSortModule,
   PortalSurveyOverviewRoutingModule,
   SurveyFilterModule,

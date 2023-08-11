@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { fadeInAnimation } from 'src/app/core/animations/animations';
 import { accountUrl, adminUrl } from 'src/app/core/constants/core.constants';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
-import { selectIsSearching } from 'src/app/portal/shared/search/state/search.selectors';
+import { selectIsSearching } from 'src/app/shared/pages/search/state/search.selectors';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
 
 @Component({

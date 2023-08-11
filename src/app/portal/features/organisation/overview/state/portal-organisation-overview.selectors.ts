@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { MarkerDefinition } from 'src/app/shared/map/typings/map';
+import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { portalOrganisationOverviewStateKey } from '../constants/portal-organisation-overview.constants';
 import { SuburbOrganisation } from '../typings/portal-overview-organisation-suburb';
 import { PortalOrganisationOverviewState } from './portal-organisation-overview.reducer';

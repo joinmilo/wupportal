@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { CardSliderComponent } from 'src/app/shared/sliders/card-slider/card-slider.component';
+import { CardSliderComponent } from 'src/app/shared/widgets/sliders/card-slider/card-slider.component';
 import { EventPageFeatureComponent } from './component/event-page-feature.component';
 import { eventPageFeatureStateKey } from './constants/event-page-feature.constants';
 import { EventPageFeatureEffects } from './state/event-page-feature.effects';

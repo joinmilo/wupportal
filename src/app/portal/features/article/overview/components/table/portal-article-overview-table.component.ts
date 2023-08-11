@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction, SortPaginate } from 'src/app/shared/table/typings/table';
+import { Column, RowAction, SortPaginate } from 'src/app/shared/widgets/table/typings/table';
 import { ArticleEntity, FilterSortPaginateInput } from 'src/schema/schema';
 import { PortalArticleOverviewActions } from '../../state/portal-article-overview.actions';
 import { selectOverviewData } from '../../state/portal-article-overview.selectors';

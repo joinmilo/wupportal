@@ -5,13 +5,13 @@ import { MatCardModule } from '@angular/material/card';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { CardModule } from 'src/app/shared/card/card.module';
 import { DealFilterModule } from 'src/app/shared/filter/deal-filter/deal-filter.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
-import { MapModule } from 'src/app/shared/map/map.module';
-import { CardSliderComponent } from 'src/app/shared/sliders/card-slider/card-slider.component';
-import { TableModule } from 'src/app/shared/table/table.module';
-import { TitleModule } from 'src/app/shared/title/title.module';
+import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { CardModule } from 'src/app/shared/widgets/card/card.module';
+import { MapModule } from 'src/app/shared/widgets/map/map.module';
+import { CardSliderComponent } from 'src/app/shared/widgets/sliders/card-slider/card-slider.component';
+import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { PortalDealOverviewCategoryComponent } from './components/category/portal-deal-overview-category.component';
 import { PortalDealOverviewEmptyComponent } from './components/empty/portal-deal-overview-empty.component';
 import { PortalDealOverviewMapComponent } from './components/map/portal-deal-overview-map.component';
@@ -40,9 +40,9 @@ const materials = [
 ];
 
 const modules = [
-  CoreModule,
   CardModule,
   CardSliderComponent,
+  CoreModule,
   DealFilterModule,
   MapModule,
   PortalDealOverviewRoutingModule,

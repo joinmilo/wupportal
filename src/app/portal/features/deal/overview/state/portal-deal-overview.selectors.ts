@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { MarkerDefinition } from 'src/app/shared/map/typings/map';
+import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { DealCategoryEntity } from 'src/schema/schema';
 import { portalDealOverviewStateKey } from '../constants/portal-deal-overview.constants';
 import { PortalDealOverviewState } from './portal-deal-overview.reducer';
