@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AccountComponent } from './account/account.component';
+import { AdminComponent } from './admin/components/admin/admin.component';
 import { accountUrl, adminUrl, portalUrl, userUrl } from './core/constants/core.constants';
 import { PortalComponent } from './portal/component/portal.component';
 import { UserComponent } from './user/user.component';
@@ -17,7 +18,7 @@ const routes: Routes = [
     path: adminUrl,
     loadChildren: () => import('./admin/admin.module')
       .then((imported) => imported.AdminModule),
-    component: PortalComponent,
+    component: AdminComponent,
   },
   {
     path: accountUrl,

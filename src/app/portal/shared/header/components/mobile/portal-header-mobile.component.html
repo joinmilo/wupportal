@@ -21,8 +21,8 @@
         <app-portal-menu-accordion (itemSelected)="trigger.closeMenu()"></app-portal-menu-accordion>
         <mat-divider></mat-divider>
 
-        <ng-container>
-          <button mat-menu-item>
+        <ng-container *ngIf="currentUser?.user?.roles?.length">
+          <button mat-menu-item [routerLink]="['/', adminUrl]">
             <div class="admin-button">
               <fa-icon [icon]="['fas', 'gauge']"></fa-icon>
               <span appLabel="adminArea"></span>

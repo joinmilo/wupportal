@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { PortalFooterModule } from '../portal/shared/footer/portal-footer.module';
+import { PortalHeaderModule } from '../portal/shared/header/portal-header.module';
 import { LoadingComponent } from '../shared/loading/loading.component';
 import { PortalRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
@@ -24,6 +26,8 @@ const materials = [
 
 const modules = [
   LoadingComponent,
+  PortalHeaderModule,
+  PortalFooterModule,
 ];
 
 @NgModule({

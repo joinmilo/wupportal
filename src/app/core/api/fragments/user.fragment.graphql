@@ -5,7 +5,7 @@ fragment User on UserEntity {
   email
   verified
   lastLogin
-  roleApplications{
+  roleApplications {
     accepted
     content
     role{
@@ -24,7 +24,13 @@ fragment User on UserEntity {
       } 
     }
   }
-  userContext{
+  
+  roles {
+    id
+    code
+  }
+  
+  userContext {
     uploads{
       profilePicture
       media {

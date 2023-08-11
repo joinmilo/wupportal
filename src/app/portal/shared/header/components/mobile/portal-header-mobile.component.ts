@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { fadeInAnimation } from 'src/app/core/animations/animations';
-import { accountUrl } from 'src/app/core/constants/core.constants';
+import { accountUrl, adminUrl } from 'src/app/core/constants/core.constants';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { selectIsSearching } from 'src/app/portal/shared/search/state/search.selectors';
 import { Maybe, UserContextEntity } from 'src/schema/schema';
@@ -15,6 +15,7 @@ import { Maybe, UserContextEntity } from 'src/schema/schema';
 export class PortalHeaderMobileComponent implements OnInit{
 
   public accountUrl = accountUrl;
+  public adminUrl = adminUrl;
   
   public currentUser?: Maybe<UserContextEntity>;
 

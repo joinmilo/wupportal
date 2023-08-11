@@ -33,6 +33,15 @@
         
       </button>
       <mat-menu #userMenu="matMenu">
+        <ng-container *ngIf="currentUser?.user?.roles?.length">
+          <button mat-menu-item [routerLink]="['/', adminUrl]">
+            <div class="admin-button">
+              <fa-icon [icon]="['fas', 'gauge']"></fa-icon>
+              <span appLabel="adminArea"></span>
+            </div>
+          </button>
+          <mat-divider></mat-divider>
+        </ng-container>
         <app-header-user></app-header-user>
       </mat-menu>
       

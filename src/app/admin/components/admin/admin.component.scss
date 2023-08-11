@@ -1,5 +1,9 @@
 @import 'src/styles/mixins.scss';
 
+:host {
+  height: 100%;
+}
+
 app-admin-desktop {
   @include responsive(tablet) {
     display: none;

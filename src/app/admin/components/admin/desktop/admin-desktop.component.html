@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container autosize>
   <mat-drawer #drawer
     mode="side"
     disableClose
@@ -10,8 +10,12 @@
     </button>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
-    <router-outlet></router-outlet>
+  <div>
+    <app-portal-header></app-portal-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+    <app-portal-footer></app-portal-footer>
   </div>
 
 </mat-drawer-container>

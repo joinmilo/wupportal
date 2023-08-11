@@ -8,8 +8,8 @@ import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input
 import { MimeTypeDefinition } from 'src/app/shared/media/typings/media';
 import { mimeTypeDefinition } from 'src/app/shared/media/utils/media.utils';
 import { Maybe, MediaEntity } from 'src/schema/schema';
-import { PortalMainActions } from '../../../state/portal-main.actions';
-import { selectPageMedia } from '../../../state/portal-main.selectors';
+import { PortalMainActions } from '../../state/portal-main.actions';
+import { selectPageMedia } from '../../state/portal-main.selectors';
 
 @Component({
   selector: 'app-portal-page-media',
