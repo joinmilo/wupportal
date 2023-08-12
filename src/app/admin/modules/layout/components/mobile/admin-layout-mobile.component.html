@@ -1,9 +1,6 @@
 <mat-drawer-container autosize>
-  <mat-drawer #drawer
-    mode="side"
-    opened
-    disableClose>
-    <p>Auto-resizing sidenav</p>
+  <mat-drawer mode="over" (closedStart)="closedStart()">
+    <p>Auto-resizing sidenav 111111</p>
   </mat-drawer>
 
   <div>

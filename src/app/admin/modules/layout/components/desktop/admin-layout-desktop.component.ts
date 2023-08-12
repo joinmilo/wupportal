@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
-import { selectIsAdminMenuOpen } from 'src/app/admin/state/admin.selectors';
 
 @Component({
   selector: 'app-admin-layout-desktop',
   templateUrl: './admin-layout-desktop.component.html',
   styleUrls: ['./admin-layout-desktop.component.scss']
 })
-export class AdminLayoutDesktopComponent implements OnInit {
+export class AdminLayoutDesktopComponent {
 
   @ViewChild(MatDrawer)
   public sidenav?: MatDrawer;
@@ -17,10 +16,10 @@ export class AdminLayoutDesktopComponent implements OnInit {
     private store: Store,
   ) { }
 
-  public ngOnInit(): void {
-    this.store.select(selectIsAdminMenuOpen)
-      .subscribe(open => open
-        ? this.sidenav?.open()
-        : this.sidenav?.close());
-  }
+  // public ngOnInit(): void {
+  //   this.store.select(selectIsAdminMenuOpen)
+  //     .subscribe(open => open
+  //       ? this.sidenav?.open()
+  //       : this.sidenav?.close());
+  // }
 }

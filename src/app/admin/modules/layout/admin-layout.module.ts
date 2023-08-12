@@ -7,10 +7,12 @@ import { LoadingComponent } from 'src/app/shared/layout/loading/loading.componen
 import { AdminHeaderModule } from '../header/admin-header.module';
 import { AdminLayoutComponent } from './components/admin-layout.component';
 import { AdminLayoutDesktopComponent } from './components/desktop/admin-layout-desktop.component';
+import { AdminLayoutMobileComponent } from './components/mobile/admin-layout-mobile.component';
 
 const components = [
   AdminLayoutComponent,
   AdminLayoutDesktopComponent,
+  AdminLayoutMobileComponent,
 ];
 
 const framework = [
