@@ -13,7 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { PortalFooterModule } from '../portal/shared/footer/portal-footer.module';
+import { PortalFooterModule } from '../portal/modules/footer/portal-footer.module';
 import { CaptchaModule } from '../shared/form/captcha/captcha.module';
 import { PasswordModule } from '../shared/form/password/password.module';
 import { PrivacyPolicyFormComponent } from '../shared/form/privacy-policy/privacy-policy-form.component';

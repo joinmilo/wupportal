@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { PortalLayoutComponent } from './modules/layout/portal-layout.component';
 import { PortalRoutingModule } from './portal-routing.module';
-import { PortalLayoutComponent } from './shared/layout/portal-layout.component';
 
 const framework = [
   CommonModule,

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
-import { PortalFooterModule } from 'src/app/portal/shared/footer/portal-footer.module';
+import { PortalFooterModule } from 'src/app/portal/modules/footer/portal-footer.module';
 import { LoadingComponent } from 'src/app/shared/layout/loading/loading.component';
 import { AdminHeaderModule } from '../header/admin-header.module';
 import { AdminLayoutComponent } from './components/admin-layout.component';

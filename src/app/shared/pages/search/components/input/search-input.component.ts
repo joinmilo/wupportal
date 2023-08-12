@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, combineLatest, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { growOnSidesAnimation } from 'src/app/core/animations/animations';
-import { PortalMenuActions } from 'src/app/portal/shared/menu/state/portal-menu.actions';
+import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
 import { Maybe, SearchDto } from 'src/schema/schema';
 import { SearchActions } from '../../state/search.actions';
 import { selectSearchQuery, selectSearchResult } from '../../state/search.selectors';

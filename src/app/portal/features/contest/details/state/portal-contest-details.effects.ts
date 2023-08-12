@@ -6,7 +6,7 @@ import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { PortalMenuActions } from 'src/app/portal/shared/menu/state/portal-menu.actions';
+import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
 import { ContestCommentEntity, ContestEntity, GetContestCommentsGQL, GetContestGQL, Maybe, QueryOperator, SaveContestCommentGQL } from 'src/schema/schema';
 import { PortalContestDetailsActions } from './portal-contest-details.actions';
 import { selectContestDetails } from './portal-contest-details.selectors';

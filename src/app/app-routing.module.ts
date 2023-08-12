@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountLayoutComponent } from './account/components/layout/account-layout.component';
-import { AdminLayoutComponent } from './admin/shared/layout/components/admin-layout.component';
+import { AdminLayoutComponent } from './admin/modules/layout/components/admin-layout.component';
 import { accountUrl, adminUrl, portalUrl, userUrl } from './core/constants/core.constants';
-import { PortalLayoutComponent } from './portal/shared/layout/portal-layout.component';
+import { PortalLayoutComponent } from './portal/modules/layout/portal-layout.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
