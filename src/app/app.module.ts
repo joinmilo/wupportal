@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -29,7 +28,6 @@ const framework = [
   BrowserAnimationsModule,
   HttpClientModule,
   RouterModule,
-  NgOptimizedImage,
 ];
 
 const libs = [

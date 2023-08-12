@@ -8,8 +8,8 @@ import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input
 import { MimeTypeDefinition } from 'src/app/shared/widgets/media/typings/media';
 import { mimeTypeDefinition } from 'src/app/shared/widgets/media/utils/media.utils';
 import { Maybe, MediaEntity } from 'src/schema/schema';
-import { PortalMainActions } from '../../state/portal-main.actions';
-import { selectPageMedia } from '../../state/portal-main.selectors';
+import { PortalPageActions } from '../../state/portal-page.actions';
+import { selectPageMedia } from '../../state/portal-page.selectors';
 
 @Component({
   selector: 'app-portal-page-media',
@@ -48,7 +48,7 @@ export class PortalPageMediaComponent implements OnDestroy {
     this.activatedRoute.paramMap
       .pipe(takeUntil(this.destroy))
       .subscribe(params => this.store.dispatch(
-        PortalMainActions.getPage(params.get(slug) || '')));
+        PortalPageActions.getPage(params.get(slug) || '')));
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,1 @@
+export const portalLandingStateKey = 'portalLandingState';

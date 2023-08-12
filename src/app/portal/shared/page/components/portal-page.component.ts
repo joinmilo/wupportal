@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { slug } from 'src/app/core/constants/core.constants';
 import { Maybe, MediaEntity, PageEntity } from 'src/schema/schema';
-import { PortalMainActions } from '../../state/portal-main.actions';
-import { selectCurrentPage } from '../../state/portal-main.selectors';
+import { PortalPageActions } from '../state/portal-page.actions';
+import { selectPage } from '../state/portal-page.selectors';
 
 @Component({
   selector: 'app-portal-page',
@@ -28,8 +28,8 @@ export class PortalPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.activatedRoute.params.pipe(
-      tap(params => this.store.dispatch(PortalMainActions.getPage(params[slug] || ''))),
-      switchMap(() => this.store.select(selectCurrentPage)),
+      tap(params => this.store.dispatch(PortalPageActions.getPage(params[slug] || ''))),
+      switchMap(() => this.store.select(selectPage)),
       takeUntil(this.destroy)
     ).subscribe(page => {
       this.page = page;

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, guestArticlesFeatureKey, mapFeatureKey, organisationsFeatureKey, reportsFeatureKey, slug, surveysFeatureKey } from '../core/constants/core.constants';
+import { PortalLandingComponent } from './shared/landing/component/portal-landing.component';
 
 const routes: Routes = [
   {
@@ -109,9 +110,15 @@ const routes: Routes = [
       .then((imported) => imported.NotFoundModule),
   },
   {
+    path: `:${slug}`,
+    loadChildren: () => import('./shared/page/portal-page.module')
+      .then((imported) => imported.PortalPageModule),
+  },
+  {
     path: '',
-    loadChildren: () => import('./main/portal-main.module')
-      .then((imported) => imported.PortalMainModule),
+    loadChildren: () => import('./shared/landing/portal-landing.module')
+      .then((imported) => imported.PortalLandingModule),
+    component: PortalLandingComponent
   },
   {
     path: '**',

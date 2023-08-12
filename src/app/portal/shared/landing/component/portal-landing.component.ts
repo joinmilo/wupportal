@@ -3,13 +3,13 @@ import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { MediaEntity, PageEntity } from 'src/schema/schema';
-import { PortalMainActions } from '../../state/portal-main.actions';
-import { selectLandingPage } from '../../state/portal-main.selectors';
+import { PortalLandingActions } from '../state/portal-landing.actions';
+import { selectLandingPage } from '../state/portal-landing.selectors';
 
 @Component({
   selector: 'app-portal-landing',
   templateUrl: './portal-landing.component.html',
-  styleUrls: ['./portal-landing.component.scss']
+  styleUrls: ['./portal-landing.component.scss'],
 })
 export class PortalLandingComponent implements OnInit, OnDestroy {
 
@@ -27,7 +27,7 @@ export class PortalLandingComponent implements OnInit, OnDestroy {
     this.store.select(selectLandingPage)
     .pipe(
       tap(landing => !landing?.id
-        && this.store.dispatch(PortalMainActions.getLandingPage())),
+        && this.store.dispatch(PortalLandingActions.getLandingPage())),
       takeUntil(this.destroy)
     ).subscribe(page => {
       this.page = page;
