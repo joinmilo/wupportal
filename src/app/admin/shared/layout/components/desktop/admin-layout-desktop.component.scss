@@ -13,14 +13,6 @@ div {
   height: 100%;
 }
 
-app-portal-header {
-  position: fixed;
-  width: 100%;
-  height: var(--header-height);
-  z-index: 99;
-}
-
 main {
-  margin-top: var(--header-height);
-  flex: 2 0 calc(100vh - var(--header-height));
+  flex: 2 0 auto;
 }

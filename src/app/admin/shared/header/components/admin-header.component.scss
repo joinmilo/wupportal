@@ -1,0 +1,24 @@
+@import 'src/styles/mixins.scss';
+
+mat-toolbar {
+  background-color: white;
+  border-bottom: 1px solid var(--color-border);
+  height: 100%;
+}
+
+app-admin-header-desktop,
+app-admin-header-mobile {
+  width: 100%;
+}
+
+@include responsive(tablet) {
+  app-admin-header-desktop {
+    display: none;
+  }
+}
+
+@include responsive(desktop) {
+  app-admin-header-mobile {
+    display: none;
+  }
+}

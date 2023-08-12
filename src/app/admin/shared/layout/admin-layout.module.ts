@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { PortalFooterModule } from 'src/app/portal/shared/footer/portal-footer.module';
-import { PortalHeaderModule } from 'src/app/portal/shared/header/portal-header.module';
 import { LoadingComponent } from 'src/app/shared/layout/loading/loading.component';
+import { AdminHeaderModule } from '../header/admin-header.module';
 import { AdminLayoutComponent } from './components/admin-layout.component';
 import { AdminLayoutDesktopComponent } from './components/desktop/admin-layout-desktop.component';
 
@@ -24,7 +24,7 @@ const materials = [
 
 const modules = [
   LoadingComponent,
-  PortalHeaderModule,
+  AdminHeaderModule,
   PortalFooterModule,
 ];
 

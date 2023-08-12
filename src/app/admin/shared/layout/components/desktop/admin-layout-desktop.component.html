@@ -1,17 +1,12 @@
 <mat-drawer-container autosize>
   <mat-drawer #drawer
     mode="side"
-    disableClose
     opened>
     <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
   </mat-drawer>
 
   <div>
-    <app-portal-header></app-portal-header>
+    <app-admin-header></app-admin-header>
     <main>
       <router-outlet></router-outlet>
     </main>

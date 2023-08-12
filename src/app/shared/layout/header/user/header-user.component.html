@@ -34,7 +34,7 @@
     <span appLabel="becomeContentCreator"></span>
   </section>
 </button>
-<button mat-menu-item (click)="logout()">
+<button mat-menu-item (click)="logout()" *ngIf="isAuthenticated">
   <section>
     <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
     <span appLabel="logout"></span>

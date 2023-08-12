@@ -21,11 +21,13 @@ export class PortalHeaderMobileComponent implements OnInit{
 
   public isSearching = this.store.select(selectIsSearching);
   
-  constructor(private store: Store) {}
-  ngOnInit(): void {
-  this.store.select(selectCurrentUser).subscribe((user) => {
-    this.currentUser = user;
-  });
-    
+  constructor(
+    private store: Store) {}
+
+  public ngOnInit(): void {
+    this.store.select(selectCurrentUser).subscribe((user) => {
+      this.currentUser = user;
+    });
   }
+
 }
