@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
@@ -17,10 +18,13 @@ import { selectAdminMenu } from '../../state/admin.selectors';
     CoreModule,
     FontAwesomeModule,
 
+    MatButtonModule,
     MatExpansionModule,
   ]
 })
 export class AdminMenuComponent {
+
+  public collapsed = false;
 
   public homeRoute = ['/', adminUrl];
 

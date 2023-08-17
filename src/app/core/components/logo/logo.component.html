@@ -1,7 +1,7 @@
 <a [routerLink]="url">
   <img [src]="(logoConfig | async)?.media?.url"
     alt="logo">
-  <img *ngIf="(logoTextConfig | async)?.media?.id"
+  <img *ngIf="(logoTextConfig | async)?.media?.id && showIoconText"
     class="logo-text"
     [src]="(logoTextConfig | async)?.media?.url"
     alt="logo-text">

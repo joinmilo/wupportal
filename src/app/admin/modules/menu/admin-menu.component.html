@@ -1,15 +1,41 @@
-<app-logo [url]="homeRoute">
+<app-logo
+  [url]="homeRoute"
+  [showIoconText]="!collapsed">
 </app-logo>
 
-<mat-accordion>
+<mat-accordion *ngIf="!collapsed">
   <mat-expansion-panel *ngFor="let item of menuItems | async">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <fa-icon [icon]="['fas', item.icon]"></fa-icon>
-        <span [appLabel]="item.name"></span>
+        <fa-icon size="xl" [icon]="['fas', item.icon]"></fa-icon>
+        <span *ngIf="!collapsed"
+          [appLabel]="item.name"></span>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
     <p>I'm visible because I am open</p>
   </mat-expansion-panel>
 </mat-accordion>
+
+<section *ngIf="collapsed">
+  <button mat-icon-button *ngFor="let item of menuItems | async">
+    <fa-icon [icon]="['fas', item.icon]"></fa-icon>
+  </button>
+</section>
+
+<mat-accordion (click)="collapsed = !collapsed" *ngIf="!collapsed">
+  <mat-expansion-panel #panel hideToggle (opened)="panel.close()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <fa-icon size="xl" [icon]="['fas', 'angles-left']"></fa-icon>
+        <span [appLabel]="'Menü ausklappen'"></span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<section *ngIf="collapsed">
+  <button mat-icon-button (click)="collapsed = !collapsed">
+    <fa-icon [icon]="['fas', 'angles-left']"></fa-icon>
+  </button>
+</section>

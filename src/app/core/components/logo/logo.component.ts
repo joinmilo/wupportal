@@ -13,6 +13,9 @@ export class LogoComponent {
   @Input()
   public url?: string[] = ['/'];
 
+  @Input()
+  public showIoconText = true;
+
   public logoConfig = this.store.select(selectConfiguration(logoConfig)); 
 
   public logoTextConfig = this.store.select(selectConfiguration(logoTextConfig)); 
