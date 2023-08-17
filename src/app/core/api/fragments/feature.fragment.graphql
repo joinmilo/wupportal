@@ -1,0 +1,7 @@
+fragment Feature on FeatureEntity {
+  id
+  active
+  icon
+  name
+  code
+}

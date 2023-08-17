@@ -12,8 +12,7 @@ fragment Page on PageEntity {
     id
     order
     feature {
-      id
-      code
+      ...Feature
     }
   }
   translatables {

@@ -3,8 +3,7 @@ query search($params: FilterSortPaginateInput) {
     slug
     name
     feature {
-      id
-      code
+      ...Feature
     }
   }
 }

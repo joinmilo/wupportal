@@ -1,0 +1,8 @@
+query getFeatures($params: FilterSortPaginateInput) {
+  getFeatures(params: $params) {
+    result {
+      ...Feature
+    }
+    total
+  }
+}

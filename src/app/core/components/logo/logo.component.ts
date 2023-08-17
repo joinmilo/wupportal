@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { logoConfig, logoTextConfig } from '../../constants/core.constants';
 import { selectConfiguration } from '../../state/selectors/core.selectors';
@@ -9,6 +9,9 @@ import { selectConfiguration } from '../../state/selectors/core.selectors';
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
+
+  @Input()
+  public url?: string[] = ['/'];
 
   public logoConfig = this.store.select(selectConfiguration(logoConfig)); 
 

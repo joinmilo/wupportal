@@ -1,4 +1,4 @@
-<a [routerLink]="['/']">
+<a [routerLink]="url">
   <img [src]="(logoConfig | async)?.media?.url"
     alt="logo">
   <img *ngIf="(logoTextConfig | async)?.media?.id"

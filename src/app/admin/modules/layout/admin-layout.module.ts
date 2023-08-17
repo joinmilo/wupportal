@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PortalFooterModule } from 'src/app/portal/modules/footer/portal-footer.module';
 import { LoadingComponent } from 'src/app/shared/layout/loading/loading.component';
 import { AdminHeaderModule } from '../header/admin-header.module';
+import { AdminMenuComponent } from '../menu/admin-menu.component';
 import { AdminLayoutComponent } from './components/admin-layout.component';
 import { AdminLayoutDesktopComponent } from './components/desktop/admin-layout-desktop.component';
 import { AdminLayoutMobileComponent } from './components/mobile/admin-layout-mobile.component';
@@ -25,8 +26,9 @@ const materials = [
 ]
 
 const modules = [
-  LoadingComponent,
   AdminHeaderModule,
+  AdminMenuComponent,
+  LoadingComponent,
   PortalFooterModule,
 ];
 

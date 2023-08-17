@@ -4,8 +4,7 @@ fragment MenuItem on MenuItemEntity {
   order
   icon
   feature {
-    id
-    code
+    ...Feature
   }
   parent {
     id
@@ -26,8 +25,7 @@ fragment MenuItem on MenuItemEntity {
     order
     icon
     feature {
-      id
-      code
+      ...Feature
     }
     page {
       id
