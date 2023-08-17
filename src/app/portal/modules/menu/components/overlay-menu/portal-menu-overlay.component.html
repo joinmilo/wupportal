@@ -1,5 +1,6 @@
 <button mat-button
   *ngIf="root; else child"
+  class="root-menu-button"
   [matMenuTriggerFor]="menu">
     {{ parent | translatable: 'name' | async }}
 </button>

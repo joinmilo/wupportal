@@ -5,32 +5,28 @@ import { Action } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs';
 import { portalUrl } from 'src/app/core/constants/core.constants';
 import { GetMenuGQL, MenuItemEntity } from 'src/schema/schema';
-import { PortalMenuActions } from './portal-menu.actions';
+import { PortalActions } from './portal.actions';
 
 @Injectable()
-export class PortalMenuEffects implements OnInitEffects {
+export class PortalEffects implements OnInitEffects {
 
   ngrxOnInitEffects(): Action {
-    return PortalMenuActions.init();
+    return PortalActions.init();
   }
 
   getMenu = createEffect(() => this.actions.pipe(
-    ofType(
-      PortalMenuActions.init,
-      PortalMenuActions.getMenu),
-    switchMap(action => this.getMenuService.watch({
-      parent: (action as ({ parentId: string })).parentId
-    }).valueChanges),
-    map(response => PortalMenuActions.setMenu(response.data.getMenuItems?.result as MenuItemEntity[]))
+    ofType(PortalActions.init),
+    switchMap(() => this.getMenuService.watch().valueChanges),
+    map(response => PortalActions.setMenu(response.data.getMenuItems?.result as MenuItemEntity[]))
   ));
 
   navigateDetails = createEffect(() => this.actions.pipe(
-    ofType(PortalMenuActions.navigateDetails),
+    ofType(PortalActions.navigateDetails),
     tap(action => this.router.navigate(['portal', action.feature?.code, action.slug ])),
   ), { dispatch: false });
 
   navigateMenu = createEffect(() => this.actions.pipe(
-    ofType(PortalMenuActions.navigateMenu),
+    ofType(PortalActions.navigateMenu),
     tap(action => {
       action?.item?.feature?.code
         ? this.router.navigate(['/', portalUrl, action.item.feature.code])
@@ -41,7 +37,7 @@ export class PortalMenuEffects implements OnInitEffects {
   ), { dispatch: false });
 
   notFound = createEffect(() => this.actions.pipe(
-    ofType(PortalMenuActions.notFound),
+    ofType(PortalActions.notFound),
     tap(() => this.router.navigate(['/', portalUrl, '404'])),
   ), { dispatch: false });
 

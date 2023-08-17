@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { GetUserContextAuthorGQL, UserContextEntity } from 'src/schema/schema';
 import { PortalAuthorDetailsActions } from './portal-author-details.actions';
 @Injectable()
@@ -16,7 +16,7 @@ export class AuthorDetailsEffects {
     }).valueChanges),
     map(response => response.data.getUserContext?.id
       ? PortalAuthorDetailsActions.setDetails(response.data.getUserContext as UserContextEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
   constructor(

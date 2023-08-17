@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { DealEntity, GetDealGQL } from 'src/schema/schema';
 import { PortalDealDetailsActions } from './portal-deal-details.actions';
 
@@ -17,7 +17,7 @@ export class PortalDealDetailsEffects {
     }).valueChanges),
     map(response => response.data.getDeal?.id
       ? PortalDealDetailsActions.setDetails(response.data.getDeal as DealEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
 

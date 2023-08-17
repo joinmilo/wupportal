@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Maybe, MenuItemEntity } from 'src/schema/schema';
-import { PortalMenuActions } from '../../../menu/state/portal-menu.actions';
-import { selectPortalMenu } from '../../../menu/state/portal-menu.selectors';
+import { PortalActions } from '../../../../state/portal.actions';
+import { selectPortalMenu } from '../../../../state/portal.selectors';
 
 @Component({
   selector: 'app-portal-footer-desktop',
@@ -18,7 +18,7 @@ export class PortalFooterDesktopComponent {
   ) { }
   
   public navigate(item: Maybe<MenuItemEntity>) {
-    this.store.dispatch(PortalMenuActions.navigateMenu(item));
+    this.store.dispatch(PortalActions.navigateMenu(item));
   }
 
 }

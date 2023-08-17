@@ -6,7 +6,7 @@ import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { GetOrganisationCommentsGQL, GetOrganisationGQL, Maybe, OrganisationCommentEntity, OrganisationEntity, OrganisationRatingEntity, QueryOperator, SaveOrganisationCommentGQL, SaveOrganisationRatingGQL } from 'src/schema/schema';
 import { PortalOrganisationDetailsActions } from './portal-organisation-details.actions';
 import { selectOrganisationDetails, selectOrganisationUserRating } from './portal-organisation-details.selectors';
@@ -24,7 +24,7 @@ export class PortalOrganisationDetailsEffects {
     }).valueChanges),
     map(response => response.data.getOrganisation?.id
       ? PortalOrganisationDetailsActions.setDetails(response.data.getOrganisation as OrganisationEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
   updateDetails = createEffect(() => this.actions.pipe(
@@ -40,7 +40,7 @@ export class PortalOrganisationDetailsEffects {
     }).valueChanges),
     map(response => response.data.getOrganisation?.id
       ? PortalOrganisationDetailsActions.detailsUpdated(response.data.getOrganisation as OrganisationEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
   detailsUpdated = createEffect(() => this.actions.pipe(

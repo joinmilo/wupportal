@@ -13,10 +13,6 @@ import { VerificationComponent } from './components/verification/verification.co
 
 const routes: Routes = [
   {
-    path: '',
-    component: NotFoundComponent
-  },
-  {
     path: 'register',
     component: RegistrationComponent
   },
@@ -47,6 +43,10 @@ const routes: Routes = [
   {
     path: `verification/:${slug}`,
     component: VerificationComponent
+  },
+  {
+    path: '',
+    component: NotFoundComponent
   },
 ]
 @NgModule({

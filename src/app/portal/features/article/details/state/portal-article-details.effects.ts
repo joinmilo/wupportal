@@ -6,7 +6,7 @@ import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { ArticleCommentEntity, ArticleEntity, ArticleRatingEntity, GetArticleCommentsGQL, GetArticleGQL, Maybe, QueryOperator, SaveArticleCommentGQL, SaveArticleRatingGQL } from 'src/schema/schema';
 import { PortalArticleDetailsActions } from './portal-article-details.actions';
 import { selectArticleDetails, selectArticleUserRating } from './portal-article-details.selectors';
@@ -23,7 +23,7 @@ export class PortalArticleDetailsEffects {
     }).valueChanges),
     map(response => response.data.getArticle?.id
       ? PortalArticleDetailsActions.setDetails(response.data.getArticle as ArticleEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
   updateDetails = createEffect(() => this.actions.pipe(
@@ -39,7 +39,7 @@ export class PortalArticleDetailsEffects {
     }).valueChanges),
     map(response => response.data.getArticle?.id
       ? PortalArticleDetailsActions.detailsUpdated(response.data.getArticle as ArticleEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
   detailsUpdated = createEffect(() => this.actions.pipe(

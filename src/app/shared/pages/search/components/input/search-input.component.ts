@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, combineLatest, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { growOnSidesAnimation } from 'src/app/core/animations/animations';
-import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { Maybe, SearchDto } from 'src/schema/schema';
 import { SearchActions } from '../../state/search.actions';
 import { selectSearchQuery, selectSearchResult } from '../../state/search.selectors';
@@ -49,7 +49,7 @@ export class SearchInputComponent implements AfterViewInit, OnDestroy {
 
   public navigateDetails(event: MouseEvent,  entity: Maybe<SearchDto>): void {
     event.stopPropagation();
-    this.store.dispatch(PortalMenuActions.navigateDetails(entity?.slug, entity?.feature));
+    this.store.dispatch(PortalActions.navigateDetails(entity?.slug, entity?.feature));
   }
 
   public navigateResultPage(event: MouseEvent): void {

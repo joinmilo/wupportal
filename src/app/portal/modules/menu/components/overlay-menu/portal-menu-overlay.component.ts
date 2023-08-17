@@ -3,7 +3,7 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Store } from '@ngrx/store';
 import { Observable, map, of } from 'rxjs';
 import { GetMenuGQL, Maybe, MenuItemEntity } from 'src/schema/schema';
-import { PortalMenuActions } from '../../state/portal-menu.actions';
+import { PortalActions } from '../../../../state/portal.actions';
 
 @Component({
   selector: 'app-portal-menu-overlay',
@@ -47,6 +47,6 @@ export class PortalMenuOverlayComponent implements OnInit {
   }
 
   public route(item: Maybe<MenuItemEntity>) {
-    this.store.dispatch(PortalMenuActions.navigateMenu(item));
+    this.store.dispatch(PortalActions.navigateMenu(item));
   }
 }

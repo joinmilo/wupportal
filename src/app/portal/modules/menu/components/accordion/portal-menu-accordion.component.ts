@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import { MatAccordion } from '@angular/material/expansion';
 import { Store } from '@ngrx/store';
 import { Maybe, MenuItemEntity } from 'src/schema/schema';
-import { PortalMenuActions } from '../../state/portal-menu.actions';
-import { selectPortalMenu } from '../../state/portal-menu.selectors';
+import { PortalActions } from '../../../../state/portal.actions';
+import { selectPortalMenu } from '../../../../state/portal.selectors';
 
 @Component({
   selector: 'app-portal-menu-accordion',
@@ -30,6 +30,6 @@ export class PortalMenuAccordionComponent {
   public navigate(item: Maybe<MenuItemEntity>) {
     this.itemSelected.emit(item);
     this.panel?.closeAll();
-    this.store.dispatch(PortalMenuActions.navigateMenu(item));
+    this.store.dispatch(PortalActions.navigateMenu(item));
   }
 }

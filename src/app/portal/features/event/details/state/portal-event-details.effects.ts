@@ -6,7 +6,7 @@ import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { PortalMenuActions } from 'src/app/portal/modules/menu/state/portal-menu.actions';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { ConjunctionOperator, DeleteEventAttendeeGQL, EventCommentEntity, EventEntity, EventRatingEntity, EventScheduleEntity, GetEventCommentsGQL, GetEventGQL, GetEventSchedulesGQL, Maybe, QueryOperator, SaveEventAttendeeGQL, SaveEventCommentGQL, SaveEventRatingGQL } from 'src/schema/schema';
 import { PortalEventDetailsActions } from './portal-event-details.actions';
 import { selectEventAttendeeConfiguration, selectEventDetails, selectEventUserAttendee, selectEventUserRating } from './portal-event-details.selectors';
@@ -23,7 +23,7 @@ export class PortalEventDetailsEffects {
     }).valueChanges),
     map(response => response.data.getEvent?.id
       ? PortalEventDetailsActions.setDetails(response.data.getEvent as EventEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
   updateDetails = createEffect(() => this.actions.pipe(
@@ -40,7 +40,7 @@ export class PortalEventDetailsEffects {
     }).valueChanges),
     map(response => response.data.getEvent?.id
       ? PortalEventDetailsActions.detailsUpdated(response.data.getEvent as EventEntity)
-      : PortalMenuActions.notFound())
+      : PortalActions.notFound())
   ));
 
   detailsUpdated = createEffect(() => this.actions.pipe(
