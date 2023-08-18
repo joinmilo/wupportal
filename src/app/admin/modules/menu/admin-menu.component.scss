@@ -9,23 +9,29 @@
   gap: var(--gap);
 }
 
+fa-icon {
+  width: 2rem;
+  text-align: center;
+}
+
 mat-expansion-panel {
   box-shadow: none !important;
 }
 
 mat-panel-title {
   display: flex;
-  width: 100%;
   gap: 1rem;
 
-  fa-icon {
-    width: 2rem;
-  }
 }
 
 section {
   display: flex;
   flex-flow: column;
+
+  button {
+    height: var(--mat-expansion-header-collapsed-state-height);
+    padding: 0 24px;
+  }
 }
 
 mat-accordion:last-of-type,

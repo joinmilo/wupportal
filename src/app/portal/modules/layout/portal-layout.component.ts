@@ -27,5 +27,7 @@ export class PortalLayoutComponent {
 
   constructor(
     private store: Store,
-  ) { }
+  ) {
+    console.log('test 3')
+  }
 }

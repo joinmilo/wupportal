@@ -18,8 +18,8 @@
 </mat-accordion>
 
 <section *ngIf="collapsed">
-  <button mat-icon-button *ngFor="let item of menuItems | async">
-    <fa-icon [icon]="['fas', item.icon]"></fa-icon>
+  <button mat-button *ngFor="let item of menuItems | async">
+    <fa-icon size="xl" [icon]="['fas', item.icon]"></fa-icon>
   </button>
 </section>
 
@@ -35,7 +35,7 @@
 </mat-accordion>
 
 <section *ngIf="collapsed">
-  <button mat-icon-button (click)="collapsed = !collapsed">
-    <fa-icon [icon]="['fas', 'angles-left']"></fa-icon>
+  <button mat-button (click)="collapsed = !collapsed">
+    <fa-icon size="xl" [icon]="['fas', 'angles-right']"></fa-icon>
   </button>
 </section>

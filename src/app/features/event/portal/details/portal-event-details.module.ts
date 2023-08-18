@@ -24,7 +24,6 @@ import { MapModule } from 'src/app/shared/widgets/map/map.module';
 import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
-import { PortalMapPageFeatureModule } from '../../map/page-feature/portal-map-page-feature.module';
 import { PortalEventDetailsAttendeeComponent } from './components/attendee/portal-event-details-attendee.component';
 import { PortalEventDetailsCalendarComponent } from './components/calendar/portal-event-details-calendar.component';
 import { PortalEventDetailsCommentComponent } from './components/comment/portal-event-details-comment.component';
@@ -73,7 +72,6 @@ const materials = [
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule,
-  PortalMapPageFeatureModule,
 ];
 
 const modules = [

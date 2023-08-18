@@ -24,7 +24,9 @@ export class PortalPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store) { }
+    private store: Store) {
+      console.log('test 2')
+    }
 
   public ngOnInit(): void {
     this.activatedRoute.params.pipe(

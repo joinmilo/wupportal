@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { selectArticleDetails } from '../../../article/details/state/portal-article-details.selectors';
 import { portalDealDetailsStateKey } from '../constants/deal-details.constant';
 import { PortalDealDetailsState } from './portal-deal-details.reducer';
 
@@ -11,7 +10,7 @@ export const selectDealDetails = createSelector(
 );
 
 export const selectDealMedia = createSelector(
-  selectArticleDetails,
+  selectDealDetails,
   state => state?.uploads?.map(upload => upload?.media ?? {})
 );
 
