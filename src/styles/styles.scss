@@ -20,6 +20,11 @@ body {
   margin: var(--gap) auto;
 }
 
+.main-admin {
+  max-width: calc(100% - var(--gap));
+  margin: var(--gap);
+}
+
 .details {
   display: flex;
   flex-flow: column wrap;

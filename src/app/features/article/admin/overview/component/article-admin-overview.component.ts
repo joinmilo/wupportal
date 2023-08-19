@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction, SortPaginate } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
 import { ArticleEntity, FilterSortPaginateInput } from 'src/schema/schema';
 import { ArticleAdminOverviewActions } from '../state/article-admin-overview.actions';
 import { selectOverviewData } from '../state/article-portal-overview.selectors';
@@ -12,9 +12,6 @@ import { selectOverviewData } from '../state/article-portal-overview.selectors';
   styleUrls: ['./article-admin-overview.component.scss']
 })
 export class ArticleAdminOverviewComponent {
-
-  @Output()
-  public sortPaginate = new EventEmitter<SortPaginate>();
 
   public articles = this.store.select(selectOverviewData);
 

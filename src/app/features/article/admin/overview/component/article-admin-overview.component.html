@@ -1,6 +1,11 @@
-<app-table
-  [actions]="actions"
-  [data]="articles"
-  [columns]="columns"
-  (sortPaginate)="sortPaginate.emit($event)">
-</app-table>
+<div class="main-admin">
+  <app-page-title titleLabel="articles"></app-page-title>
+  <app-article-filter
+    (paramsUpdated)="updateParams($event)"></app-article-filter>
+  <app-table
+    [actions]="actions"
+    [data]="articles"
+    [columns]="columns"
+    (sortPaginate)="updateParams($event)">
+  </app-table>
+</div>
