@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
 import { adminUrl } from 'src/app/core/constants/core.constants';
@@ -17,9 +18,9 @@ import { selectAdminMenu } from '../../state/admin.selectors';
     CommonModule,
     CoreModule,
     FontAwesomeModule,
-
     MatButtonModule,
     MatExpansionModule,
+    RouterModule,
   ]
 })
 export class AdminMenuComponent {

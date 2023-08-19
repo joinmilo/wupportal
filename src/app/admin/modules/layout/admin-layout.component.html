@@ -1,0 +1,17 @@
+<app-loading>
+  <app-admin-layout-desktop *ngIf="(mobile | async) === false">
+    <ng-container *ngTemplateOutlet="routerContent">
+    </ng-container>
+  </app-admin-layout-desktop>
+
+  <app-admin-layout-mobile *ngIf="mobile | async">
+    <ng-container *ngTemplateOutlet="routerContent">
+    </ng-container>
+  </app-admin-layout-mobile>
+
+  <app-portal-footer></app-portal-footer>
+</app-loading>
+
+<ng-template #routerContent>
+  <router-outlet></router-outlet>
+</ng-template>

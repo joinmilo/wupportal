@@ -1,5 +1,6 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -67,6 +68,7 @@ const framework = [
 ];
 
 const materials = [
+  LayoutModule,
   MatButtonModule,
   MatSnackBarModule,
 ];

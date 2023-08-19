@@ -5,16 +5,11 @@ import { StoreModule } from '@ngrx/store';
 import { ArticleAdminRoutingModule } from '../features/article/admin/article-admin-routing.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { adminStateKey } from './constants/admin.constants';
-import { AdminLayoutModule } from './modules/layout/admin-layout.module';
 import { AdminEffects } from './state/admin.effects';
 import { adminReducer } from './state/admin.reducer';
 
 const framework = [
   CommonModule,
-];
-
-const modules = [
-  AdminLayoutModule,
 ];
 
 const routes = [
@@ -31,7 +26,6 @@ const libs = [
   imports: [
     ...framework,
     ...libs,
-    ...modules,
     ...routes,
   ],
 })

@@ -8,12 +8,18 @@
     <mat-expansion-panel-header>
       <mat-panel-title>
         <fa-icon size="xl" [icon]="['fas', item.icon]"></fa-icon>
-        <span *ngIf="!collapsed"
+        <span class="mat-headline-6" *ngIf="!collapsed"
           [appLabel]="item.name"></span>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <span *ngFor="let child of item.childs" [appLabel]="child.name"></span>
+    <div class="sub-menu">
+      <button mat-button *ngFor="let child of item.childs"
+        [appLabel]="child.name"
+        [routerLink]="['/', 'admin', child.route]">
+      </button>
+    </div>
+
   </mat-expansion-panel>
 </mat-accordion>
 
