@@ -1,17 +1,17 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { selectUserArticleRatings } from 'src/app/core/state/selectors/user.selectors';
-import { portalArticleDetailsStateKey } from '../constants/article-details.constant';
-import { PortalArticleDetailsState } from './portal-article-details.reducer';
+import { articlePortalDetailsStateKey } from '../constants/article-portal-details.constant';
+import { ArticlePortalDetailsState } from './article-portal-details.reducer';
 
-export const selectPortalArticleDetailsState = createFeatureSelector<PortalArticleDetailsState>(portalArticleDetailsStateKey);
+export const selectArticleArticleDetailsState = createFeatureSelector<ArticlePortalDetailsState>(articlePortalDetailsStateKey);
 
 export const selectArticleDetails = createSelector(
-  selectPortalArticleDetailsState,
+  selectArticleArticleDetailsState,
   state => state.details
 );
 
 export const selectArticleComments = createSelector(
-  selectPortalArticleDetailsState,
+  selectArticleArticleDetailsState,
   state => state.comments
 );
 

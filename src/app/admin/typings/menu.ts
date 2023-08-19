@@ -4,10 +4,11 @@ import { IconName } from '@fortawesome/fontawesome-svg-core'
 export type AdminMenuItem = {
   icon: IconName,
   name?: string,
-  route: string[][]
+  route?: string,
+  childs?: AdminMenuItem[]
 }
 
 export type AdminRoutes = {
-  key: string,
+  code: string,
   routes: Routes,
 }

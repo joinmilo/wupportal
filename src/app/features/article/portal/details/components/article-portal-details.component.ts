@@ -6,15 +6,15 @@ import { articlesFeatureKey, portalUrl, slug } from 'src/app/core/constants/core
 import { ArticleFilterQueryDefinition } from 'src/app/core/typings/filter-params/article-filter-param';
 import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { ArticleEntity, Maybe, MediaEntity } from 'src/schema/schema';
-import { PortalArticleDetailsActions } from '../state/portal-article-details.actions';
-import { selectArticleDetails } from '../state/portal-article-details.selectors';
+import { ArticlePortalDetailsActions } from '../state/article-portal-details.actions';
+import { selectArticleDetails } from '../state/article-portal-details.selectors';
 
 @Component({
-  selector: 'app-portal-article-details',
-  templateUrl: './portal-article-details.component.html',
-  styleUrls: ['./portal-article-details.component.scss']
+  selector: 'app-article-portal-details',
+  templateUrl: './article-portal-details.component.html',
+  styleUrls: ['./article-portal-details.component.scss']
 })
-export class PortalArticleDetailsComponent implements OnInit, OnDestroy {
+export class ArticlePortalDetailsComponent implements OnInit, OnDestroy {
 
   public categoryUrl = articlesFeatureKey;
 
@@ -38,7 +38,7 @@ export class PortalArticleDetailsComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.activatedRoute.params.pipe(
-      tap(params => this.store.dispatch(PortalArticleDetailsActions.getDetails(params[slug] || ''))),
+      tap(params => this.store.dispatch(ArticlePortalDetailsActions.getDetails(params[slug] || ''))),
       switchMap(() => this.store.select(selectArticleDetails)),
       takeUntil(this.destroy)
     ).subscribe(article => {

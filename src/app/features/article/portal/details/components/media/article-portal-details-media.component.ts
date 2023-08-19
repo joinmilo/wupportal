@@ -8,15 +8,15 @@ import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input
 import { MimeTypeDefinition } from 'src/app/shared/widgets/media/typings/media';
 import { mimeTypeDefinition } from 'src/app/shared/widgets/media/utils/media.utils';
 import { Maybe, MediaEntity } from 'src/schema/schema';
-import { PortalArticleDetailsActions } from '../../state/portal-article-details.actions';
-import { selectArticleMedia } from '../../state/portal-article-details.selectors';
+import { ArticlePortalDetailsActions } from '../../state/article-portal-details.actions';
+import { selectArticleMedia } from '../../state/article-portal-details.selectors';
 
 @Component({
-  selector: 'app-portal-article-details-media',
-  templateUrl: './portal-article-details-media.component.html',
-  styleUrls: ['./portal-article-details-media.component.scss']
+  selector: 'app-article-portal-details-media',
+  templateUrl: './article-portal-details-media.component.html',
+  styleUrls: ['./article-portal-details-media.component.scss']
 })
-export class PortalArticleDetailsMediaComponent implements OnDestroy {
+export class ArticlePortalDetailsMediaComponent implements OnDestroy {
 
   public fileType = MediaDisplayType.Image;
 
@@ -48,7 +48,7 @@ export class PortalArticleDetailsMediaComponent implements OnDestroy {
     this.activatedRoute.paramMap
       .pipe(takeUntil(this.destroy))
       .subscribe(params => this.store.dispatch(
-        PortalArticleDetailsActions.getDetails(params.get(slug) || '')));
+        ArticlePortalDetailsActions.getDetails(params.get(slug) || '')));
   }
 
   ngOnDestroy(): void {

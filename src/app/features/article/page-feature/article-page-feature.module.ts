@@ -38,4 +38,4 @@ const libs = [
   ],
   exports: [...components],
 })
-export class PortalArticlePageFeatureModule { }
+export class ArticlePageFeatureModule { }

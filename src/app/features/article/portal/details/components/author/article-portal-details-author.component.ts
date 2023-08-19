@@ -3,14 +3,14 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { authorsFeatureKey, portalUrl } from 'src/app/core/constants/core.constants';
 import { ArticleEntity, Maybe, MediaEntity } from 'src/schema/schema';
-import { selectArticleDetails } from '../../state/portal-article-details.selectors';
+import { selectArticleDetails } from '../../state/article-portal-details.selectors';
 
 @Component({
-  selector: 'app-portal-article-details-author',
-  templateUrl: './portal-article-details-author.component.html',
-  styleUrls: ['./portal-article-details-author.component.scss'],
+  selector: 'app-article-portal-details-author',
+  templateUrl: './article-portal-details-author.component.html',
+  styleUrls: ['./article-portal-details-author.component.scss'],
 })
-export class PortalArticleDetailsAuthorComponent implements OnInit, OnDestroy {
+export class ArticlePortalDetailsAuthorComponent implements OnInit, OnDestroy {
 
   public article?: Maybe<ArticleEntity> | undefined;
 

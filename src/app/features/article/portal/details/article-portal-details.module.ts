@@ -23,24 +23,24 @@ import { MapModule } from 'src/app/shared/widgets/map/map.module';
 import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
-import { PortalArticleDetailsAuthorComponent } from './components/author/portal-article-details-author.component';
-import { PortalArticleDetailsCommentComponent } from './components/comment/portal-article-details-comment.component';
-import { PortalArticleDetailsCommentsComponent } from './components/comments/portal-article-details-comments.component';
-import { PortalArticleDetailsMediaComponent } from './components/media/portal-article-details-media.component';
-import { PortalArticleDetailsComponent } from './components/portal-article-details.component';
-import { PortalArticleDetailsRatingComponent } from './components/rating/portal-article-details-rating.component';
-import { portalArticleDetailsStateKey } from './constants/article-details.constant';
-import { PortalArticleDetailsRoutingModule } from './portal-article-details-routing.module';
-import { PortalArticleDetailsEffects } from './state/portal-article-details.effects';
-import { portalArticleDetailsReducer } from './state/portal-article-details.reducer';
+import { ArticlePortalDetailsRoutingModule } from './article-portal-details-routing.module';
+import { ArticlePortalDetailsComponent } from './components/article-portal-details.component';
+import { ArticlePortalDetailsAuthorComponent } from './components/author/article-portal-details-author.component';
+import { ArticlePortalDetailsCommentComponent } from './components/comment/article-portal-details-comment.component';
+import { ArticlePortalDetailsCommentsComponent } from './components/comments/article-portal-details-comments.component';
+import { ArticlePortalDetailsMediaComponent } from './components/media/article-portal-details-media.component';
+import { ArticlePortalDetailsRatingComponent } from './components/rating/article-portal-details-rating.component';
+import { articlePortalDetailsStateKey } from './constants/article-portal-details.constant';
+import { ArticlePortalDetailsEffects } from './state/article-portal-details.effects';
+import { articlePortalDetailsReducer } from './state/article-portal-details.reducer';
 
 const components = [
-  PortalArticleDetailsComponent,
-  PortalArticleDetailsCommentComponent,
-  PortalArticleDetailsCommentsComponent,
-  PortalArticleDetailsAuthorComponent,
-  PortalArticleDetailsRatingComponent,
-  PortalArticleDetailsMediaComponent
+  ArticlePortalDetailsComponent,
+  ArticlePortalDetailsCommentComponent,
+  ArticlePortalDetailsCommentsComponent,
+  ArticlePortalDetailsAuthorComponent,
+  ArticlePortalDetailsRatingComponent,
+  ArticlePortalDetailsMediaComponent
 ];
 
 const framework = [
@@ -67,7 +67,7 @@ const modules = [
   CoreModule,
   CommentModule,
   MediaModule,
-  PortalArticleDetailsRoutingModule,
+  ArticlePortalDetailsRoutingModule,
   RadioButtonFormModule,
   RatingModule,
   ShareModule,
@@ -77,8 +77,8 @@ const modules = [
 
 const libs = [
   FontAwesomeModule,
-  StoreModule.forFeature(portalArticleDetailsStateKey, portalArticleDetailsReducer),
-  EffectsModule.forFeature([PortalArticleDetailsEffects]),
+  StoreModule.forFeature(articlePortalDetailsStateKey, articlePortalDetailsReducer),
+  EffectsModule.forFeature([ArticlePortalDetailsEffects]),
 ]
 
 @NgModule({
@@ -91,4 +91,4 @@ const libs = [
   ],
   exports: [...components],
 })
-export class PortalArticleDetailsModule { }
+export class ArticlePortalDetailsModule { }

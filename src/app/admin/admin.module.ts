@@ -19,7 +19,7 @@ const modules = [
 
 const routes = [
   ArticleAdminRoutingModule,
-  AdminRoutingModule,
+  AdminRoutingModule, //TODO: always last entry duet to order and redirect to 404, Remove 404 and put in AppRouter
 ]
 
 const libs = [

@@ -14,15 +14,19 @@ fa-icon {
   text-align: center;
 }
 
-mat-expansion-panel {
-  box-shadow: none !important;
+mat-accordion {
+  width: 100%;
+  
+  mat-expansion-panel {
+    box-shadow: none !important;
+  }
+  
+  mat-panel-title {
+    display: flex;
+    gap: 1rem;
+  }
 }
 
-mat-panel-title {
-  display: flex;
-  gap: 1rem;
-
-}
 
 section {
   display: flex;

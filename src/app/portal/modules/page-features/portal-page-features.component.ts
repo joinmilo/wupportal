@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, formsFeatureKey, guestArticlesFeatureKey, mapFeatureKey, mediaFeatureKey, organisationsFeatureKey, reportsFeatureKey, surveysFeatureKey } from 'src/app/core/constants/core.constants';
-import { PortalArticlePageFeatureModule } from 'src/app/features/article/portal/page-feature/portal-article-page-feature.module';
+import { ArticlePageFeatureModule } from 'src/app/features/article/page-feature/article-page-feature.module';
 import { PortalAuthorPageFeatureModule } from 'src/app/features/author/portal/page-feature/portal-author-page-feature.module';
 import { PortalCalendarPageFeatureModule } from 'src/app/features/calendar/portal/page-feature/portal-calendar-page-feature.module';
 import { PortalContestPageFeatureModule } from 'src/app/features/contest/portal/page-feature/portal-contest-page-feature.module';
@@ -24,7 +24,7 @@ import { Maybe, PageFeatureEntity } from 'src/schema/schema';
   imports: [
     CommonModule,
 
-    PortalArticlePageFeatureModule,
+    ArticlePageFeatureModule,
     PortalAuthorPageFeatureModule,
     PortalCalendarPageFeatureModule,
     PortalContestPageFeatureModule,

@@ -24,17 +24,17 @@
       <p [innerHtml]="article | translatable : 'content' | async"></p>
     </section>
 
-    <app-portal-article-details-author *ngIf="article?.author">
-    </app-portal-article-details-author>
+    <app-article-portal-details-author *ngIf="article?.author">
+    </app-article-portal-details-author>
 
     <app-media-slider *ngIf="media && media.length" [media]="media" [link]="['./media']">
     </app-media-slider>
 
-    <app-portal-article-details-rating>
-    </app-portal-article-details-rating>
+    <app-article-portal-details-rating>
+    </app-article-portal-details-rating>
 
-    <app-portal-article-details-comment>
-    </app-portal-article-details-comment>
+    <app-article-portal-details-comment>
+    </app-article-portal-details-comment>
 
   </section>
 

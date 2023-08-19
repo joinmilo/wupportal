@@ -10,8 +10,8 @@ const routes: Routes = [
   },
   {
     path: `${articlesFeatureKey}/:${slug}`,
-    loadChildren: () => import('src/app/features/article/portal/details/portal-article-details.module')
-      .then((imported) => imported.PortalArticleDetailsModule),
+    loadChildren: () => import('src/app/features/article/portal/details/article-portal-details.module')
+      .then((imported) => imported.ArticlePortalDetailsModule),
   },
 ];
 

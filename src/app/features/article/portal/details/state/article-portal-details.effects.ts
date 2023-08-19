@@ -8,28 +8,28 @@ import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { ArticleCommentEntity, ArticleEntity, ArticleRatingEntity, GetArticleCommentsGQL, GetArticleGQL, Maybe, QueryOperator, SaveArticleCommentGQL, SaveArticleRatingGQL } from 'src/schema/schema';
-import { PortalArticleDetailsActions } from './portal-article-details.actions';
-import { selectArticleDetails, selectArticleUserRating } from './portal-article-details.selectors';
+import { ArticlePortalDetailsActions } from './article-portal-details.actions';
+import { selectArticleDetails, selectArticleUserRating } from './article-portal-details.selectors';
 
 @Injectable()
-export class PortalArticleDetailsEffects {
+export class ArticlePortalDetailsEffects {
 
   getDetails = createEffect(() => this.actions.pipe(
-    ofType(PortalArticleDetailsActions.getDetails),
+    ofType(ArticlePortalDetailsActions.getDetails),
     switchMap((action) => this.getArticleService.watch({
       entity: {
         slug: action.slug
       }
     }).valueChanges),
     map(response => response.data.getArticle?.id
-      ? PortalArticleDetailsActions.setDetails(response.data.getArticle as ArticleEntity)
+      ? ArticlePortalDetailsActions.setDetails(response.data.getArticle as ArticleEntity)
       : PortalActions.notFound())
   ));
 
   updateDetails = createEffect(() => this.actions.pipe(
     ofType(
-      PortalArticleDetailsActions.articleRatingSaved,
-      PortalArticleDetailsActions.articleCommentSaved
+      ArticlePortalDetailsActions.articleRatingSaved,
+      ArticlePortalDetailsActions.articleCommentSaved
       ),
     withLatestFrom(this.store.select(selectArticleDetails)),
     switchMap(([, articleDetails]) => this.getArticleService.watch({
@@ -38,17 +38,17 @@ export class PortalArticleDetailsEffects {
       }
     }).valueChanges),
     map(response => response.data.getArticle?.id
-      ? PortalArticleDetailsActions.detailsUpdated(response.data.getArticle as ArticleEntity)
+      ? ArticlePortalDetailsActions.detailsUpdated(response.data.getArticle as ArticleEntity)
       : PortalActions.notFound())
   ));
 
   detailsUpdated = createEffect(() => this.actions.pipe(
-    ofType(PortalArticleDetailsActions.detailsUpdated),
+    ofType(ArticlePortalDetailsActions.detailsUpdated),
     map(() => CoreUserActions.updateUser())
   ));
 
   getComments = createEffect(() => this.actions.pipe(
-    ofType(PortalArticleDetailsActions.getComments),
+    ofType(ArticlePortalDetailsActions.getComments),
     switchMap(action => this.getCommentsService.watch({
       params: {
         sort: 'created',
@@ -62,11 +62,11 @@ export class PortalArticleDetailsEffects {
         }
       },
     }).valueChanges),
-    map(response => PortalArticleDetailsActions.setComments(response.data.getArticleComments?.result as Maybe<ArticleCommentEntity[]>))
+    map(response => ArticlePortalDetailsActions.setComments(response.data.getArticleComments?.result as Maybe<ArticleCommentEntity[]>))
   ));
 
   saveArticleRating = createEffect(() => this.actions.pipe(
-    ofType(PortalArticleDetailsActions.saveArticleRating),
+    ofType(ArticlePortalDetailsActions.saveArticleRating),
     withLatestFrom(
       this.store.select(selectArticleDetails),
       this.store.select(selectCurrentUser),
@@ -82,11 +82,11 @@ export class PortalArticleDetailsEffects {
     switchMap((entity) => this.saveArticleRatingService.mutate({
       entity: entity
     })),
-    map(response => PortalArticleDetailsActions.articleRatingSaved(response.data?.saveArticleRating as ArticleRatingEntity))
+    map(response => ArticlePortalDetailsActions.articleRatingSaved(response.data?.saveArticleRating as ArticleRatingEntity))
   ));
 
   articleRatingSaved = createEffect(() => this.actions.pipe(
-    ofType(PortalArticleDetailsActions.articleRatingSaved),
+    ofType(ArticlePortalDetailsActions.articleRatingSaved),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
       labelMessage: 'ratingSaved'
@@ -94,7 +94,7 @@ export class PortalArticleDetailsEffects {
   ));
 
   saveArticleComment = createEffect(() => this.actions.pipe(
-    ofType(PortalArticleDetailsActions.saveArticleComment),
+    ofType(ArticlePortalDetailsActions.saveArticleComment),
     withLatestFrom(
       this.store.select(selectArticleDetails),
       this.store.select(selectCurrentUser),
@@ -109,11 +109,11 @@ export class PortalArticleDetailsEffects {
     switchMap(entity => this.saveArticleCommentService.mutate({
       entity
     })),
-    map(response => PortalArticleDetailsActions.articleCommentSaved(response.data?.saveArticleComment as ArticleCommentEntity))
+    map(response => ArticlePortalDetailsActions.articleCommentSaved(response.data?.saveArticleComment as ArticleCommentEntity))
   ));
 
   articleCommentSaved = createEffect(() => this.actions.pipe(
-    ofType(PortalArticleDetailsActions.articleCommentSaved),
+    ofType(ArticlePortalDetailsActions.articleCommentSaved),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
       labelMessage: 'commentSaved'

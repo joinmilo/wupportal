@@ -1,8 +1,8 @@
 import { createActionGroup } from '@ngrx/store';
 import { ArticleCommentEntity, ArticleCommentEntityInput, ArticleEntity, ArticleRatingEntity, ArticleRatingEntityInput, Maybe } from 'src/schema/schema';
 
-export const PortalArticleDetailsActions = createActionGroup({
-  source: 'Portal Article Details',
+export const ArticlePortalDetailsActions = createActionGroup({
+  source: 'Article Portal Details',
   events: {
     'get details': (slug: Maybe<string>) => ({ slug }),
     'set details': (article: Maybe<ArticleEntity>) => ({ article }),

@@ -3,15 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { slug } from 'src/app/core/constants/core.constants';
-import { PortalArticleDetailsActions } from '../../state/portal-article-details.actions';
-import { selectArticleComments } from '../../state/portal-article-details.selectors';
+import { ArticlePortalDetailsActions } from '../../state/article-portal-details.actions';
+import { selectArticleComments } from '../../state/article-portal-details.selectors';
 
 @Component({
-  selector: 'app-portal-article-details-comments',
-  templateUrl: './portal-article-details-comments.component.html',
-  styleUrls: ['./portal-article-details-comments.component.scss']
+  selector: 'app-article-portal-details-comments',
+  templateUrl: './article-portal-details-comments.component.html',
+  styleUrls: ['./article-portal-details-comments.component.scss']
 })
-export class PortalArticleDetailsCommentsComponent implements OnInit, OnDestroy {
+export class ArticlePortalDetailsCommentsComponent implements OnInit, OnDestroy {
   
   public comments = this.store.select(selectArticleComments);
 
@@ -26,12 +26,12 @@ export class PortalArticleDetailsCommentsComponent implements OnInit, OnDestroy 
     this.activatedRoute.paramMap
       .pipe(takeUntil(this.destroy))
       .subscribe(params => this.store.dispatch(
-        PortalArticleDetailsActions.getComments(params.get(slug) || ''))
+        ArticlePortalDetailsActions.getComments(params.get(slug) || ''))
       );
   }
 
   public saveComment(content: string): void {
-    this.store.dispatch(PortalArticleDetailsActions.saveArticleComment({
+    this.store.dispatch(ArticlePortalDetailsActions.saveArticleComment({
       content,
     }));
   }
