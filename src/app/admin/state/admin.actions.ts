@@ -6,7 +6,8 @@ export const AdminActions = createActionGroup({
   source: 'Admin',
   events: {
     'init': emptyProps(),
-    'toggle menu': emptyProps(),
+    'open menu': emptyProps(),
+    'close menu': emptyProps(),
 
     'add routes': (routes: AdminRoutes) => ({ routes }),
 

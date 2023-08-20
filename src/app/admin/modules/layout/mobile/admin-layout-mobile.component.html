@@ -1,6 +1,9 @@
 <mat-drawer-container autosize>
-  <mat-drawer mode="over" (closedStart)="closedStart()">
-    <app-admin-menu></app-admin-menu>
+  <mat-drawer mode="over" (closedStart)="close()">
+    <app-admin-menu
+      [collapsable]="false"
+      (closed)="close()">
+    </app-admin-menu>
   </mat-drawer>
 
   <div>

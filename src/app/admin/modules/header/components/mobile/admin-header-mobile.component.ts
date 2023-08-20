@@ -16,7 +16,7 @@ export class AdminHeaderMobileComponent {
     private store: Store) {}
 
   public openMenu(): void {
-    this.store.dispatch(AdminActions.toggleMenu());
+    this.store.dispatch(AdminActions.openMenu());
   }
 
 }

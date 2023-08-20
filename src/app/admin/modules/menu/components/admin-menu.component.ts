@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectAdminMenu } from 'src/app/admin/state/admin.selectors';
 import { adminUrl } from 'src/app/core/constants/core.constants';
@@ -11,6 +11,12 @@ import { AdminMenuService } from '../services/admin-menu.service';
 })
 export class AdminMenuComponent {
 
+  @Input()
+  public collapsable = true;
+
+  @Output()
+  public closed = new EventEmitter<void>();
+  
   public collapsed = false;
 
   public homeRoute = ['/', adminUrl];
@@ -21,5 +27,11 @@ export class AdminMenuComponent {
     public menuService: AdminMenuService,
     private store: Store,
   ) { }
+
+  public onCollapse(): void {
+    this.collapsable
+      ? this.collapsed = true
+      : this.closed.emit();
+  }
 
 }

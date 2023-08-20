@@ -12,6 +12,6 @@
   <button mat-menu-item *ngFor="let child of childs"
     [appLabel]="child.name"
     [routerLink]="[menuService.createRouterLink(child)]"
-    routerLinkActive="active">
+    routerLinkActive="menu-active">
   </button>
 </mat-menu>

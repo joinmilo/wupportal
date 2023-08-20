@@ -16,8 +16,12 @@ export const initialState: AdminState = {
 export const adminReducer = createReducer(
   initialState,
 
-  on(AdminActions.toggleMenu, (state): AdminState => (
-    { ...state, menuOpen: !state.menuOpen }
+  on(AdminActions.openMenu, (state): AdminState => (
+    { ...state, menuOpen: true }
+  )),
+
+  on(AdminActions.closeMenu, (state): AdminState => (
+    { ...state, menuOpen: false }
   )),
 
   on(AdminActions.addRoutes, (state, action): AdminState => (

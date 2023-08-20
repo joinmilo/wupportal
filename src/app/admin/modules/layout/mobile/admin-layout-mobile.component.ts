@@ -39,7 +39,7 @@ export class AdminLayoutMobileComponent implements OnInit {
         : this.sidenav?.close());
   }
   
-  closedStart() {
-    this.store.dispatch(AdminActions.toggleMenu());
+  public close(): void {
+    this.store.dispatch(AdminActions.closeMenu());
   }
 }

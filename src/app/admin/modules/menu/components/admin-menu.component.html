@@ -3,29 +3,33 @@
   [showIoconText]="!collapsed">
 </app-logo>
 
-<ng-container *ngFor="let item of menuItems | async">
-  <app-admin-menu-overlay *ngIf="collapsed"
+<ng-container *ngIf="collapsed; else accordion">
+  <app-admin-menu-overlay *ngFor="let item of menuItems | async"
     [active]="menuService.isChildRouteActive(item)"
     [childs]="item.childs"
     [icon]="item.icon">
   </app-admin-menu-overlay>
 
-  <app-admin-menu-accordion *ngIf="!collapsed"
+  <app-admin-menu-overlay
+    icon=angles-right
+    (clicked)="collapsed = false">
+  </app-admin-menu-overlay>
+</ng-container>
+
+
+<ng-template #accordion>
+  <app-admin-menu-accordion *ngFor="let item of menuItems | async"
     [active]="menuService.isChildRouteActive(item)"
     [childs]="item.childs"
     [icon]="item.icon"
     [label]="item.name">
   </app-admin-menu-accordion>
 
-</ng-container>
+  <app-admin-menu-accordion
+    icon="angles-left"
+    label=collapseMenu
+    (clicked)="onCollapse()">
+  </app-admin-menu-accordion>
+</ng-template>
 
-<app-admin-menu-overlay *ngIf="collapsed"
-  icon=angles-right
-  (clicked)="collapsed = !collapsed">
-</app-admin-menu-overlay>
 
-<app-admin-menu-accordion *ngIf="!collapsed"
-  icon="angles-left"
-  label=collapseMenu
-  (clicked)="collapsed = !collapsed">
-</app-admin-menu-accordion>
