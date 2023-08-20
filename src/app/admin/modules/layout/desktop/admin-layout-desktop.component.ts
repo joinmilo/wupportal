@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { AdminHeaderModule } from '../../header/admin-header.module';
-import { AdminMenuComponent } from '../../menu/admin-menu.component';
+import { AdminMenuModule } from '../../menu/admin-menu.module';
 
 @Component({
   selector: 'app-admin-layout-desktop',
@@ -16,7 +16,7 @@ import { AdminMenuComponent } from '../../menu/admin-menu.component';
     CommonModule,
     CoreModule,
     AdminHeaderModule,
-    AdminMenuComponent,
+    AdminMenuModule,
     MatSidenavModule,
     RouterModule,
   ]

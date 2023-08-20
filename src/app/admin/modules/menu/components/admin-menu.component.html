@@ -1,0 +1,31 @@
+<app-logo
+  [url]="homeRoute"
+  [showIoconText]="!collapsed">
+</app-logo>
+
+<ng-container *ngFor="let item of menuItems | async">
+  <app-admin-menu-overlay *ngIf="collapsed"
+    [active]="isChildRouteActive(item)"
+    [childs]="item.childs"
+    [icon]="item.icon">
+  </app-admin-menu-overlay>
+
+  <app-admin-menu-accordion *ngIf="!collapsed"
+    [active]="isChildRouteActive(item)"
+    [childs]="item.childs"
+    [icon]="item.icon"
+    [label]="item.name">
+  </app-admin-menu-accordion>
+
+</ng-container>
+
+<app-admin-menu-overlay *ngIf="collapsed"
+  icon=angles-right
+  (clicked)="collapsed = !collapsed">
+</app-admin-menu-overlay>
+
+<app-admin-menu-accordion *ngIf="!collapsed"
+  icon="angles-left"
+  label=collapseMenu
+  (clicked)="collapsed = !collapsed">
+</app-admin-menu-accordion>

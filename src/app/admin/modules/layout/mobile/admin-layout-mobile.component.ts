@@ -7,7 +7,7 @@ import { AdminActions } from 'src/app/admin/state/admin.actions';
 import { selectIsAdminMenuOpen } from 'src/app/admin/state/admin.selectors';
 import { CoreModule } from 'src/app/core/core.module';
 import { AdminHeaderModule } from '../../header/admin-header.module';
-import { AdminMenuComponent } from '../../menu/admin-menu.component';
+import { AdminMenuModule } from '../../menu/admin-menu.module';
 
 @Component({
   selector: 'app-admin-layout-mobile',
@@ -18,7 +18,7 @@ import { AdminMenuComponent } from '../../menu/admin-menu.component';
     CommonModule,
     CoreModule,
     AdminHeaderModule,
-    AdminMenuComponent,
+    AdminMenuModule,
     MatSidenavModule,
     RouterModule,
   ]

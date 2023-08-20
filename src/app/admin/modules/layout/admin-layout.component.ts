@@ -29,6 +29,7 @@ export class AdminLayoutComponent {
 
   public loading = this.store.select(selectIsLoading);
 
+  // Display: none does not work for multiple <router-outets> 
   public mobile = this.layoutService.isMobile;
 
   constructor(

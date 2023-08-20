@@ -1,0 +1,13 @@
+:host {
+  height: 100%;
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: var(--gap);
+}
+
+app-admin-menu-accordion:last-of-type,
+app-admin-menu-overlay:last-of-type {
+  margin-top: auto;
+}

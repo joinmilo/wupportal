@@ -1,0 +1,24 @@
+
+fa-icon {
+  width: 2rem;
+  text-align: center;
+}
+
+.active {
+  color: var(--color-primary-500) !important;
+
+  fa-icon {
+    color: var(--color-primary-500) !important;
+  }
+}
+
+.trigger-button {
+  height: var(--mat-expansion-header-collapsed-state-height);
+  padding: 0 24px;
+}
+
+.trigger {
+  position: absolute;
+  top: 0;
+  right: -1rem;
+}

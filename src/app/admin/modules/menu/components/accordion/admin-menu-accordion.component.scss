@@ -1,0 +1,35 @@
+fa-icon {
+  width: 2rem;
+  text-align: center;
+}
+
+mat-accordion {
+  width: 100%;
+
+  mat-expansion-panel {
+    box-shadow: none !important;
+  }
+  
+  mat-panel-title {
+    display: flex;
+    gap: 1rem;
+
+    .mat-headline-6 {
+      margin: 0;
+    }
+  }
+
+  .sub-menu {
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+  }
+}
+
+.active {
+  color: var(--color-primary-500) !important;
+
+  fa-icon {
+    color: var(--color-primary-500) !important;
+  }
+}

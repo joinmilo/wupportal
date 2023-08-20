@@ -1,17 +1,3 @@
-@import 'src/styles/mixins.scss';
-
 :host {
   height: 100%;
-}
-
-app-admin-layout-desktop {
-  @include responsive(tablet) {
-    display: none;
-  }
-}
-
-app-admin-layout-mobile {
-  @include responsive(desktop) {
-    display: none;
-  }
 }

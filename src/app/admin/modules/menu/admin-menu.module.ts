@@ -3,18 +3,22 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
-import { PortalMenuAccordionComponent } from './components/accordion/portal-menu-accordion.component';
-import { PortalMenuOverlayComponent } from './components/overlay/portal-menu-overlay.component';
+import { AdminMenuAccordionComponent } from './components/accordion/admin-menu-accordion.component';
+import { AdminMenuComponent } from './components/admin-menu.component';
+import { AdminMenuOverlayComponent } from './components/overlay/admin-menu-overlay.component';
 
-const components = [  
-  PortalMenuAccordionComponent,
-  PortalMenuOverlayComponent,
+const components = [
+  AdminMenuComponent,
+  AdminMenuAccordionComponent,
+  AdminMenuOverlayComponent,
 ];
 
 const framework = [
   CommonModule,
+  RouterModule,
 ];
 
 const materials = [
@@ -45,4 +49,4 @@ const libs = [
     ...components,
   ],
 })
-export class PortalMenuModule { }
+export class AdminMenuModule { }
