@@ -3,7 +3,7 @@
     [hideToggle]="!childs?.length"
     (opened)="click(panel)">
     <mat-expansion-panel-header>
-      <mat-panel-title [ngClass]="{'active': active}">
+      <mat-panel-title [ngClass]="{'menu-active': active}">
         <fa-icon *ngIf="icon"
           size="xl" [icon]="['fas', icon]">
         </fa-icon>
@@ -16,7 +16,7 @@
     <div class="sub-menu">
       <button mat-button *ngFor="let child of childs"
         [appLabel]="child.name"
-        [routerLink]="[createRouterLink(child)]"
+        [routerLink]="[menuService.createRouterLink(child)]"
         routerLinkActive="active">
       </button>
     </div>

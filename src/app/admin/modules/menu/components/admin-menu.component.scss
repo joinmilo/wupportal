@@ -7,6 +7,10 @@
   gap: var(--gap);
 }
 
+app-admin-menu-accordion {
+  width: 100%;
+}
+
 app-admin-menu-accordion:last-of-type,
 app-admin-menu-overlay:last-of-type {
   margin-top: auto;

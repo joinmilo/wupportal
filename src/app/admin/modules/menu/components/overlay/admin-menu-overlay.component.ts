@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
-import { adminUrl } from 'src/app/core/constants/core.constants';
+import { AdminMenuService } from '../../services/admin-menu.service';
 
 @Component({
   selector: 'app-admin-menu-overlay',
@@ -23,14 +23,14 @@ export class AdminMenuOverlayComponent {
   @Output()
   public clicked = new EventEmitter<void>();
 
+  constructor(
+    public menuService: AdminMenuService,
+  ) { }
+
   public click(trigger: MatMenuTrigger): void {
     this.childs?.length
       ? trigger.openMenu()
       : this.clicked.emit();
-  }
-
-  public createRouterLink(child: AdminMenuItem): string {
-    return `/${adminUrl}/${child.route as string}`;
   }
 
 }

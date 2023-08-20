@@ -25,6 +25,14 @@ body {
   margin: var(--gap);
 }
 
+.menu-active {
+  color: var(--color-primary-500) !important;
+
+  fa-icon {
+    color: var(--color-primary-500) !important;
+  }
+}
+
 .details {
   display: flex;
   flex-flow: column wrap;

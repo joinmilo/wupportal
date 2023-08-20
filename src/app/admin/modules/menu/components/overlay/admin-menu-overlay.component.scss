@@ -4,17 +4,9 @@ fa-icon {
   text-align: center;
 }
 
-.active {
-  color: var(--color-primary-500) !important;
-
-  fa-icon {
-    color: var(--color-primary-500) !important;
-  }
-}
-
 .trigger-button {
   height: var(--mat-expansion-header-collapsed-state-height);
-  padding: 0 24px;
+  padding: 0 28px; //TODO: same width as accordion menu item
 }
 
 .trigger {

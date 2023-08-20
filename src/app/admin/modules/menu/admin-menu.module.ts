@@ -9,6 +9,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { AdminMenuAccordionComponent } from './components/accordion/admin-menu-accordion.component';
 import { AdminMenuComponent } from './components/admin-menu.component';
 import { AdminMenuOverlayComponent } from './components/overlay/admin-menu-overlay.component';
+import { AdminMenuService } from './services/admin-menu.service';
 
 const components = [
   AdminMenuComponent,
@@ -33,6 +34,10 @@ const modules = [
 
 const libs = [
   FontAwesomeModule,
+];
+
+const providers = [
+  AdminMenuService,
 ]
 
 @NgModule({
@@ -48,5 +53,8 @@ const libs = [
   exports: [
     ...components,
   ],
+  providers: [
+    ...providers
+  ]
 })
 export class AdminMenuModule { }

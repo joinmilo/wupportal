@@ -5,13 +5,13 @@
 
 <ng-container *ngFor="let item of menuItems | async">
   <app-admin-menu-overlay *ngIf="collapsed"
-    [active]="isChildRouteActive(item)"
+    [active]="menuService.isChildRouteActive(item)"
     [childs]="item.childs"
     [icon]="item.icon">
   </app-admin-menu-overlay>
 
   <app-admin-menu-accordion *ngIf="!collapsed"
-    [active]="isChildRouteActive(item)"
+    [active]="menuService.isChildRouteActive(item)"
     [childs]="item.childs"
     [icon]="item.icon"
     [label]="item.name">

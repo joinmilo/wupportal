@@ -1,7 +1,7 @@
 
 <button mat-button
   class="trigger-button"
-  [ngClass]="{'active': active }"
+  [ngClass]="{'menu-active': active }"
   (click)="click(menuTrigger)">
   <fa-icon *ngIf="icon"
     size="xl" [icon]="['fas', icon]">
@@ -11,7 +11,7 @@
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngFor="let child of childs"
     [appLabel]="child.name"
-    [routerLink]="[createRouterLink(child)]"
+    [routerLink]="[menuService.createRouterLink(child)]"
     routerLinkActive="active">
   </button>
 </mat-menu>
