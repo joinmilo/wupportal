@@ -1,6 +1,6 @@
 mat-drawer-container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .mat-drawer-side {
@@ -10,7 +10,6 @@ mat-drawer-container {
 div {
   display: flex;
   flex-flow: column;
-  height: 100%;
 }
 
 main {
