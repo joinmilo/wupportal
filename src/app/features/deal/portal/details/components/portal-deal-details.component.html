@@ -5,7 +5,9 @@
       <app-share-button>
       </app-share-button>
 
-      <app-favorite-piece>
+      <app-favorite-piece
+        entity="DealEntity"
+        [data]="deal">
       </app-favorite-piece>
     </section>
     <app-category-piece *ngIf="deal?.category" [category]="deal?.category" [url]="['/', portalUrl, categoryUrl]"

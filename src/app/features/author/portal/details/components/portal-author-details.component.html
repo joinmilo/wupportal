@@ -12,7 +12,9 @@
         <app-share-button>
         </app-share-button>
 
-        <app-favorite-piece>
+        <app-favorite-piece
+          entity="UserContextEntity"
+          [data]="author">
         </app-favorite-piece>
 
         <button mat-button *ngIf="author?.user?.email">
