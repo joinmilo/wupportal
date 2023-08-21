@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, startWith, take } from 'rxjs';
+import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
+import { CardActionInput, CardActionOutput, CardType } from 'src/app/shared/widgets/card/typings/card';
 import { Maybe } from 'src/schema/schema';
-import { CardActionInput, CardActionOutput, CardData, CardEntity, CardType } from '../../../card/typings/card';
 import { PageableList, Sort, SortOption, SortPaginate } from '../../typings/table';
 import { TablePaginatorComponent } from '../paginator/table-paginator.component';
 
@@ -17,13 +18,13 @@ export class TableCardComponent implements AfterViewInit, OnDestroy {
   public actions?: CardActionInput[];
 
   @Input()
-  public data?: Observable<Maybe<PageableList<Maybe<CardData>>> | undefined>;
+  public data?: Observable<Maybe<PageableList<Maybe<ContentData>>> | undefined>;
 
   @Input()
   public cardType = CardType.Content;
 
   @Input()
-  public entity?: CardEntity;
+  public entity?: ContentEntity;
 
   @Input()
   public initParams: SortPaginate = {

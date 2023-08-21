@@ -3,8 +3,9 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
+import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { SliderTitleType } from 'src/app/core/typings/slider-title-type';
-import { CardData, CardEntity, CardType } from 'src/app/shared/widgets/card/typings/card';
+import { CardType } from 'src/app/shared/widgets/card/typings/card';
 import { Maybe } from 'src/schema/schema';
 import { TitleModule } from '../../../layout/title/title.module';
 import { CardModule } from '../../card/card.module';
@@ -35,10 +36,10 @@ export class CardSliderComponent {
   public cardType = CardType.Content;
 
   @Input()
-  public entity?: CardEntity;
+  public entity?: ContentEntity;
 
   @Input()
-  public data?: Maybe<Maybe<CardData>[]>;
+  public data?: Maybe<Maybe<ContentData>[]>;
 
   @Input()
   public link?: string[];

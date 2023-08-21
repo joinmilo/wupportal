@@ -1,8 +1,9 @@
-import { CardData, CardElement, CardEntity } from 'src/app/shared/widgets/card/typings/card';
+import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
+import { CardElement } from 'src/app/shared/widgets/card/typings/card';
 import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SurveyEntity, UserContextEntity } from "src/schema/schema";
 import { articlesFeatureKey, authorsFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, organisationsFeatureKey, surveysFeatureKey } from '../../../../core/constants/core.constants';
 
-export const dataToElement = (entity: CardEntity, data: CardData): CardElement | undefined => {
+export const dataToElement = (entity: ContentEntity, data: ContentData): CardElement | undefined => {
   switch(entity) {
     case 'ArticleEntity':
       return articleToCard(data as ArticleEntity);

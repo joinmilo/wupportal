@@ -17,8 +17,14 @@
   
   <ng-template #defaultActions>
     <div class="default-actions">
-      <app-share-button [withLabel]="true"></app-share-button>
-      <app-favorite-piece [withLabel]="true"></app-favorite-piece>
+      <app-share-button
+        [withLabel]="true">
+      </app-share-button>
+      <app-favorite-piece
+        [entity]="entity"
+        [data]="data"
+        [withLabel]="true">
+      </app-favorite-piece>
     </div>
   </ng-template>
 </mat-menu>

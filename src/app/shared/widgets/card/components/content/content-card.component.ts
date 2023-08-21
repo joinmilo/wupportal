@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardActionInput, CardActionOutput, CardData, CardElement, CardEntity } from 'src/app/shared/widgets/card/typings/card';
+import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
+import { CardActionInput, CardActionOutput, CardElement } from 'src/app/shared/widgets/card/typings/card';
 import { Maybe } from 'src/schema/schema';
 import { dataToElement } from '../../utils/card.utils';
 
@@ -14,10 +15,10 @@ export class ContentCardComponent implements OnInit {
   public actions?: CardActionInput[];
 
   @Input()
-  public entity?: Maybe<CardEntity>;
+  public entity?: Maybe<ContentEntity>;
 
   @Input()
-  public data?: Maybe<CardData>;
+  public data?: Maybe<ContentData>;
 
   @Output()
   public actionClicked = new EventEmitter<CardActionOutput>();

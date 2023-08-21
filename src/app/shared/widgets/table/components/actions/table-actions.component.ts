@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ContentData } from 'src/app/core/typings/content-entity';
 import { RowAction } from '../../typings/table';
 
 @Component({
@@ -12,6 +13,6 @@ export class TableActionsComponent<T> {
   public actions?: RowAction<T>[];
 
   @Input()
-  public row?: T;
+  public row?: ContentData;
 
 }

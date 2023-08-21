@@ -1,3 +1,5 @@
+import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SurveyEntity, UserContextEntity } from 'src/schema/schema';
+
 export type ContentEntity = 'ArticleEntity'
   | 'ContestEntity'
   | 'DealEntity'
@@ -5,3 +7,12 @@ export type ContentEntity = 'ArticleEntity'
   | 'OrganisationEntity'
   | 'SurveyEntity'
   | 'UserContextEntity';
+
+export type ContentData = Maybe<ArticleEntity>
+  | Maybe<ContestEntity>
+  | Maybe<DealEntity>
+  | Maybe<EventEntity>
+  | Maybe<OrganisationEntity>
+  | Maybe<SurveyEntity>
+  | Maybe<UserContextEntity>
+  | undefined;

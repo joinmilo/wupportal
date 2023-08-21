@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { Maybe } from 'src/schema/schema';
-import { CardData, CardElement, CardEntity } from '../../typings/card';
+import { CardElement } from '../../typings/card';
 import { dataToElement } from '../../utils/card.utils';
 @Component({
   selector: 'app-member-card',
@@ -10,10 +11,10 @@ import { dataToElement } from '../../utils/card.utils';
 export class MemberCardComponent implements OnInit {
 
   @Input()
-  public entity?: Maybe<CardEntity>;
+  public entity?: Maybe<ContentEntity>;
 
   @Input()
-  public data?: Maybe<CardData>;
+  public data?: Maybe<ContentData>;
 
   public element?: Maybe<CardElement>;
 

@@ -1,7 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Category } from 'src/app/core/typings/category';
 import { Translatable } from 'src/app/core/typings/translatable';
-import { AddressEntity, ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, MediaEntity, OrganisationEntity, SurveyEntity, UserContextEntity } from 'src/schema/schema';
+import { AddressEntity, Maybe, MediaEntity } from 'src/schema/schema';
 
 export type CardActionInput = {
   label: string,
@@ -19,23 +19,6 @@ export enum CardType {
   Member = 'member',
   Sponsored = 'sponsored',
 }
-
-export type CardEntity = 'ArticleEntity'
-  | 'ContestEntity'
-  | 'DealEntity'
-  | 'EventEntity'
-  | 'OrganisationEntity'
-  | 'SurveyEntity'
-  | 'UserContextEntity';
-
-export type CardData = Maybe<ArticleEntity>
-  | Maybe<ContestEntity>
-  | Maybe<DealEntity>
-  | Maybe<EventEntity>
-  | Maybe<OrganisationEntity>
-  | Maybe<SurveyEntity>
-  | Maybe<UserContextEntity>
-  | undefined;
 
 export type CardElement = {
   id?: Maybe<string>,

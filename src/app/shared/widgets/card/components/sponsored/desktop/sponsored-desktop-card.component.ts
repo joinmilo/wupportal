@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { dataToElement } from 'src/app/shared/widgets/card/utils/card.utils';
 import { Maybe } from 'src/schema/schema';
-import { CardActionInput, CardActionOutput, CardData, CardElement, CardEntity } from '../../../typings/card';
+import { CardActionInput, CardActionOutput, CardElement } from '../../../typings/card';
 
 @Component({
   selector: 'app-sponsored-desktop-card',
@@ -14,10 +15,10 @@ export class SponsoredDesktopCardComponent implements OnInit {
   public actions?: CardActionInput[];
   
   @Input()
-  public entity?: Maybe<CardEntity>;
+  public entity?: Maybe<ContentEntity>;
 
   @Input()
-  public data?: Maybe<CardData>;
+  public data?: Maybe<ContentData>;
 
   @Output()
   public actionClicked = new EventEmitter<CardActionOutput>();

@@ -27,7 +27,7 @@ const modules = [
 const libs = [
   StoreModule.forFeature(articlePageFeatureStateKey, articlePageFeatureReducer),
   EffectsModule.forFeature([ArticlePageFeatureEffects]),
-]
+];
 
 @NgModule({
   declarations: [...components],
