@@ -14,13 +14,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { AddressPieceComponent } from './components/pieces/address/address-piece.component';
-import { CategoryPieceComponent } from './components/pieces/category/category-piece.component';
-import { DatePieceComponent } from './components/pieces/date/date-piece.component';
-import { FavoritePieceComponent } from './components/pieces/favorite/favorite-piece.component';
-import { MailPieceComponent } from './components/pieces/mail/mail-piece.component';
-import { PhonePieceComponent } from './components/pieces/phone/phone-piece.component';
-import { WebsitePieceComponent } from './components/pieces/website/website-piece.component';
 import { appStateKey } from './constants/core.constants';
 import { HtmlDirective } from './directives/html.directive';
 import { LabelDirective } from './directives/label.directive';
@@ -35,15 +28,8 @@ import { CoreEffects } from './state/effects/core.effects';
 import { appReducers } from './state/reducers/reducer';
 
 const components = [
-  AddressPieceComponent,
-  CategoryPieceComponent,
-  DatePieceComponent,
-  FavoritePieceComponent,
   FeedbackComponent,
   LogoComponent,
-  MailPieceComponent,
-  PhonePieceComponent,
-  WebsitePieceComponent,
 ];
 
 const directives = [

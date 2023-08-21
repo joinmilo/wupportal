@@ -17,6 +17,10 @@ import { CommentModule } from 'src/app/shared/form/comment/comment.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
 import { RatingModule } from 'src/app/shared/form/rating/rating.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { DatePieceComponent } from 'src/app/shared/pieces/date/date-piece.component';
+import { FavoritePieceComponent } from 'src/app/shared/pieces/favorite/favorite-piece.component';
+import { MailPieceComponent } from 'src/app/shared/pieces/mail/mail-piece.component';
+import { PhonePieceComponent } from 'src/app/shared/pieces/phone/phone-piece.component';
 import { CalendarModule } from 'src/app/shared/widgets/calendar/calendar.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { MapModule } from 'src/app/shared/widgets/map/map.module';
@@ -61,7 +65,11 @@ const modules = [
   CoreModule,
   CommentModule,
   CardModule,
+  DatePieceComponent,
+  FavoritePieceComponent,
+  MailPieceComponent,
   MediaModule,
+  PhonePieceComponent,
   PortalSurveyDetailsRoutingModule,
   RadioButtonFormModule,
   RatingModule,

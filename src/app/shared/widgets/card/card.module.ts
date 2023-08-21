@@ -8,6 +8,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
+import { AddressPieceComponent } from '../../pieces/address/address-piece.component';
+import { CategoryPieceComponent } from '../../pieces/category/category-piece.component';
+import { DatePieceComponent } from '../../pieces/date/date-piece.component';
+import { FavoritePieceComponent } from '../../pieces/favorite/favorite-piece.component';
+import { MailPieceComponent } from '../../pieces/mail/mail-piece.component';
+import { PhonePieceComponent } from '../../pieces/phone/phone-piece.component';
 import { MediaModule } from '../media/media.module';
 import { ShareModule } from '../share/share.module';
 import { CardActionsComponent } from './components/actions/card-actions.component';
@@ -40,8 +46,14 @@ const materials = [
 ];
 
 const modules = [
+  AddressPieceComponent,
+  CategoryPieceComponent,
   CoreModule,
+  DatePieceComponent,
+  FavoritePieceComponent,
+  MailPieceComponent,
   MediaModule,
+  PhonePieceComponent,
 ];
 
 const libs = [

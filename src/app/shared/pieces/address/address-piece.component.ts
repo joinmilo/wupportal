@@ -1,10 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CoreModule } from 'src/app/core/core.module';
 import { AddressEntity, Maybe } from 'src/schema/schema';
 
 @Component({
   selector: 'app-address-piece',
   templateUrl: './address-piece.component.html',
-  styleUrls: ['./address-piece.component.scss']
+  styleUrls: ['./address-piece.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CoreModule,
+
+    FontAwesomeModule,
+  ]
 })
 export class AddressPieceComponent {
 

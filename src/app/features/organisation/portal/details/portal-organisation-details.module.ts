@@ -17,6 +17,11 @@ import { CommentModule } from 'src/app/shared/form/comment/comment.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
 import { RatingModule } from 'src/app/shared/form/rating/rating.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { AddressPieceComponent } from 'src/app/shared/pieces/address/address-piece.component';
+import { FavoritePieceComponent } from 'src/app/shared/pieces/favorite/favorite-piece.component';
+import { MailPieceComponent } from 'src/app/shared/pieces/mail/mail-piece.component';
+import { PhonePieceComponent } from 'src/app/shared/pieces/phone/phone-piece.component';
+import { WebsitePieceComponent } from 'src/app/shared/pieces/website/website-piece.component';
 import { CalendarModule } from 'src/app/shared/widgets/calendar/calendar.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { MapModule } from 'src/app/shared/widgets/map/map.module';
@@ -66,18 +71,23 @@ const materials = [
 ];
 
 const modules = [
+  AddressPieceComponent,
   CalendarModule,
   CardSliderComponent,
   CoreModule,
   CommentModule,
   CardModule,
+  FavoritePieceComponent,
+  MailPieceComponent,
   MediaModule,
+  PhonePieceComponent,
   PortalOrganisationDetailsRoutingModule,
   RadioButtonFormModule,
   RatingModule,
   ShareModule,
   TableModule,
-  TitleModule
+  TitleModule,
+  WebsitePieceComponent,
 ];
 
 const libs = [

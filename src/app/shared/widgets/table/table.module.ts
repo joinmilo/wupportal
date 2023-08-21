@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
+import { FavoritePieceComponent } from '../../pieces/favorite/favorite-piece.component';
 import { TableActionsComponent } from './components/actions/table-actions.component';
 import { TableCardComponent } from './components/card/table-card.component';
 import { TableDesktopComponent } from './components/desktop/table-desktop.component';
@@ -58,6 +59,7 @@ const materials = [
 const modules = [
   CardModule,
   CoreModule,
+  FavoritePieceComponent,
   ShareModule,
 ];
 

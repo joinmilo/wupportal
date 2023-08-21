@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from "../../../core/core.module";
 import { TitleModule } from '../../layout/title/title.module';
+import { DatePieceComponent } from '../../pieces/date/date-piece.component';
 import { MediaModule } from '../../widgets/media/media.module';
 import { CaptchaModule } from '../captcha/captcha.module';
 import { CommentDialogComponent } from './components/dialog/comment-dialog.component';
@@ -28,13 +29,6 @@ const framework = [
   CommonModule,
   RouterModule,
   CaptchaModule,
-
-];
-
-const modules = [
-  CoreModule,
-  MediaModule,
-  TitleModule,
 ];
 
 const libs = [
@@ -48,6 +42,13 @@ const materials = [
   MatFormFieldModule,
   MatInputModule,
   ReactiveFormsModule
+];
+
+const modules = [
+  CoreModule,
+  DatePieceComponent,
+  MediaModule,
+  TitleModule,
 ];
 
 @NgModule({
