@@ -14,7 +14,7 @@ export class CookieComponent {
 
   public dataProtectionConfig = this.store.select(selectConfiguration(dataProtectionConfig));
 
-  public cookieSettings = false;
+  public activeSettings = false;
 
   public form = this.fb.group({
     externalContent: [false, [Validators.required]],
@@ -22,9 +22,10 @@ export class CookieComponent {
     statistics: [false, [Validators.required]],
   });
 
-
   constructor(
-    private store: Store, private fb: FormBuilder) { }
+    private store: Store,
+    private fb: FormBuilder,
+  ) { }
 
   public acceptAllCookies(): void {
     this.store.dispatch(CoreUserActions.saveCookieSettings({

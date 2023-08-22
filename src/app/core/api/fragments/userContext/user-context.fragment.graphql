@@ -29,6 +29,26 @@ fragment UserContext on UserContextEntity {
     }
   }
 
+  favoriteArticles {
+    id
+  }
+
+  favoriteDeals {
+    id
+  }
+
+  favoriteEvents {
+    id
+  }
+
+  favoriteOrganisations {
+    id
+  }
+
+  favoriteAuthors {
+    id
+  }
+
   eventRatings {
     id
     score

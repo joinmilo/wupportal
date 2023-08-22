@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Store } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { Maybe } from 'src/schema/schema';
@@ -14,6 +16,7 @@ import { Maybe } from 'src/schema/schema';
     CommonModule,
     CoreModule,
     FontAwesomeModule,
+    MatButtonModule,
   ]
 })
 export class FavoritePieceComponent {
@@ -28,6 +31,10 @@ export class FavoritePieceComponent {
   public withLabel = false;
 
   isFavorite = false;
+
+  constructor(
+    private store: Store,
+  ) { }
 
   public changeFavorite(): void {
     this.isFavorite = !this.isFavorite;

@@ -10,7 +10,7 @@
     </div>
   </section>
 
-  <form *ngIf="cookieSettings" [formGroup]="form">
+  <form *ngIf="activeSettings" [formGroup]="form">
     <mat-slide-toggle
       [checked]="true"
       [disabled]="true"
@@ -36,19 +36,20 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-flat-button
+  <button *ngIf="!activeSettings"
+    mat-flat-button
     mat-dialog-close
     appLabel="declineAllOptionalCookies"
     (click)="declineOptionalCookies()">
   </button>
 
-  <button *ngIf="!cookieSettings"
+  <button *ngIf="!activeSettings"
     mat-flat-button
-    appLabel="cookieSettings"
-    (click)="cookieSettings = !cookieSettings">
+    appLabel="activeSettings"
+    (click)="activeSettings = !activeSettings">
   </button>
 
-  <button *ngIf="cookieSettings"
+  <button *ngIf="activeSettings"
     mat-dialog-close
     mat-flat-button
     appLabel="acceptSelection"

@@ -1,6 +1,12 @@
 import { createSelector } from '@ngrx/store';
 import { FriendEntity, Maybe } from 'src/schema/schema';
+import { ContentEntity } from '../../typings/content-entity';
 import { selectCoreUserState } from './selector';
+
+export const selectCookieSettings = createSelector(
+  selectCoreUserState,
+  state => state.cookieSettings
+);
 
 export const selectCurrentUser = createSelector(
   selectCoreUserState,
@@ -73,7 +79,60 @@ export const selectUserOrganisationRatings = createSelector(
   user => user?.organisationRatings
 );
 
-export const selectCookieSettings = createSelector(
-  selectCoreUserState,
-  state => state.cookieSettings
-)
+export const selectArticleFavorites = createSelector(
+  selectCurrentUser,
+  user => user?.favoriteArticles
+);
+
+export const selectFavoriteDeals = createSelector(
+  selectCurrentUser,
+  user => user?.favoriteDeals
+);
+
+export const selectFavoriteEvents = createSelector(
+  selectCurrentUser,
+  user => user?.favoriteEvents
+);
+
+export const selectFavoriteOrganisations = createSelector(
+  selectCurrentUser,
+  user => user?.favoriteOrganisations
+);
+
+export const selectFavoriteAuthors = createSelector(
+  selectCurrentUser,
+  user => user?.favoriteAuthors
+);
+
+export const selectIsFavorite = (entity: ContentEntity, id: string) => {
+  switch (entity) {
+    case 'ArticleEntity':
+      return createSelector(
+        selectArticleFavorites, 
+        favorites => !!favorites?.find(f => f?.id === id)
+      );
+    case 'DealEntity':
+      return createSelector(
+        selectFavoriteDeals,
+        favorites => !!favorites?.find(f => f?.id === id)
+      );
+    case 'EventEntity':
+      return createSelector(
+        selectFavoriteEvents,
+        favorites => !!favorites?.find(f => f?.id === id)
+      );
+    case 'OrganisationEntity':
+      return createSelector(
+        selectFavoriteOrganisations,
+        favorites => !!favorites?.find(f => f?.id === id)
+      );
+    case 'UserContextEntity':
+      return createSelector(
+        selectFavoriteAuthors,
+        favorites => !!favorites?.find(f => f?.id === id)
+      );
+    default:
+      return createSelector(selectCurrentUser, () => false);
+
+  }
+}

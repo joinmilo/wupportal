@@ -1,7 +1,9 @@
 <div class="details">
   <div class="title-area">
-    <app-media-title [media]="mediaTitle"></app-media-title>
-    <section>
+    <app-media-title [media]="mediaTitle">
+    </app-media-title>
+    
+    <section class="card-box">
       <app-share-button>
       </app-share-button>
 
@@ -11,7 +13,9 @@
       </app-favorite-piece>
     </section>
 
-    <app-category-piece [category]="event?.category" [url]="['/', portalUrl, categoryUrl]"
+    <app-category-piece
+      [category]="event?.category"
+      [url]="['/', portalUrl, categoryUrl]"
       [queryParam]="categoryQueryParams">
     </app-category-piece>
   </div>
@@ -21,7 +25,8 @@
 
       <p [innerHtml]="event | translatable: 'shortDescription' | async"></p>
 
-      <app-portal-event-details-summary (addressClicked)="map.scrollIntoView({behavior: 'smooth'})">
+      <app-portal-event-details-summary
+        (addressClicked)="map.scrollIntoView({behavior: 'smooth'})">
       </app-portal-event-details-summary>
 
       <p [innerHtml]="event | translatable : 'content' | async"></p>
@@ -30,7 +35,9 @@
     <app-portal-event-details-organisation *ngIf="event?.organisation">
     </app-portal-event-details-organisation>
 
-    <app-media-slider *ngIf="media && media.length" [media]="media" [link]="['./media']">
+    <app-media-slider *ngIf="media && media.length"
+      [media]="media"
+      [link]="['./media']">
     </app-media-slider>
 
     <app-portal-event-details-rating>
@@ -43,8 +50,10 @@
     </app-portal-event-details-participants>
 
     <div #map class="map-area">
-      <app-details-title titleLabel="mapView"></app-details-title>
-      <app-map [queryParams]="false" [markerDefinition]="marker">
+      <app-details-title titleLabel="mapView">
+      </app-details-title>
+      <app-map [queryParams]="false"
+        [markerDefinition]="marker">
       </app-map>
     </div>
   </section>
