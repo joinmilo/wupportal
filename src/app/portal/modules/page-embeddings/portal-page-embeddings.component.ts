@@ -14,7 +14,7 @@ import { MediaEmbeddingModule } from 'src/app/features/media/embedding/media-emb
 import { OrganisationEmbeddingModule } from 'src/app/features/organisation/embedding/organisation-embedding.module';
 import { ReportEmbeddingModule } from 'src/app/features/report/embedding/report-embedding.module';
 import { SurveyEmbeddingModule } from 'src/app/features/survey/embedding/survey-embedding.module';
-import { Maybe, PageFeatureEntity } from 'src/schema/schema';
+import { Maybe, PageEmbeddingEntity } from 'src/schema/schema';
 
 @Component({
   selector: 'app-portal-page-embeddings',
@@ -42,7 +42,7 @@ import { Maybe, PageFeatureEntity } from 'src/schema/schema';
 export class PortalPageEmbeddingsComponent implements OnInit {
 
   @Input()
-  public embeddings?: Maybe<Maybe<PageFeatureEntity>[]>;
+  public embeddings?: Maybe<Maybe<PageEmbeddingEntity>[]>;
 
   public features = {
     articles: articlesFeatureKey,
