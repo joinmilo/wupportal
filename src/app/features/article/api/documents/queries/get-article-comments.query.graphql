@@ -1,0 +1,35 @@
+query getArticleComments($params: FilterSortPaginateInput) {
+  getArticleComments(params: $params) {
+    result {
+      id
+      created
+      modified
+
+      userContext {
+        id
+        uploads {
+          profilePicture
+          title
+          media {
+            ...Media
+          }
+        }
+        user {
+          id
+          firstName
+          lastName
+        }
+      }
+
+      translatables {
+        id
+        content
+        language {
+          id
+          locale
+          name
+        }
+      }
+    }
+  }
+}

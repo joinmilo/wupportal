@@ -1,7 +1,13 @@
 query getApps {
   getApps {
     result {
-      ...App
+      id
+      url
+      platform {
+        id
+        code
+        name
+      }
     }
   }
 }

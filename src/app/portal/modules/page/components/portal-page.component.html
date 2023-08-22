@@ -12,6 +12,7 @@
 </div>
 
 <div class="main">
-  <app-portal-page-features *ngIf="page?.pageFeatures?.length" [pageFeatures]="page?.pageFeatures">
-  </app-portal-page-features>
+  <app-portal-page-embeddings *ngIf="page?.embeddings?.length"
+    [embeddings]="page?.embeddings">
+  </app-portal-page-embeddings>
 </div>

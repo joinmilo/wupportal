@@ -1,8 +1,0 @@
-query getArticles($params: FilterSortPaginateInput) {
-  getArticles(params: $params) {
-    result {
-      ...Article
-    }
-    total
-  }
-}

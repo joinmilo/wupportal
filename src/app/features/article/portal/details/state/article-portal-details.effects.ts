@@ -7,7 +7,7 @@ import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { PortalActions } from 'src/app/portal/state/portal.actions';
-import { ArticleCommentEntity, ArticleEntity, ArticleRatingEntity, GetArticleCommentsGQL, GetArticleGQL, Maybe, QueryOperator, SaveArticleCommentGQL, SaveArticleRatingGQL } from 'src/schema/schema';
+import { ArticleCommentEntity, ArticleEntity, ArticleRatingEntity, GetArticleCommentsGQL, GetFullArticleGQL, Maybe, QueryOperator, SaveArticleCommentGQL, SaveArticleRatingGQL } from 'src/schema/schema';
 import { ArticlePortalDetailsActions } from './article-portal-details.actions';
 import { selectArticleDetails, selectArticleUserRating } from './article-portal-details.selectors';
 
@@ -123,7 +123,7 @@ export class ArticlePortalDetailsEffects {
   constructor(
     private store: Store,
     private actions: Actions,
-    private getArticleService: GetArticleGQL,
+    private getArticleService: GetFullArticleGQL,
     private getCommentsService: GetArticleCommentsGQL,
     private saveArticleRatingService: SaveArticleRatingGQL,
     private saveArticleCommentService: SaveArticleCommentGQL

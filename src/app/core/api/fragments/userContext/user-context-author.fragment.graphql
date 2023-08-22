@@ -17,10 +17,12 @@ fragment UserContextAuthor on UserContextEntity {
     media{
       ...Media
     }
-  }  
-  articles {
-    ...Article
   }
+
+  articles {
+    id
+  }
+
   user {
     firstName
     lastName

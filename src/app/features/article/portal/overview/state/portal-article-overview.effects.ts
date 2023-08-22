@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
-import { ArticleEntity, GetArticleGQL, GetArticlesGQL, PageableList_ArticleEntity } from 'src/schema/schema';
+import { ArticleEntity, GetArticlesGQL, GetFullArticleGQL, PageableList_ArticleEntity } from 'src/schema/schema';
 import { PortalArticleOverviewActions } from './portal-article-overview.actions';
 import { selectParams } from './portal-article-overview.selectors';
 
@@ -30,7 +30,7 @@ export class PortalArticleOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getArticleService: GetArticleGQL,
+    private getArticleService: GetFullArticleGQL,
     private getArticlesService: GetArticlesGQL,
     private store: Store,
   ) {}

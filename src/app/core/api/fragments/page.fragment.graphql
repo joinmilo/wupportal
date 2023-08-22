@@ -8,7 +8,7 @@ fragment Page on PageEntity {
       ...Media
     }
   }
-  pageFeatures {
+  embeddings {
     id
     order
     feature {

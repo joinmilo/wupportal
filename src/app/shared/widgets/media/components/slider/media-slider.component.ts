@@ -25,7 +25,7 @@ export class MediaSliderComponent {
   }
 
   @Input()
-  public media?: Maybe<Maybe<MediaEntity>[]>;
+  public media?: Maybe<(Maybe<MediaEntity> | undefined)[]>;
 
   @Input()
   public link?: string[];
@@ -48,7 +48,7 @@ export class MediaSliderComponent {
     return mimeTypeDefinition(element);
   }
 
-  public open(media: Maybe<MediaEntity>): void {
+  public open(media?: Maybe<MediaEntity>): void {
     if (media?.mimeType?.includes('image')) {
       this.openDialog('image', media);
     } else if (media?.mimeType?.includes('video')) {
@@ -56,7 +56,7 @@ export class MediaSliderComponent {
     }
   }
 
-  public openDialog(mimeType: string, media: Maybe<MediaEntity>): void {
+  public openDialog(mimeType: string, media?: Maybe<MediaEntity>): void {
     const filtered = this.media?.filter(element => element?.mimeType?.includes(mimeType));
 
     this.dialog.open(MediaViewerComponent, {

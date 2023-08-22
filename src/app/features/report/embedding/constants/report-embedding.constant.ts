@@ -1,0 +1,1 @@
+export const reportEmbeddingStateKey = 'reportEmbeddingState';

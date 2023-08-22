@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "generate": "graphql-codegen --config src/schema/codegen.yml"
+    "generate": "./generate-schema.sh"
   },
   "private": true,
   "dependencies": {

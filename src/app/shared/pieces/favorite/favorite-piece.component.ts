@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
@@ -19,7 +19,7 @@ import { Maybe } from 'src/schema/schema';
     MatButtonModule,
   ]
 })
-export class FavoritePieceComponent {
+export class FavoritePieceComponent implements OnInit {
 
   @Input({ required: true })
   public entity?: Maybe<ContentEntity>;
@@ -35,6 +35,10 @@ export class FavoritePieceComponent {
   constructor(
     private store: Store,
   ) { }
+
+  public ngOnInit(): void {
+    // this.store.select();
+  }
 
   public changeFavorite(): void {
     this.isFavorite = !this.isFavorite;

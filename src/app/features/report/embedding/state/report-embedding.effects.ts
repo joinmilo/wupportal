@@ -1,0 +1,41 @@
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { map, switchMap } from 'rxjs';
+import { CoreActions } from 'src/app/core/state/actions/core.actions';
+import { FeedbackType } from 'src/app/core/typings/feedback';
+import { GetReportTypesGQL, ReportEntity, ReportTypeEntity, SaveReportGQL } from 'src/schema/schema';
+import { ReportEmbeddingActions } from './report-embedding.actions';
+
+@Injectable()
+export class ReportEmbeddingEffects {
+
+  saveReport = createEffect(() => this.actions.pipe(
+    ofType(ReportEmbeddingActions.saveReport),
+    switchMap((action) => this.saveReportService.mutate({
+      entity: action.entity
+    })),
+    map(response => ReportEmbeddingActions.reportSaved(response.data?.saveReport as ReportEntity))
+  ));
+
+  reportSaved = createEffect(() => this.actions.pipe(
+    ofType(ReportEmbeddingActions.reportSaved),
+    map(() => CoreActions.setFeedback({
+      type: FeedbackType.Success,
+      labelMessage: 'reportReceived'
+    }))
+  ));
+
+  getCurrentTypes = createEffect(() => this.actions.pipe(
+    ofType(ReportEmbeddingActions.getReportTypes),
+    switchMap(() => this.getReportTypeService.watch().valueChanges),
+    map(response => ReportEmbeddingActions.setCurrentTypes(response.data.getReportTypes?.result as ReportTypeEntity[]))
+  ));
+
+
+  constructor(
+    private actions: Actions,
+    private saveReportService: SaveReportGQL,
+    private getReportTypeService: GetReportTypesGQL
+  ) { }
+  
+}

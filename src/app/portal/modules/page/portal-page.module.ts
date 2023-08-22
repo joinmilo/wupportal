@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { MediaModule } from 'src/app/shared/widgets/media/media.module';
-import { PortalPageFeaturesComponent } from '../page-features/portal-page-features.component';
+import { PortalPageEmbeddingsComponent } from '../page-embeddings/portal-page-embeddings.component';
 import { PortalPageMediaComponent } from './components/media/portal-page-media.component';
 import { PortalPageComponent } from './components/portal-page.component';
 import { portalPageStateKey } from './constants/portal-page.constants';
@@ -34,7 +34,7 @@ const materials = [
 const modules = [
   CoreModule,
   MediaModule,
-  PortalPageFeaturesComponent,
+  PortalPageEmbeddingsComponent,
   PortalPageRoutingModule,
   TitleModule,
 ];
