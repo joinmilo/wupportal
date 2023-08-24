@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { DealEntity } from 'src/schema/schema';
+import { DealEntity } from 'src/app/core/api/generated/schema';
 
 export const DealEmbeddingActions = createActionGroup({
   source: 'Deal Embedding',

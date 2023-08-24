@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { CardActionInput } from 'src/app/shared/widgets/card/typings/card';
-import { Maybe } from 'src/schema/schema';
 
 @Component({
   selector: 'app-card-actions',

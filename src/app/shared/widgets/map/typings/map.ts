@@ -1,5 +1,5 @@
+import { AddressEntity, DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { Translatable } from 'src/app/core/typings/translatable';
-import { AddressEntity, DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/schema/schema';
 
 export type MapEntity = 'DealEntity'
   | 'EventEntity'

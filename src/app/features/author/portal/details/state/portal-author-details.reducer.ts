@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, UserContextEntity } from 'src/schema/schema';
+import { Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { PortalAuthorDetailsActions } from './portal-author-details.actions';
 
 

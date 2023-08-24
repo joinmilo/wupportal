@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ArticleEntity } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
 import { Column, RowAction, SortPaginate } from 'src/app/shared/widgets/table/typings/table';
-import { ArticleEntity } from 'src/schema/schema';
 import { selectOverviewData } from '../../state/portal-article-overview.selectors';
 
 @Component({

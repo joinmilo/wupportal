@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, PageEntity } from 'src/schema/schema';
+import { Maybe, PageEntity } from 'src/app/core/api/generated/schema';
 import { PortalLandingActions } from './portal-landing.actions';
 
 export interface PortalLandingState {

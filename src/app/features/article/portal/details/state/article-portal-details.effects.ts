@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import { map, switchMap, withLatestFrom } from 'rxjs';
+import { ArticleCommentEntity, ArticleEntity, ArticleRatingEntity, QueryOperator } from 'src/app/core/api/generated/schema';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { PortalActions } from 'src/app/portal/state/portal.actions';
-import { ArticleCommentEntity, ArticleEntity, ArticleRatingEntity, GetArticleCommentsGQL, GetFullArticleGQL, Maybe, QueryOperator, SaveArticleCommentGQL, SaveArticleRatingGQL } from 'src/schema/schema';
+import { GetArticleCommentsGQL } from '../../../api/generated/get-article-comments.query.generated';
+import { GetArticleDetailsGQL } from '../../../api/generated/get-article-details.query.generated';
+import { SaveArticleCommentGQL } from '../../../api/generated/save-article-comment.mutation.generated';
+import { SaveArticleRatingGQL } from '../../../api/generated/save-article-rating.mutation.generated';
 import { ArticlePortalDetailsActions } from './article-portal-details.actions';
 import { selectArticleDetails, selectArticleUserRating } from './article-portal-details.selectors';
 
@@ -123,7 +128,7 @@ export class ArticlePortalDetailsEffects {
   constructor(
     private store: Store,
     private actions: Actions,
-    private getArticleService: GetFullArticleGQL,
+    private getArticleService: GetArticleDetailsGQL,
     private getCommentsService: GetArticleCommentsGQL,
     private saveArticleRatingService: SaveArticleRatingGQL,
     private saveArticleCommentService: SaveArticleCommentGQL

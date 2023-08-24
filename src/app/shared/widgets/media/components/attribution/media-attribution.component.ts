@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { Maybe, MediaAttributionEntity } from 'src/schema/schema';
+import { Maybe, MediaAttributionEntity } from 'src/app/core/api/generated/schema';
 import { AttributionDirection } from '../../typings/media';
 
 @Component({

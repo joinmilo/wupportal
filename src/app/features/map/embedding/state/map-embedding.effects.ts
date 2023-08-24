@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { DealEntity, EventEntity, GetDealGQL, GetEventGQL, GetOrganisationGQL, OrganisationEntity } from 'src/schema/schema';
+import { DealEntity, EventEntity, OrganisationEntity } from 'src/app/core/api/generated/schema';
+import { GetDealCardGQL } from 'src/app/shared/widgets/card/api/generated/get-deal-card.query.generated';
+import { GetEventCardGQL } from 'src/app/shared/widgets/card/api/generated/get-event-card.query.generated';
+import { GetOrganisationCardGQL } from 'src/app/shared/widgets/card/api/generated/get-organisation-card.query.generated';
 import { MapEmbeddingActions } from './map-embedding.actions';
 
 @Injectable()
@@ -9,7 +12,7 @@ export class MapEmbeddingEffects {
 
   getSponsoredDeal = createEffect(() => this.actions.pipe(
     ofType(MapEmbeddingActions.getSponsoredDeal),
-    switchMap(() => this.getDeal.watch({
+    switchMap(() => this.getDealCardService.watch({
       entity: {
         sponsored: true
       }
@@ -21,7 +24,7 @@ export class MapEmbeddingEffects {
 
   getSponsoredEvent = createEffect(() => this.actions.pipe(
     ofType(MapEmbeddingActions.getSponsoredEvent),
-    switchMap(() => this.getEvent.watch({
+    switchMap(() => this.getEventCardService.watch({
       entity: {
         sponsored: true
       }
@@ -33,7 +36,7 @@ export class MapEmbeddingEffects {
 
   getSponsoredOrganisation = createEffect(() => this.actions.pipe(
     ofType(MapEmbeddingActions.getSponsoredOrganisation),
-    switchMap(() => this.getOrganisation.watch({
+    switchMap(() => this.getOrganisationCardService.watch({
       entity: {
         sponsored: true
       }
@@ -45,8 +48,8 @@ export class MapEmbeddingEffects {
   
   constructor(
     private actions: Actions,
-    private getEvent: GetEventGQL,
-    private getDeal: GetDealGQL,
-    private getOrganisation: GetOrganisationGQL,
+    private getEventCardService: GetEventCardGQL,
+    private getDealCardService: GetDealCardGQL,
+    private getOrganisationCardService: GetOrganisationCardGQL,
   ) {}
 }

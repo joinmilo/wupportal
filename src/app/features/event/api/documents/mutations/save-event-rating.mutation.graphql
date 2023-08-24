@@ -1,0 +1,5 @@
+mutation saveEventRating($entity: EventRatingEntityInput!) {
+  saveEventRating(entity: $entity) {
+    id
+  }
+}

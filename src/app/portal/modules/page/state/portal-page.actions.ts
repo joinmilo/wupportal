@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { Maybe, PageEntity } from 'src/schema/schema';
+import { Maybe, PageEntity } from 'src/app/core/api/generated/schema';
 
 export const PortalPageActions = createActionGroup({
   source: 'Portal Page',

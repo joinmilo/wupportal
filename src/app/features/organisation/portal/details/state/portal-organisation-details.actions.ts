@@ -1,6 +1,6 @@
 import { createActionGroup } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { OrganisationCommentEntity, OrganisationCommentEntityInput, OrganisationEntity, OrganisationRatingEntity, OrganisationRatingEntityInput } from 'src/schema/schema';
+import { OrganisationCommentEntity, OrganisationCommentEntityInput, OrganisationEntity, OrganisationRatingEntity, OrganisationRatingEntityInput } from 'src/app/core/api/generated/schema';
 
 export const PortalOrganisationDetailsActions = createActionGroup({
   source: 'Portal Organisation Details',

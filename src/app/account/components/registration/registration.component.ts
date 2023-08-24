@@ -3,7 +3,7 @@ import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { AccountActions } from '../../state/account.actions';
-import { selectSavedAccount } from '../../state/account.selectors';
+import { selectRegisteredUserId } from '../../state/account.selectors';
 
 @Component({
   selector: 'app-registration',
@@ -37,9 +37,9 @@ export class RegistrationComponent implements OnDestroy {
       captchaToken,
     }));
 
-    this.store.select(selectSavedAccount)
+    this.store.select(selectRegisteredUserId)
       .pipe(takeUntil(this.destroy))
-      .subscribe(user => user?.id && formDirective.resetForm());
+      .subscribe(id => id && formDirective.resetForm());
   }
 
   ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { TranslationService } from '../services/translation.service';
 
 @Pipe({

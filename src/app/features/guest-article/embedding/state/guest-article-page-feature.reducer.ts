@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ArticleEntity, Maybe } from 'src/schema/schema';
+import { ArticleEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { GuestArticleEmbeddingActions } from './guest-article-embedding.actions';
 
 export interface GuestArticleEmbeddingState {

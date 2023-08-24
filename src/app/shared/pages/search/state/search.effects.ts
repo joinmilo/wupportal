@@ -3,8 +3,16 @@ import { Router } from '@angular/router';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, switchMap, tap } from 'rxjs';
+import { ArticleEntity, ConjunctionOperator, ContestEntity, DealEntity, EventEntity, OrganisationEntity, QueryOperator, SearchDto, SurveyEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { portalUrl } from 'src/app/core/constants/core.constants';
-import { ArticleEntity, ConjunctionOperator, ContestEntity, DealEntity, EventEntity, GetArticlesGQL, GetContestsGQL, GetDealsGQL, GetEventsGQL, GetOrganisationsGQL, GetSurveysGQL, GetUserContextsGQL, OrganisationEntity, QueryOperator, SearchDto, SearchGQL, SurveyEntity, UserContextEntity } from 'src/schema/schema';
+import { GetArticleCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-article-cards.query.generated';
+import { GetAuthorCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-author-cards.query.generated';
+import { GetContestCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-contest-cards.query.generated';
+import { GetDealCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-deal-cards.query.generated';
+import { GetEventCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-event-cards.query.generated';
+import { GetOrganisationCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-organisation-cards.query.generated';
+import { GetSurveyCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-survey-cards.query.generated';
+import { SearchGQL } from '../api/generated/search.query.generated';
 import { SearchActions } from './search.actions';
 import { selectResultsPageActive, selectSearchQuery } from './search.selectors';
 
@@ -46,7 +54,7 @@ export class SearchEffects {
     concatLatestFrom(() => 
       this.store.select(selectSearchQuery)
     ),
-    switchMap(([, query]) => this.getEventsService.watch({
+    switchMap(([, query]) => this.getEventCardsService.watch({
       params: {
         search: query,
         sort: 'modified',
@@ -62,7 +70,7 @@ export class SearchEffects {
     concatLatestFrom(() => 
       this.store.select(selectSearchQuery)
     ),
-    switchMap(([, query]) => this.getArticlesService.watch({
+    switchMap(([, query]) => this.getArticleCardsService.watch({
       params: {
         search: query,
         sort: 'modified',
@@ -78,7 +86,7 @@ export class SearchEffects {
     concatLatestFrom(() => 
       this.store.select(selectSearchQuery)
     ),
-    switchMap(([, query]) => this.getOrganisationsService.watch({
+    switchMap(([, query]) => this.getOrganisationCardsService.watch({
       params: {
         search: query,
         sort: 'modified',
@@ -94,7 +102,7 @@ export class SearchEffects {
     concatLatestFrom(() => 
       this.store.select(selectSearchQuery)
     ),
-    switchMap(([, query]) => this.getUserContextsService.watch({
+    switchMap(([, query]) => this.getAuthorCardsService.watch({
       params: {
         expression: {
           conjunction: {
@@ -144,7 +152,7 @@ export class SearchEffects {
     concatLatestFrom(() => 
       this.store.select(selectSearchQuery)
     ),
-    switchMap(([, query]) => this.getDealsService.watch({
+    switchMap(([, query]) => this.getDealCardsService.watch({
       params: {
         search: query,
         sort: 'modified',
@@ -160,7 +168,7 @@ export class SearchEffects {
     concatLatestFrom(() => 
       this.store.select(selectSearchQuery)
     ),
-    switchMap(([, query]) => this.getSurveysService.watch({
+    switchMap(([, query]) => this.getSurveyCardsService.watch({
       params: {
         search: query,
         sort: 'modified',
@@ -176,7 +184,7 @@ export class SearchEffects {
     concatLatestFrom(() => 
       this.store.select(selectSearchQuery)
     ),
-    switchMap(([, query]) => this.getContestsService.watch({
+    switchMap(([, query]) => this.getContestCardsService.watch({
       params: {
         search: query,
         sort: 'modified',
@@ -190,13 +198,13 @@ export class SearchEffects {
   constructor(
     private actions: Actions,
     private getSearchService: SearchGQL,
-    private getEventsService: GetEventsGQL,
-    private getArticlesService: GetArticlesGQL,
-    private getOrganisationsService: GetOrganisationsGQL,
-    private getUserContextsService: GetUserContextsGQL,
-    private getDealsService: GetDealsGQL,
-    private getSurveysService: GetSurveysGQL,
-    private getContestsService: GetContestsGQL,
+    private getArticleCardsService: GetArticleCardsGQL,
+    private getAuthorCardsService: GetAuthorCardsGQL,
+    private getContestCardsService: GetContestCardsGQL,
+    private getDealCardsService: GetDealCardsGQL,
+    private getEventCardsService: GetEventCardsGQL,
+    private getOrganisationCardsService: GetOrganisationCardsGQL,
+    private getSurveyCardsService: GetSurveyCardsGQL,
     private router: Router,
     private store: Store,
   ) { }

@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { FriendEntity, Maybe } from 'src/schema/schema';
+import { FriendEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { ContentEntity } from '../../typings/content-entity';
 import { selectCoreUserState } from './selector';
 

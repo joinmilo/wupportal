@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { FilterSortPaginateInput, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
-import { FilterSortPaginateInput, OrganisationEntity } from 'src/schema/schema';
-import { selectOverviewData } from '../state/organisation-portal-overview.selectors';
 import { OrganisationAdminOverviewActions } from '../state/organisation-admin-overview.actions';
+import { selectOverviewData } from '../state/organisation-portal-overview.selectors';
 
 @Component({
   selector: 'app-organisation-admin-overview',
@@ -29,11 +29,6 @@ export class OrganisationAdminOverviewComponent {
       field: 'contact.email',
       label: 'email',
       sort: true,
-    },
-    {
-      field: 'visitors.visits',
-      label: 'visiting',
-      type: row => `${row.visitors?.reduce((sum, visitor) => sum + visitor!['visits']!, 0)}`
     },
   ];
 

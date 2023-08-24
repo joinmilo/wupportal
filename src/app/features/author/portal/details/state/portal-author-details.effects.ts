@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
+import { UserContextEntity } from 'src/app/core/api/generated/schema';
 import { PortalActions } from 'src/app/portal/state/portal.actions';
-import { GetUserContextAuthorGQL, UserContextEntity } from 'src/schema/schema';
+import { GetAuthorDetailsGQL } from '../../../api/generated/get-author-details.generated';
 import { PortalAuthorDetailsActions } from './portal-author-details.actions';
 @Injectable()
 export class AuthorDetailsEffects {
 
   getDetails = createEffect(() => this.actions.pipe(
     ofType(PortalAuthorDetailsActions.getDetails),
-    switchMap((action) => this.getUserContextService.watch({ 
+    switchMap((action) => this.getAuthorDetails.watch({ 
       entity: {
         slug: action.slug
       }
@@ -21,6 +22,6 @@ export class AuthorDetailsEffects {
 
   constructor(
     private actions: Actions,
-    private getUserContextService: GetUserContextAuthorGQL, 
+    private getAuthorDetails: GetAuthorDetailsGQL, 
   ) {}
 }

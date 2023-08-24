@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SearchDto, SurveyEntity, UserContextEntity } from 'src/schema/schema';
+import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SearchDto, SurveyEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
 
 export const SearchActions = createActionGroup({
   source: 'Search',

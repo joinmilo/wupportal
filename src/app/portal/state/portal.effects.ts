@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { map, switchMap, tap } from 'rxjs';
+import { MenuItemEntity } from 'src/app/core/api/generated/schema';
 import { portalUrl } from 'src/app/core/constants/core.constants';
-import { GetMenuGQL, MenuItemEntity } from 'src/schema/schema';
+import { GetMenuGQL } from '../api/generated/get-menu.query.generated';
 import { PortalActions } from './portal.actions';
 
 @Injectable()

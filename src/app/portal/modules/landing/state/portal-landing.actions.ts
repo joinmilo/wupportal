@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { PageEntity } from 'src/schema/schema';
+import { PageEntity } from 'src/app/core/api/generated/schema';
 
 export const PortalLandingActions = createActionGroup({
   source: 'Portal Landing',

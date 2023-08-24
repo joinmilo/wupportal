@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { FeatureEntity, Maybe, MenuItemEntity } from 'src/schema/schema';
+import { FeatureEntity, Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 
 export const PortalActions = createActionGroup({
   source: 'Portal',

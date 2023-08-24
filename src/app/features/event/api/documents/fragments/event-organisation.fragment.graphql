@@ -1,0 +1,14 @@
+fragment EventOrganisation on OrganisationEntity {
+  id
+  name
+  slug
+  uploads {
+    id
+    title
+    card
+    media
+    media {
+      ...Media
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { DealEntity, GetDealsGQL } from 'src/schema/schema';
+import { DealEntity } from 'src/app/core/api/generated/schema';
+import { GetDealCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-deal-cards.query.generated';
 import { DealEmbeddingActions } from './deal-embedding.actions';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class DealEmbeddingEffects {
 
   getRecentDeals = createEffect(() => this.actions.pipe(
     ofType(DealEmbeddingActions.getRecentDeals),
-    switchMap(() => this.getDealsService.watch({
+    switchMap(() => this.getDealCardsService.watch({
       params: {
         sort: 'modified',
         dir: 'desc',
@@ -21,6 +22,6 @@ export class DealEmbeddingEffects {
 
   constructor(
     private actions: Actions,
-    private getDealsService: GetDealsGQL,
+    private getDealCardsService: GetDealCardsGQL,
   ) {}
 }

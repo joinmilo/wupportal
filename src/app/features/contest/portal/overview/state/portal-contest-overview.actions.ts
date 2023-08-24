@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { ContestEntity, FilterSortPaginateInput, Maybe } from 'src/schema/schema';
+import { ContestEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
 
 export const PortalContestOverviewActions = createActionGroup({
   source: 'Portal Contest Overview',

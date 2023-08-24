@@ -1,0 +1,29 @@
+fragment SurveyCard on SurveyEntity {
+  id
+  name
+  slug
+  dueDate
+  startDate
+
+  uploads {
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+
+  translatables {
+    id
+    description
+    language {
+      id
+      locale
+      name
+    }
+  }
+  contact {
+    ...Contact
+  }
+
+}

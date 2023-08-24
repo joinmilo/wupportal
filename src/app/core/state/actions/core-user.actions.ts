@@ -1,6 +1,6 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
+import { UserContextEntity } from 'src/app/core/api/generated/schema';
 import { Cookie } from 'src/app/core/components/cookie/typings/cookie';
-import { UserContextEntity } from 'src/schema/schema';
 
 export const CoreUserActions = createActionGroup({
   source: 'Core User',

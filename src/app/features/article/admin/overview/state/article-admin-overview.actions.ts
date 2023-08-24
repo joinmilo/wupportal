@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_ArticleEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_ArticleEntity } from 'src/app/core/api/generated/schema';
 
 export const ArticleAdminOverviewActions = createActionGroup({
   source: 'Article Admin Overview',

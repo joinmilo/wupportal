@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
+import { Maybe, OrganisationCommentEntity, OrganisationEntity, OrganisationRatingEntity, QueryOperator } from 'src/app/core/api/generated/schema';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { PortalActions } from 'src/app/portal/state/portal.actions';
-import { GetOrganisationCommentsGQL, GetOrganisationGQL, Maybe, OrganisationCommentEntity, OrganisationEntity, OrganisationRatingEntity, QueryOperator, SaveOrganisationCommentGQL, SaveOrganisationRatingGQL } from 'src/schema/schema';
+import { GetOrganisationCommentsGQL } from '../../../api/generated/get-organisation-comments.query.generated';
+import { GetOrganisationDetailsGQL } from '../../../api/generated/get-organisation-details.query.generated';
+import { SaveOrganisationCommentGQL } from '../../../api/generated/save-organisation-comment.mutation.generated';
+import { SaveOrganisationRatingGQL } from '../../../api/generated/save-organisation-rating.mutation.generated';
 import { PortalOrganisationDetailsActions } from './portal-organisation-details.actions';
 import { selectOrganisationDetails, selectOrganisationUserRating } from './portal-organisation-details.selectors';
 
@@ -124,7 +128,7 @@ export class PortalOrganisationDetailsEffects {
   constructor(
     private store: Store,
     private actions: Actions,
-    private getOrganisationService: GetOrganisationGQL,
+    private getOrganisationService: GetOrganisationDetailsGQL,
     private getCommentsService: GetOrganisationCommentsGQL,
     private saveOrganisationCommentService: SaveOrganisationCommentGQL,
     private saveOrganisationRatingService: SaveOrganisationRatingGQL,

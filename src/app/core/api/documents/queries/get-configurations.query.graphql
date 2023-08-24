@@ -1,0 +1,12 @@
+query getConfigurations {
+  getConfigurations {
+    result {
+      id
+      code
+      value
+      media {
+        ...Media
+      }
+    }
+  }
+}

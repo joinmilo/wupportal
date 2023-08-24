@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
+import { DealEntity, EventEntity, FilterSortPaginateInput, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-param';
-import { DealEntity, EventEntity, FilterSortPaginateInput, OrganisationEntity } from 'src/schema/schema';
 import { MapFeatureActions } from './portal-map-overview.actions';
 
 export interface MapState {

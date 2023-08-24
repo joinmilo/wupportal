@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FilterSortPaginateInput } from 'src/schema/schema';
+import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { PortalContestOverviewActions } from '../state/portal-contest-overview.actions';
 import { selectActiveContests, selectCompletedContests, selectSponsoredContest, selectVoteableContests } from '../state/portal-contest-overview.selectors';
 

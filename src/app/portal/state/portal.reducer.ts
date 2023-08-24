@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, MenuItemEntity } from 'src/schema/schema';
+import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 import { PortalActions } from './portal.actions';
 
 export interface PortalState {

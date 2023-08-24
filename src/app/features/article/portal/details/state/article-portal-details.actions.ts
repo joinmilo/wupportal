@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { ArticleCommentEntity, ArticleCommentEntityInput, ArticleEntity, ArticleRatingEntity, ArticleRatingEntityInput, Maybe } from 'src/schema/schema';
+import { ArticleCommentEntity, ArticleCommentEntityInput, ArticleEntity, ArticleRatingEntity, ArticleRatingEntityInput, Maybe } from 'src/app/core/api/generated/schema';
 
 export const ArticlePortalDetailsActions = createActionGroup({
   source: 'Article Portal Details',
@@ -10,7 +10,7 @@ export const ArticlePortalDetailsActions = createActionGroup({
     'details updated': (article: Maybe<ArticleEntity>) => ({ article }),
 
     'get comments': (slug: Maybe<string>) => ({ slug }),
-    'set comments': (comments: Maybe<ArticleCommentEntity[]>) => ({ comments }),
+    'set comments': (comments?: Maybe<ArticleCommentEntity[]>) => ({ comments }),
 
     'save article rating': (entity: ArticleRatingEntityInput) => ({ entity }),
     'article rating saved': (entity: ArticleRatingEntity) => ({ entity }),

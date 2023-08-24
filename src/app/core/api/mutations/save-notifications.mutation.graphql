@@ -1,5 +1,0 @@
-mutation saveNotifications($entities: [NotificationEntityInput!]) {
-  saveNotifications(entities: $entities) {
-    ...Notification
-  }
-}

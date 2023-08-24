@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_SurveyEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_SurveyEntity } from 'src/app/core/api/generated/schema';
 import { SurveyAdminOverviewActions } from './survey-admin-overview.actions';
 
 export interface SurveyAdminOverviewState {

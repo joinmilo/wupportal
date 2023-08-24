@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
-import { FeatureEntity, GetFeaturesGQL, QueryOperator } from 'src/schema/schema';
+import { FeatureEntity, QueryOperator } from 'src/app/core/api/generated/schema';
+import { GetFeaturesGQL } from '../api/generated/get-features.query.generated';
 import { AdminActions } from './admin.actions';
 
 @Injectable()
@@ -28,27 +29,6 @@ export class AdminEffects implements OnInitEffects {
     }).valueChanges),
     map(response => AdminActions.setFeatures(response.data.getFeatures?.result as FeatureEntity[])),
   ));
-
-  // navigateDetails = createEffect(() => this.actions.pipe(
-  //   ofType(PortalMenuActions.navigateDetails),
-  //   tap(action => this.router.navigate(['portal', action.feature?.code, action.slug])),
-  // ), { dispatch: false });
-
-  // navigateMenu = createEffect(() => this.actions.pipe(
-  //   ofType(PortalMenuActions.navigateMenu),
-  //   tap(action => {
-  //     action?.item?.feature?.code
-  //       ? this.router.navigate(['/', portalUrl, action.item.feature.code])
-  //       : action?.item?.page?.slug
-  //         ? this.router.navigate(['/', portalUrl, action.item.page.slug])
-  //         : this.router.navigate(['/', portalUrl, '404']);
-  //   }),
-  // ), { dispatch: false });
-
-  // notFound = createEffect(() => this.actions.pipe(
-  //   ofType(PortalMenuActions.notFound),
-  //   tap(() => this.router.navigate(['/', portalUrl, '404'])),
-  // ), { dispatch: false });
 
   constructor(
     private actions: Actions,

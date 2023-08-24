@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { EventEntity, FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
-import { EventEntity, FilterSortPaginateInput } from 'src/schema/schema';
-import { selectOverviewData } from '../state/event-portal-overview.selectors';
 import { EventAdminOverviewActions } from '../state/event-admin-overview.actions';
+import { selectOverviewData } from '../state/event-portal-overview.selectors';
 
 @Component({
   selector: 'app-event-admin-overview',
@@ -25,11 +25,6 @@ export class EventAdminOverviewComponent {
       field: 'translatables.name',
       label: 'activities',
       type: row => this.translationService.translatable(row.translatables, 'name')
-    },
-    {
-      field: 'visitors.visits',
-      label: 'visiting',
-      type: row => `${row.visitors?.reduce((sum, visitor) => sum + visitor!['visits']!, 0)}`
     },
     {
       field: 'modified',

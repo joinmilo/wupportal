@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { FilterSortPaginateInput, SurveyEntity } from 'src/app/core/api/generated/schema';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
-import { selectOverviewData } from '../state/survey-portal-overview.selectors';
-import { FilterSortPaginateInput, SurveyEntity } from 'src/schema/schema';
 import { SurveyAdminOverviewActions } from '../state/survey-admin-overview.actions';
+import { selectOverviewData } from '../state/survey-portal-overview.selectors';
 
 @Component({
   selector: 'app-survey-admin-overview',
@@ -23,11 +23,6 @@ export class SurveyAdminOverviewComponent {
     {
       field: 'name',
       label: 'surveys'
-    },
-    {
-      field: 'visitors.visits',
-      label: 'visiting',
-      type: row => `${row.visitors?.reduce((sum, visitor) => sum + visitor!['visits']!, 0) ?? 0}`
     },
   ];
 

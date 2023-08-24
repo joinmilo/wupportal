@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { ArticleFilterModule } from 'src/app/shared/filter/article-filter/article-filter.module';
+import { ArticleFilterModule } from 'src/app/shared/filter/article/article-filter.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { ArticleAdminOverviewRoutingModule } from './article-admin-overview-routing.module';

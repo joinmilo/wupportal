@@ -2,12 +2,19 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs';
+import { ConjunctionOperator, EventCommentEntity, EventEntity, EventRatingEntity, EventScheduleEntity, Maybe, QueryOperator } from 'src/app/core/api/generated/schema';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { PortalActions } from 'src/app/portal/state/portal.actions';
-import { ConjunctionOperator, DeleteEventAttendeeGQL, EventCommentEntity, EventEntity, EventRatingEntity, EventScheduleEntity, GetEventCommentsGQL, GetEventGQL, GetEventSchedulesGQL, Maybe, QueryOperator, SaveEventAttendeeGQL, SaveEventCommentGQL, SaveEventRatingGQL } from 'src/schema/schema';
+import { DeleteEventAttendeeGQL } from '../../../api/generated/delete-eventattendee.mutation.generated';
+import { GetEventCommentsGQL } from '../../../api/generated/get-event-comments.query.generated';
+import { GetEventDetailsGQL } from '../../../api/generated/get-event-details.query.generated';
+import { GetEventSchedulesGQL } from '../../../api/generated/get-event-schedules.query.generated';
+import { SaveEventAttendeeGQL } from '../../../api/generated/save-event-attendee.mutation.generated';
+import { SaveEventCommentGQL } from '../../../api/generated/save-event-comment.mutation.generated';
+import { SaveEventRatingGQL } from '../../../api/generated/save-event-rating.mutation.generated';
 import { PortalEventDetailsActions } from './portal-event-details.actions';
 import { selectEventAttendeeConfiguration, selectEventDetails, selectEventUserAttendee, selectEventUserRating } from './portal-event-details.selectors';
 
@@ -16,7 +23,7 @@ export class PortalEventDetailsEffects {
 
   getDetails = createEffect(() => this.actions.pipe(
     ofType(PortalEventDetailsActions.getDetails),
-    switchMap((action) => this.getEventService.watch({
+    switchMap((action) => this.getEventDetailsService.watch({
       entity: {
         slug: action.slug
       }
@@ -33,7 +40,7 @@ export class PortalEventDetailsEffects {
       PortalEventDetailsActions.commentSaved
     ),
     withLatestFrom(this.store.select(selectEventDetails)),
-    switchMap(([, eventDetails]) => this.getEventService.watch({
+    switchMap(([, eventDetails]) => this.getEventDetailsService.watch({
       entity: {
         slug: eventDetails?.slug
       }
@@ -213,7 +220,7 @@ export class PortalEventDetailsEffects {
     private store: Store,
     private actions: Actions,
     private deleteAttendeeService: DeleteEventAttendeeGQL,
-    private getEventService: GetEventGQL,
+    private getEventDetailsService: GetEventDetailsGQL,
     private getCommentsService: GetEventCommentsGQL,
     private getSchedulesService: GetEventSchedulesGQL,
     private saveEventAttendeeService: SaveEventAttendeeGQL,

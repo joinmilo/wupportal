@@ -1,5 +1,5 @@
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { adminUrl, articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, formsFeatureKey, guestArticlesFeatureKey, mapFeatureKey, mediaFeatureKey, organisationsFeatureKey, reportsFeatureKey, surveysFeatureKey } from 'src/app/core/constants/core.constants';
-import { Maybe } from 'src/schema/schema';
 
 export const createAdminRoutes = (featureCode?: Maybe<string>): (Maybe<string> | undefined)[][] => {
   switch (featureCode) {

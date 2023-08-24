@@ -1,0 +1,70 @@
+query getArticleDetails($entity: ArticleEntityInput) {
+  getArticle(entity: $entity) {
+    id
+    approved
+    created
+    modified
+    slug
+    author {
+      slug
+      user {
+        firstName
+        lastName
+      }
+    }
+
+    category {
+      ...ArticleCategory
+    }
+
+    calculatedRatings {
+      ...RatingDto
+    }
+
+    lastArticleComment {
+      id
+      created
+      modified
+
+      userContext {
+        ...Commentator
+      }
+
+      translatables {
+        id
+        content
+        language {
+          id
+          locale
+          name
+        }
+      }
+    }
+
+    uploads {
+      title
+      card
+      media {
+        ...Media
+      }
+    }
+
+    favoritingUsers {
+      id
+    }
+
+    publicAuthor {
+      ...PublicAuthor
+    }
+
+    translatables {
+      id
+      content
+      shortDescription
+      name
+      language {
+        ...Language
+      }
+    }
+  }
+}

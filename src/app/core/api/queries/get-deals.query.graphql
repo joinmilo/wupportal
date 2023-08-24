@@ -1,8 +1,0 @@
-query getDeals($params: FilterSortPaginateInput) {
-  getDeals(params: $params) {
-    result {
-      ...Deal
-    }
-    total
-  }
-}

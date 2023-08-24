@@ -1,0 +1,5 @@
+query getAuthorCard($entity: UserContextEntityInput) {
+  getUserContext(entity: $entity) {
+    ...AuthorCard
+  }
+}

@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { ReportEntity, ReportEntityInput, ReportTypeEntity } from 'src/schema/schema';
+import { ReportEntity, ReportEntityInput, ReportTypeEntity } from 'src/app/core/api/generated/schema';
 
 export const ReportEmbeddingActions = createActionGroup({
   source: 'Report Embedding',

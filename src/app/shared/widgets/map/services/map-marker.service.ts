@@ -6,7 +6,7 @@ import {
   latLng,
   marker
 } from 'leaflet';
-import { DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/schema/schema';
+import { DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { defaultMarkerColor, iconOptions, markerColorOrganisations, markerIconOrganisations, popupOptions } from '../constants/map.constants';
 import { MarkerDefinition, PointOfInterest } from '../typings/map';
 import { MapComponentsService } from './map-components.service';

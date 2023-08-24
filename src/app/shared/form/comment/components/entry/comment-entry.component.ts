@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { Comment } from '../../typings/comment';
 
 @Component({

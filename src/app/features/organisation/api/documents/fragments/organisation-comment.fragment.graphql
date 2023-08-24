@@ -1,0 +1,22 @@
+fragment OrganisationComment on OrganisationCommentEntity {
+  id
+  created
+  modified
+  content
+
+  organisation {
+    id
+  }
+
+  userContext {
+    ...Commentator
+  }
+
+  translatables {
+    id
+    content
+    language {
+      ...Language
+    }
+  }
+}

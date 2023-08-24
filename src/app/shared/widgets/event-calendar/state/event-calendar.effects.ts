@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, switchMap, withLatestFrom } from 'rxjs';
-import { EventEntity, EventScheduleEntity, GetEventSchedulesGQL, GetEventsGQL } from 'src/schema/schema';
+import { EventEntity, EventScheduleEntity, GetEventSchedulesGQL, GetEventsGQL } from 'src/app/core/api/generated/schema';
 import { EventCalendarActions } from './event-calendar.actions';
 import { selectEventParams, selectScheduleParams, selectSelectedDay } from './event-calendar.selectors';
 

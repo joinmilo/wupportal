@@ -1,0 +1,5 @@
+mutation saveUser($entity: UserContextEntityInput!) {
+  saveUserContext(entity: $entity) {
+    id
+  }
+}

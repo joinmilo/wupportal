@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { SurveyFilterModule } from 'src/app/shared/filter/survey-filter/survey-filter.module';
+import { SurveyFilterModule } from 'src/app/shared/filter/survey/survey-filter.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
@@ -53,6 +53,5 @@ const libs = [
   declarations: [...components],
   imports: [...framework, ...materials, ...modules, ...libs],
   exports: [...components],
-  // providers: [...providers],
 })
 export class PortalSurveyOverviewModule {}

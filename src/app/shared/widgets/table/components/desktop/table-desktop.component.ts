@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { MatSort, SortDirection } from '@angular/material/sort';
 import { Observable, Subject, merge, takeUntil, tap } from 'rxjs';
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { Column, PageableList, RowAction, SortPaginate } from '../../typings/table';
 import { TablePaginatorComponent } from '../paginator/table-paginator.component';
 

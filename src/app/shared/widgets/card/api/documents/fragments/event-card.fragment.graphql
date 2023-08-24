@@ -1,0 +1,79 @@
+fragment EventCard on EventEntity {
+  id
+  slug
+  modified
+
+  address {
+    ...Address
+  }
+
+  category {
+    id
+    color
+    icon
+    name
+    translatables {
+      id
+      name
+      language {
+        ...Language
+      }
+    }
+  }
+
+  creator {
+    id
+    uploads {
+      id
+      profilePicture
+      media {
+        ...Media
+      }
+    }
+  }
+
+  contact {
+    ...Contact
+  }
+
+  organisation {
+    id
+    name
+    slug
+    uploads {
+      id
+      title
+      card
+      media
+      media {
+        ...Media
+      }
+    }
+  }
+
+  schedule(begin: $scheduleBegin, end: $scheduleEnd) {
+    id
+    startDate
+    endDate
+  }
+
+  translatables {
+    id
+    name
+    content
+    shortDescription
+    language {
+      id
+      locale
+      name
+    }
+  }
+
+  uploads {
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+}

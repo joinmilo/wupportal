@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 
 @Component({
   selector: 'app-password-field',

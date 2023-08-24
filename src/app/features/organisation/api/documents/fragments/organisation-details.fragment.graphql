@@ -1,0 +1,61 @@
+fragment OrganisationDetails on OrganisationEntity {
+  id
+  name
+  slug
+
+  address {
+    ...Address
+  }
+
+  contact {
+    ...Contact
+  }
+
+  calculatedRatings{
+    ...RatingDto
+  }
+
+  lastOrganisationComment {
+    ...OrganisationComment
+  }
+
+  members {
+    approved
+    admin
+    isPublic
+
+    userContext {
+      user {
+        id
+        firstName
+        lastName
+        email
+        phone
+      }
+
+      uploads {
+        profilePicture
+        media {
+          ...Media
+        }
+      }
+    }
+  }
+
+  translatables {
+    id
+    description
+    language {
+      ...Language
+    }
+  }
+
+  uploads {
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+
+}

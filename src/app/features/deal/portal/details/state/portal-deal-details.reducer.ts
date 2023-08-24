@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { DealEntity, Maybe } from 'src/schema/schema';
+import { DealEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { PortalDealDetailsActions } from './portal-deal-details.actions';
 
 export interface PortalDealDetailsState {

@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
-import { selectParams } from './contest-portal-overview.selectors';
+import { PageableList_ContestEntity } from 'src/app/core/api/generated/schema';
+import { GetContestCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-contest-cards.query.generated';
 import { ContestAdminOverviewActions } from './contest-admin-overview.actions';
-import { GetContestsGQL, PageableList_ContestEntity } from 'src/schema/schema';
+import { selectParams } from './contest-portal-overview.selectors';
 
 @Injectable()
 export class ContestAdminOverviewEffects {
@@ -20,7 +21,7 @@ export class ContestAdminOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getContest: GetContestsGQL,
+    private getContest: GetContestCardsGQL,
     private store: Store,
   ) {}
 }

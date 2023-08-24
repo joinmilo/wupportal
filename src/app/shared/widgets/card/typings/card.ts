@@ -1,7 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { AddressEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { Category } from 'src/app/core/typings/category';
 import { Translatable } from 'src/app/core/typings/translatable';
-import { AddressEntity, Maybe, MediaEntity } from 'src/schema/schema';
 
 export type CardActionInput = {
   label: string,

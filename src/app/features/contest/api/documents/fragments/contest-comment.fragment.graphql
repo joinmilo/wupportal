@@ -1,0 +1,19 @@
+fragment ContestComment on ContestCommentEntity {
+  id
+  created
+  modified
+
+  userContext {
+    ...Commentator
+  }
+
+  translatables {
+    id
+    content
+    language {
+      id
+      locale
+      name
+    }
+  }
+}

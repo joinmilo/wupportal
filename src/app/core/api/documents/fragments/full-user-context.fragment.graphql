@@ -1,0 +1,105 @@
+fragment FullUserContext on UserContextEntity {
+  id
+  slug
+  modified
+
+  translatables {
+    id
+    description
+    language {
+      id
+      locale
+      name
+    }
+  }
+
+  address {
+    ...Address
+  }
+
+  articles {
+    id
+  }
+
+  articleRatings {
+    id
+    score
+    article {
+      id
+    }
+  }
+
+  favoriteArticles {
+    id
+  }
+
+  favoriteDeals {
+    id
+  }
+
+  favoriteEvents {
+    id
+  }
+
+  favoriteOrganisations {
+    id
+  }
+
+  favoriteAuthors {
+    id
+  }
+
+  eventRatings {
+    id
+    score
+    event {
+      id
+    }
+  }
+
+  favoritingUsers {
+    id
+  }
+
+  sentFriendRequests {
+    ...Friend
+  }
+
+  receivedFriendRequests {
+    ...Friend
+  }
+
+  organisationRatings {
+    id
+    score
+    organisation {
+      id
+    }
+  }
+
+  uploads {
+    profilePicture
+    title
+    media {
+      ...Media
+    }
+  }
+
+  user {
+    id
+    firstName
+    lastName
+    email
+    lastLogin
+    verified
+    notifications {
+      ...Notification
+    }
+
+    roles {
+      id
+      code
+    }
+  }
+
+}

@@ -1,0 +1,10 @@
+query getSocialMedia {
+  getSocialMedias {
+    result {
+      id
+      icon
+      name
+      url
+    }
+  }
+}

@@ -1,7 +1,0 @@
-query getEventCategories {
-  getEventCategories {
-    result {
-      ...EventCategory
-    }
-  }
-}

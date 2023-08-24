@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { EventEntity } from 'src/schema/schema';
+import { EventEntity } from 'src/app/core/api/generated/schema';
 import { selectRawParams } from '../../state/portal-event-overview.selectors';
 
 @Component({

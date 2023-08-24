@@ -5,7 +5,7 @@ import {
   Injectable,
   Injector, Type
 } from '@angular/core';
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { MapMarkerComponent } from '../components/marker/map-marker.component';
 import { MapPopupComponent } from '../components/popup/map-popup.component';
 import { PointOfInterest } from '../typings/map';

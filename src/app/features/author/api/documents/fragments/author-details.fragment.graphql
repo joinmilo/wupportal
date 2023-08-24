@@ -1,0 +1,31 @@
+fragment AuthorDetails on UserContextEntity {
+  id
+  description
+  slug
+  translatables {
+    id
+    description
+    language {
+      id
+      locale
+      name
+    }
+  }
+  uploads {
+    profilePicture
+    title
+    media{
+      ...Media
+    }
+  }
+
+  articles {
+    id
+  }
+
+  user {
+    firstName
+    lastName
+    email
+  }
+}

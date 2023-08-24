@@ -1,0 +1,8 @@
+query getContestCards($params: FilterSortPaginateInput) {
+  getContests(params: $params) {
+    result {
+      ...ContestCard
+    }
+    total
+  }
+}

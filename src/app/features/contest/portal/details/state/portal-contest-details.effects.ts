@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
+import { ContestCommentEntity, ContestEntity, Maybe, QueryOperator } from 'src/app/core/api/generated/schema';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { PortalActions } from 'src/app/portal/state/portal.actions';
-import { ContestCommentEntity, ContestEntity, GetContestCommentsGQL, GetContestGQL, Maybe, QueryOperator, SaveContestCommentGQL } from 'src/schema/schema';
+import { GetContestCommentsGQL } from '../../../api/generated/get-contest-comments.query.generated';
+import { GetContestDetailsGQL } from '../../../api/generated/get-contest-details.query.generated';
+import { SaveContestCommentGQL } from '../../../api/generated/save-contest-comment.mutation.generated';
 import { PortalContestDetailsActions } from './portal-contest-details.actions';
 import { selectContestDetails } from './portal-contest-details.selectors';
 
@@ -93,7 +96,7 @@ export class PortalContestDetailsEffects {
 
   constructor(
     private actions: Actions,
-    private getContestService: GetContestGQL,
+    private getContestService: GetContestDetailsGQL,
     private store: Store,
     private saveContestCommentService: SaveContestCommentGQL,
     private getCommentsService: GetContestCommentsGQL,

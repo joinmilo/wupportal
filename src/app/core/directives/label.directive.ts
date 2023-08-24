@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Subject, distinctUntilChanged, map, switchMap, takeUntil } from 'rxjs';
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { TranslationService } from '../services/translation.service';
 
 @Directive({

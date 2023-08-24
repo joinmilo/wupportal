@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, SurveyEntity } from 'src/schema/schema';
+import { Maybe, SurveyEntity } from 'src/app/core/api/generated/schema';
 import { PortalSurveyDetailsActions } from './portal-survey-details.actions';
 
 export interface PortalSurveyDetailsState {

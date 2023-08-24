@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ContestEntity, FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
-import { selectOverviewData } from '../state/contest-portal-overview.selectors';
-import { ContestEntity, FilterSortPaginateInput } from 'src/schema/schema';
 import { ContestAdminOverviewActions } from '../state/contest-admin-overview.actions';
+import { selectOverviewData } from '../state/contest-portal-overview.selectors';
 
 @Component({
   selector: 'app-contest-admin-overview',

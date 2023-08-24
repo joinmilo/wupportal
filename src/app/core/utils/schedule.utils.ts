@@ -1,4 +1,4 @@
-import { EventScheduleEntity, Maybe } from 'src/schema/schema';
+import { EventScheduleEntity, Maybe } from 'src/app/core/api/generated/schema';
 
 export const distinctStartDates = (schedules?: Maybe<EventScheduleEntity>[]): Date[] | undefined => 
   schedules?.reduce((result, current) => {

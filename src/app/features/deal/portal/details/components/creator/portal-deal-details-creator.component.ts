@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { DealEntity, Maybe, MediaEntity } from 'src/schema/schema';
+import { DealEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { selectDealDetails } from '../../state/portal-deal-details.selectors';
 
 @Component({

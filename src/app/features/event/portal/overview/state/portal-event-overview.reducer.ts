@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
+import { EventEntity, EventScheduleEntity, FilterSortPaginateInput, Maybe, PageableList_EventEntity } from 'src/app/core/api/generated/schema';
 import { EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
-import { EventEntity, EventScheduleEntity, FilterSortPaginateInput, Maybe, PageableList_EventEntity } from 'src/schema/schema';
 import { PortalEventOverviewActions } from './portal-event-overview.actions';
 
 export interface PortalEventOverviewState {

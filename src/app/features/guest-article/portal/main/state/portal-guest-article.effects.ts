@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, tap } from 'rxjs';
+import { ArticleEntity } from 'src/app/core/api/generated/schema';
 import { portalUrl } from 'src/app/core/constants/core.constants';
-import { ArticleEntity, SaveArticleGQL } from 'src/schema/schema';
+import { SaveGuestArticleGQL } from '../../../api/generated/guest-article-save.mutation.generated';
 import { PortalGuestArticleActions } from './portal-guest-article.actions';
 
 @Injectable()
@@ -25,6 +26,6 @@ export class PortalGuestArticleEffects {
   constructor(
     private actions: Actions,
     private router: Router,
-    private saveArticleService: SaveArticleGQL,
+    private saveArticleService: SaveGuestArticleGQL,
   ) { }
 }

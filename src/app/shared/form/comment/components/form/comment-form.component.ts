@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selectors';
-import { Maybe } from 'src/schema/schema';
 import { Comment } from '../../typings/comment';
 import { CommentDialogComponent } from '../dialog/comment-dialog.component';
 

@@ -1,0 +1,8 @@
+query getOrganisationCards($params: FilterSortPaginateInput) {
+  getOrganisations(params: $params) {
+    result {
+      ...OrganisationCard
+    }
+    total
+  }
+}

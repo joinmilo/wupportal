@@ -1,0 +1,17 @@
+query getEventCategories {
+  getEventCategories {
+    result {
+      id
+      color
+      icon
+      name
+      translatables {
+        id
+        name
+        language {
+          ...Language
+        }
+      }
+    }
+  }
+}

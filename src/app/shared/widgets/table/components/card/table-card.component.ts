@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, startWith, take } from 'rxjs';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { CardActionInput, CardActionOutput, CardType } from 'src/app/shared/widgets/card/typings/card';
-import { Maybe } from 'src/schema/schema';
 import { PageableList, Sort, SortOption, SortPaginate } from '../../typings/table';
 import { TablePaginatorComponent } from '../paginator/table-paginator.component';
 

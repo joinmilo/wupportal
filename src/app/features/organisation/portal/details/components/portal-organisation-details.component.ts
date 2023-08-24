@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { Maybe, MediaEntity, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { organisationsFeatureKey, slug } from 'src/app/core/constants/core.constants';
 import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
-import { Maybe, MediaEntity, OrganisationEntity } from 'src/schema/schema';
 import { PortalOrganisationDetailsActions } from '../state/portal-organisation-details.actions';
 import { selectOrganisationDetails } from '../state/portal-organisation-details.selectors';
 

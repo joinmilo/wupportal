@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { FeatureEntity, Maybe } from 'src/schema/schema';
+import { FeatureEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { AdminRoutes } from '../typings/menu';
 import { AdminActions } from './admin.actions';
 

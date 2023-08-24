@@ -2,8 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Store } from '@ngrx/store';
 import { Observable, map, of } from 'rxjs';
-import { GetMenuGQL, Maybe, MenuItemEntity } from 'src/schema/schema';
-import { PortalActions } from '../../../../state/portal.actions';
+import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
+import { GetMenuGQL } from 'src/app/portal/api/generated/get-menu.query.generated';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
 
 @Component({
   selector: 'app-portal-menu-overlay',

@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { ContestEntity } from 'src/schema/schema';
+import { ContestEntity } from 'src/app/core/api/generated/schema';
 
 export const ContestEmbeddingActions = createActionGroup({
   source: 'Contest Page Feature',

@@ -2,12 +2,12 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { slug } from 'src/app/core/constants/core.constants';
 import { MediaDisplayType } from 'src/app/core/typings/filter-params/media-display';
 import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input';
 import { MimeTypeDefinition } from 'src/app/shared/widgets/media/typings/media';
 import { mimeTypeDefinition } from 'src/app/shared/widgets/media/utils/media.utils';
-import { Maybe, MediaEntity } from 'src/schema/schema';
 import { PortalDealDetailsActions } from '../../state/portal-deal-details.actions';
 import { selectDealMedia } from '../../state/portal-deal-details.selectors';
 

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { InfoMediaEntity, Maybe } from 'src/schema/schema';
+import { InfoMediaEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { MediaEmbeddingActions } from './media-embedding.actions';
 
 export interface MediaEmbeddingState {

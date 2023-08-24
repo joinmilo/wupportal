@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { FilterSortPaginateInput, Maybe, OrganisationEntity, PageableList_OrganisationEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, Maybe, OrganisationEntity, PageableList_OrganisationEntity } from 'src/app/core/api/generated/schema';
 
 export const PortalOrganisationOverviewActions = createActionGroup({
   source: 'Portal Organisation Overview',

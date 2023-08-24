@@ -1,5 +1,0 @@
-fragment SocialMedia on SocialMediaEntity {
-  icon
-  name
-  url
-}

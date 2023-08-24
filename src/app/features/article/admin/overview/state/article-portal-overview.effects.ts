@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
-import { GetArticlesGQL, PageableList_ArticleEntity } from 'src/schema/schema';
+import { PageableList_ArticleEntity } from 'src/app/core/api/generated/schema';
+import { GetArticleCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-article-cards.query.generated';
 import { ArticleAdminOverviewActions } from './article-admin-overview.actions';
 import { selectParams } from './article-portal-overview.selectors';
 
@@ -20,7 +21,7 @@ export class ArticleAdminOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getArticlesService: GetArticlesGQL,
+    private getArticlesService: GetArticleCardsGQL,
     private store: Store,
   ) {}
 }

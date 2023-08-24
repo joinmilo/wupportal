@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { CoreModule } from 'src/app/core/core.module';
 import { Category } from 'src/app/core/typings/category';
 import { invertColor } from 'src/app/core/utils/color.utils';
-import { Maybe } from 'src/schema/schema';
 
 @Component({
   selector: 'app-category-piece',

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EventEntity, Maybe } from 'src/schema/schema';
+import { EventEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { EventEmbeddingActions } from './event-embedding.actions';
 
 export interface EventEmbeddingState {

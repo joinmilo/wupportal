@@ -1,4 +1,4 @@
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { Period } from '../typings/period';
 
 export const monthPeriod = (date?: Maybe<Date>): Maybe<Period> | undefined => {

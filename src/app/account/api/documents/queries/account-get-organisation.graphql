@@ -1,0 +1,9 @@
+query getOrganisations($params: FilterSortPaginateInput) {
+  getOrganisations(params: $params) {
+    result {
+      id
+      name
+    }
+    total
+  }
+}

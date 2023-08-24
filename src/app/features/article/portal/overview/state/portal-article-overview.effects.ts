@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
-import { ArticleEntity, GetArticlesGQL, GetFullArticleGQL, PageableList_ArticleEntity } from 'src/schema/schema';
+import { ArticleEntity, PageableList_ArticleEntity } from 'src/app/core/api/generated/schema';
+import { GetArticleCardGQL } from 'src/app/shared/widgets/card/api/generated/get-article-card.query.generated';
+import { GetArticleCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-article-cards.query.generated';
 import { PortalArticleOverviewActions } from './portal-article-overview.actions';
 import { selectParams } from './portal-article-overview.selectors';
 
@@ -30,8 +32,8 @@ export class PortalArticleOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getArticleService: GetFullArticleGQL,
-    private getArticlesService: GetArticlesGQL,
+    private getArticleService: GetArticleCardGQL,
+    private getArticlesService: GetArticleCardsGQL,
     private store: Store,
   ) {}
 }

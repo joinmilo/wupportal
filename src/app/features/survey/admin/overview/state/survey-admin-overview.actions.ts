@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_SurveyEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_SurveyEntity } from 'src/app/core/api/generated/schema';
 
 export const SurveyAdminOverviewActions = createActionGroup({
   source: 'Survey Admin Overview',

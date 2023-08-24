@@ -1,0 +1,5 @@
+query getSurveyCard($entity: SurveyEntityInput) {
+  getSurvey(entity: $entity) {
+    ...SurveyCard
+  }
+}

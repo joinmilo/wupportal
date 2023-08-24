@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, ReportEntity, ReportTypeEntity } from 'src/schema/schema';
+import { Maybe, ReportEntity, ReportTypeEntity } from 'src/app/core/api/generated/schema';
 import { ReportEmbeddingActions } from './report-embedding.actions';
 
 export interface ReportEmbeddingState {

@@ -1,4 +1,4 @@
-import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SurveyEntity, UserContextEntity } from 'src/schema/schema';
+import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SurveyEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
 
 export type ContentEntity = 'ArticleEntity'
   | 'ContestEntity'

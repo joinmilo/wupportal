@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
-import { DealEntity, GetDealGQL, GetDealsGQL, PageableList_DealEntity } from 'src/schema/schema';
+import { DealEntity, PageableList_DealEntity } from 'src/app/core/api/generated/schema';
+import { GetDealCardGQL } from 'src/app/shared/widgets/card/api/generated/get-deal-card.query.generated';
+import { GetDealCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-deal-cards.query.generated';
 import { PortalDealOverviewActions } from './portal-deal-overview.actions';
 import { selectParams } from './portal-deal-overview.selectors';
 
@@ -11,7 +13,7 @@ export class PortalDealOverviewEffects {
 
   getSponsoredDeal = createEffect(() => this.actions.pipe(
     ofType(PortalDealOverviewActions.getSponsoredDeal),
-    switchMap(() => this.getDealService.watch({ 
+    switchMap(() => this.getDealCardService.watch({ 
       entity: {
         sponsored: true
       }
@@ -22,7 +24,7 @@ export class PortalDealOverviewEffects {
   updateParams = createEffect(() => this.actions.pipe(
     ofType(PortalDealOverviewActions.updateParams),
     withLatestFrom(this.store.select(selectParams)),
-    switchMap(([, params]) => this.getDealsService.watch({ 
+    switchMap(([, params]) => this.getDealCardsService.watch({ 
       params,
     }).valueChanges),
     map(response => PortalDealOverviewActions.setOverviewData(response.data.getDeals as PageableList_DealEntity))
@@ -30,8 +32,8 @@ export class PortalDealOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getDealService: GetDealGQL,
-    private getDealsService: GetDealsGQL,
+    private getDealCardService: GetDealCardGQL,
+    private getDealCardsService: GetDealCardsGQL,
     private store: Store,
   ) {}
 }

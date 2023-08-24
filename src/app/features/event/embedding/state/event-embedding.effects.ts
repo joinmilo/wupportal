@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { EventEntity, GetEventsGQL } from 'src/schema/schema';
+import { EventEntity } from 'src/app/core/api/generated/schema';
+import { GetEventCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-event-cards.query.generated';
 import { EventEmbeddingActions } from './event-embedding.actions';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class EventEmbeddingEffects {
 
   getRecentEvents = createEffect(() => this.actions.pipe(
     ofType(EventEmbeddingActions.getRecentEvents),
-    switchMap(() => this.getEventsService.watch({
+    switchMap(() => this.getEventCardsService.watch({
       params: {
         sort: 'modified',
         dir: 'desc',
@@ -21,6 +22,6 @@ export class EventEmbeddingEffects {
 
   constructor(
     private actions: Actions,
-    private getEventsService: GetEventsGQL,
+    private getEventCardsService: GetEventCardsGQL,
   ) {}
 }

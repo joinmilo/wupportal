@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
+import { UserContextEntity } from 'src/app/core/api/generated/schema';
 import { Cookie } from 'src/app/core/components/cookie/typings/cookie';
-import { UserContextEntity } from 'src/schema/schema';
 import { appStateKey } from '../../constants/core.constants';
 import { CoreUserActions } from '../actions/core-user.actions';
 

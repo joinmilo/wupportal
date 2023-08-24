@@ -12,10 +12,10 @@ import {
   tileLayer
 } from 'leaflet';
 import { combineLatest, map, take } from 'rxjs';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { locationTileLayerURL, mapLatitudeConfig, mapLongitudeConfig } from 'src/app/core/constants/core.constants';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { MapQueryParams } from 'src/app/core/typings/filter-params/map-filter-param';
-import { Maybe } from 'src/schema/schema';
 import { defaultBounds, markerClusterOptions, tileLayerOptions } from '../constants/map.constants';
 import { MapMarkerService } from '../services/map-marker.service';
 import { MarkerDefinition } from '../typings/map';

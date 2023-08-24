@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { ConjunctionOperator, ContestEntity, FilterSortPaginateInput, GetContestGQL, GetContestsGQL, Maybe, QueryExpressionInput, QueryOperator } from 'src/schema/schema';
+import { ConjunctionOperator, ContestEntity, FilterSortPaginateInput, Maybe, QueryExpressionInput, QueryOperator } from 'src/app/core/api/generated/schema';
+import { GetContestCardGQL } from 'src/app/shared/widgets/card/api/generated/get-contest-card.query.generated';
+import { GetContestCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-contest-cards.query.generated';
 import { PortalContestOverviewActions } from './portal-contest-overview.actions';
 
 @Injectable()
@@ -122,7 +124,7 @@ export class PortalContestOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getContestService: GetContestGQL,
-    private getContestsService: GetContestsGQL,
+    private getContestService: GetContestCardGQL,
+    private getContestsService: GetContestCardsGQL,
   ) {}
 }

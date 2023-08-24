@@ -1,4 +1,4 @@
-import { LanguageEntity, Maybe } from "src/schema/schema";
+import { LanguageEntity, Maybe } from "src/app/core/api/generated/schema";
 
 export type Translatable = {
   language?: Maybe<LanguageEntity>;

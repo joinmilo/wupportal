@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { Maybe, MediaEntity, OrganisationEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
-import { Maybe, MediaEntity, OrganisationEntity, UserContextEntity } from 'src/schema/schema';
 import { AccountActions } from '../../state/account.actions';
 import { selectOrganisations } from '../../state/account.selectors';
 
@@ -62,7 +62,7 @@ export class FirstLoginFormComponent implements OnInit, OnDestroy {
       isPublic: false
     }));
 
-    this.store.dispatch(AccountActions.save({
+    this.store.dispatch(AccountActions.saveFirstLogin({
       id: this.currentUser?.id,
       uploads: [{
         title: false,

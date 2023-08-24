@@ -1,10 +1,10 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { MediaDisplayType } from 'src/app/core/typings/filter-params/media-display';
 import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input';
 import { MediaViewerData } from 'src/app/shared/widgets/media/typings/media';
-import { Maybe, MediaEntity } from 'src/schema/schema';
 import { MediaViewerComponent } from '../viewer/media-viewer.component';
 
 @Component({

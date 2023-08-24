@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { EventEntity, EventScheduleEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { Period } from 'src/app/core/typings/period';
-import { EventEntity, EventScheduleEntity, Maybe } from 'src/schema/schema';
 import { PortalEventDetailsActions } from '../../state/portal-event-details.actions';
 import { selectEventDetails, selectSchedules } from '../../state/portal-event-details.selectors';
 

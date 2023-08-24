@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AppEntity, ConfigurationEntity, InformationDto, LanguageEntity, Maybe, SocialMediaEntity, ThemeEntity } from 'src/schema/schema';
+import { AppEntity, ConfigurationEntity, InformationDto, LanguageEntity, Maybe, SocialMediaEntity, ThemeEntity } from 'src/app/core/api/generated/schema';
 import { Translatable } from '../../typings/translatable';
 import { CoreActions } from '../actions/core.actions';
 

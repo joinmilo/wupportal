@@ -1,0 +1,41 @@
+fragment ContestCard on ContestEntity {
+  id
+  created
+  modified
+  slug
+  participationEndDate
+  voteEndDate
+
+  uploads {
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+
+  type {
+    id
+    translatables {
+      id
+      name
+      language {
+        ...Language
+      }
+    }
+  }
+
+  translatables {
+    id
+    name
+    content
+    shortDescription
+    language {
+      ...Language
+    }
+  }
+  
+  contact {
+    ...Contact
+  }
+}

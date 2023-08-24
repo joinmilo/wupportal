@@ -1,7 +1,0 @@
-query getLabels {
-  getLabels {
-    result {
-      ...Label
-    }
-  }
-}

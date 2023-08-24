@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CoreModule } from 'src/app/core/core.module';
-import { EventFilterModule } from 'src/app/shared/filter/event-filter/event-filter.module';
+import { EventFilterModule } from 'src/app/shared/filter/event/event-filter.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { EventCalendarModule } from 'src/app/shared/widgets/event-calendar/event-calendar.module';
 import { CardSliderComponent } from 'src/app/shared/widgets/sliders/card-slider/card-slider.component';

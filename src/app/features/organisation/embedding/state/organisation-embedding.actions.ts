@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { OrganisationEntity } from 'src/schema/schema';
+import { OrganisationEntity } from 'src/app/core/api/generated/schema';
 
 export const OrganisationEmbeddingActions = createActionGroup({
   source: 'Organisation Embedding',

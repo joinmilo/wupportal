@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Maybe, MenuItemEntity } from 'src/schema/schema';
+import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 import { PortalActions } from '../../../../state/portal.actions';
 import { selectPortalMenu } from '../../../../state/portal.selectors';
 

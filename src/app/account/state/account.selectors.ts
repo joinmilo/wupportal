@@ -9,9 +9,9 @@ export const selectAccountVerified = createSelector(
   state => !!state.verified
 );
 
-export const selectSavedAccount = createSelector(
+export const selectRegisteredUserId = createSelector(
   selectAccountState,
-  state => state.user
+  state => state.registeredUserId
 );
 
 export const selectAccountToken = createSelector(

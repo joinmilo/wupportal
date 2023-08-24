@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/schema/schema';
+import { DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { MapEmbeddingActions } from './map-embedding.actions';
 
 export interface MapEmbeddingState {

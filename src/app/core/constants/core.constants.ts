@@ -1,5 +1,5 @@
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { environment } from 'src/environments/environment';
-import { Maybe, MediaEntity } from 'src/schema/schema';
 
 /**
  * Authentication

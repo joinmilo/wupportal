@@ -1,0 +1,15 @@
+fragment Commentator on UserContextEntity {
+  id
+  uploads {
+    profilePicture
+    title
+    media {
+      ...Media
+    }
+  }
+  user {
+    id
+    firstName
+    lastName
+  }
+}

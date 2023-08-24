@@ -1,0 +1,74 @@
+fragment EventDetails on EventEntity {
+  id
+  entryFee
+  hasSchedules
+  slug
+  modified
+  videoChatLink
+
+  address {
+    ...Address
+  }
+  attendeeConfiguration {
+    approval
+    maxAttendees
+    attendees {
+      id
+      approved
+      userContext {
+        ...Commentator
+      }
+    }
+  }
+
+  calculatedRatings {
+    ...RatingDto
+  }
+
+  category {
+    ...EventCategory
+  }
+
+  contact {
+    ...Contact
+  }
+
+  lastEventComment {
+    ...EventComment
+  }
+
+  organisation {
+    ...EventOrganisation
+  }
+
+  ratings {
+    id
+    score
+    userContext {
+      id
+    }
+  }
+
+  schedule(begin: $scheduleBegin, end: $scheduleEnd) {
+    ...Schedule
+  }
+
+  translatables {
+    id
+    name
+    content
+    shortDescription
+    language {
+      ...Language
+    }
+  }
+
+  uploads {
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+
+}

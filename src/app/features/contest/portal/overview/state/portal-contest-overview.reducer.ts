@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ContestEntity, FilterSortPaginateInput, Maybe } from 'src/schema/schema';
+import { ContestEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
 import { PortalContestOverviewActions } from './portal-contest-overview.actions';
 
 export interface PortalContestOverviewState {

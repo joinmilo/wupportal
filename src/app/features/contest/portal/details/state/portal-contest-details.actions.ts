@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { ContestCommentEntity, ContestCommentEntityInput, ContestEntity, Maybe } from 'src/schema/schema';
+import { ContestCommentEntity, ContestCommentEntityInput, ContestEntity, Maybe } from 'src/app/core/api/generated/schema';
 
 export const PortalContestDetailsActions = createActionGroup({
   source: 'Portal Contest Details',

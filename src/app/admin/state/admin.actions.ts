@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { FeatureEntity } from 'src/schema/schema';
+import { FeatureEntity } from 'src/app/core/api/generated/schema';
 import { AdminRoutes } from '../typings/menu';
 
 export const AdminActions = createActionGroup({

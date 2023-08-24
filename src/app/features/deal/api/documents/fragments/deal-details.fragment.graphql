@@ -1,0 +1,52 @@
+fragment DealDetails on DealEntity {
+  id
+  created
+  price
+  slug
+
+  address {
+    ...Address
+  }
+  creator {
+    id
+
+    uploads {
+      profilePicture
+      title
+      media {
+        ...Media
+      }
+    }
+
+    user {
+      id
+      firstName
+      lastName
+    }
+  }
+  uploads {
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+    contact {
+    ...Contact
+  }
+  category {
+    ...DealCategory
+  }
+
+  translatables {
+    id
+    content
+    shortDescription
+    name
+    language {
+      id
+      locale
+      name
+    }
+  }
+}

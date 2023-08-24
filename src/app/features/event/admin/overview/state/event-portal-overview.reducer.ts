@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EventEntity, FilterSortPaginateInput, Maybe, PageableList_EventEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_EventEntity } from 'src/app/core/api/generated/schema';
 import { EventAdminOverviewActions } from './event-admin-overview.actions';
 
 export interface EventAdminOverviewState {

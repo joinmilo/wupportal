@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EventCommentEntity, EventEntity, EventMediaEntity, EventScheduleEntity, Maybe } from 'src/schema/schema';
+import { EventCommentEntity, EventEntity, EventMediaEntity, EventScheduleEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { PortalEventDetailsActions } from './portal-event-details.actions';
 
 export interface PortalEventDetailsState {

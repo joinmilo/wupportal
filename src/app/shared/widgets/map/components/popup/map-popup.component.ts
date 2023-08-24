@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Maybe } from 'graphql/jsutils/Maybe';
+import { AddressEntity } from 'src/app/core/api/generated/schema';
 import { locationNavigationURL } from 'src/app/core/constants/core.constants';
-import { AddressEntity } from 'src/schema/schema';
 import { PointOfInterest } from '../../typings/map';
 
 @Component({

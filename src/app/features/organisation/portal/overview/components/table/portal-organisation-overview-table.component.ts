@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { Column, RowAction, SortPaginate } from 'src/app/shared/widgets/table/typings/table';
-import { OrganisationEntity } from 'src/schema/schema';
 import { selectOverviewData } from '../../state/portal-organisation-overview.selectors';
 
 @Component({

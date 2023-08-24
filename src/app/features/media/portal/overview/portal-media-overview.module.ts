@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { MediaFilterModule } from 'src/app/shared/filter/media/media-filter.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { PortalMediaOverviewCategoryComponent } from './components/category/portal-media-overview-category.component';
@@ -14,7 +15,6 @@ import { portalMediaOverviewStateKey } from './constants/portal-media-overview.c
 import { PortalMediaOverviewRoutingModule } from './portal-media-overview-routing.module';
 import { PortalMediaOverviewEffects } from './state/portal-media-overview.effects';
 import { portalMediaOverviewReducer } from './state/portal-media-overview.reducer';
-import { MediaFilterModule } from 'src/app/shared/filter/media-filter/media-filter.module';
 
 const components = [
   PortalMediaOverviewComponent,

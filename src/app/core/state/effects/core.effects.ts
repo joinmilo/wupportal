@@ -2,11 +2,18 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 
 import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { AppEntity, ConfigurationEntity, GetAppsGQL, GetConfigurationsGQL, GetLabelsGQL, GetLanguagesGQL, GetServerInformationGQL, GetSocialMediaGQL, GetThemeGQL, LabelEntity, LanguageEntity, SocialMediaEntity, ThemeEntity } from 'src/schema/schema';
+import { AppEntity, ConfigurationEntity, LabelEntity, LanguageEntity, SocialMediaEntity, ThemeEntity } from 'src/app/core/api/generated/schema';
 import { FeedbackService } from '../../services/feedback.service';
 import { CoreActions } from '../actions/core.actions';
 
 import { Action } from '@ngrx/store';
+import { GetAppsGQL } from '../../api/generated/get-apps.query.generated';
+import { GetConfigurationsGQL } from '../../api/generated/get-configurations.query.generated';
+import { GetLabelsGQL } from '../../api/generated/get-labels.query.generated';
+import { GetLanguagesGQL } from '../../api/generated/get-languages.query.generated';
+import { GetSocialMediaGQL } from '../../api/generated/get-social-media.query.generated';
+import { GetThemeGQL } from '../../api/generated/get-theme.query.generated';
+import { GetServerInformationGQL } from '../../api/generated/server-info.query.generated';
 
 @Injectable()
 export class CoreEffects implements OnInitEffects {

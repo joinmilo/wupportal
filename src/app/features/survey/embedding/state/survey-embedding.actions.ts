@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { SurveyEntity } from 'src/schema/schema';
+import { SurveyEntity } from 'src/app/core/api/generated/schema';
 
 export const SurveyEmbeddingActions = createActionGroup({
   source: 'Survey Embedding',

@@ -1,0 +1,14 @@
+query getEventTargetGroups {
+  getEventTargetGroups {
+    result {
+      id
+      translatables {
+        id
+        name
+        language {
+          ...Language
+        }
+      }
+    }
+  }
+}

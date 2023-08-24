@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, PageableList_UserContextEntity } from 'src/schema/schema';
+import { Maybe, PageableList_UserContextEntity } from 'src/app/core/api/generated/schema';
 import { PortalAuthorOverviewActions } from './portal-author-overview.actions';
 
 export interface PortalAuthorOverviewState {

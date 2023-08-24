@@ -1,0 +1,8 @@
+query getSurveyCards($params: FilterSortPaginateInput) {
+  getSurveys(params: $params) {
+    result {
+      ...SurveyCard
+    }
+    total
+  }
+}

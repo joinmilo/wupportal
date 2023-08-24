@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Maybe, UserContextEntity } from 'src/schema/schema';
+import { Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';
 
 @Component({
   selector: 'app-portal-event-details-friends-invite',

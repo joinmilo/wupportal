@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { GetInfoMediaGQL, InfoMediaEntity } from 'src/schema/schema';
+import { InfoMediaEntity } from 'src/app/core/api/generated/schema';
+import { GetInfoMediaCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-info-media-cards.query.generated';
 import { MediaEmbeddingActions } from './media-embedding.actions';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class MediaEmbeddingEffects {
 
   getRecentMedia = createEffect(() => this.actions.pipe(
     ofType(MediaEmbeddingActions.getRecentMedia),
-    switchMap(() => this.getMediaService.watch({
+    switchMap(() => this.getMediaCardsService.watch({
       params: {
         sort: 'modified',
         dir: 'desc',
@@ -21,6 +22,6 @@ export class MediaEmbeddingEffects {
 
   constructor(
     private actions: Actions,
-    private getMediaService: GetInfoMediaGQL,
+    private getMediaCardsService: GetInfoMediaCardsGQL,
   ) {}
 }

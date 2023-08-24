@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
-import { Maybe } from 'src/schema/schema';
 import { CardElement } from '../../typings/card';
 import { dataToElement } from '../../utils/card.utils';
 @Component({

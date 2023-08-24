@@ -1,4 +1,4 @@
-import { Maybe } from 'src/schema/schema';
+import { Maybe } from 'src/app/core/api/generated/schema';
 
 export const invertColor = (hex?: Maybe<string>): string | undefined => {
   if (hex?.indexOf('#') === 0) {

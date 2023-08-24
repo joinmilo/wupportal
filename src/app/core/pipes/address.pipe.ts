@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AddressEntity, Maybe } from 'src/schema/schema';
+import { AddressEntity, Maybe } from 'src/app/core/api/generated/schema';
 
 @Pipe({
   name: 'address'

@@ -1,0 +1,20 @@
+fragment AuthorCard on UserContextEntity {
+  id
+
+  user {
+    id
+    email
+    firstName
+    lastName
+    phone
+  }
+
+  uploads {
+    id
+    profilePicture
+    
+    media {
+      ...Media
+    }
+  }
+}

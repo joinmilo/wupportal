@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { ArticleEntity, ArticleEntityInput } from 'src/schema/schema';
+import { ArticleEntity, ArticleEntityInput } from 'src/app/core/api/generated/schema';
 
 export const PortalGuestArticleActions = createActionGroup({
   source: 'Portal Guest Article',

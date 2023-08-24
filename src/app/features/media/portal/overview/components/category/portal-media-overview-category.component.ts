@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { InfoMediaCategoryEntity, MediaEntity } from 'src/schema/schema';
+import { InfoMediaCategoryEntity, MediaEntity } from 'src/app/core/api/generated/schema';
 import { selectOverviewDataCategories } from '../../state/portal-media-overview.selectors';
 
 @Component({

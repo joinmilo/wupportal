@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { GetOrganisationsGQL, OrganisationEntity } from 'src/schema/schema';
+import { OrganisationEntity } from 'src/app/core/api/generated/schema';
+import { GetOrganisationCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-organisation-cards.query.generated';
 import { OrganisationEmbeddingActions } from './organisation-embedding.actions';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class OrganisationEmbeddingEffects {
 
   getRecentOrganisations = createEffect(() => this.actions.pipe(
     ofType(OrganisationEmbeddingActions.getRecentOrganisations),
-    switchMap(() => this.getOrganisationsService.watch({
+    switchMap(() => this.getOrganisationCardsService.watch({
       params: {
         sort: 'modified',
         dir: 'desc',
@@ -21,6 +22,6 @@ export class OrganisationEmbeddingEffects {
 
   constructor(
     private actions: Actions,
-    private getOrganisationsService: GetOrganisationsGQL,
+    private getOrganisationCardsService: GetOrganisationCardsGQL,
   ) {}
 }

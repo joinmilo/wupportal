@@ -1,0 +1,12 @@
+query getEventCards(
+  $params: FilterSortPaginateInput
+  $scheduleBegin: OffsetDateTime
+  $scheduleEnd: OffsetDateTime
+) {
+  getEvents(params: $params) {
+    result {
+      ...EventCards
+    }
+    total
+  }
+}

@@ -1,0 +1,19 @@
+query getDealCategories {
+  getDealCategories {
+    result {
+      id
+      color
+      icon
+      created
+      color
+      icon
+      translatables {
+        id
+        name
+        language {
+          ...Language
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
+import { FilterSortPaginateInput, Maybe, QueryOperator } from 'src/app/core/api/generated/schema';
 import { EventFilterQueryDefinition, EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { Period } from 'src/app/core/typings/period';
 import { createListParam } from 'src/app/core/utils/params.utils';
-import { FilterSortPaginateInput, Maybe, QueryOperator } from 'src/schema/schema';
 
 export const createCalendarParams = (
   queryParams?: Maybe<EventFilterQueryParams>,

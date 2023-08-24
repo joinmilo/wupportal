@@ -1,0 +1,5 @@
+query getOrganisationCard($entity: OrganisationEntityInput) {
+  getOrganisation(entity: $entity) {
+    ...OrganisationCard
+  }
+}

@@ -1,7 +1,0 @@
-query getSocialMedia {
-  getSocialMedias {
-    result {
-      ...SocialMedia
-    }
-  }
-}

@@ -1,0 +1,17 @@
+query getLabels {
+  getLabels {
+    result {
+      id
+      tagId
+
+      translatables {
+        id
+        content
+        language {
+          ...Language
+        }
+      }
+
+    }
+  }
+}

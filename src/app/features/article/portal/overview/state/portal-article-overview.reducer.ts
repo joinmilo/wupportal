@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ArticleEntity, FilterSortPaginateInput, Maybe, PageableList_ArticleEntity } from 'src/schema/schema';
+import { ArticleEntity, FilterSortPaginateInput, Maybe, PageableList_ArticleEntity } from 'src/app/core/api/generated/schema';
 import { PortalArticleOverviewActions } from './portal-article-overview.actions';
 
 export interface PortalArticleOverviewState {

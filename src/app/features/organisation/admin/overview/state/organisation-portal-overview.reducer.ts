@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_OrganisationEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { OrganisationAdminOverviewActions } from './organisation-admin-overview.actions';
 
 export interface OrganisationAdminOverviewState {

@@ -2,8 +2,8 @@ import { Component, ElementRef, Input, OnChanges, OnDestroy, ViewChild } from '@
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { selectCookieSettings } from 'src/app/core/state/selectors/user.selectors';
-import { Maybe, MediaEntity } from 'src/schema/schema';
 import { getUrlHost, isValidYoutubeUrl } from '../../utils/media.utils';
 
 

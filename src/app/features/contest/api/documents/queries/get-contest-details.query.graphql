@@ -1,0 +1,39 @@
+query getContestDetails($entity: ContestEntityInput) {
+  getContest(entity: $entity) {
+    id
+    modified
+    created
+    participationEndDate
+    voteEndDate
+    uploads {
+      title
+      card
+      media {
+        ...Media
+      }
+    }
+    created
+    modified
+    type {
+      ...ContestType
+    }
+    slug
+    translatables {
+      id
+      name
+      content
+      shortDescription
+      language {
+        id
+        locale
+        name
+      }
+    }
+    lastContestComment {
+      ...ContestComment
+    }
+    contact {
+      ...Contact
+    }
+  }
+}

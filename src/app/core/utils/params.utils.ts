@@ -1,4 +1,4 @@
-import { ConjunctionOperator, Maybe, QueryExpressionInput, QueryOperator } from 'src/schema/schema';
+import { ConjunctionOperator, Maybe, QueryExpressionInput, QueryOperator } from 'src/app/core/api/generated/schema';
 
 export const createListParam = (
   param: Maybe<string[] | string>,

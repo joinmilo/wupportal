@@ -1,10 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, OrganisationEntity } from 'src/schema/schema';
-import { UserEntity } from '../../../schema/schema';
+import { Maybe, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { AccountActions } from './account.actions';
 
 export interface AccountState {
-  user?: Maybe<UserEntity>,
+  registeredUserId?: Maybe<string>,
   verified?: Maybe<boolean>,
   token?: Maybe<string>,
   organisations?: Maybe<OrganisationEntity[]>
@@ -21,7 +20,7 @@ export const accountReducer = createReducer(
   )),
 
   on(AccountActions.registered, (state, action): AccountState => (
-    { ...state, user: action.entity }
+    { ...state, registeredUserId: action.entityId }
   )),
 
   on(AccountActions.setOrganisations, (state, action): AccountState => (

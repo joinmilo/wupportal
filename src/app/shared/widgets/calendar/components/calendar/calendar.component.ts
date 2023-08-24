@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, V
 import { MatCalendar } from '@angular/material/datepicker';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { Period } from 'src/app/core/typings/period';
 import { dayPeriod, monthPeriod } from 'src/app/core/utils/date.utils';
-import { Maybe } from 'src/schema/schema';
 import { CalendarService } from '../../services/calendar.service';
 import { CalendarQueryDefinition, CalendarQueryParams } from '../../typings/calendar';
 import { CalendarHeaderComponent } from '../header/calendar-header.component';

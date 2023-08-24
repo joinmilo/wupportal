@@ -1,0 +1,5 @@
+query getContestCard($entity: ContestEntityInput) {
+  getContest(entity: $entity) {
+    ...ContestCard
+  }
+}

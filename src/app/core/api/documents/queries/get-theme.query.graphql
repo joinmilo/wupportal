@@ -1,0 +1,14 @@
+query getTheme {
+  getThemes {
+    result {
+      id
+      isDefault
+      name
+      variables {
+        id
+        code
+        value
+      }
+    }
+  }
+}

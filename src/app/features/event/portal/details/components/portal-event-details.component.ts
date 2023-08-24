@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { EventEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { eventsFeatureKey, portalUrl, slug } from 'src/app/core/constants/core.constants';
 import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
 import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
-import { EventEntity, Maybe, MediaEntity } from 'src/schema/schema';
 import { PortalEventDetailsActions } from '../state/portal-event-details.actions';
 import { selectEventDetails } from '../state/portal-event-details.selectors';
 

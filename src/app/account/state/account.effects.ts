@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { filter, map, switchMap, tap } from 'rxjs';
+import { AddressEntity, Maybe, OrganisationEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { accountUrl } from 'src/app/core/constants/core.constants';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { GetOrganisationsGQL, Maybe, OrganisationEntity } from 'src/schema/schema';
-import { AddressEntity, ResetPasswordGQL, SaveUserGQL, SendPasswordResetGQL, SendVerificationGQL, UserContextEntity, UserEntity, VerifyAddressGQL, VerifyUserGQL } from '../../../schema/schema';
 import { CoreActions } from '../../core/state/actions/core.actions';
+import { GetOrganisationsGQL } from '../api/generated/account-get-organisation.generated';
+import { ResetPasswordGQL } from '../api/generated/account-reset-password.mutation.generated';
+import { SaveUserGQL } from '../api/generated/account-save-user.mutation.generated';
+import { SendPasswordResetGQL } from '../api/generated/account-send-password-reset.mutation.generated';
+import { SendVerificationGQL } from '../api/generated/account-send-verification.mutation.generated';
+import { VerifyAddressGQL } from '../api/generated/account-verify-address.mutation.generated';
+import { VerifyUserGQL } from '../api/generated/account-verify-user.mutation.generated';
 import { AccountActions } from './account.actions';
 
 @Injectable()
@@ -19,7 +25,7 @@ export class AccountEffects {
         user: action.entity
       }
     })),
-    map(response => AccountActions.registered(response.data?.saveUserContext?.user as UserEntity))
+    map(response => AccountActions.registered(response.data?.saveUserContext?.id))
   ));
 
   registered = createEffect(() => this.actions.pipe(
@@ -91,16 +97,16 @@ export class AccountEffects {
     )
   );
 
-  save = createEffect(() => this.actions.pipe(
-    ofType(AccountActions.save),
+  saveFirstLogin = createEffect(() => this.actions.pipe(
+    ofType(AccountActions.saveFirstLogin),
     switchMap((action) => this.saveUserService.mutate({
       entity: action.entity
     })),
-    map(response => AccountActions.saved(response.data?.saveUserContext as UserContextEntity))
+    map(response => AccountActions.savedFirstLogin(response.data?.saveUserContext as UserContextEntity))
   ));
 
-  saved = createEffect(() => this.actions.pipe(
-    ofType(AccountActions.saved),
+  savedFirstLogin = createEffect(() => this.actions.pipe(
+    ofType(AccountActions.savedFirstLogin),
     tap(() => this.router.navigate(['/'])),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,

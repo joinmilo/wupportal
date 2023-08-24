@@ -5,14 +5,14 @@ import { MatCardModule } from '@angular/material/card';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { EventFilterModule } from 'src/app/shared/filter/event/event-filter.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { EventAdminOverviewComponent } from './component/event-admin-overview.component';
-import { EventFilterModule } from 'src/app/shared/filter/event-filter/event-filter.module';
-import { EventAdminOverviewRoutingModule } from './event-admin-overview-routing.module';
 import { eventAdminOverviewStateKey } from './constants/event-admin-overview.constants';
-import { eventAdminOverviewReducer } from './state/event-portal-overview.reducer';
+import { EventAdminOverviewRoutingModule } from './event-admin-overview-routing.module';
 import { EventAdminOverviewEffects } from './state/event-portal-overview.effects';
+import { eventAdminOverviewReducer } from './state/event-portal-overview.reducer';
 
 const components = [
   EventAdminOverviewComponent

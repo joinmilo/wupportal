@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
+import { EventEntity, EventScheduleEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
 import { EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
 import { Period } from 'src/app/core/typings/period';
-import { EventEntity, EventScheduleEntity, FilterSortPaginateInput, Maybe } from 'src/schema/schema';
 import { createCalendarParams } from '../utils/params.utils';
 import { EventCalendarActions } from './event-calendar.actions';
 

@@ -1,0 +1,21 @@
+fragment OrganisationCard on OrganisationEntity {
+  id
+  name
+
+  address {
+    ...Address
+  }
+
+  contact {
+    ...Contact
+  }
+
+  uploads {
+    id
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
+import { FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
 import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-param';
-import { FilterSortPaginateInput, Maybe } from 'src/schema/schema';
 import { MapFeatureActions } from '../../state/portal-map-overview.actions';
 import { selectActiveEntityFilter, selectResult } from '../../state/portal-map-overview.selector';
 

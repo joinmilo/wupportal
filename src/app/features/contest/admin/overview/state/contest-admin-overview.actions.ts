@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_ContestEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_ContestEntity } from 'src/app/core/api/generated/schema';
 
 export const ContestAdminOverviewActions = createActionGroup({
   source: 'Contest Admin Overview',

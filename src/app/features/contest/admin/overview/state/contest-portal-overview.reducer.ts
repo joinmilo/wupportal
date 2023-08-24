@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_ContestEntity} from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_ContestEntity } from 'src/app/core/api/generated/schema';
 import { ContestAdminOverviewActions } from './contest-admin-overview.actions';
 
 export interface ContestAdminOverviewState {

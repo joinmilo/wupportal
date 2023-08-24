@@ -1,0 +1,5 @@
+query getDealDetails($entity: DealEntityInput) {
+  getDeal(entity: $entity) {
+    ...DealDetails
+  }
+}

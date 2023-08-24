@@ -1,5 +1,5 @@
 import { createActionGroup } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_InfoMediaEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, PageableList_InfoMediaEntity } from 'src/app/core/api/generated/schema';
 
 export const MediaAdminOverviewActions = createActionGroup({
   source: 'Media Admin Overview',

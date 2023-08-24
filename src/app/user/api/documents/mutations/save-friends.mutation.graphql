@@ -1,0 +1,5 @@
+mutation saveFriends($entities: [FriendEntityInput!]) {
+  saveFriends(entities: $entities) {
+    id
+  }
+}

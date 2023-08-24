@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EventScheduleEntity, FilterSortPaginateInput, Maybe, OrganisationEntity, PageableList_OrganisationEntity } from 'src/schema/schema';
+import { EventScheduleEntity, FilterSortPaginateInput, Maybe, OrganisationEntity, PageableList_OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { PortalOrganisationOverviewActions } from './portal-organisation-overview.actions';
 
 export interface PortalOrganisationOverviewState {

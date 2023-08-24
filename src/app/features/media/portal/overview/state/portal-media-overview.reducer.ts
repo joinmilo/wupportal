@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { PageableList_InfoMediaEntity } from 'src/schema/schema';
+import { PageableList_InfoMediaEntity } from 'src/app/core/api/generated/schema';
 import { PortalMediaOverviewActions } from './portal-media-overview.actions';
 
 export interface PortalMediaOverviewState {

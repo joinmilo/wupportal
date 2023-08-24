@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
-import { selectOverviewData } from '../state/survey-portal-overview.selectors';
-import { DealEntity, FilterSortPaginateInput } from 'src/schema/schema';
-import { DealAdminOverviewActions } from '../state/survey-admin-overview.actions';
+import { DealEntity, FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
+import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
+import { DealAdminOverviewActions } from '../state/deal-admin-overview.actions';
+import { selectOverviewData } from '../state/deal-portal-overview.selectors';
 
 @Component({
   selector: 'app-deal-admin-overview',
@@ -25,11 +25,6 @@ export class DealAdminOverviewComponent {
       field: 'translatables.name',
       label: 'deals',
       type: row => this.translationService.translatable(row.translatables, 'name')
-    },
-    {
-      field: 'visitors.visits',
-      label: 'visiting',
-      type: row => `${row.visitors?.reduce((sum, visitor) => sum + visitor!['visits']!, 0) ?? 0}`
     },
     {
       field: 'category',

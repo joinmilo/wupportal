@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { Store } from '@ngrx/store';
+import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { CardType } from 'src/app/shared/widgets/card/typings/card';
 import { SortOption, SortPaginate } from 'src/app/shared/widgets/table/typings/table';
-import { FilterSortPaginateInput } from 'src/schema/schema';
 import { PortalSurveyOverviewActions } from '../../state/portal-survey-overview.actions';
 import { selectSponsoredSurvey, selectSurveyCards } from '../../state/portal-survey-overview.selectors';
 

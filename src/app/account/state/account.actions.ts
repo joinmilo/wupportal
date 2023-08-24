@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { AddressEntity, AddressEntityInput, Maybe, OrganisationEntity, UserContextEntity, UserContextEntityInput, UserEntity, UserEntityInput } from 'src/schema/schema';
+import { AddressEntity, AddressEntityInput, Maybe, OrganisationEntity, UserContextEntity, UserContextEntityInput, UserEntityInput } from 'src/app/core/api/generated/schema';
 
 export const AccountActions = createActionGroup({
   source: 'Account',
@@ -8,14 +8,14 @@ export const AccountActions = createActionGroup({
     'reset password': (token: Maybe<string>, password: Maybe<string>) => ({ token, password }),
     
     'register': (entity: UserEntityInput) => ({ entity }),
-    'registered': (entity: UserEntity) => ({ entity }),
+    'registered': (entityId: Maybe<string>) => ({ entityId }),
 
     'verify': (token: Maybe<string>) => ({ token }),
     'verified': (verified: boolean | null | undefined) => ({ verified }),
     'send mail verification': (email: Maybe<string> | undefined) => ({ email }),
 
-    'save': (entity: UserContextEntityInput) => ({ entity }),
-    'saved': (entity: UserContextEntity) => ({ entity }),
+    'save first login': (entity: UserContextEntityInput) => ({ entity }),
+    'saved first login': (entity: UserContextEntity) => ({ entity }),
 
     'verify address': (entity: AddressEntityInput) => ({entity}),
     'address verified': (entity: AddressEntity) => ({entity}),

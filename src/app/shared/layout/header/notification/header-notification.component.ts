@@ -8,10 +8,10 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { Maybe, NotificationEntity } from 'src/app/core/api/generated/schema';
 import { portalUrl } from 'src/app/core/constants/core.constants';
 import { CoreModule } from 'src/app/core/core.module';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
-import { Maybe, NotificationEntity } from 'src/schema/schema';
 
 @Component({
   selector: 'app-header-notification',

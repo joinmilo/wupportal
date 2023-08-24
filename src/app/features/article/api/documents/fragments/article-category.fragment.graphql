@@ -1,0 +1,14 @@
+fragment ArticleCategory on ArticleCategoryEntity {
+  id
+  color
+  icon
+  translatables {
+    id
+    name
+    language {
+      id
+      name
+      locale
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Maybe, OrganisationCommentEntity, OrganisationEntity } from 'src/schema/schema';
+import { Maybe, OrganisationCommentEntity, OrganisationEntity } from 'src/app/core/api/generated/schema';
 import { PortalOrganisationDetailsActions } from './portal-organisation-details.actions';
 
 export interface PortalOrganisationDetailsState {

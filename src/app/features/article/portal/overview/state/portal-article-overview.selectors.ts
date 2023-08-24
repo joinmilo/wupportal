@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ArticleCategoryEntity } from 'src/schema/schema';
+import { ArticleCategoryEntity } from 'src/app/core/api/generated/schema';
 import { portalArticleOverviewStateKey } from '../constants/portal-article-overview.constants';
 import { PortalArticleOverviewState } from './portal-article-overview.reducer';
 

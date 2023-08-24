@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { EventAttendeeEntity, EventCommentEntity, EventCommentEntityInput, EventEntity, EventRatingEntity, EventRatingEntityInput, EventScheduleEntity, Maybe } from 'src/schema/schema';
+import { EventAttendeeEntity, EventCommentEntity, EventCommentEntityInput, EventEntity, EventRatingEntity, EventRatingEntityInput, EventScheduleEntity, Maybe } from 'src/app/core/api/generated/schema';
 
 export const PortalEventDetailsActions = createActionGroup({
   source: 'Portal Event Details',

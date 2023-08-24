@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
+import { Maybe, RatingDto } from 'src/app/core/api/generated/schema';
 import { maxRating } from 'src/app/core/constants/core.constants';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selectors';
-import { Maybe, RatingDto } from 'src/schema/schema';
 
 @Component({
   selector: 'app-rating',

@@ -1,6 +1,6 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Maybe, MediaEntity } from 'src/schema/schema';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { MediaViewerData, MimeTypeDefinition } from '../../typings/media';
 import { mimeTypeDefinition } from '../../utils/media.utils';
 

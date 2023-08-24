@@ -1,5 +1,0 @@
-query getFriend($entity: FriendEntityInput) {
-  getFriend(entity: $entity) {
-    ...Friend
-  }
-}

@@ -4,10 +4,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { StaticProvider, enableProdMode } from '@angular/core';
 import { FetchResult } from '@apollo/client/core';
 import { AppModule } from './app/app.module';
+import { RefreshMutation } from './app/core/api/generated/refresh.mutation.generated';
 import { graphqlApi, refreshKey } from './app/core/constants/core.constants';
 import { APP_AUTH_TOKENS } from './app/core/constants/inject-tokens';
 import { environment } from './environments/environment';
-import { RefreshMutation } from './schema/schema';
 
 // TODO:
 // There is no way to use APP_INITIALIZER for initializing tokens because rendering happens synchronously.

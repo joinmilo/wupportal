@@ -1,0 +1,45 @@
+fragment GuestArticleCard on ArticleEntity {
+  id
+  created
+  modified
+  slug
+
+  category {
+    id
+    color
+    icon
+    translatables {
+      id
+      name
+      language {
+        ...Language
+      }
+    }
+  }
+
+  uploads {
+    id
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+
+  publicAuthor {
+    id
+    name
+    email
+    phone
+  }
+
+  translatables {
+    id
+    content
+    shortDescription
+    name
+    language {
+      ...Language
+    }
+  }
+}

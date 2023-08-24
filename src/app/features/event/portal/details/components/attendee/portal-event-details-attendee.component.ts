@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { Subject, takeUntil } from 'rxjs';
-import { EventAttendeeEntity } from 'src/schema/schema';
+import { EventAttendeeEntity } from 'src/app/core/api/generated/schema';
 import { PortalEventDetailsActions } from '../../state/portal-event-details.actions';
 import { selectEventAttendeeConfiguration, selectEventUserAttendee } from '../../state/portal-event-details.selectors';
 

@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, filter, takeUntil } from 'rxjs';
-import { ReportTypeEntity } from 'src/schema/schema';
+import { ReportTypeEntity } from 'src/app/core/api/generated/schema';
 import { ReportEmbeddingActions } from '../state/report-embedding.actions';
 import { selectReportTypes, selectSavedReport } from '../state/report-embedding.selectors';
 

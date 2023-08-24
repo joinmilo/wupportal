@@ -1,0 +1,20 @@
+query getUserContexts($params: FilterSortPaginateInput) {
+  getUserContexts(params: $params) {
+    result {
+      id
+      user {
+        id
+        firstName
+        lastName
+      }
+
+      uploads {
+        id
+        profilePicture
+        media {
+          ...Media
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+fragment Deal on DealEntity {
+  id
+  created
+  price
+  slug
+
+  address {
+    ...Address
+  }
+
+  contact {
+    ...Contact
+  }
+
+  category {
+    id
+    color
+    icon
+    created
+    color
+    icon
+    translatables {
+      id
+      name
+      language {
+        ...Language
+      }
+    }
+  }
+
+  creator {
+    id
+
+    uploads {
+      profilePicture
+      title
+      media {
+        ...Media
+      }
+    }
+  }
+
+  uploads {
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+
+  translatables {
+    id
+    content
+    shortDescription
+    name
+    language {
+      ...Language
+    }
+  }
+}

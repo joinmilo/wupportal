@@ -1,0 +1,8 @@
+query getDealCards($params: FilterSortPaginateInput) {
+  getDeals(params: $params) {
+    result {
+      ...DealCard
+    }
+    total
+  }
+}

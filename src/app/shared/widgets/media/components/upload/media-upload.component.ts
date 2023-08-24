@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { MediaEntity } from 'src/schema/schema';
+import { MediaEntity } from 'src/app/core/api/generated/schema';
 import { fileToMedia } from '../../utils/media.utils';
 
 @Component({

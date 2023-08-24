@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventEntity, Maybe } from 'src/schema/schema';
+import { EventEntity, Maybe } from 'src/app/core/api/generated/schema';
 
 @Component({
   selector: 'app-calendar-embedding',

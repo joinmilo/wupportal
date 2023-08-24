@@ -1,5 +1,0 @@
-mutation saveOrganisationComment($entity: OrganisationCommentEntityInput!) {
-  saveOrganisationComment(entity: $entity) {
-    ...OrganisationComment
-  }
-}

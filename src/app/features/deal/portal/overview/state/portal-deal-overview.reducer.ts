@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { DealEntity, FilterSortPaginateInput, Maybe, PageableList_DealEntity } from 'src/schema/schema';
+import { DealEntity, FilterSortPaginateInput, Maybe, PageableList_DealEntity } from 'src/app/core/api/generated/schema';
 import { PortalDealOverviewActions } from './portal-deal-overview.actions';
 
 export interface PortalDealOverviewState {

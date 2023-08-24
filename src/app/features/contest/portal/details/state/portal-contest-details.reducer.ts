@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ContestCommentEntity, ContestEntity, Maybe } from 'src/schema/schema';
+import { ContestCommentEntity, ContestEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { PortalContestDetailsActions } from './portal-contest-details.actions';
 
 export interface PortalContestDetailsState {

@@ -1,4 +1,4 @@
-import { Maybe } from 'src/schema/schema'
+import { Maybe } from 'src/app/core/api/generated/schema'
 import { Translatable } from './translatable'
 
 export type Category = {

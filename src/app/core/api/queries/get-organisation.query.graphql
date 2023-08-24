@@ -1,5 +1,0 @@
-query getOrganisation($entity: OrganisationEntityInput) {
-  getOrganisation(entity: $entity) {
-    ...Organisation
-  }
-}

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ContestEntity, Maybe } from 'src/schema/schema';
+import { ContestEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { ContestEmbeddingActions } from './contest-embedding.actions';
 
 export interface ContestEmbeddingState {

@@ -3,9 +3,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { CoreModule } from 'src/app/core/core.module';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
-import { Maybe } from 'src/schema/schema';
 
 @Component({
   selector: 'app-favorite-piece',

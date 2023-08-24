@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { AppEntity, ConfigurationEntity, InformationDto, LabelEntity, LanguageEntity, Maybe, SocialMediaEntity, ThemeEntity } from 'src/schema/schema';
+import { AppEntity, ConfigurationEntity, InformationDto, LabelEntity, LanguageEntity, Maybe, SocialMediaEntity, ThemeEntity } from 'src/app/core/api/generated/schema';
 import { Feedback } from '../../typings/feedback';
 
 export const CoreActions = createActionGroup({

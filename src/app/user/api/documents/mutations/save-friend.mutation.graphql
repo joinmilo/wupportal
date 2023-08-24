@@ -1,0 +1,5 @@
+mutation saveFriend($entity: FriendEntityInput) {
+  saveFriend(entity: $entity) {
+    id
+  }
+}

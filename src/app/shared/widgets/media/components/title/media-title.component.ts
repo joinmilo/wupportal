@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { Maybe, MediaEntity } from 'src/schema/schema';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { MimeTypeDefinition } from '../../typings/media';
 import { mimeTypeDefinition } from '../../utils/media.utils';
 

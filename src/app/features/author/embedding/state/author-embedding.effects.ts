@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { GetUserContextsGQL, UserContextEntity } from 'src/schema/schema';
+import { UserContextEntity } from 'src/app/core/api/generated/schema';
+import { GetAuthorCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-author-cards.query.generated';
 import { AuthorEmbeddingActions } from './author-embedding.actions';
 
 @Injectable()
@@ -21,6 +22,6 @@ export class AuthorEmbeddingEffects {
 
   constructor(
     private actions: Actions,
-    private getAuthorsService: GetUserContextsGQL,
+    private getAuthorsService: GetAuthorCardsGQL,
   ) {}
 }

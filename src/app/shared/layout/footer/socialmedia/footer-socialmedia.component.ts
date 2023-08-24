@@ -4,8 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Store } from '@ngrx/store';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { selectSocialMedia } from 'src/app/core/state/selectors/core.selectors';
-import { Maybe } from 'src/schema/schema';
 
 @Component({
   selector: 'app-footer-socialmedia',

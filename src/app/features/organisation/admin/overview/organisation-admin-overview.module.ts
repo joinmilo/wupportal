@@ -5,13 +5,13 @@ import { MatCardModule } from '@angular/material/card';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { OrganisationFilterModule } from 'src/app/shared/filter/organisation/organisation-filter.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
-import { OrganisationFilterModule } from 'src/app/shared/filter/organisation-filter/organisation-filter.module';
 import { OrganisationAdminOverviewComponent } from './component/organisation-admin-overview.component';
+import { organisationAdminOverviewStateKey } from './constants/organisation-admin-overview.constants';
 import { OrganisationAdminOverviewRoutingModule } from './organisation-admin-overview-routing.module';
 import { OrganisationAdminOverviewEffects } from './state/organisation-portal-overview.effects';
-import { organisationAdminOverviewStateKey } from './constants/organisation-admin-overview.constants';
 import { organisationAdminOverviewReducer } from './state/organisation-portal-overview.reducer';
 
 const components = [

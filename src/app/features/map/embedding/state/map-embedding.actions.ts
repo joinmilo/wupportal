@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/schema/schema';
+import { DealEntity, EventEntity, Maybe, OrganisationEntity } from 'src/app/core/api/generated/schema';
 
 export const MapEmbeddingActions = createActionGroup({
   source: 'Map Embedding',

@@ -1,7 +1,0 @@
-query getUserContexts($params: FilterSortPaginateInput) {
-  getUserContexts(params: $params) {
-    result {
-      ...UserContext
-    }
-  }
-}

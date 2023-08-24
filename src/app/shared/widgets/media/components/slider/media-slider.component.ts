@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { SliderTitleType } from 'src/app/core/typings/slider-title-type';
-import { Maybe, MediaEntity } from 'src/schema/schema';
 import { FileAction, MediaViewerData, MimeTypeDefinition } from '../../typings/media';
 import { fileToMedia, mimeTypeDefinition } from '../../utils/media.utils';
 import { MediaViewerComponent } from '../viewer/media-viewer.component';

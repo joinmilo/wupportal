@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs';
-import { GetOrganisationGQL, GetOrganisationsGQL, OrganisationEntity, PageableList_OrganisationEntity } from 'src/schema/schema';
+import { OrganisationEntity, PageableList_OrganisationEntity } from 'src/app/core/api/generated/schema';
+import { GetOrganisationCardGQL } from 'src/app/shared/widgets/card/api/generated/get-organisation-card.query.generated';
+import { GetOrganisationCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-organisation-cards.query.generated';
 import { PortalOrganisationOverviewActions } from './portal-organisation-overview.actions';
 import { selectParams } from './portal-organisation-overview.selectors';
 
@@ -11,7 +13,7 @@ export class PortalOrganisationOverviewEffects {
 
   getSponsoredOrganisation = createEffect(() => this.actions.pipe(
     ofType(PortalOrganisationOverviewActions.getSponsoredOrganisation),
-    switchMap(() => this.getOrganisation.watch({ 
+    switchMap(() => this.getOrganisationCardService.watch({ 
       entity: {
         sponsored: true
       }
@@ -22,7 +24,7 @@ export class PortalOrganisationOverviewEffects {
   updateParams = createEffect(() => this.actions.pipe(
     ofType(PortalOrganisationOverviewActions.updateParams),
     withLatestFrom(this.store.select(selectParams)),
-    switchMap(([, params]) => this.getOrganisations.watch({ 
+    switchMap(([, params]) => this.getOrganisationCardsService.watch({ 
       params,
     }).valueChanges),
     map(response => PortalOrganisationOverviewActions.setOverviewData(response.data.getOrganisations as PageableList_OrganisationEntity))
@@ -30,8 +32,8 @@ export class PortalOrganisationOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getOrganisation: GetOrganisationGQL,
-    private getOrganisations: GetOrganisationsGQL,
+    private getOrganisationCardService: GetOrganisationCardGQL,
+    private getOrganisationCardsService: GetOrganisationCardsGQL,
     private store: Store,
   ) {}
 }

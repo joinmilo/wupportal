@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { FilterSortPaginateInput, Maybe, PageableList_UserContextEntity } from 'src/schema/schema';
+import { FilterSortPaginateInput, Maybe, PageableList_UserContextEntity } from 'src/app/core/api/generated/schema';
 
 export const PortalAuthorOverviewActions = createActionGroup({
   source: 'Portal Author Overview',

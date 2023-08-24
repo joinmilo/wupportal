@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { Maybe, MediaEntity, UserContextEntity } from 'src/schema/schema';
+import { Maybe, MediaEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
 
 @Component({
   selector: 'app-media-avatar',

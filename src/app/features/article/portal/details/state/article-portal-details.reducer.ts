@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ArticleCommentEntity, ArticleEntity, Maybe } from 'src/schema/schema';
+import { ArticleCommentEntity, ArticleEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { ArticlePortalDetailsActions } from './article-portal-details.actions';
 
 export interface ArticlePortalDetailsState {

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { InfoMediaCategoryEntity } from 'src/schema/schema';
+import { InfoMediaCategoryEntity } from 'src/app/core/api/generated/schema';
 import { portalMediaOverviewStateKey } from '../constants/portal-media-overview.constants';
 import { PortalMediaOverviewState } from './portal-media-overview.reducer';
 

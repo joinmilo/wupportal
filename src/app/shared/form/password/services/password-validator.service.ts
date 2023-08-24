@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, combineLatestWith, map, take, tap } from 'rxjs';
 import { pwBitStrengthConfig } from 'src/app/core/constants/core.constants';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
-import { CheckPasswordGQL } from 'src/schema/schema';
+import { CheckPasswordGQL } from '../api/generated/check-password.mutation.generated';
 import { PasswordActions } from '../state/password.actions';
 
 @Injectable()

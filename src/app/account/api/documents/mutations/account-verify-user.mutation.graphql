@@ -1,0 +1,6 @@
+mutation verifyUser($token: String) {
+  verify(token: $token) {
+    id
+    verified
+  }
+}

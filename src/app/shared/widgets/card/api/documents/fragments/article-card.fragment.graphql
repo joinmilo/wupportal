@@ -1,0 +1,55 @@
+fragment ArticleCard on ArticleEntity {
+  id
+  created
+  modified
+  slug
+  author {
+    id
+    user {
+      id
+      firstName
+      lastName
+    }
+  }
+
+  category {
+    id
+    color
+    icon
+    translatables {
+      id
+      name
+      language {
+        id
+        name
+        locale
+      }
+    }
+  }
+
+  uploads {
+    id
+    title
+    card
+    media {
+      ...Media
+    }
+  }
+
+  publicAuthor {
+    id
+    name
+    email
+    phone
+  }
+
+  translatables {
+    id
+    content
+    shortDescription
+    name
+    language {
+      ...Language
+    }
+  }
+}

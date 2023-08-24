@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { dataToElement } from 'src/app/shared/widgets/card/utils/card.utils';
-import { Maybe } from 'src/schema/schema';
 import { CardActionInput, CardActionOutput, CardElement } from '../../../typings/card';
 
 @Component({

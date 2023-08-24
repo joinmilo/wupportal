@@ -4,8 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { collapse } from 'src/app/core/animations/animations';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { CoreModule } from 'src/app/core/core.module';
-import { Maybe } from 'src/schema/schema';
 
 @Component({
   selector: 'app-filter-area',

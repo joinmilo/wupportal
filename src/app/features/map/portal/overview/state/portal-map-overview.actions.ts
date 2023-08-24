@@ -1,6 +1,6 @@
 import { createActionGroup, props } from '@ngrx/store';
+import { DealEntity, EventEntity, FilterSortPaginateInput, OrganisationEntity, } from 'src/app/core/api/generated/schema';
 import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-param';
-import { DealEntity, EventEntity, FilterSortPaginateInput, OrganisationEntity, } from 'src/schema/schema';
 
 export const MapFeatureActions = createActionGroup({
   source: 'Portal Map Overview',

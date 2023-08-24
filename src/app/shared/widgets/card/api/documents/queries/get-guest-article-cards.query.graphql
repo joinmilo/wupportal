@@ -1,0 +1,8 @@
+query getGuestArticleCards($params: FilterSortPaginateInput) {
+  getArticles(params: $params) {
+    result {
+      ...GuestArticleCard
+    }
+    total
+  }
+}

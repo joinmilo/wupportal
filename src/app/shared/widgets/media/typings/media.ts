@@ -1,4 +1,4 @@
-import { MediaEntity } from 'src/schema/schema';
+import { MediaEntity } from 'src/app/core/api/generated/schema';
 
 export type MimeTypeDefinition = 'AUDIO'
   | 'IMAGE'

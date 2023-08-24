@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { EventEntity } from 'src/schema/schema';
+import { EventEntity } from 'src/app/core/api/generated/schema';
 
 export const EventEmbeddingActions = createActionGroup({
   source: 'Event Embedding',
