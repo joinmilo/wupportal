@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "generate": "./generate-schema.sh"
+    "generate": "./generate-schema.sh",
+    "generate-windows": "./generate-schema.bat"
   },
   "private": true,
   "dependencies": {

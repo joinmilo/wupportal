@@ -76,10 +76,20 @@ export default config;
 npm run generate
 ```
 
+for Windows:
+```bash
+npm run generate-windows
+```
+
 Or only one module:
 
 ```bash
-  npm run generate -- path/to/your/module/api
+npm run generate -- path/to/your/module/api
+```
+
+for Windows:
+```bash
+npm run generate-windows -- path/to/your/module/api
 ```
 
 Or within the docker service:
