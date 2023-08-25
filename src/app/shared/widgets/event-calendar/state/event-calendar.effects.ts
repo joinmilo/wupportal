@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { filter, map, switchMap, withLatestFrom } from 'rxjs';
 import { EventEntity, EventScheduleEntity } from 'src/app/core/api/generated/schema';
 import { GetEventCardsGQL } from '../../card/api/generated/get-event-cards.query.generated';
+import { GetEventSchedulesGQL } from '../api/generated/get-event-schdules.query.generated';
 import { EventCalendarActions } from './event-calendar.actions';
 import { selectEventParams, selectScheduleParams, selectSelectedDay } from './event-calendar.selectors';
 

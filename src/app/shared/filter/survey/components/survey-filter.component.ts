@@ -5,8 +5,8 @@ import { Subject, debounceTime, take, takeUntil } from 'rxjs';
 import { collapse } from 'src/app/core/animations/animations';
 import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { SurveyFilterQueryParams } from 'src/app/core/typings/filter-params/survey-filter-param';
-import { SurveyFilterActions } from 'src/app/shared/filter/survey-filter/state/survey-filter.actions';
-import { selectFiltersActive, selectRawFilterParams, selectSurveyFilterParams } from 'src/app/shared/filter/survey-filter/state/survey-filter.selectors';
+import { SurveyFilterActions } from '../state/survey-filter.actions';
+import { selectFiltersActive, selectRawFilterParams, selectSurveyFilterParams } from '../state/survey-filter.selectors';
 
 @Component({
   selector: 'app-survey-filter',

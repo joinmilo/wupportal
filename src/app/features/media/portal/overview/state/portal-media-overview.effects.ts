@@ -10,7 +10,7 @@ export class PortalMediaOverviewEffects {
 
   updateParams = createEffect(() => this.actions.pipe(
     ofType(PortalMediaOverviewActions.updateParams),
-    switchMap((action) => this.infoMediaService.watch({
+    switchMap((action) => this.infoMediaCardsService.watch({
       params: action.params,
     }).valueChanges),
     map(response => PortalMediaOverviewActions.setOverviewMedia(response.data.getInfoMedia as PageableList_InfoMediaEntity))
@@ -18,6 +18,6 @@ export class PortalMediaOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private infoMediaService: GetInfoMediaCardsGQL,
+    private infoMediaCardsService: GetInfoMediaCardsGQL,
   ) {}
 }

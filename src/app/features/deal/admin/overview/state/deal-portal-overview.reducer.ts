@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { FilterSortPaginateInput, PageableList_DealEntity } from 'src/app/core/api/generated/schema';
-import { DealAdminOverviewActions } from './survey-admin-overview.actions';
+import { DealAdminOverviewActions } from './deal-admin-overview.actions';
 
 export interface DealAdminOverviewState {
   overviewData?: PageableList_DealEntity,

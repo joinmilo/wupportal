@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { PageableList_UserContextEntity, QueryOperator } from 'src/app/core/api/generated/schema';
 import { translatorKey } from 'src/app/core/constants/core.constants';
-import { GetAuthorCardsGQL } from '../../../api/generated/get-author-cards.query.generated';
+import { GetAuthorCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-author-cards.query.generated';
 import { PortalAuthorOverviewActions } from './portal-author-overview.actions';
 
 @Injectable()

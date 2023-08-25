@@ -1,0 +1,9 @@
+query getEventSchedules($params: FilterSortPaginateInput) {
+  getEventSchedules(params: $params) {
+    result {
+      id
+      startDate
+      endDate
+    }
+  }
+}

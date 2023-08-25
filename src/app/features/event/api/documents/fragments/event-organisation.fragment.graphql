@@ -6,7 +6,6 @@ fragment EventOrganisation on OrganisationEntity {
     id
     title
     card
-    media
     media {
       ...Media
     }

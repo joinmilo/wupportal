@@ -1,4 +1,4 @@
-fragment Deal on DealEntity {
+fragment DealCard on DealEntity {
   id
   created
   price

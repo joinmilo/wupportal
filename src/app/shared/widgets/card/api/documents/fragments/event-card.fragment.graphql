@@ -44,7 +44,6 @@ fragment EventCard on EventEntity {
       id
       title
       card
-      media
       media {
         ...Media
       }

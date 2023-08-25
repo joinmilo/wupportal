@@ -5,7 +5,7 @@ query getEventCards(
 ) {
   getEvents(params: $params) {
     result {
-      ...EventCards
+      ...EventCard
     }
     total
   }

@@ -6,8 +6,8 @@ import { collapse } from 'src/app/core/animations/animations';
 import { FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
 import { EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
 import { Period } from 'src/app/core/typings/period';
-import { EventFilterActions } from 'src/app/shared/filter/event-filter/state/event-filter.actions';
-import { selectEventFilterParams, selectFiltersActive, selectRawFilterParams } from 'src/app/shared/filter/event-filter/state/event-filter.selectors';
+import { EventFilterActions } from 'src/app/shared/filter/event/state/event-filter.actions';
+import { selectEventFilterParams, selectFiltersActive, selectRawFilterParams } from 'src/app/shared/filter/event/state/event-filter.selectors';
 
 @Component({
   selector: 'app-event-filter',
