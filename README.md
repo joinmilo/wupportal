@@ -1,27 +1,131 @@
 # Wooportal client
 
-## Schema
-Everytime a graphql file is written, the services need to be re-generated:
+## Schema and services
+Everytime a graphql file is written, the services need to be re-generated.
+
+### Create codegen.ts file if not existing
+
+1. create the following folder structure:
+
+```
+/path/to/your/module
+|-- /api
+|   |-- /codegen
+|       |-- codegen.ts
+|   |-- /documents
+|       |-- /fragments
+|           |-- some.fragment.graphql
+|           |-- ...
+|       |-- /mutations
+|           |-- some.mutation.graphql
+|           |-- ...
+|       |-- /queries
+|           |-- some.query.graphql
+|           |-- ...
+```
+
+the name `codegen.ts` is important, otherwise the generation script will not find the generation definition.
+
+All document files must have `*.graphql` file extension.
+
+2. `codegen.ts` file looks like this:
+
+```typescript
+import type { CodegenConfig } from '@graphql-codegen/cli';
+import { graphqlGenerationApi } from '../../../core/api/codegen/constants';
+
+const config: CodegenConfig = {
+  schema: graphqlGenerationApi,
+  documents: [
+    'src/app/core/api/documents/fragments/**/*.graphql',
+    'path/to/your/documents/**/*.graphql', // <-- this is only path to change
+  ],
+  generates: {
+    'src/app/core/api/generated': {
+      preset: 'near-operation-file-preset',
+      presetConfig: {
+        baseTypesPath: 'schema.ts',
+        folder: '../../generated'
+      },
+      plugins: [
+        'typescript-operations',
+        'typescript-apollo-angular',
+        {
+          'add': {
+            content: '/* eslint-disable */'
+          }
+        }
+      ],
+      config: {
+        addExplicitOverride: true,
+      },
+    },
+  },
+};
+export default config;
+```
 
 ### Re-generate schema
 
 
-1. Pull latest server and run via docker-compose
-2. Generate the Typescript `schema.ts`:
+1. After adding new graphl documents, services have to be re-generated
+2. Pull latest server and run via docker-compose
+3. It's possible to run generation for all or only for one `codegen.ts`` file :
 
-  ```bash
-  npm run generate
-  ```
+```bash
+npm run generate
+```
+
+Or only one module:
+
+```bash
+  npm run generate -- path/to/your/module/api
+```
 
 Or within the docker service:
 
-```bash
-docker compose run 
+1. Change `/src/app/core/api/codegen/constants.ts` from:
 
+```typescript
+export const graphqlGenerationApi = 'http://localhost:8011/api/graphql'
+```
+
+to
+
+```typescript
+export const graphqlGenerationApi = 'http://server:80/api/graphql'
+```
+
+2. Then run:
+```bash
+docker compose run client npm run generate
 ```
 
 ### Use generated services
-After generating the schema.ts file you will see all services generated in that file. You can then inject them as normal services in Angular.
+After generating the services you will see all services generated in the folder `generated`. You can then inject them as normal services in Angular.
+
+```
+/path/to/your/module
+|-- /api
+|   |-- /codegen
+|       |-- codegen.ts
+|   |-- /documents
+|       |-- /fragments
+|           |-- some.fragment.graphql
+|           |-- ...
+|       |-- /mutations
+|           |-- some.mutation.graphql
+|           |-- ...
+|       |-- /queries
+|           |-- some.query.graphql
+|           |-- ...
+|   |-- /generated <-- generated service, ready to use
+|           |-- some.fragment.generated.ts
+|           |-- some.mutation.generated.ts
+|           |-- some.query.generated.ts
+|           |-- ...
+```
+
 
 **Example**:
 
@@ -37,7 +141,7 @@ query myFancyQuery($param: String!) {
 }
 ```
 
-This will generate something like `MyFancyQueryGQL` in the `schema.ts` file. This can now be imported as usual:
+This will generate something like `MyFancyQueryGQL` in the `*.generated.ts` file. This can now be imported as usual:
 
 ```typescript
 ...
