@@ -4,11 +4,11 @@ import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { FilterSortPaginateInput, PageableList_ArticleEntity, PageableList_DealEntity, PageableList_EventEntity, PageableList_OrganisationEntity, PageableList_UserContextEntity, QueryOperator } from 'src/app/core/api/generated/schema';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
-import { GetArticleCardsGQL } from 'src/app/user/api/generated/get-article-cards.query.generated';
-import { GetAuthorCardsGQL } from 'src/app/user/api/generated/get-author-cards.query.generated';
-import { GetDealCardsGQL } from 'src/app/user/api/generated/get-deal-cards.query.generated';
-import { GetEventCardsGQL } from 'src/app/user/api/generated/get-event-cards.query.generated';
-import { GetOrganisationCardsGQL } from 'src/app/user/api/generated/get-organisation-cards.query.generated';
+import { GetArticleCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-article-cards.query.generated';
+import { GetAuthorCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-author-cards.query.generated';
+import { GetDealCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-deal-cards.query.generated';
+import { GetEventCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-event-cards.query.generated';
+import { GetOrganisationCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-organisation-cards.query.generated';
 import { PortalFavoritesActions } from './portal-favorites.actions';
 
 @Injectable()
