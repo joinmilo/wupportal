@@ -1,6 +1,7 @@
 fragment OrganisationCard on OrganisationEntity {
   id
   name
+  slug
 
   address {
     ...Address

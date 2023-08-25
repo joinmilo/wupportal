@@ -21,9 +21,7 @@ export class PortalLandingComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-  ) {
-    console.log('test')
-  }
+  ) { }
 
   ngOnInit(): void {
     this.store.select(selectLandingPage)

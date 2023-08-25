@@ -11,8 +11,6 @@ export interface CoreUserState {
 
 export const storedData = localStorage.getItem(appStateKey);
 
-console.log(storedData);
-
 export const initialState: CoreUserState = storedData
   ? JSON.parse(storedData)
   : { cookieSettings: undefined };
