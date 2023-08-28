@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
+import { Subject, take, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { CoreModule } from 'src/app/core/core.module';
+import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
+import { selectIsAuthenticated, selectIsFavorite } from 'src/app/core/state/selectors/user.selectors';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 
 @Component({
@@ -19,7 +22,7 @@ import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity'
     MatButtonModule,
   ]
 })
-export class FavoritePieceComponent implements OnInit {
+export class FavoritePieceComponent implements OnChanges, OnDestroy {
 
   @Input({ required: true })
   public entity?: Maybe<ContentEntity>;
@@ -30,18 +33,37 @@ export class FavoritePieceComponent implements OnInit {
   @Input()
   public withLabel = false;
 
-  isFavorite = false;
+  public isFavorite = false;
+
+  private destroy = new Subject<void>();
 
   constructor(
     private store: Store,
   ) { }
 
-  public ngOnInit(): void {
-    // this.store.select();
+  public ngOnChanges(): void {
+    this.store.select(selectIsFavorite(this.entity, this.data?.id))
+      .pipe(takeUntil(this.destroy))
+      .subscribe(isFavorite => this.isFavorite = isFavorite);
   }
 
   public changeFavorite(): void {
-    this.isFavorite = !this.isFavorite;
+    this.store.select(selectIsAuthenticated)
+      .pipe(take(1))
+      .subscribe(isAuthenticated => isAuthenticated
+        ? this.execute()
+        : this.store.dispatch(CoreUserActions.requireLogin()));
+  }
+  
+  private execute(): void {
+    this.isFavorite
+      ? this.store.dispatch(CoreUserActions.removeFavorite(this.entity, this.data?.id))
+      : this.store.dispatch(CoreUserActions.addFavorite(this.entity, this.data?.id));
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
 }

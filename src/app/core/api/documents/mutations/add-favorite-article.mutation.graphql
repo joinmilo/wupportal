@@ -1,0 +1,5 @@
+mutation addFavoriteArticle($articleId: String) {
+  addFavoriteArticle(articleId: $articleId) {
+    id
+  }
+}

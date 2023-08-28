@@ -1,0 +1,5 @@
+mutation addFavoriteDeal($dealId: String) {
+  addFavoriteDeal(dealId: $dealId) {
+    id
+  }
+}

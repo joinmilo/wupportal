@@ -1,0 +1,5 @@
+mutation addFavoriteOrganisation($organisationId: String) {
+  addFavoriteOrganisation(organisationId: $organisationId) {
+    id
+  }
+}

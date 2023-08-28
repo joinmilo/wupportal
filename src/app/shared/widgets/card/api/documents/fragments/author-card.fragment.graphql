@@ -1,5 +1,6 @@
 fragment AuthorCard on UserContextEntity {
   id
+  slug
 
   user {
     id

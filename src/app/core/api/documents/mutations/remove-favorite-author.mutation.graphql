@@ -1,0 +1,5 @@
+mutation removeFavoriteAuthor($userContextId: String) {
+  removeFavoriteAuthor(userContextId: $userContextId) {
+    id
+  }
+}

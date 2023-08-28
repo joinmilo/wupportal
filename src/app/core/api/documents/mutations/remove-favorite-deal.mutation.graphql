@@ -1,0 +1,5 @@
+mutation removeFavoriteDeal($dealId: String) {
+  removeFavoriteDeal(dealId: $dealId) {
+    id
+  }
+}

@@ -1492,6 +1492,11 @@ export type MessageTemplateTranslatableEntityInput = {
 /** Mutation root */
 export type Mutation = {
   __typename?: 'Mutation';
+  addFavoriteArticle?: Maybe<UserContextEntity>;
+  addFavoriteAuthor?: Maybe<UserContextEntity>;
+  addFavoriteDeal?: Maybe<UserContextEntity>;
+  addFavoriteEvent?: Maybe<UserContextEntity>;
+  addFavoriteOrganisation?: Maybe<UserContextEntity>;
   addUploads?: Maybe<UserEntity>;
   changePassword?: Maybe<Scalars['Boolean']>;
   checkPassword?: Maybe<Scalars['Float']>;
@@ -1619,6 +1624,11 @@ export type Mutation = {
   deleteUserContexts?: Maybe<Scalars['Boolean']>;
   deleteUsers?: Maybe<Scalars['Boolean']>;
   refreshToken?: Maybe<TokenDto>;
+  removeFavoriteArticle?: Maybe<UserContextEntity>;
+  removeFavoriteAuthor?: Maybe<UserContextEntity>;
+  removeFavoriteDeal?: Maybe<UserContextEntity>;
+  removeFavoriteEvent?: Maybe<UserContextEntity>;
+  removeFavoriteOrganisation?: Maybe<UserContextEntity>;
   resetPassword?: Maybe<Scalars['Boolean']>;
   saveAddress?: Maybe<AddressEntity>;
   saveAddresses?: Maybe<Array<Maybe<AddressEntity>>>;
@@ -1747,6 +1757,36 @@ export type Mutation = {
   sendVerification?: Maybe<Scalars['Boolean']>;
   verify?: Maybe<UserEntity>;
   verifyAddress?: Maybe<AddressEntity>;
+};
+
+
+/** Mutation root */
+export type MutationAddFavoriteArticleArgs = {
+  articleId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationAddFavoriteAuthorArgs = {
+  userContextId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationAddFavoriteDealArgs = {
+  dealId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationAddFavoriteEventArgs = {
+  eventId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationAddFavoriteOrganisationArgs = {
+  organisationId?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -2510,6 +2550,36 @@ export type MutationDeleteUsersArgs = {
 /** Mutation root */
 export type MutationRefreshTokenArgs = {
   refreshToken?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationRemoveFavoriteArticleArgs = {
+  articleId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationRemoveFavoriteAuthorArgs = {
+  userContextId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationRemoveFavoriteDealArgs = {
+  dealId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationRemoveFavoriteEventArgs = {
+  eventId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationRemoveFavoriteOrganisationArgs = {
+  organisationId?: InputMaybe<Scalars['String']>;
 };
 
 

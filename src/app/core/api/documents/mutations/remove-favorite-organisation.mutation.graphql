@@ -1,0 +1,5 @@
+mutation removeFavoriteOrganisation($organisationId: String) {
+  removeFavoriteOrganisation(organisationId: $organisationId) {
+    id
+  }
+}

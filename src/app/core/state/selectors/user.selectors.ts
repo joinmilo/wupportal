@@ -84,6 +84,11 @@ export const selectArticleFavorites = createSelector(
   user => user?.favoriteArticles
 );
 
+export const selectFavoriteAuthors = createSelector(
+  selectCurrentUser,
+  user => user?.favoriteAuthors
+);
+
 export const selectFavoriteDeals = createSelector(
   selectCurrentUser,
   user => user?.favoriteDeals
@@ -99,12 +104,7 @@ export const selectFavoriteOrganisations = createSelector(
   user => user?.favoriteOrganisations
 );
 
-export const selectFavoriteAuthors = createSelector(
-  selectCurrentUser,
-  user => user?.favoriteAuthors
-);
-
-export const selectIsFavorite = (entity: ContentEntity, id: string) => {
+export const selectIsFavorite = (entity: Maybe<ContentEntity>, id: Maybe<string>) => {
   switch (entity) {
     case 'ArticleEntity':
       return createSelector(

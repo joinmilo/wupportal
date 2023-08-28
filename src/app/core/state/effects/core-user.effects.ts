@@ -3,9 +3,20 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
+import { EMPTY } from 'rxjs';
 import { delay, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { UserContextEntity } from 'src/app/core/api/generated/schema';
+import { AddFavoriteArticleGQL } from '../../api/generated/add-favorite-article.mutation.generated';
+import { AddFavoriteAuthorGQL } from '../../api/generated/add-favorite-author.mutation.generated';
+import { AddFavoriteDealGQL } from '../../api/generated/add-favorite-deal.mutation.generated';
+import { AddFavoriteEventGQL } from '../../api/generated/add-favorite-event.mutation.generated';
+import { AddFavoriteOrganisationGQL } from '../../api/generated/add-favorite-organisation.mutation.generated';
 import { GetMeGQL } from '../../api/generated/get-me.query.generated';
+import { RemoveFavoriteArticleGQL } from '../../api/generated/remove-favorite-article.mutation.generated';
+import { RemoveFavoriteAuthorGQL } from '../../api/generated/remove-favorite-author.mutation.generated';
+import { RemoveFavoriteDealGQL } from '../../api/generated/remove-favorite-deal.mutation.generated';
+import { RemoveFavoriteEventGQL } from '../../api/generated/remove-favorite-event.mutation.generated';
+import { RemoveFavoriteOrganisationGQL } from '../../api/generated/remove-favorite-organisation.mutation.generated';
 import { CookieComponent } from '../../components/cookie/cookie.component';
 import { accountUrl, refreshKey } from '../../constants/core.constants';
 import { AuthService } from '../../services/auth.service';
@@ -97,9 +108,79 @@ export class CoreUserEffects {
     })
   ), { dispatch: false });
 
+  addFavorite = createEffect(() => this.actions.pipe(
+    ofType(CoreUserActions.addFavorite),
+    switchMap(action => {
+      switch (action.entity) {
+        case 'ArticleEntity':
+          return this.addFavoriteArticleService.mutate({
+            articleId: action.entityId
+          });
+        case 'DealEntity':
+          return this.addFavoriteDealService.mutate({
+            dealId: action.entityId
+          });
+        case 'EventEntity':
+          return this.addFavoriteEventService.mutate({
+            eventId: action.entityId
+          });
+        case 'OrganisationEntity':
+          return this.addFavoriteOrganisationService.mutate({
+            organisationId: action.entityId
+          });
+        case 'UserContextEntity':
+          return this.addFavoriteAuthorService.mutate({
+            userContextId: action.entityId
+          });
+      }
+      return EMPTY;
+    }),
+    map(() => CoreUserActions.updateUser()),
+  ));
+
+  removeFavorite = createEffect(() => this.actions.pipe(
+    ofType(CoreUserActions.removeFavorite),
+    switchMap(action => {
+      switch (action.entity) {
+        case 'ArticleEntity':
+          return this.removeFavoriteArticleService.mutate({
+            articleId: action.entityId
+          });
+        case 'DealEntity':
+          return this.removeFavoriteDealService.mutate({
+            dealId: action.entityId
+          });
+        case 'EventEntity':
+          return this.removeFavoriteEventService.mutate({
+            eventId: action.entityId
+          });
+        case 'OrganisationEntity':
+          return this.removeFavoriteOrganisationService.mutate({
+            organisationId: action.entityId
+          });
+        case 'UserContextEntity':
+          return this.removeFavoriteAuthorService.mutate({
+            userContextId: action.entityId
+          });
+      }
+      return EMPTY;
+    }),
+    map(() => CoreUserActions.updateUser()),
+  ));
+
   constructor(
     private actions: Actions,
     private authService: AuthService,
+    private addFavoriteArticleService: AddFavoriteArticleGQL,
+    private addFavoriteAuthorService: AddFavoriteAuthorGQL,
+    private addFavoriteDealService: AddFavoriteDealGQL,
+    private addFavoriteEventService: AddFavoriteEventGQL,
+    private addFavoriteOrganisationService: AddFavoriteOrganisationGQL,
+    private removeFavoriteArticleService: RemoveFavoriteArticleGQL,
+    private removeFavoriteAuthorService: RemoveFavoriteAuthorGQL,
+    private removeFavoriteEventService: RemoveFavoriteEventGQL,
+    private removeFavoriteDealService: RemoveFavoriteDealGQL,
+    private removeFavoriteOrganisationService: RemoveFavoriteOrganisationGQL,
     private feedbackService: FeedbackService,
     private getMeService: GetMeGQL,
     private router: Router,

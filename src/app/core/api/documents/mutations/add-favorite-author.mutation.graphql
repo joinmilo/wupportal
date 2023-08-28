@@ -1,0 +1,5 @@
+mutation addFavoriteAuthor($userContextId: String) {
+  addFavoriteAuthor(userContextId: $userContextId) {
+    id
+  }
+}
