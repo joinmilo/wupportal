@@ -18,6 +18,7 @@
   <ng-template #defaultActions>
     <div class="default-actions">
       <app-share-button
+        [url]="createUrl()"
         [withLabel]="true">
       </app-share-button>
       <app-favorite-piece

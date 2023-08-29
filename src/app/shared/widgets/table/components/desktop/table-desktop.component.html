@@ -19,7 +19,8 @@
         <td mat-cell class="actions" *matCellDef="let row">
           <app-table-actions
             [actions]="actions"
-            [row]="row">
+            [entity]="entity"
+            [data]="row">
           </app-table-actions>
         </td>
       </ng-container>

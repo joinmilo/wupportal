@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
+import { ContentEntity } from 'src/app/core/typings/content-entity';
 import { Column, PageableList, RowAction, SortPaginate } from '../typings/table';
 
 @Component({
@@ -18,6 +19,9 @@ export class TableComponent<T> implements OnInit, OnDestroy {
 
   @Input()
   public data?: Observable<PageableList<T> | undefined>;
+
+  @Input()
+  public entity?: ContentEntity;
 
   @Input()
   public initParams: SortPaginate = {

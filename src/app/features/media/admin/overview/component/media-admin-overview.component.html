@@ -3,12 +3,11 @@
   <app-media-filter (paramsUpdated)="updateParams($event)">
   </app-media-filter>
 
-  <app-table
+<app-table
   [actions]="actions"
   [data]="media"
   [columns]="columns"
-  (sortPaginate)="updateParams($event)"
->
+  (sortPaginate)="updateParams($event)">
 </app-table>
 
 </div>

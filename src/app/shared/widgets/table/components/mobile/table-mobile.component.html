@@ -11,7 +11,11 @@
       </ng-container>
     </mat-card-content>
     <mat-divider></mat-divider>
-    <app-table-actions [actions]="actions"></app-table-actions>
+    <app-table-actions
+      [actions]="actions"
+      [entity]="entity"
+      [data]="contentRow(row)">
+    </app-table-actions>
   </mat-card>
 
   <mat-card>

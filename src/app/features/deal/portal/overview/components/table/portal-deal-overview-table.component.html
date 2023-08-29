@@ -1,6 +1,7 @@
 <app-table
   [actions]="actions"
   [data]="deals"
+  [entity]="'DealEntity'"
   [columns]="columns"
   (sortPaginate)="sortPaginate.emit($event)">
 </app-table>

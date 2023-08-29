@@ -5,6 +5,7 @@
   <app-table
     [actions]="actions"
     [data]="contests"
+    [entity]="'ContestEntity'"
     [columns]="columns"
     (sortPaginate)="updateParams($event)">
   </app-table>

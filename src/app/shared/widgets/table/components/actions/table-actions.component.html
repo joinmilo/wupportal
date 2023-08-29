@@ -3,11 +3,12 @@
     <ng-container [ngSwitch]="action.type">
       
       <app-favorite-piece *ngSwitchCase="'LIKE'"
-        [entity]="'EventEntity'"
-        [data]="row">
+        [entity]="entity"
+        [data]="data">
       </app-favorite-piece>
 
-      <app-share-button *ngSwitchCase="'SHARE'">
+      <app-share-button *ngSwitchCase="'SHARE'"
+        [url]="createUrl()">
       </app-share-button>
       
     </ng-container>

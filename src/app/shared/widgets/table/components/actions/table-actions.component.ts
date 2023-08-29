@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ContentData } from 'src/app/core/typings/content-entity';
+import { Maybe } from 'src/app/core/api/generated/schema';
+import { contentDetailsUrl } from 'src/app/core/constants/core.constants';
+import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { RowAction } from '../../typings/table';
 
 @Component({
@@ -9,10 +11,17 @@ import { RowAction } from '../../typings/table';
 })
 export class TableActionsComponent<T> {
 
-  @Input()
+  @Input({ required: true })
   public actions?: RowAction<T>[];
 
-  @Input()
-  public row?: ContentData;
+  @Input({ required: true })
+  public data?: ContentData;
+
+  @Input({ required: true })
+  public entity?: Maybe<ContentEntity>;
+
+  public createUrl(): string | undefined {
+    return contentDetailsUrl(this.entity, this.data);
+  }
 
 }
