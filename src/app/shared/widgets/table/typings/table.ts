@@ -1,4 +1,5 @@
 import { SortDirection } from '@angular/material/sort';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Observable } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 
@@ -21,15 +22,12 @@ export type PageableList<T> = {
   total?: number;
 };
 
-export type RowActionType = 'EDIT'
-  | 'DELETE'
-  | 'DETAILS'
-  | 'LIKE'
-  | 'SHARE';
+export type RowDefaultAction = 'LIKE' | 'SHARE';
 
 export type RowAction<T> = {
-  callback?: (row: T) => void,
-  type?: RowActionType,
+  callback?: (row: Maybe<T>) => void,
+  icon: IconName,
+  tooltipLabel?: Maybe<string>,
 };
 
 export type Sort = {

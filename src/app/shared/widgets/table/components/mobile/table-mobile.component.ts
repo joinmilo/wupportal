@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
-import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
-import { Column, PageableList, RowAction, SortPaginate } from '../../typings/table';
+import { Maybe } from 'src/app/core/api/generated/schema';
+import { ContentEntity } from 'src/app/core/typings/content-entity';
+import { Column, PageableList, RowAction, RowDefaultAction, SortPaginate } from '../../typings/table';
 import { TablePaginatorComponent } from '../paginator/table-paginator.component';
 
 @Component({
@@ -15,6 +16,9 @@ export class TableMobileComponent<T> implements AfterViewInit, OnDestroy {
   public actions?: RowAction<T>[];
 
   @Input()
+  public defaultActions?: RowDefaultAction[];
+
+  @Input()
   public columns?: Column<T>[];
 
   @Input()
@@ -25,6 +29,9 @@ export class TableMobileComponent<T> implements AfterViewInit, OnDestroy {
 
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
+
+  @Output()
+  public rowClicked = new EventEmitter<Maybe<T>>();
 
   @ViewChild('container')
   private container?: ElementRef;
@@ -43,10 +50,6 @@ export class TableMobileComponent<T> implements AfterViewInit, OnDestroy {
       tap(() => this.container?.nativeElement?.scrollIntoView()),
       takeUntil(this.destroy),
     ).subscribe();
-  }
-
-  public contentRow<T>(row: T): ContentData {
-    return row as ContentData;
   }
 
   public ngOnDestroy(): void {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { ArticleEntity, FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
+import { ArticleEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowAction, RowDefaultAction } from 'src/app/shared/widgets/table/typings/table';
 import { ArticleAdminOverviewActions } from '../state/article-admin-overview.actions';
 import { selectOverviewData } from '../state/article-portal-overview.selectors';
 
@@ -15,9 +16,26 @@ export class ArticleAdminOverviewComponent {
 
   public articles = this.store.select(selectOverviewData);
 
+  public defaultActions: RowDefaultAction[] = [
+    'LIKE', 'SHARE'
+  ];
+
   public actions: RowAction<ArticleEntity>[] = [
-    { type: 'LIKE' },
-    { type: 'SHARE' }
+    {
+      icon: 'pen-to-square',
+      callback: article =>
+        this.router.navigate([article?.slug, 'edit'], { relativeTo: this.activatedRoute })
+    },
+    {
+      icon: 'bullhorn',
+      callback: article =>
+        this.store.dispatch(ArticleAdminOverviewActions.sponsorArticle(article))
+    },
+    {
+      icon: 'trash',
+      callback: article =>
+        this.store.dispatch(ArticleAdminOverviewActions.deleteArticle(article))
+    }
   ];
 
   public columns: Column<ArticleEntity>[] = [
@@ -29,7 +47,7 @@ export class ArticleAdminOverviewComponent {
     {
       field: 'author.user.lastName',
       label: 'author',
-      type: row => `${row.author?.user?.firstName} ${row.author?.user?.lastName}`
+      type: row => `${row.author?.user?.firstName ?? ''} ${row.author?.user?.lastName ?? ''}`
     },
     {
       field: 'modified',
@@ -42,14 +60,26 @@ export class ArticleAdminOverviewComponent {
       label: 'category',
       type: 'CATEGORY',
     },
+    {
+      field: 'sponsored',
+      label: 'sponsored',
+      type: 'BOOLEAN',
+      sort: true,
+    },
   ];
   
   constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private store: Store,
     private translationService: TranslationService,
   ) { }
 
   public updateParams(params: FilterSortPaginateInput) {
     this.store.dispatch(ArticleAdminOverviewActions.updateParams(params));
+  }
+
+  public rowClicked(article: Maybe<ArticleEntity>): void {
+    this.router.navigate([article?.slug], { relativeTo: this.activatedRoute })
   }
 }

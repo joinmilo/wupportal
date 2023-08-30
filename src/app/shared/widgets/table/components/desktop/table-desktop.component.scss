@@ -3,6 +3,10 @@ div {
   flex-flow: column;
   gap: var(--gap);
 
+  td {
+    cursor: pointer;
+  }
+
   mat-card {
     padding: 1rem;
   }

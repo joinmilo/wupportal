@@ -1,12 +1,15 @@
-import { createActionGroup } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_ArticleEntity } from 'src/app/core/api/generated/schema';
+import { createActionGroup, emptyProps } from '@ngrx/store';
+import { ArticleEntity, FilterSortPaginateInput, Maybe, PageableList_ArticleEntity } from 'src/app/core/api/generated/schema';
 
 export const ArticleAdminOverviewActions = createActionGroup({
   source: 'Article Admin Overview',
   events: {
-
     'set overview data': (articles: PageableList_ArticleEntity) => ({ articles }),
 
     'update params': (params: FilterSortPaginateInput) => ({ params }),
+
+    'delete article': (article?: Maybe<ArticleEntity>) => ({ article }),
+    'article deleted': emptyProps(),
+    'sponsor article': (article?: Maybe<ArticleEntity>) => ({ article }),
   }
 });

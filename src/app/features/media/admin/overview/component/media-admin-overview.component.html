@@ -4,8 +4,8 @@
   </app-media-filter>
 
 <app-table
-  [actions]="actions"
   [data]="media"
+  [defaultActions]="defaultActions"
   [columns]="columns"
   (sortPaginate)="updateParams($event)">
 </app-table>

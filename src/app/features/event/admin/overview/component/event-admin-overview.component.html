@@ -3,8 +3,8 @@
   <app-event-filter
     (paramsUpdated)="updateParams($event)"></app-event-filter>
   <app-table
-    [actions]="actions"
     [data]="events"
+    [defaultActions]="defaultActions"
     [entity]="'EventEntity'"
     [columns]="columns"
     (sortPaginate)="updateParams($event)">

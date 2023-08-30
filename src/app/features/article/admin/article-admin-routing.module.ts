@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
-import { articlesFeatureKey } from 'src/app/core/constants/core.constants';
+import { articlesFeatureKey, slug } from 'src/app/core/constants/core.constants';
 
 const menuRoutes: Routes = [
   {
@@ -20,11 +20,11 @@ const menuRoutes: Routes = [
 ];
 
 const routes: Routes = [
-  // {
-  //   path: `${articlesFeatureKey}/${slug}`,
-  //   loadChildren: () => import('src/app/features/article/portal/details/portal-article-details.module')
-  //     .then((imported) => imported.PortalArticleDetailsModule),
-  // },
+  {
+    path: `${articlesFeatureKey}/:${slug}/edit`,
+    loadChildren: () => import('src/app/features/article/admin/form/article-admin-form.module')
+      .then((imported) => imported.ArticleAdminFormModule),
+  },
 ]
 
 @NgModule({

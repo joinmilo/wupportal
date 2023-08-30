@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput, SurveyEntity } from 'src/app/core/api/generated/schema';
-import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowDefaultAction } from 'src/app/shared/widgets/table/typings/table';
 import { SurveyAdminOverviewActions } from '../state/survey-admin-overview.actions';
 import { selectOverviewData } from '../state/survey-portal-overview.selectors';
 
@@ -14,9 +14,8 @@ export class SurveyAdminOverviewComponent {
 
   public surveys = this.store.select(selectOverviewData);
 
-  public actions: RowAction<SurveyEntity>[] = [
-    { type: 'LIKE' },
-    { type: 'SHARE' }
+  public defaultActions: RowDefaultAction[] = [
+    'LIKE', 'SHARE'
   ];
 
   public columns: Column<SurveyEntity>[] = [

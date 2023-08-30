@@ -3,10 +3,12 @@
   <app-article-filter
     (paramsUpdated)="updateParams($event)"></app-article-filter>
   <app-table
-    [actions]="actions"
     [data]="articles"
+    [actions]="actions"
+    [defaultActions]="defaultActions"
     [entity]="'ArticleEntity'"
     [columns]="columns"
-    (sortPaginate)="updateParams($event)">
+    (sortPaginate)="updateParams($event)"
+    (rowClicked)="rowClicked($event)">
   </app-table>
 </div>

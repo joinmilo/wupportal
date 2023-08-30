@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EventEntity, FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowDefaultAction } from 'src/app/shared/widgets/table/typings/table';
 import { EventAdminOverviewActions } from '../state/event-admin-overview.actions';
 import { selectOverviewData } from '../state/event-portal-overview.selectors';
 
@@ -15,9 +15,8 @@ export class EventAdminOverviewComponent {
 
   public events = this.store.select(selectOverviewData);
 
-  public actions: RowAction<EventEntity>[] = [
-    { type: 'LIKE' },
-    { type: 'SHARE' }
+  public defaultActions: RowDefaultAction[] = [
+    'LIKE', 'SHARE'
   ];
 
   public columns: Column<EventEntity>[] = [

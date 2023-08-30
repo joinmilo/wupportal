@@ -114,7 +114,7 @@ export class TableCardComponent implements AfterViewInit, OnDestroy {
     this.sortPaginate.emit(sortPage);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     const emptyProps = {
       dir: null,
       sort: null,

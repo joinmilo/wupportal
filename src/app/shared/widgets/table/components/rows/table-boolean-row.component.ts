@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <fa-icon [icon]="input 
       ? ['fas', 'check'] 
-      : ['far', 'close']">
+      : ['fas', 'xmark']">
     </fa-icon>
   `,
 })

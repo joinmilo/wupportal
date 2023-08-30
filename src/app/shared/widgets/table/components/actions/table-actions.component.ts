@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Maybe } from 'src/app/core/api/generated/schema';
-import { contentDetailsUrl } from 'src/app/core/constants/core.constants';
+import { contentPortalDetailsUrl } from 'src/app/core/constants/core.constants';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
-import { RowAction } from '../../typings/table';
+import { RowAction, RowDefaultAction } from '../../typings/table';
 
 @Component({
   selector: 'app-table-actions',
@@ -11,17 +11,24 @@ import { RowAction } from '../../typings/table';
 })
 export class TableActionsComponent<T> {
 
-  @Input({ required: true })
+  @Input()
   public actions?: RowAction<T>[];
 
+  @Input()
+  public defaultActions?: RowDefaultAction[];
+
   @Input({ required: true })
-  public data?: ContentData;
+  public data?: Maybe<T>;
 
   @Input({ required: true })
   public entity?: Maybe<ContentEntity>;
 
+  public dataAsContent(): Maybe<ContentData> {
+    return this.data as ContentData;
+  }
+
   public createUrl(): string | undefined {
-    return contentDetailsUrl(this.entity, this.data);
+    return contentPortalDetailsUrl(this.entity, this.data as ContentData);
   }
 
 }

@@ -1,16 +1,20 @@
 <app-table-desktop
   [actions]="actions"
+  [defaultActions]="defaultActions"
   [columns]="columns"
   [data]="data"
   [entity]="entity"
   [initParams]="initParams"
-  (sortPaginate)="emitSortPaginate($event)">
+  (sortPaginate)="emitSortPaginate($event)"
+  (rowClicked)="rowClicked.emit($event)">
 </app-table-desktop>
 
 <app-table-mobile
   [actions]="actions"
+  [defaultActions]="defaultActions"
   [columns]="columns"
   [data]="data"
   [entity]="entity"
-  (sortPaginate)="emitSortPaginate($event)">
+  (sortPaginate)="emitSortPaginate($event)"
+  (rowClicked)="rowClicked.emit($event)">
 </app-table-mobile>

@@ -1,10 +1,15 @@
 <div>
   <ng-container *ngFor="let action of actions">
-    <ng-container [ngSwitch]="action.type">
+    <button mat-button (click)="action?.callback(data)">
+        <fa-icon [icon]="['fas', action.icon]"></fa-icon>
+    </button>
+  </ng-container>
+  <ng-container *ngFor="let action of defaultActions">
+    <ng-container [ngSwitch]="action">
       
       <app-favorite-piece *ngSwitchCase="'LIKE'"
         [entity]="entity"
-        [data]="data">
+        [data]="dataAsContent()">
       </app-favorite-piece>
 
       <app-share-button *ngSwitchCase="'SHARE'"

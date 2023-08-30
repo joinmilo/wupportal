@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Maybe } from 'src/app/core/api/generated/schema';
-import { contentDetailsUrl } from 'src/app/core/constants/core.constants';
+import { contentPortalDetailsUrl } from 'src/app/core/constants/core.constants';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { CardActionInput } from 'src/app/shared/widgets/card/typings/card';
 
@@ -24,7 +24,7 @@ export class CardActionsComponent {
   public actionClicked = new EventEmitter<CardActionInput>();
 
   public createUrl(): string | undefined {
-    return contentDetailsUrl(this.entity, this.data);
+    return contentPortalDetailsUrl(this.entity, this.data);
   }
 
 }

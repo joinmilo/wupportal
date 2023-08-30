@@ -1,6 +1,7 @@
 <div #container>
 
-  <mat-card *ngFor="let row of (data | async)?.result;">
+  <mat-card *ngFor="let row of (data | async)?.result;"
+    (click)="rowClicked.emit(row)">
     <mat-card-title [appRow]="row" [column]="columns ? columns[0] : undefined"></mat-card-title>   
     <mat-card-content>
       <ng-container *ngFor="let column of columns; let first = first">
@@ -13,8 +14,9 @@
     <mat-divider></mat-divider>
     <app-table-actions
       [actions]="actions"
+      [defaultActions]="defaultActions"
       [entity]="entity"
-      [data]="contentRow(row)">
+      [data]="row">
     </app-table-actions>
   </mat-card>
 

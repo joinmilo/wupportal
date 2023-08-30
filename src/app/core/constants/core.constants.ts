@@ -93,12 +93,8 @@ export const appStateKey = 'appState';
 export const baseApi = `${environment.base}api`;
 export const graphqlApi = `${baseApi}/graphql`;
 
-export const contentDetailsUrl = (entity?: Maybe<ContentEntity>, data?: Maybe<ContentData>) =>
-  {
-  console.log(entity)
-  console.log(data)
-  return `${environment.client}${portalUrl}/${entityToFeature.get(entity)}/${data?.slug}`;
-  }
+export const contentPortalDetailsUrl = (entity?: Maybe<ContentEntity>, data?: Maybe<ContentData>) =>
+  `${environment.client}${portalUrl}/${entityToFeature.get(entity)}/${data?.slug}`;
 
 export const locationNavigationURL = (latitude: number, longtitude: number): string =>
   `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longtitude}`;

@@ -1,0 +1,43 @@
+query getArticles($params: FilterSortPaginateInput) {
+  getArticles(params: $params) {
+    result {
+      id
+      created
+      modified
+      slug
+      sponsored
+
+      author {
+        id
+
+        user {
+          id
+          firstName
+          lastName
+        }
+      }
+
+      category {
+        id
+        icon
+        color
+        translatables {
+          id
+          name
+          language {
+            ...Language
+          }
+        }
+      }
+
+      translatables {
+        id
+        name
+        language {
+          ...Language
+        }
+      }
+    }
+    total
+  }
+}

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentEntity } from 'src/app/core/typings/content-entity';
-import { Column, PageableList, RowAction, SortPaginate } from '../typings/table';
+import { Column, PageableList, RowAction, RowDefaultAction, SortPaginate } from '../typings/table';
 
 @Component({
   selector: 'app-table',
@@ -13,6 +14,9 @@ export class TableComponent<T> implements OnInit, OnDestroy {
 
   @Input()
   public actions?: RowAction<T>[];
+
+  @Input()
+  public defaultActions?: RowDefaultAction[];
 
   @Input()
   public columns?: Column<T>[];
@@ -34,6 +38,9 @@ export class TableComponent<T> implements OnInit, OnDestroy {
 
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
+
+  @Output()
+  public rowClicked = new EventEmitter<Maybe<T>>();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -58,7 +65,7 @@ export class TableComponent<T> implements OnInit, OnDestroy {
         queryParamsHandling: 'merge',
       });
     }
-    this.sortPaginate.emit(sortPage)
+    this.sortPaginate.emit(sortPage);
   }
 
   public ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput, OrganisationEntity } from 'src/app/core/api/generated/schema';
-import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowDefaultAction } from 'src/app/shared/widgets/table/typings/table';
 import { OrganisationAdminOverviewActions } from '../state/organisation-admin-overview.actions';
 import { selectOverviewData } from '../state/organisation-portal-overview.selectors';
 
@@ -14,9 +14,8 @@ export class OrganisationAdminOverviewComponent {
 
   public organisations = this.store.select(selectOverviewData);
 
-  public actions: RowAction<OrganisationEntity>[] = [
-    { type: 'LIKE' },
-    { type: 'SHARE' }
+  public defaultActions: RowDefaultAction[] = [
+    'LIKE', 'SHARE'
   ];
 
   public columns: Column<OrganisationEntity>[] = [

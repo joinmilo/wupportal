@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ArticleEntity } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction, SortPaginate } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowDefaultAction, SortPaginate } from 'src/app/shared/widgets/table/typings/table';
 import { selectOverviewData } from '../../state/portal-article-overview.selectors';
 
 @Component({
@@ -17,9 +17,8 @@ export class PortalArticleOverviewTableComponent {
 
   public articles = this.store.select(selectOverviewData);
 
-  public actions: RowAction<ArticleEntity>[] = [
-    { type: 'LIKE' },
-    { type: 'SHARE' }
+  public defaultActions: RowDefaultAction[] = [
+    'LIKE', 'SHARE'
   ];
 
   public columns: Column<ArticleEntity>[] = [

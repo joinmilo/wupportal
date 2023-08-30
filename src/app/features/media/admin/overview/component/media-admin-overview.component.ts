@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput, InfoMediaEntity } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowDefaultAction } from 'src/app/shared/widgets/table/typings/table';
 import { MediaAdminOverviewActions } from '../state/media-admin-overview.actions';
 import { selectOverviewData } from '../state/media-portal-overview.selectors';
 @Component({
@@ -15,9 +15,8 @@ export class MediaAdminOverviewComponent {
 
   public media = this.store.select(selectOverviewData);
 
-  public actions: RowAction<InfoMediaEntity>[] = [
-    { type: 'LIKE' },
-    { type: 'SHARE' }
+  public defaultActions: RowDefaultAction[] = [
+    'LIKE', 'SHARE'
   ];
 
   public columns: Column<InfoMediaEntity>[] = [

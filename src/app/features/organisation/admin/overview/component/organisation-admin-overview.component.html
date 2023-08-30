@@ -3,8 +3,8 @@
   <app-organisation-filter
     (paramsUpdated)="updateParams($event)"></app-organisation-filter>
   <app-table
-    [actions]="actions"
     [data]="organisations"
+    [defaultActions]="defaultActions"
     [entity]="'OrganisationEntity'"
     [columns]="columns"
     (sortPaginate)="updateParams($event)">
