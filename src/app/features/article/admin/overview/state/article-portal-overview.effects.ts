@@ -44,7 +44,7 @@ export class ArticleAdminOverviewEffects {
     ofType(ArticleAdminOverviewActions.articleSponsored),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
-      labelMessage: 'contentIsHighlighted'
+      labelMessage: 'changedSuccessfully'
     }))
   ));
 
