@@ -10,6 +10,8 @@ export const ArticleAdminOverviewActions = createActionGroup({
 
     'delete article': (article?: Maybe<ArticleEntity>) => ({ article }),
     'article deleted': emptyProps(),
+
     'sponsor article': (article?: Maybe<ArticleEntity>) => ({ article }),
+    'article sponsored': emptyProps(),
   }
 });

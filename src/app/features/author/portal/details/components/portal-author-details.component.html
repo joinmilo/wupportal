@@ -12,10 +12,10 @@
         <app-share-button>
         </app-share-button>
 
-        <app-favorite-piece
+        <app-favorite
           entity="UserContextEntity"
           [data]="author">
-        </app-favorite-piece>
+        </app-favorite>
 
         <button mat-button *ngIf="author?.user?.email">
           <a href="mailto:{{author.user?.email}}">

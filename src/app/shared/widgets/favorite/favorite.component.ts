@@ -11,9 +11,9 @@ import { selectIsAuthenticated, selectIsFavorite } from 'src/app/core/state/sele
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 
 @Component({
-  selector: 'app-favorite-piece',
-  templateUrl: './favorite-piece.component.html',
-  styleUrls: ['./favorite-piece.component.scss'],
+  selector: 'app-favorite',
+  templateUrl: './favorite.component.html',
+  styleUrls: ['./favorite.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -22,7 +22,7 @@ import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity'
     MatButtonModule,
   ]
 })
-export class FavoritePieceComponent implements OnChanges, OnDestroy {
+export class FavoriteComponent implements OnChanges, OnDestroy {
 
   @Input({ required: true })
   public entity?: Maybe<ContentEntity>;

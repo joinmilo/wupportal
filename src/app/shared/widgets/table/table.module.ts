@@ -9,12 +9,13 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
-import { FavoritePieceComponent } from '../../pieces/favorite/favorite-piece.component';
+import { FavoriteComponent } from '../favorite/favorite.component';
 import { TableActionsComponent } from './components/actions/table-actions.component';
 import { TableCardComponent } from './components/card/table-card.component';
 import { TableDesktopComponent } from './components/desktop/table-desktop.component';
@@ -56,12 +57,13 @@ const materials = [
   MatSelectModule,
   MatSortModule,
   MatTableModule,
+  MatTooltipModule
 ];
 
 const modules = [
   CardModule,
   CoreModule,
-  FavoritePieceComponent,
+  FavoriteComponent,
   ShareModule,
 ];
 

@@ -15,9 +15,6 @@ export class TableActionsComponent<T> {
   @Input()
   public actions?: RowAction<T>[];
 
-  // @Input()
-  // public defaultActions?: RowDefaultAction[];
-
   @Input({ required: true })
   public data?: Maybe<T>;
 

@@ -16,15 +16,15 @@ import { CoreModule } from 'src/app/core/core.module';
 import { CommentModule } from 'src/app/shared/form/comment/comment.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
 import { RatingModule } from 'src/app/shared/form/rating/rating.module';
+import { AddressPieceComponent } from 'src/app/shared/layout/address/address-piece.component';
+import { CategoryPieceComponent } from 'src/app/shared/layout/category/category-piece.component';
+import { MailPieceComponent } from 'src/app/shared/layout/mail/mail-piece.component';
+import { PhonePieceComponent } from 'src/app/shared/layout/phone/phone-piece.component';
 import { PriceComponent } from 'src/app/shared/layout/price/price.component';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
-import { AddressPieceComponent } from 'src/app/shared/pieces/address/address-piece.component';
-import { CategoryPieceComponent } from 'src/app/shared/pieces/category/category-piece.component';
-import { FavoritePieceComponent } from 'src/app/shared/pieces/favorite/favorite-piece.component';
-import { MailPieceComponent } from 'src/app/shared/pieces/mail/mail-piece.component';
-import { PhonePieceComponent } from 'src/app/shared/pieces/phone/phone-piece.component';
 import { CalendarModule } from 'src/app/shared/widgets/calendar/calendar.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
+import { FavoriteComponent } from 'src/app/shared/widgets/favorite/favorite.component';
 import { MapModule } from 'src/app/shared/widgets/map/map.module';
 import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
@@ -86,7 +86,7 @@ const modules = [
   CoreModule,
   CommentModule,
   CardModule,
-  FavoritePieceComponent,
+  FavoriteComponent,
   MailPieceComponent,
   MediaModule,
   PhonePieceComponent,

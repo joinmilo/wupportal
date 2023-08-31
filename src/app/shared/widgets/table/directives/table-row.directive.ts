@@ -2,8 +2,8 @@ import { Directive, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/
 import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
 import { AddressEntity, Maybe } from 'src/app/core/api/generated/schema';
 import { Category } from 'src/app/core/typings/category';
-import { AddressPieceComponent } from 'src/app/shared/pieces/address/address-piece.component';
-import { CategoryPieceComponent } from 'src/app/shared/pieces/category/category-piece.component';
+import { AddressPieceComponent } from 'src/app/shared/layout/address/address-piece.component';
+import { CategoryPieceComponent } from 'src/app/shared/layout/category/category-piece.component';
 import { TableBooleanRowComponent } from '../components/rows/table-boolean-row.component';
 import { Column } from '../typings/table';
 

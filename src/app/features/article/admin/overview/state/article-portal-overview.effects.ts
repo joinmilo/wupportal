@@ -9,6 +9,7 @@ import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ConfirmDeleteComponent } from 'src/app/shared/widgets/confirm-delete/confirm-delete.component';
 import { DeleteArticleGQL } from '../../../api/generated/delete-article.mutation.generated';
 import { GetArticlesGQL } from '../../../api/generated/get-articles.query.generated';
+import { SaveArticleGQL } from '../../../api/generated/save-article.mutation.generated';
 import { ArticleAdminOverviewActions } from './article-admin-overview.actions';
 import { selectParams } from './article-portal-overview.selectors';
 
@@ -19,6 +20,7 @@ export class ArticleAdminOverviewEffects {
     ofType(
       ArticleAdminOverviewActions.updateParams,
       ArticleAdminOverviewActions.articleDeleted,
+      ArticleAdminOverviewActions.articleSponsored,
     ),
     withLatestFrom(this.store.select(selectParams)),
     switchMap(([, params]) => this.getArticlesService.watch({ 
@@ -27,15 +29,35 @@ export class ArticleAdminOverviewEffects {
     map(response => ArticleAdminOverviewActions.setOverviewData(response.data.getArticles as PageableList_ArticleEntity))
   ));
 
+  sponsorArticle = createEffect(() => this.actions.pipe(
+    ofType(ArticleAdminOverviewActions.sponsorArticle),
+    switchMap(action => this.saveArticleService.mutate({
+      entity: {
+        id: action?.article?.id,
+        sponsored: !action.article?.sponsored,
+      }
+    })),
+    map(() => ArticleAdminOverviewActions.articleSponsored())
+  ));
+
+  articleSponsored = createEffect(() => this.actions.pipe(
+    ofType(ArticleAdminOverviewActions.articleSponsored),
+    map(() => CoreActions.setFeedback({
+      type: FeedbackType.Success,
+      labelMessage: 'contentIsHighlighted'
+    }))
+  ));
+
   deleteArticle = createEffect(() => this.actions.pipe(
     ofType(ArticleAdminOverviewActions.deleteArticle),
     switchMap(action => this.dialog.open(ConfirmDeleteComponent, { data: action.article?.name })
       .afterClosed().pipe(
         switchMap(confirmed => confirmed
           ? of(action.article)
-          : EMPTY)
+          : EMPTY
         )
-      ),
+      )
+    ),
     switchMap(article => this.deleteArticleService.mutate({
       id: article?.id
     })),
@@ -55,6 +77,7 @@ export class ArticleAdminOverviewEffects {
     private dialog: MatDialog,
     private deleteArticleService: DeleteArticleGQL,
     private getArticlesService: GetArticlesGQL,
+    private saveArticleService: SaveArticleGQL,
     private store: Store,
   ) {}
 }
