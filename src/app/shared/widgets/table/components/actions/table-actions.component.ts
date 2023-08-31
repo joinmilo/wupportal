@@ -21,6 +21,8 @@ export class TableActionsComponent<T> {
   @Input({ required: true })
   public entity?: Maybe<ContentEntity>;
 
+  public maxInline = 4;
+
   public dataAsContent(): ContentData {
     return this.data as ContentData;
   }

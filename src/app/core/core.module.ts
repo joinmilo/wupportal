@@ -20,6 +20,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { appStateKey } from './constants/core.constants';
 import { HtmlDirective } from './directives/html.directive';
 import { LabelDirective } from './directives/label.directive';
+import { TooltipDirective } from './directives/tooltip.directive';
 import { AddressPipe } from './pipes/address.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -39,6 +40,7 @@ const components = [
 const directives = [
   LabelDirective,
   HtmlDirective,
+  TooltipDirective,
 ];
 
 const pipes = [

@@ -47,6 +47,14 @@ export class FavoriteComponent implements OnChanges, OnDestroy {
       .subscribe(isFavorite => this.isFavorite = isFavorite);
   }
 
+  public createTooltip(): Maybe<string> {
+    return this.withLabel
+      ? null
+      : this.isFavorite
+        ? 'removeFromFavorites'
+        : 'addToFavorites';
+  }
+
   public changeFavorite(): void {
     this.store.select(selectIsAuthenticated)
       .pipe(take(1))
