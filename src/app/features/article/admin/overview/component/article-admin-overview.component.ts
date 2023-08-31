@@ -19,18 +19,21 @@ export class ArticleAdminOverviewComponent {
   public actions: RowAction<ArticleEntity>[] = [    
     {
       icon: 'pen-to-square',
-      callback: article =>
-        this.router.navigate([article?.slug, 'edit'], { relativeTo: this.activatedRoute })
+      callback: row =>
+        this.router.navigate([row?.slug, 'edit'], { relativeTo: this.activatedRoute }),
+      tooltipLabel: 'edit'
     },
     {
       icon: 'bullhorn',
-      callback: article =>
-        this.store.dispatch(ArticleAdminOverviewActions.sponsorArticle(article))
+      callback: row =>
+        this.store.dispatch(ArticleAdminOverviewActions.sponsorArticle(row)),
+      tooltipLabel: 'highlightInPortal'
     },
     {
       icon: 'trash',
       callback: article =>
-        this.store.dispatch(ArticleAdminOverviewActions.deleteArticle(article))
+        this.store.dispatch(ArticleAdminOverviewActions.deleteArticle(article)),
+      tooltipLabel: 'delete'
     },
 
     'LIKE',
