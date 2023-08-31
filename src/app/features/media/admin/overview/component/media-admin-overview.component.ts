@@ -15,7 +15,7 @@ export class MediaAdminOverviewComponent {
 
   public media = this.store.select(selectOverviewData);
 
-  public defaultActions: RowDefaultAction[] = [
+  public actions: RowDefaultAction[] = [
     'LIKE', 'SHARE'
   ];
 

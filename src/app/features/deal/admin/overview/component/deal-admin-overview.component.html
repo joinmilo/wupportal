@@ -4,7 +4,7 @@
     (paramsUpdated)="updateParams($event)"></app-deal-filter>
   <app-table
     [data]="deals"
-    [defaultActions]="defaultActions"
+    [actions]="actions"
     [entity]="'DealEntity'"
     [columns]="columns"
     (sortPaginate)="updateParams($event)">

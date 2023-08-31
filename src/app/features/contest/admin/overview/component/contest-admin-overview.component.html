@@ -4,7 +4,7 @@
     (paramsUpdated)="updateParams($event)"></app-contest-filter>
   <app-table
     [data]="contests"
-    [defaultActions]="defaultActions"
+    [actions]="actions"
     [entity]="'ContestEntity'"
     [columns]="columns"
     (sortPaginate)="updateParams($event)">

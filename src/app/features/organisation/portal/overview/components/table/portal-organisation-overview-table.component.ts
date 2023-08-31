@@ -16,7 +16,7 @@ export class PortalOrganisationOverviewTableComponent {
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
 
-  public defaultActions: RowDefaultAction[] = [
+  public actions: RowDefaultAction[] = [
     'LIKE', 'SHARE'
   ];
 

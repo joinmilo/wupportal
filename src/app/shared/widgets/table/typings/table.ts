@@ -24,11 +24,13 @@ export type PageableList<T> = {
 
 export type RowDefaultAction = 'LIKE' | 'SHARE';
 
-export type RowAction<T> = {
+export type RowCustomAction<T> = {
   callback?: (row: Maybe<T>) => void,
   icon: IconName,
   tooltipLabel?: Maybe<string>,
 };
+
+export type RowAction<T> = RowCustomAction<T> | RowDefaultAction;
 
 export type Sort = {
   dir?: Maybe<SortDirection>,

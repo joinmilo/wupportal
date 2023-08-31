@@ -15,7 +15,7 @@ export class EventAdminOverviewComponent {
 
   public events = this.store.select(selectOverviewData);
 
-  public defaultActions: RowDefaultAction[] = [
+  public actions: RowDefaultAction[] = [
     'LIKE', 'SHARE'
   ];
 

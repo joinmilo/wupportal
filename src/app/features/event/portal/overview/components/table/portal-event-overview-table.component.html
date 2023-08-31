@@ -1,7 +1,7 @@
 <ng-container *ngIf="(events | async)?.total; else emptyResult">
   <app-table
     [data]="events"
-    [defaultActions]="defaultActions"
+    [actions]="actions"
     [entity]="'EventEntity'"
     [columns]="columns"
     (sortPaginate)="sortPaginate.emit($event)">

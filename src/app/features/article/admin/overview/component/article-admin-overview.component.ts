@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ArticleEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { Column, RowAction, RowDefaultAction } from 'src/app/shared/widgets/table/typings/table';
+import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
 import { ArticleAdminOverviewActions } from '../state/article-admin-overview.actions';
 import { selectOverviewData } from '../state/article-portal-overview.selectors';
 
@@ -16,11 +16,7 @@ export class ArticleAdminOverviewComponent {
 
   public articles = this.store.select(selectOverviewData);
 
-  public defaultActions: RowDefaultAction[] = [
-    'LIKE', 'SHARE'
-  ];
-
-  public actions: RowAction<ArticleEntity>[] = [
+  public actions: RowAction<ArticleEntity>[] = [    
     {
       icon: 'pen-to-square',
       callback: article =>
@@ -35,7 +31,11 @@ export class ArticleAdminOverviewComponent {
       icon: 'trash',
       callback: article =>
         this.store.dispatch(ArticleAdminOverviewActions.deleteArticle(article))
-    }
+    },
+
+    'LIKE',
+
+    'SHARE',
   ];
 
   public columns: Column<ArticleEntity>[] = [

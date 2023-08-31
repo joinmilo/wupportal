@@ -15,7 +15,7 @@ export class DealAdminOverviewComponent {
 
   public deals = this.store.select(selectOverviewData);
 
-  public defaultActions: RowDefaultAction[] = [
+  public actions: RowDefaultAction[] = [
     'LIKE', 'SHARE'
   ];
 

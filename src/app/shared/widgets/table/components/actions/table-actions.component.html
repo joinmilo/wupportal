@@ -1,10 +1,5 @@
 <div>
   <ng-container *ngFor="let action of actions">
-    <button mat-button (click)="action?.callback(data)">
-        <fa-icon [icon]="['fas', action.icon]"></fa-icon>
-    </button>
-  </ng-container>
-  <ng-container *ngFor="let action of defaultActions">
     <ng-container [ngSwitch]="action">
       
       <app-favorite-piece *ngSwitchCase="'LIKE'"
@@ -15,6 +10,12 @@
       <app-share-button *ngSwitchCase="'SHARE'"
         [url]="createUrl()">
       </app-share-button>
+
+      <ng-container *ngSwitchDefault>
+        <button mat-button (click)="callback(action)">
+          <fa-icon [icon]="['fas', icon(action)]"></fa-icon>
+        </button>
+      </ng-container>
       
     </ng-container>
   </ng-container>

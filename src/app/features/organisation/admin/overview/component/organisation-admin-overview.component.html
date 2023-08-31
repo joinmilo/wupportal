@@ -4,7 +4,7 @@
     (paramsUpdated)="updateParams($event)"></app-organisation-filter>
   <app-table
     [data]="organisations"
-    [defaultActions]="defaultActions"
+    [actions]="actions"
     [entity]="'OrganisationEntity'"
     [columns]="columns"
     (sortPaginate)="updateParams($event)">

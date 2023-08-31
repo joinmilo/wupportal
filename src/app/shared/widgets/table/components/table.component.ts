@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentEntity } from 'src/app/core/typings/content-entity';
-import { Column, PageableList, RowAction, RowDefaultAction, SortPaginate } from '../typings/table';
+import { Column, PageableList, RowAction, SortPaginate } from '../typings/table';
 
 @Component({
   selector: 'app-table',
@@ -14,9 +14,6 @@ export class TableComponent<T> implements OnInit, OnDestroy {
 
   @Input()
   public actions?: RowAction<T>[];
-
-  @Input()
-  public defaultActions?: RowDefaultAction[];
 
   @Input()
   public columns?: Column<T>[];

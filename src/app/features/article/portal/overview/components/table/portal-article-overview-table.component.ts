@@ -17,7 +17,7 @@ export class PortalArticleOverviewTableComponent {
 
   public articles = this.store.select(selectOverviewData);
 
-  public defaultActions: RowDefaultAction[] = [
+  public actions: RowDefaultAction[] = [
     'LIKE', 'SHARE'
   ];
 

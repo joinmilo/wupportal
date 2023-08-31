@@ -14,7 +14,7 @@ export class SurveyAdminOverviewComponent {
 
   public surveys = this.store.select(selectOverviewData);
 
-  public defaultActions: RowDefaultAction[] = [
+  public actions: RowDefaultAction[] = [
     'LIKE', 'SHARE'
   ];
 

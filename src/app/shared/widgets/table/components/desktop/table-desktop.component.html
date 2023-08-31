@@ -12,14 +12,13 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="actions" *ngIf="actions || defaultActions">
+      <ng-container matColumnDef="actions" *ngIf="actions">
         <th mat-header-cell *matHeaderCellDef>
           <strong appLabel="actions"></strong>
         </th>
         <td mat-cell class="actions" *matCellDef="let row">
           <app-table-actions
             [actions]="actions"
-            [defaultActions]="defaultActions"
             [entity]="entity"
             [data]="row">
           </app-table-actions>

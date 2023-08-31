@@ -3,8 +3,8 @@
   <app-survey-filter
     (paramsUpdated)="updateParams($event)"></app-survey-filter>
   <app-table
+    [actions]="actions"
     [data]="surveys"
-    [defaultActions]="defaultActions"
     [entity]="'SurveyEntity'"
     [columns]="columns"
     (sortPaginate)="updateParams($event)">

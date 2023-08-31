@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, O
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentEntity } from 'src/app/core/typings/content-entity';
-import { Column, PageableList, RowAction, RowDefaultAction, SortPaginate } from '../../typings/table';
+import { Column, PageableList, RowAction, SortPaginate } from '../../typings/table';
 import { TablePaginatorComponent } from '../paginator/table-paginator.component';
 
 @Component({
@@ -14,9 +14,6 @@ export class TableMobileComponent<T> implements AfterViewInit, OnDestroy {
   
   @Input()
   public actions?: RowAction<T>[];
-
-  @Input()
-  public defaultActions?: RowDefaultAction[];
 
   @Input()
   public columns?: Column<T>[];
