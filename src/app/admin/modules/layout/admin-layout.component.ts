@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { LayoutService } from 'src/app/core/services/layout.service';
 import { selectIsLoading } from 'src/app/core/state/selectors/core.selectors';
-import { PortalFooterModule } from 'src/app/portal/modules/footer/portal-footer.module';
 import { LoadingComponent } from 'src/app/shared/layout/loading/loading.component';
+import { AdminFooterComponent } from '../footer/admin-footer.component';
 import { AdminLayoutDesktopComponent } from './desktop/admin-layout-desktop.component';
 import { AdminLayoutMobileComponent } from './mobile/admin-layout-mobile.component';
 
@@ -21,7 +21,7 @@ import { AdminLayoutMobileComponent } from './mobile/admin-layout-mobile.compone
     AdminLayoutDesktopComponent,
     AdminLayoutMobileComponent,
     LoadingComponent,
-    PortalFooterModule,
+    AdminFooterComponent,
     RouterModule,
   ]
 })
