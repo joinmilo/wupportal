@@ -1,8 +1,7 @@
 import { Directive, HostListener, Input } from '@angular/core';
-import { MatTooltip } from '@angular/material/tooltip';
+import { MatTooltip, TooltipPosition } from '@angular/material/tooltip';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
-import { TooltipDirection } from '../typings/tooltip';
 
 @Directive({
   selector: '[appTooltip]',
@@ -14,7 +13,7 @@ export class TooltipDirective {
   public appTooltip?: Maybe<string>;
 
   @Input()
-  public direction?: TooltipDirection;
+  public direction?: TooltipPosition;
 
   constructor(
     private tooltip: MatTooltip,
@@ -28,6 +27,7 @@ export class TooltipDirective {
       .subscribe(label => {
         if (label) {
           this.tooltip.message = label;
+          this.tooltip.position = this.direction ?? 'below';
           this.tooltip.show();
         }
       });

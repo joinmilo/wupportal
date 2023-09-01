@@ -17,11 +17,25 @@
           <strong appLabel="actions"></strong>
         </th>
         <td mat-cell class="actions" *matCellDef="let row">
-          <app-table-actions
-            [actions]="actions"
-            [entity]="entity"
-            [data]="row">
-          </app-table-actions>
+          <ng-container *ngIf="(actions?.length || 0) <= maxInline; else menuArea">
+            <app-table-actions
+              [actions]="actions"
+              [entity]="entity"
+              [data]="row">
+            </app-table-actions>
+          </ng-container>
+          <ng-template #menuArea>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <fa-icon [icon]="['fas', 'ellipsis-vertical']"></fa-icon>
+            </button> 
+            <mat-menu #menu="matMenu">
+              <app-table-actions
+                [actions]="actions"
+                [entity]="entity"
+                [data]="row">
+              </app-table-actions>
+            </mat-menu>
+          </ng-template>
         </td>
       </ng-container>
 

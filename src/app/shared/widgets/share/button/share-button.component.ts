@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { ShareDialogComponent } from '../dialog/share-dialog.component';
 
 @Component({
@@ -16,11 +17,21 @@ export class ShareButtonComponent {
   @Input()
   public withLabel = false;
 
-  constructor(public dialog: MatDialog) {}
+  public shareWithOthersLabel = 'shareWithOthers';
+
+  constructor(
+    public dialog: MatDialog) {}
 
   public openDialog(): void {
     this.dialog.open(ShareDialogComponent, {
       data: this.url
     }); 
   }
+
+  public createTooltip(): Maybe<string> {
+    return this.withLabel
+      ? null
+      : this.shareWithOthersLabel;
+  }
+
 }

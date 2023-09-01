@@ -39,4 +39,8 @@ export class TableActionsComponent<T> {
     return (action as RowCustomAction<T>).icon;
   }
 
+  public tooltip(action: RowAction<T>): Maybe<string> {
+    return (action as RowCustomAction<T>).tooltipLabel;
+  }
+
 }

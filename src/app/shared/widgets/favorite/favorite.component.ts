@@ -35,6 +35,9 @@ export class FavoriteComponent implements OnChanges, OnDestroy {
 
   public isFavorite = false;
 
+  public addToFavoritesLabel = 'addToFavorites';
+  public removeFromFavoritesLabel = 'removeFromFavorites';
+
   private destroy = new Subject<void>();
 
   constructor(
@@ -51,8 +54,8 @@ export class FavoriteComponent implements OnChanges, OnDestroy {
     return this.withLabel
       ? null
       : this.isFavorite
-        ? 'removeFromFavorites'
-        : 'addToFavorites';
+        ? this.removeFromFavoritesLabel
+        : this.addToFavoritesLabel;
   }
 
   public changeFavorite(): void {

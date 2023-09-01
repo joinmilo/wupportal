@@ -5,8 +5,8 @@
   <div>
     <fa-icon click size="lg" [icon]="isFavorite ? ['fas', 'heart'] : ['far', 'heart']"></fa-icon>
     <ng-container *ngIf="withLabel">
-      <span *ngIf="!isFavorite" appLabel="addToFavorites"></span>
-      <span *ngIf="isFavorite" appLabel="removeFromFavorites"></span>
+      <span *ngIf="!isFavorite" [appLabel]="addToFavoritesLabel"></span>
+      <span *ngIf="isFavorite" [appLabel]="removeFromFavoritesLabel"></span>
     </ng-container>
   </div>
 </button>

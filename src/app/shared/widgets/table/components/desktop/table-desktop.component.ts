@@ -54,6 +54,8 @@ export class TableDesktopComponent<T> implements AfterViewInit, OnDestroy {
   @ViewChild(MatSort)
   public sort!: MatSort;
 
+  public maxInline = 4;
+
   private destroy = new Subject<void>();
 
   public ngAfterViewInit(): void {

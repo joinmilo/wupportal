@@ -6,10 +6,11 @@ import { EMPTY, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { PageableList_ArticleEntity } from 'src/app/core/api/generated/schema';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
-import { ConfirmDeleteComponent } from 'src/app/shared/widgets/confirm-delete/confirm-delete.component';
+import { ConfirmChangeComponent } from 'src/app/shared/dialogs/confirm-change/confirm-change.component';
+import { ConfirmDeleteComponent } from 'src/app/shared/dialogs/confirm-delete/confirm-delete.component';
 import { DeleteArticleGQL } from '../../../api/generated/delete-article.mutation.generated';
 import { GetArticlesGQL } from '../../../api/generated/get-articles.query.generated';
-import { SaveArticleGQL } from '../../../api/generated/save-article.mutation.generated';
+import { SponsorArticleGQL } from '../../../api/generated/sponsor-article.mutation.generated';
 import { ArticleAdminOverviewActions } from './article-admin-overview.actions';
 import { selectParams } from './article-portal-overview.selectors';
 
@@ -31,11 +32,16 @@ export class ArticleAdminOverviewEffects {
 
   sponsorArticle = createEffect(() => this.actions.pipe(
     ofType(ArticleAdminOverviewActions.sponsorArticle),
-    switchMap(action => this.saveArticleService.mutate({
-      entity: {
-        id: action?.article?.id,
-        sponsored: !action.article?.sponsored,
-      }
+    switchMap(action => this.dialog.open(ConfirmChangeComponent, { data: 'thisWillSponsor' })
+      .afterClosed().pipe(
+        switchMap(confirmed => confirmed
+          ? of(action.article)
+          : EMPTY
+        )
+      )
+    ),
+    switchMap(article => this.sponsorArticleService.mutate({
+      articleId: article?.id,
     })),
     map(() => ArticleAdminOverviewActions.articleSponsored())
   ));
@@ -77,7 +83,7 @@ export class ArticleAdminOverviewEffects {
     private dialog: MatDialog,
     private deleteArticleService: DeleteArticleGQL,
     private getArticlesService: GetArticlesGQL,
-    private saveArticleService: SaveArticleGQL,
+    private sponsorArticleService: SponsorArticleGQL,
     private store: Store,
   ) {}
 }

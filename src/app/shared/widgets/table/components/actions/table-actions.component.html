@@ -1,49 +1,22 @@
-<ng-container *ngIf="(actions?.length || 0) <= maxInline; else menuArea">
-  <ng-container *ngFor="let action of actions">
-    <ng-container [ngSwitch]="action">
-      
-      <app-favorite *ngSwitchCase="'LIKE'"
-        [entity]="entity"
-        [data]="dataAsContent()">
-      </app-favorite>
+<ng-container *ngFor="let action of actions">
+  <ng-container [ngSwitch]="action">
+    
+    <app-favorite *ngSwitchCase="'LIKE'"
+      [entity]="entity"
+      [data]="dataAsContent()">
+    </app-favorite>
 
-      <app-share-button *ngSwitchCase="'SHARE'"
-        [url]="createUrl()">
-      </app-share-button>
+    <app-share-button *ngSwitchCase="'SHARE'"
+      [url]="createUrl()">
+    </app-share-button>
 
-      <ng-container *ngSwitchDefault>
-        <button mat-button (click)="callback(action)">
-          <fa-icon [icon]="['fas', icon(action)]"></fa-icon>
-        </button>
-      </ng-container>
-      
+    <ng-container *ngSwitchDefault>
+      <button mat-button
+        (click)="callback(action)"
+        [appTooltip]="tooltip(action)">
+        <fa-icon [icon]="['fas', icon(action)]"></fa-icon>
+      </button>
     </ng-container>
+    
   </ng-container>
 </ng-container>
-<ng-template #menuArea>
-  <button mat-button [matMenuTriggerFor]="menu">
-    <fa-icon [icon]="['fas', 'ellipsis-vertical']"></fa-icon>
-  </button> 
-  <mat-menu #menu="matMenu">
-    <ng-container *ngFor="let action of actions">
-      <ng-container [ngSwitch]="action">
-        
-        <app-favorite *ngSwitchCase="'LIKE'"
-          [entity]="entity"
-          [data]="dataAsContent()">
-        </app-favorite>
-
-        <app-share-button *ngSwitchCase="'SHARE'"
-          [url]="createUrl()">
-        </app-share-button>
-
-        <ng-container *ngSwitchDefault>
-          <button mat-button (click)="callback(action)">
-            <fa-icon [icon]="['fas', icon(action)]"></fa-icon>
-          </button>
-        </ng-container>
-        
-      </ng-container>
-    </ng-container>
-  </mat-menu>
-</ng-template>

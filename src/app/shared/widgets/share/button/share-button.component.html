@@ -1,6 +1,8 @@
-<button mat-button (click)="openDialog()">
+<button mat-button
+  (click)="openDialog()"
+  [appTooltip]="createTooltip()">
   <div>
     <fa-icon size="lg" [icon]="['fas', 'share-nodes']"></fa-icon>
-    <span *ngIf="withLabel" appLabel="shareWithOthers"></span>
+    <span *ngIf="withLabel" [appLabel]="shareWithOthersLabel"></span>
   </div>
 </button>
