@@ -5,11 +5,11 @@
     <mat-expansion-panel-header>
       <mat-panel-title [ngClass]="{'menu-active': active}">
         <fa-icon *ngIf="icon"
-          size="xl" [icon]="['fas', icon]">
+          size="lg" [icon]="['fas', icon]">
         </fa-icon>
-        <span class="mat-headline-6"
+        <strong
           [appLabel]="label">
-        </span>
+        </strong>
       </mat-panel-title>
     </mat-expansion-panel-header>
 

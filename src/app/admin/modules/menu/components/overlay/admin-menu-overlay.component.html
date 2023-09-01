@@ -4,7 +4,7 @@
   [ngClass]="{'menu-active': active }"
   (click)="click(menuTrigger)">
   <fa-icon *ngIf="icon"
-    size="xl" [icon]="['fas', icon]">
+    size="lg" [icon]="['fas', icon]">
   </fa-icon>
   <div #menuTrigger="matMenuTrigger" class="trigger" [matMenuTriggerFor]="menu"></div>
 </button>
