@@ -1,13 +1,12 @@
 <footer>
-  <div>
+  <div class="big-gap">
     <section>
       <img [src]="(platformLogo | async)?.media?.url">
       <span appLabel="freeLocalNewsPlatform"></span>
     </section>
     <nav *ngFor="let parent of menu | async">
       <h3>{{ parent | translatable: 'name' | async }}</h3>
-      <a *ngFor="let item of parent.items"
-        [href]="item?.url">
+      <a *ngFor="let item of parent.items" [href]="item?.url">
         <span> {{ item | translatable: 'name' | async }}</span>
       </a>
     </nav>
@@ -18,7 +17,8 @@
   <mat-divider></mat-divider>
 
   <div>
-    <p>© 2018 - {{ currentYear }} <a [href]="(platformUrl | async)?.value">{{ (platformCompany | async)?.value }}</a></p>
+    <p>© 2018 - {{ currentYear }} <a [href]="(platformUrl | async)?.value">{{ (platformCompany | async)?.value }}</a>
+    </p>
     <small>Client v{{ clientVersion }} | Server v{{ (serverVersion | async)?.version }}</small>
   </div>
 
