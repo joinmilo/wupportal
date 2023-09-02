@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { accessDeniedError, tokenExpiredError } from '../constants/core.constants';
+import { accessDeniedError, tokenExpiredError } from '../constants/error.constants';
 import { CoreUserActions } from '../state/actions/core-user.actions';
 import { CoreActions } from '../state/actions/core.actions';
 import { FeedbackType } from '../typings/feedback';

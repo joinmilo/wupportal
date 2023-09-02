@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take, tap } from 'rxjs';
-import { slug } from 'src/app/core/constants/core.constants';
+import { slug } from 'src/app/core/constants/queryparam.constants';
 import { AccountActions } from '../../state/account.actions';
 
 @Component({

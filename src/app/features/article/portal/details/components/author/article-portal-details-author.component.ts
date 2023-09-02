@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { ArticleEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
-import { authorsFeatureKey, portalUrl } from 'src/app/core/constants/core.constants';
+import { authorsFeatureKey } from 'src/app/core/constants/feature.constants';
+import { portalUrl } from 'src/app/core/constants/module.constants';
 import { selectArticleDetails } from '../../state/article-portal-details.selectors';
 
 @Component({

@@ -1,0 +1,26 @@
+query getAdminFooterParents {
+  getAdminFooterParents {
+    result {
+      id
+      items {
+        id
+        url
+        translatables {
+          id
+          name
+          language {
+            ...Language
+          }
+        }
+      }
+
+      translatables {
+        id
+        name
+        language {
+          ...Language
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import 'src/styles/mixins.scss';
+
+@include responsive(tablet) {
+  app-admin-footer-desktop {
+    display: none;
+  }
+}
+
+@include responsive(desktop) {
+  app-admin-footer-mobile {
+    display: none;
+  }
+}

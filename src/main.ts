@@ -5,8 +5,9 @@ import { StaticProvider, enableProdMode } from '@angular/core';
 import { FetchResult } from '@apollo/client/core';
 import { AppModule } from './app/app.module';
 import { RefreshMutation } from './app/core/api/generated/refresh.mutation.generated';
-import { graphqlApi, refreshKey } from './app/core/constants/core.constants';
+import { refreshKey } from './app/core/constants/core.constants';
 import { APP_AUTH_TOKENS } from './app/core/constants/inject-tokens';
+import { graphqlApi } from './app/core/constants/url.constants';
 import { environment } from './environments/environment';
 
 // TODO:

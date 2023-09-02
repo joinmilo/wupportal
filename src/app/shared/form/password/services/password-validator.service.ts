@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatestWith, map, take, tap } from 'rxjs';
-import { pwBitStrengthConfig } from 'src/app/core/constants/core.constants';
+import { pwBitStrengthConfig } from 'src/app/core/constants/configuration.constants';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { CheckPasswordGQL } from '../api/generated/check-password.mutation.generated';
 import { PasswordActions } from '../state/password.actions';

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Maybe, PageEmbeddingEntity } from 'src/app/core/api/generated/schema';
-import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, formsFeatureKey, guestArticlesFeatureKey, mapFeatureKey, mediaFeatureKey, organisationsFeatureKey, reportsFeatureKey, surveysFeatureKey } from 'src/app/core/constants/core.constants';
+import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, formsFeatureKey, guestArticlesFeatureKey, mapFeatureKey, mediaFeatureKey, organisationsFeatureKey, reportsFeatureKey, surveysFeatureKey } from 'src/app/core/constants/feature.constants';
 import { ArticleEmbeddingModule } from 'src/app/features/article/embedding/article-embedding.module';
 import { AuthorEmbeddingModule } from 'src/app/features/author/embedding/author-embedding.module';
 import { CalendarEmbeddingModule } from 'src/app/features/calendar/embedding/calendar-embedding.module';

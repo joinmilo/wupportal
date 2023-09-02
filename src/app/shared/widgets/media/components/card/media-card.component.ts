@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
-import { mediaDownloadApi } from 'src/app/core/constants/core.constants';
+import { mediaDownloadApi } from 'src/app/core/constants/url.constants';
 import { MimeTypeDefinition } from '../../typings/media';
 import { mimeTypeDefinition } from '../../utils/media.utils';
 

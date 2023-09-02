@@ -4,7 +4,7 @@ import { Maybe } from 'graphql/jsutils/Maybe';
 import { Subject, takeUntil } from 'rxjs';
 import { fadeInAnimation } from 'src/app/core/animations/animations';
 import { UserContextEntity } from 'src/app/core/api/generated/schema';
-import { accountUrl, adminUrl } from 'src/app/core/constants/core.constants';
+import { accountUrl, adminUrl } from 'src/app/core/constants/module.constants';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { selectPortalMenu } from 'src/app/portal/state/portal.selectors';
 import { selectIsSearching } from 'src/app/shared/pages/search/state/search.selectors';

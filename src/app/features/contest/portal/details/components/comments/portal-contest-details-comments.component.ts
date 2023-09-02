@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { slug } from 'src/app/core/constants/core.constants';
+import { slug } from 'src/app/core/constants/queryparam.constants';
 import { PortalContestDetailsActions } from '../../state/portal-contest-details.actions';
 import { selectContestComments } from '../../state/portal-contest-details.selectors';
 

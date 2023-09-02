@@ -1,0 +1,14 @@
+export const faviconConfig = 'favicon';
+export const dataProtectionConfig = 'dataProtection';
+export const defaultLocaleConfig = 'defaultLocale';
+export const hCaptchaSitekeyConfig = 'hCaptchaSitekey';
+export const logoConfig = 'logo';
+export const logoTextConfig = 'logoText';
+export const mapLongitudeConfig = 'mapLongitude';
+export const mapLatitudeConfig = 'mapLatitude';
+export const maxRatingConfig = 'maxRating';
+export const platformCompanyConfig = 'platformCompany';
+export const platformLogoConfig = 'platformLogo';
+export const platformUrlConfig = 'platformUrl';
+export const portalNameConfig = 'portalName';
+export const pwBitStrengthConfig = 'pwBitStrength';

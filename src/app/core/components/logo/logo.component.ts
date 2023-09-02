@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { logoConfig, logoTextConfig } from '../../constants/core.constants';
+import { logoConfig, logoTextConfig } from '../../constants/configuration.constants';
 import { selectConfiguration } from '../../state/selectors/core.selectors';
 
 @Component({
@@ -22,6 +22,6 @@ export class LogoComponent {
 
   constructor(
     private store: Store,
-  ) {}
+  ) { }
   
 }

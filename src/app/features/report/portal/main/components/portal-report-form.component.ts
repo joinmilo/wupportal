@@ -1,10 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subject, filter, map, takeUntil } from 'rxjs';
+import { Subject, filter, takeUntil } from 'rxjs';
 import { ReportTypeEntity } from 'src/app/core/api/generated/schema';
-import { hCaptchaSitekeyConfig } from 'src/app/core/constants/core.constants';
-import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { ReportActions } from '../state/report.actions';
 import { selectReportTypes, selectSavedReport } from '../state/report.selectors';
 
@@ -23,12 +21,6 @@ export class PortalReportFormComponent implements OnDestroy {
   });
 
   private destroy = new Subject<void>();
-
-  public sitekey = this.store.select(selectConfiguration(hCaptchaSitekeyConfig))
-    .pipe(
-      filter(config => !!config?.value),
-      map(config => config?.value as string),
-    );
 
   public types = this.store.select(selectReportTypes);
 

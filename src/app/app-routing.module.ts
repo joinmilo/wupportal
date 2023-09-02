@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountLayoutComponent } from './account/components/layout/account-layout.component';
 import { AdminLayoutComponent } from './admin/modules/layout/admin-layout.component';
-import { accountUrl, adminUrl, portalUrl, userUrl } from './core/constants/core.constants';
+import { accountUrl, adminUrl, portalUrl, userUrl } from './core/constants/module.constants';
 import { AuthGuardService } from './core/guards/auth-guard.service';
 import { PortalLayoutComponent } from './portal/modules/layout/portal-layout.component';
 import { UserComponent } from './user/user.component';

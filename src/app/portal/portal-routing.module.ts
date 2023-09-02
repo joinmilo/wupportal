@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { slug } from '../core/constants/core.constants';
+import { slug } from '../core/constants/queryparam.constants';
 import { PortalLandingComponent } from './modules/landing/component/portal-landing.component';
 
 const routes: Routes = [

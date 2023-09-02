@@ -4,7 +4,7 @@ import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, map, switchMap, tap } from 'rxjs';
 import { ArticleEntity, ConjunctionOperator, ContestEntity, DealEntity, EventEntity, OrganisationEntity, QueryOperator, SearchDto, SurveyEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
-import { portalUrl } from 'src/app/core/constants/core.constants';
+import { portalUrl } from 'src/app/core/constants/module.constants';
 import { GetArticleCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-article-cards.query.generated';
 import { GetAuthorCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-author-cards.query.generated';
 import { GetContestCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-contest-cards.query.generated';

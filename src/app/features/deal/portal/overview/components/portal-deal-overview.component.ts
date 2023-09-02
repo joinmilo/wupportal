@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
-import { dealsFeatureKey, displayQueryParam } from 'src/app/core/constants/core.constants';
+import { dealsFeatureKey } from 'src/app/core/constants/feature.constants';
+import { displayQueryParam } from 'src/app/core/constants/queryparam.constants';
 import { OverviewDisplayType } from 'src/app/core/typings/filter-params/overview-display';
 import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input';
 import { PortalDealOverviewActions } from '../state/portal-deal-overview.actions';

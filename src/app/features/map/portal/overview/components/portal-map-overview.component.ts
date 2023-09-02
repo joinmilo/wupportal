@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
-import { displayQueryParam } from 'src/app/core/constants/core.constants';
+import { displayQueryParam } from 'src/app/core/constants/queryparam.constants';
 import { MapEntityFilter } from 'src/app/core/typings/filter-params/map-filter-param';
 import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input';
 import { MapComponent } from 'src/app/shared/widgets/map/components/map.component';

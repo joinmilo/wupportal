@@ -18,7 +18,8 @@ import { RemoveFavoriteDealGQL } from '../../api/generated/remove-favorite-deal.
 import { RemoveFavoriteEventGQL } from '../../api/generated/remove-favorite-event.mutation.generated';
 import { RemoveFavoriteOrganisationGQL } from '../../api/generated/remove-favorite-organisation.mutation.generated';
 import { CookieComponent } from '../../components/cookie/cookie.component';
-import { accountUrl, refreshKey } from '../../constants/core.constants';
+import { refreshKey } from '../../constants/core.constants';
+import { accountUrl } from '../../constants/module.constants';
 import { AuthService } from '../../services/auth.service';
 import { FeedbackService } from '../../services/feedback.service';
 import { FeedbackType } from '../../typings/feedback';

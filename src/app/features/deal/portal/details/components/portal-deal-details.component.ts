@@ -3,12 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { DealEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
-import { dealsFeatureKey, portalUrl, slug } from 'src/app/core/constants/core.constants';
+import { dealsFeatureKey } from 'src/app/core/constants/feature.constants';
+import { portalUrl } from 'src/app/core/constants/module.constants';
+import { slug } from 'src/app/core/constants/queryparam.constants';
 import { DealFilterQueryDefinition } from 'src/app/core/typings/filter-params/deal-filter-param';
 import { MarkerDefinition } from 'src/app/shared/widgets/map/typings/map';
 import { PortalDealDetailsActions } from '../state/portal-deal-details.actions';
 import { selectDealDetails } from '../state/portal-deal-details.selectors';
-
 
 @Component({
   selector: 'app-portal-deal-details',

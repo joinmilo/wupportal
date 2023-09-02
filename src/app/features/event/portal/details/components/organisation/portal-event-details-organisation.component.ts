@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { EventEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
-import { portalUrl } from 'src/app/core/constants/core.constants';
+import { portalUrl } from 'src/app/core/constants/module.constants';
 import { selectEventDetails } from '../../state/portal-event-details.selectors';
 
 @Component({

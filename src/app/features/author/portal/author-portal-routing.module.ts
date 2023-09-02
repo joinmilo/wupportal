@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authorsFeatureKey, slug } from 'src/app/core/constants/core.constants';
+import { authorsFeatureKey } from 'src/app/core/constants/feature.constants';
+import { slug } from 'src/app/core/constants/queryparam.constants';
 
 const routes: Routes = [
   {

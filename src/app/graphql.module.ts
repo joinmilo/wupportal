@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { ApolloLink, DefaultOptions, InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { graphqlApi } from './core/constants/core.constants';
-
+import { graphqlApi } from './core/constants/url.constants';
 
 @NgModule({
   exports: [ApolloModule],

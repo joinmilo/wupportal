@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { portalNameConfig } from '../constants/core.constants';
+import { portalNameConfig } from '../constants/configuration.constants';
 import { selectConfiguration } from '../state/selectors/core.selectors';
 
 @Injectable({ providedIn: 'root' })

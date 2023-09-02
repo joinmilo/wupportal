@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
 import { Maybe, RatingDto } from 'src/app/core/api/generated/schema';
-import { maxRating } from 'src/app/core/constants/core.constants';
+import { maxRatingConfig } from 'src/app/core/constants/configuration.constants';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selectors';
@@ -23,7 +23,7 @@ export class RatingComponent {
   @Output()
   rating: EventEmitter<number> = new EventEmitter<number>();
 
-  public maxRating = this.store.select(selectConfiguration(maxRating))
+  public maxRating = this.store.select(selectConfiguration(maxRatingConfig))
     .pipe(map(config => Number(config?.value)))
 
   constructor(

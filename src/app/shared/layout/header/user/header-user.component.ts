@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { userUrl } from 'src/app/core/constants/core.constants';
+import { userUrl } from 'src/app/core/constants/module.constants';
 import { CoreModule } from 'src/app/core/core.module';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selectors';

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { filter, map, switchMap, tap } from 'rxjs';
 import { AddressEntity, Maybe, OrganisationEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
-import { accountUrl } from 'src/app/core/constants/core.constants';
+import { accountUrl } from 'src/app/core/constants/module.constants';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { CoreActions } from '../../core/state/actions/core.actions';
 import { GetOrganisationsGQL } from '../api/generated/account-get-organisation.generated';

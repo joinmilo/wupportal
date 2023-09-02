@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { mapFeatureKey } from 'src/app/core/constants/core.constants';
+import { mapFeatureKey } from 'src/app/core/constants/feature.constants';
 
 const routes: Routes = [
   {

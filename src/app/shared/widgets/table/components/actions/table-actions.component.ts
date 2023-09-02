@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Maybe } from 'src/app/core/api/generated/schema';
-import { contentPortalDetailsUrl } from 'src/app/core/constants/core.constants';
+import { contentPortalDetailsUrl } from 'src/app/core/constants/url.constants';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { RowAction, RowCustomAction } from '../../typings/table';
 

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Maybe, MediaEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
-import { slug } from 'src/app/core/constants/core.constants';
+import { slug } from 'src/app/core/constants/queryparam.constants';
 import { PortalAuthorDetailsActions } from '../state/portal-author-details.actions';
 import { selectAuthorDetails } from '../state/portal-author-details.selectors';
 

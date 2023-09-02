@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { fadeInAnimation } from 'src/app/core/animations/animations';
 import { Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';
-import { accountUrl, adminUrl } from 'src/app/core/constants/core.constants';
+import { accountUrl, adminUrl } from 'src/app/core/constants/module.constants';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { selectIsSearching } from 'src/app/shared/pages/search/state/search.selectors';
 

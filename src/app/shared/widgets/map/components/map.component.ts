@@ -13,7 +13,8 @@ import {
 } from 'leaflet';
 import { combineLatest, map, take } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
-import { locationTileLayerURL, mapLatitudeConfig, mapLongitudeConfig } from 'src/app/core/constants/core.constants';
+import { mapLatitudeConfig, mapLongitudeConfig } from 'src/app/core/constants/configuration.constants';
+import { locationTileLayerURL } from 'src/app/core/constants/url.constants';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
 import { MapQueryParams } from 'src/app/core/typings/filter-params/map-filter-param';
 import { defaultBounds, markerClusterOptions, tileLayerOptions } from '../constants/map.constants';

@@ -44,6 +44,78 @@ export type AddressEntityInput = {
   suburb?: InputMaybe<SuburbEntityInput>;
 };
 
+export type AdminFooterItemEntity = {
+  __typename?: 'AdminFooterItemEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+  parent?: Maybe<AdminFooterParentEntity>;
+  translatables?: Maybe<Array<Maybe<AdminFooterItemTranslatableEntity>>>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type AdminFooterItemEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  parent?: InputMaybe<AdminFooterParentEntityInput>;
+  translatables?: InputMaybe<Array<InputMaybe<AdminFooterItemTranslatableEntityInput>>>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type AdminFooterItemTranslatableEntity = {
+  __typename?: 'AdminFooterItemTranslatableEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+export type AdminFooterItemTranslatableEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type AdminFooterParentEntity = {
+  __typename?: 'AdminFooterParentEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<AdminFooterItemEntity>>>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+  translatables?: Maybe<Array<Maybe<AdminFooterParentTranslatableEntity>>>;
+};
+
+export type AdminFooterParentEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  items?: InputMaybe<Array<InputMaybe<AdminFooterItemEntityInput>>>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  translatables?: InputMaybe<Array<InputMaybe<AdminFooterParentTranslatableEntityInput>>>;
+};
+
+export type AdminFooterParentTranslatableEntity = {
+  __typename?: 'AdminFooterParentTranslatableEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+export type AdminFooterParentTranslatableEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export type AppEntity = {
   __typename?: 'AppEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
@@ -1503,6 +1575,10 @@ export type Mutation = {
   createToken?: Maybe<TokenDto>;
   deleteAddress?: Maybe<Scalars['Boolean']>;
   deleteAddresses?: Maybe<Scalars['Boolean']>;
+  deleteAdminFooterItem?: Maybe<Scalars['Boolean']>;
+  deleteAdminFooterItems?: Maybe<Scalars['Boolean']>;
+  deleteAdminFooterParent?: Maybe<Scalars['Boolean']>;
+  deleteAdminFooterParents?: Maybe<Scalars['Boolean']>;
   deleteApp?: Maybe<Scalars['Boolean']>;
   deleteApps?: Maybe<Scalars['Boolean']>;
   deleteArticle?: Maybe<Scalars['Boolean']>;
@@ -1632,6 +1708,10 @@ export type Mutation = {
   resetPassword?: Maybe<Scalars['Boolean']>;
   saveAddress?: Maybe<AddressEntity>;
   saveAddresses?: Maybe<Array<Maybe<AddressEntity>>>;
+  saveAdminFooterItem?: Maybe<AdminFooterItemEntity>;
+  saveAdminFooterItems?: Maybe<Array<Maybe<AdminFooterItemEntity>>>;
+  saveAdminFooterParent?: Maybe<AdminFooterParentEntity>;
+  saveAdminFooterParents?: Maybe<Array<Maybe<AdminFooterParentEntity>>>;
   saveApp?: Maybe<AppEntity>;
   saveApps?: Maybe<Array<Maybe<AppEntity>>>;
   saveArticle?: Maybe<ArticleEntity>;
@@ -1755,6 +1835,7 @@ export type Mutation = {
   sendGlobalPush?: Maybe<Scalars['Boolean']>;
   sendPasswordReset?: Maybe<Scalars['Boolean']>;
   sendVerification?: Maybe<Scalars['Boolean']>;
+  sponsorArticle?: Maybe<Scalars['Boolean']>;
   verify?: Maybe<UserEntity>;
   verifyAddress?: Maybe<AddressEntity>;
 };
@@ -1823,6 +1904,30 @@ export type MutationDeleteAddressArgs = {
 
 /** Mutation root */
 export type MutationDeleteAddressesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAdminFooterItemArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAdminFooterItemsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAdminFooterParentArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteAdminFooterParentsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2603,6 +2708,30 @@ export type MutationSaveAddressesArgs = {
 
 
 /** Mutation root */
+export type MutationSaveAdminFooterItemArgs = {
+  entity?: InputMaybe<AdminFooterItemEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAdminFooterItemsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<AdminFooterItemEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAdminFooterParentArgs = {
+  entity?: InputMaybe<AdminFooterParentEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveAdminFooterParentsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<AdminFooterParentEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveAppArgs = {
   entity?: InputMaybe<AppEntityInput>;
 };
@@ -3341,6 +3470,12 @@ export type MutationSendVerificationArgs = {
 
 
 /** Mutation root */
+export type MutationSponsorArticleArgs = {
+  articleId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
 export type MutationVerifyArgs = {
   token?: InputMaybe<Scalars['String']>;
 };
@@ -3697,6 +3832,18 @@ export type PageVisitorEntityInput = {
 export type PageableList_AddressEntity = {
   __typename?: 'PageableList_AddressEntity';
   result?: Maybe<Array<Maybe<AddressEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_AdminFooterItemEntity = {
+  __typename?: 'PageableList_AdminFooterItemEntity';
+  result?: Maybe<Array<Maybe<AdminFooterItemEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_AdminFooterParentEntity = {
+  __typename?: 'PageableList_AdminFooterParentEntity';
+  result?: Maybe<Array<Maybe<AdminFooterParentEntity>>>;
   total: Scalars['Long'];
 };
 
@@ -4118,6 +4265,10 @@ export type Query = {
   __typename?: 'Query';
   getAddress?: Maybe<AddressEntity>;
   getAddresses?: Maybe<PageableList_AddressEntity>;
+  getAdminFooterItem?: Maybe<AdminFooterItemEntity>;
+  getAdminFooterItems?: Maybe<PageableList_AdminFooterItemEntity>;
+  getAdminFooterParent?: Maybe<AdminFooterParentEntity>;
+  getAdminFooterParents?: Maybe<PageableList_AdminFooterParentEntity>;
   getApp?: Maybe<AppEntity>;
   getApps?: Maybe<PageableList_AppEntity>;
   getArticle?: Maybe<ArticleEntity>;
@@ -4250,6 +4401,30 @@ export type QueryGetAddressArgs = {
 
 /** Query root */
 export type QueryGetAddressesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetAdminFooterItemArgs = {
+  entity?: InputMaybe<AdminFooterItemEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetAdminFooterItemsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetAdminFooterParentArgs = {
+  entity?: InputMaybe<AdminFooterParentEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetAdminFooterParentsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 

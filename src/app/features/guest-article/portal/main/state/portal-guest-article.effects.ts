@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, tap } from 'rxjs';
 import { ArticleEntity } from 'src/app/core/api/generated/schema';
-import { portalUrl } from 'src/app/core/constants/core.constants';
+import { portalUrl } from 'src/app/core/constants/module.constants';
 import { SaveGuestArticleGQL } from '../../../api/generated/guest-article-save.mutation.generated';
 import { PortalGuestArticleActions } from './portal-guest-article.actions';
 

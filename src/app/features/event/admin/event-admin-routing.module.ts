@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
-import { eventsFeatureKey } from 'src/app/core/constants/core.constants';
+import { eventsFeatureKey } from 'src/app/core/constants/feature.constants';
 
 const menuRoutes: Routes = [
   {

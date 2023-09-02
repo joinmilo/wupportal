@@ -1,0 +1,20 @@
+footer {
+  color: var(--color-primary-900);
+  background-color: white;
+  border-top: 1px solid var(--color-border);
+
+  padding: var(--gap);
+
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+}
+
+strong, a {
+  color: var(--color-primary-900);
+}
+
+aside {
+  display: flex;
+  flex-flow: column;
+}

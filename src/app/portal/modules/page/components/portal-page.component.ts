@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Maybe, MediaEntity, PageEntity } from 'src/app/core/api/generated/schema';
-import { slug } from 'src/app/core/constants/core.constants';
+import { slug } from 'src/app/core/constants/queryparam.constants';
 import { PortalPageActions } from '../state/portal-page.actions';
 import { selectPage } from '../state/portal-page.selectors';
 

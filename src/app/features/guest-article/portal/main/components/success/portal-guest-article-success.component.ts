@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { accountUrl } from 'src/app/core/constants/core.constants';
+import { accountUrl } from 'src/app/core/constants/module.constants';
 
 @Component({
   selector: 'app-portal-guest-article-success',

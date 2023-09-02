@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
-import { adminUrl } from 'src/app/core/constants/core.constants';
+import { adminUrl } from 'src/app/core/constants/module.constants';
 
 @Injectable()
 export class AdminMenuService {

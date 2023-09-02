@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { dataProtectionConfig } from 'src/app/core/constants/core.constants';
-import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
-import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
+import { dataProtectionConfig } from '../../constants/configuration.constants';
+import { CoreUserActions } from '../../state/actions/core-user.actions';
+import { selectConfiguration } from '../../state/selectors/core.selectors';
 
 @Component({
   selector: 'app-cookie',

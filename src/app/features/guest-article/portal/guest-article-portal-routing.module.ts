@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { guestArticlesFeatureKey } from 'src/app/core/constants/core.constants';
+import { guestArticlesFeatureKey } from 'src/app/core/constants/feature.constants';
 
 const routes: Routes = [
   {
@@ -8,11 +8,6 @@ const routes: Routes = [
     loadChildren: () => import('src/app/features/guest-article/portal/main/portal-guest-article.module')
         .then((imported) => imported.PortalGuestArticleModule),
   },
-  // {
-  //   path: mapFeatureKey,
-  //   loadChildren: () => import('src/app/features/map/portal/overview/portal-map-overview.module')
-  //     .then((imported) => imported.PortalMapOverviewModule),
-  // },
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectAdminMenu } from 'src/app/admin/state/admin.selectors';
-import { adminUrl } from 'src/app/core/constants/core.constants';
+import { adminUrl } from 'src/app/core/constants/module.constants';
 import { AdminMenuService } from '../services/admin-menu.service';
 
 @Component({

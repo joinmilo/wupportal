@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { slug } from '../core/constants/core.constants';
+import { slug } from '../core/constants/queryparam.constants';
 import { NotFoundComponent } from '../shared/pages/not-found/component/not-found.component';
 import { FirstLoginFormComponent } from './components/first-login-form/first-login-form.component';
 import { LoginRequiredComponent } from './components/login-required/login-required.component';

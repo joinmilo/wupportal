@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MediaEntity } from 'src/app/core/api/generated/schema';
-import { faviconConfig } from '../constants/core.constants';
+import { faviconConfig } from '../constants/configuration.constants';
 import { selectConfiguration } from '../state/selectors/core.selectors';
 
 @Injectable({ providedIn: 'root' })

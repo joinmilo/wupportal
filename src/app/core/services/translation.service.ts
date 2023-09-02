@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatest, filter, isObservable, map, Observable, of } from 'rxjs';
 import { ConfigurationEntity, LanguageEntity, Maybe } from 'src/app/core/api/generated/schema';
-import { defaultLocaleConfig } from '../constants/core.constants';
+import { defaultLocaleConfig } from '../constants/configuration.constants';
 import { selectConfiguration, selectLabels, selectLanguage } from '../state/selectors/core.selectors';
 import { Translatable } from '../typings/translatable';
 
