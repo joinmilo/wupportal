@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MediaEntity } from 'src/app/core/api/generated/schema';
-import { fileToMedia } from '../../utils/media.utils';
+import { MediaService } from '../../services/media.service';
 
 @Component({
   selector: 'app-media-upload',
@@ -16,6 +16,10 @@ export class MediaUploadComponent {
   public disabled = false;
 
   public isDraggedOver = false;
+
+  constructor(
+    private mediaService: MediaService
+  ) {}
 
   @HostListener('dragover', ['$event'])
   public onDragOver(evt: DragEvent) {
@@ -51,7 +55,8 @@ export class MediaUploadComponent {
   }
 
   public addFiles(fileList: FileList) {
-    this.uploads.emit(Array.from(fileList).map(file => fileToMedia(file))); 
+    this.uploads.emit(Array.from(fileList)
+      .map(file => this.mediaService.fileToMedia(file))); 
   }
 
 }

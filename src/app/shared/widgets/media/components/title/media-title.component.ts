@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
+import { MediaService } from '../../services/media.service';
 import { MimeTypeDefinition } from '../../typings/media';
-import { mimeTypeDefinition } from '../../utils/media.utils';
 
 @Component({
   selector: 'app-media-title',
@@ -15,7 +15,11 @@ export class MediaTitleComponent  implements OnChanges {
 
   public mimeType?: Maybe<MimeTypeDefinition>;
 
+  constructor(
+    private mediaService: MediaService,
+  ) { }
+
   public ngOnChanges(): void {
-    this.mimeType = mimeTypeDefinition(this.media);
+    this.mimeType = this.mediaService.mimeTypeDefinition(this.media);
   }
 }

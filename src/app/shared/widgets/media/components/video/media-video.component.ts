@@ -4,8 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { selectCookieSettings } from 'src/app/core/state/selectors/user.selectors';
-import { getUrlHost, isValidYoutubeUrl } from '../../utils/media.utils';
-
+import { MediaService, } from '../../services/media.service';
 
 @Component({
   selector: 'app-media-video',
@@ -34,6 +33,7 @@ export class MediaVideoComponent implements OnChanges, OnDestroy {
   private destroy = new Subject<void>();
 
   constructor(
+    private mediaService: MediaService,
     private sanitizer: DomSanitizer,
     private store: Store) {
       this.store.select(selectCookieSettings)
@@ -42,7 +42,7 @@ export class MediaVideoComponent implements OnChanges, OnDestroy {
     }
 
   public ngOnChanges(): void {
-    this.isYoutube = isValidYoutubeUrl(this.media?.url);
+    this.isYoutube = this.mediaService.isValidYoutubeUrl(this.media?.url);
 
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media?.url as string);
     if (this.videoElement) {
@@ -51,7 +51,7 @@ export class MediaVideoComponent implements OnChanges, OnDestroy {
   }
 
   public getHostname(): string {
-    return getUrlHost(this.media?.url as string);
+    return this.mediaService.getUrlHost(this.media?.url as string);
   }
 
   public ngOnDestroy(): void {

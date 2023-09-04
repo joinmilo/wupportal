@@ -24,6 +24,7 @@ import { MediaUploadComponent } from './components/upload/media-upload.component
 import { MediaVideoComponent } from './components/video/media-video.component';
 import { MediaViewerComponent } from './components/viewer/media-viewer.component';
 import { MediaAttributionDirective } from './directives/media-attribution.directive';
+import { MediaService } from './services/media.service';
 
 const components = [
   MediaAvatarComponent,
@@ -69,6 +70,10 @@ const libs = [
   FontAwesomeModule,
 ];
 
+const providers = [
+  MediaService,
+]
+
 @NgModule({
   declarations: [
     ...components,
@@ -84,5 +89,8 @@ const libs = [
     ...components,
     ...directives,
   ],
+  providers: [
+    ...providers,
+  ]
 })
 export class MediaModule { }

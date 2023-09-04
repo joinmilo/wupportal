@@ -2,12 +2,10 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { slug } from 'src/app/core/constants/queryparam.constants';
 import { MediaDisplayType } from 'src/app/core/typings/filter-params/media-display';
 import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input';
-import { MimeTypeDefinition } from 'src/app/shared/widgets/media/typings/media';
-import { mimeTypeDefinition } from 'src/app/shared/widgets/media/utils/media.utils';
+import { MediaService } from 'src/app/shared/widgets/media/services/media.service';
 import { PortalDealDetailsActions } from '../../state/portal-deal-details.actions';
 import { selectDealMedia } from '../../state/portal-deal-details.selectors';
 
@@ -43,6 +41,7 @@ export class PortalDealDetailsMediaComponent implements OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private mediaService: MediaService,
     private store: Store,
   ) {
     this.activatedRoute.paramMap
@@ -51,13 +50,9 @@ export class PortalDealDetailsMediaComponent implements OnDestroy {
         PortalDealDetailsActions.getDetails(params.get(slug) || '')));
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
-  }
-
-  public mimeType(element?: Maybe<MediaEntity>): Maybe<MimeTypeDefinition> {
-    return mimeTypeDefinition(element);
   }
 
 }

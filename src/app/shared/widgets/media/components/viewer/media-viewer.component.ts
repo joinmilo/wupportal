@@ -1,8 +1,8 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
+import { MediaService } from '../../services/media.service';
 import { MediaViewerData, MimeTypeDefinition } from '../../typings/media';
-import { mimeTypeDefinition } from '../../utils/media.utils';
 
 @Component({
   selector: 'app-media-viewer',
@@ -18,7 +18,8 @@ export class MediaViewerComponent implements OnInit{
 
   constructor(
     public dialogRef: MatDialogRef<MediaViewerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: MediaViewerData
+    @Inject(MAT_DIALOG_DATA) public data: MediaViewerData,
+    private mediaService: MediaService,
   ) { }
 
   public ngOnInit(): void {
@@ -63,7 +64,7 @@ export class MediaViewerComponent implements OnInit{
 
   private setCurrentMedia(): void {
     this.currentMedia = this.data.media[this.currentIndex];
-    this.mimeType = mimeTypeDefinition(this.currentMedia);
+    this.mimeType = this.mediaService.mimeTypeDefinition(this.currentMedia);
   }
 
   public closeDialog(): void {

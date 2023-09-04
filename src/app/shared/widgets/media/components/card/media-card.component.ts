@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { mediaDownloadApi } from 'src/app/core/constants/url.constants';
+import { MediaService } from '../../services/media.service';
 import { MimeTypeDefinition } from '../../typings/media';
-import { mimeTypeDefinition } from '../../utils/media.utils';
 
 @Component({
   selector: 'app-media-card',
@@ -31,10 +31,11 @@ export class MediaCardComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private mediaService: MediaService,
   ) { }
 
   public ngOnInit(): void {
-    this.mimeType = mimeTypeDefinition(this.media);
+    this.mimeType = this.mediaService.mimeTypeDefinition(this.media);
   }
 
   public click(): void {
