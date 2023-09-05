@@ -1,22 +1,24 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { MediaEntity } from 'src/app/core/api/generated/schema';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
+import { MediaUploadComponent } from '../upload/media-upload.component';
 
 @Component({
   selector: 'app-media-form',
   templateUrl: './media-form.component.html',
   styleUrls: ['./media-form.component.scss'],
-  // providers: [
-  //   {
-  //     provide: NG_VALUE_ACCESSOR,
-  //     multi: true,
-  //     useExisting: FileUploadFormComponent,
-  //   }
-  // ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: MediaFormComponent,
+    }
+  ],
 })
-export class MediaFormComponent {
+export class MediaFormComponent implements ControlValueAccessor {
 
   @Output()
   public uploads: EventEmitter<MediaEntity[]> = new EventEmitter();
@@ -31,11 +33,17 @@ export class MediaFormComponent {
 
   public labelVariables = new Map([
     ['maxFiles', this.maxFiles?.toString()],
-    ['maxFileSize', '10mb']
+    ['maxFileSize', '10mb'],
   ]);
 
   public notBeLargerLabel = 'filesCannotBeLargerThanX';
   public notMoreThanLabel = 'notMoreThanXFiles';
+
+  @ViewChild(MediaUploadComponent)
+  private uploadComponent?: MediaUploadComponent;
+
+  private onChange?: (value?: Maybe<MediaEntity[]>) => void;
+  private onTouched?: () => void;
 
   constructor(
     private store: Store,
@@ -43,6 +51,7 @@ export class MediaFormComponent {
 
   public addFiles(newMedia: MediaEntity[]) {
 
+    this.onTouched && this.onTouched();
     const media = [...this.media, ...newMedia];
 
     if (newMedia.some(element => element.size > this.maxFileSize)) {
@@ -59,12 +68,11 @@ export class MediaFormComponent {
         labelAction: 'chooseLessFiles',
         labelVariables: this.labelVariables,
       }));
-    }
-    else {
+    } else {
       this.media = media;
       this.uploads.emit(this.media);
+      this.onChange && this.onChange(this.media);
     }
-
   }
 
   public removeFile(fileIndex: number) {
@@ -72,36 +80,20 @@ export class MediaFormComponent {
     this.uploads.emit(this.media);
   }
 
-  // public control = new FormControl(false);
+  public writeValue(media: MediaEntity[]): void {
+    this.media = media;
+  }
 
-  // private onChange?: (value?: boolean) => void;
-  // private onTouched?: () => void;
+  public registerOnChange(onChange: (value?: Maybe<MediaEntity[]>) => void): void {
+    this.onChange = onChange;
+  }
 
-  // private destroy = new Subject<void>();
+  public registerOnTouched(onTouched?: () => void): void {
+    this.onTouched = onTouched;
+  }
 
-  // constructor() {
-  //   this.control.valueChanges
-  //     .pipe(takeUntil(this.destroy))
-  //     .subscribe(value => {
-  //       this.onChange && this.onChange(!!value);
-  //       this.onTouched && this.onTouched();
-  //     })
-  // }
-
-  // public writeValue(value: boolean): void {
-  //   this.control.setValue(value);
-  // }
-
-  // public registerOnChange(onChange: (value?: boolean) => void): void {
-  //   this.onChange = onChange;
-  // }
-
-  // public registerOnTouched(onTouched?: () => void): void {
-  //   this.onTouched = onTouched;
-  // }
-
-  // public ngOnDestroy(): void {
-  //   this.destroy.next();
-  //   this.destroy.complete();
-  // }
+  public setDisabledState?(isDisabled: boolean): void {
+    this.uploadComponent
+      && (this.uploadComponent.disabled = isDisabled);
+  }
 }

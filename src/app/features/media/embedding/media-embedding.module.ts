@@ -19,7 +19,7 @@ const framework = [
 
 const modules = [
   CoreModule,
-  MediaModule
+  MediaModule,
 ];
 
 const libs = [

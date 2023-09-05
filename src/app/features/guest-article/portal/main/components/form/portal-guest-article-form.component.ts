@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { MediaEntity } from 'src/app/core/api/generated/schema';
 import { PortalGuestArticleActions } from '../../state/portal-guest-article.actions';
 
 @Component({
@@ -16,6 +17,7 @@ export class PortalGuestArticleFormComponent {
     name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     phone: [''],
+    uploads: [[] as MediaEntity[]],
   });
 
   constructor(
@@ -32,7 +34,10 @@ export class PortalGuestArticleFormComponent {
         email: this.form.value.email,
         phone: this.form.value.phone
       },
-      captchaToken: captchaToken,
+      uploads: this.form.value.uploads?.map(media => ({
+        media
+      })),
+      captchaToken,
     }));
     
   }

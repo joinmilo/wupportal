@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { MediaEntity } from 'src/app/core/api/generated/schema';
+import { forkJoin } from 'rxjs';
+import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { MediaService } from '../../services/media.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class MediaUploadComponent {
   public uploads: EventEmitter<MediaEntity[]> = new EventEmitter();
 
   @Input()
-  public disabled = false;
+  public disabled: Maybe<boolean> = false;
 
   public isDraggedOver = false;
 
@@ -55,8 +56,15 @@ export class MediaUploadComponent {
   }
 
   public addFiles(fileList: FileList) {
-    this.uploads.emit(Array.from(fileList)
-      .map(file => this.mediaService.fileToMedia(file))); 
+    forkJoin(
+      Array.from(fileList)
+        .map(file => this.mediaService
+        .fileToMedia(file))
+    ).subscribe((media: MediaEntity[]) => {
+      console.log('what do you contain', media)
+      this.uploads.emit(media)
+    });
+      
   }
 
 }

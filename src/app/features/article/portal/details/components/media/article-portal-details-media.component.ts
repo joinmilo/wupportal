@@ -5,7 +5,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { slug } from 'src/app/core/constants/queryparam.constants';
 import { MediaDisplayType } from 'src/app/core/typings/filter-params/media-display';
 import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input';
-import { MediaService } from 'src/app/shared/widgets/media/services/media.service';
 import { ArticlePortalDetailsActions } from '../../state/article-portal-details.actions';
 import { selectArticleMedia } from '../../state/article-portal-details.selectors';
 
@@ -41,7 +40,6 @@ export class ArticlePortalDetailsMediaComponent implements OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private mediaService: MediaService,
     private store: Store,
   ) {
     this.activatedRoute.paramMap

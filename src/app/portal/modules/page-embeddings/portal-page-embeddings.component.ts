@@ -22,7 +22,7 @@ import { SurveyEmbeddingModule } from 'src/app/features/survey/embedding/survey-
   standalone: true,
   imports: [
     CommonModule,
-
+    
     ArticleEmbeddingModule,
     AuthorEmbeddingModule,
     CalendarEmbeddingModule,

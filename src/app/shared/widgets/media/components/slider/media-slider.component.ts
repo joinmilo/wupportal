@@ -15,14 +15,6 @@ export class MediaSliderComponent {
 
   @Input()
   public action?: FileAction;
-  
-  @Input()
-  public set files(files: File[]) {
-    this.media = files?.map(file => file instanceof File
-      ? this.mediaService.fileToMedia(file)
-      : null
-    );
-  }
 
   @Input()
   public media?: Maybe<(Maybe<MediaEntity> | undefined)[]>;
