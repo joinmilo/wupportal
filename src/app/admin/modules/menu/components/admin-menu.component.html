@@ -5,9 +5,8 @@
 
 <ng-container *ngIf="collapsed; else accordion">
   <app-admin-menu-overlay *ngFor="let item of menuItems | async"
-    [active]="menuService.isChildRouteActive(item)"
-    [childs]="item.childs"
-    [icon]="item.icon">
+    [active]="menuService.isRouteActive(item)"
+    [item]="item">
   </app-admin-menu-overlay>
 
   <app-admin-menu-overlay
@@ -19,10 +18,8 @@
 
 <ng-template #accordion>
   <app-admin-menu-accordion *ngFor="let item of menuItems | async"
-    [active]="menuService.isChildRouteActive(item)"
-    [childs]="item.childs"
-    [icon]="item.icon"
-    [label]="item.name">
+    [active]="menuService.isRouteActive(item)"
+    [item]="item">
   </app-admin-menu-accordion>
 
   <app-admin-menu-accordion

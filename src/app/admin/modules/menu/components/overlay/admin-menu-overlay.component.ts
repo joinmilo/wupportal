@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { Router } from '@angular/router';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
+import { adminUrl } from 'src/app/core/constants/module.constants';
 import { AdminMenuService } from '../../services/admin-menu.service';
 
 @Component({
@@ -15,22 +16,17 @@ export class AdminMenuOverlayComponent {
   public active?: boolean;
 
   @Input()
-  public childs?: AdminMenuItem[];
-
-  @Input()
-  public icon?: IconName;
-
-  @Output()
-  public clicked = new EventEmitter<void>();
+  public item?: AdminMenuItem;
 
   constructor(
     public menuService: AdminMenuService,
+    private router: Router,
   ) { }
 
   public click(trigger: MatMenuTrigger): void {
-    this.childs?.length
+    this.item?.childs?.length
       ? trigger.openMenu()
-      : this.clicked.emit();
+      : this.router.navigate([`${adminUrl}`, this.item?.route]);
   }
 
 }

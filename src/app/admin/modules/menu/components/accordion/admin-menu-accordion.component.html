@@ -1,22 +1,22 @@
 <mat-accordion>
   <mat-expansion-panel #panel
-    [hideToggle]="!childs?.length"
-    (opened)="click(panel)">
+    [hideToggle]="!item?.childs?.length"
+    (opened)="click()">
     <mat-expansion-panel-header>
       <mat-panel-title [ngClass]="{'menu-active': active}">
-        <fa-icon *ngIf="icon"
-          size="lg" [icon]="['fas', icon]">
+        <fa-icon *ngIf="item?.icon"
+          size="lg" [icon]="['fas', item!.icon]">
         </fa-icon>
         <strong
-          [appLabel]="label">
+          [appLabel]="item?.name">
         </strong>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
     <div class="sub-menu">
-      <button mat-button *ngFor="let child of childs"
+      <button mat-button *ngFor="let child of item?.childs"
         [appLabel]="child.name"
-        [routerLink]="[menuService.createRouterLink(child)]"
+        [routerLink]="menuService.createRouterLink(child)"
         routerLinkActive="menu-active">
       </button>
     </div>

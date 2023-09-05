@@ -10,17 +10,25 @@ export class AdminMenuService {
     private router: Router,
   ) { }
 
-  public isChildRouteActive(item: AdminMenuItem): boolean {
-    return !!item.childs?.find(child => this.router.isActive(this.createRouterLink(child), {
+  public isRouteActive(item: AdminMenuItem): boolean {
+    return this.isChildRouteActive(item.childs)
+      || this.isActive(`/${adminUrl}/${item.route}`);
+  }
+
+  private isChildRouteActive(childs: AdminMenuItem[] | undefined): boolean {
+    return !!childs?.find(child => this.isActive(`/${adminUrl}/${child.route}`))
+  }
+
+  private isActive(route: string): boolean {
+    return this.router.isActive(route, {
       paths: 'subset',
       queryParams: 'subset',
       fragment: 'ignored',
       matrixParams: 'ignored'
-    }));
+    })
   }
 
-  public createRouterLink(child: AdminMenuItem): string {
-    return `/${adminUrl}/${child.route as string}`;
+  public createRouterLink(child: AdminMenuItem): string[] {
+    return [`/${adminUrl}`, ...child.route.split('/')];
   }
-
 }

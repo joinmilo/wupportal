@@ -3,15 +3,15 @@
   class="trigger-button"
   [ngClass]="{'menu-active': active }"
   (click)="click(menuTrigger)">
-  <fa-icon *ngIf="icon"
-    size="lg" [icon]="['fas', icon]">
+  <fa-icon *ngIf="item?.icon"
+    size="lg" [icon]="['fas', item!.icon]">
   </fa-icon>
   <div #menuTrigger="matMenuTrigger" class="trigger" [matMenuTriggerFor]="menu"></div>
 </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item *ngFor="let child of childs"
+  <button mat-menu-item *ngFor="let child of item?.childs"
     [appLabel]="child.name"
-    [routerLink]="[menuService.createRouterLink(child)]"
+    [routerLink]="menuService.createRouterLink(child)"
     routerLinkActive="menu-active">
   </button>
 </mat-menu>

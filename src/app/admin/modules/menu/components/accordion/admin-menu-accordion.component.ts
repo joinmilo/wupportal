@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { Router } from '@angular/router';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
+import { adminUrl } from 'src/app/core/constants/module.constants';
 import { AdminMenuService } from '../../services/admin-menu.service';
 
 @Component({
@@ -9,31 +10,32 @@ import { AdminMenuService } from '../../services/admin-menu.service';
   templateUrl: './admin-menu-accordion.component.html',
   styleUrls: ['./admin-menu-accordion.component.scss'],
 })
-export class AdminMenuAccordionComponent {
+export class AdminMenuAccordionComponent implements OnChanges {
 
   @Input()
   public active?: boolean;
 
   @Input()
-  public childs?: AdminMenuItem[];
+  public item?: AdminMenuItem;
 
-  @Input()
-  public icon?: IconName;
-
-  @Input()
-  public label?: string;
-
-  @Output()
-  public clicked = new EventEmitter<void>();
+  @ViewChild(MatExpansionPanel)
+  public panel?: MatExpansionPanel;
 
   constructor(
     public menuService: AdminMenuService,
+    private router: Router,
   ) {}
 
-  public click(panel: MatExpansionPanel): void {
-    if (!this.childs?.length) {
-      panel.close();
-      this.clicked.emit();
+  public ngOnChanges(): void {
+    if (!this.active) {
+      this.panel?.close();
+    }
+  }
+
+  public click(): void {
+    if (!this.item?.childs?.length) {
+      this.panel?.close();
+      this.router.navigate([`/${adminUrl}`, this.item?.route]);
     }
   }
 
