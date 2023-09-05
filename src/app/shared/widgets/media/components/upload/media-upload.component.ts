@@ -60,10 +60,7 @@ export class MediaUploadComponent {
       Array.from(fileList)
         .map(file => this.mediaService
         .fileToMedia(file))
-    ).subscribe((media: MediaEntity[]) => {
-      console.log('what do you contain', media)
-      this.uploads.emit(media)
-    });
+    ).subscribe((media: MediaEntity[]) => this.uploads.emit(media));
       
   }
 
