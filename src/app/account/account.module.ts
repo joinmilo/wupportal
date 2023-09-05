@@ -19,7 +19,7 @@ import { PasswordModule } from '../shared/form/password/password.module';
 import { PrivacyPolicyFormComponent } from '../shared/form/privacy-policy/privacy-policy-form.component';
 import { LoadingComponent } from '../shared/layout/loading/loading.component';
 import { TitleModule } from '../shared/layout/title/title.module';
-import { MediaModule } from '../shared/widgets/media/media.module';
+import { MediaModule } from '../shared/media/media.module';
 import { UserPortalRoutingModule } from './account-routing.module';
 import { FirstLoginFormComponent } from './components/first-login-form/first-login-form.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';

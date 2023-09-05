@@ -20,11 +20,11 @@ import { DatePieceComponent } from 'src/app/shared/layout/date/date-piece.compon
 import { MailPieceComponent } from 'src/app/shared/layout/mail/mail-piece.component';
 import { PhonePieceComponent } from 'src/app/shared/layout/phone/phone-piece.component';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { MediaModule } from 'src/app/shared/media/media.module';
 import { CalendarModule } from 'src/app/shared/widgets/calendar/calendar.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { FavoriteComponent } from 'src/app/shared/widgets/favorite/favorite.component';
 import { MapModule } from 'src/app/shared/widgets/map/map.module';
-import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { PortalContestDetailsCommentComponent } from './components/comment/portal-contest-details-comment.component';

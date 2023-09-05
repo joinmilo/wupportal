@@ -36,8 +36,6 @@ export class ArticleAdminOverviewComponent {
       tooltipLabel: 'delete'
     },
 
-    'LIKE',
-
     'SHARE',
   ];
 

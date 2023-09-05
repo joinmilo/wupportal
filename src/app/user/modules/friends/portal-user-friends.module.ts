@@ -13,8 +13,8 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { MediaModule } from 'src/app/shared/media/media.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
-import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { PortalAddFriendsComponent } from './components/add-friends/portal-add-friends.component';
 import { PortalAllFriendsComponent } from './components/all-friends/portal-all-friends.component';
@@ -48,7 +48,6 @@ const materials = [
 ];
 
 const modules = [
-  MediaModule,
   CardModule,
   CoreModule,
   FormsModule,

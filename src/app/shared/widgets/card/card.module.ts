@@ -13,8 +13,8 @@ import { CategoryPieceComponent } from '../../layout/category/category-piece.com
 import { DatePieceComponent } from '../../layout/date/date-piece.component';
 import { MailPieceComponent } from '../../layout/mail/mail-piece.component';
 import { PhonePieceComponent } from '../../layout/phone/phone-piece.component';
+import { MediaModule } from '../../media/media.module';
 import { FavoriteComponent } from '../favorite/favorite.component';
-import { MediaModule } from '../media/media.module';
 import { ShareModule } from '../share/share.module';
 import { CardActionsComponent } from './components/actions/card-actions.component';
 import { ContactCardComponent } from './components/contact/contact-card.component';

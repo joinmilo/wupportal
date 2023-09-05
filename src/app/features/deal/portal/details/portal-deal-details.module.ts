@@ -22,10 +22,10 @@ import { MailPieceComponent } from 'src/app/shared/layout/mail/mail-piece.compon
 import { PhonePieceComponent } from 'src/app/shared/layout/phone/phone-piece.component';
 import { PriceComponent } from 'src/app/shared/layout/price/price.component';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { MediaModule } from 'src/app/shared/media/media.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { FavoriteComponent } from 'src/app/shared/widgets/favorite/favorite.component';
 import { MapModule } from 'src/app/shared/widgets/map/map.module';
-import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { PortalDealDetailsCreatorComponent } from './components/creator/portal-deal-details-creator.component';

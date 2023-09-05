@@ -15,7 +15,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { CaptchaModule } from 'src/app/shared/form/captcha/captcha.module';
 import { CkEditorFormComponent } from 'src/app/shared/form/ck-editor/ck-editor-form.component';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
-import { MediaModule } from 'src/app/shared/widgets/media/media.module';
+import { MediaModule } from 'src/app/shared/media/media.module';
 import { PortalGuestArticleFormComponent } from './components/form/portal-guest-article-form.component';
 import { PortalGuestArticleSuccessComponent } from './components/success/portal-guest-article-success.component';
 import { portalGuestArticleStateKey } from './constants/portal-guest-article.constants';

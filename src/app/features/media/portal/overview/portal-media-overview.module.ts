@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { MediaFilterModule } from 'src/app/shared/filter/media/media-filter.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
-import { MediaModule } from 'src/app/shared/widgets/media/media.module';
+import { MediaModule } from 'src/app/shared/media/media.module';
 import { PortalMediaOverviewCategoryComponent } from './components/category/portal-media-overview-category.component';
 import { PortalMediaOverviewEmptyComponent } from './components/empty/portal-media-overview-empty.component';
 import { PortalMediaOverviewComponent } from './components/portal-media-overview.component';

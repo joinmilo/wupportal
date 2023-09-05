@@ -11,7 +11,7 @@ import { HeaderBackComponent } from 'src/app/shared/layout/header/back/header-ba
 import { HeaderLanguageComponent } from 'src/app/shared/layout/header/language/header-language.component';
 import { HeaderNotificationComponent } from 'src/app/shared/layout/header/notification/header-notification.component';
 import { HeaderUserComponent } from 'src/app/shared/layout/header/user/header-user.component';
-import { MediaModule } from 'src/app/shared/widgets/media/media.module';
+import { MediaModule } from 'src/app/shared/media/media.module';
 import { AdminHeaderComponent } from './components/admin-header.component';
 import { AdminHeaderDesktopComponent } from './components/desktop/admin-header-desktop.component';
 import { AdminHeaderMobileComponent } from './components/mobile/admin-header-mobile.component';

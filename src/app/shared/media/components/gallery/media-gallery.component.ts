@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { MediaDisplayType } from 'src/app/core/typings/filter-params/media-display';
 import { RadioInput } from 'src/app/shared/form/radio-button/typings/radio-input';
-import { MediaViewerData } from 'src/app/shared/widgets/media/typings/media';
+import { MediaViewerData } from 'src/app/shared/media/typings/media';
 import { MediaViewerComponent } from '../viewer/media-viewer.component';
 
 @Component({

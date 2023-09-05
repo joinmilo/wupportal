@@ -21,11 +21,11 @@ import { MailPieceComponent } from 'src/app/shared/layout/mail/mail-piece.compon
 import { PhonePieceComponent } from 'src/app/shared/layout/phone/phone-piece.component';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { WebsitePieceComponent } from 'src/app/shared/layout/website/website-piece.component';
+import { MediaModule } from 'src/app/shared/media/media.module';
 import { CalendarModule } from 'src/app/shared/widgets/calendar/calendar.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { FavoriteComponent } from 'src/app/shared/widgets/favorite/favorite.component';
 import { MapModule } from 'src/app/shared/widgets/map/map.module';
-import { MediaModule } from 'src/app/shared/widgets/media/media.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
 import { CardSliderComponent } from 'src/app/shared/widgets/sliders/card-slider/card-slider.component';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
