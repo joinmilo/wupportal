@@ -1,10 +1,10 @@
 
 <button mat-button
   class="trigger-button"
-  [ngClass]="{'menu-active': active }"
+  [ngClass]="{'menu-active': menuService.isRouteActive(this.item) }"
   (click)="click(menuTrigger)">
   <fa-icon *ngIf="item?.icon"
-    size="lg" [icon]="['fas', item!.icon]">
+    size="lg" [icon]="['fas', item!.icon!]">
   </fa-icon>
   <div #menuTrigger="matMenuTrigger" class="trigger" [matMenuTriggerFor]="menu"></div>
 </button>

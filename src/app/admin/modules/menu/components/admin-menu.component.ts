@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectAdminMenu } from 'src/app/admin/state/admin.selectors';
-import { adminUrl } from 'src/app/core/constants/module.constants';
-import { AdminMenuService } from '../services/admin-menu.service';
+import { selectAdminMainMenu } from 'src/app/admin/state/admin.selectors';
+import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
 
 @Component({
   selector: 'app-admin-menu',
@@ -20,11 +19,12 @@ export class AdminMenuComponent {
   public collapsed = false;
 
   public homeRoute = ['/', adminUrl];
+  
+  public menuItems = this.store.select(selectAdminMainMenu);
 
-  public menuItems = this.store.select(selectAdminMenu);
+  public settingsUrl = settingsUrl;
 
   constructor(
-    public menuService: AdminMenuService,
     private store: Store,
   ) { }
 

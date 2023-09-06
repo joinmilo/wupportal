@@ -3,9 +3,9 @@
     [hideToggle]="!item?.childs?.length"
     (opened)="click()">
     <mat-expansion-panel-header>
-      <mat-panel-title [ngClass]="{'menu-active': active}">
+      <mat-panel-title [ngClass]="{'menu-active': menuService.isRouteActive(item) }">
         <fa-icon *ngIf="item?.icon"
-          size="lg" [icon]="['fas', item!.icon]">
+          size="lg" [icon]="['fas', item!.icon!]">
         </fa-icon>
         <strong
           [appLabel]="item?.name">

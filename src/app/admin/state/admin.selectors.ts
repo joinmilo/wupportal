@@ -15,26 +15,26 @@ export const selectFeatures = createSelector(
   state => state.features
 );
 
-export const selectRoutes = createSelector(
+export const selectMainRoutes = createSelector(
   selectAdminState,
   state => state.mainRoutes
 );
 
-export const selectAdminMenu = createSelector(
+export const selectAdminMainMenu = createSelector(
   selectFeatures,
-  selectRoutes,
+  selectMainRoutes,
   (features, routes) => {
-    return routes.map(route => {
-      const feature = features?.find(feature => feature.code === route.code)
+    return routes.map(mainRoute => {
+      const feature = features?.find(feature => feature.code === mainRoute.code)
 
       return {
         icon: feature?.icon,
         name: feature?.name,
-        route: route?.routes.length === 1
-          ? route.routes[0].path
+        route: mainRoute?.routes.length === 1
+          ? mainRoute.routes[0].path
           : undefined,
-        childs: route?.routes.length > 1
-          ? route?.routes.map(child => ({
+        childs: mainRoute?.routes.length > 1
+          ? mainRoute?.routes.map(child => ({
               name: child?.data?.['label'],
               route: child.path
             }) as AdminMenuItem)
@@ -43,4 +43,9 @@ export const selectAdminMenu = createSelector(
 
     }) as AdminMenuItem[]
   }
+);
+
+export const selectAdminSettingsMenu = createSelector(
+  selectAdminState,
+  state => state.settingsMenu
 );

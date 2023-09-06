@@ -13,9 +13,6 @@ import { AdminMenuService } from '../../services/admin-menu.service';
 export class AdminMenuOverlayComponent {
 
   @Input()
-  public active?: boolean;
-
-  @Input()
   public item?: AdminMenuItem;
 
   @Output()

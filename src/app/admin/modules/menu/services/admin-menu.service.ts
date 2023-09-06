@@ -10,9 +10,9 @@ export class AdminMenuService {
     private router: Router,
   ) { }
 
-  public isRouteActive(item: AdminMenuItem): boolean {
-    return this.isChildRouteActive(item.childs)
-      || this.isActive(`/${adminUrl}/${item.route}`);
+  public isRouteActive(item?: AdminMenuItem): boolean {
+    return this.isChildRouteActive(item?.childs)
+      || this.isActive(`/${adminUrl}/${item?.route}`);
   }
 
   private isChildRouteActive(childs: AdminMenuItem[] | undefined): boolean {
@@ -29,7 +29,6 @@ export class AdminMenuService {
   }
 
   public createRouterLink(child: AdminMenuItem): string[] {
-
     return child.route
       ? [`/${adminUrl}`, ...child.route.split('/')]
       : [`/${adminUrl}`];

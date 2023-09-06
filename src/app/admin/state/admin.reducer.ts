@@ -1,18 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import { FeatureEntity, Maybe } from 'src/app/core/api/generated/schema';
-import { AdminRoutes } from '../typings/menu';
+import { AdminMenuItem, AdminRoutes } from '../typings/menu';
 import { AdminActions } from './admin.actions';
 
 export interface AdminState {
   features?: Maybe<FeatureEntity[]>,
   menuOpen?: boolean,
   mainRoutes: AdminRoutes[],
-  settingsRoutes: AdminRoutes[],
+  settingsMenu: AdminMenuItem[],
 }
 
 export const initialState: AdminState = {
   mainRoutes: [],
-  settingsRoutes: [],
+  settingsMenu: [],
 };
 
 export const adminReducer = createReducer(
@@ -30,8 +30,8 @@ export const adminReducer = createReducer(
     { ...state, mainRoutes: [...state.mainRoutes, action.routes] }
   )),
 
-  on(AdminActions.addSettingsRoutes, (state, action): AdminState => (
-    { ...state, settingsRoutes: [...state.settingsRoutes, action.routes] }
+  on(AdminActions.addSettingsMenu, (state, action): AdminState => (
+    { ...state, settingsMenu: [...state.settingsMenu, action.item] }
   )),
 
   on(AdminActions.setFeatures, (state, action): AdminState => (
