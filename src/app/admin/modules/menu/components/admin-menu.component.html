@@ -10,7 +10,9 @@
   </app-admin-menu-overlay>
 
   <app-admin-menu-overlay
-    icon=angles-right
+    [item]="{
+      icon: 'angles-right',
+    }"
     (clicked)="collapsed = false">
   </app-admin-menu-overlay>
 </ng-container>
@@ -23,8 +25,10 @@
   </app-admin-menu-accordion>
 
   <app-admin-menu-accordion
-    icon="angles-left"
-    label=collapseMenu
+    [item]="{
+      icon: 'angles-left',
+      name: 'collapseMenu',
+    }"
     (clicked)="onCollapse()">
   </app-admin-menu-accordion>
 </ng-template>

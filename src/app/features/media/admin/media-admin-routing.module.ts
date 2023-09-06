@@ -34,7 +34,7 @@ export class MediaAdminRoutingModule {
   constructor(
     public store: Store
   ) {
-    this.store.dispatch(AdminActions.addRoutes({
+    this.store.dispatch(AdminActions.addMainRoutes({
       code: mediaFeatureKey,
       routes: menuRoutes,
     }));

@@ -34,7 +34,7 @@ export class OrganisationAdminRoutingModule {
   constructor(
     public store: Store
   ) {
-    this.store.dispatch(AdminActions.addRoutes({
+    this.store.dispatch(AdminActions.addMainRoutes({
       code: organisationsFeatureKey,
       routes: menuRoutes,
     }));

@@ -28,7 +28,7 @@ export class AuthorAdminRoutingModule {
   constructor(
     public store: Store
   ) {
-    this.store.dispatch(AdminActions.addRoutes({
+    this.store.dispatch(AdminActions.addMainRoutes({
       code: authorsFeatureKey,
       routes: menuRoutes,
     }));

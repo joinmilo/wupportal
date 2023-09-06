@@ -34,7 +34,7 @@ export class EventAdminRoutingModule {
   constructor(
     public store: Store
   ) {
-    this.store.dispatch(AdminActions.addRoutes({
+    this.store.dispatch(AdminActions.addMainRoutes({
       code: eventsFeatureKey,
       routes: menuRoutes,
     }));

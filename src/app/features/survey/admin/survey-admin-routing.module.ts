@@ -34,7 +34,7 @@ export class SurveyAdminRoutingModule {
   constructor(
     public store: Store
   ) {
-    this.store.dispatch(AdminActions.addRoutes({
+    this.store.dispatch(AdminActions.addMainRoutes({
       code: surveysFeatureKey,
       routes: menuRoutes,
     }));

@@ -9,7 +9,8 @@ export const AdminActions = createActionGroup({
     'open menu': emptyProps(),
     'close menu': emptyProps(),
 
-    'add routes': (routes: AdminRoutes) => ({ routes }),
+    'add main routes': (routes: AdminRoutes) => ({ routes }),
+    'add settings routes': (routes: AdminRoutes) => ({ routes }),
 
     'get features': emptyProps(),
     'set features': (features?: FeatureEntity[]) => ({ features }),

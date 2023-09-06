@@ -6,11 +6,13 @@ import { AdminActions } from './admin.actions';
 export interface AdminState {
   features?: Maybe<FeatureEntity[]>,
   menuOpen?: boolean,
-  routes: AdminRoutes[],
+  mainRoutes: AdminRoutes[],
+  settingsRoutes: AdminRoutes[],
 }
 
 export const initialState: AdminState = {
-  routes: [],
+  mainRoutes: [],
+  settingsRoutes: [],
 };
 
 export const adminReducer = createReducer(
@@ -24,8 +26,12 @@ export const adminReducer = createReducer(
     { ...state, menuOpen: false }
   )),
 
-  on(AdminActions.addRoutes, (state, action): AdminState => (
-    { ...state, routes: [...state.routes, action.routes] }
+  on(AdminActions.addMainRoutes, (state, action): AdminState => (
+    { ...state, mainRoutes: [...state.mainRoutes, action.routes] }
+  )),
+
+  on(AdminActions.addSettingsRoutes, (state, action): AdminState => (
+    { ...state, settingsRoutes: [...state.settingsRoutes, action.routes] }
   )),
 
   on(AdminActions.setFeatures, (state, action): AdminState => (

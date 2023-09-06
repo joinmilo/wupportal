@@ -17,7 +17,7 @@ export const selectFeatures = createSelector(
 
 export const selectRoutes = createSelector(
   selectAdminState,
-  state => state.routes
+  state => state.mainRoutes
 );
 
 export const selectAdminMenu = createSelector(

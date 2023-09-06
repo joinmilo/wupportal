@@ -29,6 +29,9 @@ export class AdminMenuService {
   }
 
   public createRouterLink(child: AdminMenuItem): string[] {
-    return [`/${adminUrl}`, ...child.route.split('/')];
+
+    return child.route
+      ? [`/${adminUrl}`, ...child.route.split('/')]
+      : [`/${adminUrl}`];
   }
 }

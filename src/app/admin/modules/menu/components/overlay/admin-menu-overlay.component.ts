@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
@@ -18,6 +18,9 @@ export class AdminMenuOverlayComponent {
   @Input()
   public item?: AdminMenuItem;
 
+  @Output()
+  public clicked = new EventEmitter<void>();
+
   constructor(
     public menuService: AdminMenuService,
     private router: Router,
@@ -26,7 +29,9 @@ export class AdminMenuOverlayComponent {
   public click(trigger: MatMenuTrigger): void {
     this.item?.childs?.length
       ? trigger.openMenu()
-      : this.router.navigate([`${adminUrl}`, this.item?.route]);
+      : this.item?.route
+        ? this.router.navigate([`${adminUrl}`, this.item?.route])
+        : this.clicked.emit();
   }
 
 }

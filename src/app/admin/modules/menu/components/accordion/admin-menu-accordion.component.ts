@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
@@ -18,6 +18,9 @@ export class AdminMenuAccordionComponent implements OnChanges {
   @Input()
   public item?: AdminMenuItem;
 
+  @Output()
+  public clicked = new EventEmitter<void>();
+
   @ViewChild(MatExpansionPanel)
   public panel?: MatExpansionPanel;
 
@@ -35,7 +38,9 @@ export class AdminMenuAccordionComponent implements OnChanges {
   public click(): void {
     if (!this.item?.childs?.length) {
       this.panel?.close();
-      this.router.navigate([`/${adminUrl}`, this.item?.route]);
+      this.item?.route
+        ? this.router.navigate([`/${adminUrl}`, this.item?.route])
+        : this.clicked.emit();
     }
   }
 
