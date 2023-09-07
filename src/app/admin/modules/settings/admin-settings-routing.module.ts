@@ -9,8 +9,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadComponent: () => import('./landing/admin-settings-landing.component')
-      .then(imported => imported.AdminSettingsLandingComponent)
+    loadComponent: () => import('./navigation/admin-settings-navigation.component')
+      .then(imported => imported.AdminSettingsNavigationComponent)
   },
   {
     path: '**',

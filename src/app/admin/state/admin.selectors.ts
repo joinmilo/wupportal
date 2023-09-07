@@ -29,7 +29,7 @@ export const selectAdminMainMenu = createSelector(
 
       return {
         icon: feature?.icon,
-        name: feature?.name,
+        name: feature?.name, //TODO: This is a translatable!
         route: mainRoute?.routes.length === 1
           ? mainRoute.routes[0].path
           : undefined,

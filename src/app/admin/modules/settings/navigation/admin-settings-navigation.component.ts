@@ -12,9 +12,9 @@ import { CoreModule } from 'src/app/core/core.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 
 @Component({
-  selector: 'app-admin-settings-landing',
-  templateUrl: './admin-settings-landing.component.html',
-  styleUrls: ['./admin-settings-landing.component.scss'],
+  selector: 'app-admin-settings-navigation',
+  templateUrl: './admin-settings-navigation.component.html',
+  styleUrls: ['./admin-settings-navigation.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -28,7 +28,7 @@ import { TitleModule } from 'src/app/shared/layout/title/title.module';
     TitleModule,
   ]
 })
-export class AdminSettingsLandingComponent {
+export class AdminSettingsNavigationComponent {
 
   public menuItems = this.store.select(selectAdminSettingsMenu);
 
