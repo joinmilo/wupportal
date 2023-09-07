@@ -18,7 +18,6 @@ export class MediaService {
       const reader = new FileReader();
 
       reader.onload = event => {
-        console.log('here?', (event?.target?.result as string)?.split(',')[1]);
         observer.next({
           base64: (event?.target?.result as string)?.split(',')[1],
           mimeType: file.type,
