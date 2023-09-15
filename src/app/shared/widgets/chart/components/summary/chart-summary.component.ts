@@ -25,11 +25,11 @@ export class ChartSummaryComponent {
 
   @Input()
   public set summary(summary: Maybe<number>) {
-    if (summary) {
-      this.value = summary % 1 != 0 //only fixed if decimal
+    this.value = summary
+      ? summary % 1 != 0 //only fixed if decimal
         ? summary.toFixed(2)
-        : summary.toString();
-    }
+        : summary.toString()
+      : '-';
   }
 
   @Input()

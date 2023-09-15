@@ -13,32 +13,32 @@
 </section>
 
 <section class="summary">
-  <app-chart-summary *ngIf="clicks"
+  <app-chart-summary
     [actions]="[clicksAction]"
     [color]="clicksColor"
-    [summary]="clicks.sum"
+    [summary]="clicks?.sum"
     titleLabel="totalClicks">
   </app-chart-summary>
 
-  <app-chart-summary *ngIf="impressions"
+  <app-chart-summary
     [actions]="[impressionsAction]"
     [color]="impressionsColor"
-    [summary]="impressions.sum"
+    [summary]="impressions?.sum"
     titleLabel="totalImpressions">
   </app-chart-summary>
 
-  <app-chart-summary *ngIf="ctr"
+  <app-chart-summary
     [actions]="[ctrAction]"
     [color]="ctrColor"
-    [summary]="ctr.average"
+    [summary]="ctr?.average"
     unit="%"
     titleLabel="averageCtr">
   </app-chart-summary>
 
-  <app-chart-summary *ngIf="positions"
+  <app-chart-summary
     [actions]="[positionsAction]"
     [color]="positionsColor"
-    [summary]="positions.average"
+    [summary]="positions?.average"
     titleLabel="averagePosition">
   </app-chart-summary>
 </section>

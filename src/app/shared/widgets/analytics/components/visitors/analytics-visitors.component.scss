@@ -1,3 +1,5 @@
+@import 'src/styles/mixins.scss';
+
 :host {
   display: flex;
   flex-flow: column;
@@ -25,8 +27,11 @@
 
   app-chart-bar-vertical {
     width: calc(50% - 1rem);
-    min-width: 20rem;
     height: 25rem;
+
+    @include responsive(tablet) {
+      width: calc(100% - 1rem);
+    }
   }
 }
 

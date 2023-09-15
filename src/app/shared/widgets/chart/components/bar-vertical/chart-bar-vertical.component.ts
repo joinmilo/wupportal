@@ -10,7 +10,7 @@ import { AxisChart } from '../../typings/chart-axis.base';
 export class ChartBarVerticalComponent extends AxisChart {
 
   @Input()
-  public barPadding = 32;
+  public barPadding = 16;
 
   constructor(store: Store) {
     super(store);
