@@ -1,0 +1,47 @@
+<section class="filter">
+  <app-date-range-filter
+    [initValue]="period"
+    [queryParam]="false"
+    (valueChanged)="updatePeriod($event)">
+  </app-date-range-filter>
+
+  <app-interval-filter
+    [initValue]="interval"
+    [queryParam]="false"
+    (valueChanged)="updateInterval($event)">
+  </app-interval-filter>
+</section>
+
+<section class="summary">
+  <app-chart-summary *ngIf="visits"
+    [actions]="[visitsAction]"
+    [color]="visitsColor"
+    [summary]="visits.sum"
+    titleLabel="totalVisits">
+  </app-chart-summary>
+
+  <app-chart-summary *ngIf="visitors"
+    [actions]="[visitorsAction]"
+    [color]="visitorsColor"
+    [summary]="visitors.sum"
+    titleLabel="totalVisitors">
+  </app-chart-summary>
+</section>
+
+<section class="charts">
+  <app-chart-bar-vertical *ngIf="visits"
+    [actions]="[visitsAction]"
+    [colors]="[visitsColor]"
+    [data]="visits.series"
+    [titleLabel]="visitsKey"
+    [yAxisLabel]="visitsKey">
+  </app-chart-bar-vertical>
+
+  <app-chart-bar-vertical *ngIf="visitors"
+    [actions]="[visitorsAction]"
+    [colors]="[visitorsColor]"
+    [data]="visitors.series"
+    [titleLabel]="visitorsKey"
+    [yAxisLabel]="visitorsKey">
+  </app-chart-bar-vertical>
+</section>

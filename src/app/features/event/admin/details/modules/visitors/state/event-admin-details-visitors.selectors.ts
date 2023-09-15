@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { visitorsKey, visitsKey } from 'src/app/core/constants/analytics.constant';
 import { eventAdminDetailsVisitorsStateKey } from '../constants/event-admin-details-visitors.constants';
 import { EventAdminDetailsVisitorsState } from './event-admin-details-visitors.reducer';
 
@@ -10,31 +9,12 @@ export const selectSlug = createSelector(
   state => state.slug
 );
 
-export const selectPeriodParam = createSelector(
+export const selectParams = createSelector(
   selectEventAdminDetailsVisitorsState,
-  state => state.periodParam
-);
-
-export const selectIntervalParam = createSelector(
-  selectEventAdminDetailsVisitorsState,
-  state => state.intervalParam
-);
-
-export const selectSearchStatistics = createSelector(
-  selectEventAdminDetailsVisitorsState,
-  state => state.statistics
-);
-
-export const selectVisitsStatistics = createSelector(
-  selectSearchStatistics,
-  statistics => statistics
-    ?.filter(statistic => statistic.name === visitsKey)
-    ?.[0]
+  state => state.params
 );
 
 export const selectVisitorsStatistics = createSelector(
-  selectSearchStatistics,
-  statistics => statistics
-    ?.filter(statistic => statistic.name === visitorsKey)
-    ?.[0]
+  selectEventAdminDetailsVisitorsState,
+  state => state.statistics
 );
