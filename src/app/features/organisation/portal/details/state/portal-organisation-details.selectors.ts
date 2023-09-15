@@ -20,12 +20,12 @@ export const selectOrganisationUserRating = createSelector(
   selectOrganisationDetails,
   selectUserOrganisationRatings,
   (organisation, ratings) =>
-    ratings?.find(rating => rating?.organisation?.id === organisation?.id)
+    ratings?.find(rating => rating?.parent?.id === organisation?.id)
 );
 
-export const selectCalculatedOrganisationRatings = createSelector(
+export const selectRatingDistribution = createSelector(
   selectOrganisationDetails,
-  organisation => organisation?.calculatedRatings
+  organisation => organisation?.ratingDistribution
 );
 
 export const selectMembers = createSelector(

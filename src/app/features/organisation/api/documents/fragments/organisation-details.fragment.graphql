@@ -11,8 +11,8 @@ fragment OrganisationDetails on OrganisationEntity {
     ...Contact
   }
 
-  calculatedRatings{
-    ...RatingDto
+  ratingDistribution {
+    ...AnalyticsDto
   }
 
   lastOrganisationComment {
@@ -56,5 +56,4 @@ fragment OrganisationDetails on OrganisationEntity {
       ...Media
     }
   }
-
 }

@@ -110,7 +110,7 @@ export class PortalEventDetailsEffects {
     map(([action, event, user, rating]) => rating?.id
       ? { ...action.entity, id: rating.id }
       : { ...action.entity,
-          event: { id: event?.id },
+          parent: { id: event?.id },
           userContext: { id: user?.id}
         }
     ),

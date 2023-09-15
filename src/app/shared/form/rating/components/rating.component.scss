@@ -11,6 +11,11 @@
     align-items: center;
   }
 
+  .label-section {
+    display: flex;
+    gap: .5rem;
+  }
+
   div:last-of-type {
     display: flex;
     flex-flow: column;

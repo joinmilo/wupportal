@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { PortalOrganisationDetailsActions } from '../../state/portal-organisation-details.actions';
-import { selectCalculatedOrganisationRatings, selectOrganisationUserRating } from '../../state/portal-organisation-details.selectors';
+import { selectOrganisationUserRating, selectRatingDistribution } from '../../state/portal-organisation-details.selectors';
 
 @Component({
   selector: 'app-portal-organisation-details-rating',
@@ -14,7 +14,7 @@ export class PortalOrganisationDetailsRatingComponent {
   public currentUserRating = this.store.select(selectOrganisationUserRating)
     .pipe(map(rating => rating?.score));
 
-  public calculatedRatings = this.store.select(selectCalculatedOrganisationRatings);
+  public calculatedRatings = this.store.select(selectRatingDistribution);
 
   constructor(
     private store: Store) { }

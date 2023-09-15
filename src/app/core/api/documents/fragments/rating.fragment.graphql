@@ -1,5 +1,0 @@
-fragment RatingDto on RatingDto {
-  average,
-  distribution,
-  total
-}

@@ -80,7 +80,7 @@ export class PortalOrganisationDetailsEffects {
     map(([action, organisation, user, rating]) => rating?.id
       ? { ...action.entity, id: rating.id }
       : { ...action.entity,
-          organisation: { id: organisation?.id },
+          parent: { id: organisation?.id },
           userContext: { id: user?.id}
         }
     ),

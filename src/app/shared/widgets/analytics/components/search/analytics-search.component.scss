@@ -30,8 +30,8 @@
     height: 25rem;
 
     @include responsive(tablet) {
-        width: calc(100% - 1rem);
-      }
+      width: calc(100% - 1rem);
+    }
   }
 }
 

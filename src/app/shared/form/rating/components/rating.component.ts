@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
-import { Maybe, RatingDto } from 'src/app/core/api/generated/schema';
+import { AnalyticsDto, Maybe } from 'src/app/core/api/generated/schema';
 import { maxRatingConfig } from 'src/app/core/constants/configuration.constants';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
@@ -15,7 +15,7 @@ import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selecto
 export class RatingComponent {
 
   @Input()
-  public ratings?: Maybe<RatingDto>;
+  public ratings?: Maybe<AnalyticsDto>;
 
   @Input()
   public currentValue?: Maybe<number>;

@@ -41,12 +41,12 @@ export const selectEventUserRating = createSelector(
   selectEventDetails,
   selectUserEventRatings,
   (event, ratings) =>
-    ratings?.find(rating => rating?.event?.id === event?.id)
+    ratings?.find(rating => rating?.parent?.id === event?.id)
 );
 
-export const selectCalculatedEventRatings = createSelector(
+export const selectRatingDistribution = createSelector(
   selectEventDetails,
-  event => event?.calculatedRatings
+  event => event?.ratingDistribution
 );
 
 export const selectSchedules = createSelector(

@@ -19,12 +19,12 @@ export const selectArticleUserRating = createSelector(
   selectArticleDetails,
   selectUserArticleRatings,
   (article, ratings) =>
-    ratings?.find(rating => rating?.article?.id === article?.id)
+    ratings?.find(rating => rating?.parent?.id === article?.id)
 );
 
-export const selectCalculatedArticleRatings = createSelector(
+export const selectRatingDistribution = createSelector(
   selectArticleDetails,
-  article => article?.calculatedRatings
+  article => article?.ratingDistribution
 );
 
 export const selectArticleMedia = createSelector(

@@ -21,8 +21,8 @@ fragment EventDetails on EventEntity {
     }
   }
 
-  calculatedRatings {
-    ...RatingDto
+  ratingDistribution {
+    ...AnalyticsDto
   }
 
   category {

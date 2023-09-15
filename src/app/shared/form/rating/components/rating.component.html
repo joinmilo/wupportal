@@ -23,14 +23,14 @@
   </section>  
 </div>
 
-<div>
-  <span class="mat-subtitle-1">{{ratings?.total ?? 0}}</span>
-  <span class="mat-subtitle-1" [appLabel]="(ratings?.total) !== 1 ? 'ratings' : 'rating'"></span>
+<div class="label-section">
+  <span class="mat-subtitle-1">{{ratings?.series?.length ?? 0}}</span>
+  <span class="mat-subtitle-1" [appLabel]="(ratings?.series?.length) !== 1 ? 'ratings' : 'rating'"></span>
 </div>
 
 <div *ngIf="ratings">
-  <app-rating-distribution *ngFor="let item of ratings?.distribution | keyvalue"
-    [key]="item.key"
-    [value]="item.value">
+  <app-rating-distribution *ngFor="let item of ratings?.series"
+    [key]="item?.name"
+    [value]="item?.value">
   </app-rating-distribution>
 </div>

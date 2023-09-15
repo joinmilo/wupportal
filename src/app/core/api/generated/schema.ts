@@ -12,7 +12,6 @@ export type Scalars = {
   Int: number;
   Float: number;
   Long: any;
-  Map_Integer_DoubleScalar: any;
   Map_String_StringScalar: any;
   OffsetDateTime: any;
 };
@@ -119,6 +118,7 @@ export type AdminFooterParentTranslatableEntityInput = {
 export type AnalyticsDto = {
   __typename?: 'AnalyticsDto';
   average?: Maybe<Scalars['Float']>;
+  entryOperation?: Maybe<AnalyticsOperation>;
   name?: Maybe<Scalars['String']>;
   series?: Maybe<Array<Maybe<AnalyticsEntry>>>;
   sum?: Maybe<Scalars['Float']>;
@@ -129,6 +129,14 @@ export type AnalyticsEntry = {
   name?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['Float']>;
 };
+
+export enum AnalyticsOperation {
+  Avg = 'AVG',
+  Count = 'COUNT',
+  Max = 'MAX',
+  Min = 'MIN',
+  Sum = 'SUM'
+}
 
 export type AppEntity = {
   __typename?: 'AppEntity';
@@ -244,7 +252,6 @@ export type ArticleEntity = {
   __typename?: 'ArticleEntity';
   approved?: Maybe<Scalars['Boolean']>;
   author?: Maybe<UserContextEntity>;
-  calculatedRatings?: Maybe<RatingDto>;
   captchaToken?: Maybe<Scalars['String']>;
   category?: Maybe<ArticleCategoryEntity>;
   comments?: Maybe<Array<Maybe<ArticleCommentEntity>>>;
@@ -257,6 +264,7 @@ export type ArticleEntity = {
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
   publicAuthor?: Maybe<ArticlePublicAuthorEntity>;
+  ratingDistribution?: Maybe<AnalyticsDto>;
   ratings?: Maybe<Array<Maybe<ArticleRatingEntity>>>;
   searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   shortDescription?: Maybe<Scalars['String']>;
@@ -343,19 +351,19 @@ export type ArticlePublicAuthorEntityInput = {
 
 export type ArticleRatingEntity = {
   __typename?: 'ArticleRatingEntity';
-  article?: Maybe<ArticleEntity>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  parent?: Maybe<ArticleEntity>;
   score?: Maybe<Scalars['Int']>;
   userContext?: Maybe<UserContextEntity>;
 };
 
 export type ArticleRatingEntityInput = {
-  article?: InputMaybe<ArticleEntityInput>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  parent?: InputMaybe<ArticleEntityInput>;
   score?: InputMaybe<Scalars['Int']>;
   userContext?: InputMaybe<UserContextEntityInput>;
 };
@@ -984,7 +992,6 @@ export type EventEntity = {
   __typename?: 'EventEntity';
   address?: Maybe<AddressEntity>;
   attendeeConfiguration?: Maybe<EventAttendeeConfigurationEntity>;
-  calculatedRatings?: Maybe<RatingDto>;
   category?: Maybe<EventCategoryEntity>;
   comments?: Maybe<Array<Maybe<EventCommentEntity>>>;
   contact?: Maybe<ContactEntity>;
@@ -1000,6 +1007,7 @@ export type EventEntity = {
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
   organisation?: Maybe<OrganisationEntity>;
+  ratingDistribution?: Maybe<AnalyticsDto>;
   ratings?: Maybe<Array<Maybe<EventRatingEntity>>>;
   schedule?: Maybe<EventScheduleEntity>;
   schedules?: Maybe<Array<Maybe<EventScheduleEntity>>>;
@@ -1011,8 +1019,8 @@ export type EventEntity = {
   translatables?: Maybe<Array<Maybe<EventTranslatableEntity>>>;
   uploads?: Maybe<Array<Maybe<EventMediaEntity>>>;
   videoChatLink?: Maybe<Scalars['String']>;
+  visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<EventVisitorEntity>>>;
-  visitorAnalytics?: Maybe<AnalyticsDto>;
 };
 
 
@@ -1023,6 +1031,13 @@ export type EventEntityScheduleArgs = {
 
 
 export type EventEntitySearchStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type EventEntityVisitorStatisticsArgs = {
   endDate?: InputMaybe<Scalars['OffsetDateTime']>;
   interval?: InputMaybe<IntervalFilter>;
   startDate?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -1080,18 +1095,18 @@ export type EventMediaEntityInput = {
 export type EventRatingEntity = {
   __typename?: 'EventRatingEntity';
   created?: Maybe<Scalars['OffsetDateTime']>;
-  event?: Maybe<EventEntity>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
+  parent?: Maybe<EventEntity>;
   score?: Maybe<Scalars['Int']>;
   userContext?: Maybe<UserContextEntity>;
 };
 
 export type EventRatingEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
-  event?: InputMaybe<EventEntityInput>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  parent?: InputMaybe<EventEntityInput>;
   score?: InputMaybe<Scalars['Int']>;
   userContext?: InputMaybe<UserContextEntityInput>;
 };
@@ -3648,7 +3663,6 @@ export type OrganisationEntity = {
   __typename?: 'OrganisationEntity';
   address?: Maybe<AddressEntity>;
   approved?: Maybe<Scalars['Boolean']>;
-  calculatedRatings?: Maybe<RatingDto>;
   comments?: Maybe<Array<Maybe<OrganisationCommentEntity>>>;
   contact?: Maybe<ContactEntity>;
   created?: Maybe<Scalars['OffsetDateTime']>;
@@ -3661,12 +3675,29 @@ export type OrganisationEntity = {
   metaDescription?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
+  ratingDistribution?: Maybe<AnalyticsDto>;
   ratings?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
+  searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   translatables?: Maybe<Array<Maybe<OrganisationTranslatableEntity>>>;
   uploads?: Maybe<Array<Maybe<OrganisationMediaEntity>>>;
+  visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<OrganisationVisitorEntity>>>;
+};
+
+
+export type OrganisationEntitySearchStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type OrganisationEntityVisitorStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type OrganisationEntityInput = {
@@ -3738,7 +3769,7 @@ export type OrganisationRatingEntity = {
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
-  organisation?: Maybe<OrganisationEntity>;
+  parent?: Maybe<OrganisationEntity>;
   score?: Maybe<Scalars['Int']>;
   userContext?: Maybe<UserContextEntity>;
 };
@@ -3747,7 +3778,7 @@ export type OrganisationRatingEntityInput = {
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
-  organisation?: InputMaybe<OrganisationEntityInput>;
+  parent?: InputMaybe<OrganisationEntityInput>;
   score?: InputMaybe<Scalars['Int']>;
   userContext?: InputMaybe<UserContextEntityInput>;
 };
@@ -5249,13 +5280,6 @@ export enum QueryOperator {
   Like = 'LIKE',
   NotEqual = 'NOT_EQUAL'
 }
-
-export type RatingDto = {
-  __typename?: 'RatingDto';
-  average?: Maybe<Scalars['Float']>;
-  distribution?: Maybe<Scalars['Map_Integer_DoubleScalar']>;
-  total?: Maybe<Scalars['Int']>;
-};
 
 export type ReportEntity = {
   __typename?: 'ReportEntity';
