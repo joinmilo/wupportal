@@ -1,13 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { AnalyticsDto, IntervalFilter, Maybe } from 'src/app/core/api/generated/schema';
-import { Period } from 'src/app/core/typings/period';
+import { AnalyticsDto, Maybe } from 'src/app/core/api/generated/schema';
+import { AnalyticsParams } from 'src/app/shared/widgets/analytics/typings/analytics';
 import { EventAdminDetailsSearchActions } from './event-admin-details-search.actions';
 
 export interface EventAdminDetailsSearchState {
   slug?: Maybe<string>;
-  periodParam?: Period,
-  intervalParam?: IntervalFilter,
+  params?: AnalyticsParams,
 
   statistics?: Maybe<AnalyticsDto[]>;
 }
@@ -18,20 +17,12 @@ export const initialState: EventAdminDetailsSearchState = {
 export const eventAdminDetailsSearchReducer = createReducer(
   initialState,
 
-  on(EventAdminDetailsSearchActions.init, (state, action): EventAdminDetailsSearchState => (
-    { ...state,
-      slug: action.slug,
-      periodParam: action.period,
-      intervalParam: action.interval
-    }
+  on(EventAdminDetailsSearchActions.setSlug, (state, action): EventAdminDetailsSearchState => (
+    { ...state, slug: action.slug }
   )),
 
-  on(EventAdminDetailsSearchActions.updatePeriod, (state, action): EventAdminDetailsSearchState => (
-    { ...state, periodParam: action.period }
-  )),
-
-  on(EventAdminDetailsSearchActions.updateInterval, (state, action): EventAdminDetailsSearchState => (
-    { ...state, intervalParam: action.interval }
+  on(EventAdminDetailsSearchActions.updateParams, (state, action): EventAdminDetailsSearchState => (
+    { ...state, params: action.params }
   )),
 
   on(EventAdminDetailsSearchActions.setStatistics, (state, action): EventAdminDetailsSearchState => (

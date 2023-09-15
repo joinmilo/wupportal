@@ -1,0 +1,78 @@
+<section class="filter">
+  <app-date-range-filter
+    [initValue]="period"
+    [queryParam]="false"
+    (valueChanged)="updatePeriod($event)">
+  </app-date-range-filter>
+
+  <app-interval-filter
+    [initValue]="interval"
+    [queryParam]="false"
+    (valueChanged)="updateInterval($event)">
+  </app-interval-filter>
+</section>
+
+<section class="summary">
+  <app-chart-summary *ngIf="clicks"
+    [actions]="[clicksAction]"
+    [color]="clicksColor"
+    [summary]="clicks.sum"
+    titleLabel="totalClicks">
+  </app-chart-summary>
+
+  <app-chart-summary *ngIf="impressions"
+    [actions]="[impressionsAction]"
+    [color]="impressionsColor"
+    [summary]="impressions.sum"
+    titleLabel="totalImpressions">
+  </app-chart-summary>
+
+  <app-chart-summary *ngIf="ctr"
+    [actions]="[ctrAction]"
+    [color]="ctrColor"
+    [summary]="ctr.average"
+    unit="%"
+    titleLabel="averageCtr">
+  </app-chart-summary>
+
+  <app-chart-summary *ngIf="positions"
+    [actions]="[positionsAction]"
+    [color]="positionsColor"
+    [summary]="positions.average"
+    titleLabel="averagePosition">
+  </app-chart-summary>
+</section>
+
+<section class="charts">
+  <app-chart-bar-vertical *ngIf="clicks"
+    [actions]="[clicksAction]"
+    [colors]="[clicksColor]"
+    [data]="clicks.series"
+    [titleLabel]="clicksKey"
+    [yAxisLabel]="clicksKey">
+  </app-chart-bar-vertical>
+
+  <app-chart-bar-vertical *ngIf="impressions"
+    [actions]="[impressionsAction]"
+    [colors]="[impressionsColor]"
+    [data]="impressions.series"
+    [titleLabel]="impressionsKey"
+    [yAxisLabel]="impressionsKey">
+  </app-chart-bar-vertical>
+
+  <app-chart-bar-vertical *ngIf="ctr"
+    [actions]="[ctrAction]"
+    [colors]="[ctrColor]"
+    [data]="ctr.series"
+    [titleLabel]="ctrKey"
+    [yAxisLabel]="ctrKey">
+  </app-chart-bar-vertical>
+
+  <app-chart-bar-vertical *ngIf="positions"
+    [actions]="[positionsAction]"
+    [colors]="[positionsColor]"
+    [data]="positions.series"
+    [titleLabel]="positionsKey"
+    [yAxisLabel]="positionsKey">
+  </app-chart-bar-vertical>
+</section>
