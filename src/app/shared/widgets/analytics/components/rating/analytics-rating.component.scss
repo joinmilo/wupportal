@@ -33,11 +33,15 @@
       width: 100%;
     }
   }
+
+  app-chart-bar-vertical:last-of-type {
+    width: 100%;
+  }
 }
 
 :host ::ng-deep {
   .mdc-text-field {
     background-color: white !important;
   }
-
+  
 }

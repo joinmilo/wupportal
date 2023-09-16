@@ -6,7 +6,6 @@ import { AnalyticsDto, IntervalFilter, Maybe } from 'src/app/core/api/generated/
 import { searchConsoleClicksKey, searchConsoleCtrKey, searchConsoleImpressionsKey, searchConsolePositionsKey } from 'src/app/core/constants/analytics.constant';
 import { CoreModule } from 'src/app/core/core.module';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
-import { Help } from 'src/app/core/typings/help';
 import { Period } from 'src/app/core/typings/period';
 import { DateRangeFilterComponent } from 'src/app/shared/filter/date-range/date-range-filter.component';
 import { IntervalFilterComponent } from 'src/app/shared/filter/interval/interval-filter.component';
@@ -69,29 +68,41 @@ export class AnalyticsSearchComponent implements OnInit {
   public clicksColor = '--color-primary-200';
   public clicksKey = searchConsoleClicksKey;
   public clicksAction = {
-    ...this.helpAction, clicked: () => this.openHelp(this.clicksKey) 
+    ...this.helpAction, clicked: () => this.store.dispatch(CoreActions.setHelp({
+      titleLabel: 'clicksHelpTitle',
+      contentLabel: 'clicksHelpDescription'
+    }))
   };
 
   public impressions?: AnalyticsDto;
   public impressionsColor = '--color-accent-200';
   public impressionsKey = searchConsoleImpressionsKey;
   public impressionsAction = { 
-    ...this.helpAction, clicked: () => this.openHelp(this.impressionsKey)
-  }
+    ...this.helpAction, clicked: () => this.store.dispatch(CoreActions.setHelp({
+      titleLabel: 'impressionsHelpTitle',
+      contentLabel: 'impressionsHelpDescription'
+    }))
+  };
 
   public positions?: AnalyticsDto;
   public positionsColor = '--color-success-200';
   public positionsKey = searchConsolePositionsKey;
   public positionsAction = {
-    ...this.helpAction, clicked: () => this.openHelp(this.positionsKey)
-  }
+    ...this.helpAction, clicked: () => this.store.dispatch(CoreActions.setHelp({
+      titleLabel: 'positionsHelpTitle',
+      contentLabel: 'positionsHelpDescription'
+    }))
+  };
 
   public ctr?: AnalyticsDto;
   public ctrColor = '--color-warn-200';
   public ctrKey = searchConsoleCtrKey;
   public ctrAction = {
-    ...this.helpAction, clicked: () => this.openHelp(this.ctrKey)
-  }
+    ...this.helpAction, clicked: () => this.store.dispatch(CoreActions.setHelp({
+      titleLabel: 'ctrHelpTitle',
+      contentLabel: 'ctrHelpDescription'
+    }))
+  };
   
   constructor(
     private store: Store) { }
@@ -116,38 +127,4 @@ export class AnalyticsSearchComponent implements OnInit {
       period: this.period
     });
   }
-
-  private openHelp(statisicsKey: Maybe<string>): void {
-    switch(statisicsKey) {
-      case searchConsoleClicksKey:
-        this.dispatch({
-          titleLabel: 'clicksHelpTitle',
-          contentLabel: 'clicksHelpDescription'
-        });
-        break;
-      case searchConsoleImpressionsKey:
-        this.dispatch({
-          titleLabel: 'impressionsHelpTitle',
-          contentLabel: 'impressionsHelpDescription'
-        });
-        break;
-      case searchConsolePositionsKey:
-        this.dispatch({
-          titleLabel: 'positionsHelpTitle',
-          contentLabel: 'positionsHelpDescription'
-        });
-        break;
-      case searchConsoleCtrKey:
-        this.dispatch({
-          titleLabel: 'ctrHelpTitle',
-          contentLabel: 'ctrHelpDescription'
-        });
-        break;
-    }
-  }
-
-  private dispatch(help: Help): void {
-    this.store.dispatch(CoreActions.setHelp(help));
-  }
-
 }

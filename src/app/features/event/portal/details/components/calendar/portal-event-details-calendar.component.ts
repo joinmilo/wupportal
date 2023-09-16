@@ -26,10 +26,8 @@ export class PortalEventDetailsCalendarComponent implements OnDestroy {
   ) {
     this.store.select(selectSchedules)
       .pipe(takeUntil(this.destroy))
-      .subscribe(schedules => {
-        console.log(schedules);
+      .subscribe(schedules =>
         this.startDates = schedules?.map(schedule => new Date(schedule.startDate))
-      }
       );
 
     this.store.select(selectEventDetails)

@@ -1,0 +1,16 @@
+query getEventDetailsRating(
+    $entity: EventEntityInput,
+    $startDate: OffsetDateTime,
+    $endDate: OffsetDateTime,
+    $interval: IntervalFilter) {
+  getEvent(entity: $entity) {
+    id
+    ratingStatistics(
+      startDate: $startDate
+      endDate: $endDate
+      interval: $interval
+    ) {
+      ...AnalyticsDto
+    }
+  }
+}

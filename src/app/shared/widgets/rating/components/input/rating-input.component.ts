@@ -4,11 +4,11 @@ import { Subject } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 
 @Component({
-  selector: 'app-rating-form',
-  templateUrl: './rating-form.component.html',
-  styleUrls: ['./rating-form.component.scss'],
+  selector: 'app-rating-input',
+  templateUrl: './rating-input.component.html',
+  styleUrls: ['./rating-input.component.scss'],
 })
-export class RatingFormComponent implements OnInit, OnChanges, OnDestroy {
+export class RatingInputComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   public currentValue?: Maybe<number>;

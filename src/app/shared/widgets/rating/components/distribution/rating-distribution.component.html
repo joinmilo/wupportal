@@ -7,9 +7,9 @@
   
   <mat-progress-bar
     mode="determinate"
-    [value]="value"
+    [value]="displayValue"
     [bufferValue]="0">
   </mat-progress-bar>
 
-  <section>{{ value?.toFixed() }}%</section>
+  <section>{{ displayValue }}%</section>
 </div>

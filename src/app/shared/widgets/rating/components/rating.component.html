@@ -1,20 +1,20 @@
 <div>
   <app-details-title titleLabel="submitReview"></app-details-title>
-  <app-rating-form
+  <app-rating-input
     [currentValue]="currentValue"
     [maxRating]="maxRating | async"
     (valueSelected)="rated($event)">
-  </app-rating-form>
+  </app-rating-input>
 </div>
 
 <div>
   <app-details-title titleLabel="userReviews"></app-details-title>
   <section>
-    <app-rating-form
+    <app-rating-input
       [currentValue]="ratings?.average"
       [maxRating]="maxRating | async"
       [disabled]="true">
-    </app-rating-form>
+    </app-rating-input>
     <div *ngIf="ratings?.average">
       <strong>
         {{ ratings?.average | number:'1.0-1' }} / {{ maxRating | async }}
@@ -24,8 +24,8 @@
 </div>
 
 <div class="label-section">
-  <span class="mat-subtitle-1">{{ratings?.series?.length ?? 0}}</span>
-  <span class="mat-subtitle-1" [appLabel]="(ratings?.series?.length) !== 1 ? 'ratings' : 'rating'"></span>
+  <span class="mat-subtitle-1">{{ratings?.sum ?? 0}}</span>
+  <span class="mat-subtitle-1" [appLabel]="(ratings?.sum) !== 1 ? 'ratings' : 'rating'"></span>
 </div>
 
 <div *ngIf="ratings">

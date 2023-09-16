@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Store } from '@ngrx/store';
-import { Maybe } from 'graphql/jsutils/Maybe';
-import { AnalyticsDto, IntervalFilter } from 'src/app/core/api/generated/schema';
-import { visitorsKey, visitsKey } from 'src/app/core/constants/analytics.constant';
+import { AnalyticsDto, IntervalFilter, Maybe } from 'src/app/core/api/generated/schema';
+import { scoreDistributionKey, timeAmountDistributionKey, timeAverageDistributionKey } from 'src/app/core/constants/analytics.constant';
 import { CoreModule } from 'src/app/core/core.module';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { Period } from 'src/app/core/typings/period';
@@ -14,9 +13,9 @@ import { ChartModule } from '../../../chart/chart.module';
 import { AnalyticsParams } from '../../typings/analytics';
 
 @Component({
-  selector: 'app-analytics-visitors',
-  templateUrl: './analytics-visitors.component.html',
-  styleUrls: ['./analytics-visitors.component.scss'],
+  selector: 'app-analytics-rating',
+  templateUrl: './analytics-rating.component.html',
+  styleUrls: ['./analytics-rating.component.scss'],
   standalone: true,
   imports: [
     ChartModule,
@@ -26,17 +25,20 @@ import { AnalyticsParams } from '../../typings/analytics';
     IntervalFilterComponent,
   ]
 })
-export class AnalyticsVisitorsComponent implements OnInit {
+export class AnalyticsRatingComponent implements OnInit {
 
   @Input({ required: true })
-  public set data(data: Maybe<AnalyticsDto[]>) {
+  public set data (data: Maybe<AnalyticsDto[]>) {
     data?.forEach(statistic => {
-      switch (statistic.name) {
-        case visitsKey:
-          this.visits = statistic;
+      switch(statistic.name) {
+        case scoreDistributionKey:
+          this.scoreDistribution = statistic;
           break;
-        case visitorsKey:
-          this.visitors = statistic;
+        case timeAmountDistributionKey:
+          this.timeAmountDistribution = statistic;
+          break;
+        case timeAverageDistributionKey:
+          this.timeAverageDistribution = statistic;
           break;
       }
     })
@@ -58,34 +60,44 @@ export class AnalyticsVisitorsComponent implements OnInit {
     label: 'help',
     icon: ['far', 'circle-question'] as IconProp,
   };
-
-  public visits?: AnalyticsDto;
-  public visitsColor = '--color-primary-200';
-  public visitsKey = visitsKey;
-  public visitsAction = {
+  
+  public scoreDistribution?: AnalyticsDto;
+  public scoreDistributionColor = '--color-primary-200';
+  public scoreDistributionKey = scoreDistributionKey;
+  public scoreDistributionAction = {
     ...this.helpAction, clicked: () => this.store.dispatch(CoreActions.setHelp({
-      titleLabel: 'visitsHelpTitle',
-      contentLabel: 'visitsHelpDescription'
+      titleLabel: 'scoreDistributionHelpTitle',
+      contentLabel: 'scoreDistributionHelpDescription'
     }))
   };
 
-  public visitors?: AnalyticsDto;
-  public visitorsColor = '--color-accent-200';
-  public visitorsKey = visitorsKey;
-  public visitorsAction = {
+  public timeAmountDistribution?: AnalyticsDto;
+  public timeAmountDistributionColor = '--color-accent-200';
+  public timeAmountDistributionKey = timeAmountDistributionKey;
+  public timeAmountDistributionAction = { 
     ...this.helpAction, clicked: () => this.store.dispatch(CoreActions.setHelp({
-      titleLabel: 'visitorsHelpTitle',
-      contentLabel: 'visitorsHelpDescription'
+      titleLabel: 'timeAmountDistributionHelpTitle',
+      contentLabel: 'timeAmountDistributionHelpDescription'
     }))
-  }
+  };
 
+  public timeAverageDistribution?: AnalyticsDto;
+  public timeAverageDistributionColor = '--color-success-200';
+  public timeAverageDistributionKey = timeAverageDistributionKey;
+  public timeAverageDistributionAction = {
+    ...this.helpAction, clicked: () => this.store.dispatch(CoreActions.setHelp({
+      titleLabel: 'timeAverageDistributionHelpTitle',
+      contentLabel: 'timeAverageDistributionHelpDescription'
+    }))
+  };
+  
   constructor(
     private store: Store) { }
-
+  
   public ngOnInit(): void {
     this.emit();
   }
-
+    
   public updatePeriod(period: Period): void {
     this.period = period;
     this.emit();

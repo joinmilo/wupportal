@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { attendeeRoute, commentsRoute, searchRoute, visitorsRoute } from './constants/event-admin-details.constants';
+import { attendeeRoute, commentsRoute, ratingsRoute, searchRoute, visitorsRoute } from './constants/event-admin-details.constants';
 import { EventAdminDetailsAttendeeComponent } from './modules/attendee/components/event-admin-details-attendee.component';
 import { EventAdminDetailsCommentsComponent } from './modules/comments/components/event-admin-details-comments.component';
 import { EventAdminDetailsLandingComponent } from './modules/landing/components/event-admin-details-landing.component';
+import { EventAdminDetailsRatingComponent } from './modules/rating/component/event-admin-details-rating.component';
 import { EventAdminDetailsSearchComponent } from './modules/search/component/event-admin-details-search.component';
 import { EventAdminDetailsVisitorsComponent } from './modules/visitors/component/event-admin-details-visitors.component';
 
@@ -25,6 +26,12 @@ const routes: Routes = [
     loadChildren: () => import('./modules/search/event-admin-details-search.module')
       .then((imported) => imported.EventAdminDetailsSearchModule),
       component: EventAdminDetailsSearchComponent
+  },
+  {
+    path: ratingsRoute,
+    loadChildren: () => import('./modules/rating/event-admin-details-rating.module')
+      .then((imported) => imported.EventAdminDetailsRatingModule),
+    component: EventAdminDetailsRatingComponent
   },
   {
     path: commentsRoute,

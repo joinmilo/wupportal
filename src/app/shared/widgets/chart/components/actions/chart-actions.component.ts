@@ -8,10 +8,6 @@ import { ChartAction } from '../../typings/chart-actions';
 })
 export class ChartActionsComponent {
 
-  test() {
-    console.log('hallo')
-  }
-
   @Input()
   public actions?: ChartAction[];
 

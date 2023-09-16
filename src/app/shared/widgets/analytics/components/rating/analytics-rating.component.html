@@ -1,0 +1,55 @@
+<section class="filter">
+  <app-date-range-filter
+    [initValue]="period"
+    [queryParam]="false"
+    (valueChanged)="updatePeriod($event)">
+  </app-date-range-filter>
+
+  <app-interval-filter
+    [initValue]="interval"
+    [queryParam]="false"
+    (valueChanged)="updateInterval($event)">
+  </app-interval-filter>
+</section>
+
+<section class="summary">
+  <app-chart-summary
+    [actions]="[scoreDistributionAction]"
+    [color]="scoreDistributionColor"
+    [summary]="scoreDistribution?.average"
+    titleLabel="averageScore">
+  </app-chart-summary>
+
+  <app-chart-summary
+    [actions]="[scoreDistributionAction]"
+    [color]="scoreDistributionColor"
+    [summary]="scoreDistribution?.sum"
+    titleLabel="totalAmount">
+  </app-chart-summary>
+</section>
+
+<section class="charts">
+  <app-chart-bar-vertical *ngIf="scoreDistribution"
+    [actions]="[scoreDistributionAction]"
+    [colors]="[scoreDistributionColor]"
+    [data]="scoreDistribution.series"
+    [titleLabel]="scoreDistributionKey"
+    [yAxisLabel]="scoreDistributionKey">
+  </app-chart-bar-vertical>
+
+  <app-chart-bar-vertical *ngIf="timeAmountDistribution"
+    [actions]="[timeAmountDistributionAction]"
+    [colors]="[timeAmountDistributionColor]"
+    [data]="timeAmountDistribution.series"
+    [titleLabel]="timeAmountDistributionKey"
+    [yAxisLabel]="timeAmountDistributionKey">
+  </app-chart-bar-vertical>
+
+  <app-chart-bar-vertical *ngIf="timeAverageDistribution"
+    [actions]="[timeAverageDistributionAction]"
+    [colors]="[timeAverageDistributionColor]"
+    [data]="timeAverageDistribution.series"
+    [titleLabel]="timeAverageDistributionKey"
+    [yAxisLabel]="timeAverageDistributionKey">
+  </app-chart-bar-vertical>
+</section>

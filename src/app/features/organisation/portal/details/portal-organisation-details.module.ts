@@ -15,7 +15,6 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { CommentModule } from 'src/app/shared/form/comment/comment.module';
 import { RadioButtonFormModule } from 'src/app/shared/form/radio-button/radio-button-form.module';
-import { RatingModule } from 'src/app/shared/form/rating/rating.module';
 import { AddressPieceComponent } from 'src/app/shared/layout/address/address-piece.component';
 import { MailPieceComponent } from 'src/app/shared/layout/mail/mail-piece.component';
 import { PhonePieceComponent } from 'src/app/shared/layout/phone/phone-piece.component';
@@ -26,6 +25,7 @@ import { CalendarModule } from 'src/app/shared/widgets/calendar/calendar.module'
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { FavoriteComponent } from 'src/app/shared/widgets/favorite/favorite.component';
 import { MapModule } from 'src/app/shared/widgets/map/map.module';
+import { RatingModule } from 'src/app/shared/widgets/rating/rating.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
 import { CardSliderComponent } from 'src/app/shared/widgets/sliders/card-slider/card-slider.component';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';

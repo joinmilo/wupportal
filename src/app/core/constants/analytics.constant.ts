@@ -10,11 +10,15 @@ export const chartsDefaultColor: Maybe<string>[] = [
 ];
 
 // Search Console
-
 export const searchConsoleClicksKey = 'clicks';
 export const searchConsoleImpressionsKey = 'impressions';
 export const searchConsolePositionsKey = 'position';
 export const searchConsoleCtrKey = 'ctr';
+
+// Ratings
+export const scoreDistributionKey = 'scoreDistribution';
+export const timeAmountDistributionKey = 'timeAmountDistribution';
+export const timeAverageDistributionKey = 'timeAverageDistribution';
 
 // Visitables
 export const visitorsKey = 'visitors';
