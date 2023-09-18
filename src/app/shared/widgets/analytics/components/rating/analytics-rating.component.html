@@ -22,7 +22,7 @@
 
   <app-chart-summary
     [actions]="[scoreDistributionAction]"
-    [color]="scoreDistributionColor"
+    [color]="timeAmountDistributionColor"
     [summary]="scoreDistribution?.sum"
     titleLabel="totalAmount">
   </app-chart-summary>
@@ -34,7 +34,8 @@
     [colors]="[scoreDistributionColor]"
     [data]="scoreDistribution.series"
     [titleLabel]="scoreDistributionKey"
-    [yAxisLabel]="scoreDistributionKey">
+    [yAxisLabel]="scoreDistributionKey"
+    xAxisLabel="stars">
   </app-chart-bar-vertical>
 
   <app-chart-bar-vertical *ngIf="timeAmountDistribution"

@@ -2,6 +2,7 @@ import { Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
+import { TranslationService } from 'src/app/core/services/translation.service';
 import { selectChartDefaultColors } from 'src/app/core/state/selectors/core.selectors';
 import { ChartAction } from './chart-actions';
 
@@ -35,10 +36,29 @@ export abstract class AxisChart implements OnChanges, OnDestroy {
   public showGridLines = false;
 
   @Input()
-  public xAxisLabel = '';
+  public set xAxisLabel(label: string) {
+    this.translationService.label(label)
+      .subscribe(translation => {
+        if (translation) {
+          this._xAxisLabel = translation;
+        }
+      })
+  }
+
+  public _xAxisLabel = '';
 
   @Input()
-  public yAxisLabel = '';
+  public set yAxisLabel(label: string) {
+    this.translationService.label(label)
+      .subscribe(translation => {
+        if (translation) {
+          this._yAxisLabel = translation;
+        }
+      })
+  }
+
+  @Input()
+  public _yAxisLabel = '';
 
   @Input()
   public titleLabel?: string;
@@ -74,7 +94,8 @@ export abstract class AxisChart implements OnChanges, OnDestroy {
   protected destroy = new Subject<void>();
 
   constructor(
-    protected store: Store) {
+    protected store: Store,
+    protected translationService: TranslationService) {
       this.store.select(selectChartDefaultColors)
         .subscribe(defaultColors => {
           if (defaultColors) {
@@ -86,8 +107,8 @@ export abstract class AxisChart implements OnChanges, OnDestroy {
   }
 
   public ngOnChanges(): void {
-    this.showXAxisLabel = !!this.xAxisLabel;
-    this.showYAxisLabel = !!this.yAxisLabel;
+    this.showXAxisLabel = !!this._xAxisLabel;
+    this.showYAxisLabel = !!this._yAxisLabel;
   }
 
   public ngOnDestroy(): void {

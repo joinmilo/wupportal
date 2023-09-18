@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TranslationService } from 'src/app/core/services/translation.service';
 import { AxisChart } from '../../typings/chart-axis.base';
 
 @Component({
@@ -12,8 +13,10 @@ export class ChartBarVerticalComponent extends AxisChart {
   @Input()
   public barPadding = 16;
 
-  constructor(store: Store) {
-    super(store);
+  constructor(
+    store: Store,
+    translationService: TranslationService) {
+    super(store, translationService);
   }
 
 }

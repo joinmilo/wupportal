@@ -14,7 +14,7 @@ export class TranslationService {
     private store: Store,
   ) { }
 
-  public label(tagId?: Maybe<string>): Observable<Maybe<string> | void> {
+  public label(tagId?: Maybe<string>): Observable<Maybe<string>> {
     return tagId
       ? combineLatest([
         this.store.select(selectLabels),
