@@ -9,7 +9,7 @@ const baseRoute = 'translation';
 const routes: AdminSettingsRoutes[] = [
   {
     path: `${baseRoute}/languages`,
-    loadChildren: () => import('src/app/admin/modules/settings/translation/language/admin-settings-language.module')
+    loadChildren: () => import('./language/admin-settings-language.module')
       .then((imported) => imported.AdminSettingsLanguageModule),
     data: {
       name: 'languages',
@@ -19,8 +19,8 @@ const routes: AdminSettingsRoutes[] = [
   },
   {
     path: `${baseRoute}/labels`,
-    loadComponent: () => import('./label/admin-settings-label.component')
-      .then((imported) => imported.AdminSettingsLabelComponent),
+    loadChildren: () => import('./label/admin-settings-label.module')
+      .then((imported) => imported.AdminSettingsLabelModule),
     data: {
       name: 'translateStaticLabels',
       description: 'translateStaticLabelsDescription',

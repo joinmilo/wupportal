@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps } from '@ngrx/store';
-import { FilterSortPaginateInput, Maybe, MediaEntity, PageableList_InfoMediaEntity } from 'src/app/core/api/generated/schema';
+import { FilterSortPaginateInput, InfoMediaEntity, Maybe, PageableList_InfoMediaEntity } from 'src/app/core/api/generated/schema';
 
 export const MediaAdminOverviewActions = createActionGroup({
   source: 'Media Admin Overview',
@@ -8,7 +8,7 @@ export const MediaAdminOverviewActions = createActionGroup({
 
     'update params': (params: FilterSortPaginateInput) => ({ params }),
 
-    'delete media': (media?: Maybe<MediaEntity>) => ({ media }),
+    'delete media': (media?: Maybe<InfoMediaEntity>) => ({ media }),
     'media deleted': emptyProps(),
   }
 });

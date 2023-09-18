@@ -21,6 +21,8 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   @Input()
   public data?: Observable<PageableList<T> | undefined>;
 
+  //TODO: Remove because only necessary for Favorites
+  // but not all tables have that
   @Input()
   public entity?: ContentEntity;
 

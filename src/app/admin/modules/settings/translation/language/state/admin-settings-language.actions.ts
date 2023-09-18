@@ -2,7 +2,7 @@ import { createActionGroup, emptyProps } from '@ngrx/store';
 import { FilterSortPaginateInput, LanguageEntity, Maybe, PageableList_LanguageEntity } from 'src/app/core/api/generated/schema';
 
 export const AdminSettingsLanguageActions = createActionGroup({
-  source: 'Language Admin Overview',
+  source: 'Admin Overview',
   events: {
 
     'set overview data': (languages: PageableList_LanguageEntity) => ({ languages }),

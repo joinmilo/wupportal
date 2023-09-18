@@ -16,6 +16,8 @@ export type Column<T> = {
   field: string,
   type?: ColumnType | ((row: T) => Observable<Maybe<string> | undefined> | Maybe<string> | undefined),
   sort?: boolean,
+
+  editable?: boolean,
 };
 
 export type PageableList<T> = {
@@ -29,6 +31,7 @@ export type RowCustomAction<T> = {
   callback?: (row: Maybe<T>) => void,
   icon: IconName,
   tooltipLabel?: Maybe<string>,
+  inlineEdit?: boolean
 };
 
 export type RowAction<T> = RowCustomAction<T> | RowDefaultAction;

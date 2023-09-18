@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { InfoMediaCategoryEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { MediaAdminOverviewActions } from '../../state/media-admin-overview.actions';
 import { selectOverviewDataCategories } from '../../state/media-admin-overview.selectors';
@@ -9,13 +10,19 @@ import { selectOverviewDataCategories } from '../../state/media-admin-overview.s
   templateUrl: './media-admin-overview-category.component.html',
   styleUrls: ['./media-admin-overview-category.component.scss']
 })
-export class MediaAdminOverviewCategoryComponent {
+export class MediaAdminOverviewCategoryComponent implements OnDestroy {
 
-  public categories = this.store.select(selectOverviewDataCategories);
+  public categories?: InfoMediaCategoryEntity[];
+
+  private destroy = new Subject<void>();
 
   constructor(
     private store: Store,
-  ) { }
+  ) {
+    this.store.select(selectOverviewDataCategories)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(categories => this.categories = categories);
+  }
 
   public getMedia(category: InfoMediaCategoryEntity): MediaEntity[] | undefined {
     return category.infoMedia
@@ -25,7 +32,14 @@ export class MediaAdminOverviewCategoryComponent {
 
   public delete(medium: Maybe<MediaEntity>): void {
     this.store.dispatch(MediaAdminOverviewActions.deleteMedia(
-      medium
+      this.categories
+        ?.flatMap(category => category.infoMedia)
+        ?.find(infoMedia => infoMedia?.media?.id === medium?.id)
     ))
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 }

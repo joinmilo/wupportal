@@ -28,8 +28,6 @@ export class AdminSettingsLanguageComponent {
         this.store.dispatch(AdminSettingsLanguageActions.deleteLanguage(language)),
       tooltipLabel: 'delete'
     },
-
-    'SHARE',
   ];
 
   public columns: Column<LanguageEntity>[] = [
@@ -40,7 +38,8 @@ export class AdminSettingsLanguageComponent {
     },
     {
       field: 'locale',
-      label: 'locale'
+      label: 'locale',
+      sort: true
     },
     {
       field: 'active',

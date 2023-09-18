@@ -265,6 +265,7 @@ export type ArticleEntity = {
   name?: Maybe<Scalars['String']>;
   publicAuthor?: Maybe<ArticlePublicAuthorEntity>;
   ratingDistribution?: Maybe<AnalyticsDto>;
+  ratingStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   ratings?: Maybe<Array<Maybe<ArticleRatingEntity>>>;
   searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   shortDescription?: Maybe<Scalars['String']>;
@@ -273,11 +274,32 @@ export type ArticleEntity = {
   title?: Maybe<Scalars['String']>;
   translatables?: Maybe<Array<Maybe<ArticleTranslatableEntity>>>;
   uploads?: Maybe<Array<Maybe<ArticleMediaEntity>>>;
+  visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<ArticleVisitorEntity>>>;
 };
 
 
+export type ArticleEntityRatingDistributionArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type ArticleEntityRatingStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
 export type ArticleEntitySearchStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type ArticleEntityVisitorStatisticsArgs = {
   endDate?: InputMaybe<Scalars['OffsetDateTime']>;
   interval?: InputMaybe<IntervalFilter>;
   startDate?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -523,6 +545,7 @@ export type ContestEntity = {
   offer?: Maybe<Scalars['Boolean']>;
   participationEndDate?: Maybe<Scalars['OffsetDateTime']>;
   participations?: Maybe<Array<Maybe<ContestParticipationEntity>>>;
+  searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   shortDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
@@ -530,6 +553,13 @@ export type ContestEntity = {
   type?: Maybe<ContestTypeEntity>;
   uploads?: Maybe<Array<Maybe<ContestMediaEntity>>>;
   voteEndDate?: Maybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type ContestEntitySearchStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type ContestEntityInput = {
@@ -764,12 +794,28 @@ export type DealEntity = {
   name?: Maybe<Scalars['String']>;
   offer?: Maybe<Scalars['Boolean']>;
   price?: Maybe<Scalars['Float']>;
+  searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   shortDescription?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   translatables?: Maybe<Array<Maybe<DealTranslatableEntity>>>;
   uploads?: Maybe<Array<Maybe<DealMediaEntity>>>;
+  visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<DealVisitorEntity>>>;
+};
+
+
+export type DealEntitySearchStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type DealEntityVisitorStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type DealEntityInput = {
@@ -1008,6 +1054,7 @@ export type EventEntity = {
   name?: Maybe<Scalars['String']>;
   organisation?: Maybe<OrganisationEntity>;
   ratingDistribution?: Maybe<AnalyticsDto>;
+  ratingStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   ratings?: Maybe<Array<Maybe<EventRatingEntity>>>;
   schedule?: Maybe<EventScheduleEntity>;
   schedules?: Maybe<Array<Maybe<EventScheduleEntity>>>;
@@ -1021,6 +1068,19 @@ export type EventEntity = {
   videoChatLink?: Maybe<Scalars['String']>;
   visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<EventVisitorEntity>>>;
+};
+
+
+export type EventEntityRatingDistributionArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type EventEntityRatingStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 
@@ -1652,6 +1712,8 @@ export type Mutation = {
   deleteContest?: Maybe<Scalars['Boolean']>;
   deleteContestComment?: Maybe<Scalars['Boolean']>;
   deleteContestComments?: Maybe<Scalars['Boolean']>;
+  deleteContestParticipation?: Maybe<Scalars['Boolean']>;
+  deleteContestParticipations?: Maybe<Scalars['Boolean']>;
   deleteContestType?: Maybe<Scalars['Boolean']>;
   deleteContestTypes?: Maybe<Scalars['Boolean']>;
   deleteContestVote?: Maybe<Scalars['Boolean']>;
@@ -1750,6 +1812,10 @@ export type Mutation = {
   deleteUser?: Maybe<Scalars['Boolean']>;
   deleteUserContext?: Maybe<Scalars['Boolean']>;
   deleteUserContexts?: Maybe<Scalars['Boolean']>;
+  deleteUserDeletion?: Maybe<Scalars['Boolean']>;
+  deleteUserDeletionType?: Maybe<Scalars['Boolean']>;
+  deleteUserDeletionTypes?: Maybe<Scalars['Boolean']>;
+  deleteUserDeletions?: Maybe<Scalars['Boolean']>;
   deleteUsers?: Maybe<Scalars['Boolean']>;
   refreshToken?: Maybe<TokenDto>;
   removeFavoriteArticle?: Maybe<UserContextEntity>;
@@ -1785,6 +1851,8 @@ export type Mutation = {
   saveContest?: Maybe<ContestEntity>;
   saveContestComment?: Maybe<ContestCommentEntity>;
   saveContestComments?: Maybe<Array<Maybe<ContestCommentEntity>>>;
+  saveContestParticipation?: Maybe<ContestParticipationEntity>;
+  saveContestParticipations?: Maybe<Array<Maybe<ContestParticipationEntity>>>;
   saveContestType?: Maybe<ContestTypeEntity>;
   saveContestTypes?: Maybe<Array<Maybe<ContestTypeEntity>>>;
   saveContestVote?: Maybe<ContestVoteEntity>;
@@ -1882,6 +1950,10 @@ export type Mutation = {
   saveUser?: Maybe<UserEntity>;
   saveUserContext?: Maybe<UserContextEntity>;
   saveUserContexts?: Maybe<Array<Maybe<UserContextEntity>>>;
+  saveUserDeletion?: Maybe<UserDeletionEntity>;
+  saveUserDeletionType?: Maybe<UserDeletionTypeEntity>;
+  saveUserDeletionTypes?: Maybe<Array<Maybe<UserDeletionTypeEntity>>>;
+  saveUserDeletions?: Maybe<Array<Maybe<UserDeletionEntity>>>;
   saveUsers?: Maybe<Array<Maybe<UserEntity>>>;
   sendError?: Maybe<Scalars['Boolean']>;
   sendGlobalPush?: Maybe<Scalars['Boolean']>;
@@ -2111,6 +2183,18 @@ export type MutationDeleteContestCommentArgs = {
 
 /** Mutation root */
 export type MutationDeleteContestCommentsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteContestParticipationArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteContestParticipationsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -2364,6 +2448,7 @@ export type MutationDeleteLanguagesArgs = {
 /** Mutation root */
 export type MutationDeleteMeArgs = {
   password?: InputMaybe<Scalars['String']>;
+  userDeletion?: InputMaybe<UserDeletionEntityInput>;
 };
 
 
@@ -2704,6 +2789,30 @@ export type MutationDeleteUserContextsArgs = {
 
 
 /** Mutation root */
+export type MutationDeleteUserDeletionArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteUserDeletionTypeArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteUserDeletionTypesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteUserDeletionsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
 export type MutationDeleteUsersArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -2911,6 +3020,18 @@ export type MutationSaveContestCommentArgs = {
 /** Mutation root */
 export type MutationSaveContestCommentsArgs = {
   entities?: InputMaybe<Array<InputMaybe<ContestCommentEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveContestParticipationArgs = {
+  entity?: InputMaybe<ContestParticipationEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveContestParticipationsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<ContestParticipationEntityInput>>>;
 };
 
 
@@ -3497,6 +3618,30 @@ export type MutationSaveUserContextsArgs = {
 
 
 /** Mutation root */
+export type MutationSaveUserDeletionArgs = {
+  entity?: InputMaybe<UserDeletionEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveUserDeletionTypeArgs = {
+  entity?: InputMaybe<UserDeletionTypeEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveUserDeletionTypesArgs = {
+  entities?: InputMaybe<Array<InputMaybe<UserDeletionTypeEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSaveUserDeletionsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<UserDeletionEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveUsersArgs = {
   entities?: InputMaybe<Array<InputMaybe<UserEntityInput>>>;
 };
@@ -3676,6 +3821,7 @@ export type OrganisationEntity = {
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
   ratingDistribution?: Maybe<AnalyticsDto>;
+  ratingStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   ratings?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
   searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   slug?: Maybe<Scalars['String']>;
@@ -3684,6 +3830,19 @@ export type OrganisationEntity = {
   uploads?: Maybe<Array<Maybe<OrganisationMediaEntity>>>;
   visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<OrganisationVisitorEntity>>>;
+};
+
+
+export type OrganisationEntityRatingDistributionArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type OrganisationEntityRatingStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 
@@ -4016,6 +4175,12 @@ export type PageableList_ContestEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_ContestParticipationEntity = {
+  __typename?: 'PageableList_ContestParticipationEntity';
+  result?: Maybe<Array<Maybe<ContestParticipationEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_ContestTypeEntity = {
   __typename?: 'PageableList_ContestTypeEntity';
   result?: Maybe<Array<Maybe<ContestTypeEntity>>>;
@@ -4298,6 +4463,18 @@ export type PageableList_UserContextEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_UserDeletionEntity = {
+  __typename?: 'PageableList_UserDeletionEntity';
+  result?: Maybe<Array<Maybe<UserDeletionEntity>>>;
+  total: Scalars['Long'];
+};
+
+export type PageableList_UserDeletionTypeEntity = {
+  __typename?: 'PageableList_UserDeletionTypeEntity';
+  result?: Maybe<Array<Maybe<UserDeletionTypeEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_UserEntity = {
   __typename?: 'PageableList_UserEntity';
   result?: Maybe<Array<Maybe<UserEntity>>>;
@@ -4390,9 +4567,11 @@ export type Query = {
   getConfigurations?: Maybe<PageableList_ConfigurationEntity>;
   getContact?: Maybe<ContactEntity>;
   getContacts?: Maybe<PageableList_ContactEntity>;
+  getContesParticipationt?: Maybe<ContestParticipationEntity>;
   getContest?: Maybe<ContestEntity>;
   getContestComment?: Maybe<ContestCommentEntity>;
   getContestComments?: Maybe<PageableList_ContestCommentEntity>;
+  getContestParticipations?: Maybe<PageableList_ContestParticipationEntity>;
   getContestType?: Maybe<ContestTypeEntity>;
   getContestTypes?: Maybe<PageableList_ContestTypeEntity>;
   getContestVote?: Maybe<ContestVoteEntity>;
@@ -4491,6 +4670,10 @@ export type Query = {
   getUser?: Maybe<UserEntity>;
   getUserContext?: Maybe<UserContextEntity>;
   getUserContexts?: Maybe<PageableList_UserContextEntity>;
+  getUserDeletion?: Maybe<UserDeletionEntity>;
+  getUserDeletionType?: Maybe<UserDeletionTypeEntity>;
+  getUserDeletionTypes?: Maybe<PageableList_UserDeletionTypeEntity>;
+  getUserDeletions?: Maybe<PageableList_UserDeletionEntity>;
   getUsers?: Maybe<PageableList_UserEntity>;
   me?: Maybe<UserContextEntity>;
   search?: Maybe<Array<Maybe<SearchDto>>>;
@@ -4642,6 +4825,12 @@ export type QueryGetContactsArgs = {
 
 
 /** Query root */
+export type QueryGetContesParticipationtArgs = {
+  entity?: InputMaybe<ContestParticipationEntityInput>;
+};
+
+
+/** Query root */
 export type QueryGetContestArgs = {
   entity?: InputMaybe<ContestEntityInput>;
 };
@@ -4655,6 +4844,12 @@ export type QueryGetContestCommentArgs = {
 
 /** Query root */
 export type QueryGetContestCommentsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetContestParticipationsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
@@ -5245,6 +5440,30 @@ export type QueryGetUserContextsArgs = {
 
 
 /** Query root */
+export type QueryGetUserDeletionArgs = {
+  entity?: InputMaybe<UserDeletionEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetUserDeletionTypeArgs = {
+  entity?: InputMaybe<UserDeletionTypeEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetUserDeletionTypesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetUserDeletionsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
 export type QueryGetUsersArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
@@ -5621,13 +5840,29 @@ export type SurveyEntity = {
   metaDescription?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
+  searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   slug?: Maybe<Scalars['String']>;
   sponsored?: Maybe<Scalars['Boolean']>;
   startDate?: Maybe<Scalars['OffsetDateTime']>;
   state?: Maybe<SurveyStateEntity>;
   translatables?: Maybe<Array<Maybe<SurveyTranslatableEntity>>>;
   uploads?: Maybe<Array<Maybe<SurveyMediaEntity>>>;
+  visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<SurveyVisitorEntity>>>;
+};
+
+
+export type SurveyEntitySearchStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+
+export type SurveyEntityVisitorStatisticsArgs = {
+  endDate?: InputMaybe<Scalars['OffsetDateTime']>;
+  interval?: InputMaybe<IntervalFilter>;
+  startDate?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
 export type SurveyEntityInput = {
@@ -6009,6 +6244,74 @@ export type UserContextTranslatableEntityInput = {
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
+export type UserDeletionEntity = {
+  __typename?: 'UserDeletionEntity';
+  content?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  translatables?: Maybe<Array<Maybe<UserDeletionTranslatableEntity>>>;
+  types?: Maybe<Array<Maybe<UserDeletionTypeEntity>>>;
+};
+
+export type UserDeletionEntityInput = {
+  content?: InputMaybe<Scalars['String']>;
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  translatables?: InputMaybe<Array<InputMaybe<UserDeletionTranslatableEntityInput>>>;
+  types?: InputMaybe<Array<InputMaybe<UserDeletionTypeEntityInput>>>;
+};
+
+export type UserDeletionTranslatableEntity = {
+  __typename?: 'UserDeletionTranslatableEntity';
+  content?: Maybe<Scalars['String']>;
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+};
+
+export type UserDeletionTranslatableEntityInput = {
+  content?: InputMaybe<Scalars['String']>;
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+export type UserDeletionTypeEntity = {
+  __typename?: 'UserDeletionTypeEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+  translatables?: Maybe<Array<Maybe<UserDeletionTypeTranslatableEntity>>>;
+};
+
+export type UserDeletionTypeEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  translatables?: InputMaybe<Array<InputMaybe<UserDeletionTypeTranslatableEntityInput>>>;
+};
+
+export type UserDeletionTypeTranslatableEntity = {
+  __typename?: 'UserDeletionTypeTranslatableEntity';
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+export type UserDeletionTypeTranslatableEntityInput = {
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export type UserEntity = {
   __typename?: 'UserEntity';
   captchaToken?: Maybe<Scalars['String']>;
@@ -6016,6 +6319,7 @@ export type UserEntity = {
   email?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
+  language?: Maybe<LanguageEntity>;
   lastLogin?: Maybe<Scalars['OffsetDateTime']>;
   lastName?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
@@ -6038,6 +6342,7 @@ export type UserEntityInput = {
   email?: InputMaybe<Scalars['String']>;
   firstName?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<LanguageEntityInput>;
   lastLogin?: InputMaybe<Scalars['OffsetDateTime']>;
   lastName?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;

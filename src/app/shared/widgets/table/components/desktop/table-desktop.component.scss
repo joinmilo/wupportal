@@ -1,4 +1,4 @@
-div {
+:host {
   display: flex;
   flex-flow: column;
   gap: var(--gap);
@@ -8,6 +8,12 @@ div {
   }
 
   mat-card {
-    padding: 1rem;
+    overflow: hidden;
+  }
+}
+
+:host ::ng-deep {
+  .mat-mdc-table > thead {
+    background-color: var(--color-light) !important;
   }
 }

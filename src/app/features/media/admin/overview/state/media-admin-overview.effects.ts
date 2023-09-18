@@ -7,8 +7,8 @@ import { PageableList_InfoMediaEntity } from 'src/app/core/api/generated/schema'
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ConfirmDeleteComponent } from 'src/app/shared/dialogs/confirm-delete/confirm-delete.component';
-import { DeleteMediumGQL } from '../../../api/generated/delete-medium.mutation.generated';
-import { GetInfoMediaGQL } from '../../../api/generated/get-info-media.query.generated';
+import { GetInfoMediaCardsGQL } from 'src/app/shared/widgets/card/api/generated/get-info-media-cards.query.generated';
+import { DeleteInfoMediaGQL } from '../../../api/generated/delete-medium.mutation.generated';
 import { MediaAdminOverviewActions } from './media-admin-overview.actions';
 import { selectParams } from './media-admin-overview.selectors';
 
@@ -29,7 +29,7 @@ export class MediaAdminOverviewEffects {
 
   deleteMedia = createEffect(() => this.actions.pipe(
     ofType(MediaAdminOverviewActions.deleteMedia),
-    switchMap(action => this.dialog.open(ConfirmDeleteComponent, { data: action.media?.name })
+    switchMap(action => this.dialog.open(ConfirmDeleteComponent, { data: action.media?.media?.name })
       .afterClosed().pipe(
         switchMap(confirmed => confirmed
           ? of(action.media)
@@ -53,8 +53,8 @@ export class MediaAdminOverviewEffects {
 
   constructor(
     private actions: Actions,
-    private getInfoMediaService: GetInfoMediaGQL,
-    private deleteInfoMediaService: DeleteMediumGQL,
+    private getInfoMediaService: GetInfoMediaCardsGQL,
+    private deleteInfoMediaService: DeleteInfoMediaGQL,
     private dialog: MatDialog,
     private store: Store
   ) {}

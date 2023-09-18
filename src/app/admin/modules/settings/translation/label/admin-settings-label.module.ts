@@ -6,14 +6,14 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
-import { AdminSettingsLanguageRoutingModule } from './admin-settings-language-routing.module';
-import { AdminSettingsLanguageComponent } from './component/admin-settings-language.component';
-import { adminSettingsLanguageStateKey } from './constants/admin-settings-language.constants';
-import { AdminSettingsLanguageEffects } from './state/admin-settings-language.effects';
-import { adminSettingsLanguageReducer } from './state/admin-settings-language.reducer';
+import { AdminSettingsLabelRoutingModule } from './admin-settings-label-routing.module';
+import { AdminSettingsLabelComponent } from './component/admin-settings-label.component';
+import { adminSettingsLabelStateKey } from './constants/admin-settings-label.constants';
+import { AdminSettingsLabelEffects } from './state/admin-settings-label.effects';
+import { adminSettingsLabelReducer } from './state/admin-settings-label.reducer';
 
 const components = [
-  AdminSettingsLanguageComponent
+  AdminSettingsLabelComponent
 ]
 
 const framework = [
@@ -26,14 +26,14 @@ const materials = [
 
 const modules = [
   CoreModule,
-  AdminSettingsLanguageRoutingModule,
+  AdminSettingsLabelRoutingModule,
   TableModule,
   TitleModule,
 ];
 
 const libs = [
-  StoreModule.forFeature(adminSettingsLanguageStateKey, adminSettingsLanguageReducer),
-  EffectsModule.forFeature([AdminSettingsLanguageEffects]),
+  StoreModule.forFeature(adminSettingsLabelStateKey, adminSettingsLabelReducer),
+  EffectsModule.forFeature([AdminSettingsLabelEffects]),
 ];
 
 @NgModule({
@@ -46,4 +46,4 @@ const libs = [
   ],
   exports: [...components],
 })
-export class AdminSettingsLanguageModule { }
+export class AdminSettingsLabelModule { }
