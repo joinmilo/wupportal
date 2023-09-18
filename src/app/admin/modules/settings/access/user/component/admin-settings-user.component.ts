@@ -56,6 +56,7 @@ export class AdminSettingsUserComponent {
     {
       field: 'verified',
       label: 'verified',
+      type: 'BOOLEAN'
     },
   ];
 
