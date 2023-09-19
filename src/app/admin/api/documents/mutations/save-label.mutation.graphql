@@ -1,0 +1,5 @@
+mutation saveLabel($entity: LabelEntityInput) {
+  saveLabel(entity: $entity) {
+    id
+  }
+}

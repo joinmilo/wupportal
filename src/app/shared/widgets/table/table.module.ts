@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
@@ -44,6 +44,7 @@ const directives = [
 
 const framework = [
   CommonModule,
+  FormsModule,
   ReactiveFormsModule,
   RouterModule,
 ];
@@ -53,7 +54,7 @@ const materials = [
   MatCardModule,
   MatFormFieldModule,
   MatDividerModule,
-  MatMenuModule,
+  MatInputModule,
   MatPaginatorModule,
   MatSelectModule,
   MatSortModule,

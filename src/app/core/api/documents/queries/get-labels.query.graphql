@@ -2,6 +2,7 @@ query getLabels($params: FilterSortPaginateInput) {
   getLabels(params: $params) {
     result {
       id
+      content
       tagId
 
       translatables {
@@ -11,7 +12,7 @@ query getLabels($params: FilterSortPaginateInput) {
           ...Language
         }
       }
-
     }
+    total
   }
 }

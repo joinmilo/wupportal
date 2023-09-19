@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput, LabelEntity } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
@@ -19,8 +18,7 @@ export class AdminSettingsLabelComponent {
   public actions: RowAction<LabelEntity>[] = [
     {
       icon: 'pen-to-square',
-      callback: row =>
-        this.router.navigate([row?.id, 'edit'], { relativeTo: this.activatedRoute }),
+      callback: row => this.store.dispatch(AdminSettingsLabelActions.saveLabel(row)),
       tooltipLabel: 'edit',
       inlineEdit: true
     },
@@ -42,8 +40,6 @@ export class AdminSettingsLabelComponent {
 
   constructor(
     private store: Store,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private translationService: TranslationService,
   ) { }
 

@@ -22,12 +22,6 @@ export class AdminSettingsLanguageComponent {
         this.router.navigate([row?.id, 'edit'], { relativeTo: this.activatedRoute }),
       tooltipLabel: 'edit'
     },
-    {
-      icon: 'trash',
-      callback: language =>
-        this.store.dispatch(AdminSettingsLanguageActions.deleteLanguage(language)),
-      tooltipLabel: 'delete'
-    },
   ];
 
   public columns: Column<LanguageEntity>[] = [
@@ -44,7 +38,8 @@ export class AdminSettingsLanguageComponent {
     {
       field: 'active',
       label: 'active',
-      sort: true
+      sort: true,
+      type: 'BOOLEAN'
     },
 
   ];
@@ -55,7 +50,7 @@ export class AdminSettingsLanguageComponent {
     private router: Router,
   ) { }
 
-  public updateParams(params: FilterSortPaginateInput) {
+  public updateParams(params: FilterSortPaginateInput): void {
     this.store.dispatch(AdminSettingsLanguageActions.updateParams(params));
   }
 }

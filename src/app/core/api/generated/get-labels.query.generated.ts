@@ -10,13 +10,14 @@ export type GetLabelsQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetLabelsQuery = { __typename?: 'Query', getLabels?: { __typename?: 'PageableList_LabelEntity', result?: Array<{ __typename?: 'LabelEntity', id?: string | null, tagId?: string | null, translatables?: Array<{ __typename?: 'LabelTranslatablesEntity', id?: string | null, content?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
+export type GetLabelsQuery = { __typename?: 'Query', getLabels?: { __typename?: 'PageableList_LabelEntity', total: any, result?: Array<{ __typename?: 'LabelEntity', id?: string | null, content?: string | null, tagId?: string | null, translatables?: Array<{ __typename?: 'LabelTranslatablesEntity', id?: string | null, content?: string | null, language?: { __typename?: 'LanguageEntity', id?: string | null, locale?: string | null, name?: string | null } | null } | null> | null } | null> | null } | null };
 
 export const GetLabelsDocument = gql`
     query getLabels($params: FilterSortPaginateInput) {
   getLabels(params: $params) {
     result {
       id
+      content
       tagId
       translatables {
         id
@@ -26,6 +27,7 @@ export const GetLabelsDocument = gql`
         }
       }
     }
+    total
   }
 }
     ${LanguageFragmentDoc}`;

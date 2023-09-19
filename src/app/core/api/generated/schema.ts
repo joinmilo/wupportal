@@ -1429,6 +1429,7 @@ export enum IntervalFilter {
 
 export type LabelEntity = {
   __typename?: 'LabelEntity';
+  content?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
@@ -1437,6 +1438,7 @@ export type LabelEntity = {
 };
 
 export type LabelEntityInput = {
+  content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
