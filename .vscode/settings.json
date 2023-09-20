@@ -1,5 +1,6 @@
 {
   "prettier.jsxSingleQuote": true,
+  "prettier.bracketSameLine": true,
   "prettier.singleQuote": true,
   "prettier.htmlWhitespaceSensitivity": "ignore",
   "prettier.bracketSameLine": true,

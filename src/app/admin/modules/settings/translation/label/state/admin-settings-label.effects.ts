@@ -12,7 +12,9 @@ import { AdminSettingsLabelActions } from './admin-settings-label.actions';
 export class AdminSettingsLabelEffects {
 
   updateParams = createEffect(() => this.actions.pipe(
-    ofType(AdminSettingsLabelActions.updateParams),
+    ofType(
+      AdminSettingsLabelActions.updateParams,
+    ),
     switchMap(action => this.getLabelsService.watch({
       params: action.params,
     }).valueChanges),
