@@ -1,0 +1,5 @@
+mutation saveConfiguration($entity: ConfigurationEntityInput) {
+  saveConfiguration(entity: $entity) {
+    id
+  }
+}

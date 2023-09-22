@@ -12,6 +12,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
@@ -24,22 +26,30 @@ import { TablePaginatorComponent } from './components/paginator/table-paginator.
 import { TableRowBooleanComponent } from './components/rows/table-row-boolean.component';
 import { TableRowColorComponent } from './components/rows/table-row-color.component';
 import { TableRowIconComponent } from './components/rows/table-row-icon.component';
+import { TableRowMediaComponent } from './components/rows/table-row-media.component';
 import { TableSortComponent } from './components/sort/table-sort.component';
 import { TableComponent } from './components/table.component';
+import { tableStateKey } from './constants/table.constants';
 import { RowDirective } from './directives/table-row.directive';
 import { TablePaginatorService } from './services/table-paginator.service';
+import { TableEffects } from './state/table.effects';
+import { tableReducer } from './state/table.reducer';
+
+const exportComponents = [
+  TableComponent,
+  TableCardComponent,
+  TablePaginatorComponent,
+  TableSortComponent,
+];
 
 const components = [
-  TableComponent,
   TableActionsComponent,
-  TableCardComponent,
   TableDesktopComponent,
   TableRowBooleanComponent,
   TableRowColorComponent,
   TableRowIconComponent,
+  TableRowMediaComponent,
   TableMobileComponent,
-  TablePaginatorComponent,
-  TableSortComponent,
 ];
 
 const directives = [
@@ -74,6 +84,8 @@ const modules = [
 
 const libs = [
   FontAwesomeModule,
+  StoreModule.forFeature(tableStateKey, tableReducer),
+  EffectsModule.forFeature([TableEffects]),
 ];
 
 const providers = [
@@ -86,6 +98,7 @@ const providers = [
 @NgModule({
   declarations: [
     ...components,
+    ...exportComponents,
     ...directives,
   ],
   imports: [
@@ -95,7 +108,7 @@ const providers = [
     ...libs,
   ],
   exports: [
-    ...components,
+    ...exportComponents,
     ...directives,
   ],
   providers: [

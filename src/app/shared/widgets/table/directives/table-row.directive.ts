@@ -1,13 +1,14 @@
 import { Directive, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
-import { AddressEntity, Maybe } from 'src/app/core/api/generated/schema';
+import { AddressEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { Category } from 'src/app/core/typings/category';
 import { AddressPieceComponent } from 'src/app/shared/layout/address/address-piece.component';
 import { CategoryPieceComponent } from 'src/app/shared/layout/category/category-piece.component';
 import { TableRowBooleanComponent } from '../components/rows/table-row-boolean.component';
 import { TableRowColorComponent } from '../components/rows/table-row-color.component';
 import { TableRowIconComponent } from '../components/rows/table-row-icon.component';
+import { TableRowMediaComponent } from '../components/rows/table-row-media.component';
 import { Column } from '../typings/table';
 
 @Directive({
@@ -32,7 +33,7 @@ export class RowDirective<T> implements OnInit, OnDestroy {
       : this.transform();
   }
 
-  private function(result: Observable<Maybe<string> | undefined> | Maybe<string> | undefined): void {
+  private function(result: Observable<Maybe<string>> | Maybe<string>): void {
     isObservable(result)
       ? result.pipe(takeUntil(this.destroy))
           .subscribe(value => this.display = value)
@@ -40,7 +41,9 @@ export class RowDirective<T> implements OnInit, OnDestroy {
   }
 
   private transform(): void {
-    const value = this.column?.field?.split('.').reduce((obj, field) => (obj as never)?.[field], this.appRow);
+    const value = this.column?.field
+      ?.split('.').reduce((obj, field) => (obj as never)?.[field], this.appRow);
+
     if (value !== undefined && value !== null) {
       switch(this.column?.type) {
         //TODO: Use phone piece and add type
@@ -64,6 +67,9 @@ export class RowDirective<T> implements OnInit, OnDestroy {
           break;
         case 'ICON':
           this.icon(value as IconProp);
+          break;
+        case 'MEDIA':
+          this.media(value as MediaEntity);
           break;
         case 'TIME':
           this.display = this.time(value as string);
@@ -115,6 +121,12 @@ export class RowDirective<T> implements OnInit, OnDestroy {
     this.viewContainer
       .createComponent(TableRowIconComponent)
       .instance.icon = icon;
+  }
+
+  private media(media: MediaEntity): void {
+    this.viewContainer
+      .createComponent(TableRowMediaComponent)
+      .instance.media = media;
   }
 
   private time(value: string): string {

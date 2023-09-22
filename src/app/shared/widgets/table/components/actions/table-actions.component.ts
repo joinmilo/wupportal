@@ -1,8 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { contentPortalDetailsUrl } from 'src/app/core/constants/url.constants';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
+import { TableActions } from '../../state/table.actions';
+import { selectActions, selectEntity, selectInlineEditAction, selectInlineEditActive, selectInlineEditRow } from '../../state/table.selectors';
 import { RowAction, RowCustomAction } from '../../typings/table';
 
 @Component({
@@ -10,29 +14,44 @@ import { RowAction, RowCustomAction } from '../../typings/table';
   templateUrl: './table-actions.component.html',
   styleUrls: ['./table-actions.component.scss']
 })
-export class TableActionsComponent<T> {
-
-  @Input()
-  public actions?: RowAction<T>[];
+export class TableActionsComponent<T> implements OnDestroy {
 
   @Input({ required: true })
-  public data?: Maybe<T>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public row?: Maybe<any>;
 
-  @Input({ required: true })
-  public entity?: Maybe<ContentEntity>;
+  public actions = this.store.select(selectActions);
 
-  public maxInline = 4;
+  public entity?: ContentEntity;
+
+  public inlineEditAction?: RowCustomAction<T>;
+  public inlineEditActive = this.store.select(selectInlineEditActive);
+  public inlineEditRow = this.store.select(selectInlineEditRow)
+
+  private destroy = new Subject<void>();
+
+  constructor(
+    private store: Store,
+  ) {
+    this.store.select(selectEntity)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(entity => this.entity = entity);
+
+    this.store.select(selectInlineEditAction)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(action => this.inlineEditAction = action);
+  }
 
   public dataAsContent(): ContentData {
-    return this.data as ContentData;
+    return this.row as ContentData;
   }
 
   public createUrl(): string | undefined {
-    return contentPortalDetailsUrl(this.entity, this.data as ContentData);
+    return contentPortalDetailsUrl(this.entity, this.row as ContentData);
   }
 
   public callback(action: RowAction<T>): void {
-    (action as RowCustomAction<T>).callback?.(this.data)
+    (action as RowCustomAction<T>).callback?.(this.row)
   }
 
   public icon(action: RowAction<T>): IconName {
@@ -40,11 +59,28 @@ export class TableActionsComponent<T> {
   }
 
   public isDisabled(action: RowAction<T>): boolean {
-    return !!(action as RowCustomAction<T>)?.disable?.(this.data);
+    return !!(action as RowCustomAction<T>)?.disable?.(this.row);
   }
 
   public tooltip(action: RowAction<T>): Maybe<string> {
     return (action as RowCustomAction<T>).tooltipLabel;
+  }
+
+  public enableInlineEdit(): void {
+    this.store.dispatch(TableActions.rowEditingEnabled(this.row));
+  }
+
+  public save(): void {
+    this.store.dispatch(TableActions.rowEdited());
+  }
+
+  public cancel(): void {
+    this.store.dispatch(TableActions.rowEditingCancelled());
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
 }

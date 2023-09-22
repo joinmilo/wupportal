@@ -21,7 +21,6 @@ export class ArticleAdminDetailsVisitorsComponent implements OnInit {
     private store: Store) { }
 
   public ngOnInit(): void {
-    console.log("df");
     this.activatedRoute.parent?.params.pipe(
       map(params => params[slug]),
       take(1)

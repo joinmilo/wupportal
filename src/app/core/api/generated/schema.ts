@@ -1687,6 +1687,7 @@ export type Mutation = {
   addFavoriteOrganisation?: Maybe<UserContextEntity>;
   addUploads?: Maybe<UserEntity>;
   changeActivation?: Maybe<Scalars['Boolean']>;
+  changeArticleApproval?: Maybe<Scalars['Boolean']>;
   changePassword?: Maybe<Scalars['Boolean']>;
   checkPassword?: Maybe<Scalars['Float']>;
   createToken?: Maybe<TokenDto>;
@@ -2013,6 +2014,12 @@ export type MutationAddUploadsArgs = {
 export type MutationChangeActivationArgs = {
   active?: InputMaybe<Scalars['Boolean']>;
   featureId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationChangeArticleApprovalArgs = {
+  articleId?: InputMaybe<Scalars['String']>;
 };
 
 

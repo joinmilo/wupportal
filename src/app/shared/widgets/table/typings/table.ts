@@ -10,6 +10,7 @@ export type ColumnType = 'ADDRESS'
   | 'DATE'
   | 'DATETIME'
   | 'ICON'
+  | 'MEDIA'
   | 'TIME'
   | 'LIST';
 

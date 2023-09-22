@@ -1,5 +1,5 @@
-query getConfigurations {
-  getConfigurations {
+query getConfigurations($params: FilterSortPaginateInput) {
+  getConfigurations(params: $params) {
     result {
       id
       code
@@ -8,5 +8,6 @@ query getConfigurations {
         ...Media
       }
     }
+    total
   }
 }

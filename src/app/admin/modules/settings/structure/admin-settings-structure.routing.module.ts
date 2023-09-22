@@ -39,8 +39,8 @@ const routes: AdminSettingsRoutes[] = [
   },
   {
     path: `${baseRoute}/configuration`,
-    loadComponent: () => import('./configuration/admin-settings-configuration.component')
-      .then((imported) => imported.AdminSettingsConfigurationComponent),
+    loadChildren: () => import('./configuration/admin-settings-configuration.module')
+      .then((imported) => imported.AdminSettingsConfigurationModule),
     data: {
       name: 'configuration',
       description: 'configurationDescription',

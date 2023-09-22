@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { FilterSortPaginateInput, Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';
+import { FilterSortPaginateInput, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
 import { AuthorAdminOverviewActions } from '../state/author-admin-overview.actions';
 import { selectOverviewData } from '../state/author-admin-overview.selectors';
@@ -47,15 +46,10 @@ export class AuthorAdminOverviewComponent {
 
   constructor(
     private store: Store,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
   ) { }
 
   public updateParams(params: FilterSortPaginateInput) {
     this.store.dispatch(AuthorAdminOverviewActions.updateParams(params));
   }
 
-  public rowClicked(author: Maybe<UserContextEntity>): void {
-    this.router.navigate([author?.slug], { relativeTo: this.activatedRoute });
-  }
 }

@@ -1,25 +1,48 @@
-<ng-container *ngFor="let action of actions">
-  <ng-container [ngSwitch]="action">
-    
-    <app-favorite *ngSwitchCase="'LIKE'"
-      [entity]="entity"
-      [data]="dataAsContent()">
-    </app-favorite>
+<ng-container *ngIf="(inlineEditActive | async) 
+    && row?.id === (inlineEditRow | async)?.id; else actionsTemplate">
+  <button mat-button
+    class="save"
+    appTooltip="save"
+    (click)="save()">
+    <fa-icon [icon]="['fas', 'check']"></fa-icon>
+  </button>
 
-    <app-share-button *ngSwitchCase="'SHARE'"
-      [url]="createUrl()">
-    </app-share-button>
-
-    <ng-container *ngSwitchDefault>
-      <div [class.disabled]="isDisabled(action)">
-        <button mat-button
-          [disabled]="isDisabled(action)"
-          (click)="callback(action)"
-          [appTooltip]="tooltip(action)">
-          <fa-icon [icon]="['fas', icon(action)]"></fa-icon>
-        </button>
-      </div>
-    </ng-container>
-    
-  </ng-container>
+  <button mat-button
+    appTooltip="cancel"
+    (click)="cancel()">
+    <fa-icon [icon]="['fas', 'xmark']"></fa-icon>
+  </button>
 </ng-container>
+
+<ng-template #actionsTemplate>
+  <button *ngIf="inlineEditAction"
+    mat-button
+    [appTooltip]="inlineEditAction.tooltipLabel"
+    (click)="enableInlineEdit()">
+    <fa-icon [icon]="['fas', inlineEditAction.icon]"></fa-icon>
+  </button>
+
+  <ng-container *ngFor="let action of (actions | async)">
+    <ng-container [ngSwitch]="action">
+      <app-favorite *ngSwitchCase="'LIKE'"
+        [entity]="entity"
+        [data]="dataAsContent()">
+      </app-favorite>
+  
+      <app-share-button *ngSwitchCase="'SHARE'"
+        [url]="createUrl()">
+      </app-share-button>
+  
+      <ng-container *ngSwitchDefault>
+        <div [class.disabled]="isDisabled(action)">
+          <button mat-button
+            [disabled]="isDisabled(action)"
+            (click)="callback(action)"
+            [appTooltip]="tooltip(action)">
+            <fa-icon [icon]="['fas', icon(action)]"></fa-icon>
+          </button>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

@@ -37,6 +37,7 @@ const libs = [
   StoreDevtoolsModule.instrument({
     logOnly: environment.production,
     autoPause: true,
+    maxAge: 25
   }),
   StoreModule.forRoot({}, {
     runtimeChecks: {

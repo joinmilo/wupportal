@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentEntity } from 'src/app/core/typings/content-entity';
+import { TableActions } from '../state/table.actions';
+import { selectParams } from '../state/table.selectors';
 import { Column, PageableList, RowAction, SortPaginate } from '../typings/table';
 
 @Component({
@@ -13,27 +15,40 @@ import { Column, PageableList, RowAction, SortPaginate } from '../typings/table'
 export class TableComponent<T> implements OnInit, OnDestroy {
 
   @Input()
-  public actions?: RowAction<T>[];
+  public set actions(actions: RowAction<T>[]) {
+    this.store.dispatch(TableActions.setActions(actions));
+  }
 
   @Input()
-  public columns?: Column<T>[];
+  public set columns(columns: Column<T>[]) {
+    this.store.dispatch(TableActions.setColumns(columns));
+  }
 
   @Input()
-  public data?: Observable<PageableList<T> | undefined>;
+  public set data (data: Observable<Maybe<PageableList<T>>> | Maybe<PageableList<T>>) {
+    isObservable(data)
+      ? data
+        .pipe(takeUntil(this.destroy))
+        .subscribe(data => this.store.dispatch(TableActions.setData(data)))
+      : this.store.dispatch(TableActions.setData(data));
+  }
 
-  //TODO: Remove because only necessary for Favorites
+  //TODO: Remove because only necessary for Favorites / Share actions
   // but not all tables have that
   @Input()
-  public entity?: ContentEntity;
+  public set entity(entity: ContentEntity) {
+    this.store.dispatch(TableActions.setEntity(entity));
+  }
 
   @Input()
-  public initParams: SortPaginate = {
-    page: 0,
-    size: 10
-  };
+  public set initParams(initParams: SortPaginate) {
+    this.store.dispatch(TableActions.setParams(initParams));
+  }
 
   @Input()
-  public queryParams = true;
+  public set queryParams(queryParams: boolean) {
+    this.store.dispatch(TableActions.setQueryParams(queryParams));
+  }
 
   @Output()
   public sortPaginate = new EventEmitter<SortPaginate>();
@@ -41,38 +56,25 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   @Output()
   public rowClicked = new EventEmitter<Maybe<T>>();
 
+  private destroy = new Subject<void>();
+
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-  ) {}
+    private store: Store,
+  ) { }
 
   public ngOnInit(): void {
-    this.queryParams && this.activatedRoute.queryParams
-      .pipe(take(1))
-      .subscribe((params: SortPaginate) => this.sortPaginate.emit(this.initParams = {
-        dir: params.dir,
-        page: params.page ?? this.initParams.page,
-        size: params.size ?? this.initParams.size,
-        sort: params.sort
-      }));
-  }
+    this.store.dispatch(TableActions.init());
 
-  public emitSortPaginate(sortPage: SortPaginate): void {
-    if (this.queryParams) {
-      this.router.navigate([], {
-        queryParams: sortPage,
-        queryParamsHandling: 'merge',
-      });
-    }
-    this.sortPaginate.emit(sortPage);
+    this.store.select(selectParams)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(params => this.sortPaginate.emit(params));
+
+    this.store.dispatch(TableActions.setClickable(this.rowClicked.observed));
   }
 
   public ngOnDestroy(): void {
-    this.emitSortPaginate({
-      dir: null,
-      page: null,
-      size: null,
-      sort: null,
-    });
+    this.store.dispatch(TableActions.reset());
+    this.destroy.next();
+    this.destroy.complete();
   }
 } 
