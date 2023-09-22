@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { TableRowComponent } from '../../typings/table';
 
 @Component({
-  selector: 'app-table-boolean-row',
+  selector: 'app-table-row-boolean',
   template: `
     <fa-icon [icon]="input 
       ? ['fas', 'check'] 
@@ -9,9 +11,16 @@ import { Component, Input } from '@angular/core';
     </fa-icon>
   `,
 })
-export class TableRowBooleanComponent {
-
+export class TableRowBooleanComponent implements TableRowComponent<boolean> {
+  
   @Input()
   public input?: boolean;
+
+  @Output()
+  public valueChanged = new EventEmitter<boolean>();
+
+  constructor(
+    private store: Store,
+  ) { }
 
 }

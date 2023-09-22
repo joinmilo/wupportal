@@ -7,6 +7,7 @@
         *matHeaderCellDef
         mat-sort-header
         [disabled]="!column.sort">
+
         <strong [appLabel]="column.label"></strong>
       </th>
 
@@ -14,10 +15,7 @@
         [class.clickable]="clickable | async"
         (click)="rowClicked(row)">
         
-        <div
-          [appRow]="row"
-          [column]="column">
-        </div>
+        <div [appRow]="row" [column]="column"></div>
       </td>
     </ng-container>
 

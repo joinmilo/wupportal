@@ -1,15 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { Store } from '@ngrx/store';
+import { TableRowComponent } from '../../typings/table';
 
 @Component({
-  selector: 'app-table-boolean-row',
+  selector: 'app-table-row-icon',
   template: `
-    <fa-icon *ngIf="icon"
-      [icon]="icon">
+    <fa-icon *ngIf="input"
+      [icon]="input">
     </fa-icon> `,
 })
-export class TableRowIconComponent {
-
+export class TableRowIconComponent implements TableRowComponent<IconProp> {
+  
   @Input()
-  public icon?: IconProp;
+  public input?: IconProp;
+
+  @Output()
+  public valueChanged = new EventEmitter<IconProp>();
+
+  constructor(
+    private store: Store,
+  ) { }
+
 }

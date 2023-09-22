@@ -17,14 +17,19 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { CardModule } from 'src/app/shared/widgets/card/card.module';
 import { ShareModule } from 'src/app/shared/widgets/share/share.module';
+import { AddressPieceComponent } from '../../layout/address/address-piece.component';
+import { CategoryPieceComponent } from '../../layout/category/category-piece.component';
 import { FavoriteComponent } from '../favorite/favorite.component';
 import { TableActionsComponent } from './components/actions/table-actions.component';
 import { TableCardComponent } from './components/card/table-card.component';
 import { TableDesktopComponent } from './components/desktop/table-desktop.component';
 import { TableMobileComponent } from './components/mobile/table-mobile.component';
 import { TablePaginatorComponent } from './components/paginator/table-paginator.component';
+import { TableRowAddressComponent } from './components/rows/table-row-address.component';
 import { TableRowBooleanComponent } from './components/rows/table-row-boolean.component';
+import { TableRowCategoryComponent } from './components/rows/table-row-category.component';
 import { TableRowColorComponent } from './components/rows/table-row-color.component';
+import { TableRowDefaultComponent } from './components/rows/table-row-default.component';
 import { TableRowIconComponent } from './components/rows/table-row-icon.component';
 import { TableRowMediaComponent } from './components/rows/table-row-media.component';
 import { TableSortComponent } from './components/sort/table-sort.component';
@@ -45,12 +50,18 @@ const exportComponents = [
 const components = [
   TableActionsComponent,
   TableDesktopComponent,
-  TableRowBooleanComponent,
-  TableRowColorComponent,
-  TableRowIconComponent,
-  TableRowMediaComponent,
   TableMobileComponent,
 ];
+
+const rowComponents = [
+  TableRowAddressComponent,
+  TableRowBooleanComponent,
+  TableRowCategoryComponent,
+  TableRowColorComponent,
+  TableRowDefaultComponent,
+  TableRowIconComponent,
+  TableRowMediaComponent,
+]
 
 const directives = [
   RowDirective,
@@ -76,7 +87,9 @@ const materials = [
 ];
 
 const modules = [
+  AddressPieceComponent,
   CardModule,
+  CategoryPieceComponent,
   CoreModule,
   FavoriteComponent,
   ShareModule,
@@ -97,8 +110,9 @@ const providers = [
 
 @NgModule({
   declarations: [
-    ...components,
     ...exportComponents,
+    ...components,
+    ...rowComponents,
     ...directives,
   ],
   imports: [

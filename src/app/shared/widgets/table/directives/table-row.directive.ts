@@ -1,15 +1,16 @@
-import { Directive, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Directive, Input, OnDestroy, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
-import { AddressEntity, Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
-import { Category } from 'src/app/core/typings/category';
-import { AddressPieceComponent } from 'src/app/shared/layout/address/address-piece.component';
-import { CategoryPieceComponent } from 'src/app/shared/layout/category/category-piece.component';
+import { Maybe } from 'src/app/core/api/generated/schema';
+import { fieldValue } from 'src/app/core/utils/reflection.utils';
+import { TableRowAddressComponent } from '../components/rows/table-row-address.component';
 import { TableRowBooleanComponent } from '../components/rows/table-row-boolean.component';
+import { TableRowCategoryComponent } from '../components/rows/table-row-category.component';
 import { TableRowColorComponent } from '../components/rows/table-row-color.component';
+import { TableRowDefaultComponent } from '../components/rows/table-row-default.component';
 import { TableRowIconComponent } from '../components/rows/table-row-icon.component';
 import { TableRowMediaComponent } from '../components/rows/table-row-media.component';
-import { Column } from '../typings/table';
+import { Column, TableRowComponent } from '../typings/table';
 
 @Directive({
   selector: '[appRow]'
@@ -41,72 +42,58 @@ export class RowDirective<T> implements OnInit, OnDestroy {
   }
 
   private transform(): void {
-    const value = this.column?.field
-      ?.split('.').reduce((obj, field) => (obj as never)?.[field], this.appRow);
+    const value = fieldValue(this.appRow, this.column?.field);
 
     if (value !== undefined && value !== null) {
       switch(this.column?.type) {
         //TODO: Use phone piece and add type
         case 'ADDRESS':
-          this.address(value as AddressEntity);
+          this.createComponent( TableRowAddressComponent, value);
           break;
         case 'CATEGORY':
-          this.category(value as Category);
+          this.createComponent(TableRowCategoryComponent, value);
           break;
         case 'COLOR':
-          this.color(value as string);
+          this.createComponent(TableRowColorComponent, value);
           break;
         case 'BOOLEAN':
-          this.boolean(value as boolean);
+          this.createComponent(TableRowBooleanComponent, value);
           break;
         case 'DATE':
-          this.display = this.date(value as string);
+          this.createComponent(TableRowDefaultComponent, new Date(value).toLocaleDateString());
           break;
         case 'DATETIME':
-          this.display = this.dateTime(value as string);
+          this.createComponent(TableRowDefaultComponent, this.dateTime(value));
           break;
         case 'ICON':
-          this.icon(value as IconProp);
-          break;
-        case 'MEDIA':
-          this.media(value as MediaEntity);
-          break;
-        case 'TIME':
-          this.display = this.time(value as string);
+          this.createComponent(TableRowIconComponent, value);
           break;
         case 'LIST':
-          this.display = this.count(value as string);
+          this.createComponent(TableRowDefaultComponent, value.length.toString());
+          break;
+        case 'MEDIA':
+          this.createComponent(TableRowMediaComponent, value);
+          break;
+        case 'TIME':
+          this.createComponent(TableRowDefaultComponent, this.time(value));
           break;
         default:
-          this.display = value as string;
+          this.createComponent(TableRowDefaultComponent, value);
       }
     } else {
       this.display = ' - ';
     }
   }
-  
-  private address(address: AddressEntity): void {
-    this.viewContainer
-      .createComponent(AddressPieceComponent)
-      .instance.address = address;
-  }
 
-  private boolean(value: boolean): void {
-    this.viewContainer
-      .createComponent(TableRowBooleanComponent)
-      .instance.input = value;
-  }
-
-  private category(category: Category): void {
-    this.viewContainer
-      .createComponent(CategoryPieceComponent)
-      .instance.category = category;
-  }
-
-  private color(color: string): void {
-    this.viewContainer
-      .createComponent(TableRowColorComponent)
-      .instance.input = color;
+  private createComponent<T>(component: Type<TableRowComponent<T>>, input: T) {
+    const instance = this.viewContainer
+      .createComponent<TableRowComponent<T>>(component)
+      .instance;
+    
+    instance.input = input;
+    instance.valueChanged
+      .pipe(takeUntil(this.destroy))
+      .subscribe(newValue => console.log(newValue))
   }
 
   private dateTime(value: string): string {
@@ -117,24 +104,8 @@ export class RowDirective<T> implements OnInit, OnDestroy {
     return new Date(value).toLocaleDateString();
   }
 
-  private icon(icon: IconProp): void {
-    this.viewContainer
-      .createComponent(TableRowIconComponent)
-      .instance.icon = icon;
-  }
-
-  private media(media: MediaEntity): void {
-    this.viewContainer
-      .createComponent(TableRowMediaComponent)
-      .instance.media = media;
-  }
-
   private time(value: string): string {
     return new Date(value).toLocaleTimeString();
-  }
-
-  private count(value: string): string {
-    return value.length.toString();
   }
 
   private set display(value: Maybe<string> | undefined) {
