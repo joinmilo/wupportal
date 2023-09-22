@@ -7,7 +7,10 @@ import { TableActions } from './table.actions';
 
 export interface TableState<T> {
   actions?: RowAction<T>[],
+
   clickable?: boolean,
+  clickedRow?: T,
+
   columns?: Column<T>[],
   data?: Maybe<PageableList<T>>,
   entity?: ContentEntity,
@@ -30,6 +33,10 @@ export const initialState: TableState<any> = {
 
 export const tableReducer = createReducer(
   initialState,
+
+  on(TableActions.rowClicked, (state, action): TableState<any> => (
+    { ...state, clickedRow: action.row }
+  )),
 
   on(TableActions.setActions, (state, action): TableState<any> => {
     let inlineEditAction: Maybe<RowCustomAction<any>> = undefined;

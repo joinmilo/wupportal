@@ -15,6 +15,11 @@ export const selectClickable = createSelector(
   state => state.clickable
 );
 
+export const selectClickedRow = createSelector(
+  selectTableState,
+  state => state.clickedRow
+);
+
 export const selectColumns = createSelector(
   selectTableState,
   state => state.columns

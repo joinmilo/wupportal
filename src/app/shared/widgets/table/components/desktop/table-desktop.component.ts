@@ -2,7 +2,7 @@
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatSort, SortDirection } from '@angular/material/sort';
 import { Store } from '@ngrx/store';
-import { Subject, merge, takeUntil, tap } from 'rxjs';
+import { Subject, merge, take, takeUntil, tap } from 'rxjs';
 import { TableActions } from '../../state/table.actions';
 import { selectActions, selectClickable, selectColumns, selectData, selectDisplayColumns, selectParams } from '../../state/table.selectors';
 import { TablePaginatorComponent } from '../paginator/table-paginator.component';
@@ -40,7 +40,7 @@ export class TableDesktopComponent<T> implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): void {
     this.store.select(selectParams)
-      .pipe(takeUntil(this.destroy))
+      .pipe(take(1))
       .subscribe(initParams => {
         this.sort.sort({
           id: initParams?.sort ?? '',
@@ -53,7 +53,7 @@ export class TableDesktopComponent<T> implements AfterViewInit, OnDestroy {
     
     merge(this.sort.sortChange, this.paginator.page).pipe(
       tap(() => this.store.dispatch(
-        TableActions.paramsUpdated({
+        TableActions.setParams({
           dir: this.sort.direction,
           sort: this.sort.active,
           page: this.paginator.pageIndex,

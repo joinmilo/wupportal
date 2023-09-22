@@ -20,7 +20,6 @@ export const TableActions = createActionGroup({
     'set params': (params: SortPaginate) => ({ params }),
     'set query params': (queryParams: boolean) => ({ queryParams }),
 
-    'params updated': (params: SortPaginate) => ({ params }),
     'row clicked': (row: any) => ({ row }),
 
     'row editing enabled': (row: any) => ({ row }),

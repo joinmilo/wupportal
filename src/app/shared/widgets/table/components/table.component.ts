@@ -4,7 +4,7 @@ import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentEntity } from 'src/app/core/typings/content-entity';
 import { TableActions } from '../state/table.actions';
-import { selectParams } from '../state/table.selectors';
+import { selectClickedRow, selectParams } from '../state/table.selectors';
 import { Column, PageableList, RowAction, SortPaginate } from '../typings/table';
 
 @Component({
@@ -68,6 +68,10 @@ export class TableComponent<T> implements OnInit, OnDestroy {
     this.store.select(selectParams)
       .pipe(takeUntil(this.destroy))
       .subscribe(params => this.sortPaginate.emit(params));
+
+    this.store.select(selectClickedRow)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(row => row && this.rowClicked.emit(row));
 
     this.store.dispatch(TableActions.setClickable(this.rowClicked.observed));
   }
