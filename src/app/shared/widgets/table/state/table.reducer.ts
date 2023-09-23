@@ -2,6 +2,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { ContentEntity } from 'src/app/core/typings/content-entity';
+import { setFieldValue } from 'src/app/core/utils/reflection.utils';
 import { Column, PageableList, RowAction, RowCustomAction, SortPaginate } from '../typings/table';
 import { TableActions } from './table.actions';
 
@@ -34,6 +35,12 @@ export const initialState: TableState<any> = {
 export const tableReducer = createReducer(
   initialState,
 
+  on(TableActions.editRow, (state, action): TableState<any> => (
+    { ...state, inlineEditRow:
+      setFieldValue(state.inlineEditRow, action.field, action.value)
+    }
+  )),
+
   on(TableActions.rowClicked, (state, action): TableState<any> => (
     { ...state, clickedRow: action.row }
   )),
@@ -56,7 +63,7 @@ export const tableReducer = createReducer(
     }
 
     return inlineEditAction
-      ? { ...newState, inlineEditAction }
+      ? { ...newState, inlineEditAction: inlineEditAction }
       : newState;
   }),
 
@@ -80,14 +87,14 @@ export const tableReducer = createReducer(
     { ...state, queryParams: action.queryParams }
   )),
 
-  on(TableActions.rowEditingEnabled, (state, action): TableState<any> => (
+  on(TableActions.rowEditEnabled, (state, action): TableState<any> => (
     { ...state,
       inlineEditActive: true,
       inlineEditRow: action.row
     }
   )),
 
-  on(TableActions.rowEditingCancelled, (state): TableState<any> => (
+  on(TableActions.rowEditCancelled, (state): TableState<any> => (
     { ...state, inlineEditActive: false }
   )),
 
@@ -108,5 +115,5 @@ export const tableReducer = createReducer(
     )
   ),
 
-  on(TableActions.reset, (): TableState<any> => initialState),
+  on(TableActions.resetTable, (): TableState<any> => initialState),
 );

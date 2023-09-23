@@ -22,10 +22,11 @@ export const TableActions = createActionGroup({
 
     'row clicked': (row: any) => ({ row }),
 
-    'row editing enabled': (row: any) => ({ row }),
-    'row editing cancelled': emptyProps(),
+    'row edit enabled': (row: any) => ({ row }),
+    'row edit cancelled': emptyProps(),
+    'edit row': (field: string, value: any) => ({ field, value }),
     'row edited': emptyProps(),
 
-    'reset': emptyProps(),
+    'resetTable': emptyProps(),
   }
 });

@@ -66,8 +66,8 @@ export class TableActionsComponent<T> implements OnDestroy {
     return (action as RowCustomAction<T>).tooltipLabel;
   }
 
-  public enableInlineEdit(): void {
-    this.store.dispatch(TableActions.rowEditingEnabled(this.row));
+  public enable(): void {
+    this.store.dispatch(TableActions.rowEditEnabled(this.row));
   }
 
   public save(): void {
@@ -75,7 +75,7 @@ export class TableActionsComponent<T> implements OnDestroy {
   }
 
   public cancel(): void {
-    this.store.dispatch(TableActions.rowEditingCancelled());
+    this.store.dispatch(TableActions.rowEditCancelled());
   }
 
   public ngOnDestroy(): void {

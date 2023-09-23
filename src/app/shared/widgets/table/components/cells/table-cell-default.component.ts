@@ -6,18 +6,19 @@ import { TableCellComponent } from '../../typings/cell';
 @Component({
   selector: 'app-table-cell-default',
   template: `
-    <!-- FORM AREA -->
-    <mat-form-field *ngIf="(inlineEditModeActive | async)
-      && column?.editable
-      && row.id === (inlineEditRow | async)?.id; else cellTemplate"
+    <!-- EDIT AREA -->
+    <mat-form-field *ngIf="
+      (inlineEditModeActive | async)
+        && column?.editable
+        && row.id === (inlineEditRow | async)?.id; else displayTemplate"
       appearance="outline"
       [hideRequiredMarker]="true">
-      <mat-label [appLabel]="row.label"></mat-label>
+      <mat-label [appLabel]="column?.label"></mat-label>
       <input matInput [formControl]="control">
     </mat-form-field>
 
-    <!-- CELL AREA -->
-    <ng-template #cellTemplate>
+    <!-- DISPLAY AREA -->
+    <ng-template #displayTemplate>
       <span> {{ input }}</span>
     </ng-template>
   `,

@@ -18,7 +18,7 @@
   <button *ngIf="inlineEditAction"
     mat-button
     [appTooltip]="inlineEditAction.tooltipLabel"
-    (click)="enableInlineEdit()">
+    (click)="enable()">
     <fa-icon [icon]="['fas', inlineEditAction.icon]"></fa-icon>
   </button>
 

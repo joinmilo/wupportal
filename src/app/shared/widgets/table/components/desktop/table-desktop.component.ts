@@ -68,51 +68,6 @@ export class TableDesktopComponent<T> implements AfterViewInit, OnDestroy {
     this.store.dispatch(TableActions.rowClicked(row));
   }
 
-  // private initForm(columns: Column<T>[] | undefined): void {
-  //   columns?.forEach(column => {
-  //     if (column.editable) {
-  //       this.form.addControl(
-  //         column.field,
-  //         new FormControl('', Validators.required)
-  //       );
-  //     }
-  //   });
-  // }
-
-  // public save(row: any): void {    
-  //   for (const control in this.form.controls) {
-  //     row = { ...row,
-  //       [control]: this.form.get(control)?.value };
-  //   }
-
-  //   this.inlineEditAction?.callback?.(row);
-  //   this.disableInlineEdit();
-  // }
-
-  // public disableInlineEdit(): void {
-  //   this.inlineEditMode = false;
-  //   this.editRow = undefined;
-  //   this.columns?.forEach(column => {
-  //     if (column.editable) {
-  //       this.form.patchValue({
-  //         [column.field]: ''
-  //       });
-  //     }
-  //   })
-  // }
-
-  // public enableInlineEdit(row: any): void {
-  //   this.inlineEditMode = true;
-  //   this.editRow = row;
-  //   this.columns?.forEach(column => {
-  //     if (column.editable) {
-  //       this.form.patchValue({
-  //         [column.field]: row[column.field]
-  //       });
-  //     }
-  //   })
-  // }
-
   public ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete(); 
