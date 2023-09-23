@@ -24,6 +24,9 @@ export class MediaSliderComponent {
 
   @Input()
   public linkLabel?: string = 'allMedia';
+
+  @Input()
+  public showDelete = false;
   
   @Input()
   public titleLabel?: string = 'media';

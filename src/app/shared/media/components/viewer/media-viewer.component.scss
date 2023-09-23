@@ -22,19 +22,20 @@ fa-icon {
   flex: 2 1 auto; 
   gap: var(--gap);
 
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
+    width: 100%;
+    height: 80vh;
+    position: relative;
+  }
+
   > button {
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
-  }
-
-  img {
-    max-height: 80vh;
-  }
-
-  .video-wrapper {
-    width: 100%;
-    height: 80vh;
-    position: relative;
   }
 }
