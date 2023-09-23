@@ -7,11 +7,7 @@ import { TableCellComponent } from '../../typings/cell';
   selector: 'app-table-cell-default',
   template: `
     <!-- EDIT AREA -->
-    <mat-form-field *ngIf="
-      (inlineEditModeActive | async)
-        && column?.editable
-        && row.id === (inlineEditRow | async)?.id
-        && control; else displayTemplate"
+    <mat-form-field *ngIf="editMode; else displayTemplate"
       appearance="outline"
       [hideRequiredMarker]="true">
       <mat-label [appLabel]="column?.label"></mat-label>
@@ -20,7 +16,7 @@ import { TableCellComponent } from '../../typings/cell';
 
     <!-- DISPLAY AREA -->
     <ng-template #displayTemplate>
-      <span> {{ input }}</span>
+      <span> {{ input ?? ' - ' }}</span>
     </ng-template>
   `,
 })

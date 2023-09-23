@@ -21,18 +21,34 @@ export abstract class TableCellComponent<T> implements OnInit, OnChanges, OnDest
   @Input()
   public transformation?: (input?: any) => T;
 
-  public control?: FormControl;
+  public control!: FormControl;
+
+  public get editMode(): boolean {
+    return !!(this.inlineEditModeActive
+      && this.column?.editable
+      && this.row?.id === this.inlineEditRow?.id
+      && this.control);
+  }
 
   public input?: T;
 
-  public inlineEditModeActive = this.store.select(selectInlineEditActive);
-  public inlineEditRow = this.store.select(selectInlineEditRow);
+  public inlineEditModeActive?: boolean;
+  public inlineEditRow?: any;
 
-  private destroy = new Subject<void>();
+  protected destroy = new Subject<void>();
 
   constructor(
     protected store: Store,
   ) {
+    this.store.select(selectInlineEditActive)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(inlineEditModeActive =>
+        this.inlineEditModeActive = inlineEditModeActive);
+    
+    this.store.select(selectInlineEditRow)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(inlineEditRow =>
+        this.inlineEditRow = inlineEditRow);
   }
 
   public ngOnInit(): void {
@@ -43,7 +59,7 @@ export abstract class TableCellComponent<T> implements OnInit, OnChanges, OnDest
     this.createInput();
   }
 
-  private createInput(): void {
+  protected createInput(): void {
     if (this.row && this.column) {
       this.column?.value
         ? this.function(this.column?.value(this.row))
@@ -51,14 +67,14 @@ export abstract class TableCellComponent<T> implements OnInit, OnChanges, OnDest
     }
   }
 
-  private function(result: Observable<Maybe<string>> | Maybe<string>): void {
+  protected function(result: Observable<Maybe<string>> | Maybe<string>): void {
     isObservable(result)
       ? result.pipe(takeUntil(this.destroy))
           .subscribe(value => this.inputValue(value))
       : this.inputValue(result);
   }
 
-  private inputValue(value: any) {
+  protected inputValue(value: any) {
     this.input = this.transformation
       ? this.transformation(value)
       : value;

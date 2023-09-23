@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,6 +17,7 @@ import { MediaAttributionComponent } from './components/attribution/media-attrib
 import { MediaAvatarComponent } from './components/avatar/media-avatar.component';
 import { MediaCardComponent } from './components/card/media-card.component';
 import { MediaExternalConsentComponent } from './components/consent/media-external-consent.component';
+import { MediaFormDialogComponent } from './components/form-dialog/media-form-dialog.component';
 import { MediaFormComponent } from './components/form/media-form.component';
 import { MediaGalleryComponent } from './components/gallery/media-gallery.component';
 import { MediaSliderComponent } from './components/slider/media-slider.component';
@@ -31,6 +33,7 @@ const components = [
   MediaAttributionComponent,
   MediaCardComponent,
   MediaFormComponent,
+  MediaFormDialogComponent,
   MediaGalleryComponent,
   MediaSliderComponent,
   MediaExternalConsentComponent,
@@ -52,9 +55,10 @@ const framework = [
 ];
 
 const materials = [
+  MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
-  MatButtonModule,
+  MatDialogModule,
   MatDividerModule,
 ];
 

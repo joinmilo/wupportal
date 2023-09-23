@@ -40,6 +40,7 @@ export class AdminSettingsConfigurationComponent {
     {
       field: 'media',
       label: 'file',
+      editable: true,
       type: 'MEDIA',
     },
   ];
