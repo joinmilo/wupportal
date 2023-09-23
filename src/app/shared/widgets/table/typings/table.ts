@@ -1,4 +1,3 @@
-import { EventEmitter } from '@angular/core';
 import { SortDirection } from '@angular/material/sort';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Observable } from 'rxjs';
@@ -44,11 +43,6 @@ export type RowAction<T> = RowCustomAction<T> | RowDefaultAction;
 export type Sort = {
   dir?: Maybe<SortDirection>,
   sort?: Maybe<string>,
-}
-
-export interface TableRowComponent<T> {
-  valueChanged: EventEmitter<T>
-  input?: Maybe<T>,
 }
 
 export type Paginate = {

@@ -22,20 +22,20 @@ import { CategoryPieceComponent } from '../../layout/category/category-piece.com
 import { FavoriteComponent } from '../favorite/favorite.component';
 import { TableActionsComponent } from './components/actions/table-actions.component';
 import { TableCardComponent } from './components/card/table-card.component';
+import { TableCellAddressComponent } from './components/cells/table-cell-address.component';
+import { TableCellBooleanComponent } from './components/cells/table-cell-boolean.component';
+import { TableCellCategoryComponent } from './components/cells/table-cell-category.component';
+import { TableCellColorComponent } from './components/cells/table-cell-color.component';
+import { TableCellDefaultComponent } from './components/cells/table-cell-default.component';
+import { TableCellIconComponent } from './components/cells/table-cell-icon.component';
+import { TableCellMediaComponent } from './components/cells/table-cell-media.component';
 import { TableDesktopComponent } from './components/desktop/table-desktop.component';
 import { TableMobileComponent } from './components/mobile/table-mobile.component';
 import { TablePaginatorComponent } from './components/paginator/table-paginator.component';
-import { TableRowAddressComponent } from './components/rows/table-row-address.component';
-import { TableRowBooleanComponent } from './components/rows/table-row-boolean.component';
-import { TableRowCategoryComponent } from './components/rows/table-row-category.component';
-import { TableRowColorComponent } from './components/rows/table-row-color.component';
-import { TableRowDefaultComponent } from './components/rows/table-row-default.component';
-import { TableRowIconComponent } from './components/rows/table-row-icon.component';
-import { TableRowMediaComponent } from './components/rows/table-row-media.component';
 import { TableSortComponent } from './components/sort/table-sort.component';
 import { TableComponent } from './components/table.component';
 import { tableStateKey } from './constants/table.constants';
-import { RowDirective } from './directives/table-row.directive';
+import { CellDirective } from './directives/table-cell.directive';
 import { TablePaginatorService } from './services/table-paginator.service';
 import { TableEffects } from './state/table.effects';
 import { tableReducer } from './state/table.reducer';
@@ -53,18 +53,18 @@ const components = [
   TableMobileComponent,
 ];
 
-const rowComponents = [
-  TableRowAddressComponent,
-  TableRowBooleanComponent,
-  TableRowCategoryComponent,
-  TableRowColorComponent,
-  TableRowDefaultComponent,
-  TableRowIconComponent,
-  TableRowMediaComponent,
+const cellComponents = [
+  TableCellAddressComponent,
+  TableCellBooleanComponent,
+  TableCellCategoryComponent,
+  TableCellColorComponent,
+  TableCellDefaultComponent,
+  TableCellIconComponent,
+  TableCellMediaComponent,
 ]
 
 const directives = [
-  RowDirective,
+  CellDirective,
 ];
 
 const framework = [
@@ -112,7 +112,7 @@ const providers = [
   declarations: [
     ...exportComponents,
     ...components,
-    ...rowComponents,
+    ...cellComponents,
     ...directives,
   ],
   imports: [

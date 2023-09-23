@@ -3,19 +3,20 @@ import { Directive, Input, OnDestroy, OnInit, Type, ViewContainerRef } from '@an
 import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { fieldValue } from 'src/app/core/utils/reflection.utils';
-import { TableRowAddressComponent } from '../components/rows/table-row-address.component';
-import { TableRowBooleanComponent } from '../components/rows/table-row-boolean.component';
-import { TableRowCategoryComponent } from '../components/rows/table-row-category.component';
-import { TableRowColorComponent } from '../components/rows/table-row-color.component';
-import { TableRowDefaultComponent } from '../components/rows/table-row-default.component';
-import { TableRowIconComponent } from '../components/rows/table-row-icon.component';
-import { TableRowMediaComponent } from '../components/rows/table-row-media.component';
-import { Column, TableRowComponent } from '../typings/table';
+import { TableCellAddressComponent } from '../components/cells/table-cell-address.component';
+import { TableCellBooleanComponent } from '../components/cells/table-cell-boolean.component';
+import { TableCellCategoryComponent } from '../components/cells/table-cell-category.component';
+import { TableCellColorComponent } from '../components/cells/table-cell-color.component';
+import { TableCellDefaultComponent } from '../components/cells/table-cell-default.component';
+import { TableCellIconComponent } from '../components/cells/table-cell-icon.component';
+import { TableCellMediaComponent } from '../components/cells/table-cell-media.component';
+import { TableCellComponent } from '../typings/cell';
+import { Column } from '../typings/table';
 
 @Directive({
   selector: '[appRow]'
 })
-export class RowDirective<T> implements OnInit, OnDestroy {
+export class CellDirective<T> implements OnInit, OnDestroy {
 
   @Input()
   public appRow?: Maybe<T>;
@@ -48,52 +49,53 @@ export class RowDirective<T> implements OnInit, OnDestroy {
       switch(this.column?.type) {
         //TODO: Use phone piece and add type
         case 'ADDRESS':
-          this.createComponent( TableRowAddressComponent, value);
+          this.createComponent(TableCellAddressComponent);
           break;
         case 'CATEGORY':
-          this.createComponent(TableRowCategoryComponent, value);
+          this.createComponent(TableCellCategoryComponent);
           break;
         case 'COLOR':
-          this.createComponent(TableRowColorComponent, value);
+          this.createComponent(TableCellColorComponent);
           break;
         case 'BOOLEAN':
-          this.createComponent(TableRowBooleanComponent, value);
+          this.createComponent(TableCellBooleanComponent);
           break;
         case 'DATE':
-          this.createComponent(TableRowDefaultComponent, new Date(value).toLocaleDateString());
+          this.createComponent(TableCellDefaultComponent, (value) => new Date(value).toLocaleDateString());
           break;
         case 'DATETIME':
-          this.createComponent(TableRowDefaultComponent, this.dateTime(value));
+          this.createComponent(TableCellDefaultComponent, (value) => this.dateTime(value));
           break;
         case 'ICON':
-          this.createComponent(TableRowIconComponent, value);
+          this.createComponent(TableCellIconComponent);
           break;
         case 'LIST':
-          this.createComponent(TableRowDefaultComponent, value.length.toString());
+          this.createComponent(TableCellDefaultComponent, (value) => value.length.toString());
           break;
         case 'MEDIA':
-          this.createComponent(TableRowMediaComponent, value);
+          this.createComponent(TableCellMediaComponent);
           break;
         case 'TIME':
-          this.createComponent(TableRowDefaultComponent, this.time(value));
+          this.createComponent(TableCellDefaultComponent, (value) => this.time(value));
           break;
         default:
-          this.createComponent(TableRowDefaultComponent, value);
+          this.createComponent(TableCellDefaultComponent);
       }
     } else {
       this.display = ' - ';
     }
   }
 
-  private createComponent<T>(component: Type<TableRowComponent<T>>, input: T) {
+  private createComponent<T>(
+    component: Type<TableCellComponent<T>>,
+    transformation?: (input?: any) => T) {
     const instance = this.viewContainer
-      .createComponent<TableRowComponent<T>>(component)
+      .createComponent<TableCellComponent<T>>(component)
       .instance;
     
-    instance.input = input;
-    instance.valueChanged
-      .pipe(takeUntil(this.destroy))
-      .subscribe(newValue => console.log(newValue))
+    instance.column = this.column;
+    instance.row = this.appRow;
+    instance.transformation = transformation;
   }
 
   private dateTime(value: string): string {
