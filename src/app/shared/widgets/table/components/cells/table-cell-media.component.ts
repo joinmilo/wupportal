@@ -6,9 +6,8 @@ import { TableCellComponent } from '../../typings/cell';
 @Component({
   selector: 'app-table-cell-media',
   template: `
-    <button mat-button>
-      <fa-icon *ngIf="input"
-        [icon]="['fas', 'image']">
+    <button mat-button *ngIf="input">
+      <fa-icon [icon]="['fas', 'image']">
       </fa-icon>
     </button>
   `,

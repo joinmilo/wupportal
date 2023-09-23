@@ -54,7 +54,7 @@ export class EventAdminDetailsCommentsComponent implements OnInit, OnDestroy {
     {
       field: 'translatables.content',
       label: 'content',
-      type: row => this.translationService.translatable(row.translatables, 'content')
+      value: row => this.translationService.translatable(row.translatables, 'content')
     },
   ];
 

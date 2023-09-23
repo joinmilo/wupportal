@@ -43,7 +43,7 @@ export class EventAdminOverviewComponent {
     {
       field: 'translatables.name',
       label: 'activities',
-      type: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.translatable(row.translatables, 'name')
     },
     {
       field: 'contact.name',

@@ -35,7 +35,7 @@ export class ArticleAdminCategoryComponent {
     {
       field: 'translatables.name',
       label: 'category',
-      type: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.translatable(row.translatables, 'name')
     },
     {
       field: 'icon',

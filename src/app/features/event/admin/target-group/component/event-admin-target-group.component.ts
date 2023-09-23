@@ -35,15 +35,17 @@ export class EventAdminTargetGroupComponent {
     {
       field: 'translatables.name',
       label: 'targetGroup',
-      type: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.translatable(row.translatables, 'name')
     },
     {
       field: 'icon',
       label: 'icon',
+      type: 'ICON',
     },
     {
       field: 'color',
       label: 'color',
+      type: 'COLOR'
     },
   ];
   

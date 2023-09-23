@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { ArticleCommentEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
@@ -54,14 +54,13 @@ export class ArticleAdminDetailsCommentsComponent implements OnInit, OnDestroy {
     {
       field: 'translatables.content',
       label: 'content',
-      type: row => this.translationService.translatable(row.translatables, 'content')
+      value: row => this.translationService.translatable(row.translatables, 'content')
     },
   ];
 
   constructor(
     private store: Store,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private translationService: TranslationService,
   ) { }
 

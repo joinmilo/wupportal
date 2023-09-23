@@ -26,12 +26,12 @@ export class PortalDealOverviewTableComponent {
     {
       field: 'translatables.name',
       label: 'title',
-      type: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.translatable(row.translatables, 'name')
     },
     {
       field: 'creator.user.lastName',
       label: 'createdBy',
-      type: row => row.creator?.user?.firstName && row.creator?.user?.lastName
+      value: row => row.creator?.user?.firstName && row.creator?.user?.lastName
         ? `${row.creator?.user?.firstName} ${row.creator?.user?.lastName}`
         : row.contact?.name
     },

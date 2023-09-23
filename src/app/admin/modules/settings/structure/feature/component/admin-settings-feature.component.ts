@@ -29,12 +29,12 @@ export class AdminSettingsFeatureComponent {
     {
       field: 'translatables.name',
       label: 'plugins',
-      type: row => this.translationService.translatable(row.translatables, 'name'),
+      value: row => this.translationService.translatable(row.translatables, 'name'),
     },
     {
       field: 'released',
       label: 'released',
-      type: row => this.translationService.label(row.released ? 'yes' : 'comingSoon'),
+      value: row => this.translationService.label(row.released ? 'yes' : 'comingSoon'),
       sort: true
     },
     {

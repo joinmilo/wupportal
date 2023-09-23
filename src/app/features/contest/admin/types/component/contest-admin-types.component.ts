@@ -35,7 +35,7 @@ export class ContestAdminTypesComponent {
     {
       field: 'translatables.name',
       label: 'type',
-      type: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.translatable(row.translatables, 'name')
     },
   ];
   

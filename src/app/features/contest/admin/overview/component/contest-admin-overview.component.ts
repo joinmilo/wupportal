@@ -43,7 +43,7 @@ export class ContestAdminOverviewComponent {
     {
       field: 'translatables.name',
       label: 'contests',
-      type: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.translatable(row.translatables, 'name')
     },
     {
       field: 'contact.name',
@@ -52,7 +52,7 @@ export class ContestAdminOverviewComponent {
     {
       field: 'type.name',
       label: 'type',
-      type: row => this.translationService.translatable(row.type?.translatables, 'name')
+      value: row => this.translationService.translatable(row.type?.translatables, 'name')
     },
     {
       field: 'participations',

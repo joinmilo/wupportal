@@ -10,7 +10,8 @@ import { TableCellComponent } from '../../typings/cell';
     <mat-form-field *ngIf="
       (inlineEditModeActive | async)
         && column?.editable
-        && row.id === (inlineEditRow | async)?.id; else displayTemplate"
+        && row.id === (inlineEditRow | async)?.id
+        && control; else displayTemplate"
       appearance="outline"
       [hideRequiredMarker]="true">
       <mat-label [appLabel]="column?.label"></mat-label>

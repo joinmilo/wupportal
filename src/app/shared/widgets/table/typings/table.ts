@@ -15,12 +15,12 @@ export type ColumnType = 'ADDRESS'
   | 'LIST';
 
 export type Column<T> = {
-  label?: string,
-  field: string,
-  type?: ColumnType | ((row: T) => Observable<Maybe<string> | undefined> | Maybe<string> | undefined),
-  sort?: boolean,
-
   editable?: boolean,
+  field: string,
+  label?: string,
+  sort?: boolean,
+  type?: ColumnType,
+  value?: ((row: T) => Observable<Maybe<string>> | Maybe<string>),
 };
 
 export type PageableList<T> = {

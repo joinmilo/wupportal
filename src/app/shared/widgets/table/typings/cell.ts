@@ -2,7 +2,7 @@
 import { Directive, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, isObservable, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { fieldValue } from 'src/app/core/utils/reflection.utils';
 import { TableActions } from '../state/table.actions';
@@ -21,7 +21,7 @@ export abstract class TableCellComponent<T> implements OnInit, OnChanges, OnDest
   @Input()
   public transformation?: (input?: any) => T;
 
-  public control = new FormControl();
+  public control?: FormControl;
 
   public input?: T;
 
@@ -33,16 +33,6 @@ export abstract class TableCellComponent<T> implements OnInit, OnChanges, OnDest
   constructor(
     protected store: Store,
   ) {
-    this.control.valueChanges
-      .pipe(takeUntil(this.destroy))
-      .subscribe(value => {
-        if (this.column && this.row) {
-          this.store.dispatch(TableActions.editRow(
-            this.column?.field,
-            value
-          ));
-        }
-      })
   }
 
   public ngOnInit(): void {
@@ -55,12 +45,36 @@ export abstract class TableCellComponent<T> implements OnInit, OnChanges, OnDest
 
   private createInput(): void {
     if (this.row && this.column) {
-      const value = fieldValue(this.row, this.column?.field);
-      this.input = this.transformation
-        ? this.transformation(value)
-        : value;
+      this.column?.value
+        ? this.function(this.column?.value(this.row))
+        : this.inputValue(fieldValue(this.row, this.column?.field)); 
+    }
+  }
 
-      this.control.patchValue(this.input);
+  private function(result: Observable<Maybe<string>> | Maybe<string>): void {
+    isObservable(result)
+      ? result.pipe(takeUntil(this.destroy))
+          .subscribe(value => this.inputValue(value))
+      : this.inputValue(result);
+  }
+
+  private inputValue(value: any) {
+    this.input = this.transformation
+      ? this.transformation(value)
+      : value;
+
+    if (!this.control) {
+      this.control = new FormControl(value);
+      this.control.valueChanges
+        .pipe(takeUntil(this.destroy))
+        .subscribe(value => {
+          if (this.column && this.row) {
+            this.store.dispatch(TableActions.editRow(
+              this.column?.field,
+              value
+            ));
+          }
+        });
     }
   }
 

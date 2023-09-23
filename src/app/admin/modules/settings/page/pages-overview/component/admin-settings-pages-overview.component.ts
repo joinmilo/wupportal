@@ -38,7 +38,7 @@ export class AdminSettingsPagesOverviewComponent {
     {
       field: 'translatables.name',
       label: 'name',
-      type: row => this.translationService.translatable(row.translatables, 'name'),
+      value: row => this.translationService.translatable(row.translatables, 'name'),
       sort: true,
     },
     {

@@ -39,7 +39,7 @@ export class DealAdminCategoryComponent {
     {
       field: 'translatables.name',
       label: 'category',
-      type: (row) =>
+      value: (row) =>
         this.translationService.translatable(row.translatables, 'name'),
     },
     {
