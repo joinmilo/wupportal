@@ -14,7 +14,10 @@ import { selectParams } from './admin-settings-configuration.selectors';
 export class AdminSettingsConfigurationEffects {
 
   updateParams = createEffect(() => this.actions.pipe(
-    ofType(AdminSettingsConfiguratioActions.updateParams),
+    ofType(
+      AdminSettingsConfiguratioActions.updateParams,
+      AdminSettingsConfiguratioActions.configurationSaved,
+    ),
     withLatestFrom(this.store.select(selectParams)),
     switchMap(([, params]) => this.getConfigurationsService.watch({
       params,

@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { debounceTime, filter, map, switchMap, take, tap, withLatestFrom } from 'rxjs';
 import { TableActions } from './table.actions';
-import { selectQueryParams } from './table.selectors';
+import { selectInlineEditAction, selectInlineEditRow, selectQueryParams } from './table.selectors';
 
 @Injectable()
 export class TableEffects {
@@ -28,6 +28,18 @@ export class TableEffects {
       queryParamsHandling: 'merge',
     })),
   ), { dispatch: false });
+
+  rowEdited = createEffect(() => this.actions.pipe(
+    ofType(TableActions.rowEdited),
+    withLatestFrom(
+      this.store.select(selectInlineEditAction),
+      this.store.select(selectInlineEditRow),
+    ),
+    tap(([, tableAction, row ]) => {
+      tableAction?.callback?.(row);
+    }),
+    map(() => TableActions.rowEditCancelled())
+  ));
 
   constructor(
     private actions: Actions,
