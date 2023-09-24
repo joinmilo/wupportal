@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { MediaEntity } from 'src/app/core/api/generated/schema';
-import { AdminSettingsPageActions } from './state/admin-settings-page.actions';
+import { AdminSettingsPageActions } from '../state/admin-settings-page.actions';
 
 @Component({
   selector: 'app-admin-settings-page-form',

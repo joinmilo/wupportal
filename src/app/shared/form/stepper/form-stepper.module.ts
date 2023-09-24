@@ -2,25 +2,27 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
-import { RadioButtonGroupComponent } from './components/radio-button-group/radio-button-group.component';
-import { RadioButtonComponent } from './components/radio-button/radio-button.component';
+import { FormStepComponent } from './components/step/form-step.component';
+import { FormStepperComponent } from './components/stepper/form-stepper.component';
 
 const components = [
-  RadioButtonComponent,
-  RadioButtonGroupComponent,
+  FormStepperComponent,
+  FormStepComponent,
 ];
 
 const framework = [
   CommonModule,
-  RouterModule,
   ReactiveFormsModule,
 ];
 
 const materials = [
   MatButtonModule,
+  MatDividerModule,
+  MatExpansionModule,
 ];
 
 const modules = [
@@ -41,4 +43,4 @@ const libs = [
   ],
   exports: [...components],
 })
-export class RadioButtonFormModule { }
+export class FormStepperModule { }

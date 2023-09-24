@@ -17,8 +17,8 @@ import { CaptchaModule } from 'src/app/shared/form/captcha/captcha.module';
 import { CkEditorFormComponent } from 'src/app/shared/form/ck-editor/ck-editor-form.component';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { MediaModule } from 'src/app/shared/media/media.module';
-import { AdminSettingsPageFormComponent } from './admin-settings-page-form.component';
-import { adminSettingsPageStateKey } from './admin-settings-page-form.constants';
+import { AdminSettingsPageFormComponent } from './component/admin-settings-page-form.component';
+import { adminSettingsPageStateKey } from './constants/admin-settings-page-form.constants';
 import { AdminSettingsPageEffects } from './state/admin-settings-page.effects';
 import { adminSettingsPageReducer } from './state/admin-settings-page.reducer';
 

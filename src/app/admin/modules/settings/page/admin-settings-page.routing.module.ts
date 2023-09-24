@@ -5,7 +5,7 @@ import { AdminActions } from 'src/app/admin/state/admin.actions';
 import { AdminSettingsRoutes } from 'src/app/admin/typings/menu';
 import { slug } from 'src/app/core/constants/queryparam.constants';
 import { AdminSettingsPageDetailsLayoutComponent } from './details/modules/layout/components/admin-settings-page-details-layout.component';
-import { AdminSettingsPageFormComponent } from './page-form/admin-settings-page-form.component';
+import { AdminSettingsPageFormComponent } from './page-form/component/admin-settings-page-form.component';
 
 const baseRoute = 'pages';
 

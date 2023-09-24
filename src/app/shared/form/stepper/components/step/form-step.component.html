@@ -1,0 +1,30 @@
+<mat-expansion-panel [hideToggle]="hideToggle">
+  <mat-expansion-panel-header>
+    <mat-panel-title [appLabel]="titleLabel">
+    </mat-panel-title>
+
+    <mat-panel-description [appLabel]="descriptionLabel">
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <div>
+    <!-- Form controls of parent-->
+    <ng-content></ng-content>
+  
+    <mat-divider></mat-divider>
+  
+    <section>
+      <button mat-stroked-button
+        color="warn"
+        appLabel="back"
+        (click)="back()">
+      </button>
+      <button mat-stroked-button
+        color="primary"
+        appLabel="next"
+        (click)="next()">
+      </button>
+    </section>
+  </div>
+
+</mat-expansion-panel>

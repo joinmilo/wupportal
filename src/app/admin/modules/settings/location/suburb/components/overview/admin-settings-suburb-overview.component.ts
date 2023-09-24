@@ -3,15 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput, SuburbEntity } from 'src/app/core/api/generated/schema';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
-import { AdminSettingsSuburbActions } from '../state/admin-settings-suburb.actions';
-import { selectSuburbs } from './../state/admin-settings-suburb.selectors';
+import { AdminSettingsSuburbActions } from '../../state/admin-settings-suburb.actions';
+import { selectSuburbs } from '../../state/admin-settings-suburb.selectors';
 
 @Component({
-  selector: 'app-admin-settings-suburb',
-  templateUrl: './admin-settings-suburb.component.html',
-  styleUrls: ['./admin-settings-suburb.component.scss'],
+  selector: 'app-admin-settings-suburb-overview',
+  templateUrl: './admin-settings-suburb-overview.component.html',
+  styleUrls: ['./admin-settings-suburb-overview.component.scss'],
 })
-export class AdminSettingsSuburbComponent {
+export class AdminSettingsSuburbOverviewComponent {
 
   public suburbs = this.store.select(selectSuburbs)
 

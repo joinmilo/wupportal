@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminSettingsSuburbComponent } from './component/admin-settings-suburb.component';
+import { AdminSettingsSuburbFormComponent } from './components/form/admin-settings-suburb-form.component';
+import { AdminSettingsSuburbOverviewComponent } from './components/overview/admin-settings-suburb-overview.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminSettingsSuburbComponent,
+    component: AdminSettingsSuburbOverviewComponent,
+  },
+  {
+    path: 'form',
+    component: AdminSettingsSuburbFormComponent,
   },
 ];
 

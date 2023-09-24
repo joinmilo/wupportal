@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -10,7 +10,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -34,11 +33,6 @@ const framework = [
 
 const libs = [
   GraphQLModule,
-  StoreDevtoolsModule.instrument({
-    logOnly: environment.production,
-    autoPause: true,
-    maxAge: 25
-  }),
   StoreModule.forRoot({}, {
     runtimeChecks: {
       strictActionImmutability: false,
@@ -48,6 +42,10 @@ const libs = [
       strictStateImmutability: false,
       strictStateSerializability: false,
     }
+  }),
+  StoreDevtoolsModule.instrument({
+    logOnly: isDevMode(),
+    autoPause: true,
   }),
   EffectsModule.forRoot([]),
   //TODO: https://github.com/swimlane/ngx-charts/issues/1733
