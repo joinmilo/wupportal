@@ -1,3 +1,5 @@
+@import 'src/styles/mixins.scss';
+
 :host {
   display: flex;
   flex-flow: column;
@@ -40,6 +42,14 @@
           display: flex;
           flex-flow: column;
           gap: 1rem;
+        }
+      }
+
+      @include responsive(tablet) {
+        flex-flow: column;
+
+        app-details-title, nav, mat-card {
+          width: 100%;
         }
       }
     }

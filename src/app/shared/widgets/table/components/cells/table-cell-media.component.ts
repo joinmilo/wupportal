@@ -46,7 +46,7 @@ export class TableCellMediaComponent extends TableCellComponent<MediaEntity> {
       autoFocus: false,
     }).afterClosed()
     .subscribe((value: MediaEntity[]) => {
-      if (this.column && this.row) {
+      if (this.column && this.row && value?.length) {
         this.store.dispatch(TableActions.editRow(
           this.column?.field,
           value[0]

@@ -4,10 +4,6 @@ div {
   gap: 1rem;
 }
 
-mat-app-table-paginator {
-  margin: .5rem;
-}
-
 mat-card {
   display: flex;
   
@@ -38,4 +34,12 @@ mat-card {
     display: flex;
     justify-content: center;
   }
+}
+.clickable {
+  cursor: pointer;
+}
+
+
+.paginator {
+  padding: .5rem;
 }

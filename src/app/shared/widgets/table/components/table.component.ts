@@ -77,7 +77,6 @@ export class TableComponent<T> implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.store.dispatch(TableActions.resetTable());
     this.destroy.next();
     this.destroy.complete();
   }

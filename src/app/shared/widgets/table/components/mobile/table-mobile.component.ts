@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { Observable, Subject, takeUntil, tap } from 'rxjs';
-import { Maybe } from 'src/app/core/api/generated/schema';
-import { ContentEntity } from 'src/app/core/typings/content-entity';
-import { Column, PageableList, RowAction, SortPaginate } from '../../typings/table';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil, tap } from 'rxjs';
+import { TableActions } from '../../state/table.actions';
+import { selectActions, selectClickable, selectColumns, selectData } from '../../state/table.selectors';
 import { TablePaginatorComponent } from '../paginator/table-paginator.component';
 
 @Component({
@@ -12,26 +12,13 @@ import { TablePaginatorComponent } from '../paginator/table-paginator.component'
 })
 export class TableMobileComponent<T> implements AfterViewInit, OnDestroy {
   
-  @Input()
-  public actions?: RowAction<T>[];
+  public actions = this.store.select(selectActions);
 
-  @Input()
-  public columns?: Column<T>[];
+  public columns = this.store.select(selectColumns);
 
-  @Input()
-  public data?: Observable<PageableList<T> | undefined>;
+  public data = this.store.select(selectData);
 
-  @Input()
-  public entity?: ContentEntity;
-
-  @Input()
-  public clickable?: boolean;
-
-  @Output()
-  public sortPaginate = new EventEmitter<SortPaginate>();
-
-  @Output()
-  public rowClicked = new EventEmitter<Maybe<T>>();
+  public clickable = this.store.select(selectClickable);
 
   @ViewChild('container')
   private container?: ElementRef;
@@ -41,15 +28,25 @@ export class TableMobileComponent<T> implements AfterViewInit, OnDestroy {
   @ViewChild(TablePaginatorComponent)
   public paginator!: TablePaginatorComponent;
 
+  constructor(
+    private store: Store,
+  ) { }
+
   public ngAfterViewInit(): void {
     this.paginator.page.pipe(
-      tap(() => this.sortPaginate.emit({
-        page: this.paginator.pageIndex,
-        size: this.paginator.pageSize,
-      })),
+      tap(() => this.store.dispatch(
+        TableActions.setParams({
+          page: this.paginator.pageIndex,
+          size: this.paginator.pageSize,
+        })
+      )),
       tap(() => this.container?.nativeElement?.scrollIntoView()),
       takeUntil(this.destroy),
     ).subscribe();
+  }
+
+  public rowClicked(row: T): void {
+    this.store.dispatch(TableActions.rowClicked(row));
   }
 
   public ngOnDestroy(): void {
