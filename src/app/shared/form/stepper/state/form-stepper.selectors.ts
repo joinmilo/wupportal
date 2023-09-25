@@ -4,23 +4,37 @@ import { FormStepperState } from './form-stepper.reducer';
 
 export const selectFormStepperState = createFeatureSelector<FormStepperState>(formStepperStateKey);
 
-export const selectCurrentStep = createSelector(
+export const selectCurrentStepIdx = createSelector(
   selectFormStepperState,
-  state => state.currentStep
+  state => state.currentStepIdx
 );
 
-export const selectChangesMade = createSelector(
+export const selectSteps = createSelector(
   selectFormStepperState,
-  state => state.changesMade
+  state => state.steps
 );
 
-export const selectLastStep = createSelector(
+export const selectLastStepIdx = createSelector(
+  selectSteps,
+  steps => steps.size - 1
+);
+
+export const selectIsDirty = createSelector(
   selectFormStepperState,
-  state => state.lastStep
+  state => state.dirty
+);
+
+export const selectIsValid = createSelector(
+  selectSteps,
+  steps => {
+    console.log(steps.size);
+    return !Array.from(steps.values()).some(status => status === 'INVALID')
+  }
 );
 
 export const selectLinear = createSelector(
   selectFormStepperState,
   state => state.linear
 );
+
 

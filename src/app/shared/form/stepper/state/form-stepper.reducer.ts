@@ -1,51 +1,58 @@
+import { FormControlStatus } from '@angular/forms';
 import { createReducer, on } from '@ngrx/store';
 import { FormStepperActions } from './form-stepper.actions';
 
 export interface FormStepperState {
-  currentStep: number,
-  changesMade: boolean,
-  lastStep: number,
+  currentStepIdx: number,
+  steps: Map<number, FormControlStatus>;
+  
+  dirty: boolean,
   linear: boolean,
 }
 
 export const initialState: FormStepperState = {
-  currentStep: 0,
-  changesMade: false,
-  lastStep: 0,
+  currentStepIdx: 0,
+  steps: new Map<number, FormControlStatus>(),
+
+  dirty: false,
   linear: false,
 };
 
 export const formStepperReducer = createReducer(
   initialState,
 
-  on(FormStepperActions.setCurrentStep, (state, action): FormStepperState => (
-    { ...state, currentStep: action.index }
+  on(
+    FormStepperActions.registerStep,
+    FormStepperActions.statusChanged,
+    (state, action): FormStepperState => (
+      { ...state, steps: new Map(state.steps.set(action.index, action.status)) }
+    )
+  ),
+
+  on(FormStepperActions.setCurrentStepIdx, (state, action): FormStepperState => (
+    { ...state, currentStepIdx: action.index }
   )),
 
   on(FormStepperActions.back, (state): FormStepperState => (
-    { ...state, currentStep: state.currentStep < 1
+    { ...state, currentStepIdx: state.currentStepIdx < 1
        ? 0
-       : state.currentStep - 1
+       : state.currentStepIdx - 1
     }
   )),
 
   on(FormStepperActions.next, (state): FormStepperState => (
-    { ...state, currentStep: state.currentStep + 1 }
-  )),
-
-  on(FormStepperActions.setLastStep, (state, action): FormStepperState => (
-    { ...state, lastStep: action.index }
+    { ...state, currentStepIdx: state.currentStepIdx + 1 }
   )),
 
   on(FormStepperActions.setLinear, (state, action): FormStepperState => (
     { ...state, linear: action.linear }
   )),
 
-  on(FormStepperActions.changesMade, (state): FormStepperState => (
-    { ...state, changesMade: true }
+  on(FormStepperActions.statusChanged, (state): FormStepperState => (
+    { ...state, dirty: true }
   )),
 
   on(FormStepperActions.resetState, (): FormStepperState => (
-    initialState
+    { ...initialState }
   )),
 );

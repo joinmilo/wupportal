@@ -1,6 +1,6 @@
 <mat-expansion-panel
-  [hideToggle]="hideToggle || (lastStep | async) === 0 || !!icon"
-  [expanded]="(currentStep | async) === index"
+  [hideToggle]="hideToggle || lastStepIdx === 0 || !!icon"
+  [expanded]="currentStepIdx === index"
   (opened)="setCurrentStep()">
   <mat-expansion-panel-header>
     <mat-panel-title [appLabel]="titleLabel">
@@ -18,18 +18,19 @@
     <!-- Form controls of parent-->
     <ng-content></ng-content>
   
-    <mat-divider></mat-divider>
+    <mat-divider *ngIf="showBackButton() || showNextButton()">
+    </mat-divider>
   
     <section>
-      <button mat-stroked-button
-        *ngIf="index !== 0"
+      <button *ngIf="showBackButton()"
+        mat-stroked-button
         color="warn"
         appLabel="back"
         (click)="back()">
       </button>
 
-      <button mat-stroked-button
-        *ngIf="index !== (lastStep | async)"
+      <button *ngIf="showNextButton()"
+        mat-stroked-button
         color="primary"
         appLabel="next"
         (click)="next()">

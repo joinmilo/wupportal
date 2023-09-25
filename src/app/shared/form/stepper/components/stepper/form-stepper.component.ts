@@ -5,7 +5,7 @@ import { Subject, take, takeUntil } from 'rxjs';
 import { ConfirmCancelComponent } from 'src/app/shared/dialogs/confirm-cancel/confirm-cancel.component';
 import { ConfirmResetComponent } from 'src/app/shared/dialogs/confirm-reset/confirm-reset.component';
 import { FormStepperActions } from '../../state/form-stepper.actions';
-import { selectChangesMade } from '../../state/form-stepper.selectors';
+import { selectIsDirty, selectIsValid } from '../../state/form-stepper.selectors';
 import { FormStepComponent } from '../step/form-step.component';
 
 @Component({
@@ -29,7 +29,9 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
   @ContentChildren(FormStepComponent)
   private steps?: QueryList<FormStepComponent>;
 
-  private changesMade?: boolean;
+  private dirty?: boolean;
+
+  public valid = this.store.select(selectIsValid);
 
   private destroy = new Subject<void>();
 
@@ -37,18 +39,17 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
     private store: Store,
     private dialog: MatDialog,
   ) {
-    this.store.select(selectChangesMade)
+    this.store.select(selectIsDirty)
       .pipe(takeUntil(this.destroy))
-      .subscribe(changesMade => this.changesMade = changesMade);
+      .subscribe(dirty => this.dirty = dirty);
   }
 
   public ngAfterViewInit(): void {
-    this.steps?.forEach((step, index) => step.index = index);
-    this.store.dispatch(FormStepperActions.setLastStep((this.steps?.length || 0) - 1))
+    this.steps?.forEach((step, index) => step.register(index));
   }
 
   public cancel(): void {
-    this.changesMade
+    this.dirty
       ? this.dialog.open(ConfirmCancelComponent).afterClosed()
           .pipe(take(1))
           .subscribe(shouldCancel => shouldCancel
@@ -57,7 +58,7 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   public reset(): void {
-    this.changesMade
+    this.dirty
       ? this.dialog.open(ConfirmResetComponent).afterClosed()
           .pipe(take(1))
           .subscribe(shouldCancel => shouldCancel

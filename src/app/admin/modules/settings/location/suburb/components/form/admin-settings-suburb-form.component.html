@@ -1,14 +1,21 @@
 <app-form-stepper>
   <app-form-step
-    titleLabel="Stadtteil"
-    descriptionLabel="Hellloooo"
-    [icon]="['fas', 'trash']">
-    Test
+    titleLabel="Nummer 1"
+    descriptionLabel="Beschreibung"
+    [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label appLabel="name"></mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
   </app-form-step>
 
   <app-form-step
     titleLabel="Nummer 2"
-    descriptionLabel="Beschreibung">
-    Test 2
+    descriptionLabel="Beschreibung"
+    [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label appLabel="name"></mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
   </app-form-step>
 </app-form-stepper>

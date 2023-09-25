@@ -4,6 +4,7 @@
 
 <section>
   <button mat-raised-button
+    [disabled]="(valid | async) === false"
     color="primary"
     appLabel="save">
   </button>

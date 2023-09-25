@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
@@ -22,11 +25,14 @@ const components = [
 
 const framework = [
   CommonModule,
+  ReactiveFormsModule,
 ];
 
 const materials = [
   MatButtonModule,
   MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
 ];
 
 const modules = [
