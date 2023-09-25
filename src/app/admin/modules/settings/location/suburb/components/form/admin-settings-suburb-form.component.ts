@@ -9,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AdminSettingsSuburbFormComponent {
 
   public form = this.fb.group({
-    name: ['', []],
+    name: ['test', []],
     longitude: ['', []],
     latitude: ['', [Validators.required]],
   });

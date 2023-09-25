@@ -48,6 +48,10 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
     this.steps?.forEach((step, index) => step.register(index));
   }
 
+  public save(): void {
+    this.saved.emit();
+  }
+
   public cancel(): void {
     this.dirty
       ? this.dialog.open(ConfirmCancelComponent).afterClosed()
@@ -61,12 +65,18 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
     this.dirty
       ? this.dialog.open(ConfirmResetComponent).afterClosed()
           .pipe(take(1))
-          .subscribe(shouldCancel => shouldCancel
-            && this.cancelled.emit())
-      : this.cancelled.emit();
+          .subscribe(shouldReset => shouldReset
+            && this.resetSteps())
+      : this.resetSteps();
+  }
+
+  private resetSteps(): void {
+    this.steps?.forEach(step => step.reset());
+    this.store.dispatch(FormStepperActions.stepsReset());
   }
 
   public ngOnDestroy(): void {
+    this.store.dispatch(FormStepperActions.resetState());
     this.destroy.next();
     this.destroy.complete();
   }

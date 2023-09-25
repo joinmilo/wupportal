@@ -9,12 +9,11 @@ export const FormStepperActions = createActionGroup({
     'back': emptyProps(),
     'next': emptyProps(),
 
-    'set last step': (index: number) => ({ index }),
     'set linear': (linear: boolean) => ({ linear }),
 
     'status changed': (index: number, status: FormControlStatus) => ({ index, status }),
-    'reset changes': emptyProps(),
 
+    'steps reset': emptyProps(),
     'reset state': emptyProps(),
   },
 });

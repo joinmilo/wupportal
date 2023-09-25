@@ -7,12 +7,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { FormRowComponent } from './components/row/form-row.component';
 import { FormStepComponent } from './components/step/form-step.component';
 import { FormStepperComponent } from './components/stepper/form-stepper.component';
 import { formStepperStateKey } from './constants/form-stepper.constants';
 import { formStepperReducer } from './state/form-stepper.reducer';
 
 const components = [
+  FormRowComponent,
   FormStepperComponent,
   FormStepComponent,
 ];

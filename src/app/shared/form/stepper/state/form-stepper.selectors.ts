@@ -26,10 +26,7 @@ export const selectIsDirty = createSelector(
 
 export const selectIsValid = createSelector(
   selectSteps,
-  steps => {
-    console.log(steps.size);
-    return !Array.from(steps.values()).some(status => status === 'INVALID')
-  }
+  steps => !Array.from(steps.values()).some(status => status === 'INVALID')
 );
 
 export const selectLinear = createSelector(

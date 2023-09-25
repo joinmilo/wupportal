@@ -29,10 +29,13 @@ export class FormStepComponent implements OnDestroy {
   public hideToggle = false;
 
   public currentStepIdx?: number;
-
   public lastStepIdx?: number;
-
   public index?: number;
+
+  public entered = false;
+  public touched = false;
+
+  public resetValue?: unknown;
 
   private destroy = new Subject<void>();
 
@@ -41,7 +44,17 @@ export class FormStepComponent implements OnDestroy {
   ) {
     this.store.select(selectCurrentStepIdx)
       .pipe(takeUntil(this.destroy))
-      .subscribe(currentStep => this.currentStepIdx = currentStep);
+      .subscribe(currentStepIdx => {
+        this.currentStepIdx = currentStepIdx
+
+        if (this.currentStepIdx === this.index) {
+          this.entered = true;
+        }
+
+        if (this.entered && this.currentStepIdx !== this.index) {
+          this.touched = true;
+        }
+      });
 
     this.store.select(selectLastStepIdx)
       .pipe(takeUntil(this.destroy))
@@ -50,11 +63,21 @@ export class FormStepComponent implements OnDestroy {
 
   public register(index: number): void {
     this.index = index;
+    this.resetValue = this.formGroup.value;
     this.store.dispatch(FormStepperActions.registerStep(this.index, this.formGroup.status));
-
     this.formGroup.valueChanges
       .pipe(takeUntil(this.destroy))
-      .subscribe(() => FormStepperActions.statusChanged(this.index as number, this.formGroup.status))
+      .subscribe(() => this.store.dispatch(FormStepperActions.statusChanged(this.index as number, this.formGroup.status)))
+  }
+
+  public isInvalid(): boolean {
+    return this.touched && this.formGroup.invalid;
+  }
+
+  public reset(): void {
+    if (this.resetValue) {
+      this.formGroup.reset(this.resetValue);
+    }
   }
 
   public setCurrentStep(): void {

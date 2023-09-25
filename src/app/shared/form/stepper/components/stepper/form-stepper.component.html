@@ -6,7 +6,8 @@
   <button mat-raised-button
     [disabled]="(valid | async) === false"
     color="primary"
-    appLabel="save">
+    appLabel="save"
+    (click)="save()">
   </button>
 
   <button mat-raised-button

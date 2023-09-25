@@ -52,6 +52,10 @@ export const formStepperReducer = createReducer(
     { ...state, dirty: true }
   )),
 
+  on(FormStepperActions.stepsReset, (state): FormStepperState => (
+    { ...state, dirty: false }
+  )),
+
   on(FormStepperActions.resetState, (): FormStepperState => (
     { ...initialState }
   )),
