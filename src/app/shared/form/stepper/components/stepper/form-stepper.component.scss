@@ -4,19 +4,14 @@
   gap: 1rem;
 }
 
+mat-accordion {
+  display: flex;
+  flex-flow: column;
+  gap: .5rem;
+}
+
 section {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
-}
-
-:host ::ng-deep {
-
-  mat-expansion-panel.mat-expanded {
-    border-left: solid var(--color-primary-600);
-  }
-
-  .mat-mdc-form-field-subscript-wrapper {
-    display: none;
-  }
 }

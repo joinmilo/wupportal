@@ -10,3 +10,14 @@ section {
   justify-content: flex-end;
   gap: 1rem;
 }
+
+:host ::ng-deep {
+
+  mat-expansion-panel.mat-expanded {
+    border-left: solid var(--color-primary-600);
+  }
+
+  .mat-content.mat-content-hide-toggle {
+    margin-right: 0;
+  }
+}

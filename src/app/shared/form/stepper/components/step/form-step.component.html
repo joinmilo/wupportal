@@ -1,10 +1,17 @@
-<mat-expansion-panel [hideToggle]="hideToggle">
+<mat-expansion-panel
+  [hideToggle]="hideToggle || (lastStep | async) === 0 || !!icon"
+  [expanded]="(currentStep | async) === index"
+  (opened)="setCurrentStep()">
   <mat-expansion-panel-header>
     <mat-panel-title [appLabel]="titleLabel">
     </mat-panel-title>
 
     <mat-panel-description [appLabel]="descriptionLabel">
     </mat-panel-description>
+
+    <fa-icon *ngIf="icon"
+      [icon]="icon">
+    </fa-icon>
   </mat-expansion-panel-header>
 
   <div>
@@ -15,11 +22,14 @@
   
     <section>
       <button mat-stroked-button
+        *ngIf="index !== 0"
         color="warn"
         appLabel="back"
         (click)="back()">
       </button>
+
       <button mat-stroked-button
+        *ngIf="index !== (lastStep | async)"
         color="primary"
         appLabel="next"
         (click)="next()">
