@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ContentChildren, EventEmitter, Input, OnDestr
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, take, takeUntil } from 'rxjs';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { ConfirmCancelComponent } from 'src/app/shared/dialogs/confirm-cancel/confirm-cancel.component';
 import { ConfirmResetComponent } from 'src/app/shared/dialogs/confirm-reset/confirm-reset.component';
 import { FormStepperActions } from '../../state/form-stepper.actions';
@@ -15,21 +16,25 @@ import { FormStepComponent } from '../step/form-step.component';
 })
 export class FormStepperComponent implements AfterViewInit, OnDestroy {
 
+  //TODO: Implement linear mode
   @Input()
   public set linear(linear: boolean) {
     this.store.dispatch(FormStepperActions.setLinear(linear));
   }
 
+  @Input()
+  public captchaRequired = false;
+
   @Output()
   public cancelled = new EventEmitter<void>();
 
   @Output()
-  public saved = new EventEmitter<void>();
+  public saved = new EventEmitter<Maybe<string>>();
 
   @ContentChildren(FormStepComponent)
   private steps?: QueryList<FormStepComponent>;
 
-  private dirty?: boolean;
+  public dirty?: boolean;
 
   public valid = this.store.select(selectIsValid);
 
@@ -48,8 +53,8 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
     this.steps?.forEach((step, index) => step.register(index));
   }
 
-  public save(): void {
-    this.saved.emit();
+  public save(captchaToken?: string): void {
+    this.saved.emit(captchaToken);
   }
 
   public cancel(): void {
@@ -62,12 +67,10 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   public reset(): void {
-    this.dirty
-      ? this.dialog.open(ConfirmResetComponent).afterClosed()
-          .pipe(take(1))
-          .subscribe(shouldReset => shouldReset
-            && this.resetSteps())
-      : this.resetSteps();
+    this.dialog.open(ConfirmResetComponent).afterClosed()
+      .pipe(take(1))
+      .subscribe(shouldReset => shouldReset
+        && this.resetSteps())
   }
 
   private resetSteps(): void {

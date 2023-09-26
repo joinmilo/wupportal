@@ -3,12 +3,22 @@
 </mat-accordion>
 
 <section>
-  <button mat-raised-button
-    [disabled]="(valid | async) === false"
-    color="primary"
-    appLabel="save"
-    (click)="save()">
-  </button>
+  <ng-container *ngIf="captchaRequired; else defaultSave;">
+    <app-captcha-submit
+      [disabled]="(valid | async) === false"
+      label="save"
+      (verified)="save($event)">
+    </app-captcha-submit>
+  </ng-container>
+
+  <ng-template #defaultSave>
+    <button mat-flat-button
+      [disabled]="(valid | async) === false"
+      color="primary"
+      appLabel="save"
+      (click)="save()">
+    </button>
+  </ng-template>
 
   <button mat-raised-button
     appLabel="cancel"
@@ -16,6 +26,7 @@
   </button>
 
   <button mat-raised-button
+    [disabled]="!dirty"
     appLabel="reset"
     (click)="reset()">
   </button>

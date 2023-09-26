@@ -1,17 +1,18 @@
-<app-form-stepper>
+<app-form-stepper
+  (saved)="saved($event)">
   <app-form-step
     titleLabel="Nummer 1"
     descriptionLabel="Beschreibung"
-    [formGroup]="form">
+    [formGroup]="form.controls.test">
     <app-form-row>
       <mat-form-field appearance="outline">
         <mat-label appLabel="name"></mat-label>
-        <input matInput formControlName="name">
+        <input matInput formControlName="test2">
       </mat-form-field>
     </app-form-row>
   </app-form-step>
 
-  <app-form-step
+  <!-- <app-form-step
     titleLabel="Nummer 2"
     descriptionLabel="Beschreibung"
     [formGroup]="form">
@@ -37,13 +38,13 @@
       </mat-form-field>
     </app-form-row>
 
-    <app-form-row>
-      <mat-form-field appearance="outline">
+    <app-form-row [columns]="5">
+      <mat-form-field appearance="outline" [appColumns]="3">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" [appColumns]="2">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
@@ -54,7 +55,7 @@
     titleLabel="Nummer 3"
     descriptionLabel="Beschreibung"
     [formGroup]="form">
-    <app-form-row [fillColumns]="2">
+    <app-form-row [columns]="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">
@@ -66,11 +67,11 @@
     titleLabel="Nummer 4"
     descriptionLabel="Beschreibung"
     [formGroup]="form">
-    <app-form-row [fillColumns]="1">
-      <mat-form-field appearance="outline">
+    <app-form-row [columns]="5">
+      <mat-form-field appearance="outline" [appColumns]="1">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
     </app-form-row>
-  </app-form-step>
+  </app-form-step> -->
 </app-form-stepper>
