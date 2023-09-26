@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Maybe } from 'src/app/core/api/generated/schema';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppValidators } from 'src/app/core/validators/validators';
+import { AdminSettingsSuburbActions } from '../../state/admin-settings-suburb.actions';
 
 @Component({
   selector: 'app-admin-settings-suburb-form',
@@ -10,20 +13,28 @@ import { Maybe } from 'src/app/core/api/generated/schema';
 export class AdminSettingsSuburbFormComponent {
 
   public form = this.fb.group({
-    name: ['test', []],
-    longitude: ['', []],
-    latitude: ['', [Validators.required]],
-    test: this.fb.group({
-      test2: ['test2']
-    })
+    name: ['', [Validators.required]],
+    longitude: ['', [Validators.required, AppValidators.digitNumbers(),]],
+    latitude: ['', [Validators.required, AppValidators.digitNumbers(),]],
   });
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
+    private router: Router,
+    private store: Store,
   ) { }
 
-  saved($event: Maybe<string>) {
-    console.log($event);
-    }
+  public cancelled(): void {
+    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+  }
+
+  public saved(): void {
+    this.store.dispatch(AdminSettingsSuburbActions.save({
+      name: this.form.value.name,
+      longitude: Number(this.form.value.longitude?.replace(',', '.')),
+      latitude: Number(this.form.value.latitude?.replace(',', '.'))
+    }));
+  }
 
 }

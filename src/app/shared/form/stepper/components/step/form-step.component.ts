@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Store } from '@ngrx/store';
@@ -27,6 +27,12 @@ export class FormStepComponent implements OnDestroy {
 
   @Input()
   public hideToggle = false;
+
+  @Output()
+  public stepEntered = new EventEmitter<void>();
+
+  @Output()
+  public stepLeft = new EventEmitter<void>();
 
   public currentStepIdx?: number;
   public lastStepIdx?: number;
@@ -69,10 +75,12 @@ export class FormStepComponent implements OnDestroy {
 
         if (this.currentStepIdx === this.index) {
           this.entered = true;
+          this.stepEntered.emit();
         }
 
         if (this.entered && this.currentStepIdx !== this.index) {
           this.left = true;
+          this.stepLeft.emit();
         }
       });
   }

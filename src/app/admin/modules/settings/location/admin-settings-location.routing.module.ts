@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
 import { AdminSettingsRoutes } from 'src/app/admin/typings/menu';
 
-const baseRoute = 'location';
+export const baseRoute = 'location';
 
 const routes: AdminSettingsRoutes[] = [
   {

@@ -3,6 +3,8 @@ query getSuburbs($params: FilterSortPaginateInput) {
     result {
       id
       name
+      longitude
+      latitude
     }
     total
   }

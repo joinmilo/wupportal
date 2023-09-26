@@ -9,7 +9,7 @@ export type GetSuburbsQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetSuburbsQuery = { __typename?: 'Query', getSuburbs?: { __typename?: 'PageableList_SuburbEntity', total: any, result?: Array<{ __typename?: 'SuburbEntity', id?: string | null, name?: string | null } | null> | null } | null };
+export type GetSuburbsQuery = { __typename?: 'Query', getSuburbs?: { __typename?: 'PageableList_SuburbEntity', total: any, result?: Array<{ __typename?: 'SuburbEntity', id?: string | null, name?: string | null, longitude?: number | null, latitude?: number | null } | null> | null } | null };
 
 export const GetSuburbsDocument = gql`
     query getSuburbs($params: FilterSortPaginateInput) {
@@ -17,6 +17,8 @@ export const GetSuburbsDocument = gql`
     result {
       id
       name
+      longitude
+      latitude
     }
     total
   }

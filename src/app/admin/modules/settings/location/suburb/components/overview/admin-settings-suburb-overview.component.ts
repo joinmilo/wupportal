@@ -25,11 +25,9 @@ export class AdminSettingsSuburbOverviewComponent {
     {
       icon: 'trash',
       callback: suburb =>
-        this.store.dispatch(AdminSettingsSuburbActions.deleteSuburb(suburb)),
+        this.store.dispatch(AdminSettingsSuburbActions.delete(suburb)),
       tooltipLabel: 'delete'
     },
-
-    'SHARE',
   ];
 
   public columns: Column<SuburbEntity>[] = [
