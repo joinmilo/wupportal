@@ -1,13 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
-import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
 import { id } from 'src/app/core/constants/queryparam.constants';
 import { AppValidators } from 'src/app/core/validators/validators';
-import { baseRoute } from '../../../admin-settings-location.routing.module';
 import { AdminSettingsSuburbActions } from '../../state/admin-settings-suburb.actions';
 import { selectEditableSuburb } from '../../state/admin-settings-suburb.selectors';
 
@@ -30,7 +28,6 @@ export class AdminSettingsSuburbFormComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router,
     private store: Store,
   ) {}
 
@@ -53,7 +50,6 @@ export class AdminSettingsSuburbFormComponent implements OnInit, OnDestroy {
 
   public cancelled(): void {
     this.store.dispatch(AdminSettingsSuburbActions.cancelled());
-    this.router.navigate([adminUrl, settingsUrl, baseRoute, 'suburbs']);
   }
 
   public saved(): void {

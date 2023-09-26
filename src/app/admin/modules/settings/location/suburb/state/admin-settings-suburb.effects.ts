@@ -41,6 +41,12 @@ export class AdminSettingsSuburbEffects {
     map(response => AdminSettingsSuburbActions.suburbRetrieved(response.data.getSuburb))
   ));
 
+  cancelled = createEffect(() => this.actions.pipe(
+    ofType(AdminSettingsSuburbActions.cancelled),
+    tap(() => this.router.navigate([adminUrl, settingsUrl, baseRoute, 'suburbs'])),
+  ), { dispatch: false });
+  
+
   save = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsSuburbActions.save),
     switchMap(action => this.saveSuburbService.mutate({
