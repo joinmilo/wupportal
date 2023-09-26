@@ -1,3 +1,5 @@
+@import 'src/styles/mixins.scss';
+
 :host {
   width: 100%;
 }
@@ -8,12 +10,3 @@
   gap: 1rem;
   width: 100%;
 }
-
-// :host ::ng-deep {
-
-//   .row-container {
-//     & > * {
-//       width: calc(var(--row-size) - 1rem) !important;
-//     }
-//   }
-// }

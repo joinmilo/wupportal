@@ -37,11 +37,12 @@
       </mat-form-field>
     </app-form-row>
 
-    <app-form-row [fullWidth]="false">
+    <app-form-row>
       <mat-form-field appearance="outline">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">
@@ -53,7 +54,7 @@
     titleLabel="Nummer 3"
     descriptionLabel="Beschreibung"
     [formGroup]="form">
-    <app-form-row>
+    <app-form-row [fillColumns]="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">
@@ -65,7 +66,7 @@
     titleLabel="Nummer 4"
     descriptionLabel="Beschreibung"
     [formGroup]="form">
-    <app-form-row [fullWidth]="false">
+    <app-form-row [fillColumns]="1">
       <mat-form-field appearance="outline">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name">

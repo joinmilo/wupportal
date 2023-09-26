@@ -1,14 +1,14 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { maxMobileSize } from '../constants/core.constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LayoutService {
 
-  /** @see {@link /src/styles/mixins.scss} */
-  public maxMobileSize = 1023;
+  public maxMobileSize = maxMobileSize;
 
   public isMobile = this.breakpointObserver.observe([
     `(max-width: ${this.maxMobileSize}px)`,
