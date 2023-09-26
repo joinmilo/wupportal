@@ -50,7 +50,7 @@ export class FormStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   public ngAfterViewInit(): void {
-    this.steps?.forEach((step, index) => step.register(index));
+    this.steps?.forEach((step, index) => step.index = index);
   }
 
   public save(captchaToken?: string): void {

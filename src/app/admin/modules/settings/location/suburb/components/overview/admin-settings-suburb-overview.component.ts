@@ -19,7 +19,7 @@ export class AdminSettingsSuburbOverviewComponent {
     {
       icon: 'pen-to-square',
       callback: row =>
-        this.router.navigate([row?.id, 'edit'], { relativeTo: this.activatedRoute }),
+        this.router.navigate(['form', row?.id], { relativeTo: this.activatedRoute }),
       tooltipLabel: 'edit'
     },
     {

@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { Maybe } from 'src/app/core/api/generated/schema';
 import { FormStepperActions } from '../../state/form-stepper.actions';
 import { selectCurrentStepIdx, selectLastStepIdx } from '../../state/form-stepper.selectors';
 
@@ -20,7 +21,16 @@ export class FormStepComponent implements OnDestroy {
   public icon?: IconProp;
 
   @Input({ required: true })
-  public formGroup!: FormGroup;
+  public set formGroup(formGroup: FormGroup) {
+    this._formGroup = formGroup;
+    this.initFormGroup();
+  }
+
+  public get formGroup(): FormGroup {
+    return this._formGroup;
+  }
+
+  private _formGroup!: FormGroup;
 
   @Input({ required: true })
   public titleLabel?: string;
@@ -36,7 +46,20 @@ export class FormStepComponent implements OnDestroy {
 
   public currentStepIdx?: number;
   public lastStepIdx?: number;
-  public index?: number;
+
+  public set index(index: Maybe<number>) {
+    this._index = index;
+    this.initFormGroup();
+
+    this.initLastStep();
+    this.initCurrentStep();
+  }
+
+  public get index(): Maybe<number> {
+    return this._index;
+  }
+
+  private _index?: Maybe<number>;
 
   public entered = false;
   public left = false;
@@ -49,16 +72,14 @@ export class FormStepComponent implements OnDestroy {
     private store: Store,
   ) { }
 
-  public register(index: number): void {
-    this.index = index;
-    this.resetValue = this.formGroup.value;
-    this.store.dispatch(FormStepperActions.registerStep(this.index, this.formGroup.status));
-    this.formGroup.valueChanges
-      .pipe(takeUntil(this.destroy))
-      .subscribe(() => this.store.dispatch(FormStepperActions.statusChanged(this.index as number, this.formGroup.status)))
-
-    this.initLastStep();
-    this.initCurrentStep();
+  private initFormGroup() {
+    if (this.index !== undefined && this.index !== null && this.formGroup) {
+      this.resetValue = this.formGroup.value;
+      this.store.dispatch(FormStepperActions.registerStep(this.index, this.formGroup.status));
+      this.formGroup.valueChanges
+        .pipe(takeUntil(this.destroy))
+        .subscribe(() => this.store.dispatch(FormStepperActions.statusChanged(this.index as number, this.formGroup.status)))
+    }
   }
   
   private initLastStep(): void {

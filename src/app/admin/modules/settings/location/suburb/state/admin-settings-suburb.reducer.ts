@@ -1,9 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { FilterSortPaginateInput, PageableList_SuburbEntity } from 'src/app/core/api/generated/schema';
+import { FilterSortPaginateInput, Maybe, PageableList_SuburbEntity, SuburbEntity } from 'src/app/core/api/generated/schema';
 import { AdminSettingsSuburbActions } from './admin-settings-suburb.actions';
 
 export interface AdminSettingsSuburbState {
   overviewData?: PageableList_SuburbEntity,
+  editSuburb?: Maybe<SuburbEntity>,
   params: FilterSortPaginateInput
 }
 
@@ -21,4 +22,16 @@ export const adminSettingsSuburbReducer = createReducer(
   on(AdminSettingsSuburbActions.setOverviewData, (state, action): AdminSettingsSuburbState => (
     { ...state, overviewData: action.suburbs }
   )),
+
+  on(AdminSettingsSuburbActions.suburbRetrieved, (state, action): AdminSettingsSuburbState => (
+    { ...state, editSuburb: action.entity }
+  )),
+
+  on(
+    AdminSettingsSuburbActions.saved,
+    AdminSettingsSuburbActions.cancelled,
+    (state): AdminSettingsSuburbState => (
+      { ...state, editSuburb: undefined }
+    )
+  ),
 );

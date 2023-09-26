@@ -5,6 +5,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { EMPTY, map, of, switchMap, tap, withLatestFrom } from 'rxjs';
 import { DeleteSuburbGQL } from 'src/app/admin/api/generated/delete-suburb.mutation.generated';
+import { GetSuburbGQL } from 'src/app/admin/api/generated/get-suburb.query.generated';
 import { GetSuburbsGQL } from 'src/app/admin/api/generated/get-suburbs.query.generated';
 import { SaveSuburbGQL } from 'src/app/admin/api/generated/save-suburb.mutation.generated';
 import { PageableList_SuburbEntity } from 'src/app/core/api/generated/schema';
@@ -26,10 +27,18 @@ export class AdminSettingsSuburbEffects {
       AdminSettingsSuburbActions.deleted
       ),
     withLatestFrom(this.store.select(selectParams)),
-    switchMap(([, params]) => this.getSuburbesService.watch({
+    switchMap(([, params]) => this.getSuburbsService.watch({
       params,
     }).valueChanges),
     map(response => AdminSettingsSuburbActions.setOverviewData(response.data.getSuburbs as PageableList_SuburbEntity))
+  ));
+
+  getSuburb = createEffect(() => this.actions.pipe(
+    ofType(AdminSettingsSuburbActions.getSuburb),
+    switchMap(action => this.getSuburbService.watch({
+      entity: { id: action.entityId }
+    }).valueChanges),
+    map(response => AdminSettingsSuburbActions.suburbRetrieved(response.data.getSuburb))
   ));
 
   save = createEffect(() => this.actions.pipe(
@@ -77,7 +86,8 @@ export class AdminSettingsSuburbEffects {
     private actions: Actions,
     private dialog: MatDialog,
     private deleteSuburbService: DeleteSuburbGQL,
-    private getSuburbesService: GetSuburbsGQL,
+    private getSuburbsService: GetSuburbsGQL,
+    private getSuburbService: GetSuburbGQL,
     private saveSuburbService: SaveSuburbGQL,
     private store: Store,
     private router: Router,

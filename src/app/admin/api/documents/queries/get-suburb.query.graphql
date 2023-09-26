@@ -1,0 +1,8 @@
+query getSuburb($entity: SuburbEntityInput) {
+  getSuburb(entity: $entity) {
+    id
+    name
+    longitude
+    latitude
+  }
+}

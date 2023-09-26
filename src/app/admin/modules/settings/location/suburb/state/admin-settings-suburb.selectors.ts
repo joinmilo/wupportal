@@ -14,3 +14,8 @@ export const selectParams = createSelector(
   selectAdminSettingsSuburbState,
   state => state.params
 );
+
+export const selectEditableSuburb = createSelector(
+  selectAdminSettingsSuburbState,
+  state => state.editSuburb
+);
