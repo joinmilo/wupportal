@@ -3,14 +3,14 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy, Renderer2, View
 import { Subject, filter, map, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { maxMobileSize } from 'src/app/core/constants/core.constants';
-import { FormStepperColumnDirective } from '../../directives/form-stepper-column';
+import { ColumnDirective } from '../directive/column.directive';
 
 @Component({
-  selector: 'app-form-row',
-  templateUrl: './form-row.component.html',
-  styleUrls: ['./form-row.component.scss']
+  selector: 'app-row',
+  templateUrl: './row.component.html',
+  styleUrls: ['./row.component.scss'],
 })
-export class FormRowComponent implements AfterViewInit, OnDestroy {
+export class RowComponent implements AfterViewInit, OnDestroy {
 
   @Input()
   public columns?: number;
@@ -45,7 +45,7 @@ export class FormRowComponent implements AfterViewInit, OnDestroy {
   
       Array.from(this.container?.nativeElement.children as HTMLCollection)
         .forEach((element: Element) => {
-          const cellColumns = element.attributes.getNamedItem(FormStepperColumnDirective.namedAttribute)?.value;
+          const cellColumns = element.attributes.getNamedItem(ColumnDirective.namedAttribute)?.value;
 
           cellColumns
             ? this.setStyle(element, cellWidth * Number(cellColumns))
