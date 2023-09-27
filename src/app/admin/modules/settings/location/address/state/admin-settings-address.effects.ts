@@ -18,7 +18,7 @@ export class AdminSettingsAddressEffects {
   updateParams = createEffect(() => this.actions.pipe(
     ofType(
       AdminSettingsAddressActions.updateParams,
-      AdminSettingsAddressActions.addressDeleted
+      AdminSettingsAddressActions.deleted
       ),
     withLatestFrom(this.store.select(selectParams)),
     switchMap(([, params]) => this.getAddressesService.watch({
@@ -28,7 +28,7 @@ export class AdminSettingsAddressEffects {
   ));
 
   deleteAddress = createEffect(() => this.actions.pipe(
-    ofType(AdminSettingsAddressActions.deleteAddress),
+    ofType(AdminSettingsAddressActions.delete),
     switchMap(action => this.dialog.open(ConfirmDeleteComponent, { data: action.address?.street + ' ' + action.address?.houseNumber })
       .afterClosed().pipe(
         switchMap(confirmed => confirmed
@@ -40,11 +40,11 @@ export class AdminSettingsAddressEffects {
     switchMap(address => this.deleteAddressService.mutate({
       id: address?.id
     })),
-    map(() => AdminSettingsAddressActions.addressDeleted())
+    map(() => AdminSettingsAddressActions.deleted())
   ));
 
   addressDeleted = createEffect(() => this.actions.pipe(
-    ofType(AdminSettingsAddressActions.addressDeleted),
+    ofType(AdminSettingsAddressActions.deleted),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
       labelMessage: 'deletedSuccessfully'

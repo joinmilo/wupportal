@@ -19,13 +19,13 @@ export class AdminSettingsAddressOverviewComponent {
     {
       icon: 'pen-to-square',
       callback: row =>
-        this.router.navigate(['form', row?.id], { relativeTo: this.activatedRoute }),
+        this.router.navigate([row?.id, 'form'], { relativeTo: this.activatedRoute }),
       tooltipLabel: 'edit'
     },
     {
       icon: 'trash',
       callback: address =>
-        this.store.dispatch(AdminSettingsAddressActions.deleteAddress(address)),
+        this.store.dispatch(AdminSettingsAddressActions.delete(address)),
       tooltipLabel: 'delete'
     },
 
@@ -45,6 +45,11 @@ export class AdminSettingsAddressOverviewComponent {
     {
       field: 'postalCode',
       label: 'postalCode',
+      sort: true,
+    },
+    {
+      field: 'suburb.name',
+      label: 'suburb',
       sort: true,
     },
     {

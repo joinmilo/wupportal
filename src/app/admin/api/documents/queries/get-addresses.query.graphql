@@ -8,8 +8,9 @@ query getAddresses($params: FilterSortPaginateInput) {
       place
       postalCode
       street
-      suburb{
+      suburb {
         id
+        name
       }
     }
     total

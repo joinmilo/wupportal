@@ -9,7 +9,7 @@ export type GetAddressesQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetAddressesQuery = { __typename?: 'Query', getAddresses?: { __typename?: 'PageableList_AddressEntity', total: any, result?: Array<{ __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, latitude?: number | null, longitude?: number | null, place?: string | null, postalCode?: string | null, street?: string | null, suburb?: { __typename?: 'SuburbEntity', id?: string | null } | null } | null> | null } | null };
+export type GetAddressesQuery = { __typename?: 'Query', getAddresses?: { __typename?: 'PageableList_AddressEntity', total: any, result?: Array<{ __typename?: 'AddressEntity', id?: string | null, houseNumber?: string | null, latitude?: number | null, longitude?: number | null, place?: string | null, postalCode?: string | null, street?: string | null, suburb?: { __typename?: 'SuburbEntity', id?: string | null, name?: string | null } | null } | null> | null } | null };
 
 export const GetAddressesDocument = gql`
     query getAddresses($params: FilterSortPaginateInput) {
@@ -24,6 +24,7 @@ export const GetAddressesDocument = gql`
       street
       suburb {
         id
+        name
       }
     }
     total

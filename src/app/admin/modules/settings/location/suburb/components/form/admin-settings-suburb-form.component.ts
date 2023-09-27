@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { Subject, filter, switchMap, take, tap } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { id } from 'src/app/core/constants/queryparam.constants';
 import { AppValidators } from 'src/app/core/validators/validators';
@@ -33,19 +33,18 @@ export class AdminSettingsSuburbFormComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.activatedRoute.params.pipe(
-      tap(params => this.store.dispatch(AdminSettingsSuburbActions.getSuburb(params[id] || ''))),
+      filter(params => !!params[id]),
+      tap(params => this.store.dispatch(AdminSettingsSuburbActions.getSuburb(params[id]))),
       switchMap(() => this.store.select(selectEditableSuburb)),
-      takeUntil(this.destroy)
-    ).subscribe(suburb => {
-      if (suburb) {
-        this.form = this.fb.group({
-          id: [suburb?.id],
-          name: [suburb?.name, [Validators.required]],
-          longitude: [suburb?.latitude?.toString(), [Validators.required, AppValidators.decimal(),]],
-          latitude: [suburb?.longitude?.toString(), [Validators.required, AppValidators.decimal(),]],
-        });
-      }
-    });
+      filter(suburb => !!suburb),
+      take(1)
+    ).subscribe(suburb =>
+      this.form = this.fb.group({
+        id: [suburb?.id],
+        name: [suburb?.name, [Validators.required]],
+        longitude: [suburb?.latitude?.toString(), [Validators.required, AppValidators.decimal(),]],
+        latitude: [suburb?.longitude?.toString(), [Validators.required, AppValidators.decimal(),]],
+      }));
   }
 
   public cancelled(): void {

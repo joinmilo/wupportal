@@ -13,3 +13,8 @@ export const selectParams = createSelector(
   selectAdminSettingsAddressState,
   state => state.params
 );
+
+export const selectEditableAddress = createSelector(
+  selectAdminSettingsAddressState,
+  state => state.editAddress
+);

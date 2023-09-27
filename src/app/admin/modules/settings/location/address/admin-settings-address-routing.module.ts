@@ -10,11 +10,11 @@ const routes: Routes = [
     component: AdminSettingsAddressOverviewComponent,
   },
   {
-    path: `:${id}/form`,
+    path: `form`,
     component: AdminSettingsAddressFormComponent,
   },
   {
-    path: `form`,
+    path: `:${id}/form`,
     component: AdminSettingsAddressFormComponent,
   },
 ];
