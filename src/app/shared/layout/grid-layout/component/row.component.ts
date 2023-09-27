@@ -65,13 +65,13 @@ export class RowComponent implements AfterViewInit, OnDestroy {
         takeUntil(this.destroy)
       ).subscribe(() => {
         Array.from(this.container?.nativeElement.children as HTMLCollection)
-          .forEach((element: Element) => this.setStyle(element, 100))
+          .forEach((element: Element) => this.setStyle(element, 100, 0))
       });
     }
   }
 
-  private setStyle(element: Element, cellWidth: number) {
-    this.renderer.setStyle(element, 'width', `calc(${cellWidth}% - 1rem)`);
+  private setStyle(element: Element, cellWidth: number, gap = 1) {
+    this.renderer.setStyle(element, 'width', `calc(${cellWidth}% - ${gap}rem)`);
   }
 
   public ngOnDestroy(): void {

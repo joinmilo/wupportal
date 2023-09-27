@@ -16,8 +16,7 @@ import { selectEditableAddress } from '../../state/admin-settings-address.select
 export class AdminSettingsAddressFormComponent implements OnInit, OnDestroy {
 
   public form = this.fb.group({
-    id: ['' as Maybe<string>],
-    address: [{} as AddressEntity, [Validators.required]],
+    address: [undefined as Maybe<AddressEntity>, [Validators.required]],
   });
 
   private destroy = new Subject<void>();
@@ -37,8 +36,7 @@ export class AdminSettingsAddressFormComponent implements OnInit, OnDestroy {
       take(1)
     ).subscribe(address =>
       this.form = this.fb.group({
-        id: [address?.id],
-        address: [address as AddressEntity, [Validators.required]],
+        address: [address, [Validators.required]],
       }));
   }
 
@@ -47,12 +45,11 @@ export class AdminSettingsAddressFormComponent implements OnInit, OnDestroy {
   }
 
   public saved(): void {
-    // this.store.dispatch(AdminSettingsAddressActions.save({
-    //   id: this.form.value.id,
-    //   name: this.form.value.name,
-    //   longitude: Number(this.form.value.longitude?.replace(',', '.')),
-    //   latitude: Number(this.form.value.latitude?.replace(',', '.'))
-    // }));
+    if (this.form.value.address) {
+      this.store.dispatch(AdminSettingsAddressActions.save(
+        this.form.value.address
+      ));
+    }
   }
 
   public ngOnDestroy(): void {

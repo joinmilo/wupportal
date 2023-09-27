@@ -1,0 +1,5 @@
+mutation saveAddress($entity: AddressEntityInput) {
+  saveAddress(entity: $entity) {
+    id
+  }
+}

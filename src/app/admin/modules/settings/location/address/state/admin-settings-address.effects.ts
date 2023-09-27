@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { EMPTY, map, of, switchMap, withLatestFrom } from 'rxjs';
+import { EMPTY, map, of, switchMap, tap, withLatestFrom } from 'rxjs';
 import { DeleteAddressGQL } from 'src/app/admin/api/generated/delete-address.mutation.generated';
+import { GetAddressGQL } from 'src/app/admin/api/generated/get-address.query.generated';
 import { GetAddressesGQL } from 'src/app/admin/api/generated/get-addresses.query.generated';
+import { SaveAddressGQL } from 'src/app/admin/api/generated/save-address.mutation.generated';
 import { PageableList_AddressEntity } from 'src/app/core/api/generated/schema';
+import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ConfirmDeleteComponent } from 'src/app/shared/dialogs/confirm-delete/confirm-delete.component';
+import { baseRoute } from '../../admin-settings-location.routing.module';
 import { AdminSettingsAddressActions } from './admin-settings-address.actions';
 import { selectParams } from './admin-settings-address.selectors';
 
@@ -25,6 +30,31 @@ export class AdminSettingsAddressEffects {
       params,
     }).valueChanges),
     map(response => AdminSettingsAddressActions.setOverviewData(response.data.getAddresses as PageableList_AddressEntity))
+  ));
+
+  getAddress = createEffect(() => this.actions.pipe(
+    ofType(AdminSettingsAddressActions.getAddress),
+    switchMap(action => this.getAddressService.watch({
+      entity: { id: action.entityId }
+    }).valueChanges),
+    map(response => AdminSettingsAddressActions.addressRetrieved(response.data.getAddress))
+  ));
+
+  save = createEffect(() => this.actions.pipe(
+    ofType(AdminSettingsAddressActions.save),
+    switchMap(action => this.saveAddressService.mutate({
+      entity: action.address
+    })),
+    map(() => AdminSettingsAddressActions.saved())
+  ));
+
+  saved = createEffect(() => this.actions.pipe(
+    ofType(AdminSettingsAddressActions.saved),
+    tap(() => this.router.navigate([adminUrl, settingsUrl, baseRoute, 'addresses'])),
+    map(() => CoreActions.setFeedback({
+      type: FeedbackType.Success,
+      labelMessage: 'savedSuccessfully'
+    }))
   ));
 
   deleteAddress = createEffect(() => this.actions.pipe(
@@ -55,7 +85,10 @@ export class AdminSettingsAddressEffects {
     private actions: Actions,
     private dialog: MatDialog,
     private deleteAddressService: DeleteAddressGQL,
+    private getAddressService: GetAddressGQL,
     private getAddressesService: GetAddressesGQL,
+    private saveAddressService: SaveAddressGQL,
+    private router: Router,
     private store: Store,
   ) {}
 }

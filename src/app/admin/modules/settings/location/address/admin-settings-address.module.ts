@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { AddressFormComponent } from 'src/app/shared/form/address/address-form.component';
+import { AddressFormModule } from 'src/app/shared/form/address/address-form.module';
 import { FormStepperModule } from 'src/app/shared/form/stepper/form-stepper.module';
 import { GridLayoutModule } from 'src/app/shared/layout/grid-layout/grid-layout.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
@@ -38,7 +38,7 @@ const materials = [
 ];
 
 const modules = [
-  AddressFormComponent,
+  AddressFormModule,
   AdminSettingsAddressRoutingModule,
   CoreModule,
   FormStepperModule,

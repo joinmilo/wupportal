@@ -1,5 +1,5 @@
 <app-page-title
-  [titleLabel]="form.value.id ? 'editAddress' : 'createNewAddress'">
+  [titleLabel]="form.value.address?.id ? 'editAddress' : 'createNewAddress'">
 </app-page-title>
 
 <app-form-stepper
@@ -9,7 +9,7 @@
     titleLabel="address"
     [formGroup]="form">
     <app-row [columns]="2">
-      <app-address-form formControlName="address"></app-address-form>
+      <app-address-form [formControl]="form.controls.address"></app-address-form>
     </app-row>
   </app-form-step>
 </app-form-stepper>

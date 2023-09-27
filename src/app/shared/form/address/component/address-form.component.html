@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+  <app-row [columns]="8">
+    <mat-form-field appearance="outline" [appAssignColumns]="6">
+      <mat-label appLabel="street"></mat-label>
+      <input matInput formControlName="street">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" [appAssignColumns]="2">
+      <mat-label appLabel="nr"></mat-label>
+      <input matInput formControlName="houseNumber">
+    </mat-form-field>
+  </app-row>
+
+  <app-row [columns]="8">
+    <mat-form-field appearance="outline" [appAssignColumns]="4">
+      <mat-label appLabel="place"></mat-label>
+      <input matInput formControlName="place">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [appAssignColumns]="4">
+      <mat-label appLabel="suburb"></mat-label>
+      <mat-select formControlName="suburb">
+        <mat-option [value]="suburb.id" *ngFor="let suburb of suburbs | async">
+          <p>{{ suburb.name }}</p>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </app-row>
+
+  <mat-error *ngIf="form.errors?.[allFieldsRequiredError]"
+    appLabel="allFieldsRequired"></mat-error>
+  <mat-error *ngIf="form.errors?.[addressInvalidError]"
+    appLabel="addressInvalid"></mat-error>
+</form>

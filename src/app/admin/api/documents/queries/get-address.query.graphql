@@ -1,0 +1,15 @@
+query getAddress($entity: AddressEntityInput) {
+  getAddress(entity: $entity) {
+    id
+    houseNumber
+    latitude
+    longitude
+    place
+    postalCode
+    street
+    suburb {
+      id
+      name
+    }
+  }
+}

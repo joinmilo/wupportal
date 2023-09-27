@@ -1,20 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { AsyncValidator, ControlValueAccessor, FormBuilder, FormsModule, NG_ASYNC_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { AsyncValidator, ControlValueAccessor, FormBuilder, NG_ASYNC_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Observable, Subject, debounceTime, filter, map, of, switchMap, take, takeUntil, tap } from 'rxjs';
 import { AddressEntity, Maybe } from 'src/app/core/api/generated/schema';
-import { CoreModule } from 'src/app/core/core.module';
 import { AppValidators } from 'src/app/core/validators/validators';
-import { GridLayoutModule } from '../../layout/grid-layout/grid-layout.module';
-import { AddressValidationService } from './services/address-validator.service';
+import { AddressValidationService } from '../services/address-validator.service';
+import { AddressFormActions } from '../state/address-form.actions';
+import { selectSuburbs } from '../state/address-form.selectors';
 
 @Component({
   selector: 'app-address-form',
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss'],
-  standalone: true,
   providers: [
     {
       provide: NG_ASYNC_VALIDATORS,
@@ -26,39 +23,38 @@ import { AddressValidationService } from './services/address-validator.service';
       multi: true,
       useExisting: AddressFormComponent,
     },
-    AddressValidationService
   ],
-  imports: [
-    CoreModule,
-    CommonModule,
-    FormsModule,
-    GridLayoutModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-  ]
 })
 export class AddressFormComponent implements ControlValueAccessor, OnDestroy, AsyncValidator {
 
   public form = this.fb.group({
+    id: ['', ],
     street: ['', ],
     place: [''],
     houseNumber: [''],
+    suburb: ['' as Maybe<string>]
   }, {
     validators: [
-      AppValidators.allOrNone('street', 'place', 'houseNumber')
+      AppValidators.allOrNone('street', 'place', 'houseNumber', 'suburb')
     ],
   });
+
+  public addressInvalidError = 'addressInvalid';
+  public allFieldsRequiredError = 'allFieldsRequired';
 
   private onChange?: (value?: Maybe<AddressEntity>) => void;
   private onTouched?: () => void;
   private onValidatorChange?: () => void;
 
+  public suburbs = this.store.select(selectSuburbs);
+
   private destroy = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
-    private validationService: AddressValidationService) {
+    private validationService: AddressValidationService,
+    private store: Store,) {
+      this.store.dispatch(AddressFormActions.getSuburbs());
 
       this.form.statusChanges
         .pipe(takeUntil(this.destroy))
@@ -66,8 +62,8 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
 
       this.form.valueChanges
         .pipe(
-          tap(() => {this.onTouched && this.onTouched()}),
-          filter(value => this.allSet(value)),
+          tap(() => this.onTouched && this.onTouched()),
+          filter(value => this.formFilled(value)),
           tap(() => this.form.setErrors({ intermediate: true })),
           debounceTime(1000),
           switchMap(value => this.validationService.verify(value)),
@@ -75,9 +71,15 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
           takeUntil(this.destroy)
         )
         .subscribe((address: Maybe<AddressEntity>) => {
-          this.allSet(address)
-            ? this.onChange && this.onChange(address)
-            : this.form.setErrors({ addressInvalid: true })
+          address
+            ? this.form.controls.suburb.value
+              ? this.onChange && this.onChange({
+                  ...address,
+                    id: this.form.value.id,
+                    suburb: { id: this.form.controls.suburb.value }
+                })
+              : null
+            : this.form.setErrors({ [this.addressInvalidError]: true })
           this.onValidatorChange && this.onValidatorChange();
         });
   }
@@ -100,25 +102,33 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
     this.onTouched = onTouched;
   }
 
-  public registerOnValidatorChange?(fn: () => void): void {
-    this.onValidatorChange = fn;
+  public registerOnValidatorChange?(onValidatorChange: () => void): void {
+    this.onValidatorChange = onValidatorChange;
   }
 
   public writeValue(address: Maybe<AddressEntity>): void {
     this.form.patchValue({
+      id: address?.id,
       street: address?.street,
       place: address?.place,
       houseNumber: address?.houseNumber,
+      suburb: address?.suburb?.id
     });
   }
 
-  private allSet(value: Maybe<AddressEntity>): boolean {
+  private formFilled(value: Partial<{
+      street: Maybe<string>;
+      place: Maybe<string>;
+      houseNumber: Maybe<string>;
+      suburb: Maybe<string>;
+    }> | Maybe<AddressEntity>): boolean {
     return !!(value?.street
       && value?.houseNumber
-      && value?.place);
+      && value?.place
+      && value?.suburb);
   }
   
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }
