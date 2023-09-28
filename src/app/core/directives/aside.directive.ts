@@ -35,6 +35,7 @@ export class AsideDirective implements OnDestroy {
 
 
   public ngOnDestroy(): void {
+    this.viewContainer.clear();
     this.destroy.next();
     this.destroy.complete();
   }

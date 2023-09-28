@@ -11,13 +11,13 @@
     </mat-form-field>
   </app-row>
 
-  <app-row [columns]="8">
-    <mat-form-field appearance="outline" [appAssignColumns]="4">
+  <app-row [columns]="2">
+    <mat-form-field appearance="outline">
       <mat-label appLabel="place"></mat-label>
       <input matInput formControlName="place">
     </mat-form-field>
 
-    <mat-form-field appearance="outline" [appAssignColumns]="4">
+    <mat-form-field appearance="outline">
       <mat-label appLabel="suburb"></mat-label>
       <mat-select formControlName="suburb">
         <mat-option [value]="suburb.id" *ngFor="let suburb of suburbs | async">
@@ -27,8 +27,9 @@
     </mat-form-field>
   </app-row>
 
-  <mat-error *ngIf="form.errors?.[allFieldsRequiredError]"
-    appLabel="allFieldsRequired"></mat-error>
-  <mat-error *ngIf="form.errors?.[addressInvalidError]"
-    appLabel="addressInvalid"></mat-error>
+  <mat-error *ngIf="form.errors">
+    <ng-container *ngFor="let error of form.errors | keyvalue">
+      <span [appLabel]="error.key"></span>
+    </ng-container>
+  </mat-error>
 </form>

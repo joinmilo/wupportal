@@ -39,9 +39,6 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
     ],
   });
 
-  public addressInvalidError = 'addressInvalid';
-  public allFieldsRequiredError = 'allFieldsRequired';
-
   private onChange?: (value?: Maybe<AddressEntity>) => void;
   private onTouched?: () => void;
   private onValidatorChange?: () => void;
@@ -64,7 +61,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
         .pipe(
           tap(() => this.onTouched && this.onTouched()),
           filter(value => this.formFilled(value)),
-          tap(() => this.form.setErrors({ intermediate: true })),
+          tap(() => this.form.setErrors({ addressVerifying: true })),
           debounceTime(1000),
           switchMap(value => this.validationService.verify(value)),
           tap(() => this.form.setErrors(null)),
@@ -79,7 +76,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
                     suburb: { id: this.form.controls.suburb.value }
                 })
               : null
-            : this.form.setErrors({ [this.addressInvalidError]: true })
+            : this.form.setErrors({ addressInvalid: true })
           this.onValidatorChange && this.onValidatorChange();
         });
   }
@@ -89,7 +86,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
       .pipe(
         map(status => status === 'VALID'
           ? null
-          : { addressNotValid: true }),
+          : { addressInvalid: true }),
         take(1)
       );
   }

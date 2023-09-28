@@ -49,7 +49,6 @@ export class AppValidators {
    * GROUP VALIDATIONS
    * 
    */
-  
   public static allOrNone(...fields: string[]): ValidatorFn {
     return (group: AbstractControl): ValidationErrors | null => {
       const values = fields.map((fieldName) => group?.get(fieldName)?.value);
@@ -59,7 +58,23 @@ export class AppValidators {
   
       return allUnset || allSet
         ? null
-        : { allFieldsRequired: true };
+        : { allOrNoneFieldsRequired: true };
+    };
+  }
+
+  static dateBefore(startControl: string, endControl: string): ValidatorFn {
+    return (group: AbstractControl): ValidationErrors | null => {
+      const startDateControl = group?.get(startControl);
+      const endDateControl = group?.get(endControl);
+
+      const startDate = startDateControl?.value;
+      const endDate = endDateControl?.value;
+
+      return !startDate || !endDate
+        ? null
+        : startDate > endDate
+          ? { startNotBeforeEnd: true }
+          : null;
     };
   }
 

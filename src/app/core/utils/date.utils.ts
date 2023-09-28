@@ -24,3 +24,11 @@ export const dayPeriod = (date?: Maybe<Date>): Maybe<Period> | undefined => {
   }
   return undefined;
 }
+
+export const toLocalDateTime = (date: Date): string => {
+  return `${date.toISOString().substring(0, 11)}${doubleDigit(date.getHours())}:${doubleDigit(date.getMinutes())}`
+}
+
+export const doubleDigit = (number: number): string => {
+  return number < 10 ? '0' + number : number.toString();
+}

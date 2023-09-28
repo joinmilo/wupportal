@@ -40,6 +40,11 @@ export class AdminSettingsAddressEffects {
     map(response => AdminSettingsAddressActions.addressRetrieved(response.data.getAddress))
   ));
 
+  cancelled = createEffect(() => this.actions.pipe(
+    ofType(AdminSettingsAddressActions.cancelled),
+    tap(() => this.router.navigate([adminUrl, settingsUrl, baseRoute, 'addresses'])),
+  ), { dispatch: false });
+
   save = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsAddressActions.save),
     switchMap(action => this.saveAddressService.mutate({

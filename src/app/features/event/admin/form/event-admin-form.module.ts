@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { SchedulerFormComponent } from 'src/app/shared/form/scheduler/scheduler-form.component';
+import { SchedulerModule } from 'src/app/shared/form/scheduler/scheduler.module';
 import { FormStepperModule } from 'src/app/shared/form/stepper/form-stepper.module';
 import { GridLayoutModule } from 'src/app/shared/layout/grid-layout/grid-layout.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
@@ -21,12 +23,17 @@ const framework = [
   CommonModule,
 ];
 
+const materials = [
+  MatFormFieldModule,
+  MatInputModule,
+]
+
 const modules = [
   CoreModule,
   EventAdminFormRoutingModule,
   FormStepperModule,
   GridLayoutModule,
-  SchedulerFormComponent,
+  SchedulerModule,
   TitleModule,
 ];
 
@@ -38,9 +45,10 @@ const libs = [
 @NgModule({
   declarations: [...components],
   imports: [
+    ...materials,
+    ...modules,
     ...framework,
     ...libs,
-    ...modules,
   ],
   exports: [...components],
 })

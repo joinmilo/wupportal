@@ -38,11 +38,6 @@ export class EventAdminDetailsLayoutComponent implements OnInit, OnDestroy {
       value: searchRoute
     },
     {
-      icon: ['fas', 'star'],
-      label: 'ratings',
-      value: ratingsRoute
-    },
-    {
       icon: ['far', 'comment-dots'],
       label: 'comments',
       value: commentsRoute
