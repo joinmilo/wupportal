@@ -1,0 +1,10 @@
+query getEventForm($entity: EventEntityInput) {
+  getEvent(entity: $entity) {
+    id
+    schedules {
+      id
+      startDate
+      endDate
+    }
+  }
+}

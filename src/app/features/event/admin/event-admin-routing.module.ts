@@ -45,6 +45,11 @@ const routes: Routes = [
       .then((imported) => imported.EventAdminDetailsModule),
     component: EventAdminDetailsLayoutComponent
   },
+  {
+    path: `${eventsFeatureKey}/:${slug}/form`,
+    loadChildren: () => import('src/app/features/event/admin/form/event-admin-form.module')
+      .then((imported) => imported.EventAdminFormModule),
+  },
 ]
 
 @NgModule({

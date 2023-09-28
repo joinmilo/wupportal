@@ -1,1 +1,19 @@
-FORM IS HERE
+<app-page-title
+  [titleLabel]="form.value.id ? 'editEvent' : 'createNewEvent'">
+</app-page-title>
+
+<app-form-stepper
+  (cancelled)="cancelled()"
+  (saved)="saved()">
+  <app-form-step
+    titleLabel="time"
+    descriptionLabel="createSchedules"
+    [formGroup]="form">
+    <app-row>
+      <app-scheduler-form
+        formControlName="schedules">
+      </app-scheduler-form>
+    </app-row>
+  </app-form-step>
+
+</app-form-stepper>
