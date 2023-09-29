@@ -61,6 +61,7 @@ export class AdminSettingsSuburbFormComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
+    this.store.dispatch(AdminSettingsSuburbActions.cancelled());
     this.destroy.next();
     this.destroy.complete();
   }

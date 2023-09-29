@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { Period } from 'src/app/core/typings/period';
@@ -52,6 +52,9 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
     endDate: [''],
     recurrence: [{ value: this.initRecurrence, disabled: true }],
     recurrenceEnd: [this.initRecurrenceEnd],
+    recurrenceEndOn: [{ value: '', disabled: this.initRecurrenceEnd === 'after' }],
+    recurrenceEndAfter: [{ value: '', disabled: this.initRecurrenceEnd === 'on' }],
+    recurrenceRepetitions: [1, Validators.min(1)],
     result: [[] as Period[]],
   }, {validators: [
     AppValidators.allOrNone('startDate', 'endDate'),
@@ -66,16 +69,20 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
     'yearly',
   ];
 
-  public recurrenceEndOptions: RadioButtonInput[] = [
-    {
-      label: 'on',
-      value: 'on'
-    },
-    {
-      label: 'after',
-      value: 'after'
-    }
-  ]
+  public recurrenceEndOn: RadioButtonInput = {
+    label: 'on',
+    value: 'on'
+  };
+
+  public recurrenceEndAfter: RadioButtonInput = {
+    label: 'after',
+    value: 'after'
+  };
+
+  public recurrenceColumns = 8;
+  public recurrenceDateColumns = 4;
+  public recurrenceLabelColumns = 4;
+  public recurrenceNumberColumns = 2;
 
   public onChange?: (value: Period[]) => void;
   public onTouched?: () => void;
@@ -87,7 +94,7 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
   ) {
     this.touched();
     this.datesChanged();
-    this.recurrenceChanged();
+    this.recurrenceEndChanged();
   }
 
   public ngOnInit(): void {
@@ -115,17 +122,46 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
       });
   }
   
-  private recurrenceChanged() {
-    this.form.controls.recurrence.valueChanges
+  private recurrenceEndChanged() {
+    this.form.controls.recurrenceEnd.valueChanges
       .pipe(takeUntil(this.destroy))
-      .subscribe(recurrence => {
-        switch(recurrence) {
-          case 'daily':
-
+      .subscribe(recurrenceEnd => {
+        switch(recurrenceEnd) {
+          case 'on':
+            this.form.controls.recurrenceEndAfter.disable();
+            this.form.controls.recurrenceEndOn.enable();
+            break;
+          case 'after':
+            this.form.controls.recurrenceEndAfter.enable();
+            this.form.controls.recurrenceEndOn.disable();
+            break;
         }
       })
   }
 
+  public get everyRecurrenceLabel(): string {
+    const isSingle = Number(this.form.value.recurrenceRepetitions) === 1;
+    switch(this.form.value.recurrence) {
+      case 'daily':
+        return isSingle
+          ? 'day'
+          : 'days';
+      case 'weekly':
+        return isSingle
+          ? 'week'
+          : 'weeks';
+      case 'monthly':
+        return isSingle
+          ? 'month'
+          : 'months';
+      case 'yearly':
+        return isSingle
+          ? 'year'
+          : 'years';
+      default:
+        return '';
+    }
+  }
 
   public writeValue(value?: Maybe<Period[]>): void {
     this.form.patchValue({

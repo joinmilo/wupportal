@@ -53,6 +53,7 @@ export class AdminSettingsAddressFormComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
+    this.store.dispatch(AdminSettingsAddressActions.cancelled());
     this.destroy.next();
     this.destroy.complete();
   }

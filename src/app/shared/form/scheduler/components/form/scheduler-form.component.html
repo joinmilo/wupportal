@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <app-row [columns]="4">
+  <app-row>
     <mat-form-field appearance="outline">
       <mat-label appLabel="begin"></mat-label>
       <input matInput type="datetime-local" formControlName="startDate">
@@ -13,8 +13,7 @@
   
   <mat-divider></mat-divider>
   
-
-  <app-row [columns]="4">
+  <app-row [columns]="2">
     <mat-form-field appearance="outline">
       <mat-label appLabel="recurrence"></mat-label>
       <mat-select formControlName="recurrence">
@@ -25,23 +24,57 @@
     </mat-form-field>
   </app-row>
 
-  <!-- TODO: Make possible to select never to end -->
-  <app-row *ngIf="form.value.recurrence
-      && form.value.recurrence !== 'noRecurrence'">
-    
-    <app-radio-button-group
-      formControlName="recurrenceEnd"
-      [inputs]="recurrenceEndOptions"
-      [displayRow]="false"
-      value="on">
-    </app-radio-button-group>
-    <mat-form-field appearance="outline">
-      <mat-label appLabel="endRecurrence"></mat-label>
-      <input matInput [matDatepicker]="picker">
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </app-row>
+  <ng-container *ngIf="form.value.recurrence
+    && form.value.recurrence !== 'noRecurrence'">
+
+    <app-row [columns]="recurrenceColumns">
+      <span appLabel="repeatEvery"
+        [appAssignColumns]="recurrenceLabelColumns">
+      </span>
+
+      <mat-form-field appearance="outline"
+        [appAssignColumns]="recurrenceNumberColumns">
+        <mat-label [appLabel]="everyRecurrenceLabel"></mat-label>
+        <input matInput type="number" formControlName="recurrenceRepetitions">
+      </mat-form-field>
+    </app-row>
+  
+  
+    <!-- TODO: Make possible to select never to end -->
+    <section>
+      <strong appLabel="Ende"></strong>
+  
+      <app-row [columns]="recurrenceColumns">
+        <app-radio-button
+          formControlName="recurrenceEnd"
+          [input]="recurrenceEndOn"
+          [value]="form.value.recurrenceEnd"
+          [appAssignColumns]="recurrenceLabelColumns">
+        </app-radio-button>
+        <mat-form-field appearance="outline" [appAssignColumns]="recurrenceDateColumns">
+          <mat-label appLabel="endRecurrence"></mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="recurrenceEndOn">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </app-row>
+  
+      <app-row [columns]="recurrenceColumns">
+        <app-radio-button
+          formControlName="recurrenceEnd"
+          [input]="recurrenceEndAfter"
+          [value]="form.value.recurrenceEnd"
+          [appAssignColumns]="recurrenceLabelColumns">
+        </app-radio-button>
+        <mat-form-field appearance="outline"
+          [appAssignColumns]="recurrenceNumberColumns">
+          <mat-label appLabel="times"></mat-label>
+          <input matInput type="number" formControlName="recurrenceEndAfter">
+        </mat-form-field>
+      </app-row>
+    </section>
+
+  </ng-container>
 
   <mat-error *ngIf="form.errors">
     <span *ngFor="let error of form.errors | keyvalue"
