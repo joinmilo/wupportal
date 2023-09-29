@@ -12,6 +12,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { GridLayoutModule } from '../../layout/grid-layout/grid-layout.module';
 import { RadioButtonFormModule } from '../radio-button/radio-button-form.module';
 import { SchedulerFormComponent } from './components/form/scheduler-form.component';
+import { SchedulerService } from './services/scheduler.service';
 
 const components = [
   SchedulerFormComponent,
@@ -41,6 +42,10 @@ const libs = [
   FontAwesomeModule,
 ];
 
+const providers = [
+  SchedulerService
+];
+
 @NgModule({
   declarations: [
     ...components,
@@ -53,7 +58,9 @@ const libs = [
   ],
   exports: [
     ...components,
-    ReactiveFormsModule,
   ],
+  providers: [
+    ...providers
+  ]
 })
 export class SchedulerModule { }

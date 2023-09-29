@@ -1,3 +1,5 @@
+import { Maybe } from 'graphql/jsutils/Maybe';
+
 export type Recurrence = 'noRecurrence'
 | 'daily'
 | 'weekly'
@@ -6,3 +8,10 @@ export type Recurrence = 'noRecurrence'
 
 export type RecurrenceEnd = 'on'
 | 'after';
+
+export type RecurrenceOptions = {
+  recurrence: Recurrence,
+  interval: number,
+  untilDate?: Maybe<Date>,
+  repeatTimes?: Maybe<number>,
+};

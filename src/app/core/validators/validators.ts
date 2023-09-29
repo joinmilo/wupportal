@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
@@ -5,7 +6,6 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
   providedIn: 'root',
 })
 export class AppValidators {
-
     /**
    * 
    * CONTROL VALIDATIONS
@@ -49,9 +49,9 @@ export class AppValidators {
    * GROUP VALIDATIONS
    * 
    */
-  public static allOrNone(...fields: string[]): ValidatorFn {
+  public static allOrNone(...controls: string[]): ValidatorFn {
     return (group: AbstractControl): ValidationErrors | null => {
-      const values = fields.map((fieldName) => group?.get(fieldName)?.value);
+      const values = controls.map((fieldName) => group?.get(fieldName)?.value);
   
       const allUnset = values.every((value) => value == null || value === '');
       const allSet = values.every((value) => value != null && value !== '');
@@ -78,9 +78,26 @@ export class AppValidators {
     };
   }
 
-  public static same(...fields: string[]): ValidatorFn {
+  static either(...controls: string[]): ValidatorFn {
     return (group: AbstractControl): ValidationErrors | null => {
-      const values = fields
+      return controls.some((i) => !!group?.get(i)?.value)
+        ? null
+        : { noneSet: true };
+    };
+  }
+
+  static ifMatchValueOtherFilled(control: string, value: any, otherControl: string): ValidatorFn {
+    return (group: AbstractControl): ValidationErrors | null => {
+      return group?.get(control)?.value === value
+        && !group?.get(otherControl)?.value
+          ? { otherNotFilled: true }
+          : null;
+    };
+  }
+
+  public static same(...controls: string[]): ValidatorFn {
+    return (group: AbstractControl): ValidationErrors | null => {
+      const values = controls
         .map((i) => group?.get(i)?.value);
 
       return values.every((i) => i === values[0])

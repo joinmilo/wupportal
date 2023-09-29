@@ -1,12 +1,16 @@
 import { Component, Input, OnInit, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
+import { CoreActions } from 'src/app/core/state/actions/core.actions';
+import { FeedbackType } from 'src/app/core/typings/feedback';
 import { Period } from 'src/app/core/typings/period';
 import { toLocalDateTime } from 'src/app/core/utils/date.utils';
 import { AppValidators } from 'src/app/core/validators/validators';
 import { RadioButtonInput } from '../../../radio-button/typings/radio-button-input';
-import { Recurrence, RecurrenceEnd } from '../../typings/scheduler';
+import { SchedulerService } from '../../services/scheduler.service';
+import { Recurrence, RecurrenceEnd, RecurrenceOptions } from '../../typings/scheduler';
 
 @Component({
   selector: 'app-scheduler-form',
@@ -52,13 +56,14 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
     endDate: [''],
     recurrence: [{ value: this.initRecurrence, disabled: true }],
     recurrenceEnd: [this.initRecurrenceEnd],
-    recurrenceEndOn: [{ value: '', disabled: this.initRecurrenceEnd === 'after' }],
-    recurrenceEndAfter: [{ value: '', disabled: this.initRecurrenceEnd === 'on' }],
-    recurrenceRepetitions: [1, Validators.min(1)],
-    result: [[] as Period[]],
+    recurrenceUntil: [{ value: '', disabled: this.initRecurrenceEnd === 'after' }],
+    recurrenceAfterTimes: [{ value: '', disabled: this.initRecurrenceEnd === 'on' }, [Validators.min(0)]],
+    recurrenceInterval: [1, Validators.min(1)],
   }, {validators: [
     AppValidators.allOrNone('startDate', 'endDate'),
-    AppValidators.dateBefore('startDate', 'endDate')
+    AppValidators.dateBefore('startDate', 'endDate'),
+    AppValidators.ifMatchValueOtherFilled('recurrenceEnd', 'after', 'recurrenceAfterTimes'),
+    AppValidators.ifMatchValueOtherFilled('recurrenceEnd', 'on', 'recurrenceUntil')
   ]});
 
   public recurrences: Recurrence[] = [
@@ -79,10 +84,12 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
     value: 'after'
   };
 
-  public recurrenceColumns = 8;
-  public recurrenceDateColumns = 4;
-  public recurrenceLabelColumns = 4;
-  public recurrenceNumberColumns = 2;
+  public columns = 11;
+  public recurrenceDateColumns = 5;
+  public recurrenceLabelColumns = 5;
+  public recurrenceNumberColumns = 3;
+
+  public result: Period[] = [];
 
   public onChange?: (value: Period[]) => void;
   public onTouched?: () => void;
@@ -91,6 +98,8 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
 
   constructor(
     private fb: FormBuilder,
+    private schedulerService: SchedulerService,
+    private store: Store,
   ) {
     this.touched();
     this.datesChanged();
@@ -115,8 +124,13 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
       this.form.controls.endDate.valueChanges
     ])
       .pipe(takeUntil(this.destroy))
-      .subscribe(([start, end]) => {
-        if (start && end) {
+      .subscribe(([startDate, endDate]) => {
+        if (startDate && endDate) {
+          this.result.push({
+            startDate: new Date(startDate),
+            endDate: new Date(endDate)
+          });
+          this.onChange && this.onChange(this.result);
           this.form.controls.recurrence.enable();
         }
       });
@@ -128,19 +142,19 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
       .subscribe(recurrenceEnd => {
         switch(recurrenceEnd) {
           case 'on':
-            this.form.controls.recurrenceEndAfter.disable();
-            this.form.controls.recurrenceEndOn.enable();
+            this.form.controls.recurrenceAfterTimes.disable();
+            this.form.controls.recurrenceUntil.enable();
             break;
           case 'after':
-            this.form.controls.recurrenceEndAfter.enable();
-            this.form.controls.recurrenceEndOn.disable();
+            this.form.controls.recurrenceAfterTimes.enable();
+            this.form.controls.recurrenceUntil.disable();
             break;
         }
       })
   }
 
   public get everyRecurrenceLabel(): string {
-    const isSingle = Number(this.form.value.recurrenceRepetitions) === 1;
+    const isSingle = Number(this.form.value.recurrenceInterval) === 1;
     switch(this.form.value.recurrence) {
       case 'daily':
         return isSingle
@@ -163,10 +177,50 @@ export class SchedulerFormComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  public writeValue(value?: Maybe<Period[]>): void {
-    this.form.patchValue({
-      result: value
-    }, { emitEvent: false });
+  public generate(): void {    
+    const result = this.schedulerService.calculateSchedules(
+      this.createInitalSchedules(),
+      this.createRecurrenceOptions()
+    );
+
+    if (result) {
+      this.result = this.result
+        ? [...this.result, ...result]
+        : result;
+      this.onChange && this.onChange(this.result);
+      this.store.dispatch(CoreActions.setFeedback({
+        type: FeedbackType.Success,
+        labelMessage: 'successfullyGeneratedSchedules',
+        labelAction: 'createNewSchedules'
+      }));
+      this.form.reset();
+    }
+  }
+
+  private createInitalSchedules(): Maybe<Period> {
+    return this.form.value.startDate && this.form.value.endDate
+      ? {
+          startDate: new Date(this.form.value.startDate),
+          endDate: new Date(this.form.value.endDate),
+        }
+      : null;
+  }
+
+  private createRecurrenceOptions(): RecurrenceOptions {
+    return {
+      interval: (this.form.value.recurrenceInterval ?? 1),
+      recurrence: (this.form.value.recurrence ?? 'daily'),
+      repeatTimes: this.form.value.recurrenceEnd === 'after'
+        ? Number(this.form.value.recurrenceAfterTimes)
+        : null,
+      untilDate: this.form.value.recurrenceEnd === 'on'
+        ? new Date(this.form.value.recurrenceUntil ?? '')
+        : null
+    };
+  }
+
+  public writeValue(value: Period[]): void {
+    this.result = value;
   }
 
   public registerOnChange(onChange: (value: Period[]) => void): void {

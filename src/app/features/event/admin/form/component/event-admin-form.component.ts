@@ -45,7 +45,6 @@ export class EventAdminFormComponent implements OnInit, OnDestroy {
         // this.scheduleForm = this.fb.group({
         //   schedules: [event?.schedules as Maybe<EventScheduleEntity[]>],
         // })
-        console.log('test')
       }
     );
   }
