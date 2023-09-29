@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
 import { GridLayoutModule } from '../../layout/grid-layout/grid-layout.module';
+import { RadioButtonFormModule } from '../radio-button/radio-button-form.module';
 import { SchedulerFormComponent } from './components/form/scheduler-form.component';
 
 const components = [
@@ -33,6 +34,7 @@ const materials = [
 const modules = [
   CoreModule,
   GridLayoutModule,
+  RadioButtonFormModule,
 ];
 
 const libs = [

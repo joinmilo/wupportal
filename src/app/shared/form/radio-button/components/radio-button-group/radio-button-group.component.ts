@@ -27,10 +27,14 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
   @Input()
   public queryParamKey?: string;
 
+  @Input()
+  public displayRow = true;
+
   @Output()
   public valueChanged = new EventEmitter<T>();
 
   private onChange?: (value?: T) => void;
+  private onTouched?: () => void;
 
   private destroy = new Subject<void>();
 
@@ -69,6 +73,7 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
       this.value = value;
       this.valueChanged.emit(value);
       this.onChange && this.onChange(value);
+      this.onTouched && this.onTouched();
     }
   }
 
@@ -76,8 +81,8 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
     this.onChange = onChange;
   }
 
-  public registerOnTouched(): void {
-    return;
+  public registerOnTouched(onTouched: () => void): void {
+    this.onTouched = onTouched;
   }
 
   public ngOnDestroy(): void {

@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { IconFormComponent } from 'src/app/shared/form/icon/icon-form.component';
 import { SchedulerModule } from 'src/app/shared/form/scheduler/scheduler.module';
 import { FormStepperModule } from 'src/app/shared/form/stepper/form-stepper.module';
 import { GridLayoutModule } from 'src/app/shared/layout/grid-layout/grid-layout.module';
@@ -35,6 +36,7 @@ const modules = [
   GridLayoutModule,
   SchedulerModule,
   TitleModule,
+  IconFormComponent,
 ];
 
 const libs = [

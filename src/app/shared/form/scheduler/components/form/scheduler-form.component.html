@@ -13,6 +13,7 @@
   
   <mat-divider></mat-divider>
   
+
   <app-row [columns]="4">
     <mat-form-field appearance="outline">
       <mat-label appLabel="recurrence"></mat-label>
@@ -21,6 +22,24 @@
           <span [appLabel]="recurrence"></span>
         </mat-option>
       </mat-select>
+    </mat-form-field>
+  </app-row>
+
+  <!-- TODO: Make possible to select never to end -->
+  <app-row *ngIf="form.value.recurrence
+      && form.value.recurrence !== 'noRecurrence'">
+    
+    <app-radio-button-group
+      formControlName="recurrenceEnd"
+      [inputs]="recurrenceEndOptions"
+      [displayRow]="false"
+      value="on">
+    </app-radio-button-group>
+    <mat-form-field appearance="outline">
+      <mat-label appLabel="endRecurrence"></mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </app-row>
 

@@ -22,6 +22,7 @@ export class EventAdminFormComponent implements OnInit, OnDestroy {
 
   public scheduleForm = this.fb.group({
     schedules: [undefined as Maybe<EventScheduleEntity[]>],
+    icon: [],
   });
 
   private destroy = new Subject<void>();
@@ -40,9 +41,13 @@ export class EventAdminFormComponent implements OnInit, OnDestroy {
       filter(event => !!event),
       take(1)
     ).subscribe(event =>
-      this.scheduleForm = this.fb.group({
-        schedules: [event?.schedules as Maybe<EventScheduleEntity[]>],
-      }));
+      {
+        // this.scheduleForm = this.fb.group({
+        //   schedules: [event?.schedules as Maybe<EventScheduleEntity[]>],
+        // })
+        console.log('test')
+      }
+    );
   }
 
   public cancelled(): void {

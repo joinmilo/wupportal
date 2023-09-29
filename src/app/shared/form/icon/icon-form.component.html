@@ -1,0 +1,27 @@
+<mat-form-field appearance="outline">
+  <mat-label appLabel="icons"></mat-label>
+
+  <mat-select [formControl]="control">
+    <mat-select-trigger>
+      <section>
+        <fa-icon [icon]="control.value!"></fa-icon>
+        <span> {{ control.value?.iconName }}</span>
+      </section>
+    </mat-select-trigger>
+
+    <mat-option *ngFor="let icon of icons" [value]="icon">
+      <article>
+        <fa-icon [icon]="icon.iconName"></fa-icon>
+        <span> {{ icon.iconName }}</span>
+      </article>
+    </mat-option>
+  </mat-select>
+
+  <mat-hint>
+    <a mat-button
+      href="https://fontawesome.com/search?o=r&m=free"
+      target="_blank">
+        <span appLabel="iconList"></span>
+    </a>
+  </mat-hint>
+</mat-form-field>

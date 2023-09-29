@@ -3,3 +3,6 @@ export type Recurrence = 'noRecurrence'
 | 'weekly'
 | 'monthly'
 | 'yearly';
+
+export type RecurrenceEnd = 'on'
+| 'after';

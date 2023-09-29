@@ -10,9 +10,16 @@
     descriptionLabel="createSchedules"
     [formGroup]="scheduleForm"
     [icon]="['far', 'calendar']">
+
+    <app-row [columns]="4">
+      <app-icon-form formControlName="icon">
+      </app-icon-form>
+    </app-row>
     <app-row>
       <app-scheduler-form
-        formControlName="schedules">
+        formControlName="schedules"
+        initStartDate="2023-09-26T14:00"
+        initEndDate="2023-09-28T14:00">
       </app-scheduler-form>
     </app-row>
   </app-form-step>
