@@ -1,5 +1,5 @@
-<mat-error *ngIf="errors | async">
-  <ng-container *ngFor="let error of errors | async">
+<ng-container *ngIf="errors | async">
+  <mat-error *ngFor="let error of errors | async">
     <span [appLabel]="error"></span>
-  </ng-container>
-</mat-error>
+  </mat-error>
+</ng-container>
