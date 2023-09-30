@@ -18,8 +18,9 @@ import { DatetimeFormComponent } from '../datetime/datetime-form.component';
 import { RadioButtonFormModule } from '../radio-button/radio-button-form.module';
 import { SchedulerDatetimeComponent } from './components/datetime/scheduler-datetime.component';
 import { SchedulerErrorsComponent } from './components/errors/scheduler-errors.component';
+import { SchedulerExecuteComponent } from './components/execute/scheduler-execute.component';
 import { SchedulerFormComponent } from './components/form/scheduler-form.component';
-import { SchedulerGenerateComponent } from './components/generate/scheduler-generate.component';
+import { SchedulerGeneratedComponent } from './components/generated/scheduler-generated.component';
 import { SchedulerOverviewComponent } from './components/overview/scheduler-overview.component';
 import { SchedulerRecurrenceEndComponent } from './components/recurrence-end/scheduler-recurrence-end.component';
 import { SchedulerRecurrenceIntervalComponent } from './components/recurrence-interval/scheduler-recurrence-interval.component';
@@ -31,8 +32,9 @@ import { schedulerReducer } from './state/scheduler.reducer';
 const components = [
   SchedulerDatetimeComponent,
   SchedulerErrorsComponent,
+  SchedulerExecuteComponent,
   SchedulerFormComponent,
-  SchedulerGenerateComponent,
+  SchedulerGeneratedComponent,
   SchedulerOverviewComponent,
   SchedulerRecurrenceEndComponent,
   SchedulerRecurrenceIntervalComponent,

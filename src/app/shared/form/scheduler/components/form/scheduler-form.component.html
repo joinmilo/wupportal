@@ -1,22 +1,28 @@
-<app-scheduler-datetime></app-scheduler-datetime>
-
-<mat-divider></mat-divider>
-
-<app-scheduler-recurrence-type>
-</app-scheduler-recurrence-type>
-
-<ng-container *ngIf="(recurrenceType | async) !== 'noRecurrence'">
-  <section>
-    <app-scheduler-recurrence-interval>
-    </app-scheduler-recurrence-interval>
-  
-    <app-scheduler-recurrence-end>
-    </app-scheduler-recurrence-end>
-  </section>
-
-  <app-scheduler-generate>
-  </app-scheduler-generate>
+<ng-container *ngIf="(generationPerformed | async); else form">
+  <app-scheduler-generated></app-scheduler-generated>
 </ng-container>
 
-<app-scheduler-errors>
-</app-scheduler-errors>
+<ng-template #form>
+  <app-scheduler-datetime></app-scheduler-datetime>
+  
+  <mat-divider></mat-divider>
+  
+  <app-scheduler-recurrence-type>
+  </app-scheduler-recurrence-type>
+  
+  <ng-container *ngIf="(recurrenceType | async) !== 'noRecurrence'">
+    <section>
+      <app-scheduler-recurrence-interval>
+      </app-scheduler-recurrence-interval>
+    
+      <app-scheduler-recurrence-end>
+      </app-scheduler-recurrence-end>
+    </section>
+  
+    <app-scheduler-execute>
+    </app-scheduler-execute>
+  </ng-container>
+  
+  <app-scheduler-errors>
+  </app-scheduler-errors>
+</ng-template>

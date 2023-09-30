@@ -51,8 +51,8 @@ export class IconFormComponent implements ControlValueAccessor {
     this.control.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe(value => {
-        this.onChange && this.onChange(value?.iconName);
-        this.onTouched && this.onTouched();
+        this.onChange?.(value?.iconName);
+        this.onTouched?.();
       });
   }
 

@@ -43,3 +43,8 @@ export const selectResult = createSelector(
   selectSchedulerState,
   state => state.result
 );
+
+export const selectGenerationPerformed = createSelector(
+  selectSchedulerState,
+  state => state.generationPerformed
+);

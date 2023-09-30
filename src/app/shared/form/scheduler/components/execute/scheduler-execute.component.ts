@@ -4,11 +4,11 @@ import { SchedulerActions } from '../../state/scheduler.actions';
 import { selectErrors } from '../../state/scheduler.selectors';
 
 @Component({
-  selector: 'app-scheduler-generate',
-  templateUrl: './scheduler-generate.component.html',
-  styleUrls: ['./scheduler-generate.component.scss'],
+  selector: 'app-scheduler-execute',
+  templateUrl: './scheduler-execute.component.html',
+  styleUrls: ['./scheduler-execute.component.scss'],
 })
-export class SchedulerGenerateComponent {
+export class SchedulerExecuteComponent {
 
   public errors = this.store.select(selectErrors);
 

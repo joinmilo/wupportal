@@ -63,8 +63,8 @@ export class PasswordConfirmComponent implements ControlValueAccessor, OnDestroy
 
   public mark(value: Maybe<string>) {
     !value && this.store.dispatch(PasswordActions.resetPasswordStrength());
-    this.onChange && this.onChange(value);
-    this.onTouched && this.onTouched();
+    this.onChange?.(value);
+    this.onTouched?.();
   }
 
   public registerOnChange(onChange: (value?: Maybe<string>) => void): void {

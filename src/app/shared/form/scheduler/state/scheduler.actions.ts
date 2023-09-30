@@ -19,5 +19,7 @@ export const SchedulerActions = createActionGroup({
 
     'set result': (result: Period[]) => ({ result }),
     'generate result': emptyProps(),
+    'add new schedules': emptyProps(),
+    'delete all': emptyProps(),
   }
 });

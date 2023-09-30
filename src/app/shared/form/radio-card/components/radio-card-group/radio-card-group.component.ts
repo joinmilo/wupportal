@@ -67,7 +67,7 @@ export class RadioCardGroupComponent<T> implements ControlValueAccessor, OnInit,
   private emit(value?: T): void {
     this.value = value;
     this.valueChanged.emit(value);
-    this.onChange && this.onChange(value);
+    this.onChange?.(value);
   }
 
   public registerOnChange(onChange: (value?: T) => void): void {

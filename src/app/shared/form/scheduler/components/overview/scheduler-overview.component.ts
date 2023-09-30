@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { Maybe } from 'src/app/core/api/generated/schema';
-import { Period } from 'src/app/core/typings/period';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { SchedulerActions } from '../../state/scheduler.actions';
+import { selectResult } from '../../state/scheduler.selectors';
 
 @Component({
   selector: 'app-scheduler-overview',
@@ -10,7 +11,14 @@ import { Period } from 'src/app/core/typings/period';
 
 export class SchedulerOverviewComponent {
 
-  @Input()
-  public schedules?: Maybe<Period[]>;
+  public schedules = this.store.select(selectResult);
+
+  constructor(
+    private store: Store,
+  ) {}
+
+  public deleteAll(): void {
+    this.store.dispatch(SchedulerActions.deleteAll());
+  }
 
 }

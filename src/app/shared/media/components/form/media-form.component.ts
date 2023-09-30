@@ -51,7 +51,7 @@ export class MediaFormComponent implements ControlValueAccessor {
 
   public addFiles(newMedia: MediaEntity[]) {
 
-    this.onTouched && this.onTouched();
+    this.onTouched?.();
     const media = [...this.media, ...newMedia];
 
     if (newMedia.some(element => element.size > this.maxFileSize)) {
@@ -71,13 +71,13 @@ export class MediaFormComponent implements ControlValueAccessor {
     } else {
       this.media = media;
       this.uploads.emit(this.media);
-      this.onChange && this.onChange(this.media);
+      this.onChange?.(this.media);
     }
   }
 
   public removeFile(fileIndex: number) {
     this.media.splice(fileIndex, 1);
-    this.onChange && this.onChange(this.media);
+    this.onChange?.(this.media);
     this.uploads.emit(this.media);
   }
 

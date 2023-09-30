@@ -47,8 +47,8 @@ export class PasswordFormComponent implements ControlValueAccessor, OnInit, OnDe
   }
 
   public mark(value: Maybe<string>) {
-    this.onChange && this.onChange(value);
-    this.onTouched && this.onTouched();
+    this.onChange?.(value);
+    this.onTouched?.();
   }
   
   public registerOnChange(onChange: (value?: Maybe<string>) => void): void {

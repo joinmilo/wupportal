@@ -39,8 +39,8 @@ export class PrivacyPolicyFormComponent implements ControlValueAccessor, OnDestr
     this.control.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe(value => {
-        this.onChange && this.onChange(!!value);
-        this.onTouched && this.onTouched();
+        this.onChange?.(!!value);
+        this.onTouched?.();
       })
   }
 

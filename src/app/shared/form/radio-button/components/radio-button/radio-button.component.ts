@@ -40,8 +40,8 @@ export class RadioButtonComponent<T> implements ControlValueAccessor, OnChanges 
   public changeSelect(event: MouseEvent): void {
     event.stopPropagation();
     this.valueChanged.emit(this.input?.value as T);
-    this.onChange && this.onChange(this.input?.value as T);
-    this.onTouched && this.onTouched();
+    this.onChange?.(this.input?.value as T);
+    this.onTouched?.();
   }
 
   public writeValue(value: T): void {

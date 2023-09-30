@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { Period } from 'src/app/core/typings/period';
 import { Recurrence, RecurrenceEnd, SchedulerErrors } from '../typings/scheduler';
-import { addError, calculateSchedules, removeError } from '../utils/scheduler.utils';
+import { addError, calculateSchedules as generateSchedules, removeError } from '../utils/scheduler.utils';
 import { SchedulerActions } from './scheduler.actions';
 
 export interface SchedulerState {
@@ -22,6 +22,7 @@ export interface SchedulerState {
 
   errors: SchedulerErrors[],
   result: Period[],
+  generationPerformed: boolean,
 }
 
 export const initialState: SchedulerState = {
@@ -36,6 +37,7 @@ export const initialState: SchedulerState = {
 
   errors: [],
   result: [],
+  generationPerformed: false,
 };
 
 export const schedulerReducer = createReducer(
@@ -105,14 +107,35 @@ export const schedulerReducer = createReducer(
 
   on(SchedulerActions.generateResult, (state): SchedulerState => (
     { ...state,
-        result: calculateSchedules({
-          initialSchedule: state.initSchedule,
-          interval: (state.recurrenceInterval ?? 1),
-          recurrence: (state.recurrenceType ?? 'daily'),
-          repeatTimes: state.recurrenceEndAfterTimes,
-          untilDate: state.recurrenceEndUntilDate,
-        })
+      result: [...new Set([...state.result, ...generateSchedules({
+        initialSchedule: state.initSchedule,
+        interval: (state.recurrenceInterval ?? 1),
+        recurrence: (state.recurrenceType ?? 'daily'),
+        repeatTimes: state.recurrenceEndAfterTimes,
+        untilDate: state.recurrenceEndUntilDate,
+      })])],
+      generationPerformed: true,
+  }
+  )),
+
+  on(SchedulerActions.addNewSchedules, (state): SchedulerState => (
+    { ...state,
+      initSchedule: undefined,
+
+      recurrenceType: 'noRecurrence',
+      recurrenceInterval: undefined,
+      recurrenceEndAfterTimes: undefined,
+      recurrenceEndUntilDate: undefined,
+
+      errors: [],
+
+      generationPerformed: false,
     }
   )),
+
+  on(SchedulerActions.deleteAll, (): SchedulerState => (
+    { ...initialState }
+  )),
+
 );
 

@@ -38,7 +38,7 @@ export class CaptchaFormComponent implements ControlValueAccessor {
     private store: Store) { }
 
   public set token(token: Maybe<string> | undefined) {
-    this.onChange && this.onChange(token);
+    this.onChange?.(token);
     this.value = token
 
     !token && (this.captchaComponents?.forEach(component => component.reset()));

@@ -59,7 +59,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
 
       this.form.valueChanges
         .pipe(
-          tap(() => this.onTouched && this.onTouched()),
+          tap(() => this.onTouched?.()),
           filter(value => this.formFilled(value)),
           tap(() => this.form.setErrors({ addressVerifying: true })),
           debounceTime(1000),
@@ -70,7 +70,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
         .subscribe((address: Maybe<AddressEntity>) => {
           address
             ? this.form.controls.suburb.value
-              ? this.onChange && this.onChange({
+              ? this.onChange?.({
                   ...address,
                     id: this.form.value.id,
                     suburb: { id: this.form.controls.suburb.value }

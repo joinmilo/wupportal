@@ -55,8 +55,8 @@ export class DatetimeFormComponent implements ControlValueAccessor, OnDestroy {
     this.control.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe(result => {
-        this.onTouched && this.onTouched();
-        this.onChange && this.onChange(result);
+        this.onTouched?.();
+        this.onChange?.(result);
       });
   }
 

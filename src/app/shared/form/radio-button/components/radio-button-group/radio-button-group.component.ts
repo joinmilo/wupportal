@@ -72,8 +72,8 @@ export class RadioButtonGroupComponent<T> implements ControlValueAccessor, OnIni
     if (value) {
       this.value = value;
       this.valueChanged.emit(value);
-      this.onChange && this.onChange(value);
-      this.onTouched && this.onTouched();
+      this.onChange?.(value);
+      this.onTouched?.();
     }
   }
 
