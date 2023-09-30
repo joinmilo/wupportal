@@ -1,4 +1,4 @@
-:host {
+form {
   display: flex;
   flex-flow: column;
   gap: var(--gap);
@@ -8,4 +8,11 @@ section {
   display: flex;
   flex-flow: column;
   gap: 1rem;
+}
+
+:host ::ng-deep {
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
 }

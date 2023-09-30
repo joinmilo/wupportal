@@ -1,0 +1,35 @@
+<h2 appLabel="schedules"></h2>
+
+<button
+  mat-raised-button
+  color="primary"
+  appLabel="deleteAll">
+</button>
+
+<section>
+  <article *ngFor="let schedule of schedules; let last = last">
+    <div class="entry">
+      <div>
+        <div class="date">
+          <strong appLabel="from"></strong>
+          <span>
+            {{ schedule.startDate | date: 'medium' }}
+          </span>
+        </div>
+      
+        <div class="date">
+          <strong appLabel="until"></strong>
+          <span>
+            {{ schedule.endDate | date: 'medium' }}
+          </span>
+        </div>
+      </div>
+
+      <button mat-icon-button>
+        <fa-icon icon="trash"></fa-icon>
+      </button>
+    </div>
+
+    <mat-divider *ngIf="!last"></mat-divider>
+  </article>
+</section>

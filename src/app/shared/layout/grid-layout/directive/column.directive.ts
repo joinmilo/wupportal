@@ -1,4 +1,5 @@
 import { Directive, Input } from '@angular/core';
+import { Maybe } from 'src/app/core/api/generated/schema';
 
 @Directive({
   selector: '[appAssignColumns]'
@@ -6,9 +7,9 @@ import { Directive, Input } from '@angular/core';
 export class ColumnDirective {
 
   @Input()
-  public appAssignColumns?: number;
+  public appAssignColumns?: Maybe<number>;
 
-  // If name of "appColumns" property is changed, change also this accordingly!
+  // If name of "appAssignColumns" property is changed, change also this accordingly!
   public static namedAttribute = 'ng-reflect-app-assign-columns';
   
 }

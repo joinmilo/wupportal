@@ -1,0 +1,18 @@
+<app-row [columns]="columns | async" [formGroup]="form">
+
+  <app-datetime-form
+    [appAssignColumns]="assignedColumns | async"
+    formControlName="startDate">
+  </app-datetime-form>
+
+  <app-datetime-form
+    [appAssignColumns]="assignedColumns | async"
+    formControlName="endDate">
+  </app-datetime-form>
+
+  <button mat-icon-button
+    color="primary"
+    appTooltip="addSingleSchedule">
+    <fa-icon icon="plus-circle"></fa-icon>
+  </button>
+</app-row>

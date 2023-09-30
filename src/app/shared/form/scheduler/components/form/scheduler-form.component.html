@@ -1,114 +1,22 @@
-<form [formGroup]="form">
-  <app-row [columns]="columns">
-    <mat-form-field appearance="outline"
-        [appAssignColumns]="5">
-      <mat-label appLabel="begin"></mat-label>
-      <input matInput type="datetime-local" formControlName="startDate">
-    </mat-form-field>
+<app-scheduler-datetime></app-scheduler-datetime>
+
+<mat-divider></mat-divider>
+
+<app-scheduler-recurrence-type>
+</app-scheduler-recurrence-type>
+
+<ng-container *ngIf="(recurrenceType | async) !== 'noRecurrence'">
+  <section>
+    <app-scheduler-recurrence-interval>
+    </app-scheduler-recurrence-interval>
   
-    <mat-form-field appearance="outline"
-        [appAssignColumns]="5">
-      <mat-label appLabel="end"></mat-label>
-      <input matInput type="datetime-local" formControlName="endDate">
-    </mat-form-field>
+    <app-scheduler-recurrence-end>
+    </app-scheduler-recurrence-end>
+  </section>
 
-    <button mat-icon-button
-      color="primary"
-      appTooltip="addSingleSchedule">
-      <fa-icon icon="plus-circle"></fa-icon>
-    </button>
-  </app-row>
-  
-  <mat-divider></mat-divider>
-  
-  <app-row [columns]="columns">
-    <mat-form-field appearance="outline"
-        [appAssignColumns]="5">
-      <mat-label appLabel="recurrence"></mat-label>
+  <app-scheduler-generate>
+  </app-scheduler-generate>
+</ng-container>
 
-      <mat-select formControlName="recurrence">
-        <mat-option *ngFor="let recurrence of recurrences" [value]="recurrence">
-          <span [appLabel]="recurrence"></span>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </app-row>
-
-  <ng-container *ngIf="form.value.recurrence
-    && form.value.recurrence !== 'noRecurrence'">
-
-    <app-row [columns]="columns">
-      <span appLabel="repeatEvery"
-        [appAssignColumns]="recurrenceLabelColumns">
-      </span>
-
-      <mat-form-field appearance="outline"
-        [appAssignColumns]="recurrenceNumberColumns">
-        <mat-label [appLabel]="everyRecurrenceLabel"></mat-label>
-        <input matInput type="number" formControlName="recurrenceInterval">
-      </mat-form-field>
-    </app-row>
-  
-  
-    <!-- TODO: Make possible to select never to end -->
-    <section>
-      <strong appLabel="Ende"></strong>
-  
-      <app-row [columns]="columns">
-        <app-radio-button
-          formControlName="recurrenceEnd"
-          [input]="recurrenceEndOn"
-          [value]="form.value.recurrenceEnd"
-          [appAssignColumns]="recurrenceLabelColumns">
-        </app-radio-button>
-
-        <mat-form-field appearance="outline" [appAssignColumns]="recurrenceDateColumns">
-          <mat-label appLabel="endRecurrence"></mat-label>
-          <input matInput
-            [matDatepicker]="picker"
-            formControlName="recurrenceUntil">
-
-          <mat-datepicker-toggle [for]="picker"
-            matIconSuffix>
-          </mat-datepicker-toggle>
-
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </app-row>
-  
-      <app-row [columns]="columns">
-        <app-radio-button
-          formControlName="recurrenceEnd"
-          [input]="recurrenceEndAfter"
-          [value]="form.value.recurrenceEnd"
-          [appAssignColumns]="recurrenceLabelColumns">
-        </app-radio-button>
-
-        <mat-form-field appearance="outline"
-          [appAssignColumns]="recurrenceNumberColumns">
-
-          <mat-label appLabel="times"></mat-label>
-
-          <input matInput type="number" formControlName="recurrenceAfterTimes">
-        </mat-form-field>
-      </app-row>
-    </section>
-
-    <app-row>
-      <button mat-flat-button
-        color="accent"
-        appLabel="Termine generieren"
-        [disabled]="form.invalid"
-        (click)="generate()">
-      </button>
-    </app-row>
-  </ng-container>
-
-  <mat-error *ngIf="form.errors">
-    <ng-container *ngFor="let error of form.errors | keyvalue">
-      <span *ngIf="error.key !== 'noneSet'
-        && error.key !== 'otherNotFilled'" [appLabel]="error.key"></span>
-    </ng-container>
-  </mat-error>
-
-</form>
+<app-scheduler-errors>
+</app-scheduler-errors>

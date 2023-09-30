@@ -1,0 +1,46 @@
+<section [formGroup]="form">
+  <strong appLabel="end"></strong>
+
+  <app-row [columns]="columns | async">
+
+    <!-- TODO: Make possible to select never to end --> 
+    <app-radio-button
+      formControlName="recurrenceEnd"
+      [input]="recurrenceEndOn"
+      [value]="form.value.recurrenceEnd"
+      [appAssignColumns]="leftAssignedColumns | async">
+    </app-radio-button>
+
+    <mat-form-field appearance="outline" [appAssignColumns]="leftAssignedColumns | async">
+      <mat-label appLabel="endRecurrence"></mat-label>
+      <input matInput
+        [matDatepicker]="picker"
+        formControlName="recurrenceUntil"
+        [min]="date">
+
+      <mat-datepicker-toggle [for]="picker"
+        matIconSuffix>
+      </mat-datepicker-toggle>
+
+      <mat-datepicker #picker>
+      </mat-datepicker>
+    </mat-form-field>
+  </app-row>
+
+  <app-row [columns]="columns | async">
+    <app-radio-button
+      formControlName="recurrenceEnd"
+      [input]="recurrenceEndAfter"
+      [value]="form.value.recurrenceEnd"
+      [appAssignColumns]="leftAssignedColumns | async">
+    </app-radio-button>
+
+    <mat-form-field appearance="outline"
+      [appAssignColumns]="numberAssignedColumns | async">
+
+      <mat-label appLabel="times"></mat-label>
+
+      <input matInput type="number" formControlName="recurrenceAfterTimes">
+    </mat-form-field>
+  </app-row>
+</section>

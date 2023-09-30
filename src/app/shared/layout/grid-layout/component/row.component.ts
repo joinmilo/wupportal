@@ -13,7 +13,7 @@ import { ColumnDirective } from '../directive/column.directive';
 export class RowComponent implements AfterViewInit, OnDestroy {
 
   @Input()
-  public columns?: number;
+  public columns?: Maybe<number>;
 
   @Input()
   public includeInMobile = false;

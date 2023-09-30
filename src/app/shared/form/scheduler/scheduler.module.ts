@@ -1,3 +1,4 @@
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -5,17 +6,37 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
 import { GridLayoutModule } from '../../layout/grid-layout/grid-layout.module';
+import { DatetimeFormComponent } from '../datetime/datetime-form.component';
 import { RadioButtonFormModule } from '../radio-button/radio-button-form.module';
+import { SchedulerDatetimeComponent } from './components/datetime/scheduler-datetime.component';
+import { SchedulerErrorsComponent } from './components/errors/scheduler-errors.component';
 import { SchedulerFormComponent } from './components/form/scheduler-form.component';
-import { SchedulerService } from './services/scheduler.service';
+import { SchedulerGenerateComponent } from './components/generate/scheduler-generate.component';
+import { SchedulerOverviewComponent } from './components/overview/scheduler-overview.component';
+import { SchedulerRecurrenceEndComponent } from './components/recurrence-end/scheduler-recurrence-end.component';
+import { SchedulerRecurrenceIntervalComponent } from './components/recurrence-interval/scheduler-recurrence-interval.component';
+import { SchedulerRecurrenceTypeComponent } from './components/recurrence-type/scheduler-recurrence-type.component';
+import { schedulerStateKey } from './constants/scheduler.constants';
+import { SchedulerEffects } from './state/scheduler.effects';
+import { schedulerReducer } from './state/scheduler.reducer';
 
 const components = [
+  SchedulerDatetimeComponent,
+  SchedulerErrorsComponent,
   SchedulerFormComponent,
+  SchedulerGenerateComponent,
+  SchedulerOverviewComponent,
+  SchedulerRecurrenceEndComponent,
+  SchedulerRecurrenceIntervalComponent,
+  SchedulerRecurrenceTypeComponent,
 ];
 
 const framework = [
@@ -28,22 +49,27 @@ const materials = [
   MatDatepickerModule,
   MatDividerModule,
   MatFormFieldModule,
+  MatIconModule,
   MatInputModule,
   MatSelectModule,
 ];
 
 const modules = [
   CoreModule,
+  DatetimeFormComponent,
   GridLayoutModule,
   RadioButtonFormModule,
+
 ];
 
 const libs = [
   FontAwesomeModule,
-];
+  StoreModule.forFeature(schedulerStateKey, schedulerReducer),
+  EffectsModule.forFeature([SchedulerEffects]),
 
-const providers = [
-  SchedulerService
+  NgxMatDatetimePickerModule,
+  NgxMatTimepickerModule,
+  NgxMatNativeDateModule,
 ];
 
 @NgModule({
@@ -59,8 +85,5 @@ const providers = [
   exports: [
     ...components,
   ],
-  providers: [
-    ...providers
-  ]
 })
 export class SchedulerModule { }
