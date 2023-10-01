@@ -21,4 +21,8 @@ export class SchedulerOverviewComponent {
     this.store.dispatch(SchedulerActions.deleteAll());
   }
 
+  public remove(index: number): void {
+    this.store.dispatch(SchedulerActions.delete(index));
+  }
+
 }

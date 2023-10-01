@@ -133,6 +133,16 @@ export const schedulerReducer = createReducer(
     }
   )),
 
+  on(SchedulerActions.delete, (state, action): SchedulerState => {
+    const result = [...state.result];
+
+    result.splice(action.index, 1);
+    
+    return result?.length > 0
+      ? { ...state, result }
+      : { ...initialState }
+  }),
+
   on(SchedulerActions.deleteAll, (): SchedulerState => (
     { ...initialState }
   )),
