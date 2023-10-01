@@ -6,9 +6,6 @@ import { Recurrence, SchedulerErrors } from '../typings/scheduler';
 export const SchedulerActions = createActionGroup({
   source: 'Scheduler',
   events: {
-    'set init start date': (date: Date) => ({ date }),
-    'set init end date': (date: Date) => ({ date }),
-
     'updated recurrence end date': (date: Date) => ({ date }),
     'updated recurrence end after times': (times: number) => ({ times }),
     'updated init schedule': (start?: Maybe<Date>, end?: Maybe<Date>, formValid?: boolean) => ({ start, end, formValid }),

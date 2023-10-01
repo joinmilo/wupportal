@@ -9,12 +9,4 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <button *ngIf="((results | async)?.length || 0) > 1"
-    mat-stroked-button
-    color="accent"
-    appLabel="showSchedules"
-    [appAssignColumns]="leftAssignedColumns | async"
-    (click)="showSchedules()">
-  </button>
 </app-row>

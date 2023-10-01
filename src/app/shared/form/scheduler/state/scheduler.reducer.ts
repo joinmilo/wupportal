@@ -107,13 +107,13 @@ export const schedulerReducer = createReducer(
 
   on(SchedulerActions.generateResult, (state): SchedulerState => (
     { ...state,
-      result: [...new Set([...state.result, ...generateSchedules({
+      result: [...state.result, ...generateSchedules({
         initialSchedule: state.initSchedule,
         interval: (state.recurrenceInterval ?? 1),
         recurrence: (state.recurrenceType ?? 'daily'),
         repeatTimes: state.recurrenceEndAfterTimes,
         untilDate: state.recurrenceEndUntilDate,
-      })])],
+      })].sort((a, b) => a.startDate.getTime() - b.startDate.getTime()),
       generationPerformed: true,
   }
   )),

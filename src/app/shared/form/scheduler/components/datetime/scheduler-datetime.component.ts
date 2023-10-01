@@ -3,9 +3,11 @@ import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
+import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { AppValidators } from 'src/app/core/validators/validators';
 import { SchedulerActions } from '../../state/scheduler.actions';
-import { selectColumns, selectLefthandColumns } from '../../state/scheduler.selectors';
+import { selectColumns, selectLefthandColumns, selectResult } from '../../state/scheduler.selectors';
+import { SchedulerOverviewComponent } from '../overview/scheduler-overview.component';
 
 @Component({
   selector: 'app-scheduler-datetime',
@@ -19,6 +21,8 @@ export class SchedulerDatetimeComponent implements OnDestroy {
 
   public minDate = new Date();
   public stepMinute = 15;
+
+  public results = this.store.select(selectResult);
 
   public form = this.fb.group({
     startDate: [undefined as Maybe<Date>],
@@ -42,6 +46,12 @@ export class SchedulerDatetimeComponent implements OnDestroy {
           this.form.valid
         ))
       );
+  }
+
+  public showSchedules(): void {
+    this.store.dispatch(CoreActions.setAsideComponent({
+      component: SchedulerOverviewComponent
+    }));
   }
 
   public ngOnDestroy(): void {

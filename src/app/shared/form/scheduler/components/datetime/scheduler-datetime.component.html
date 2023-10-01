@@ -9,9 +9,11 @@
     formControlName="endDate">
   </app-datetime-form>
 
-  <button mat-icon-button
+  <button *ngIf="(results | async)?.length"
+    mat-icon-button
     color="primary"
-    appTooltip="addSingleSchedule">
-    <fa-icon icon="plus-circle"></fa-icon>
+    appTooltip="showSchedules"
+    (click)="showSchedules()">
+    <fa-icon icon="eye"></fa-icon>
   </button>
 </app-row>

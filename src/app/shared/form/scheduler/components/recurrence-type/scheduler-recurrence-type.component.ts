@@ -3,11 +3,9 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
-import { CoreActions } from 'src/app/core/state/actions/core.actions';
 import { SchedulerActions } from '../../state/scheduler.actions';
 import { selectColumns, selectInitSchedule, selectLefthandColumns, selectResult } from '../../state/scheduler.selectors';
 import { Recurrence, } from '../../typings/scheduler';
-import { SchedulerOverviewComponent } from '../overview/scheduler-overview.component';
 
 @Component({
   selector: 'app-scheduler-recurrence-type',
@@ -62,12 +60,6 @@ export class SchedulerRecurrenceTypeComponent implements OnDestroy {
         this.store.dispatch(SchedulerActions.updatedRecurrenceType(value));
       }
     });
-  }
-
-  public showSchedules(): void {
-    this.store.dispatch(CoreActions.setAsideComponent({
-      component: SchedulerOverviewComponent
-    }));
   }
 
   public ngOnDestroy(): void {

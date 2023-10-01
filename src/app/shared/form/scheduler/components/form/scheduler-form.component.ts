@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
@@ -19,16 +19,6 @@ import { selectGenerationPerformed, selectRecurrenceType, selectResult } from '.
   ],
 })
 export class SchedulerFormComponent implements ControlValueAccessor {
-
-  @Input()
-  public set initStartDate(initStartDate: Date) {
-    this.store.dispatch(SchedulerActions.setInitStartDate(initStartDate));
-  }
-
-  @Input()
-  public set initEndDate(initEndDate: Date) {
-    this.store.dispatch(SchedulerActions.setInitEndDate(initEndDate));
-  }
 
   public generationPerformed = this.store.select(selectGenerationPerformed);
 
