@@ -20,7 +20,9 @@
       <app-portal-organisation-details-summary (addressClicked)="map.scrollIntoView({behavior: 'smooth'})">
       </app-portal-organisation-details-summary>
 
-      <p [innerHtml]="organisation | translatable : 'description' | async"></p>
+      <p class="details-content"
+        [innerHtml]="organisation | translatable : 'description' | async">
+      </p>
     </section>
 
     <app-media-slider *ngIf="media && media.length" [media]="media" [link]="['./media']">

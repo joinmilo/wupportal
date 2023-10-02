@@ -24,7 +24,9 @@
         </button>
       </div>
 
-      <span [innerHtml]="author | translatable: 'description' | async"></span>
+      <p class="details-content"
+        [innerHtml]="author | translatable: 'description' | async">
+      </p>
     </section>
 
     <app-card-slider 

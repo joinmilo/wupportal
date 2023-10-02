@@ -16,7 +16,9 @@
 
     <app-portal-contest-details-summary></app-portal-contest-details-summary>
 
-    <p [innerHtml]="contest | translatable: 'content' | async"></p>
+    <p class="details-content"
+      [innerHtml]="contest | translatable: 'content' | async">
+    </p>
 
     <app-media-slider *ngIf="media && media.length" [media]="media" [link]="['./media']">
     </app-media-slider>

@@ -21,9 +21,13 @@
       </h2>
       <app-date-piece [date]="article?.created"></app-date-piece>
 
-      <p [innerHtml]="article | translatable: 'shortDescription' | async"></p>
+      <p class="details-content"
+        [innerHtml]="article | translatable: 'shortDescription' | async">
+      </p>
 
-      <p [innerHtml]="article | translatable : 'content' | async"></p>
+      <p class="details-content"
+        [innerHtml]="article | translatable : 'content' | async">
+      </p>
     </section>
 
     <app-article-portal-details-author *ngIf="article?.author">

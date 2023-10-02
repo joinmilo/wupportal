@@ -47,6 +47,11 @@ body {
   box-shadow: 0px 2px 8px 0px var(--color-box-shadow);
 }
 
+.details-content {
+  font-size: var(--details-content-font-size);
+  line-height: var(--details-content-line-height);
+}
+
 .card-box {
   display: flex;
   right: 1rem;

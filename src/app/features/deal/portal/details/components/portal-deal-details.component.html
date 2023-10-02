@@ -23,7 +23,9 @@
       <app-portal-deal-details-summary (addressClicked)="map.scrollIntoView({behavior: 'smooth'})">
       </app-portal-deal-details-summary>
 
-      <p [innerHtml]="deal | translatable: 'content' | async"></p>
+      <p class="details-content"
+        [innerHtml]="deal | translatable: 'content' | async">
+      </p>
     </section>
 
     <app-portal-deal-details-creator *ngIf="deal?.creator">

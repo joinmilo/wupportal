@@ -17,7 +17,9 @@
 
     <app-portal-survey-details-summary></app-portal-survey-details-summary>
 
-    <p [innerHtml]="survey | translatable: 'description' | async"></p>
+    <p class="details-content"
+      [innerHtml]="survey | translatable: 'description' | async">
+    </p>
 
     <app-media-slider *ngIf="media && media.length" [media]="media" [link]="['./media']">
     </app-media-slider>
