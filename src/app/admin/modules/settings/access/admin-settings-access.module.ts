@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
-import { AdminSettingsRoutes } from 'src/app/admin/typings/menu';
+import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
 const baseRoute = 'access';
 
-const routes: AdminSettingsRoutes[] = [
+const routes: AdminSettingsRoute[] = [
   {
     path: `${baseRoute}/user`,
     loadChildren: () => import('src/app/admin/modules/settings/access/user/admin-settings-user.module')
@@ -14,8 +15,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'users',
       description: 'usersDescription',
-      icon: 'users'
-    }
+      icon: 'users',
+      privileges: ['user_admin']
+    },
+    canActivate: [requireAnyPrivilege('user_admin')]
   },
   {
     path: `${baseRoute}/role`,
@@ -24,8 +27,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'roles',
       description: 'rolesDescription',
-      icon: 'user-gear'
-    }
+      icon: 'user-gear',
+      privileges: ['user_admin']
+    },
+    canActivate: [requireAnyPrivilege('user_admin')]
   },
 ];
 
@@ -42,11 +47,13 @@ export class AdminSettingsAccessRoutingModule {
   ) {
     this.store.dispatch(AdminActions.addSettingsMenu({
       name: 'access',
+      privileges: ['user_admin'],
       childs: routes.map(route => ({
         name: route.data?.name,
         description: route.data?.description,
+        icon: route.data?.icon,
         route: route.path,
-        icon: route.data?.icon
+        privileges: route.data.privileges,
       }))
     }));
   }

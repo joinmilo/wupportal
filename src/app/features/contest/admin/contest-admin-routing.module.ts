@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
+import { AdminFeatureRoute } from 'src/app/admin/typings/menu';
 import { contestsFeatureKey } from 'src/app/core/constants/feature.constants';
 import { id, slug } from 'src/app/core/constants/queryparam.constants';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 import { ContestAdminDetailsLayoutComponent } from './details/modules/layout/components/contest-admin-details-layout.component';
 
-const menuRoutes: Routes = [
+const menuRoutes: AdminFeatureRoute[] = [
   // {
   //   path: `${contestsFeatureKey}/dashboard`,
   //   loadChildren: () => import('src/app/features/contest/portal/details/portal-contest-details.module')
@@ -17,37 +19,49 @@ const menuRoutes: Routes = [
     path: `${contestsFeatureKey}`,
     loadChildren: () => import('src/app/features/contest/admin/overview/contest-admin-overview.module')
       .then((imported) => imported.ContestAdminOverviewModule),
-    data: { label: 'overview' },
+    data: {
+      label: 'overview',
+      privileges: ['contests_admin', 'contests_manage']
+    },
+    canActivate: [requireAnyPrivilege('contests_admin', 'contests_manage')]
   },
   {
     path: `${contestsFeatureKey}/types`,
     loadChildren: () => import('src/app/features/contest/admin/types/contest-admin-types.module')
       .then((imported) => imported.ContestAdminTypesModule),
-    data: { label: 'types' },
+    data: { 
+      label: 'types',
+      privileges: ['contests_admin', 'contests_manage']
+    },
+    canActivate: [requireAnyPrivilege('contests_admin', 'contests_manage')]
   },
 ];
 
 const routes: Routes = [
   {
-  path: `${contestsFeatureKey}/types/form`,
+    path: `${contestsFeatureKey}/types/form`,
     loadChildren: () => import('src/app/features/contest/admin/type-form/contest-admin-type-form.module')
       .then((imported) => imported.ContestAdminTypeFormModule),
+    canActivate: [requireAnyPrivilege('contests_admin')]
   },
   {
-  path: `${contestsFeatureKey}/types/:${id}/form`,
+    path: `${contestsFeatureKey}/types/:${id}/form`,
     loadChildren: () => import('src/app/features/contest/admin/type-form/contest-admin-type-form.module')
       .then((imported) => imported.ContestAdminTypeFormModule),
+    canActivate: [requireAnyPrivilege('contests_admin')]
   },
   {
     path: `${contestsFeatureKey}/:${slug}`,
     loadChildren: () => import('src/app/features/contest/admin/details/contest-admin-details.module')
       .then((imported) => imported.ContestAdminDetailsModule),
-    component: ContestAdminDetailsLayoutComponent
+    component: ContestAdminDetailsLayoutComponent,
+    canActivate: [requireAnyPrivilege('contests_admin', 'contests_manage')]
   },
   {
     path: `${contestsFeatureKey}/form`,
     loadChildren: () => import('src/app/features/contest/admin/form/contest-admin-form.module')
       .then((imported) => imported.ContestAdminFormModule),
+    canActivate: [requireAnyPrivilege('contests_admin', 'contests_manage')]
   },
 ]
 

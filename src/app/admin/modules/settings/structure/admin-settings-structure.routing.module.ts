@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
-import { AdminSettingsRoutes } from 'src/app/admin/typings/menu';
+import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
 const baseRoute = 'structure';
 
-const routes: AdminSettingsRoutes[] = [
+const routes: AdminSettingsRoute[] = [
   {
     path: `${baseRoute}/menu`,
     loadComponent: () => import('./menu/admin-settings-menu.component')
@@ -14,8 +15,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'editPortalMenu',
       description: 'editPortalMenuDescription',
-      icon: 'folder-tree'
+      icon: 'folder-tree',
+      privileges: ['cms_admin']
     },
+    canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
     path: `${baseRoute}/theme`,
@@ -24,8 +27,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'editColorTheme',
       description: 'editColorThemeDescription',
-      icon: 'palette'
+      icon: 'palette',
+      privileges: ['cms_admin']
     },
+    canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
     path: `${baseRoute}/plugins`,
@@ -34,8 +39,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'plugins',
       description: 'pluginsDescription',
-      icon: 'swatchbook'
+      icon: 'swatchbook',
+      privileges: ['cms_admin']
     },
+    canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
     path: `${baseRoute}/configuration`,
@@ -44,8 +51,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'configuration',
       description: 'configurationDescription',
-      icon: 'gear'
+      icon: 'gear',
+      privileges: ['cms_admin']
     },
+    canActivate: [requireAnyPrivilege('cms_admin')],
   },
 ];
 
@@ -62,11 +71,13 @@ export class AdminSettingsStructureRoutingModule {
   ) {
     this.store.dispatch(AdminActions.addSettingsMenu({
       name: 'structure',
+      privileges: ['cms_admin'],
       childs: routes.map(route => ({
         name: route.data?.name,
         description: route.data?.description,
         route: route.path,
-        icon: route.data?.icon
+        icon: route.data?.icon,
+        privileges: route.data.privileges,
       }))
     }));
   }

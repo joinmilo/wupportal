@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
-import { AdminSettingsRoutes } from 'src/app/admin/typings/menu';
+import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
 export const baseRoute = 'location';
 
-const routes: AdminSettingsRoutes[] = [
+const routes: AdminSettingsRoute[] = [
   {
     path: `${baseRoute}/addresses`,
     loadChildren: () => import('src/app/admin/modules/settings/location/address/admin-settings-address.module')
@@ -14,8 +15,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'addresses',
       description: 'addressesDescription',
-      icon: 'location-dot'
-    }
+      icon: 'location-dot',
+      privileges: ['addresses_admin']
+    },
+    canActivate: [requireAnyPrivilege('addresses_admin')]
   },
   {
     path: `${baseRoute}/suburbs`,
@@ -24,8 +27,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'suburbs',
       description: 'suburbsDescription',
-      icon: 'map-location'
-    }
+      icon: 'map-location',
+      privileges: ['addresses_admin']
+    },
+    canActivate: [requireAnyPrivilege('addresses_admin')]
   },
 ];
 
@@ -42,11 +47,13 @@ export class AdminSettingsLocationRoutingModule {
   ) {
     this.store.dispatch(AdminActions.addSettingsMenu({
       name: 'location',
+      privileges: ['addresses_admin'],
       childs: routes.map(route => ({
         name: route.data?.name,
         description: route.data?.description,
         route: route.path,
-        icon: route.data?.icon
+        icon: route.data?.icon,
+        privileges: route.data.privileges,
       }))
     }));
   }

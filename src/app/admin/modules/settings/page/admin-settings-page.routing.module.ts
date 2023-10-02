@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
-import { AdminSettingsRoutes } from 'src/app/admin/typings/menu';
+import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
 import { slug } from 'src/app/core/constants/queryparam.constants';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 import { AdminSettingsPageDetailsLayoutComponent } from './details/modules/layout/components/admin-settings-page-details-layout.component';
 import { AdminSettingsPageFormComponent } from './page-form/component/admin-settings-page-form.component';
 
 const baseRoute = 'pages';
 
-const menuRoutes: AdminSettingsRoutes[] = [
+const menuRoutes: AdminSettingsRoute[] = [
   {
     path: `${baseRoute}/overview`,
     loadChildren: () => import('src/app/admin/modules/settings/page/pages-overview/admin-settings-pages.module')
@@ -17,8 +18,10 @@ const menuRoutes: AdminSettingsRoutes[] = [
     data: {
       name: 'pagesOverview',
       description: 'pagesOverviewDescription',
-      icon: 'file-lines'
-    }
+      icon: 'file-lines',
+      privileges: ['cms_admin']
+    },
+    canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
     path: `${baseRoute}/form`,
@@ -28,8 +31,10 @@ const menuRoutes: AdminSettingsRoutes[] = [
     data: {
       name: 'createNewPage',
       description: 'createNewPageDescription',
-      icon: 'file-circle-plus'
+      icon: 'file-circle-plus',
+      privileges: ['cms_admin']
     },
+    canActivate: [requireAnyPrivilege('cms_admin')],
   },
   {
     path: `${baseRoute}/landing`,
@@ -38,8 +43,10 @@ const menuRoutes: AdminSettingsRoutes[] = [
     data: {
       name: 'editLandingPage',
       description: 'editLandingPageDescription',
-      icon: 'house'
+      icon: 'house',
+      privileges: ['cms_admin']
     },
+    canActivate: [requireAnyPrivilege('cms_admin')],
   },
 ];
 
@@ -48,7 +55,8 @@ const routes: Routes = [
     path: `${baseRoute}/:${slug}`,
     loadChildren: () => import('src/app/admin/modules/settings/page/details/admin-settings-page-details.module')
       .then((imported) => imported.AdminSettingsPageDetailsModule),
-    component: AdminSettingsPageDetailsLayoutComponent
+    component: AdminSettingsPageDetailsLayoutComponent,
+    canActivate: [requireAnyPrivilege('cms_admin')]
   },
 ]
 
@@ -66,11 +74,13 @@ export class AdminSettingsPageRoutingModule {
   ) {
     this.store.dispatch(AdminActions.addSettingsMenu({
       name: 'pageContent',
+      privileges: ['cms_admin'],
       childs: menuRoutes.map(route => ({
         name: route.data?.name,
         description: route.data?.description,
         route: route.path,
-        icon: route.data?.icon
+        icon: route.data?.icon,
+        privileges: route.data.privileges,
       }))
     }));
   }

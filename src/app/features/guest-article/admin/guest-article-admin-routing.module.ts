@@ -2,20 +2,30 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
+import { AdminFeatureRoute } from 'src/app/admin/typings/menu';
 import { guestArticlesFeatureKey } from 'src/app/core/constants/feature.constants';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
-const menuRoutes: Routes = [
+const menuRoutes: AdminFeatureRoute[] = [
   {
     path: `${guestArticlesFeatureKey}`,
     loadChildren: () => import('src/app/features/guest-article/admin/overview/guest-article-admin-overview.module')
       .then((imported) => imported.GuestArticleAdminOverviewModule),
-    data: { label: 'overview' },
+    data: {
+      label: 'overview',
+      privileges: ['articles_admin'],
+    },
+    canActivate: [requireAnyPrivilege('articles_admin')]
   },
   {
     path: `${guestArticlesFeatureKey}/publicAuthors`,
     loadChildren: () => import('src/app/features/guest-article/admin/public-author/guest-article-admin-authors.module')
       .then((imported) => imported.GuestArticleAdminPublicAuthorsModule),
-    data: { label: 'publicAuthors' },
+    data: {
+      label: 'publicAuthors',
+      privileges: ['articles_admin'],
+    },
+    canActivate: [requireAnyPrivilege('articles_admin')]
   },
 ];
 

@@ -9,6 +9,7 @@ import { RefreshGQL, RefreshMutation } from '../api/generated/refresh.mutation.g
 import { refreshKey } from '../constants/core.constants';
 import { APP_AUTH_TOKENS } from '../constants/inject-tokens';
 import { CoreUserActions } from '../state/actions/core-user.actions';
+import { Privilege } from '../typings/privilege';
 import { Token } from '../typings/token';
 
 @Injectable({ 
@@ -17,6 +18,14 @@ import { Token } from '../typings/token';
 export class AuthService {
 
   public tokens?: Maybe<TokenDto>;
+
+  public get privileges(): Maybe<Privilege[]> {
+    return this.tokens?.access
+      ? (JSON.parse(
+            window.atob(this.tokens.access.split('.')[1])
+          ) as Token)?.privileges
+      : undefined;
+  }
 
   constructor(
     private readonly injector: Injector,
@@ -27,8 +36,14 @@ export class AuthService {
     this.tokens = { ...initTokens };
 
     if (!this.tokens.refresh) {
-      this.store.dispatch(CoreUserActions.logout());
+      this.store.dispatch(CoreUserActions.clear());
     }
+  }
+
+  public hasAnyPrivileges(privileges: Privilege[]): boolean {
+    return privileges.some(privilege =>
+      this.privileges?.includes(privilege) || this.privileges?.includes('admin')
+    );
   }
 
   public refresh(): Observable<TokenDto> {

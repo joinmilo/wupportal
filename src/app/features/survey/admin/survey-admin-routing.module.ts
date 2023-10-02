@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
+import { AdminFeatureRoute } from 'src/app/admin/typings/menu';
 import { surveysFeatureKey } from 'src/app/core/constants/feature.constants';
 import { slug } from 'src/app/core/constants/queryparam.constants';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 import { SurveyAdminDetailsLayoutComponent } from './details/modules/layout/components/survey-admin-details-layout.component';
 
-const menuRoutes: Routes = [
+const menuRoutes: AdminFeatureRoute[] = [
   // {
   //   path: `${surveysFeatureKey}/dashboard`,
   //   loadChildren: () => import('src/app/features/survey/portal/details/portal-survey-details.module')
@@ -17,7 +19,11 @@ const menuRoutes: Routes = [
     path: `${surveysFeatureKey}`,
     loadChildren: () => import('src/app/features/survey/admin/overview/survey-admin-overview.module')
       .then((imported) => imported.SurveyAdminOverviewModule),
-    data: { label: 'overview' },
+    data: {
+      label: 'overview',
+      privileges: ['surveys_admin', 'surveys_manage']
+    },
+    canActivate: [requireAnyPrivilege('surveys_admin', 'surveys_manage')]
   },
 ];
 
@@ -26,13 +32,14 @@ const routes: Routes = [
     path: `${surveysFeatureKey}/:${slug}`,
     loadChildren: () => import('src/app/features/survey/admin/details/survey-admin-details.module')
       .then((imported) => imported.SurveyAdminDetailsModule),
-    component: SurveyAdminDetailsLayoutComponent
+    component: SurveyAdminDetailsLayoutComponent,
+    canActivate: [requireAnyPrivilege('surveys_admin', 'surveys_manage')]
   },
   {
     path: `${surveysFeatureKey}/form`,
     loadChildren: () => import('src/app/features/survey/admin/form/survey-admin-form.module')
       .then((imported) => imported.SurveyAdminFormModule),
-    data: { label: 'form' },
+    canActivate: [requireAnyPrivilege('surveys_admin', 'surveys_manage')],
   },
 ]
 

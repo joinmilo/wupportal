@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
+import { AdminFeatureRoute } from 'src/app/admin/typings/menu';
 import { mediaFeatureKey } from 'src/app/core/constants/feature.constants';
 import { id } from 'src/app/core/constants/queryparam.constants';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
-const menuRoutes: Routes = [
+const menuRoutes: AdminFeatureRoute[] = [
   // {
   //   path: `${mediaFeatureKey}/dashboard`,
   //   loadChildren: () => import('src/app/features/media/portal/overview/portal-media-overview.module')
@@ -16,26 +18,36 @@ const menuRoutes: Routes = [
     path: `${mediaFeatureKey}`,
     loadChildren: () => import('src/app/features/media/admin/overview/media-admin-overview.module')
       .then((imported) => imported.MediaAdminOverviewModule),
-    data: { label: 'overview' },
+    data: { 
+      label: 'overview',
+      privileges: ['media_admin', 'media_manage']
+    },
+    canActivate: [requireAnyPrivilege('media_admin', 'media_manage')]
   },
   {
     path: `${mediaFeatureKey}/category`,
     loadChildren: () => import('src/app/features/media/admin/category/media-admin-category.module')
       .then((imported) => imported.MediaAdminCategoryModule),
-    data: { label: 'categories' },
+    data: { 
+      label: 'categories',
+      privileges: ['media_admin', 'media_manage']
+    },
+    canActivate: [requireAnyPrivilege('media_admin', 'media_manage')]
   },
 ];
 
 const routes: Routes = [
   {
-  path: `${mediaFeatureKey}/category/form`,
-    loadChildren: () => import('src/app/features/media/admin/category-form/media-admin-category-form.module')
-      .then((imported) => imported.MediaAdminCategoryFormModule),
+    path: `${mediaFeatureKey}/category/form`,
+      loadChildren: () => import('src/app/features/media/admin/category-form/media-admin-category-form.module')
+        .then((imported) => imported.MediaAdminCategoryFormModule),
+    canActivate: [requireAnyPrivilege('media_admin')]
   },
   {
-  path: `${mediaFeatureKey}/category/:${id}/form`,
-    loadChildren: () => import('src/app/features/media/admin/category-form/media-admin-category-form.module')
-      .then((imported) => imported.MediaAdminCategoryFormModule),
+    path: `${mediaFeatureKey}/category/:${id}/form`,
+      loadChildren: () => import('src/app/features/media/admin/category-form/media-admin-category-form.module')
+        .then((imported) => imported.MediaAdminCategoryFormModule),
+    canActivate: [requireAnyPrivilege('media_admin')]
   },
 ]
 

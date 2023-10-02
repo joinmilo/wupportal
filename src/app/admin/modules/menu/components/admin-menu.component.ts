@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectAdminMainMenu } from 'src/app/admin/state/admin.selectors';
+import { map } from 'rxjs';
+import { selectAdminMainMenu, selectAdminSettingsMenu } from 'src/app/admin/state/admin.selectors';
+import { AdminMenuItem } from 'src/app/admin/typings/menu';
 import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-admin-menu',
@@ -20,18 +23,32 @@ export class AdminMenuComponent {
 
   public homeRoute = ['/', adminUrl];
   
-  public menuItems = this.store.select(selectAdminMainMenu);
+  public menuItems = this.store.select(selectAdminMainMenu)
+    .pipe(map(routes => this.allowedRoutes(routes)));
+
+  public settingsAllowed = this.store.select(selectAdminSettingsMenu)
+    .pipe(map(routes => !!this.allowedRoutes(routes)?.length));
 
   public settingsUrl = settingsUrl;
 
   constructor(
     private store: Store,
-  ) { }
+    private authService: AuthService,
+  ) {}
 
   public onCollapse(): void {
     this.collapsable
       ? this.collapsed = true
       : this.closed.emit();
+  }
+
+  private allowedRoutes(routes: AdminMenuItem[]): AdminMenuItem[] {
+    return routes.map(route => (
+      { ...route, childs: route.childs?.filter(child => child?.privileges
+        ? this.authService.hasAnyPrivileges(child.privileges)
+        : true)
+      }
+    )).filter(route => !!route.childs?.length)
   }
 
 }

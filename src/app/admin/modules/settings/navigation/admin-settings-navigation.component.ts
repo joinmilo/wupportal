@@ -5,10 +5,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 import { selectAdminSettingsMenu } from 'src/app/admin/state/admin.selectors';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
 import { adminUrl, settingsUrl } from 'src/app/core/constants/module.constants';
 import { CoreModule } from 'src/app/core/core.module';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 
 @Component({
@@ -30,12 +32,21 @@ import { TitleModule } from 'src/app/shared/layout/title/title.module';
 })
 export class AdminSettingsNavigationComponent {
 
-  public menuItems = this.store.select(selectAdminSettingsMenu);
+  public menuItems = this.store.select(selectAdminSettingsMenu)
+    .pipe(
+      map(routes => routes.map(route => (
+        { ...route, childs: route.childs?.filter(child => child?.privileges
+          ? this.authService.hasAnyPrivileges(child.privileges)
+          : true)
+        }
+      )).filter(route => !!route.childs?.length))
+    );
 
   public adminUrl = adminUrl;
   public settingsUrl = settingsUrl;
 
   constructor(
+    private authService: AuthService,
     private store: Store,
   ) { }
 

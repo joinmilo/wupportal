@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { AuthService } from '../services/auth.service';
 import { CoreUserActions } from '../state/actions/core-user.actions';
 
+
+//TODO: replace with function isAuthenticated in privileges.utils.ts
 @Injectable({
   providedIn: 'root'
 })

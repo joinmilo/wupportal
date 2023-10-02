@@ -38,8 +38,9 @@ export const selectAdminMainMenu = createSelector(
             : undefined,
           childs: mainRoute?.routes.length > 1
             ? mainRoute?.routes.map(child => ({
-                name: child?.data?.['label'],
-                route: child.path
+                name: child?.data?.label,
+                route: child.path,
+                privileges: child.data.privileges
               }) as AdminMenuItem)
             : undefined
         } as AdminMenuItem

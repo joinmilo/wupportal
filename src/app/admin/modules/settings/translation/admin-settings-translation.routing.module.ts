@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AdminActions } from 'src/app/admin/state/admin.actions';
-import { AdminSettingsRoutes } from 'src/app/admin/typings/menu';
+import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
+import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
 const baseRoute = 'translation';
 
-const routes: AdminSettingsRoutes[] = [
+const routes: AdminSettingsRoute[] = [
   {
     path: `${baseRoute}/languages`,
     loadChildren: () => import('./language/admin-settings-language.module')
@@ -14,8 +15,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'languages',
       description: 'languagesDescription',
-      icon: 'earth-europe'
-    }
+      icon: 'earth-europe',
+      privileges: ['translator_admin'],
+    },
+    canActivate: [requireAnyPrivilege('translator_admin')]
   },
   {
     path: `${baseRoute}/labels`,
@@ -24,8 +27,10 @@ const routes: AdminSettingsRoutes[] = [
     data: {
       name: 'translateStaticLabels',
       description: 'translateStaticLabelsDescription',
-      icon: 'language'
-    }
+      icon: 'language',
+      privileges: ['translator_admin'],
+    },
+    canActivate: [requireAnyPrivilege('translator_admin')]
   },
 ];
 
@@ -42,11 +47,13 @@ export class AdminSettingsTranslationRoutingModule {
   ) {
     this.store.dispatch(AdminActions.addSettingsMenu({
       name: 'structure',
+      privileges: ['translator_admin'],
       childs: routes.map(route => ({
         name: route.data?.name,
         description: route.data?.description,
         route: route.path,
-        icon: route.data?.icon
+        icon: route.data?.icon,
+        privileges: route.data.privileges,
       }))
     }));
   }

@@ -8,11 +8,11 @@ import { EventAdminCategoryActions } from '../state/event-admin-category.actions
 import { selectCategoryData } from '../state/event-admin-category.selectors';
 
 @Component({
-  selector: 'app-event-admin-category',
-  templateUrl: './event-admin-category.component.html',
-  styleUrls: ['./event-admin-category.component.scss']
+  selector: 'app-event-admin-category-overview',
+  templateUrl: './event-admin-category-overview.component.html',
+  styleUrls: ['./event-admin-category-overview.component.scss']
 })
-export class EventAdminCategoryComponent {
+export class EventAdminCategoryOverviewComponent {
 
   public categories = this.store.select(selectCategoryData);
 
