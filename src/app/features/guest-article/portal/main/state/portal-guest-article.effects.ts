@@ -15,7 +15,7 @@ export class PortalGuestArticleEffects {
     switchMap((action) => this.saveArticleService.mutate({
       entity: action.entity
     })),
-    map(response => PortalGuestArticleActions.articleSaved(response.data?.saveArticle as ArticleEntity))
+    map(response => PortalGuestArticleActions.articleSaved(response.data?.saveGuestArticle as ArticleEntity))
   ));
 
   articleSaved = createEffect(() => this.actions.pipe(

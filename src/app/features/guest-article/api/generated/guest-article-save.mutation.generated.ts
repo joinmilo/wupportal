@@ -9,11 +9,11 @@ export type SaveGuestArticleMutationVariables = Types.Exact<{
 }>;
 
 
-export type SaveGuestArticleMutation = { __typename?: 'Mutation', saveArticle?: { __typename?: 'ArticleEntity', id?: string | null } | null };
+export type SaveGuestArticleMutation = { __typename?: 'Mutation', saveGuestArticle?: { __typename?: 'ArticleEntity', id?: string | null } | null };
 
 export const SaveGuestArticleDocument = gql`
     mutation saveGuestArticle($entity: ArticleEntityInput) {
-  saveArticle(entity: $entity) {
+  saveGuestArticle(entity: $entity) {
     id
   }
 }

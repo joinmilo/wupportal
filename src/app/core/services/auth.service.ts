@@ -81,7 +81,7 @@ export class AuthService {
   public clear(): void {
     this.tokens = undefined;
     localStorage.removeItem(refreshKey);
-    this.store.dispatch(CoreUserActions.logout());
+    this.store.dispatch(CoreUserActions.clear());
     
   }
 

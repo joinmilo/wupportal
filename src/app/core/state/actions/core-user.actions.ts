@@ -11,6 +11,7 @@ export const CoreUserActions = createActionGroup({
     'logged in': emptyProps(),
     'refresh expired': emptyProps(),
     'logout': emptyProps(),
+    'clear': emptyProps(),
     'require login': emptyProps(),
 
     'update user': emptyProps(),

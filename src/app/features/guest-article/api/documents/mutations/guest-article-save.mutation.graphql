@@ -1,5 +1,5 @@
 mutation saveGuestArticle($entity: ArticleEntityInput) {
-  saveArticle(entity: $entity) {
+  saveGuestArticle(entity: $entity) {
     id
   }
 }

@@ -22,9 +22,13 @@ export const coreUserReducer = createReducer(
     { ...state, currentUser: action.user }
   )),
 
-  on(CoreUserActions.logout, (state): CoreUserState => (
-    { ...state, currentUser: undefined }
-  )),
+  on(
+    CoreUserActions.logout,
+    CoreUserActions.clear,
+    (state): CoreUserState => (
+      { ...state, currentUser: undefined }
+    )
+  ),
 
   on(CoreUserActions.saveCookieSettings, (state, action): CoreUserState => (
     { ...state, cookieSettings: action.cookieSettings }
