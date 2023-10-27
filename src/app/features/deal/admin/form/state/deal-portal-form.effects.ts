@@ -37,12 +37,9 @@ export class DealAdminFormEffects {
 
 save = createEffect(() => this.actions.pipe(
   ofType(DealAdminFormActions.save),
-  switchMap(action => {
-    console.log('action.deal:', action.deal); // Add this line to log action.deal
-    return this.saveDealService.mutate({
-      entity: action.deal
-    })
-  }),
+  switchMap(action => this.saveDealService.mutate({
+    entity: action.deal
+  })),
   map(() => DealAdminFormActions.saved())
 ));
 

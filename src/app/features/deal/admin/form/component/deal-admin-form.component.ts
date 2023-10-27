@@ -83,7 +83,7 @@ public ngOnInit(): void {
       takeUntil(this.destroy)
     ).subscribe(deal => {
       this.deal = deal;
-      console.log(this.deal);
+
       this.contentForm.patchValue({
         id: deal?.id,
         name: deal?.name,

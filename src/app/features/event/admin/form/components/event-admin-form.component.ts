@@ -170,7 +170,6 @@ export class EventAdminFormComponent implements OnInit, OnDestroy {
   }
 
   public saved(): void {
-    console.log(this.titleImageForm.value.titleImage);
     this.store.dispatch(EventAdminFormActions.save({
       id: this.contentForm.value.id,
       name: this.contentForm.value.name,

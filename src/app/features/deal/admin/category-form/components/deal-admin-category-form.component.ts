@@ -37,15 +37,12 @@ export class DealAdminCategoryFormComponent implements OnInit, OnDestroy {
       switchMap(() => this.store.select(selectEditableDealCategory)),
       filter(category => !!category),
       take(1)
-    ).subscribe(category => {
-      this.categoryForm = this.fb.group({
-        id: [category?.id],
-        name: [category?.name, [Validators.required]],
-        icon: [category?.icon, [Validators.required]],
-        color: [category?.color?.toString(), [Validators.required]],
-      });
-          console.log('name:', category?.name);
-    });
+    ).subscribe(category => this.categoryForm = this.fb.group({
+      id: [category?.id],
+      name: [category?.name, [Validators.required]],
+      icon: [category?.icon, [Validators.required]],
+      color: [category?.color?.toString(), [Validators.required]],
+    }));
   }
 
   public cancelled(): void {
@@ -53,7 +50,6 @@ export class DealAdminCategoryFormComponent implements OnInit, OnDestroy {
   }
 
   public saved(): void {
-    console.log(this.categoryForm.value.name)
     this.store.dispatch(DealAdminCategoryFormActions.save({
       id: this.categoryForm.value.id,
       name: this.categoryForm.value.name,

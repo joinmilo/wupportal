@@ -8,8 +8,7 @@
     [item]="item">
   </app-admin-menu-overlay>
 
-    <!-- <app-admin-menu-overlay *ngIf="(settingsAllowed | async) === true" -->
-      <app-admin-menu-overlay
+    <app-admin-menu-overlay *ngIf="(settingsAllowed | async) === true"
       [item]="{
         icon: 'gears',
         route: settingsUrl,
@@ -30,8 +29,7 @@
     [item]="item">
   </app-admin-menu-accordion>
 
-    <!-- <app-admin-menu-accordion *ngIf="(settingsAllowed | async) === true" -->
-    <app-admin-menu-accordion
+    <app-admin-menu-accordion *ngIf="(settingsAllowed | async) === true"
       [item]="{
         icon: 'gears',
         name: 'platformSettings',
