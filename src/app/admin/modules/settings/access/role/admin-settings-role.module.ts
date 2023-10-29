@@ -8,7 +8,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { AdminSettingsRoleRoutingModule } from './admin-settings-role-routing.module';
-import { AdminSettingsRoleComponent } from './component/admin-settings-role.component';
+import { AdminSettingsRoleComponent } from './components/overview/admin-settings-role.component';
 import { adminSettingsRoleStateKey } from './constants/admin-settings-role.constants';
 import { AdminSettingsRoleEffects } from './state/admin-settings-role.effects';
 import { adminSettingsRoleReducer } from './state/admin-settings-role.reducer';

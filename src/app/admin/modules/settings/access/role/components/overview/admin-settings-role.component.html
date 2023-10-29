@@ -1,5 +1,14 @@
 <app-page-title titleLabel="roles"></app-page-title>
 
+<div>
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['form']"
+    appLabel="createNewRole">
+  </button>
+</div>
+
 <app-table [data]="roles"
   [actions]="actions"
   [columns]="columns"

@@ -105,7 +105,6 @@ fragment FullUserContext on UserContextEntity {
 
     roles {
       id
-      code
     }
   }
 

@@ -9,14 +9,17 @@ export type GetRolesQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetRolesQuery = { __typename?: 'Query', getRoles?: { __typename?: 'PageableList_RoleEntity', total: any, result?: Array<{ __typename?: 'RoleEntity', name?: string | null, code?: string | null } | null> | null } | null };
+export type GetRolesQuery = { __typename?: 'Query', getRoles?: { __typename?: 'PageableList_RoleEntity', total: any, result?: Array<{ __typename?: 'RoleEntity', name?: string | null, privileges?: Array<{ __typename?: 'RolePrivilegeEntity', id?: string | null, code?: string | null } | null> | null } | null> | null } | null };
 
 export const GetRolesDocument = gql`
     query getRoles($params: FilterSortPaginateInput) {
   getRoles(params: $params) {
     result {
       name
-      code
+      privileges {
+        id
+        code
+      }
     }
     total
   }

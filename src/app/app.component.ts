@@ -33,7 +33,7 @@ export class AppComponent {
     this.store.select(selectAsideComponent)
       .subscribe(component => component ? this.sidenav?.open() : this.sidenav?.close());
 
-    router.events.subscribe((event: Event) => {
+    this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.previousUrl = this.currentUrl;
         this.currentUrl = event.url.split('?')[0];

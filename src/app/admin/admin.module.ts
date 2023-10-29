@@ -15,6 +15,7 @@ import { ReportAdminRoutingModule } from '../features/report/admin/report-admin-
 import { SurveyAdminRoutingModule } from '../features/survey/admin/survey-admin-routing.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { adminStateKey } from './constants/admin.constants';
+import { AdminSettingsModule } from './modules/settings/admin-settings.module';
 import { AdminEffects } from './state/admin.effects';
 import { adminReducer } from './state/admin.reducer';
 
@@ -35,7 +36,11 @@ const routes = [
   GuestArticleAdminRoutingModule,
   AuthorAdminRoutingModule,
   AdminRoutingModule, //TODO: always last entry duet to order and redirect to 404, Remove 404 and put in AppRouter
-]
+];
+
+const modules = [
+  AdminSettingsModule
+];
 
 const libs = [
   StoreModule.forFeature(adminStateKey, adminReducer),
@@ -46,6 +51,7 @@ const libs = [
   imports: [
     ...framework,
     ...libs,
+    ...modules,
     ...routes,
   ],
 })

@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput, RoleEntity } from 'src/app/core/api/generated/schema';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
-import { AdminSettingsRoleActions } from '../state/admin-settings-role.actions';
-import { selectRoles } from '../state/admin-settings-role.selectors';
+import { AdminSettingsRoleActions } from '../../state/admin-settings-role.actions';
+import { selectRoles } from '../../state/admin-settings-role.selectors';
 
 @Component({
   selector: 'app-admin-settings-role',
@@ -28,8 +28,6 @@ export class AdminSettingsRoleComponent {
         this.store.dispatch(AdminSettingsRoleActions.deleteRole(user)),
       tooltipLabel: 'delete'
     },
-
-    'SHARE',
   ];
 
   public columns: Column<RoleEntity>[] = [
@@ -38,9 +36,10 @@ export class AdminSettingsRoleComponent {
       label: 'name',
     },
     {
-      field: 'code',
-      label: 'code'
-    },
+      field: 'privileges',
+      label: 'rights',
+      value: row => row.privileges?.map(p => p?.code).join(', ')
+    }
   ];
 
   constructor(

@@ -1,21 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { settingsUrl } from 'src/app/core/constants/module.constants';
 
 const routes: Routes = [
   {
-    path: '404',
-    loadChildren: () => import('../../../shared/pages/not-found/not-found.module')
-      .then(imported => imported.NotFoundModule),
-  },
-  {
-    path: '',
+    path: settingsUrl,
     loadComponent: () => import('./navigation/admin-settings-navigation.component')
       .then(imported => imported.AdminSettingsNavigationComponent)
-  },
-  {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: '404',
   },
 ];
 
