@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { AdminMenuItem } from 'src/app/admin/typings/menu';
 import { adminUrl } from 'src/app/core/constants/module.constants';
 import { AdminMenuService } from '../../services/admin-menu.service';
@@ -10,10 +11,7 @@ import { AdminMenuService } from '../../services/admin-menu.service';
   templateUrl: './admin-menu-accordion.component.html',
   styleUrls: ['./admin-menu-accordion.component.scss'],
 })
-export class AdminMenuAccordionComponent implements OnChanges {
-
-  @Input()
-  public active?: boolean;
+export class AdminMenuAccordionComponent {
 
   @Input()
   public item?: AdminMenuItem;
@@ -24,15 +22,21 @@ export class AdminMenuAccordionComponent implements OnChanges {
   @ViewChild(MatExpansionPanel)
   public panel?: MatExpansionPanel;
 
+  public active?: boolean;
+
   constructor(
     public menuService: AdminMenuService,
     private router: Router,
-  ) {}
-
-  public ngOnChanges(): void {
-    if (!this.active) {
-      this.panel?.close();
-    }
+  ) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.active = this.menuService.isRouteActive(this.item);
+        
+        if (!this.active) {
+          this.panel?.close();
+        }
+      })
   }
 
   public click(): void {
