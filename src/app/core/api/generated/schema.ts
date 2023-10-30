@@ -1762,9 +1762,9 @@ export type Mutation = {
   addFavoriteDeal?: Maybe<UserContextEntity>;
   addFavoriteEvent?: Maybe<UserContextEntity>;
   addFavoriteOrganisation?: Maybe<UserContextEntity>;
-  addUploads?: Maybe<UserEntity>;
   changeActivation?: Maybe<Scalars['Boolean']>;
   changeArticleApproval?: Maybe<Scalars['Boolean']>;
+  changeOrganisationApproval?: Maybe<Scalars['Boolean']>;
   changePassword?: Maybe<Scalars['Boolean']>;
   checkPassword?: Maybe<Scalars['Float']>;
   createToken?: Maybe<TokenDto>;
@@ -1895,7 +1895,6 @@ export type Mutation = {
   deleteSurveys?: Maybe<Scalars['Boolean']>;
   deleteTheme?: Maybe<Scalars['Boolean']>;
   deleteThemes?: Maybe<Scalars['Boolean']>;
-  deleteUploads?: Maybe<UserEntity>;
   deleteUser?: Maybe<Scalars['Boolean']>;
   deleteUserContext?: Maybe<Scalars['Boolean']>;
   deleteUserContexts?: Maybe<Scalars['Boolean']>;
@@ -1982,7 +1981,7 @@ export type Mutation = {
   saveLabels?: Maybe<Array<Maybe<LabelEntity>>>;
   saveLanguage?: Maybe<LanguageEntity>;
   saveLanguages?: Maybe<Array<Maybe<LanguageEntity>>>;
-  saveMe?: Maybe<UserEntity>;
+  saveMe?: Maybe<UserContextEntity>;
   saveMenuItem?: Maybe<MenuItemEntity>;
   saveMenuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
   saveMessageDefinition?: Maybe<MessageDefinitionEntity>;
@@ -2094,12 +2093,6 @@ export type MutationAddFavoriteOrganisationArgs = {
 
 
 /** Mutation root */
-export type MutationAddUploadsArgs = {
-  uploads?: InputMaybe<Array<InputMaybe<UserContextMediaEntityInput>>>;
-};
-
-
-/** Mutation root */
 export type MutationChangeActivationArgs = {
   active?: InputMaybe<Scalars['Boolean']>;
   featureId?: InputMaybe<Scalars['String']>;
@@ -2109,6 +2102,12 @@ export type MutationChangeActivationArgs = {
 /** Mutation root */
 export type MutationChangeArticleApprovalArgs = {
   articleId?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationChangeOrganisationApprovalArgs = {
+  organisationId?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -2895,12 +2894,6 @@ export type MutationDeleteThemesArgs = {
 
 
 /** Mutation root */
-export type MutationDeleteUploadsArgs = {
-  uploadIds?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-/** Mutation root */
 export type MutationDeleteUserArgs = {
   id?: InputMaybe<Scalars['String']>;
 };
@@ -3419,7 +3412,7 @@ export type MutationSaveLanguagesArgs = {
 
 /** Mutation root */
 export type MutationSaveMeArgs = {
-  entity?: InputMaybe<UserEntityInput>;
+  entity?: InputMaybe<UserContextEntityInput>;
 };
 
 
@@ -5830,7 +5823,6 @@ export type ReportTypeTranslatableEntityInput = {
 
 export type RoleEntity = {
   __typename?: 'RoleEntity';
-  code?: Maybe<Scalars['String']>;
   created?: Maybe<Scalars['OffsetDateTime']>;
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
@@ -5841,7 +5833,6 @@ export type RoleEntity = {
 };
 
 export type RoleEntityInput = {
-  code?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
@@ -5860,6 +5851,7 @@ export type RolePrivilegeEntity = {
   id?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['OffsetDateTime']>;
   name?: Maybe<Scalars['String']>;
+  roles?: Maybe<Array<Maybe<RoleEntity>>>;
   translatables?: Maybe<Array<Maybe<RolePrivilegeTranslatableEntity>>>;
 };
 
@@ -5871,6 +5863,7 @@ export type RolePrivilegeEntityInput = {
   id?: InputMaybe<Scalars['String']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
   name?: InputMaybe<Scalars['String']>;
+  roles?: InputMaybe<Array<InputMaybe<RoleEntityInput>>>;
   translatables?: InputMaybe<Array<InputMaybe<RolePrivilegeTranslatableEntityInput>>>;
 };
 
@@ -6545,7 +6538,6 @@ export type UserEntity = {
   roles?: Maybe<Array<Maybe<RoleEntity>>>;
   subscriptions?: Maybe<Array<Maybe<SubscriptionEntity>>>;
   termsAccepted?: Maybe<Scalars['Boolean']>;
-  userContext?: Maybe<UserContextEntity>;
   verifications?: Maybe<Array<Maybe<VerificationEntity>>>;
   verified?: Maybe<Scalars['Boolean']>;
 };
@@ -6568,7 +6560,6 @@ export type UserEntityInput = {
   roles?: InputMaybe<Array<InputMaybe<RoleEntityInput>>>;
   subscriptions?: InputMaybe<Array<InputMaybe<SubscriptionEntityInput>>>;
   termsAccepted?: InputMaybe<Scalars['Boolean']>;
-  userContext?: InputMaybe<UserContextEntityInput>;
   verifications?: InputMaybe<Array<InputMaybe<VerificationEntityInput>>>;
   verified?: InputMaybe<Scalars['Boolean']>;
 };

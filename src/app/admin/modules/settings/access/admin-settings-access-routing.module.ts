@@ -5,11 +5,11 @@ import { AdminActions } from 'src/app/admin/state/admin.actions';
 import { AdminSettingsRoute } from 'src/app/admin/typings/menu';
 import { requireAnyPrivilege } from 'src/app/core/utils/privilege.utils';
 
-const baseRoute = 'access';
+export const accessBaseRoute = 'access';
 
 const routes: AdminSettingsRoute[] = [
   {
-    path: `${baseRoute}/user`,
+    path: `${accessBaseRoute}/user`,
     loadChildren: () => import('src/app/admin/modules/settings/access/user/admin-settings-user.module')
       .then((imported) => imported.AdminSettingsUserModule),
     data: {
@@ -21,7 +21,7 @@ const routes: AdminSettingsRoute[] = [
     canActivate: [requireAnyPrivilege('user_admin')]
   },
   {
-    path: `${baseRoute}/role`,
+    path: `${accessBaseRoute}/role`,
     loadChildren: () => import('src/app/admin/modules/settings/access/role/admin-settings-role.module')
       .then((imported) => imported.AdminSettingsRoleModule),
     data: {

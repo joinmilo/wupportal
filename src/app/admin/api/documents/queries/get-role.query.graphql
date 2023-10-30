@@ -1,0 +1,16 @@
+query getRole($entity: RoleEntityInput) {
+  getRole(entity: $entity) {
+    id
+    name
+    privileges {
+      id
+      code
+    }
+    users {
+      id
+      firstName
+      lastName
+      email
+    }
+  }
+}

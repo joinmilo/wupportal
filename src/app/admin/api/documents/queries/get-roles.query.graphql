@@ -1,10 +1,14 @@
 query getRoles($params: FilterSortPaginateInput) {
   getRoles(params: $params) {
     result {
+      id
       name
       privileges {
         id
         code
+      }
+      users {
+        id
       }
     }
     total

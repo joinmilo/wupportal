@@ -7,11 +7,11 @@ import { AdminSettingsRoleActions } from '../../state/admin-settings-role.action
 import { selectRoles } from '../../state/admin-settings-role.selectors';
 
 @Component({
-  selector: 'app-admin-settings-role',
-  templateUrl: './admin-settings-role.component.html',
-  styleUrls: ['./admin-settings-role.component.scss'],
+  selector: 'app-admin-settings-role-overview',
+  templateUrl: './admin-settings-role-overview.component.html',
+  styleUrls: ['./admin-settings-role-overview.component.scss'],
 })
-export class AdminSettingsRoleComponent {
+export class AdminSettingsRoleOverviewComponent {
 
   public roles = this.store.select(selectRoles);
 
@@ -19,7 +19,7 @@ export class AdminSettingsRoleComponent {
     {
       icon: 'pen-to-square',
       callback: row =>
-        this.router.navigate([row?.id, 'edit'], { relativeTo: this.activatedRoute }),
+        this.router.navigate([row?.id, 'form'], { relativeTo: this.activatedRoute }),
       tooltipLabel: 'edit'
     },
     {
@@ -38,8 +38,13 @@ export class AdminSettingsRoleComponent {
     {
       field: 'privileges',
       label: 'rights',
-      value: row => row.privileges?.map(p => p?.code).join(', ')
-    }
+      value: row => row.privileges?.map(p => p?.code).join(', '),
+    },
+    {
+      field: 'users',
+      label: 'users',
+      type: 'LIST',
+    },
   ];
 
   constructor(

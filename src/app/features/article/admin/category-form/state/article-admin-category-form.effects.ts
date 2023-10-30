@@ -19,7 +19,6 @@ export class ArticleAdminCategoryFormEffects {
     tap(() => this.router.navigate([adminUrl, articlesFeatureKey, 'category'])),
   ), { dispatch: false });
 
-
   save = createEffect(() => this.actions.pipe(
     ofType(ArticleAdminCategoryFormActions.save),
     switchMap(action => this.saveArticleCategoryService.mutate({

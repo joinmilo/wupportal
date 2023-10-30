@@ -1,0 +1,5 @@
+mutation saveRole($entity: RoleEntityInput!) {
+  saveRole(entity: $entity) {
+    id
+  }
+}

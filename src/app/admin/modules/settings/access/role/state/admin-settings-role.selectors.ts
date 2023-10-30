@@ -9,7 +9,22 @@ export const selectRoles = createSelector(
   state => state.roles
 );
 
+export const selectPrivileges = createSelector(
+  selectAdminSettingsRoleState,
+  state => state.privileges
+);
+
+export const selectUsers = createSelector(
+  selectAdminSettingsRoleState,
+  state => state.users
+);
+
 export const selectParams = createSelector(
   selectAdminSettingsRoleState,
   state => state.params
+);
+
+export const selectEditableRole = createSelector(
+  selectAdminSettingsRoleState,
+  state => state.editRole
 );

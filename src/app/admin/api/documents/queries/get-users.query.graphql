@@ -8,6 +8,17 @@ query getUsers($params: FilterSortPaginateInput) {
       phone
       lastLogin
       verified
+
+      roles {
+        id
+        translatables {
+          id
+          name
+          language {
+            ...Language
+          }
+        }
+      }
     }
     total
   }

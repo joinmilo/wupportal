@@ -1,0 +1,16 @@
+query getRolePrivileges($params: FilterSortPaginateInput) {
+  getRolePrivileges(params: $params) {
+    result {
+      id
+      code
+      translatables {
+        id
+        name
+        language {
+          ...Language
+        }
+      }
+    }
+    total
+  }
+}
