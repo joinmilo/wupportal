@@ -4,3 +4,5 @@ export const refreshKey = 'refresh';
 
 /** @see {@link /src/styles/mixins.scss} */
 export const maxMobileSize = 1023;
+
+export const languageLocalStorage = 'language';

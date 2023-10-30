@@ -13,9 +13,9 @@ import { ChangePasswordGQL } from 'src/app/user/api/generated/change-password.mu
 import { DeleteMeGQL } from 'src/app/user/api/generated/delete-user-entity.mutation.generated';
 import { GetSuburbsGQL } from 'src/app/user/api/generated/get-suburbs.query.generated';
 import { GetUserDeletionTypesGQL } from 'src/app/user/api/generated/get-user-deletion-types.query.generated';
+import { SaveMeGQL } from 'src/app/user/api/generated/save-user-context.mutation.generated';
 import { UserSettingsActions } from './user-settings.actions';
 import { selectUserDeletionDescription, selectUserDeletionTypes } from './user-settings.selectors';
-import { SaveMeGQL } from 'src/app/user/api/generated/save-user-context.mutation.generated';
 
 
 @Injectable()
@@ -29,9 +29,13 @@ export class UserSettingsEffects {
     map(() => UserSettingsActions.saved())
   ));
 
-  saved = createEffect(() => this.actions.pipe(
+  updateUser = createEffect(() => this.actions.pipe(
     ofType(UserSettingsActions.saved),
-    tap(() => this.router.navigate([])),
+    map(() => CoreUserActions.updateUser())
+  ));
+
+  openFeedback = createEffect(() => this.actions.pipe(
+    ofType(UserSettingsActions.saved),
     map(() => CoreActions.setFeedback({
       type: FeedbackType.Success,
       labelMessage: 'savedSuccessfully'

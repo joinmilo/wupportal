@@ -51,16 +51,16 @@ fragment FullUserContext on UserContextEntity {
     id
   }
 
+  favoritingUsers {
+    id
+  }
+
   eventRatings {
     id
     score
     parent {
       id
     }
-  }
-
-  favoritingUsers {
-    id
   }
 
   sentFriendRequests {

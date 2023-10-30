@@ -1,9 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { AppEntity, ConfigurationEntity, InformationDto, LanguageEntity, Maybe, SocialMediaEntity, ThemeEntity } from 'src/app/core/api/generated/schema';
 import { HelpComponent } from '../../components/help/help.component';
+import { languageLocalStorage } from '../../constants/core.constants';
 import { AsideDefinition } from '../../typings/aside';
 import { Help } from '../../typings/help';
 import { Translatable } from '../../typings/translatable';
+import { CoreUserActions } from '../actions/core-user.actions';
 import { CoreActions } from '../actions/core.actions';
 
 export interface CoreState {
@@ -13,7 +15,7 @@ export interface CoreState {
   currentTheme?: Maybe<ThemeEntity>,
   help?: Help,
   labels?: Map<string, Maybe<Translatable>[]>,
-  language?: LanguageEntity,
+  language?: Maybe<LanguageEntity>,
   languages?: LanguageEntity[],
   ongoingRequests: number,
   serverInfo?: Maybe<InformationDto>,
@@ -23,15 +25,25 @@ export interface CoreState {
 
 export const initialState: CoreState = {
   ongoingRequests: 0,
-  language: { locale: 'de' },
+  language: { locale: localStorage.getItem(languageLocalStorage)
+    ? localStorage.getItem(languageLocalStorage)
+    : navigator.language.substring(0,2)
+  },
 };
 
 export const coreReducer = createReducer(
   initialState,
 
-  on(CoreActions.changeLanguage, (state, action): CoreState => (
-    { ...state, language: action.language }
-  )),
+  on(CoreUserActions.getMe, (state, action): CoreState => {
+    return { ...state, language: action.user.user?.language }
+  }),
+
+  on(CoreActions.changeLanguage, (state, action): CoreState => {
+    if (action.language.locale) {
+      localStorage.setItem(languageLocalStorage, action?.language?.locale);
+    }
+    return { ...state, language: action.language }
+  }),
 
   on(CoreActions.setApps, (state, action): CoreState => (
     { ...state, apps: action.apps }
