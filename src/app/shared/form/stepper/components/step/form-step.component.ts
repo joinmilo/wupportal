@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
@@ -24,6 +24,8 @@ export class FormStepComponent implements OnDestroy {
   public set formGroup(formGroup: FormGroup) {
     this._formGroup = formGroup;
     this.initFormGroup();
+
+    this.required = Object.keys(this._formGroup.controls)?.some(key => this._formGroup.controls[key].hasValidator(Validators.required));
   }
 
   public get formGroup(): FormGroup {
@@ -65,6 +67,8 @@ export class FormStepComponent implements OnDestroy {
   public left = false;
 
   public resetValue?: unknown;
+
+  public required = false;
 
   private destroy = new Subject<void>();
 
