@@ -33,7 +33,7 @@ export class OrganisationAdminDetailsLayoutComponent implements OnInit, OnDestro
     },
     {
       icon: ['fas', 'user-plus'],
-      label: 'applications',
+      label: 'memberApplications',
       value: applicationsRoute
     },
     {

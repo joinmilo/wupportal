@@ -29,37 +29,24 @@ export class OrganisationAdminOverviewEffects {
       this.store.select(selectParams),
       this.store.select(selectCurrentUser),
     ),
-    map(([, params, user]) => {
-      const baseParams = {
+    map(([, params, user]) => this.authService.hasAnyPrivileges(['organisations_admin'])
+      ? params
+      : {
         ...params,
           expression: {
             conjunction: {
               operands: [
                 {
                   entity: {
-                    path: 'approved',
+                    path: 'members.userContext.id', 
                     operator: QueryOperator.Equal,
-                    value: 'true'
+                    value: user?.id as string
                   }
                 }
               ]
             }
           }
-      }
-
-      if (!this.authService.hasAnyPrivileges(['organisations_admin'])) {
-        baseParams.expression.conjunction.operands.push({
-          entity: {
-            path: 'members.userContext.id', 
-            operator: QueryOperator.Equal,
-            value: user?.id as string
-          }
-        });
-      }
-
-      return baseParams;
     }),
-
     switchMap(params => this.organisationsService.watch({ params }).valueChanges),
     map(response => OrganisationAdminOverviewActions.setOverviewData(response.data.getOrganisations as PageableList_OrganisationEntity))
   ));
