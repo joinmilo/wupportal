@@ -2,6 +2,7 @@ import { SortDirection } from '@angular/material/sort';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Observable } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
+import { Privilege } from 'src/app/core/typings/privilege';
 
 export type ColumnType = 'ADDRESS'
   | 'BOOLEAN'
@@ -34,8 +35,9 @@ export type RowCustomAction<T> = {
   callback?: (row: Maybe<T>) => void,
   disable?: (row: Maybe<T>) => boolean,
   icon: IconName,
+  inlineEdit?: boolean,
+  privileges?: Privilege[],
   tooltipLabel?: Maybe<string>,
-  inlineEdit?: boolean
 };
 
 export type RowAction<T> = RowCustomAction<T> | RowDefaultAction;

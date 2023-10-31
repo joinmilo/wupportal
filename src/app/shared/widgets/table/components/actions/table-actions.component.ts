@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { contentPortalDetailsUrl } from 'src/app/core/constants/url.constants';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { TableActions } from '../../state/table.actions';
 import { selectActions, selectEntity, selectInlineEditAction, selectInlineEditActive, selectInlineEditRow } from '../../state/table.selectors';
@@ -32,6 +33,7 @@ export class TableActionsComponent<T> implements OnDestroy {
 
   constructor(
     private store: Store,
+    public authService: AuthService,
   ) {
     this.store.select(selectEntity)
       .pipe(takeUntil(this.destroy))
@@ -60,6 +62,13 @@ export class TableActionsComponent<T> implements OnDestroy {
 
   public isDisabled(action: RowAction<T>): boolean {
     return !!(action as RowCustomAction<T>)?.disable?.(this.row);
+  }
+
+  public hasPrivileges(action: RowAction<T>): boolean {
+    const privleges = (action as RowCustomAction<T>)?.privileges;
+    return privleges
+      ? this.authService.hasAnyPrivileges(privleges)
+      : true;
   }
 
   public tooltip(action: RowAction<T>): Maybe<string> {

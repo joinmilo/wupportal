@@ -1,6 +1,6 @@
 <mat-accordion>
   <mat-expansion-panel #panel
-    [hideToggle]="!item?.childs?.length"
+    [hideToggle]="!item?.childs?.length || item?.childs?.length === 1 "
     (opened)="click()">
     <mat-expansion-panel-header>
       <mat-panel-title [ngClass]="{'menu-active': active }">
@@ -12,6 +12,7 @@
     </mat-expansion-panel-header>
 
     <div class="sub-menu">
+      <ng-container *ngIf="(item?.childs?.length || 0) > 1"></ng-container>
       <button mat-button *ngFor="let child of item?.childs"
         [appLabel]="child.name"
         [routerLink]="menuService.createRouterLink(child)"

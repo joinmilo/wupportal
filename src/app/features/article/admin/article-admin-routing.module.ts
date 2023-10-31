@@ -31,9 +31,9 @@ const menuRoutes: AdminFeatureRoute[] = [
       .then((imported) => imported.ArticleAdminCategoryModule),
     data: { 
       label: 'categories',
-      privileges: ['articles_admin', 'articles_manage'],
+      privileges: ['articles_admin'],
     },
-    canActivate: [requireAnyPrivilege('articles_admin', 'articles_manage')]
+    canActivate: [requireAnyPrivilege('articles_admin')]
   },
 ];
 

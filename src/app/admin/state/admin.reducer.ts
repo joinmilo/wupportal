@@ -33,7 +33,7 @@ export const adminReducer = createReducer(
 
   on(AdminActions.addSettingsMenu, (state, action): AdminState => (
     { ...state, settingsMenu: [...state.settingsMenu, action.item]
-        .filter((value, index, self) => index === self.findIndex((t) => t.name === value.name)) }
+      .filter((value, index, self) => index === self.findIndex((t) => t.name === value.name)) }
   )),
 
   on(AdminActions.setFeatures, (state, action): AdminState => (

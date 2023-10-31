@@ -35,7 +35,8 @@
   
       <ng-container *ngSwitchDefault>
         <div [class.disabled]="isDisabled(action)">
-          <button mat-button
+          <button *ngIf="hasPrivileges(action)"
+            mat-button
             [disabled]="isDisabled(action)"
             (click)="$event.stopPropagation(); callback(action);"
             [appTooltip]="tooltip(action)">

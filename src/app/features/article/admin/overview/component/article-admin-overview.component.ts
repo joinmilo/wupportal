@@ -27,7 +27,8 @@ export class ArticleAdminOverviewComponent {
       icon: 'bullhorn',
       callback: row =>
         this.store.dispatch(ArticleAdminOverviewActions.sponsorArticle(row)),
-      tooltipLabel: 'highlightInPortal'
+      tooltipLabel: 'highlightInPortal',
+      privileges: ['articles_admin']
     },
     {
       icon: 'trash',

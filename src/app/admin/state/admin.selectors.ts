@@ -33,16 +33,11 @@ export const selectAdminMainMenu = createSelector(
           icon: feature?.icon,
           name: feature?.name, //TODO: This is a translatable!
           active: feature?.active,
-          route: mainRoute?.routes.length === 1
-            ? mainRoute.routes[0].path
-            : undefined,
-          childs: mainRoute?.routes.length > 1
-            ? mainRoute?.routes.map(child => ({
-                name: child?.data?.label,
-                route: child.path,
-                privileges: child.data.privileges
-              }) as AdminMenuItem)
-            : undefined
+          childs: mainRoute?.routes.map(child => ({
+            name: child?.data?.label,
+            route: child.path,
+            privileges: child.data.privileges
+          }) as AdminMenuItem)
         } as AdminMenuItem
       })
       .filter(route => !!route.active) as AdminMenuItem[]

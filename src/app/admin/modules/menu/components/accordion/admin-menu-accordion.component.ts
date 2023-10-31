@@ -45,6 +45,11 @@ export class AdminMenuAccordionComponent {
       this.item?.route
         ? this.router.navigate([`/${adminUrl}`, this.item?.route])
         : this.clicked.emit();
+    } else if (this.item?.childs.length === 1) {
+      this.panel?.close();
+      this.item?.childs[0].route
+        ? this.router.navigate([`/${adminUrl}`, this.item?.childs[0].route])
+        : this.clicked.emit();
     }
   }
 

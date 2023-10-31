@@ -4,7 +4,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { EMPTY, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { PageableList_ArticleEntity, QueryOperator } from 'src/app/core/api/generated/schema';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ConfirmChangeComponent } from 'src/app/shared/dialogs/confirm-change/confirm-change.component';
 import { ConfirmDeleteComponent } from 'src/app/shared/dialogs/confirm-delete/confirm-delete.component';
@@ -23,25 +25,41 @@ export class ArticleAdminOverviewEffects {
       ArticleAdminOverviewActions.articleDeleted,
       ArticleAdminOverviewActions.articleSponsored,
     ),
-    withLatestFrom(this.store.select(selectParams)),
-    switchMap(([, params]) => this.getArticlesService.watch({ 
-      params: {
+    withLatestFrom(
+      this.store.select(selectParams),
+      this.store.select(selectCurrentUser),
+    ),
+    map(([, params, user]) => {
+      const baseParams = {
         ...params,
-        expression: {
-          conjunction: {
-            operands: [
-              {
-                entity: {
-                  path: 'approved',
-                  operator: QueryOperator.Equal,
-                  value: 'true'
+          expression: {
+            conjunction: {
+              operands: [
+                {
+                  entity: {
+                    path: 'approved',
+                    operator: QueryOperator.Equal,
+                    value: 'true'
+                  }
                 }
-              }
-            ]
+              ]
+            }
           }
-        }
-      },
-    }).valueChanges),
+      }
+
+      if (!this.authService.hasAnyPrivileges(['articles_admin'])) {
+        baseParams.expression.conjunction.operands.push({
+          entity: {
+            path: 'author.id',
+            operator: QueryOperator.Equal,
+            value: user?.id as string
+          }
+        });
+      }
+
+      return baseParams;
+    }),
+    switchMap(params => this.getArticlesService.watch({ params }).valueChanges),
     map(response => ArticleAdminOverviewActions.setOverviewData(response.data.getArticles as PageableList_ArticleEntity))
   ));
 
@@ -95,6 +113,7 @@ export class ArticleAdminOverviewEffects {
 
   constructor(
     private actions: Actions,
+    private authService: AuthService,
     private dialog: MatDialog,
     private deleteArticleService: DeleteArticleGQL,
     private getArticlesService: GetArticlesGQL,
