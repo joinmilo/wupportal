@@ -1,5 +1,5 @@
-import { createReducer, on } from "@ngrx/store";
-import { Maybe, UserContextEntity } from "src/app/core/api/generated/schema";
+import { createReducer, on } from '@ngrx/store';
+import { Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { PortalFriendsActions } from './portal-friends.actions';
 
 export interface PortalFriendsState {

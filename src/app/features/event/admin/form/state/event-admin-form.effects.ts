@@ -40,7 +40,7 @@ export class EventAdminFormEffects {
         params: {
           expression:{
             entity:{
-              path: "members.userContext.id",
+              path: 'members.userContext.id',
               operator: QueryOperator.Equal,
               value: user?.id
             }

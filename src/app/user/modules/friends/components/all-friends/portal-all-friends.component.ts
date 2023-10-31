@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, map, takeUntil } from 'rxjs';
 import { Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';

@@ -32,7 +32,7 @@ export class OrganisationAdminOverviewEffects {
           entity:{
             path: 'approved',
             operator: QueryOperator.Equal,
-            value: "false"
+            value: 'false'
           }
         }
       }

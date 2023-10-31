@@ -5,7 +5,7 @@ import { fadeInAnimation } from 'src/app/core/animations/animations';
 import { Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { accountUrl, adminUrl } from 'src/app/core/constants/module.constants';
 import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
-import { selectPortalMenu } from 'src/app/portal/state/portal.selectors';
+import { selectPortalHeaderOnlyMenu } from 'src/app/portal/state/portal.selectors';
 import { selectIsSearching } from 'src/app/shared/pages/search/state/search.selectors';
 
 @Component({
@@ -25,7 +25,7 @@ export class PortalHeaderDesktopComponent implements OnInit, OnDestroy {
 
   public isSearching = this.store.select(selectIsSearching);
   
-  public menu = this.store.select(selectPortalMenu);
+  public menu = this.store.select(selectPortalHeaderOnlyMenu);
 
   private destroy = new Subject<void>();
 

@@ -34,7 +34,7 @@ export class ArticleAdminOverviewEffects {
                 entity: {
                   path: 'approved',
                   operator: QueryOperator.Equal,
-                  value: "true"
+                  value: 'true'
                 }
               }
             ]

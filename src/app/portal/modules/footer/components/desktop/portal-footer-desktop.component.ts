@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
-import { PortalActions } from '../../../../state/portal.actions';
-import { selectPortalMenu } from '../../../../state/portal.selectors';
+import { PortalActions } from 'src/app/portal/state/portal.actions';
+import { selectPortalMenu } from 'src/app/portal/state/portal.selectors';
 
 @Component({
   selector: 'app-portal-footer-desktop',

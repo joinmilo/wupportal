@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
-import { MatDialogRef } from "@angular/material/dialog";
-import { Subject, takeUntil } from "rxjs";
+import { Component, OnDestroy } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-captcha-dialog',

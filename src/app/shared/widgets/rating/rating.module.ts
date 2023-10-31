@@ -8,7 +8,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
-import { CoreModule } from "../../../core/core.module";
+import { CoreModule } from '../../../core/core.module';
 import { CaptchaModule } from '../../form/captcha/captcha.module';
 import { RatingDistributionComponent } from './components/distribution/rating-distribution.component';
 import { RatingInputComponent } from './components/input/rating-input.component';

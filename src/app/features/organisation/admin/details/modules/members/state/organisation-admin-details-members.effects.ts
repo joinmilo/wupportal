@@ -47,7 +47,7 @@ export class OrganisationAdminDetailsMembersEffects {
                     entity: {
                       path: 'approved',
                       operator: QueryOperator.Equal,
-                      value: "true"
+                      value: 'true'
                     }
                   }]
                 }

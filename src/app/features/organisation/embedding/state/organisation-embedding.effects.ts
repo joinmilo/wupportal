@@ -22,7 +22,7 @@ export class OrganisationEmbeddingEffects {
                 entity: {
                   path: 'approved',
                   operator: QueryOperator.Equal,
-                  value: "true"
+                  value: 'true'
                 }
               }
             ]

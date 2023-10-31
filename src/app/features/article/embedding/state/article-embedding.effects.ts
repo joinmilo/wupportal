@@ -22,7 +22,7 @@ export class ArticleEmbeddingEffects {
                 entity: {
                   path: 'approved',
                   operator: QueryOperator.Equal,
-                  value: "true"
+                  value: 'true'
                 }
               }
             ]

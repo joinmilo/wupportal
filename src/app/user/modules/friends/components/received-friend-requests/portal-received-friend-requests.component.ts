@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { selectReceivedFriendRequest } from 'src/app/core/state/selectors/user.selectors';

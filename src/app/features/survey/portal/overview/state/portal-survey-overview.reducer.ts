@@ -1,6 +1,6 @@
-import { createReducer, on } from "@ngrx/store";
-import { FilterSortPaginateInput, Maybe, PageableList_SurveyEntity, SurveyEntity } from "src/app/core/api/generated/schema";
-import { PortalSurveyOverviewActions } from "./portal-survey-overview.actions";
+import { createReducer, on } from '@ngrx/store';
+import { FilterSortPaginateInput, Maybe, PageableList_SurveyEntity, SurveyEntity } from 'src/app/core/api/generated/schema';
+import { PortalSurveyOverviewActions } from './portal-survey-overview.actions';
 
 export interface PortalSurveyOverviewState {
   sponsoredSurvey?: Maybe<SurveyEntity>,

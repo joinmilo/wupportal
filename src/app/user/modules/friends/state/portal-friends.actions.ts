@@ -1,4 +1,4 @@
-import { createActionGroup } from "@ngrx/store";
+import { createActionGroup } from '@ngrx/store';
 import { FriendEntity, FriendEntityInput, Maybe, UserContextEntity } from 'src/app/core/api/generated/schema';
 
 export const PortalFriendsActions = createActionGroup({

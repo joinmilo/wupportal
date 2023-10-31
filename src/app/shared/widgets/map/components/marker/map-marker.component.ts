@@ -26,7 +26,7 @@ export class MapMarkerComponent {
   }
 
   private darkenColor(hex: string, amount = 0x333333) {
-    if (!hex.match(/^#[0-9A-F]{6}$/)) return "#444444";
+    if (!hex.match(/^#[0-9A-F]{6}$/)) return '#444444';
     const numeric = Math.max((Number(`0xF${hex.substring(1, 7)}`) - amount), 0xF000000)
       .toString(16)
       .substring(1)

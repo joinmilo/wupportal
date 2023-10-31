@@ -1,5 +1,5 @@
-import { createActionGroup, emptyProps } from "@ngrx/store";
-import { FilterSortPaginateInput, Maybe, PageableList_SurveyEntity, SurveyEntity } from "src/app/core/api/generated/schema";
+import { createActionGroup, emptyProps } from '@ngrx/store';
+import { FilterSortPaginateInput, Maybe, PageableList_SurveyEntity, SurveyEntity } from 'src/app/core/api/generated/schema';
 
 export const PortalSurveyOverviewActions = createActionGroup({
   source: 'Portal Survey Overview',

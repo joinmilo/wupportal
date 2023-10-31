@@ -1,4 +1,4 @@
-import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SurveyEntity, UserContextEntity } from "src/app/core/api/generated/schema";
+import { ArticleEntity, ContestEntity, DealEntity, EventEntity, Maybe, OrganisationEntity, SurveyEntity, UserContextEntity } from 'src/app/core/api/generated/schema';
 import { articlesFeatureKey, authorsFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, organisationsFeatureKey, surveysFeatureKey } from 'src/app/core/constants/feature.constants';
 import { ContentData, ContentEntity } from 'src/app/core/typings/content-entity';
 import { CardElement } from 'src/app/shared/widgets/card/typings/card';

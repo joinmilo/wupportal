@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 import { CardType } from 'src/app/shared/widgets/card/typings/card';
