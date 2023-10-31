@@ -3,8 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { EMPTY, map, of, switchMap, withLatestFrom } from 'rxjs';
-import { PageableList_DealEntity } from 'src/app/core/api/generated/schema';
+import { PageableList_DealEntity, QueryOperator } from 'src/app/core/api/generated/schema';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ConfirmChangeComponent } from 'src/app/shared/dialogs/confirm-change/confirm-change.component';
 import { ConfirmDeleteComponent } from 'src/app/shared/dialogs/confirm-delete/confirm-delete.component';
@@ -22,11 +24,30 @@ export class DealAdminOverviewEffects {
       DealAdminOverviewActions.updateParams,
       DealAdminOverviewActions.dealDeleted,
       DealAdminOverviewActions.dealSponsored
-      ),
-    withLatestFrom(this.store.select(selectParams)),
-    switchMap(([, params]) => this.getDealsService.watch({
-      params,
-    }).valueChanges),
+    ),
+    withLatestFrom(
+      this.store.select(selectParams),
+      this.store.select(selectCurrentUser),
+    ),
+    map(([, params, user]) => this.authService.hasAnyPrivileges(['deals_admin'])
+      ? params
+      : {
+        ...params,
+          expression: {
+            conjunction: {
+              operands: [
+                {
+                  entity: {
+                    path: 'creator.id', 
+                    operator: QueryOperator.Equal,
+                    value: user?.id as string
+                  }
+                }
+              ]
+            }
+          }
+    }),
+    switchMap(params => this.getDealsService.watch({ params }).valueChanges),
     map(response => DealAdminOverviewActions.setOverviewData(response.data.getDeals as PageableList_DealEntity))
   ));
 
@@ -80,6 +101,7 @@ export class DealAdminOverviewEffects {
 
   constructor(
     private actions: Actions,
+    private authService: AuthService,
     private dialog: MatDialog,
     private getDealsService: GetDealsGQL,
     private sponsorDealService: SponsorDealGQL,

@@ -26,7 +26,8 @@ export class OrganisationAdminOverviewComponent {
       icon: 'bullhorn',
       callback: row =>
         this.store.dispatch(OrganisationAdminOverviewActions.sponsorOrganisation(row)),
-      tooltipLabel: 'highlightInPortal'
+      tooltipLabel: 'highlightInPortal',
+      privileges: ['organisations_admin']
     },
     {
       icon: 'trash',

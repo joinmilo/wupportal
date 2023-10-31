@@ -22,7 +22,7 @@ export class SurveyAdminOverviewEffects {
       SurveyAdminOverviewActions.updateParams,
       SurveyAdminOverviewActions.surveyDeleted,
       SurveyAdminOverviewActions.surveySponsored
-      ),
+    ),
     withLatestFrom(this.store.select(selectParams)),
     switchMap(([, params]) => this.getSurveysService.watch({
       params,

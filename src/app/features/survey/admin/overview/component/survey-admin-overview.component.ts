@@ -27,7 +27,8 @@ export class SurveyAdminOverviewComponent {
       icon: 'bullhorn',
       callback: row =>
         this.store.dispatch(SurveyAdminOverviewActions.sponsorSurvey(row)),
-      tooltipLabel: 'highlightInPortal'
+      tooltipLabel: 'highlightInPortal',
+      privileges: ['surveys_admin'],
     },
     {
       icon: 'trash',

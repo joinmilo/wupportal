@@ -27,7 +27,8 @@ export class ContestAdminOverviewComponent {
       icon: 'bullhorn',
       callback: row =>
         this.store.dispatch(ContestAdminOverviewActions.sponsorContest(row)),
-      tooltipLabel: 'highlightInPortal'
+      tooltipLabel: 'highlightInPortal',
+      privileges: ['contests_admin']
     },
     {
       icon: 'trash',

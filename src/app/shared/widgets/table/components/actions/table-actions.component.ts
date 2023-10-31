@@ -65,9 +65,9 @@ export class TableActionsComponent<T> implements OnDestroy {
   }
 
   public hasPrivileges(action: RowAction<T>): boolean {
-    const privleges = (action as RowCustomAction<T>)?.privileges;
-    return privleges
-      ? this.authService.hasAnyPrivileges(privleges)
+    const privileges = (action as RowCustomAction<T>)?.privileges;
+    return privileges
+      ? this.authService.hasAnyPrivileges(privileges)
       : true;
   }
 

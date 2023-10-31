@@ -3,8 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { EMPTY, map, of, switchMap, withLatestFrom } from 'rxjs';
-import { PageableList_OrganisationEntity } from 'src/app/core/api/generated/schema';
+import { PageableList_OrganisationEntity, QueryOperator } from 'src/app/core/api/generated/schema';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CoreActions } from 'src/app/core/state/actions/core.actions';
+import { selectCurrentUser } from 'src/app/core/state/selectors/user.selectors';
 import { FeedbackType } from 'src/app/core/typings/feedback';
 import { ConfirmChangeComponent } from 'src/app/shared/dialogs/confirm-change/confirm-change.component';
 import { ConfirmDeleteComponent } from 'src/app/shared/dialogs/confirm-delete/confirm-delete.component';
@@ -22,11 +24,43 @@ export class OrganisationAdminOverviewEffects {
       OrganisationAdminOverviewActions.updateParams,
       OrganisationAdminOverviewActions.organisationDeleted,
       OrganisationAdminOverviewActions.organisationSponsored
-      ),
-    withLatestFrom(this.store.select(selectParams)),
-    switchMap(([, params]) => this.organisationsService.watch({
-      params,
-    }).valueChanges),
+    ),
+    withLatestFrom(
+      this.store.select(selectParams),
+      this.store.select(selectCurrentUser),
+    ),
+    map(([, params, user]) => {
+      const baseParams = {
+        ...params,
+          expression: {
+            conjunction: {
+              operands: [
+                {
+                  entity: {
+                    path: 'approved',
+                    operator: QueryOperator.Equal,
+                    value: 'true'
+                  }
+                }
+              ]
+            }
+          }
+      }
+
+      if (!this.authService.hasAnyPrivileges(['organisations_admin'])) {
+        baseParams.expression.conjunction.operands.push({
+          entity: {
+            path: 'members.userContext.id', 
+            operator: QueryOperator.Equal,
+            value: user?.id as string
+          }
+        });
+      }
+
+      return baseParams;
+    }),
+
+    switchMap(params => this.organisationsService.watch({ params }).valueChanges),
     map(response => OrganisationAdminOverviewActions.setOverviewData(response.data.getOrganisations as PageableList_OrganisationEntity))
   ));
 
@@ -80,6 +114,7 @@ export class OrganisationAdminOverviewEffects {
 
   constructor(
     private actions: Actions,
+    private authService: AuthService,
     private dialog: MatDialog,
     private deleteOrganisationService: DeleteOrganisationGQL,
     private sponsorOrganisationService: SponsorOrganisationGQL,

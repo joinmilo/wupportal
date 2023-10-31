@@ -27,7 +27,8 @@ export class DealAdminOverviewComponent {
       icon: 'bullhorn',
       callback: row =>
         this.store.dispatch(DealAdminOverviewActions.sponsorDeal(row)),
-      tooltipLabel: 'highlightInPortal'
+      tooltipLabel: 'highlightInPortal',
+      privileges: ['deals_admin']
     },
     {
       icon: 'trash',

@@ -27,7 +27,8 @@ export class EventAdminOverviewComponent {
       icon: 'bullhorn',
       callback: row =>
         this.store.dispatch(EventAdminOverviewActions.sponsorEvent(row)),
-      tooltipLabel: 'highlightInPortal'
+      tooltipLabel: 'highlightInPortal',
+      privileges: ['events_admin']
     },
     {
       icon: 'trash',
