@@ -35,7 +35,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
     suburb: ['' as Maybe<string>]
   }, {
     validators: [
-      AppValidators.allOrNone('street', 'place', 'houseNumber', 'suburb')
+      AppValidators.allOrNone('street', 'place', 'houseNumber')
     ],
   });
 
@@ -122,8 +122,7 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, As
     }> | Maybe<AddressEntity>): boolean {
     return !!(value?.street
       && value?.houseNumber
-      && value?.place
-      && value?.suburb);
+      && value?.place);
   }
   
   public ngOnDestroy(): void {
