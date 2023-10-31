@@ -74,9 +74,6 @@ export class UserPersonalDataFormComponent implements OnInit, OnDestroy {
           phone: currentUser?.user?.phone,
         });
 
-        console.log('Profile Picture Form:', this.ProfilePictureForm.value);
-console.log('Title Image Form:', this.titleImageForm.value);
-
         this.ProfilePictureForm.patchValue({
           profilePicture: currentUser?.uploads?.filter(upload =>
             upload?.profilePicture).map(upload => upload?.media) as MediaEntity[],
@@ -104,8 +101,6 @@ console.log('Title Image Form:', this.titleImageForm.value);
 
   public saved(): void {
 
-    console.log('Profile Picture Form:', this.ProfilePictureForm.value);
-console.log('Title Image Form:', this.titleImageForm.value);
     this.store.dispatch(
       UserSettingsActions.savePersonalData({
         id: this.user?.id,
