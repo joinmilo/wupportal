@@ -5,7 +5,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { Period } from 'src/app/core/typings/period';
@@ -72,13 +72,22 @@ export class DateRangeFilterComponent implements OnInit, OnChanges, OnDestroy {
       });
     } else if (this.queryParam) {
       this.activatedRoute.queryParams
-      .pipe(take(1))
-      .subscribe(params => {
-        this.form.setValue({
-          startDate: new Date(params[this.queryParamStartKey] ?? ''),
-          endDate: new Date(params[this.queryParamEndKey] ?? '')
+        .pipe(takeUntil(this.destroy))
+        .subscribe(params => {
+          if (params[this.queryParamStartKey]
+            && params[this.queryParamEndKey]) {
+              this.form.setValue({
+                startDate: new Date(params[this.queryParamStartKey] ?? ''),
+                endDate: new Date(params[this.queryParamEndKey] ?? '')
+              });
+          } else {
+            this.emitEvent = false;
+            this.form.patchValue({
+              startDate: undefined,
+              endDate: undefined
+            });
+          }          
         });
-      });
     }
   }
 
@@ -111,6 +120,7 @@ export class DateRangeFilterComponent implements OnInit, OnChanges, OnDestroy {
         if (!isNaN(this.form.value?.startDate?.valueOf() || NaN)
           && !isNaN(endDate?.valueOf() || NaN)
           && this.emitEvent) {
+
           endDate?.setHours(23, 59, 59, 999);
           this.form.value.startDate?.setHours(0, 0 , 0, 0);
           

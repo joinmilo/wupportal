@@ -45,10 +45,10 @@ export class EventFilterEffects {
   clearAll = createEffect(() => this.actions.pipe(
     ofType(EventFilterActions.clearAll),
     tap(() => {
-      const queryParams: Record<string, null> = {};
+      const queryParams: Record<string, undefined> = {};
 
       [...Object.values(EventFilterQueryDefinition), ...Object.values(FilterQueryDefinition)]
-        .forEach((value) => queryParams[value] = null );
+        .forEach((value) => queryParams[value] = undefined );
 
       this.router.navigate([], {
         queryParams,
