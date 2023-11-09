@@ -29,7 +29,10 @@
     </app-row>
   </app-form-step>
 
-  <app-form-step [formGroup]="locationForm" titleLabel="location">
+  <app-form-step
+    [formGroup]="locationForm"
+    titleLabel="location"
+    [required]="true">
     <app-row>
       <app-address-form formControlName="address">
       </app-address-form>

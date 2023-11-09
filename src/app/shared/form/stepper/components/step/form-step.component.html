@@ -4,7 +4,7 @@
   (opened)="setCurrentStep()"
   [class.step-invalid]="isInvalid()">
   <mat-expansion-panel-header>
-    <mat-panel-title [appLabel]="titleLabel" [suffix]="required ? '*' : ''">
+    <mat-panel-title [appLabel]="titleLabel" [suffix]="required || hasRequiredValidator ? '*' : ''">
     </mat-panel-title>
 
     <mat-panel-description [appLabel]="descriptionLabel">

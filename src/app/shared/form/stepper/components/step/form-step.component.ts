@@ -25,8 +25,10 @@ export class FormStepComponent implements OnDestroy {
     this._formGroup = formGroup;
     this.initFormGroup();
 
-    this.required = Object.keys(this._formGroup.controls)?.some(key => this._formGroup.controls[key].hasValidator(Validators.required));
+    this.hasRequiredValidator = Object.keys(this._formGroup.controls)
+      ?.some(key => this._formGroup.controls[key].hasValidator(Validators.required));
   }
+
 
   public get formGroup(): FormGroup {
     return this._formGroup;
@@ -34,11 +36,14 @@ export class FormStepComponent implements OnDestroy {
 
   private _formGroup!: FormGroup;
 
+  @Input()
+  public hideToggle = false;
+
   @Input({ required: true })
   public titleLabel?: string;
 
   @Input()
-  public hideToggle = false;
+  public required = false;
 
   @Output()
   public stepEntered = new EventEmitter<void>();
@@ -68,7 +73,7 @@ export class FormStepComponent implements OnDestroy {
 
   public resetValue?: unknown;
 
-  public required = false;
+  public hasRequiredValidator = false;
 
   private destroy = new Subject<void>();
 
