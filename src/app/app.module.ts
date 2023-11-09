@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { LanguageInterceptor } from './core/interceptors/language.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { GraphQLModule } from './graphql.module';
 import { PortalModule } from './portal/portal.module';
@@ -86,6 +87,11 @@ const providers = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorInterceptor,
+    multi: true,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LanguageInterceptor,
     multi: true,
   },
 ];
