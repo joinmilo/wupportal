@@ -11,8 +11,8 @@ import { TableModule } from 'src/app/shared/widgets/table/table.module';
 import { EventAdminOverviewComponent } from './component/event-admin-overview.component';
 import { eventAdminOverviewStateKey } from './constants/event-admin-overview.constants';
 import { EventAdminOverviewRoutingModule } from './event-admin-overview-routing.module';
-import { EventAdminOverviewEffects } from './state/event-portal-overview.effects';
-import { eventAdminOverviewReducer } from './state/event-portal-overview.reducer';
+import { EventAdminOverviewEffects } from './state/event-admin-overview.effects';
+import { eventAdminOverviewReducer } from './state/event-admin-overview.reducer';
 
 const components = [
   EventAdminOverviewComponent

@@ -14,7 +14,7 @@ import { DeleteEventGQL } from '../../../api/generated/delete-event.mutation.gen
 import { GetEventsGQL } from '../../../api/generated/get-events.query.generated';
 import { SponsorEventGQL } from '../../../api/generated/sponsor-event.mutation.generated';
 import { EventAdminOverviewActions } from './event-admin-overview.actions';
-import { selectParams } from './event-portal-overview.selectors';
+import { selectParams } from './event-admin-overview.selectors';
 
 @Injectable()
 export class EventAdminOverviewEffects {

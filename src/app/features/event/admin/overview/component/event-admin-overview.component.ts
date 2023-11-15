@@ -5,7 +5,7 @@ import { EventEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/ge
 import { TranslationService } from 'src/app/core/services/translation.service';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
 import { EventAdminOverviewActions } from '../state/event-admin-overview.actions';
-import { selectOverviewData } from '../state/event-portal-overview.selectors';
+import { selectOverviewData } from '../state/event-admin-overview.selectors';
 
 @Component({
   selector: 'app-event-admin-overview',

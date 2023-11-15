@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { eventAdminOverviewStateKey } from '../constants/event-admin-overview.constants';
-import { EventAdminOverviewState } from './event-portal-overview.reducer';
+import { EventAdminOverviewState } from './event-admin-overview.reducer';
 
 export const selectEventAdminOverviewState = createFeatureSelector<EventAdminOverviewState>(eventAdminOverviewStateKey);
 
