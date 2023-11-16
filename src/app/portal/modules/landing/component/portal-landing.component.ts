@@ -1,10 +1,10 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { Maybe, MediaEntity, PageEntity } from 'src/app/core/api/generated/schema';
+import { TranslationService } from 'src/app/core/services/translation.service';
 import { PortalLandingActions } from '../state/portal-landing.actions';
 import { selectLandingPage } from '../state/portal-landing.selectors';
-import { TranslationService } from 'src/app/core/services/translation.service';
 
 @Component({
   selector: 'app-portal-landing',
@@ -48,7 +48,7 @@ export class PortalLandingComponent implements OnInit, OnDestroy {
     container.style.setProperty('font-size', "1em");
     const {width, height} = container.children[0].getBoundingClientRect();
     const {width: max_width, height: max_height} = container.getBoundingClientRect();
-    const fontSize = Math.min(max_width/width, max_height/height);
+    const fontSize = Math.min(max_width / width, max_height / height);
     container.style.setProperty('font-size', fontSize + "em");
     container.style.setProperty('line-height', 9 * fontSize + "rem");
   }
