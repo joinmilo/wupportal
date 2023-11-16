@@ -6,7 +6,7 @@
     <fa-icon size="10x" [icon]="['fas', 'cookie-bite']"></fa-icon>
     <div>
       <span appLabel="weUseCookies"></span>
-      <a [routerLink]="['/portal', (dataProtectionConfig | async)?.value]" appLabel="clickHereForDataProtection"></a>
+      <a class="link" [routerLink]="['/portal', (dataProtectionConfig | async)?.value]" appLabel="clickHereForDataProtection"></a>
     </div>
   </section>
 

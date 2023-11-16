@@ -1,9 +1,16 @@
 <div *ngIf="titleLabel || link || title">
-  <app-slider-header *ngIf="titleLabel" [titleLabel]="titleLabel" [titleType]="titleType"></app-slider-header>
-  <app-slider-header *ngIf="title" [title]="title" [titleType]="titleType"></app-slider-header>
-  <section *ngIf="link">
-    <a class="a-button" [routerLink]="link" [appLabel]="linkLabel" suffix="»"></a>
-  </section>
+  <app-slider-header *ngIf="titleLabel"
+    [link]="link"
+    [linkLabel]="linkLabel"
+    [titleLabel]="titleLabel"
+    [titleType]="titleType">
+  </app-slider-header>
+  <app-slider-header *ngIf="title"
+    [link]="link"
+    [linkLabel]="linkLabel"
+    [title]="title"
+    [titleType]="titleType">
+  </app-slider-header>
 </div>
 
 <ng-container *ngIf="data?.length; else emptyResult;">

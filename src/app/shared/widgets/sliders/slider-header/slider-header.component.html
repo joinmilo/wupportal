@@ -7,7 +7,9 @@
     <app-details-title *ngIf="titleLabel" [titleLabel]="titleLabel"></app-details-title>
     <app-details-title *ngIf="title" [title]="title"></app-details-title>
   </ng-container>
-  <section *ngIf="link">
-    <a [routerLink]="link" [appLabel]="linkLabel" suffix="»"></a>
-  </section>
+  <a *ngIf="link" 
+    class="link"
+    [routerLink]="link"
+    [appLabel]="linkLabel" suffix="»">
+  </a>
 </div>

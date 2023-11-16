@@ -1,14 +1,21 @@
 <div *ngIf="(titleLabel || link || title) && media?.length">
   
   <ng-container *ngIf="titleType === 'DETAILS'">
-    <app-details-title *ngIf="titleLabel; detailsTitleLabel" [titleLabel]="titleLabel"></app-details-title>
+    <app-details-title *ngIf="titleLabel; detailsTitleLabel"
+      [link]="link"
+      [linkLabel]="linkLabel"
+      [titleLabel]="titleLabel">
+    </app-details-title>
     <ng-template #subTitleLabel>
       <app-details-title [title]="title"></app-details-title>
     </ng-template>
   </ng-container>
 
   <ng-container *ngIf="titleType === 'SUBTITLE'">
-    <app-sub-title *ngIf="title; else subTitleLabel" [title]="title"></app-sub-title>
+    <app-sub-title *ngIf="title; else subTitleLabel" 
+      [link]="link"
+      [title]="title">
+    </app-sub-title>
     <ng-template #subTitleLabel>
       <app-sub-title [titleLabel]="titleLabel"></app-sub-title>
     </ng-template>
@@ -21,9 +28,11 @@
     </ng-template>
   </ng-container>
   
-  <section *ngIf="link">
-    <a [routerLink]="link" [appLabel]="linkLabel" suffix="»"></a>
-  </section>
+  <a *ngIf="link"
+    class="link"
+    [routerLink]="link"
+    [appLabel]="linkLabel" suffix="»">
+  </a>
 </div>
 
 <app-slider *ngIf="media?.length">

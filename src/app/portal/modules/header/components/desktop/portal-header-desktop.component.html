@@ -9,14 +9,14 @@
   <section>
 
     <ng-container *ngIf="!currentUser?.id">
-      <div *ngIf="(isSearching | async) === false" [@fadeIn]>
+      <section *ngIf="(isSearching | async) === false" [@fadeIn]>
         <a mat-stroked-button color="primary" [routerLink]="['/', accountUrl, 'register']">
           <span appLabel="register"></span>
         </a>
         <a mat-stroked-button color="primary" [routerLink]="['/', accountUrl, 'login']">
             <span appLabel="login"></span>
         </a>
-      </div>
+      </section>
     </ng-container>
 
     <app-search></app-search>

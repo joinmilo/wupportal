@@ -18,10 +18,6 @@ div {
   justify-content: space-between;
 }
 
-section {
-  margin: 0.5rem;
-
-  a {
-    color: var(--color-accent-900);
-  }
+a {
+  align-self: center;
 }
