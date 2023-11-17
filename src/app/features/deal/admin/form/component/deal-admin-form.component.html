@@ -72,7 +72,7 @@
     <app-row [columns]="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="shortDescription"></mat-label>
-        <textarea matInput formControlName="shortDescription" rows="5" required>
+        <textarea matInput formControlName="shortDescription" rows="5">
         </textarea>
       </mat-form-field>
     </app-row>
@@ -96,7 +96,7 @@
       </mat-radio-group>
     </app-row>
 
-    <app-row [columns]="1">
+    <app-row [columns]="8">
       <mat-form-field appearance="outline">
         <mat-label appLabel="price"></mat-label>
         <input formControlName="price" matInput placeholder="&euro;" />
