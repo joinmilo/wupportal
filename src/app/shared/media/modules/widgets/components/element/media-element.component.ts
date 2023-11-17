@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { Maybe, MediaEntity } from 'src/app/core/api/generated/schema';
 import { MediaService } from '../../../../services/media.service';
-import { MediaViewerData, MimeTypeDefinition } from '../../../../typings/media';
+import { AttributionDirection, MediaViewerData, MimeTypeDefinition } from '../../../../typings/media';
 import { MediaViewerComponent } from '../viewer/media-viewer.component';
 
 @Component({
@@ -15,6 +15,9 @@ export class MediaElementComponent implements OnInit, OnChanges {
 
   @Input()
   public media?: Maybe<MediaEntity>;
+
+  @Input()
+  public attributionDirection: AttributionDirection = 'BOTTOM-RIGHT';
 
   @Output()
   public clicked = new EventEmitter<MediaEntity>();

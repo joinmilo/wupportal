@@ -4,7 +4,7 @@
     class="image-wrapper">
     <img alt="media-card"
       [src]="media?.url"
-      [appAttribution]="media?.attribution" />
+      [appAttribution]="media?.attribution" [direction]="attributionDirection" />
   </div>
 
   <app-media-video *ngSwitchCase="'VIDEO'"
