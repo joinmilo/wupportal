@@ -22,7 +22,7 @@ mat-card-header {
   position: relative;
   height: 15rem;
 
-  img {
+  img, app-media-element {
     object-fit: cover;
     width: 18rem;
     height: 100%;

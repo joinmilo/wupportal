@@ -4,7 +4,7 @@ query getArticleComments($params: FilterSortPaginateInput) {
       id
       created
       modified
-
+      content
       userContext {
         id
         uploads {
