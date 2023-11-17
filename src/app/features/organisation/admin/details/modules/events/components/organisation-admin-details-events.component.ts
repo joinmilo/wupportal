@@ -81,7 +81,6 @@ export class OrganisationAdminDetailsEventsComponent implements OnInit, OnDestro
     private router: Router,
     private translationService: TranslationService,
   ) { 
-    console.log('herer')
   }
 
   public ngOnInit(): void {
