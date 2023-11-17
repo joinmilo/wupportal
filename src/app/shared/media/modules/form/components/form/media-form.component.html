@@ -10,7 +10,7 @@
   <app-media-form-entry *ngIf="!this.maxFiles || this.media.length < this.maxFiles"
     (uploads)="add($event)">
   </app-media-form-entry>
-</section> 
+</section>
 
 <section class="errors" *ngIf="validationErrors.length">
   <ng-container *ngFor="let error of validationErrors">

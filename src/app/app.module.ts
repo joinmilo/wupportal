@@ -1,5 +1,8 @@
+import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule, isDevMode } from '@angular/core';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+import { LOCALE_ID, NgModule, isDevMode } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -20,6 +23,8 @@ import { LanguageInterceptor } from './core/interceptors/language.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { GraphQLModule } from './graphql.module';
 import { PortalModule } from './portal/portal.module';
+
+registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
 const components = [
   AppComponent,
@@ -94,6 +99,10 @@ const providers = [
     useClass: LanguageInterceptor,
     multi: true,
   },
+  {
+    provide: LOCALE_ID,
+    useValue: 'de-DE'
+  }
 ];
 
 @NgModule({

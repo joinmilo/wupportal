@@ -1,2 +1,2 @@
-<span *ngIf="price">{{ price || '' }} €</span>
+<span *ngIf="price">{{ price | currency: 'EUR' }}</span>
 <span *ngIf="!price" appLabel="freeOfCharge"></span>

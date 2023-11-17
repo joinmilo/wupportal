@@ -30,7 +30,7 @@ export class DealAdminFormComponent implements OnInit, OnDestroy {
 
   public additionalInfoForm = this.fb.group({
     categoryId: [undefined as Maybe<string>, [Validators.required]],
-    price: [undefined as Maybe<number>, [AppValidators.number()]],
+    price: ['' as Maybe<string>, [AppValidators.number()]],
     isPublic: [true as Maybe<boolean>],
     selectedType: ['offer' as Maybe<string>]
   });
@@ -89,7 +89,7 @@ public ngOnInit(): void {
 
       this.additionalInfoForm.patchValue({
         categoryId: deal?.category?.id,
-        price: deal?.price,
+        price: deal?.price?.toString(),
         isPublic: deal?.isPublic,
         selectedType: deal?.offer ? 'offer' : 'request'
       });
@@ -139,7 +139,7 @@ public ngOnInit(): void {
           lastName: this.currentUser?.user?.lastName,
         }
       },
-      price: this.additionalInfoForm.value.price,
+      price: Number(this.additionalInfoForm.value.price?.replace(',','.')),
       isPublic: this.additionalInfoForm.value.isPublic,
       offer: this.additionalInfoForm.value.selectedType === 'offer' ? true : false,
       

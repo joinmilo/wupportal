@@ -129,8 +129,8 @@ export class MediaFormComponent implements ControlValueAccessor, Validator, OnDe
   private emit(newMedia: (MediaEntity | MediaEnhancedEntity)[]): void {
     this.media = [...newMedia];
     this.uploads.emit(this.media);
-    this.onChange?.(this.media);
     this.checkErrors();
+    this.onChange?.(this.media);
 
     //TODO: This needs to be set because view is not updating. Needs debugging
     this.cdr.detectChanges();
@@ -176,14 +176,6 @@ export class MediaFormComponent implements ControlValueAccessor, Validator, OnDe
   public registerOnTouched(onTouched?: () => void): void {
     this.onTouched = onTouched;
   }
-
-  // public registerOnValidatorChange?(fn: () => void): void {
-  //   throw new Error('Method not implemented.');
-  // }
-
-  // public setDisabledState?(isDisabled: boolean): void {
-  //   throw new Error('Method not implemented.');
-  // }
 
   public ngOnDestroy(): void {
     this.destroy.next();
