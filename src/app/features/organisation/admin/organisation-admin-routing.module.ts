@@ -27,6 +27,17 @@ const menuRoutes: AdminFeatureRoute[] = [
     },
     canActivate: [requireAnyPrivilege('organisations_admin')]
   },
+  {
+    path: `${organisationsFeatureKey}/configuration`,
+    loadChildren: () => import('./configuration/organisation-admin-configuration.module')
+      .then((imported) => imported.OrganisationAdminConfigurationModule),
+    data: { 
+      label: 'configuration',
+      privileges: ['organisations_admin'],
+    },
+    canActivate: [requireAnyPrivilege('organisations_admin')]
+  },
+
 ];
 
 const routes: Routes = [

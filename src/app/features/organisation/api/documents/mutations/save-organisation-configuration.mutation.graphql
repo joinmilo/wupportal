@@ -1,0 +1,5 @@
+mutation saveOrganisationConfiguration($entity: OrganisationConfigurationEntityInput!) {
+  saveOrganisationConfiguration(entity: $entity) {
+    id
+  }
+}

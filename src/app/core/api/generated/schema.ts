@@ -1858,6 +1858,8 @@ export type Mutation = {
   deleteOrganisation?: Maybe<Scalars['Boolean']>;
   deleteOrganisationComment?: Maybe<Scalars['Boolean']>;
   deleteOrganisationComments?: Maybe<Scalars['Boolean']>;
+  deleteOrganisationConfiguration?: Maybe<Scalars['Boolean']>;
+  deleteOrganisationConfigurations?: Maybe<Scalars['Boolean']>;
   deleteOrganisationMedia?: Maybe<Scalars['Boolean']>;
   deleteOrganisationMedium?: Maybe<Scalars['Boolean']>;
   deleteOrganisationMember?: Maybe<Scalars['Boolean']>;
@@ -2005,6 +2007,8 @@ export type Mutation = {
   saveOrganisation?: Maybe<OrganisationEntity>;
   saveOrganisationComment?: Maybe<OrganisationCommentEntity>;
   saveOrganisationComments?: Maybe<Array<Maybe<OrganisationCommentEntity>>>;
+  saveOrganisationConfiguration?: Maybe<OrganisationConfigurationEntity>;
+  saveOrganisationConfigurations?: Maybe<Array<Maybe<OrganisationConfigurationEntity>>>;
   saveOrganisationMedia?: Maybe<Array<Maybe<OrganisationMediaEntity>>>;
   saveOrganisationMedium?: Maybe<OrganisationMediaEntity>;
   saveOrganisationMember?: Maybe<OrganisationMemberEntity>;
@@ -2651,6 +2655,18 @@ export type MutationDeleteOrganisationCommentArgs = {
 
 /** Mutation root */
 export type MutationDeleteOrganisationCommentsArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteOrganisationConfigurationArgs = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Mutation root */
+export type MutationDeleteOrganisationConfigurationsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -3539,6 +3555,18 @@ export type MutationSaveOrganisationCommentsArgs = {
 
 
 /** Mutation root */
+export type MutationSaveOrganisationConfigurationArgs = {
+  entity?: InputMaybe<OrganisationConfigurationEntityInput>;
+};
+
+
+/** Mutation root */
+export type MutationSaveOrganisationConfigurationsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<OrganisationConfigurationEntityInput>>>;
+};
+
+
+/** Mutation root */
 export type MutationSaveOrganisationMediaArgs = {
   entities?: InputMaybe<Array<InputMaybe<OrganisationMediaEntityInput>>>;
 };
@@ -3983,6 +4011,23 @@ export type OrganisationCommentTranslatableEntityInput = {
   content?: InputMaybe<Scalars['String']>;
   created?: InputMaybe<Scalars['OffsetDateTime']>;
   id?: InputMaybe<Scalars['String']>;
+  modified?: InputMaybe<Scalars['OffsetDateTime']>;
+};
+
+export type OrganisationConfigurationEntity = {
+  __typename?: 'OrganisationConfigurationEntity';
+  approvalRequired?: Maybe<Scalars['Boolean']>;
+  created?: Maybe<Scalars['OffsetDateTime']>;
+  id?: Maybe<Scalars['String']>;
+  memberRole?: Maybe<RoleEntity>;
+  modified?: Maybe<Scalars['OffsetDateTime']>;
+};
+
+export type OrganisationConfigurationEntityInput = {
+  approvalRequired?: InputMaybe<Scalars['Boolean']>;
+  created?: InputMaybe<Scalars['OffsetDateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  memberRole?: InputMaybe<RoleEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']>;
 };
 
@@ -4549,6 +4594,12 @@ export type PageableList_OrganisationCommentEntity = {
   total: Scalars['Long'];
 };
 
+export type PageableList_OrganisationConfigurationEntity = {
+  __typename?: 'PageableList_OrganisationConfigurationEntity';
+  result?: Maybe<Array<Maybe<OrganisationConfigurationEntity>>>;
+  total: Scalars['Long'];
+};
+
 export type PageableList_OrganisationEntity = {
   __typename?: 'PageableList_OrganisationEntity';
   result?: Maybe<Array<Maybe<OrganisationEntity>>>;
@@ -4855,6 +4906,8 @@ export type Query = {
   getOrganisation?: Maybe<OrganisationEntity>;
   getOrganisationComment?: Maybe<OrganisationCommentEntity>;
   getOrganisationComments?: Maybe<PageableList_OrganisationCommentEntity>;
+  getOrganisationConfiguration?: Maybe<OrganisationConfigurationEntity>;
+  getOrganisationConfigurations?: Maybe<PageableList_OrganisationConfigurationEntity>;
   getOrganisationMedia?: Maybe<PageableList_OrganisationMediaEntity>;
   getOrganisationMedium?: Maybe<OrganisationMediaEntity>;
   getOrganisationMember?: Maybe<OrganisationMemberEntity>;
@@ -5430,6 +5483,18 @@ export type QueryGetOrganisationCommentArgs = {
 
 /** Query root */
 export type QueryGetOrganisationCommentsArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetOrganisationConfigurationArgs = {
+  entity?: InputMaybe<OrganisationConfigurationEntityInput>;
+};
+
+
+/** Query root */
+export type QueryGetOrganisationConfigurationsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 

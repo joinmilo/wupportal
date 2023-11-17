@@ -1,0 +1,17 @@
+query getOrganisationConfiguration {
+  getOrganisationConfiguration(entity: {}) {
+    id
+    approvalRequired
+    memberRole {
+      id
+      translatables {
+        id
+        name
+
+        language {
+          ...Language
+        }
+      }
+    }
+  }
+}
