@@ -4,7 +4,7 @@ query getOrganisationMembers($params: FilterSortPaginateInput) {
       id
       approved
       isPublic
-      userContext{
+      userContext {
         user{
           id
           firstName
@@ -12,9 +12,17 @@ query getOrganisationMembers($params: FilterSortPaginateInput) {
           email
         }
       }
-      organisation{
+      organisation {
         id
+        created
+        modified
         slug
+        sponsored
+        name
+
+        contact {
+          ...Contact
+        }
       }
     }
     total
