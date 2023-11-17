@@ -10,6 +10,8 @@ export type AdminMenuItem = {
   name?: string,
   privileges?: Privilege[],
   route?: string,
+
+  comingSoon?: boolean,
 }
 
 export type AdminRoutes = {

@@ -16,7 +16,8 @@ const routes: AdminSettingsRoute[] = [
       name: 'editPortalMenu',
       description: 'editPortalMenuDescription',
       icon: 'folder-tree',
-      privileges: ['cms_admin']
+      privileges: ['cms_admin'],
+      comingSoon: true,
     },
     canActivate: [requireAnyPrivilege('cms_admin')],
   },
@@ -28,7 +29,8 @@ const routes: AdminSettingsRoute[] = [
       name: 'editColorTheme',
       description: 'editColorThemeDescription',
       icon: 'palette',
-      privileges: ['cms_admin']
+      privileges: ['cms_admin'],
+      comingSoon: true,
     },
     canActivate: [requireAnyPrivilege('cms_admin')],
   },
@@ -52,7 +54,7 @@ const routes: AdminSettingsRoute[] = [
       name: 'configuration',
       description: 'configurationDescription',
       icon: 'gear',
-      privileges: ['cms_admin']
+      privileges: ['cms_admin'],
     },
     canActivate: [requireAnyPrivilege('cms_admin')],
   },
@@ -78,6 +80,7 @@ export class AdminSettingsStructureRoutingModule {
         route: route.path,
         icon: route.data?.icon,
         privileges: route.data.privileges,
+        comingSoon: route.data.comingSoon,
       }))
     }));
   }

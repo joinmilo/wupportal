@@ -44,7 +44,8 @@ const menuRoutes: AdminSettingsRoute[] = [
       name: 'editLandingPage',
       description: 'editLandingPageDescription',
       icon: 'house',
-      privileges: ['cms_admin']
+      privileges: ['cms_admin'],
+      comingSoon: true
     },
     canActivate: [requireAnyPrivilege('cms_admin')],
   },
@@ -93,6 +94,7 @@ export class AdminSettingsPageRoutingModule {
         route: route.path,
         icon: route.data?.icon,
         privileges: route.data.privileges,
+        comingSoon: route.data.comingSoon,
       }))
     }));
   }
