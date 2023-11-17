@@ -105,7 +105,6 @@ export class OrganisationAdminFormComponent implements OnInit, OnDestroy{
     address: this.addressForm.value.address,
     
     slug: this.descriptionForm.value.name,
-    approved: false,
     commentsAllowed: this.additionalInfoForm.value.commentsAllowed,
     
     uploads: this.uploadsForm.value.uploads
