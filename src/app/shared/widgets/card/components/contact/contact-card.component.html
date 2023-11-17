@@ -1,7 +1,10 @@
 <mat-card>
   <a [routerLink]="element?.url">
   <figure [routerLink]="element?.url">
-    <img class="border-image" *ngIf="element?.image" [src]="element?.image?.url">
+    <app-media-element *ngIf="element?.image"
+      class="border-image"
+      [media]="element?.image">
+    </app-media-element>
     <span class="border-image" *ngIf="!element?.image">
       {{ element?.avatarPlaceholder }}
     </span>
