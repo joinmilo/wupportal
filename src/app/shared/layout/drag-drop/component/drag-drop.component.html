@@ -1,0 +1,21 @@
+<div class="container" cdkDropList (cdkDropListDropped)="drop($event)">
+  <mat-card *ngFor="let element of elements; let index = index" cdkDrag cdkDragLockAxis="y" (cdkDragStarted)="drag()">
+    <section class="drag-handle" cdkDragHandle>
+      <fa-icon icon="grip-vertical"></fa-icon>
+    </section>
+
+    <section class="content-area">
+      <ng-container *ngTemplateOutlet="element.directive.templateRef">
+      </ng-container>
+    </section>
+
+    <button mat-button
+      (click)="onDelete(index)">
+      <fa-icon icon="trash"></fa-icon>
+    </button>
+
+    <span class="drag-placeholder" *cdkDragPlaceholder></span>
+    <span *cdkDragPreview>
+    </span>
+  </mat-card>
+</div>

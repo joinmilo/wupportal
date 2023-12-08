@@ -1,7 +1,11 @@
 <app-drag-drop
-  [component]="component"
-  [inputs]="elements"
+  (deleted)="deleted($event)"
   (updated)="updated($event)">
+  <ng-container *ngFor="let embedding of embeddings">
+    <app-admin-settings-page-embedding-form *appDragDrop
+      [embedding]="embedding">
+    </app-admin-settings-page-embedding-form>
+  </ng-container>
 </app-drag-drop>
 
 <button mat-stroked-button

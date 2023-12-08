@@ -1,5 +1,4 @@
 
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { DragDropComponent } from 'src/app/shared/layout/drag-drop/drag-drop.component';
+import { DragAndDropModule } from 'src/app/shared/layout/drag-drop/drag-drop.module';
 import { GridLayoutModule } from 'src/app/shared/layout/grid-layout/grid-layout.module';
 import { AdminSettingsPageEmbeddingComponent } from './components/admin-settings-page-embedding.component';
 import { AdminSettingsPageEmbeddingDialogComponent } from './components/dialog/admin-settings-page-embedding-dialog.component';
@@ -38,7 +37,6 @@ const framework = [
 ];
 
 const materials = [
-  DragDropModule,
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
@@ -50,8 +48,8 @@ const materials = [
 
 const modules = [
   CoreModule,
-  DragDropComponent,
-  GridLayoutModule
+  GridLayoutModule,
+  DragAndDropModule,
 ];
 
 const libs = [

@@ -1,5 +1,7 @@
-import { DragDropElementInput } from './drag-drop-input';
+import { DragDropDirective } from '../directive/drag-drop.directive';
 
-export interface DragDropElementComponent<T> {
-  input?: DragDropElementInput<T>,
+export interface DragDropElement {
+  directive: DragDropDirective,
+  initIndex: number,
+  expanded?: boolean
 }

@@ -3,9 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe, PageEmbeddingEntity, PageEmbeddingTypeEntity } from 'src/app/core/api/generated/schema';
-import { DragDropInput } from 'src/app/shared/layout/drag-drop/typings/drag-drop-input';
 import { AdminSettingsPageEmbeddingDialogComponent } from './dialog/admin-settings-page-embedding-dialog.component';
-import { AdminSettingsPageEmbeddingFormComponent } from './form/admin-settings-page-embedding-form.component';
 
 @Component({
   selector: 'app-admin-settings-page-embedding',
@@ -21,9 +19,7 @@ import { AdminSettingsPageEmbeddingFormComponent } from './form/admin-settings-p
 })
 export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor, OnDestroy {
 
-  public elements: DragDropInput<PageEmbeddingEntity>[] = [];
-
-  public component = AdminSettingsPageEmbeddingFormComponent;
+  public embeddings: PageEmbeddingEntity[] = [];
 
   private onChange?: (embeddings: Maybe<PageEmbeddingEntity[]>) => void;
 
@@ -40,45 +36,37 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
       .pipe(takeUntil(this.destroy))
       .subscribe((embeddingType: PageEmbeddingTypeEntity) => {
         if (embeddingType) {
-          this.elements.push({
-            element: {
-              type: embeddingType,
-              attributes: embeddingType.attributes?.map(attribute => ({
-                type: {
-                  id: attribute?.id
-                }
-              }))
-            },
-            expanded: true,
+          this.embeddings.push({
+            type: embeddingType,
+            attributes: embeddingType.attributes?.map(attribute => ({
+              type: {
+                id: attribute?.id
+              }
+            }))
           });
           this.cdr.detectChanges();
         }
       });
   }
 
-  public updated(embeddings: PageEmbeddingEntity[]): void {
-    this.onChange?.(embeddings.map((embedding, index) => ({
-      ...embedding, order: index
-    })));
+  public deleted(index: number): void {
+    this.embeddings.splice(index, 1);
+  }
 
-    this.elements = embeddings?.length
-      ? embeddings?.map(element => ({
-          label: element.label,
-          element,
-          expanded: false,
-        }))
-      : [];
+  public updated(indices: number[]): void {
+    this.embeddings = indices
+      .map(index => this.embeddings[index])
+      .map((embedding, order) => ({
+        ...embedding, order
+      }));
+    this.onChange?.(this.embeddings);
   }
 
   public writeValue(value: Maybe<PageEmbeddingEntity[]>): void {
-    this.elements = value?.length
-      ? value?.map(element => ({
-          label: element.label,
-          element,
-          expanded: false,
-        }))
-      : [];
-    this.cdr.detectChanges();
+    if (value?.length) {
+      this.embeddings = value;
+      this.cdr.detectChanges();
+    }
   }
 
   public registerOnChange(onChange: (embeddings: Maybe<PageEmbeddingEntity[]>) => void): void {

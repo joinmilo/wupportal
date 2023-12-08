@@ -1,6 +1,6 @@
-<ng-container [ngSwitch]="input?.element?.type?.code">
+<ng-container [ngSwitch]="embedding?.type?.code">
   <app-admin-settings-page-embedding-plugin *ngSwitchCase="'plugin'"
-    [embedding]="input?.element"
-    (saved)="saved($event)">
+    [embedding]="embedding"
+    (saved)="saved.emit($event)">
   </app-admin-settings-page-embedding-plugin>
 </ng-container>
