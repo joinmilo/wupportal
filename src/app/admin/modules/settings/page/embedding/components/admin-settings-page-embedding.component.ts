@@ -25,9 +25,11 @@ type PageEmbeddingFormInput = {
 export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor, OnDestroy {
 
   public disabled?: boolean;
+
+  //TODO: This is not good, use different mechanism via dynamic forms or similar strategies
   public disabledNewButton?: boolean;
 
-  public embeddings: PageEmbeddingFormInput[] = [];
+  public inputs: PageEmbeddingFormInput[] = [];
 
   public sortedIndices?: number[];
 
@@ -47,7 +49,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
       .pipe(takeUntil(this.destroy))
       .subscribe((embeddingType: PageEmbeddingTypeEntity) => {
         if (embeddingType) {
-          this.embeddings.push({
+          this.inputs.push({
             expanded: true,
             embedding: {
               label: embeddingType.name,
@@ -66,8 +68,9 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   }
 
   public deleted(index: number): void {
-    this.embeddings.splice(index, 1);
+    this.inputs.splice(index, 1);
     this.emit();
+    this.disabledNewButton = false;
   }
 
   public sorted(indices: number[]): void {
@@ -76,7 +79,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   }
 
   public saved(embedding: PageEmbeddingEntity, index: number): void {
-    this.embeddings[index] = {
+    this.inputs[index] = {
       embedding,
       expanded: false
     };
@@ -87,20 +90,19 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   private emit(): void {
     const embeddings = this.sortedIndices
       ? this.sortedIndices.map((sort, order) => ({
-          ...this.embeddings[sort], order
+          ...this.inputs[sort].embedding, order
         }))
-      : this.embeddings.map((embedding, order) => ({
-          ...embedding, order
+      : this.inputs.map((input, order) => ({
+          ...input.embedding, order
         }));
 
-    console.log(embeddings, this.sortedIndices);
     this.onTouch?.(); 
     this.onChange?.(embeddings);
   }
 
   public writeValue(value: Maybe<PageEmbeddingEntity[]>): void {
     if (value?.length) {
-      this.embeddings = value.sort((a, b) => (a.order as number) - (b.order as number))
+      this.inputs = value.sort((a, b) => (a.order as number) - (b.order as number))
         .map(embedding => ({
           embedding,
           expanded: false,

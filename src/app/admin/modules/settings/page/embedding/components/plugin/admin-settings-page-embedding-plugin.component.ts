@@ -37,7 +37,7 @@ export class AdminSettingsPageEmbeddingPluginComponent implements OnInit {
     this.form.patchValue({
       id: this.embedding?.id,
       label: this.embedding?.label,
-      pluginId: this.embedding?.attributes?.[0]?.references?.[0]?.referenceId
+      pluginId: this.embedding?.attributes?.[0]?.references?.[0]?.plugin?.id
     });
   }
 
@@ -53,7 +53,9 @@ export class AdminSettingsPageEmbeddingPluginComponent implements OnInit {
         {
           references: [
             {
-              referenceId: this.form.value.pluginId
+              plugin: {
+                id: this.form.value.pluginId
+              }
             }
           ],
           type: {

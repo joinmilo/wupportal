@@ -6,7 +6,7 @@
 
       <app-form-stepper (cancelled)="cancelled()" (saved)="saved()">
         <app-form-step [formGroup]="userForm" titleLabel="content">
-          <app-row [columns]="2">
+          <app-row columns="2">
             <mat-form-field appearance="outline">
               <mat-label appLabel="firstName"></mat-label>
               <input matInput formControlName="firstName" />
@@ -17,7 +17,7 @@
             </mat-form-field>
           </app-row>
 
-          <app-row [columns]="2">
+          <app-row columns="2">
             <mat-form-field appearance="outline">
               <mat-label appLabel="email"></mat-label>
               <input matInput formControlName="email" />
@@ -49,7 +49,7 @@
         <app-form-step
           [formGroup]="additionalInfoForm"
           titleLabel="additionalInfo">
-          <app-row [columns]="1">
+          <app-row columns="1">
             <mat-form-field appearance="outline">
               <mat-label appLabel="shortDescription"></mat-label>
               <textarea formControlName="description" rows="5" matInput>
@@ -57,7 +57,7 @@
             </mat-form-field>
           </app-row>
 
-          <app-row [columns]="2">
+          <app-row columns="2">
             <mat-form-field appearance="outline">
               <mat-label appLabel="language"></mat-label>
               <mat-select

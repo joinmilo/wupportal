@@ -1,12 +1,12 @@
 <form [formGroup]="form">
-  <app-row [columns]="2">
+  <app-row columns="2">
     <mat-form-field appearance="outline" [appAssignColumns]="1">
       <mat-label appLabel="label"></mat-label>
       <input matInput formControlName="label">
     </mat-form-field>
   </app-row>
   
-  <app-row [columns]="2">
+  <app-row columns="2">
     <mat-form-field appearance="outline">
       <mat-label appLabel="plugin"></mat-label>
       <mat-select formControlName="pluginId">

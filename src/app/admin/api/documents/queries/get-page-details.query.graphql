@@ -18,10 +18,18 @@ query getPageDetails(
 
       attributes {
         id
+        content
 
         references {
           id
-          referenceId
+
+          plugin {
+            id
+          }
+
+          media {
+            ...Media
+          }
         }
 
         translatables {

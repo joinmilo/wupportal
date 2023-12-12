@@ -4,13 +4,13 @@
 <app-form-stepper (cancelled)="cancelled()" (saved)="saved()">
 
   <app-form-step titleLabel="content" [formGroup]="descriptionForm" descriptionLabel="describeYourOrganisation">
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="organisationName"></mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
     </app-row>
-    <app-row [columns]="1">
+    <app-row columns="1">
       <app-ck-editor-form formControlName="description"></app-ck-editor-form>
     </app-row>
   </app-form-step>
@@ -21,7 +21,7 @@
   </app-form-step>
 
   <app-form-step titleLabel="contact" [formGroup]="contactForm" descriptionLabel="enterYourContactData">
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="email"></mat-label>
         <input matInput formControlName="email">
@@ -32,7 +32,7 @@
       </mat-form-field>
     </app-row>
 
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="website"></mat-label>
         <input matInput formControlName="website">
@@ -52,7 +52,7 @@
   </app-form-step>
 
   <app-form-step titleLabel="additionalInfo" [formGroup]="additionalInfoForm">
-    <app-row [columns]="1">
+    <app-row columns="1">
       <div>
         <span appLabel="commentsAllowed"></span>
         <mat-slide-toggle color="primary" formControlName="commentsAllowed">

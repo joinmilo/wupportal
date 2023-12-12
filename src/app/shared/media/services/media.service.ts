@@ -21,7 +21,6 @@ export class MediaService {
         observer.next({
           base64: (event?.target?.result as string)?.split(',')[1],
           mimeType: file.type,
-          name: file.name,
           size: file.size,
           modified: file.lastModified,
           url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file)) as string,

@@ -79,7 +79,7 @@ export class PortalPluginEmbeddingComponent implements OnInit, OnChanges {
   private retrievePlugin(): void {
     this.getPluginService.watch({
       entity: {
-        id: this.embedding?.attributes?.[0]?.references?.[0]?.referenceId
+        id: this.embedding?.attributes?.[0]?.references?.[0]?.plugin?.id
       }
     }).valueChanges
     .pipe(takeUntil(this.destroy))

@@ -8,6 +8,8 @@
   display: flex;
   flex-flow: row wrap;
   gap: var(--gap);
+
+  width: fit-content;
 }
 
 .errors {

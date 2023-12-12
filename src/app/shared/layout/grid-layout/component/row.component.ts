@@ -13,7 +13,7 @@ import { ColumnDirective } from '../directive/column.directive';
 export class RowComponent implements AfterViewInit, OnDestroy {
 
   @Input()
-  public columns?: Maybe<number>;
+  public columns?: Maybe<number | string>;
 
   @Input()
   public includeInMobile = false;
@@ -42,8 +42,8 @@ export class RowComponent implements AfterViewInit, OnDestroy {
     const childsAmount: Maybe<number> = this.container?.nativeElement.children.length;
 
     if (childsAmount) {
-      const cellWidth = this.columns && this.columns > childsAmount
-        ? 100 / this.columns
+      const cellWidth = this.columns && Number(this.columns) > childsAmount
+        ? 100 / Number(this.columns)
         : 100 / childsAmount;
   
       Array.from(this.container?.nativeElement.children as HTMLCollection)

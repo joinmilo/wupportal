@@ -3,4 +3,9 @@
     [embedding]="embedding"
     (saved)="saved.emit($event)">
   </app-admin-settings-page-embedding-plugin>
+
+  <app-admin-settings-page-embedding-text-media *ngSwitchCase="'text_media'"
+    [embedding]="embedding"
+    (saved)="saved.emit($event)">
+  </app-admin-settings-page-embedding-text-media>
 </ng-container>

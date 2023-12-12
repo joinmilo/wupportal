@@ -4,14 +4,14 @@
 
 <app-form-stepper (cancelled)="cancelled()" (saved)="saved()">
   <app-form-step [formGroup]="contentForm" titleLabel="content">
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="name"></mat-label>
         <input matInput formControlName="name" />
       </mat-form-field>
     </app-row>
 
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="category"></mat-label>
         <mat-select formControlName="categoryId">
@@ -24,7 +24,7 @@
       </mat-form-field>
     </app-row>
 
-    <app-row [columns]="1">
+    <app-row columns="1">
       <app-ck-editor-form formControlName="content"> </app-ck-editor-form>
     </app-row>
   </app-form-step>
@@ -45,7 +45,7 @@
       <app-address-form formControlName="address"> </app-address-form>
     </app-row>
 
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline" [ariaDisabled]="true">
         <mat-label appLabel="videoChatLink"></mat-label>
         <input matInput formControlName="videoChatLink" />
@@ -56,7 +56,7 @@
   <app-form-step
     [formGroup]="shortDescriptionForm"
     titleLabel="shortDescription">
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="shortDescription"></mat-label>
         <textarea formControlName="shortDescription" rows="5" matInput>
@@ -69,7 +69,7 @@
     titleLabel="time"
     descriptionLabel="createSchedules"
     [formGroup]="scheduleForm">
-    <app-row [columns]="2">
+    <app-row columns="2">
       <app-scheduler-form formControlName="schedules"> </app-scheduler-form>
     </app-row>
   </app-form-step>
@@ -77,7 +77,7 @@
   <app-form-step
   titleLabel="contactAndOrganisation"
   [formGroup]="contactAndOrganisationForm">
-  <app-row [columns]="2" *ngIf="userOrganisations?.length">
+  <app-row columns="2" *ngIf="userOrganisations?.length">
     <mat-form-field appearance="outline">
       <mat-label appLabel="assignOrganisationToThisEvent?"></mat-label>
       <mat-select formControlName="organisationId">
@@ -105,7 +105,7 @@
   </app-form-step>
 
   <app-form-step titleLabel="attendance" [formGroup]="attendeeConfigForm">
-    <app-row [columns]="1">
+    <app-row columns="1">
       <div>
         <span appLabel="configureAttendance"></span>
         <mat-slide-toggle color="primary" formControlName="configureAttendance">
@@ -133,14 +133,14 @@
   </app-form-step>
 
   <app-form-step titleLabel="additionalInfo" [formGroup]="additionalInfoForm">
-    <app-row [columns]="8">
+    <app-row columns="8">
       <mat-form-field appearance="outline">
         <mat-label appLabel="entryFee"></mat-label>
         <input formControlName="entryFee" matInput placeholder="&euro;" />
       </mat-form-field>
     </app-row>
 
-    <app-row [columns]="1">
+    <app-row columns="1">
       <div>
         <span appLabel="commentsAllowed"></span>
         <mat-slide-toggle color="primary" formControlName="commentsAllowed">
@@ -148,7 +148,7 @@
       </div>
     </app-row>
 
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="targetGroup"></mat-label>
         <mat-select formControlName="targetGroups" multiple>
@@ -161,7 +161,7 @@
       </mat-form-field>
     </app-row>
 
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="metaDescription"></mat-label>
         <textarea matInput formControlName="metaDescription" rows="5">

@@ -2,7 +2,7 @@
   [disabled]="disabled"
   (deleted)="deleted($event)"
   (updated)="sorted($event)">
-  <app-drag-drop-element *ngFor="let input of embeddings; let index = index"
+  <app-drag-drop-element *ngFor="let input of inputs; let index = index"
     [title]="input.embedding.label"
     [expanded]="input.expanded">
 

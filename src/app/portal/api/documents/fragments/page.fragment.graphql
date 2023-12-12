@@ -23,7 +23,14 @@ fragment Page on PageEntity {
       }
       references {
         id
-        referenceId
+        
+        plugin {
+          id
+        }
+
+        media {
+          ...Media
+        }
       }
     }
     type {

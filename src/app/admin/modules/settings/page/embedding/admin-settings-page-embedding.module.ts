@@ -13,12 +13,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
+import { CkEditorFormComponent } from 'src/app/shared/form/ck-editor/ck-editor-form.component';
 import { DragAndDropModule } from 'src/app/shared/layout/drag-drop/drag-drop.module';
 import { GridLayoutModule } from 'src/app/shared/layout/grid-layout/grid-layout.module';
+import { MediaFormModule } from 'src/app/shared/media/modules/form/media-form.module';
 import { AdminSettingsPageEmbeddingComponent } from './components/admin-settings-page-embedding.component';
 import { AdminSettingsPageEmbeddingDialogComponent } from './components/dialog/admin-settings-page-embedding-dialog.component';
 import { AdminSettingsPageEmbeddingFormComponent } from './components/form/admin-settings-page-embedding-form.component';
 import { AdminSettingsPageEmbeddingPluginComponent } from './components/plugin/admin-settings-page-embedding-plugin.component';
+import { AdminSettingsPageEmbeddingTextMediaComponent } from './components/text-media/admin-settings-page-embedding-text-media.component';
 import { adminSettingsPageEmbeddingStateKey } from './constants/admin-settings-page-emedding.constants';
 import { AdminSettingsPageEmbeddingEffects } from './state/admin-settings-page-embedding.effects';
 import { adminSettingsPageEmbeddingReducer } from './state/admin-settings-page-embedding.reducer';
@@ -28,6 +31,7 @@ const components = [
   AdminSettingsPageEmbeddingDialogComponent,
   AdminSettingsPageEmbeddingFormComponent,
   AdminSettingsPageEmbeddingPluginComponent,
+  AdminSettingsPageEmbeddingTextMediaComponent,
 ];
 
 const framework = [
@@ -47,9 +51,11 @@ const materials = [
 ];
 
 const modules = [
+  CkEditorFormComponent,
   CoreModule,
   GridLayoutModule,
   DragAndDropModule,
+  MediaFormModule,
 ];
 
 const libs = [

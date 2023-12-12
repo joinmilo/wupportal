@@ -4,7 +4,7 @@
 
 <app-form-stepper (cancelled)="cancelled()" (saved)="saved()">
   <app-form-step titleLabel="content" [formGroup]="contentForm">
-    <app-row [columns]="2">
+    <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="category"></mat-label>
         <mat-select formControlName="categoryId">

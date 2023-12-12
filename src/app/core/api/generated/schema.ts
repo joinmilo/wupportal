@@ -4217,16 +4217,18 @@ export type PageAttributeReferenceEntity = {
   attribute?: Maybe<PageAttributeEntity>;
   created?: Maybe<Scalars['OffsetDateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  media?: Maybe<MediaEntity>;
   modified?: Maybe<Scalars['OffsetDateTime']['output']>;
-  referenceId?: Maybe<Scalars['String']['output']>;
+  plugin?: Maybe<PluginEntity>;
 };
 
 export type PageAttributeReferenceEntityInput = {
   attribute?: InputMaybe<PageAttributeEntityInput>;
   created?: InputMaybe<Scalars['OffsetDateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  media?: InputMaybe<MediaEntityInput>;
   modified?: InputMaybe<Scalars['OffsetDateTime']['input']>;
-  referenceId?: InputMaybe<Scalars['String']['input']>;
+  plugin?: InputMaybe<PluginEntityInput>;
 };
 
 export type PageAttributeTranslatableEntity = {

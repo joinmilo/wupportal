@@ -1,7 +1,7 @@
 <section [formGroup]="form">
   <strong appLabel="end"></strong>
 
-  <app-row [columns]="columns | async">
+  <app-row columns="columns | async">
 
     <!-- TODO: Make possible to select never to end --> 
     <app-radio-button
@@ -27,7 +27,7 @@
     </mat-form-field>
   </app-row>
 
-  <app-row [columns]="columns | async">
+  <app-row columns="columns | async">
     <app-radio-button
       formControlName="recurrenceEnd"
       [input]="recurrenceEndAfter"
