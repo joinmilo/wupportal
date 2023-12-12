@@ -3,6 +3,7 @@ query getEmbeddingTypes($params: FilterSortPaginateInput) {
     result {
       id
       code
+      name
 
       attributes {
         id

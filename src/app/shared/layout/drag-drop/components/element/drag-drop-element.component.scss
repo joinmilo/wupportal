@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  gap: var(--gap);
+
+  section {
+    display: flex;
+    gap: 1rem;
+
+    cursor: pointer;
+  }
+}

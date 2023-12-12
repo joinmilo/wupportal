@@ -21,6 +21,8 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   public embeddings: PageEmbeddingEntity[] = [];
 
+  public sortedIndices?: number[];
+
   private onChange?: (embeddings: Maybe<PageEmbeddingEntity[]>) => void;
 
   private destroy = new Subject<void>();
@@ -37,6 +39,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
       .subscribe((embeddingType: PageEmbeddingTypeEntity) => {
         if (embeddingType) {
           this.embeddings.push({
+            label: embeddingType.name,
             type: embeddingType,
             attributes: embeddingType.attributes?.map(attribute => ({
               type: {
@@ -53,13 +56,14 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
     this.embeddings.splice(index, 1);
   }
 
-  public updated(indices: number[]): void {
-    this.embeddings = indices
-      .map(index => this.embeddings[index])
-      .map((embedding, order) => ({
-        ...embedding, order
-      }));
-    this.onChange?.(this.embeddings);
+  public sorted(indices: number[]): void {
+    this.sortedIndices = indices;
+    this.emit();
+  }
+
+  public saved(embedding: PageEmbeddingEntity, index: number): void {
+    this.embeddings[index] = embedding;
+    this.emit();
   }
 
   public writeValue(value: Maybe<PageEmbeddingEntity[]>): void {
@@ -67,6 +71,19 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
       this.embeddings = value;
       this.cdr.detectChanges();
     }
+  }
+
+  private emit(): void {
+    console.log('tessst', this.sortedIndices, this.embeddings);
+    const embeddings = this.sortedIndices
+      ? this.sortedIndices.map(order => ({
+          ...this.embeddings[order], order
+        }))
+      : this.embeddings.map((embedding, order) => ({
+          ...embedding, order
+        }));
+
+    this.onChange?.(embeddings);
   }
 
   public registerOnChange(onChange: (embeddings: Maybe<PageEmbeddingEntity[]>) => void): void {

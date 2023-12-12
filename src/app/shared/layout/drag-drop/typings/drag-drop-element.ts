@@ -1,7 +1,7 @@
-import { DragDropDirective } from '../directive/drag-drop.directive';
+import { DragDropElementComponent } from '../components/element/drag-drop-element.component';
 
 export interface DragDropElement {
-  directive: DragDropDirective,
+  component: DragDropElementComponent,
   initIndex: number,
   expanded?: boolean
 }

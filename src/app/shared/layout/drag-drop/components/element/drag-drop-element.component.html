@@ -1,0 +1,26 @@
+<ng-template #template>
+  <div class="container">
+    <section (click)="expanded = !expanded">
+      <strong *ngIf="titleLabel; else titleTemplate"
+        [appLabel]="titleLabel">
+      </strong>
+  
+      <ng-template #titleTemplate>
+        <strong> {{ title }}</strong>
+      </ng-template>
+
+      <fa-icon *ngIf="!expanded; else collapseIcon" icon="arrow-down"
+        appTooltip="expand">
+      </fa-icon>
+
+      <ng-template #collapseIcon>
+        <fa-icon icon="arrow-up"
+          appTooltip="collapse">
+        </fa-icon>
+      </ng-template>
+    </section>
+
+    <!-- Parent Content-->
+    <ng-content *ngIf="expanded"></ng-content>
+  </div>
+</ng-template>

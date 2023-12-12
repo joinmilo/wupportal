@@ -26,13 +26,6 @@ mat-card {
   .content-area {
     padding: 1rem;
     flex: 2 1 auto;
-
-    div {
-      display: flex;
-      gap: 1rem;
-      cursor: pointer;
-      user-select: none ;
-    }
   }
   
   button {

@@ -3,8 +3,8 @@ import { Component, ContentChildren, EventEmitter, OnDestroy, Output, QueryList 
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfirmDeleteComponent } from '../../../dialogs/confirm-delete/confirm-delete.component';
-import { DragDropDirective } from '../directive/drag-drop.directive';
 import { DragDropElement } from '../typings/drag-drop-element';
+import { DragDropElementComponent } from './element/drag-drop-element.component';
 
 @Component({
   selector: 'app-drag-drop',
@@ -19,14 +19,16 @@ export class DragDropComponent implements OnDestroy {
   @Output()
   public updated = new EventEmitter<number[]>();
 
-  @ContentChildren(DragDropDirective)
-  public set directives(directives: QueryList<DragDropDirective>) {
-    this.elements = directives?.length
-      ? directives.toArray().map((directive, initIndex) => ({
-          directive,
+  @ContentChildren(DragDropElementComponent)
+  public set components(components: QueryList<DragDropElementComponent>) {
+    this.elements = components?.length
+      ? components.toArray().map((component, initIndex) => ({
+          component,
           initIndex
         }))
       : [];
+
+    this.emit();
   }
 
   public elements!: DragDropElement[];
@@ -49,7 +51,8 @@ export class DragDropComponent implements OnDestroy {
     this.bodyElement.style.cursor = 'unset';
 
     moveItemInArray(this.elements, event.previousIndex, event.currentIndex);
-    this.updated.emit(this.elements.map(element => element.initIndex));
+  
+    this.emit();
   }
 
   public onDelete(index: number) {
@@ -62,6 +65,11 @@ export class DragDropComponent implements OnDestroy {
         }
       });
   }
+
+  private emit(): void {
+    this.updated.emit(this.elements.map(element => element.initIndex));
+  }
+
 
   public ngOnDestroy(): void {
     this.destroy.next();

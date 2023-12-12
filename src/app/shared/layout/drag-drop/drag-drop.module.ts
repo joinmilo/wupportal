@@ -5,11 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
-import { DragDropComponent } from './component/drag-drop.component';
+import { DragDropComponent } from './components/drag-drop.component';
+import { DragDropElementComponent } from './components/element/drag-drop-element.component';
 import { DragDropDirective } from './directive/drag-drop.directive';
 
 const components = [
-  DragDropComponent
+  DragDropComponent,
+  DragDropElementComponent,
 ];
 
 const directives = [

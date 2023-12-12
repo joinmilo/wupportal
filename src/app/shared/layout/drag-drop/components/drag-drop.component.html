@@ -5,7 +5,7 @@
     </section>
 
     <section class="content-area">
-      <ng-container *ngTemplateOutlet="element.directive.templateRef">
+      <ng-container *ngTemplateOutlet="element.component.template">
       </ng-container>
     </section>
 
@@ -15,7 +15,6 @@
     </button>
 
     <span class="drag-placeholder" *cdkDragPlaceholder></span>
-    <span *cdkDragPreview>
-    </span>
+    <span *cdkDragPreview></span>
   </mat-card>
 </div>

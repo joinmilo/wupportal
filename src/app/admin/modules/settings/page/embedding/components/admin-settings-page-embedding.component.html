@@ -1,11 +1,15 @@
 <app-drag-drop
   (deleted)="deleted($event)"
-  (updated)="updated($event)">
-  <ng-container *ngFor="let embedding of embeddings">
-    <app-admin-settings-page-embedding-form *appDragDrop
-      [embedding]="embedding">
+  (updated)="sorted($event)">
+  <app-drag-drop-element *ngFor="let embedding of embeddings; let index = index"
+    [title]="embedding.label">
+
+    <app-admin-settings-page-embedding-form
+      [embedding]="embedding"
+      (saved)="saved($event, index)">
     </app-admin-settings-page-embedding-form>
-  </ng-container>
+
+  </app-drag-drop-element>
 </app-drag-drop>
 
 <button mat-stroked-button
