@@ -1,19 +1,22 @@
 <app-drag-drop
+  [disabled]="disabled"
   (deleted)="deleted($event)"
   (updated)="sorted($event)">
-  <app-drag-drop-element *ngFor="let embedding of embeddings; let index = index"
-    [title]="embedding.label">
+  <app-drag-drop-element *ngFor="let input of embeddings; let index = index"
+    [title]="input.embedding.label"
+    [expanded]="input.expanded">
 
     <app-admin-settings-page-embedding-form
-      [embedding]="embedding"
+      [embedding]="input.embedding"
       (saved)="saved($event, index)">
     </app-admin-settings-page-embedding-form>
 
   </app-drag-drop-element>
 </app-drag-drop>
 
-<button mat-stroked-button
-  class="add-new-button"
+<button mat-flat-button
+  color="primary"
+  [disabled]="disabledNewButton"
   (click)="selectEmbedding()"
   appLabel="addNewElement">
 </button>

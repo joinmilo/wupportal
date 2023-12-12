@@ -4,6 +4,14 @@
   gap: var(--gap);
 }
 
+.disabled {
+  cursor: not-allowed;
+
+  mat-card {
+    pointer-events: none;
+  }
+}
+
 mat-card {
   display: flex;
   flex-flow: row;

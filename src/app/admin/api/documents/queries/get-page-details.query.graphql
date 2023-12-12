@@ -12,6 +12,7 @@ query getPageDetails(
     callUrl
 
     embeddings {
+      id
       order
       label
 

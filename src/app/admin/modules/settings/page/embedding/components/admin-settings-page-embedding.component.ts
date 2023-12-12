@@ -5,6 +5,11 @@ import { Subject, takeUntil } from 'rxjs';
 import { Maybe, PageEmbeddingEntity, PageEmbeddingTypeEntity } from 'src/app/core/api/generated/schema';
 import { AdminSettingsPageEmbeddingDialogComponent } from './dialog/admin-settings-page-embedding-dialog.component';
 
+type PageEmbeddingFormInput = {
+  embedding: PageEmbeddingEntity,
+  expanded?: boolean
+};
+
 @Component({
   selector: 'app-admin-settings-page-embedding',
   templateUrl: './admin-settings-page-embedding.component.html',
@@ -19,17 +24,21 @@ import { AdminSettingsPageEmbeddingDialogComponent } from './dialog/admin-settin
 })
 export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor, OnDestroy {
 
-  public embeddings: PageEmbeddingEntity[] = [];
+  public disabled?: boolean;
+  public disabledNewButton?: boolean;
+
+  public embeddings: PageEmbeddingFormInput[] = [];
 
   public sortedIndices?: number[];
 
   private onChange?: (embeddings: Maybe<PageEmbeddingEntity[]>) => void;
+  private onTouch?: () => void;
 
   private destroy = new Subject<void>();
 
   constructor(
-    private dialog: MatDialog,
     private cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
   ) {}
 
   public selectEmbedding(): void {
@@ -39,14 +48,18 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
       .subscribe((embeddingType: PageEmbeddingTypeEntity) => {
         if (embeddingType) {
           this.embeddings.push({
-            label: embeddingType.name,
-            type: embeddingType,
-            attributes: embeddingType.attributes?.map(attribute => ({
-              type: {
-                id: attribute?.id
-              }
-            }))
+            expanded: true,
+            embedding: {
+              label: embeddingType.name,
+              type: embeddingType,
+              attributes: embeddingType.attributes?.map(attribute => ({
+                type: {
+                  id: attribute?.id
+                }
+              }))
+            }
           });
+          this.disabledNewButton = true;
           this.cdr.detectChanges();
         }
       });
@@ -54,6 +67,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   public deleted(index: number): void {
     this.embeddings.splice(index, 1);
+    this.emit();
   }
 
   public sorted(indices: number[]): void {
@@ -62,36 +76,49 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   }
 
   public saved(embedding: PageEmbeddingEntity, index: number): void {
-    this.embeddings[index] = embedding;
+    this.embeddings[index] = {
+      embedding,
+      expanded: false
+    };
     this.emit();
-  }
-
-  public writeValue(value: Maybe<PageEmbeddingEntity[]>): void {
-    if (value?.length) {
-      this.embeddings = value;
-      this.cdr.detectChanges();
-    }
+    this.disabledNewButton = false;
   }
 
   private emit(): void {
-    console.log('tessst', this.sortedIndices, this.embeddings);
     const embeddings = this.sortedIndices
-      ? this.sortedIndices.map(order => ({
-          ...this.embeddings[order], order
+      ? this.sortedIndices.map((sort, order) => ({
+          ...this.embeddings[sort], order
         }))
       : this.embeddings.map((embedding, order) => ({
           ...embedding, order
         }));
 
+    console.log(embeddings, this.sortedIndices);
+    this.onTouch?.(); 
     this.onChange?.(embeddings);
+  }
+
+  public writeValue(value: Maybe<PageEmbeddingEntity[]>): void {
+    if (value?.length) {
+      this.embeddings = value.sort((a, b) => (a.order as number) - (b.order as number))
+        .map(embedding => ({
+          embedding,
+          expanded: false,
+        }));
+      this.cdr.detectChanges();
+    }
   }
 
   public registerOnChange(onChange: (embeddings: Maybe<PageEmbeddingEntity[]>) => void): void {
     this.onChange = onChange;
   }
 
-  public registerOnTouched(): void {
-    return;
+  public registerOnTouched(onTouch: () => void): void {
+    this.onTouch = onTouch;
+  }
+
+  public setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   public ngOnDestroy(): void {

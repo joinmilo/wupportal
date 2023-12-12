@@ -1,4 +1,7 @@
-<div class="container" cdkDropList (cdkDropListDropped)="drop($event)">
+<div class="container"
+  [class.disabled]="disabled"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)">
   <mat-card *ngFor="let element of elements; let index = index" cdkDrag cdkDragLockAxis="y" (cdkDragStarted)="drag()">
     <section class="drag-handle" cdkDragHandle>
       <fa-icon icon="grip-vertical"></fa-icon>
