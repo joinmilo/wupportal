@@ -33,8 +33,6 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   public inputs: PageEmbeddingFormInput[] = [];
 
-  public sortedIndices?: number[];
-
   private onChange?: (embeddings: Maybe<PageEmbeddingEntity[]>) => void;
   private onTouch?: () => void;
 
@@ -80,7 +78,10 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   }
 
   public sorted(indices: number[]): void {
-    this.sortedIndices = indices;
+    this.inputs = indices.map(sort => ({
+      ...this.inputs[sort]
+    }))
+
     this.emit();
   }
 
@@ -94,42 +95,35 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   }
 
   private emit(): void {
-    const embeddings = this.sortedIndices?.length
-      ? this.sortedIndices.map((sort, order) => ({
-          ...this.inputs[sort].embedding, order
-        }))
-      : this.inputs.map((input, order) => ({
-          ...input.embedding, order
-        }));
-
     this.onTouch?.(); 
     this.onChange?.(
-      embeddings.map(embedding => ({
-        id: embedding.id,
-        label: embedding.label,
-        order: embedding.order,
-        attributes: embedding.attributes?.map(attribute => ({
-          id: attribute?.id,
-          content: attribute?.content,
-          references: attribute?.references?.map(reference => ({
-            id: reference?.id,
-            plugin: reference?.plugin?.id
-              ? {
-                  id: reference?.plugin?.id,
-                }
-              : null,
-            media: reference?.media
-              ? reference?.media
-              : null,
+      this.inputs
+        .map((input, order) => ({
+          id: input.embedding.id,
+          label: input.embedding.label,
+          order,
+          attributes: input.embedding.attributes?.map(attribute => ({
+            id: attribute?.id,
+            content: attribute?.content,
+            references: attribute?.references?.map(reference => ({
+              id: reference?.id,
+              plugin: reference?.plugin?.id
+                ? {
+                    id: reference?.plugin?.id,
+                  }
+                : null,
+              media: reference?.media
+                ? reference?.media
+                : null,
+            })),
+            type: {
+              id: attribute?.type?.id,
+            }
           })),
           type: {
-            id: attribute?.type?.id,
+            id: input.embedding.type?.id
           }
-        })),
-        type: {
-          id: embedding.type?.id
-        }
-      }) as PageEmbeddingEntity)
+        }) as PageEmbeddingEntity)
     );
   }
 
