@@ -41,7 +41,7 @@ export class AdminSettingsPageEmbeddingPluginComponent implements OnInit {
     });
   }
 
-  public save(): void {
+  public update(): void {
     this.saved.emit({
       id: this.form.value.id,
       label: this.form.value.label,

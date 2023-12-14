@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import { Maybe, MediaEntity, PageAttributeEntity, PageEmbeddingEntity } from 'src/app/core/api/generated/schema';
-import { AdminSettingsPageEmbeddingActions } from '../../state/admin-settings-page-embedding.actions';
-import { selectPlugins } from '../../state/admin-settings-page-embedding.selectors';
+import { TranslationService } from 'src/app/core/services/translation.service';
 
 @Component({
   selector: 'app-admin-settings-page-embedding-text-media',
@@ -18,35 +17,59 @@ export class AdminSettingsPageEmbeddingTextMediaComponent implements OnInit {
   @Output()
   public saved = new EventEmitter<PageEmbeddingEntity>();
 
-  public plugins = this.store.select(selectPlugins);
-
   public form = this.fb.group({
     id: ['' as Maybe<string>],
     button: ['' as Maybe<string>],
     label: ['', [Validators.required]],
-    media: [[] as Maybe<MediaEntity[]>],
+    media: [[] as Maybe<MediaEntity>[]],
     text: ['' as Maybe<string>],
     title: ['' as Maybe<string>],
   });
 
   constructor(
     private fb: FormBuilder,
-    private store: Store,
-  ) {
-    this.store.dispatch(AdminSettingsPageEmbeddingActions.getPlugins());
-  }
+    private translationService: TranslationService,
+  ) { }
 
   public ngOnInit(): void {
     this.form.patchValue({
       id: this.embedding?.id,
-      button: this.embedding?.attributes?.find(attribute => attribute?.type?.code === 'button')?.content,
       label: this.embedding?.label,
-      title: this.embedding?.attributes?.find(attribute => attribute?.type?.code === 'title')?.content,
-      text: this.embedding?.attributes?.find(attribute => attribute?.type?.code === 'text')?.content
     });
+
+    this.patchContentValue('button');
+    this.patchContentValue('title');
+    this.patchContentValue('text');
+    this.patchMediaValue();
+  }
+  
+  private patchContentValue(field: string): void {
+    const attribute = this.embedding?.attributes?.find(attribute => attribute?.type?.code === field)
+
+    attribute?.content
+      ? this.form.patchValue({
+          [field]: attribute.content
+        })
+      : this.translationService.translatable(attribute, 'content')
+        .pipe(take(1))
+        .subscribe(content => this.form.patchValue({
+          [field]: content
+        }));
   }
 
-  public save(): void {
+  private patchMediaValue(): void {
+    const media = this.embedding?.attributes
+    ?.find(attribute => attribute?.type?.code === 'reference')
+    ?.references?.find(reference => !!reference?.media)?.media;
+    
+    if (media) {
+      this.form.patchValue({
+        media: [media]
+      });
+    }
+  }
+
+  public update(): void {
     this.saved.emit({
       id: this.form.value.id,
       label: this.form.value.label,
@@ -55,38 +78,38 @@ export class AdminSettingsPageEmbeddingTextMediaComponent implements OnInit {
         code: this.embedding?.type?.code
       },
       attributes: [
-        this.createButton(),
-        this.createTitle(),
-        this.createText(),
+        this.createContentValue('button'),
+        this.createContentValue('title'),
+        this.createContentValue('text'),
+        this.createMediaValue(),
       ]
     })
   }
 
-  private createButton(): Maybe<PageAttributeEntity> {
+  private createContentValue(field: string): Maybe<PageAttributeEntity> {
+    const attribute = this.embedding?.attributes?.find(attribute => attribute?.type?.code === field);
     return {
-      content: this.form.value.button,
+      content: (this.form.value as { [key: string]: string })[field],
       type: {
-        id: this.embedding?.attributes?.find(attribute => attribute?.type?.code === 'button')?.type?.id
-      }
-    };
-  }
-  
-  private createTitle(): Maybe<PageAttributeEntity> {
-    return {
-      content: this.form.value.title,
-      type: {
-        id: this.embedding?.attributes?.find(attribute => attribute?.type?.code === 'title')?.type?.id
+        id: attribute?.type?.id,
+        code: attribute?.type?.code,
       }
     };
   }
 
-  private createText(): Maybe<PageAttributeEntity> {
+  private createMediaValue(): Maybe<PageAttributeEntity> {
+    const attribute = this.embedding?.attributes?.find(attribute => attribute?.type?.code === 'reference');
     return {
-      content: this.form.value.text,
+      references: [
+        {
+          media: this.form.value.media?.[0]
+        },
+      ],
       type: {
-        id: this.embedding?.attributes?.find(attribute => attribute?.type?.code === 'text')?.type?.id
+        id: attribute?.type?.id,
+        code: attribute?.type?.code,
       }
-    };
+    }
   }
 
 }

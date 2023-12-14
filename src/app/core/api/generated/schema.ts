@@ -1825,8 +1825,10 @@ export type Mutation = {
   deleteOrganisationRatings?: Maybe<Scalars['Boolean']['output']>;
   deleteOrganisations?: Maybe<Scalars['Boolean']['output']>;
   deletePage?: Maybe<Scalars['Boolean']['output']>;
+  deletePageEmbedding?: Maybe<Scalars['Boolean']['output']>;
   deletePageEmbeddingType?: Maybe<Scalars['Boolean']['output']>;
   deletePageEmbeddingTypes?: Maybe<Scalars['Boolean']['output']>;
+  deletePageEmbeddings?: Maybe<Scalars['Boolean']['output']>;
   deletePages?: Maybe<Scalars['Boolean']['output']>;
   deletePrivilegeApplication?: Maybe<Scalars['Boolean']['output']>;
   deletePrivilegeApplications?: Maybe<Scalars['Boolean']['output']>;
@@ -1974,8 +1976,10 @@ export type Mutation = {
   saveOrganisationRatings?: Maybe<Array<Maybe<OrganisationRatingEntity>>>;
   saveOrganisations?: Maybe<Array<Maybe<OrganisationEntity>>>;
   savePage?: Maybe<PageEntity>;
+  savePageEmbedding?: Maybe<PageEmbeddingEntity>;
   savePageEmbeddingType?: Maybe<PageEmbeddingTypeEntity>;
   savePageEmbeddingTypes?: Maybe<Array<Maybe<PageEmbeddingTypeEntity>>>;
+  savePageEmbeddings?: Maybe<Array<Maybe<PageEmbeddingEntity>>>;
   savePages?: Maybe<Array<Maybe<PageEntity>>>;
   savePlugin?: Maybe<PluginEntity>;
   savePlugins?: Maybe<Array<Maybe<PluginEntity>>>;
@@ -2681,6 +2685,12 @@ export type MutationDeletePageArgs = {
 
 
 /** Mutation root */
+export type MutationDeletePageEmbeddingArgs = {
+  id?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Mutation root */
 export type MutationDeletePageEmbeddingTypeArgs = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2688,6 +2698,12 @@ export type MutationDeletePageEmbeddingTypeArgs = {
 
 /** Mutation root */
 export type MutationDeletePageEmbeddingTypesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Mutation root */
+export type MutationDeletePageEmbeddingsArgs = {
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
@@ -3576,6 +3592,12 @@ export type MutationSavePageArgs = {
 
 
 /** Mutation root */
+export type MutationSavePageEmbeddingArgs = {
+  entity?: InputMaybe<PageEmbeddingEntityInput>;
+};
+
+
+/** Mutation root */
 export type MutationSavePageEmbeddingTypeArgs = {
   entity?: InputMaybe<PageEmbeddingTypeEntityInput>;
 };
@@ -3584,6 +3606,12 @@ export type MutationSavePageEmbeddingTypeArgs = {
 /** Mutation root */
 export type MutationSavePageEmbeddingTypesArgs = {
   entities?: InputMaybe<Array<InputMaybe<PageEmbeddingTypeEntityInput>>>;
+};
+
+
+/** Mutation root */
+export type MutationSavePageEmbeddingsArgs = {
+  entities?: InputMaybe<Array<InputMaybe<PageEmbeddingEntityInput>>>;
 };
 
 
@@ -4727,6 +4755,12 @@ export type PageableList_OrganisationRatingEntity = {
   total: Scalars['Long']['output'];
 };
 
+export type PageableList_PageEmbeddingEntity = {
+  __typename?: 'PageableList_PageEmbeddingEntity';
+  result?: Maybe<Array<Maybe<PageEmbeddingEntity>>>;
+  total: Scalars['Long']['output'];
+};
+
 export type PageableList_PageEmbeddingTypeEntity = {
   __typename?: 'PageableList_PageEmbeddingTypeEntity';
   result?: Maybe<Array<Maybe<PageEmbeddingTypeEntity>>>;
@@ -5072,8 +5106,10 @@ export type Query = {
   getOrganisationRatings?: Maybe<PageableList_OrganisationRatingEntity>;
   getOrganisations?: Maybe<PageableList_OrganisationEntity>;
   getPage?: Maybe<PageEntity>;
+  getPageEmbedding?: Maybe<PageEmbeddingEntity>;
   getPageEmbeddingType?: Maybe<PageEmbeddingTypeEntity>;
   getPageEmbeddingTypes?: Maybe<PageableList_PageEmbeddingTypeEntity>;
+  getPageEmbeddings?: Maybe<PageableList_PageEmbeddingEntity>;
   getPages?: Maybe<PageableList_PageEntity>;
   getPlugin?: Maybe<PluginEntity>;
   getPlugins?: Maybe<PageableList_PluginEntity>;
@@ -5696,6 +5732,12 @@ export type QueryGetPageArgs = {
 
 
 /** Query root */
+export type QueryGetPageEmbeddingArgs = {
+  entity?: InputMaybe<PageEmbeddingEntityInput>;
+};
+
+
+/** Query root */
 export type QueryGetPageEmbeddingTypeArgs = {
   entity?: InputMaybe<PageEmbeddingTypeEntityInput>;
 };
@@ -5703,6 +5745,12 @@ export type QueryGetPageEmbeddingTypeArgs = {
 
 /** Query root */
 export type QueryGetPageEmbeddingTypesArgs = {
+  params?: InputMaybe<FilterSortPaginateInput>;
+};
+
+
+/** Query root */
+export type QueryGetPageEmbeddingsArgs = {
   params?: InputMaybe<FilterSortPaginateInput>;
 };
 
