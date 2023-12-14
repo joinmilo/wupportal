@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import {
   Maybe,
   MediaEntity,
@@ -20,7 +20,7 @@ import { PageEmbeddingFormFieldType } from '../../typings/page-embeddings-form';
   templateUrl: './admin-settings-page-embedding-form.component.html',
   styleUrls: ['./admin-settings-page-embedding-form.component.scss'],
 })
-export class AdminSettingsPageEmbeddingFormComponent {
+export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
 
   @Input({ required: true })
   public set embedding(embedding: PageEmbeddingEntity) {
@@ -30,9 +30,14 @@ export class AdminSettingsPageEmbeddingFormComponent {
   @Output()
   public saved = new EventEmitter<PageEmbeddingEntity>();
 
+  @Output()
+  public validUpdated = new EventEmitter<boolean>();
+
   public form = this.createForm();
 
   public plugins = this.store.select(selectPlugins);
+
+  public subscription?: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +56,7 @@ export class AdminSettingsPageEmbeddingFormComponent {
   }
 
   private createForm() {
-    return this.fb.group({
+    const form = this.fb.group({
       base: this.fb.group({
         id: ['' as Maybe<string>],
         label: ['' as Maybe<string>, [Validators.required]],
@@ -65,6 +70,12 @@ export class AdminSettingsPageEmbeddingFormComponent {
       textMedium: this.fb.group({}),
       titleButton: this.fb.group({}),
     });
+
+    this.subscription?.unsubscribe();
+    this.subscription = form.statusChanges
+      .subscribe(status => this.validUpdated.emit(status === 'VALID'))
+
+    return form;
   }
 
   private patchBaseValue(embedding: PageEmbeddingEntity): void {
@@ -281,5 +292,9 @@ export class AdminSettingsPageEmbeddingFormComponent {
       ],
       type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
     }
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

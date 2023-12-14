@@ -8,7 +8,8 @@
 
     <app-admin-settings-page-embedding-form
       [embedding]="input.embedding"
-      (saved)="saved($event, index)">
+      (saved)="saved($event, index)"
+      (validUpdated)="validUpdated($event, index)">
     </app-admin-settings-page-embedding-form>
 
   </app-drag-drop-element>
@@ -16,7 +17,7 @@
 
 <button mat-flat-button
   color="primary"
-  [disabled]="disabledNewButton"
-  (click)="selectEmbedding()"
+  [disabled]="!valid"
+  (click)="added()"
   appLabel="addNewElement">
 </button>

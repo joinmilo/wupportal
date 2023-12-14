@@ -28,10 +28,9 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   public disabled?: boolean;
 
-  //TODO: This is not good, use different mechanism via dynamic forms or similar strategies
-  public disabledNewButton?: boolean;
-
   public inputs: PageEmbeddingFormInput[] = [];
+
+  public valids: boolean[] = [];
 
   private onChange?: (embeddings: Maybe<PageEmbeddingEntity[]>) => void;
   private onTouch?: () => void;
@@ -46,7 +45,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
     this.store.dispatch(AdminSettingsPageEmbeddingActions.getPlugins());
   }
 
-  public selectEmbedding(): void {
+  public added(): void {
     this.dialog.open(AdminSettingsPageEmbeddingDialogComponent)
       .afterClosed()
       .pipe(takeUntil(this.destroy))
@@ -65,7 +64,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
               }))
             }
           });
-          this.disabledNewButton = true;
+          this.valids.push(false);
           this.cdr.detectChanges();
         }
       });
@@ -73,15 +72,17 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   public deleted(index: number): void {
     this.inputs.splice(index, 1);
+    this.valids.splice(index, 1);
     this.emit();
-    this.disabledNewButton = false;
   }
 
   public sorted(indices: number[]): void {
     this.inputs = indices.map(sort => ({
       ...this.inputs[sort]
-    }))
+    }));
 
+    this.valids = indices.map(sort => this.valids[sort]);
+    
     this.emit();
   }
 
@@ -91,7 +92,6 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
       expanded: false
     };
     this.emit();
-    this.disabledNewButton = false;
   }
 
   private emit(): void {
@@ -125,6 +125,14 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
           }
         }) as PageEmbeddingEntity)
     );
+  }
+
+  public validUpdated(valid: boolean, index: number) {
+    this.valids[index] = valid;
+  }
+
+  public get valid(): boolean {
+    return this.valids.every(valid => valid)
   }
 
   public writeValue(value: Maybe<PageEmbeddingEntity[]>): void {
