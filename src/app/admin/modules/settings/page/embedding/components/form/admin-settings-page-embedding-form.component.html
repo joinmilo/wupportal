@@ -8,4 +8,9 @@
     [embedding]="embedding"
     (saved)="saved.emit($event)">
   </app-admin-settings-page-embedding-text-media>
+
+  <app-admin-settings-page-embedding-expansion *ngSwitchCase="'expansion'"
+    [embedding]="embedding"
+    (saved)="saved.emit($event)">
+  </app-admin-settings-page-embedding-expansion>
 </ng-container>
