@@ -154,10 +154,12 @@ export class MediaFormComponent implements ControlValueAccessor, Validator, OnDe
       : element as MediaEntity;
   }
 
-  public writeValue(media: (MediaEntity | MediaEnhancedEntity)[] | MediaEntity | MediaEnhancedEntity): void {
-    this.media = Object.hasOwn(media, 'length')
-      ? media as []
-      : [media] as (MediaEntity | MediaEnhancedEntity)[];
+  public writeValue(media?: (MediaEntity | MediaEnhancedEntity)[] | MediaEntity | MediaEnhancedEntity): void {
+    if (media) {
+      this.media = Object.hasOwn(media, 'length')
+        ? media as []
+        : [media] as (MediaEntity | MediaEnhancedEntity)[];
+    }
   }
 
   public validate(): ValidationErrors | null {

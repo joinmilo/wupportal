@@ -1,8 +1,10 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe, PageEmbeddingEntity, PageEmbeddingTypeEntity } from 'src/app/core/api/generated/schema';
+import { AdminSettingsPageEmbeddingActions } from '../state/admin-settings-page-embedding.actions';
 import { AdminSettingsPageEmbeddingDialogComponent } from './dialog/admin-settings-page-embedding-dialog.component';
 
 type PageEmbeddingFormInput = {
@@ -41,7 +43,10 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   constructor(
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-  ) {}
+    private store: Store,
+  ) {
+    this.store.dispatch(AdminSettingsPageEmbeddingActions.getPlugins());
+  }
 
   public selectEmbedding(): void {
     this.dialog.open(AdminSettingsPageEmbeddingDialogComponent)
@@ -89,7 +94,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
   }
 
   private emit(): void {
-    const embeddings = this.sortedIndices
+    const embeddings = this.sortedIndices?.length
       ? this.sortedIndices.map((sort, order) => ({
           ...this.inputs[sort].embedding, order
         }))

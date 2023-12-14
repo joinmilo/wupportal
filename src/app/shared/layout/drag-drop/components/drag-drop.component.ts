@@ -30,8 +30,6 @@ export class DragDropComponent implements OnDestroy {
           initIndex
         }))
       : [];
-
-    this.emit();
   }
 
   public elements!: DragDropElement[];
