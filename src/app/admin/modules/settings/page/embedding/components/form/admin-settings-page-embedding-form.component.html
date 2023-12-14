@@ -13,4 +13,9 @@
     [embedding]="embedding"
     (saved)="saved.emit($event)">
   </app-admin-settings-page-embedding-expansion>
+
+  <app-admin-settings-page-embedding-media-slider *ngSwitchCase="'media_slider'"
+    [embedding]="embedding"
+    (saved)="saved.emit($event)">
+  </app-admin-settings-page-embedding-media-slider>
 </ng-container>

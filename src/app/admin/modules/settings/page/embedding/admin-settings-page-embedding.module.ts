@@ -21,6 +21,7 @@ import { AdminSettingsPageEmbeddingComponent } from './components/admin-settings
 import { AdminSettingsPageEmbeddingDialogComponent } from './components/dialog/admin-settings-page-embedding-dialog.component';
 import { AdminSettingsPageEmbeddingExpansionComponent } from './components/expansion/admin-settings-page-embedding-expansion.component';
 import { AdminSettingsPageEmbeddingFormComponent } from './components/form/admin-settings-page-embedding-form.component';
+import { AdminSettingsPageEmbeddingMediaSliderComponent } from './components/media-slider/admin-settings-page-embedding-media-slider.component';
 import { AdminSettingsPageEmbeddingPluginComponent } from './components/plugin/admin-settings-page-embedding-plugin.component';
 import { AdminSettingsPageEmbeddingTextMediaComponent } from './components/text-media/admin-settings-page-embedding-text-media.component';
 import { adminSettingsPageEmbeddingStateKey } from './constants/admin-settings-page-emedding.constants';
@@ -32,6 +33,7 @@ const components = [
   AdminSettingsPageEmbeddingDialogComponent,
   AdminSettingsPageEmbeddingExpansionComponent,
   AdminSettingsPageEmbeddingFormComponent,
+  AdminSettingsPageEmbeddingMediaSliderComponent,
   AdminSettingsPageEmbeddingPluginComponent,
   AdminSettingsPageEmbeddingTextMediaComponent,
 ];
