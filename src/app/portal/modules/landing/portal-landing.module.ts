@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from 'src/app/core/core.module';
-import { PortalPageEmbeddingComponent } from '../page-embedding/portal-page-embedding.component';
+import { PortalPageEmbeddingModule } from '../embedding/portal-page-embedding.module';
 import { PortalLandingComponent } from './component/portal-landing.component';
 import { portalLandingStateKey } from './constants/portal-landing.constants';
 import { PortalLandingEffects } from './state/portal-landing.effects';
@@ -26,7 +26,7 @@ const materials = [
 
 const modules = [
   CoreModule,
-  PortalPageEmbeddingComponent,
+  PortalPageEmbeddingModule,
 ];
 
 const libs = [

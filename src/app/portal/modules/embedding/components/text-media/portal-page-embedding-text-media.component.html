@@ -1,0 +1,10 @@
+<ng-container *ngFor="let embedding of embeddings; let index = index">
+  <div *ngIf="index % 2 === 0"
+    class="left">
+    Ich bin links
+  </div>
+  <div *ngIf="index % 2 !== 0"
+    class="right">
+    Ich bin rechts
+  </div>
+</ng-container>

@@ -1,0 +1,18 @@
+<div>
+  <ng-container *ngFor="let group of groups">
+    <ng-container [ngSwitch]="group?.type?.code">
+
+      <ng-container *ngSwitchCase="'plugin'">
+        <ng-container *ngFor="let embedding of group.embeddings">
+          <app-portal-page-embedding-plugin [embedding]="embedding">
+          </app-portal-page-embedding-plugin>
+        </ng-container>
+      </ng-container>
+
+      <app-portal-page-embedding-text-media *ngSwitchCase="'text_media'"
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-text-media>
+
+    </ng-container>
+  </ng-container>
+</div>
