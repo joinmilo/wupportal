@@ -1,7 +1,8 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
 @import 'src/styles/theme/colors.theme.scss';
 @import 'src/styles/mixins.scss';
+
+@include mat.core();
 
 $typography: (
   mat.define-typography-config($font-family: 'Inter, "Helvetica Neue", sans-serif',
@@ -19,15 +20,14 @@ $typography: (
   $button: mat.define-typography-level(1rem, 1.3125rem, 500, $letter-spacing: 0.078125em))
 );
 
-$theme: mat-light-theme((
+$theme: mat.define-light-theme((
   color: (
-    primary: mat-palette($theme-palette-primary, 500),
-    accent: mat-palette($theme-palette-accent, 500),
-    warn: mat-palette($theme-palette-warn, 500),
+    primary: mat.define-palette($theme-palette-primary, 500),
+    accent: mat.define-palette($theme-palette-accent, 500),
+    warn: mat.define-palette($theme-palette-warn, 500),
   ),
   typography: $typography,
 ));
 
-@include mat.core();
 @include mat.all-component-themes($theme);
 @include mat.all-component-typographies($typography);

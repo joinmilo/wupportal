@@ -1,10 +1,15 @@
-<ng-container *ngFor="let embedding of embeddings; let index = index">
-  <div *ngIf="index % 2 === 0"
-    class="left">
-    Ich bin links
+<ng-container *ngFor="let element of elements; let index = index">
+  <div *ngIf="index % 2 === 0">
+    <h1 class="mat-headline-6">
+      {{ element.title | translatable: 'content' | async }}
+    </h1>
+    <p [innerHTML]="element.text | translatable: 'content' | async">
+    </p>
+    <button mat-raised-button>
+      {{ element.button | translatable: 'content' | async }}
+    </button>
   </div>
-  <div *ngIf="index % 2 !== 0"
-    class="right">
+  <div *ngIf="index % 2 !== 0">
     Ich bin rechts
   </div>
 </ng-container>

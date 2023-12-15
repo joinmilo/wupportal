@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { CoreModule } from 'src/app/core/core.module';
 import { ArticleEmbeddingModule } from 'src/app/features/article/embedding/article-embedding.module';
 import { AuthorEmbeddingModule } from 'src/app/features/author/embedding/author-embedding.module';
 import { CalendarEmbeddingModule } from 'src/app/features/calendar/embedding/calendar-embedding.module';
@@ -12,6 +14,7 @@ import { MediaEmbeddingModule } from 'src/app/features/media/embedding/media-emb
 import { OrganisationEmbeddingModule } from 'src/app/features/organisation/embedding/organisation-embedding.module';
 import { ReportEmbeddingModule } from 'src/app/features/report/embedding/report-embedding.module';
 import { SurveyEmbeddingModule } from 'src/app/features/survey/embedding/survey-embedding.module';
+import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { PortalPageEmbeddingPluginComponent } from './components/plugin/portal-page-embedding-plugin.component';
 import { PortalPageEmbeddingComponent } from './components/portal-page-embedding.component';
 import { PortalPageEmbeddingTextMediaComponent } from './components/text-media/portal-page-embedding-text-media.component';
@@ -26,11 +29,16 @@ const framework = [
   CommonModule,
 ];
 
+const materials = [
+  MatButtonModule,
+]
+
 const modules = [
   ArticleEmbeddingModule,
   AuthorEmbeddingModule,
   CalendarEmbeddingModule,
   ContestEmbeddingModule,
+  CoreModule,
   DealEmbeddingModule,
   EventEmbeddingModule,
   GuestArticleEmbeddingModule,
@@ -39,6 +47,7 @@ const modules = [
   OrganisationEmbeddingModule,
   ReportEmbeddingModule,
   SurveyEmbeddingModule,
+  TitleModule,
 ]
 
 @NgModule({
@@ -47,6 +56,7 @@ const modules = [
   ],
   imports: [
     ...framework,
+    ...materials,
     ...modules,
   ],
   exports: [

@@ -2,6 +2,10 @@
 
 /* Button */
 
+.mdc-button {
+  border-radius: var(--mdc-shape-small) !important;
+}
+
 //TODO: Necessary to set text color to contrast because of
 // https://github.com/angular/components/issues/26056
 .mat-mdc-unelevated-button.mat-primary {

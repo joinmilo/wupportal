@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Maybe } from 'src/app/core/api/generated/schema';
 
 @Component({
   selector: 'app-sub-title',
@@ -8,10 +9,10 @@ import { Component, Input } from '@angular/core';
 export class SubTitleComponent {
 
   @Input()
-  public titleLabel?: string;
+  public titleLabel?: Maybe<string>;
 
   @Input()
-  public title?: string;
+  public title?: Maybe<string>;
 
   @Input()
   public link?: string[];

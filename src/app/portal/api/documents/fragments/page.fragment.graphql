@@ -32,6 +32,11 @@ fragment Page on PageEntity {
           ...Media
         }
       }
+
+      type {
+        id
+        code
+      }
     }
     type {
       id
