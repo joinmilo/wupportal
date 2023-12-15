@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
@@ -21,10 +21,15 @@ type PageEmbeddingFormInput = {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
       useExisting: AdminSettingsPageEmbeddingComponent
-    }
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: AdminSettingsPageEmbeddingComponent
+    },
   ],
 })
-export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor, OnDestroy {
+export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor, Validator, OnDestroy {
 
   public disabled?: boolean;
 
@@ -34,6 +39,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   private onChange?: (embeddings: Maybe<PageEmbeddingEntity[]>) => void;
   private onTouch?: () => void;
+  private onValidate?: () => void;
 
   private destroy = new Subject<void>();
 
@@ -129,10 +135,19 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   public validUpdated(valid: boolean, index: number) {
     this.valids[index] = valid;
+    this.onValidate?.();
   }
 
   public get valid(): boolean {
     return this.valids.every(valid => valid)
+  }
+
+  public validate(): ValidationErrors | null {
+    return !this.valid
+      ? {
+          pageEmbeddingInvalid: true,
+        }
+      : null;
   }
 
   public writeValue(value: Maybe<PageEmbeddingEntity[]>): void {
@@ -152,6 +167,10 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
 
   public registerOnTouched(onTouch: () => void): void {
     this.onTouch = onTouch;
+  }
+
+  public registerOnValidatorChange?(onValidate: () => void): void {
+    this.onValidate = onValidate;
   }
 
   public setDisabledState?(isDisabled: boolean): void {
