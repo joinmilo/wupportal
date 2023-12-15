@@ -60,7 +60,6 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
           this.inputs.push({
             expanded: true,
             embedding: {
-              label: embeddingType.name,
               type: embeddingType,
               attributes: embeddingType.attributes?.map(attribute => ({
                 type: {

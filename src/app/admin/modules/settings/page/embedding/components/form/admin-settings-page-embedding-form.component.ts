@@ -139,7 +139,7 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
         this.fb.group({
           value: [attribute?.references?.map((reference) => reference?.media)],
           type: {
-            id: attribute?.id,
+            id: attribute?.type?.id,
             code: attribute.type?.code
           }
         })
@@ -252,7 +252,6 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
       attributes.push(this.createPluginValue());
     }
 
-    console.log(attributes)
     return attributes;
   }
   
@@ -273,7 +272,7 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
   ): PageAttributeEntity {
     const group = parent.get(field);
     return {
-      references: (group?.get('value')?.value as unknown as MediaEntity[]).map(media => ({
+      references: (group?.get('value')?.value as unknown as MediaEntity[])?.map(media => ({
         media
       })),
       type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
