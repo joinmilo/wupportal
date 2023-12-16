@@ -49,6 +49,14 @@ query getPageDetails(
       type {
         id
         code
+
+        translatables {
+            id
+            name
+            language {
+              ...Language
+            }
+          }
       }
     }
 

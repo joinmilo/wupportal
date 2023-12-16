@@ -10,6 +10,7 @@ import {
   PageAttributeEntity,
   PageAttributeTypeEntity,
   PageEmbeddingEntity,
+  PageEmbeddingTypeEntity,
 } from 'src/app/core/api/generated/schema';
 import { TranslationService } from 'src/app/core/services/translation.service';
 import { selectPlugins } from '../../state/admin-settings-page-embedding.selectors';
@@ -61,7 +62,7 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
         id: ['' as Maybe<string>],
         label: ['' as Maybe<string>, [Validators.required]],
         type: [
-          undefined as Maybe<PageAttributeTypeEntity>,
+          undefined as Maybe<PageEmbeddingTypeEntity>,
           [Validators.required],
         ],
       }),
@@ -83,10 +84,7 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
       base: {
         id: embedding.id,
         label: embedding.label,
-        type: {
-          id: embedding.type?.id,
-          code: embedding.type?.code,
-        },
+        type: embedding.type,
       },
     });
   }
@@ -217,10 +215,7 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
     this.saved.emit({
       id: this.form.value.base?.id,
       label: this.form.value.base?.label,
-      type: {
-        id: this.form.value.base?.type?.id,
-        code: this.form.value.base?.type?.code
-      },
+      type: this.form.value.base?.type,
       attributes: this.createAttributeValues()
     })
   }

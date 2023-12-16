@@ -32,15 +32,9 @@ export class PortalPageEmbeddingTextMediaComponent {
           }
         }, {}) as TextMediaElement
       });
-
-      console.log(this.elements);
     }
   }
 
   public elements: TextMediaElement[] = [];
-
-  public retrieveTitle(embedding: Maybe<PageEmbeddingEntity>) {
-    return embedding
-  }
 
 }

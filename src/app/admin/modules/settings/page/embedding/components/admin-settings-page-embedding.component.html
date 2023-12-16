@@ -3,7 +3,7 @@
   (deleted)="deleted($event)"
   (updated)="sorted($event)">
   <app-drag-drop-element *ngFor="let input of inputs; let index = index"
-    [title]="input.embedding.label"
+    [title]="createTitle(input.embedding) | async"
     [expanded]="input.expanded">
 
     <app-admin-settings-page-embedding-form

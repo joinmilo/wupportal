@@ -2,8 +2,9 @@ import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, map, takeUntil } from 'rxjs';
 import { Maybe, PageEmbeddingEntity, PageEmbeddingTypeEntity } from 'src/app/core/api/generated/schema';
+import { TranslationService } from 'src/app/core/services/translation.service';
 import { AdminSettingsPageEmbeddingActions } from '../state/admin-settings-page-embedding.actions';
 import { AdminSettingsPageEmbeddingDialogComponent } from './dialog/admin-settings-page-embedding-dialog.component';
 
@@ -47,8 +48,19 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
     private store: Store,
+    private translationService: TranslationService,
   ) {
     this.store.dispatch(AdminSettingsPageEmbeddingActions.getPlugins());
+  }
+
+  public createTitle(embedding: PageEmbeddingEntity): Observable<Maybe<string>> {
+    return this.translationService.translatable(embedding.type, 'name')
+      .pipe(
+        map(name => embedding?.label
+          ? `${embedding.label} (${name})`
+          : name
+        )
+      );
   }
 
   public added(): void {

@@ -1,6 +1,6 @@
 <ng-container *ngFor="let element of elements; let index = index">
   <div *ngIf="index % 2 === 0">
-    <h1 class="mat-headline-6">
+    <h1 class="mat-headline-4">
       {{ element.title | translatable: 'content' | async }}
     </h1>
     <p [innerHTML]="element.text | translatable: 'content' | async">
