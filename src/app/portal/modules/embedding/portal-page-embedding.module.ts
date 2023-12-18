@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 import { CoreModule } from 'src/app/core/core.module';
 import { ArticleEmbeddingModule } from 'src/app/features/article/embedding/article-embedding.module';
 import { AuthorEmbeddingModule } from 'src/app/features/author/embedding/author-embedding.module';
@@ -15,6 +16,7 @@ import { OrganisationEmbeddingModule } from 'src/app/features/organisation/embed
 import { ReportEmbeddingModule } from 'src/app/features/report/embedding/report-embedding.module';
 import { SurveyEmbeddingModule } from 'src/app/features/survey/embedding/survey-embedding.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
+import { MediaWidgetsModule } from 'src/app/shared/media/modules/widgets/media-widgets.module';
 import { PortalPageEmbeddingPluginComponent } from './components/plugin/portal-page-embedding-plugin.component';
 import { PortalPageEmbeddingComponent } from './components/portal-page-embedding.component';
 import { PortalPageEmbeddingTextMediaComponent } from './components/text-media/portal-page-embedding-text-media.component';
@@ -27,6 +29,7 @@ const components = [
 
 const framework = [
   CommonModule,
+  RouterModule,
 ];
 
 const materials = [
@@ -44,6 +47,7 @@ const modules = [
   GuestArticleEmbeddingModule,
   MapEmbeddingModule,
   MediaEmbeddingModule,
+  MediaWidgetsModule,
   OrganisationEmbeddingModule,
   ReportEmbeddingModule,
   SurveyEmbeddingModule,

@@ -1,15 +1,32 @@
 <ng-container *ngFor="let element of elements; let index = index">
-  <div *ngIf="index % 2 === 0">
+  <section *ngIf="index % 2 === 0">
+    <ng-container *ngTemplateOutlet="content; context: { $implicit: element }">
+    </ng-container>
+
+    <app-media-element [media]="element.media">
+    </app-media-element>
+  </section>
+  <section *ngIf="index % 2 !== 0">
+    <app-media-element [media]="element.media">
+    </app-media-element>
+
+    <ng-container *ngTemplateOutlet="content; context: { $implicit: element }">
+    </ng-container>
+  </section>
+</ng-container>
+
+<ng-template #content let-element>
+  <div>
     <h1 class="mat-headline-4">
       {{ element.title | translatable: 'content' | async }}
     </h1>
-    <p [innerHTML]="element.text | translatable: 'content' | async">
-    </p>
-    <button mat-raised-button>
-      {{ element.button | translatable: 'content' | async }}
+
+    <p [innerHTML]="element.text | translatable: 'content' | async"></p>
+
+    <button mat-raised-button
+      color="primary"
+      [routerLink]="element.button | translatable: 'content' | async"
+      appLabel="learnMore">
     </button>
   </div>
-  <div *ngIf="index % 2 !== 0">
-    Ich bin rechts
-  </div>
-</ng-container>
+</ng-template>

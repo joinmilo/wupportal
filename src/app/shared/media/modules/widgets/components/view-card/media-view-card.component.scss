@@ -16,6 +16,10 @@ mat-card-header {
   app-media-element {
     height: 100%;
     width: 100%;
+
+    border-top-left-radius: var(--mdc-shape-small);
+    border-top-right-radius: var(--mdc-shape-small);
+    overflow: hidden;
   }
 }
 

@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-flow: column;
+  gap: 6rem;
+
+  // width: 60rem;
+  margin: auto;
+}
+
+section {
+  display: flex;
+  gap: var(--gap);
+
+  height: 20rem;
+
+  div {
+    display: flex;
+    flex-flow: column;
+    align-items: baseline;
+    gap: var(--gap);
+    width: calc(50% - var(--gap));
+  }
+
+  h1 {
+    margin-bottom: 0 !important;
+  }
+
+  app-media-element {
+    height: 100%;
+    width: calc(50% - var(--gap));
+
+    border-radius: var(--mdc-shape-small);
+    overflow: hidden;
+  }
+}
