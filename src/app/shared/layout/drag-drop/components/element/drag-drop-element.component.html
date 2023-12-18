@@ -1,13 +1,24 @@
 <ng-template #template>
   <div class="container">
     <section (click)="expanded = !expanded">
-      <strong *ngIf="titleLabel; else titleTemplate"
-        [appLabel]="titleLabel">
-      </strong>
+      <div class="drop-title">
+        
+        <ng-container *ngIf="titleLabel; else titleTemplate">
+          <strong [appLabel]="titleLabel"></strong>
+        </ng-container>
+        <ng-template #titleTemplate>
+          <strong> {{ title }}</strong>
+        </ng-template>
+        
+        <ng-container *ngIf="subTitleLabel; else subTitleTemplate">
+          <small [appLabel]="subTitleLabel"></small>
+        </ng-container>
+        <ng-template #subTitleTemplate>
+          <small> {{ subTitle }}</small>
+        </ng-template>
+
+      </div>
   
-      <ng-template #titleTemplate>
-        <strong> {{ title }}</strong>
-      </ng-template>
 
       <fa-icon *ngIf="!expanded; else collapseIcon" icon="arrow-down"
         appTooltip="expand">

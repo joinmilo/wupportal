@@ -15,6 +15,12 @@ export class DragDropElementComponent {
   public titleLabel?: Maybe<string>;
 
   @Input()
+  public subTitle?: Maybe<string>;
+
+  @Input()
+  public subTitleLabel?: Maybe<string>;
+
+  @Input()
   public expanded: Maybe<boolean> = false;
 
   @ViewChild('template')
