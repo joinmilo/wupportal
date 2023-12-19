@@ -18,12 +18,15 @@
 }
 <ng-template #content let-element>
   <div>
-    <h1 class="mat-headline-4">
-      {{ element?.title | translatable: 'content' | async }}
-    </h1>
-    
+
+    @if (element?.title) {
+      <h1 class="mat-headline-4">
+        {{ element?.title | translatable: 'content' | async }}
+      </h1>
+    }
+
     @if (element?.text) {
-      <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+      <section [innerHTML]="element?.text | translatable: 'content' | async"></section>
     }
 
     @if (element?.button) {

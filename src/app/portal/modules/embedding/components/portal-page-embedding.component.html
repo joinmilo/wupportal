@@ -1,6 +1,12 @@
 <div>
   @for (group of groups; track group) {
     @switch (group?.type?.code) {
+      @case ('box') {
+        <app-portal-page-embedding-box
+          [embeddings]="group.embeddings">
+        </app-portal-page-embedding-box>
+      }
+
       @case ('expansion') {
         <app-portal-page-embedding-expansion
           [embeddings]="group.embeddings">

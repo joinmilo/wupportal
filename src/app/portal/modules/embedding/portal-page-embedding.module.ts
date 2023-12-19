@@ -18,6 +18,7 @@ import { ReportEmbeddingModule } from 'src/app/features/report/embedding/report-
 import { SurveyEmbeddingModule } from 'src/app/features/survey/embedding/survey-embedding.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { MediaWidgetsModule } from 'src/app/shared/media/modules/widgets/media-widgets.module';
+import { PortalPageEmbeddingBoxComponent } from './components/box/portal-page-embedding-box.component';
 import { PortalPageEmbeddingExpansionComponent } from './components/expansion/portal-page-embedding-expansion.component';
 import { PortalPageEmbeddingPluginComponent } from './components/plugin/portal-page-embedding-plugin.component';
 import { PortalPageEmbeddingComponent } from './components/portal-page-embedding.component';
@@ -25,6 +26,7 @@ import { PortalPageEmbeddingTextMediaComponent } from './components/text-media/p
 
 const components = [
   PortalPageEmbeddingComponent,
+  PortalPageEmbeddingBoxComponent,
   PortalPageEmbeddingExpansionComponent,
   PortalPageEmbeddingPluginComponent,
   PortalPageEmbeddingTextMediaComponent,
