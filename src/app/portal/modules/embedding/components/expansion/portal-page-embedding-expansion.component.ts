@@ -3,13 +3,12 @@ import { Maybe, PageEmbeddingEntity } from 'src/app/core/api/generated/schema';
 import { PageEmbeddingAttributes } from '../../typings/page-embedding';
 import { mapEmbeddingsToAttributes } from '../../utils/portal-page-embeddings.utils';
 
-
 @Component({
-  selector: 'app-portal-page-embedding-text-media',
-  templateUrl: './portal-page-embedding-text-media.component.html',
-  styleUrls: ['./portal-page-embedding-text-media.component.scss'],
+  selector: 'app-portal-page-embedding-expansion',
+  templateUrl: './portal-page-embedding-expansion.component.html',
+  styleUrls: ['./portal-page-embedding-expansion.component.scss'],
 })
-export class PortalPageEmbeddingTextMediaComponent {
+export class PortalPageEmbeddingExpansionComponent {
   
   @Input({ required: true })
   public set embeddings(embeddings: Maybe<Maybe<PageEmbeddingEntity>[]>) {

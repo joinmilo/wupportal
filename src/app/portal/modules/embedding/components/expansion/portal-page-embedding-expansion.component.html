@@ -1,0 +1,14 @@
+<mat-accordion>
+  @for (element of elements; track element) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h1 class="mat-headline-5">
+            {{ element?.title | translatable: 'content' | async }}
+          </h1>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+    </mat-expansion-panel>
+  }
+</mat-accordion>

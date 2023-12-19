@@ -5,58 +5,69 @@
       <input matInput formControlName="label">
     </mat-form-field>
   </app-row>
-
-  <app-row *ngIf="hasControl(form.controls.plugin, 'plugin')"
-    columns="2"
-    [formGroup]="form.controls.plugin">
-    <mat-form-field appearance="outline">
-      <mat-label appLabel="plugin"></mat-label>
-      <mat-select [formControl]="getControl(form.controls.plugin, 'plugin')">
-        <mat-option *ngFor="let plugin of plugins | async"
-            [value]="plugin.id">
-            <span>{{ plugin | translatable: "name" | async }}</span>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </app-row>
-
-  <app-row *ngIf="hasControl(form.controls.titleButton, 'title')
-      || hasControl(form.controls.titleButton, 'button')"
-    columns="2"
-    [formGroup]="form.controls.titleButton">
-    <mat-form-field *ngIf="hasControl(form.controls.titleButton, 'title')"
-      appearance="outline">
-      <mat-label appLabel="title"></mat-label>
-      <input matInput [formControl]="getControl(form.controls.titleButton, 'title')">
-    </mat-form-field>
-
-    <mat-form-field *ngIf="hasControl(form.controls.titleButton, 'button')"
-      appearance="outline">
-      <mat-label appLabel="buttonUrl"></mat-label>
-      <input matInput [formControl]="getControl(form.controls.titleButton, 'button')">
-    </mat-form-field>
-  </app-row>
-
-  <app-row *ngIf="hasControl(form.controls.textMedium, 'text')
-      || hasControl(form.controls.textMedium, 'media')"
-    columns="2" [formGroup]="form.controls.textMedium">
-    <app-ck-editor-form *ngIf="hasControl(form.controls.textMedium, 'text')"
-      [formControl]="getControl(form.controls.textMedium, 'text')">
-    </app-ck-editor-form>
-
-    <app-media-form *ngIf="hasControl(form.controls.textMedium, 'media')"
-      class="text-media"
-      [formControl]="getControl(form.controls.textMedium, 'media')"
-      [maxFiles]="1">
-    </app-media-form>
-  </app-row>
-
-  <div *ngIf="hasControl(form.controls.media, 'multimedia')"
-    [formGroup]="form.controls.media">
-    <app-media-form [formControl]="getControl(form.controls.media, 'multimedia')">
-    </app-media-form>
-  </div>
-  
+  @if (hasControl(form.controls.plugin, 'plugin')) {
+    <app-row
+      columns="2"
+      [formGroup]="form.controls.plugin">
+      <mat-form-field appearance="outline">
+        <mat-label appLabel="plugin"></mat-label>
+        <mat-select [formControl]="getControl(form.controls.plugin, 'plugin')">
+          @for (plugin of plugins | async; track plugin) {
+            <mat-option
+              [value]="plugin.id">
+              <span>{{ plugin | translatable: "name" | async }}</span>
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </app-row>
+  }
+  @if (hasControl(form.controls.titleButton, 'title')
+    || hasControl(form.controls.titleButton, 'button')) {
+    <app-row
+      columns="2"
+      [formGroup]="form.controls.titleButton">
+      @if (hasControl(form.controls.titleButton, 'title')) {
+        <mat-form-field
+          appearance="outline">
+          <mat-label appLabel="title"></mat-label>
+          <input matInput [formControl]="getControl(form.controls.titleButton, 'title')">
+        </mat-form-field>
+      }
+      @if (hasControl(form.controls.titleButton, 'button')) {
+        <mat-form-field
+          appearance="outline">
+          <mat-label appLabel="buttonUrl"></mat-label>
+          <input matInput [formControl]="getControl(form.controls.titleButton, 'button')">
+        </mat-form-field>
+      }
+    </app-row>
+  }
+  @if (hasControl(form.controls.textMedium, 'text')
+    || hasControl(form.controls.textMedium, 'media')) {
+    <app-row
+      columns="2" [formGroup]="form.controls.textMedium">
+      @if (hasControl(form.controls.textMedium, 'text')) {
+        <app-ck-editor-form
+          [formControl]="getControl(form.controls.textMedium, 'text')">
+        </app-ck-editor-form>
+      }
+      @if (hasControl(form.controls.textMedium, 'media')) {
+        <app-media-form
+          class="text-media"
+          [formControl]="getControl(form.controls.textMedium, 'media')"
+          [maxFiles]="1">
+        </app-media-form>
+      }
+    </app-row>
+  }
+  @if (hasControl(form.controls.media, 'multimedia')) {
+    <div
+      [formGroup]="form.controls.media">
+      <app-media-form [formControl]="getControl(form.controls.media, 'multimedia')">
+      </app-media-form>
+    </div>
+  }
   <button mat-stroked-button
     appLabel="save"
     [disabled]="form.invalid"

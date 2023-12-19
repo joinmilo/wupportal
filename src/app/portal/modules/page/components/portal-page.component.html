@@ -1,18 +1,18 @@
 <div class="details">
   <app-media-title [media]="mediaTitle"></app-media-title>
-
   <section>
     <h2 class="mat-headline-4">{{page | translatable: 'name' | async}}</h2>
-
     <p [innerHtml]="page | translatable: 'content' | async"></p>
   </section>
-
-  <app-media-slider *ngIf="media && media.length" [media]="media" [link]="['./media']">
-  </app-media-slider>
+  @if (media && media.length) {
+    <app-media-slider [media]="media" [link]="['./media']">
+    </app-media-slider>
+  }
 </div>
-
 <div class="main">
-  <app-portal-page-embedding *ngIf="page?.embeddings?.length"
-    [embeddings]="page?.embeddings">
-  </app-portal-page-embedding>
+  @if (page?.embeddings?.length) {
+    <app-portal-page-embedding
+      [embeddings]="page?.embeddings">
+    </app-portal-page-embedding>
+  }
 </div>

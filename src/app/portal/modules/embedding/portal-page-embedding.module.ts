@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from 'src/app/core/core.module';
 import { ArticleEmbeddingModule } from 'src/app/features/article/embedding/article-embedding.module';
@@ -17,12 +18,14 @@ import { ReportEmbeddingModule } from 'src/app/features/report/embedding/report-
 import { SurveyEmbeddingModule } from 'src/app/features/survey/embedding/survey-embedding.module';
 import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { MediaWidgetsModule } from 'src/app/shared/media/modules/widgets/media-widgets.module';
+import { PortalPageEmbeddingExpansionComponent } from './components/expansion/portal-page-embedding-expansion.component';
 import { PortalPageEmbeddingPluginComponent } from './components/plugin/portal-page-embedding-plugin.component';
 import { PortalPageEmbeddingComponent } from './components/portal-page-embedding.component';
 import { PortalPageEmbeddingTextMediaComponent } from './components/text-media/portal-page-embedding-text-media.component';
 
 const components = [
   PortalPageEmbeddingComponent,
+  PortalPageEmbeddingExpansionComponent,
   PortalPageEmbeddingPluginComponent,
   PortalPageEmbeddingTextMediaComponent,
 ];
@@ -34,6 +37,7 @@ const framework = [
 
 const materials = [
   MatButtonModule,
+  MatExpansionModule,
 ]
 
 const modules = [

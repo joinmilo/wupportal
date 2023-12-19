@@ -3,7 +3,6 @@
   flex-flow: column;
   gap: 6rem;
 
-  // width: 60rem;
   margin: auto;
 }
 
@@ -21,7 +20,7 @@ section {
     width: calc(50% - var(--gap));
   }
 
-  h1 {
+  h1, p {
     margin-bottom: 0 !important;
   }
 

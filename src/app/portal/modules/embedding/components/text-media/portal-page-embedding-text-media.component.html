@@ -1,32 +1,37 @@
-<ng-container *ngFor="let element of elements; let index = index">
-  <section *ngIf="index % 2 === 0">
-    <ng-container *ngTemplateOutlet="content; context: { $implicit: element }">
-    </ng-container>
-
-    <app-media-element [media]="element.media">
-    </app-media-element>
-  </section>
-  <section *ngIf="index % 2 !== 0">
-    <app-media-element [media]="element.media">
-    </app-media-element>
-
-    <ng-container *ngTemplateOutlet="content; context: { $implicit: element }">
-    </ng-container>
-  </section>
-</ng-container>
-
+@for (element of elements; track element; let index = $index) {
+  @if (index % 2 === 0) {
+    <section>
+      <ng-container *ngTemplateOutlet="content; context: { $implicit: element }">
+      </ng-container>
+      <app-media-element [media]="element?.media">
+      </app-media-element>
+    </section>
+  }
+  @if (index % 2 !== 0) {
+    <section>
+      <app-media-element [media]="element?.media">
+      </app-media-element>
+      <ng-container *ngTemplateOutlet="content; context: { $implicit: element }">
+      </ng-container>
+    </section>
+  }
+}
 <ng-template #content let-element>
   <div>
     <h1 class="mat-headline-4">
-      {{ element.title | translatable: 'content' | async }}
+      {{ element?.title | translatable: 'content' | async }}
     </h1>
+    
+    @if (element?.text) {
+      <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+    }
 
-    <p [innerHTML]="element.text | translatable: 'content' | async"></p>
-
-    <button mat-raised-button
-      color="primary"
-      [routerLink]="element.button | translatable: 'content' | async"
-      appLabel="learnMore">
-    </button>
+    @if (element?.button) {
+      <button mat-raised-button
+        color="primary"
+        [routerLink]="element?.button | translatable: 'content' | async"
+        appLabel="learnMore">
+      </button>
+    }
   </div>
 </ng-template>

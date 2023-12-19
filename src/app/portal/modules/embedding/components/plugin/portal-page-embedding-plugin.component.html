@@ -1,16 +1,40 @@
 <div>
-  <ng-container [ngSwitch]="plugin?.code">
-    <app-article-embedding *ngSwitchCase="features.articles"></app-article-embedding>
-    <app-calendar-embedding *ngSwitchCase="features.calendar"></app-calendar-embedding>
-    <app-event-embedding *ngSwitchCase="features.events"></app-event-embedding>
-    <app-report-embedding *ngSwitchCase="features.reports"></app-report-embedding>
-    <app-author-embedding *ngSwitchCase="features.authors"></app-author-embedding>
-    <app-organisation-embedding *ngSwitchCase="features.organisations"></app-organisation-embedding>
-    <app-deal-embedding *ngSwitchCase="features.deals"></app-deal-embedding>
-    <app-contest-embedding *ngSwitchCase="features.contests"></app-contest-embedding>
-    <app-survey-embedding *ngSwitchCase="features.surveys"></app-survey-embedding>
-    <app-guest-article-embedding *ngSwitchCase="features.guestArticle"></app-guest-article-embedding>
-    <app-map-embedding *ngSwitchCase="features.map"></app-map-embedding>
-    <app-media-embedding *ngSwitchCase="features.media"></app-media-embedding>
-  </ng-container>
+  @switch (plugin?.code) {
+    @case (features.articles) {
+      <app-article-embedding></app-article-embedding>
+    }
+    @case (features.calendar) {
+      <app-calendar-embedding></app-calendar-embedding>
+    }
+    @case (features.events) {
+      <app-event-embedding></app-event-embedding>
+    }
+    @case (features.reports) {
+      <app-report-embedding></app-report-embedding>
+    }
+    @case (features.authors) {
+      <app-author-embedding></app-author-embedding>
+    }
+    @case (features.organisations) {
+      <app-organisation-embedding></app-organisation-embedding>
+    }
+    @case (features.deals) {
+      <app-deal-embedding></app-deal-embedding>
+    }
+    @case (features.contests) {
+      <app-contest-embedding></app-contest-embedding>
+    }
+    @case (features.surveys) {
+      <app-survey-embedding></app-survey-embedding>
+    }
+    @case (features.guestArticle) {
+      <app-guest-article-embedding></app-guest-article-embedding>
+    }
+    @case (features.map) {
+      <app-map-embedding></app-map-embedding>
+    }
+    @case (features.media) {
+      <app-media-embedding></app-media-embedding>
+    }
+  }
 </div>

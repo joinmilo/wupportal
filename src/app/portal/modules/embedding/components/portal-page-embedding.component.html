@@ -1,18 +1,22 @@
 <div>
-  <ng-container *ngFor="let group of groups">
-    <ng-container [ngSwitch]="group?.type?.code">
-
-      <ng-container *ngSwitchCase="'plugin'">
-        <ng-container *ngFor="let embedding of group.embeddings">
+  @for (group of groups; track group) {
+    @switch (group?.type?.code) {
+      @case ('expansion') {
+        <app-portal-page-embedding-expansion
+          [embeddings]="group.embeddings">
+        </app-portal-page-embedding-expansion>
+      }
+      @case ('plugin') {
+        @for (embedding of group.embeddings; track embedding) {
           <app-portal-page-embedding-plugin [embedding]="embedding">
           </app-portal-page-embedding-plugin>
-        </ng-container>
-      </ng-container>
-
-      <app-portal-page-embedding-text-media *ngSwitchCase="'text_media'"
-        [embeddings]="group.embeddings">
-      </app-portal-page-embedding-text-media>
-
-    </ng-container>
-  </ng-container>
+        }
+      }
+      @case ('text_media') {
+        <app-portal-page-embedding-text-media
+          [embeddings]="group.embeddings">
+        </app-portal-page-embedding-text-media>
+      }
+    }
+  }
 </div>

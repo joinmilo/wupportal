@@ -2,22 +2,24 @@
   [class.disabled]="disabled"
   cdkDropList
   (cdkDropListDropped)="drop($event)">
-  <mat-card *ngFor="let element of elements; let index = index" cdkDrag cdkDragLockAxis="y" (cdkDragStarted)="drag()">
-    <section class="drag-handle" cdkDragHandle>
-      <fa-icon icon="grip-vertical"></fa-icon>
-    </section>
-
-    <section class="content-area">
-      <ng-container *ngTemplateOutlet="element.component.template">
-      </ng-container>
-    </section>
-
-    <button mat-button
-      (click)="onDelete(index)">
-      <fa-icon icon="trash"></fa-icon>
-    </button>
-
-    <span class="drag-placeholder" *cdkDragPlaceholder></span>
-    <span *cdkDragPreview></span>
-  </mat-card>
+  @for (element of elements; track element; let index = $index) {
+    <mat-card cdkDrag cdkDragLockAxis="y" (cdkDragStarted)="drag()">
+      <section class="drag-handle" cdkDragHandle>
+        <fa-icon icon="grip-vertical"></fa-icon>
+      </section>
+  
+      <section class="content-area">
+        <ng-container *ngTemplateOutlet="element.component.template">
+        </ng-container>
+      </section>
+  
+      <button mat-button
+        (click)="onDelete(index)">
+        <fa-icon icon="trash"></fa-icon>
+      </button>
+  
+      <span class="drag-placeholder" *cdkDragPlaceholder></span>
+      <span *cdkDragPreview></span>
+    </mat-card>
+  }
 </div>

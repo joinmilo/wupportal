@@ -2,20 +2,19 @@
   [disabled]="disabled"
   (deleted)="deleted($event)"
   (updated)="sorted($event)">
-  <app-drag-drop-element *ngFor="let input of inputs; let index = index"
-    [title]="input.embedding.label"
-    [subTitle]="input.embedding.type | translatable: 'name' | async"
-    [expanded]="input.expanded">
-
-    <app-admin-settings-page-embedding-form
-      [embedding]="input.embedding"
-      (saved)="saved($event, index)"
-      (validUpdated)="validUpdated($event, index)">
-    </app-admin-settings-page-embedding-form>
-
-  </app-drag-drop-element>
+  @for (input of inputs; track input; let index = $index) {
+    <app-drag-drop-element
+      [title]="input.embedding.label"
+      [subTitle]="input.embedding.type | translatable: 'name' | async"
+      [expanded]="input.expanded">
+      <app-admin-settings-page-embedding-form
+        [embedding]="input.embedding"
+        (saved)="saved($event, index)"
+        (validUpdated)="validUpdated($event, index)">
+      </app-admin-settings-page-embedding-form>
+    </app-drag-drop-element>
+  }
 </app-drag-drop>
-
 <button mat-flat-button
   color="primary"
   [disabled]="!valid"
