@@ -6,3 +6,13 @@
 h1 {
   margin: 1rem 0 !important;
 }
+
+.content {
+  display: flex;
+  flex-flow: column;
+  gap: var(--gap);
+  
+  button {
+    align-self: flex-end;
+  }
+}

@@ -3,12 +3,25 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <h1 class="mat-headline-5">
+          <h1 class="mat-headline-6">
             {{ element?.title | translatable: 'content' | async }}
           </h1>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+
+      <div class="content">
+        @if (element?.text) {
+          <section [innerHTML]="element?.text | translatable: 'content' | async"></section>
+        }
+  
+        @if (element?.button) {
+          <button mat-raised-button
+            color="primary"
+            [routerLink]="element?.button | translatable: 'content' | async"
+            appLabel="learnMore">
+          </button>
+        }
+      </div>
     </mat-expansion-panel>
   }
 </mat-accordion>
