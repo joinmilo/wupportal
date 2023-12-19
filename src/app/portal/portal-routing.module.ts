@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { slug } from '../core/constants/queryparam.constants';
-import { PortalLandingComponent } from './modules/landing/component/portal-landing.component';
 
 const routes: Routes = [
   {
@@ -25,10 +24,9 @@ const routes: Routes = [
       .then((imported) => imported.PortalPageModule),
   },
   {
-    path: '',
-    loadChildren: () => import('./modules/landing/portal-landing.module')
-      .then((imported) => imported.PortalLandingModule),
-    component: PortalLandingComponent
+    path: ``,
+    loadChildren: () => import('./modules/page/portal-page.module')
+      .then((imported) => imported.PortalPageModule),
   },
   {
     path: '**',

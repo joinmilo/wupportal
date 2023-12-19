@@ -17,6 +17,13 @@ export class PortalPageEffects {
       : PortalActions.notFound())
   ));
 
+  getLandingPage = createEffect(() => this.actions.pipe(
+    ofType(PortalPageActions.getLandingPage),
+    switchMap(() => this.getPageService.watch({ isLanding: true }).valueChanges),
+    map(response => PortalPageActions.setPage(response.data.getPage as PageEntity))
+  ));
+
+
   constructor(
     private actions: Actions,
     private getPageService: GetPageGQL,

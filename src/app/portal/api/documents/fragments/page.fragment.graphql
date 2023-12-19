@@ -26,6 +26,7 @@ fragment Page on PageEntity {
         
         plugin {
           id
+          code
         }
 
         media {

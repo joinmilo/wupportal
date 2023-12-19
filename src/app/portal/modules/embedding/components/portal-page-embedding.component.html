@@ -1,49 +1,46 @@
-<div>
-  @for (group of groups; track group) {
-    @switch (group?.type?.code) {
+@for (group of groups; track group) {
+  @switch (group?.type?.code) {
 
-      @case ('text_banner') {
-        <app-portal-page-embedding-banner
-          [embeddings]="group.embeddings">
-        </app-portal-page-embedding-banner>
-      }
+    @case ('text_banner') {
+      <app-portal-page-embedding-banner
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-banner>
+    }
 
-      @case ('box') {
-        <app-portal-page-embedding-box
-          [embeddings]="group.embeddings">
-        </app-portal-page-embedding-box>
-      }
+    @case ('box') {
+      <app-portal-page-embedding-box
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-box>
+    }
 
-      @case ('expansion') {
-        <app-portal-page-embedding-expansion
-          [embeddings]="group.embeddings">
-        </app-portal-page-embedding-expansion>
-      }
+    @case ('expansion') {
+      <app-portal-page-embedding-expansion
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-expansion>
+    }
 
-      @case ('hero_section') {
-        <app-portal-page-embedding-hero
-          [embeddings]="group.embeddings">
-        </app-portal-page-embedding-hero>
-      }
+    @case ('hero_section') {
+      <app-portal-page-embedding-hero
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-hero>
+    }
 
-      @case ('media_slider') {
-        <app-portal-page-embedding-media
-          [embeddings]="group.embeddings">
-        </app-portal-page-embedding-media>
-      }
+    @case ('media_slider') {
+      <app-portal-page-embedding-media
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-media>
+    }
 
-      @case ('plugin') {
-        @for (embedding of group.embeddings; track embedding) {
-          <app-portal-page-embedding-plugin [embedding]="embedding">
-          </app-portal-page-embedding-plugin>
-        }
-      }
+    @case ('plugin') {
+      <app-portal-page-embedding-plugin
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-plugin>
+    }
 
-      @case ('text_media') {
-        <app-portal-page-embedding-text-media
-          [embeddings]="group.embeddings">
-        </app-portal-page-embedding-text-media>
-      }
+    @case ('text_media') {
+      <app-portal-page-embedding-text-media
+        [embeddings]="group.embeddings">
+      </app-portal-page-embedding-text-media>
     }
   }
-</div>
+}

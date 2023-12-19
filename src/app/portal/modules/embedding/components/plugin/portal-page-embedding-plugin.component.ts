@@ -1,31 +1,23 @@
-import { Component, Input, OnDestroy } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
-import { Maybe, PageEmbeddingEntity, PluginEntity } from 'src/app/core/api/generated/schema';
+import { Component, Input } from '@angular/core';
+import { Maybe, PageEmbeddingEntity } from 'src/app/core/api/generated/schema';
 import { articlesFeatureKey, authorsFeatureKey, calendarFeatureKey, contestsFeatureKey, dealsFeatureKey, eventsFeatureKey, formsFeatureKey, guestArticlesFeatureKey, mapFeatureKey, mediaFeatureKey, organisationsFeatureKey, reportsFeatureKey, surveysFeatureKey } from 'src/app/core/constants/feature.constants';
-import { GetPluginGQL } from '../../../../api/generated/get-plugin.query.generated';
-import { mapEmbeddingToAttributes } from '../../utils/portal-page-embeddings.utils';
+import { PageEmbeddingAttributes } from '../../typings/page-embedding';
+import { mapEmbeddingsToAttributes } from '../../utils/portal-page-embeddings.utils';
 
 @Component({
   selector: 'app-portal-page-embedding-plugin',
   templateUrl: './portal-page-embedding-plugin.component.html',
   styleUrls: ['./portal-page-embedding-plugin.component.scss'],
 })
-export class PortalPageEmbeddingPluginComponent implements OnDestroy {
+export class PortalPageEmbeddingPluginComponent {
   
   @Input({ required: true })
-  public set embedding(embedding: Maybe<PageEmbeddingEntity>) {
-    this.getPluginService.watch({
-      entity: {
-        id: mapEmbeddingToAttributes(embedding)?.plugin?.id
-      }
-    }).valueChanges
-    .pipe(takeUntil(this.destroy))
-    .subscribe(response => this.plugin = response.data.getPlugin)
+  public set embeddings(embeddings: Maybe<Maybe<PageEmbeddingEntity>[]>) {
+    this.elements = mapEmbeddingsToAttributes(embeddings);
+    console.log(this.elements)
   }
 
-  public plugin?: Maybe<PluginEntity>;
-
-  private destroy = new Subject<void>();
+  public elements?: Maybe<Maybe<PageEmbeddingAttributes>[]>;
 
   public features = {
     articles: articlesFeatureKey,
@@ -42,14 +34,5 @@ export class PortalPageEmbeddingPluginComponent implements OnDestroy {
     reports: reportsFeatureKey,
     surveys: surveysFeatureKey,
   };
-
-  constructor(
-    private getPluginService: GetPluginGQL,
-  ) { }
-
-  public ngOnDestroy(): void {
-    this.destroy.next();
-    this.destroy.complete();
-  }
 
 }

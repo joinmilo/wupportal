@@ -1,5 +1,5 @@
-<div>
-  @switch (plugin?.code) {
+@for (element of elements; track element) {
+  @switch (element?.plugin?.code) {
     @case (features.articles) {
       <app-article-embedding></app-article-embedding>
     }
@@ -37,4 +37,4 @@
       <app-media-embedding></app-media-embedding>
     }
   }
-</div>
+}

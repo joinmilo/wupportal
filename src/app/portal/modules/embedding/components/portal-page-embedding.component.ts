@@ -21,6 +21,7 @@ export class PortalPageEmbeddingComponent {
   public groups: GroupedEmbeddings[] = [];
 
   private init(embeddings: Maybe<Maybe<PageEmbeddingEntity>[]>): void {
+    this.groups = [];
     const sorted = [...(embeddings || [])].sort((f1, f2) => (f1?.order || 0) - (f2?.order || 0));
 
     sorted.forEach(embedding => {

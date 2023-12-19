@@ -1,4 +1,8 @@
 :host {
+  display: flex;
+  flex-flow: column;
+  gap: var(--gap);
+
   margin: auto;
   width: var(--page-embedding-width);
   max-width: calc(100% - var(--gap));
