@@ -1,13 +1,13 @@
 <div *ngIf="(titleLabel || link || title) && media?.length">
   
   <ng-container *ngIf="titleType === 'DETAILS'">
-    <app-details-title *ngIf="titleLabel; detailsTitleLabel"
+    <app-details-title *ngIf="title; else detailsTitleLabel"
       [link]="link"
       [linkLabel]="linkLabel"
-      [titleLabel]="titleLabel">
+      [title]="title">
     </app-details-title>
-    <ng-template #subTitleLabel>
-      <app-details-title [title]="title"></app-details-title>
+    <ng-template #detailsTitleLabel>
+      <app-details-title [titleLabel]="titleLabel"></app-details-title>
     </ng-template>
   </ng-container>
 

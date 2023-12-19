@@ -22,6 +22,7 @@ import { PortalPageEmbeddingBannerComponent } from './components/banner/portal-p
 import { PortalPageEmbeddingBoxComponent } from './components/box/portal-page-embedding-box.component';
 import { PortalPageEmbeddingExpansionComponent } from './components/expansion/portal-page-embedding-expansion.component';
 import { PortalPagEmbeddingHeroComponent as PortalPageEmbeddingHeroComponent } from './components/hero/portal-page-embedding-hero.component';
+import { PortalPagEmbeddingMediaComponent } from './components/media/portal-page-embedding-media.component';
 import { PortalPageEmbeddingPluginComponent } from './components/plugin/portal-page-embedding-plugin.component';
 import { PortalPageEmbeddingComponent } from './components/portal-page-embedding.component';
 import { PortalPageEmbeddingTextMediaComponent } from './components/text-media/portal-page-embedding-text-media.component';
@@ -32,6 +33,7 @@ const components = [
   PortalPageEmbeddingBoxComponent,
   PortalPageEmbeddingExpansionComponent,
   PortalPageEmbeddingHeroComponent,
+  PortalPagEmbeddingMediaComponent,
   PortalPageEmbeddingPluginComponent,
   PortalPageEmbeddingTextMediaComponent,
 ];

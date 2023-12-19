@@ -26,12 +26,19 @@
         </app-portal-page-embedding-hero>
       }
 
+      @case ('media_slider') {
+        <app-portal-page-embedding-media
+          [embeddings]="group.embeddings">
+        </app-portal-page-embedding-media>
+      }
+
       @case ('plugin') {
         @for (embedding of group.embeddings; track embedding) {
           <app-portal-page-embedding-plugin [embedding]="embedding">
           </app-portal-page-embedding-plugin>
         }
       }
+
       @case ('text_media') {
         <app-portal-page-embedding-text-media
           [embeddings]="group.embeddings">

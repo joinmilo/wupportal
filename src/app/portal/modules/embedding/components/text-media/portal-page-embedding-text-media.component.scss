@@ -20,6 +20,10 @@ section {
     align-items: baseline;
     gap: var(--gap);
     width: calc(50% - var(--gap));
+
+    button {
+      height: 4rem;
+    }
   }
 
   h1 {

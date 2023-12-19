@@ -14,7 +14,11 @@ export const mapEmbeddingToAttributes = (embedding: Maybe<PageEmbeddingEntity>):
       case 'media':
         return {...obj, media: attribute.references?.find(reference => !!reference?.media)?.media };
       case 'multimedia':
-        return {...obj, title: attribute };
+        return {...obj, multimedia:
+          attribute?.references
+            ?.filter(reference => !!reference?.media)
+            ?.map(reference => reference?.media)
+        };
       case 'plugin':
         return {...obj, plugin: attribute.references?.find(reference => !!reference?.plugin)?.plugin };
       case 'text':
