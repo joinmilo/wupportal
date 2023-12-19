@@ -6,7 +6,7 @@ mat-card {
   gap: 1rem;
 
   margin: auto;
-  width: 60rem;
+  width: var(--details-width);
   max-width: calc(100% - var(--gap));
   padding: var(--gap);
 

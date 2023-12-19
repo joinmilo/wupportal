@@ -1,6 +1,7 @@
 :host {
   margin: auto;
-  width: 100%;
+  width: var(--page-embedding-width);
+  max-width: calc(100% - var(--gap));
 }
 
 h1 {

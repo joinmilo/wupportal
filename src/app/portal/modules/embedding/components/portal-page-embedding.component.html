@@ -12,6 +12,13 @@
           [embeddings]="group.embeddings">
         </app-portal-page-embedding-expansion>
       }
+
+      @case ('hero_section') {
+        <app-portal-page-embedding-hero
+          [embeddings]="group.embeddings">
+        </app-portal-page-embedding-hero>
+      }
+
       @case ('plugin') {
         @for (embedding of group.embeddings; track embedding) {
           <app-portal-page-embedding-plugin [embedding]="embedding">

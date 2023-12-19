@@ -1,18 +1,17 @@
-
-  @for (element of elements; track element) {
-    <div class="details">
-      <app-media-title [media]="element?.media"></app-media-title>
-      
-      <section>
-        @if (element?.title) {
-          <h1 class="mat-headline-4">
-            {{ element?.title | translatable: 'content' | async }}
-          </h1>
-        }
+@for (element of elements; track element) {
+  <div class="details">
+    <app-media-title [media]="element?.media"></app-media-title>
     
-        @if (element?.text) {
-          <section [innerHTML]="element?.text | translatable: 'content' | async"></section>
-        }
-      </section>
-    </div>
-  }
+    <section>
+      @if (element?.title) {
+        <h1 class="mat-headline-4">
+          {{ element?.title | translatable: 'content' | async }}
+        </h1>
+      }
+  
+      @if (element?.text) {
+        <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+      }
+    </section>
+  </div>
+}

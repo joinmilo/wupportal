@@ -41,7 +41,7 @@ body.inheritCursors * {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  width: 60rem;
+  width: var(--details-width);
   max-width: calc(100% - var(--gap));
   margin: var(--gap) auto;
   background-color: white;

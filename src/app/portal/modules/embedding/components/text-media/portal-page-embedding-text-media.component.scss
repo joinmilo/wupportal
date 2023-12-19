@@ -1,9 +1,11 @@
 :host {
   display: flex;
   flex-flow: column;
-  gap: 6rem;
+  gap: 5rem;
 
   margin: auto;
+  width: var(--page-embedding-width);
+  max-width: calc(100% - var(--gap));
 }
 
 section {

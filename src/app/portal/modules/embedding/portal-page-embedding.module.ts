@@ -20,6 +20,7 @@ import { TitleModule } from 'src/app/shared/layout/title/title.module';
 import { MediaWidgetsModule } from 'src/app/shared/media/modules/widgets/media-widgets.module';
 import { PortalPageEmbeddingBoxComponent } from './components/box/portal-page-embedding-box.component';
 import { PortalPageEmbeddingExpansionComponent } from './components/expansion/portal-page-embedding-expansion.component';
+import { PortalPagEmbeddingHeroComponent as PortalPageEmbeddingHeroComponent } from './components/hero/portal-page-embedding-hero.component';
 import { PortalPageEmbeddingPluginComponent } from './components/plugin/portal-page-embedding-plugin.component';
 import { PortalPageEmbeddingComponent } from './components/portal-page-embedding.component';
 import { PortalPageEmbeddingTextMediaComponent } from './components/text-media/portal-page-embedding-text-media.component';
@@ -28,6 +29,7 @@ const components = [
   PortalPageEmbeddingComponent,
   PortalPageEmbeddingBoxComponent,
   PortalPageEmbeddingExpansionComponent,
+  PortalPageEmbeddingHeroComponent,
   PortalPageEmbeddingPluginComponent,
   PortalPageEmbeddingTextMediaComponent,
 ];

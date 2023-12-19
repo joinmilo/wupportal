@@ -3,3 +3,25 @@
   flex-flow: column;
   gap: 6rem;
 }
+
+.details {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  app-media-title {
+    width: 100%;
+  }
+
+  section {
+    display: flex;
+    flex-flow: column;
+    gap: 5rem;
+    margin: var(--gap) auto;
+    width: 80%;
+
+    h2 {
+      margin: 0;
+    }
+  }
+}

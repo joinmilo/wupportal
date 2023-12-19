@@ -1,0 +1,21 @@
+<header>
+  <img [src]="element?.media?.url" alt="hero-section">
+  <section>
+    <div>
+      <div id="wrapper">
+        <div id="container">
+          <span id="text">{{element?.title | translatable: "content" | async}}</span>
+        </div>
+      </div>
+
+      <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+
+      @if (element?.button) {
+        <a mat-raised-button
+          [routerLink]="element?.button | translatable: 'content' | async"
+          appLabel="learnMore">
+        </a>
+      }
+    </div>
+  </section>
+</header>
