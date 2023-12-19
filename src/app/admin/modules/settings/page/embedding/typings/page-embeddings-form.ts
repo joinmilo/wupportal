@@ -4,3 +4,4 @@ export type PageEmbeddingFormFieldType = 'button'
   | 'plugin'
   | 'text'
   | 'title'
+  | 'url';

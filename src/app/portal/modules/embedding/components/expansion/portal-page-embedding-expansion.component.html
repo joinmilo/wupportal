@@ -4,22 +4,24 @@
       <mat-expansion-panel-header>
         <mat-panel-title>
           <h1 class="mat-headline-6">
-            {{ element?.title | translatable: 'content' | async }}
+            {{ element?.title | translatable: 'translatable' | async }}
           </h1>
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <div class="content">
         @if (element?.text) {
-          <section [innerHTML]="element?.text | translatable: 'content' | async"></section>
+          <section [innerHTML]="element?.text | translatable: 'translatable' | async"></section>
         }
   
         @if (element?.button) {
-          <button mat-raised-button
+          <a mat-raised-button
             color="primary"
-            [routerLink]="element?.button | translatable: 'content' | async"
-            appLabel="learnMore">
-          </button>
+            [href]="element?.url"
+            [appLabel]="element?.button
+              ? (element?.button | translatable: 'translatable' | async)
+              : 'learnMore'">
+          </a>
         }
       </div>
     </mat-expansion-panel>

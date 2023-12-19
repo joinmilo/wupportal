@@ -7,4 +7,5 @@ export type PageEmbeddingAttributes = {
   plugin?: Maybe<PluginEntity>,
   title?: Maybe<PageAttributeEntity>,
   text?: Maybe<PageAttributeEntity>,
+  url?: Maybe<PageAttributeEntity>,
 };

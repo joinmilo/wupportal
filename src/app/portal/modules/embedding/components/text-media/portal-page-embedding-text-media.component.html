@@ -21,20 +21,22 @@
 
     @if (element?.title) {
       <h1 class="mat-headline-4">
-        {{ element?.title | translatable: 'content' | async }}
+        {{ element?.title | translatable: 'translatable' | async }}
       </h1>
     }
 
     @if (element?.text) {
-      <section [innerHTML]="element?.text | translatable: 'content' | async"></section>
+      <section [innerHTML]="element?.text | translatable: 'translatable' | async"></section>
     }
 
-    @if (element?.button) {
-      <button mat-raised-button
+    @if (element?.url) {
+      <a mat-raised-button
         color="primary"
-        [routerLink]="element?.button | translatable: 'content' | async"
-        appLabel="learnMore">
-      </button>
+        [href]="element?.url"
+        [appLabel]="element?.button
+          ? (element?.button | translatable: 'translatable' | async)
+          : 'learnMore'">
+      </a>
     }
   </div>
 </ng-template>

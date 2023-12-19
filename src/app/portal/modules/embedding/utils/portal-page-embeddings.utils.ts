@@ -25,6 +25,8 @@ export const mapEmbeddingToAttributes = (embedding: Maybe<PageEmbeddingEntity>):
         return {...obj, text: attribute }
       case 'title':
         return {...obj, title: attribute };
+        case 'url':
+          return {...obj, url: attribute };
       default:
         throw new Error(`Attribute Type with ${attribute?.type?.code} does not exist`);
     }

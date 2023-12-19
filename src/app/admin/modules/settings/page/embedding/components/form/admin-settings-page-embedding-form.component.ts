@@ -50,10 +50,11 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
     this.form = this.createForm();
     this.patchBaseValue(embedding);
 
+    this.initButtonUrlForm(embedding);
     this.initMultiMediaForm(embedding);
     this.initPluginForm(embedding);
     this.initTextMediumForm(embedding);
-    this.initTitleButtonForm(embedding);
+    this.initTitleForm(embedding);
   }
 
   private createForm() {
@@ -66,10 +67,11 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
           [Validators.required],
         ],
       }),
+      buttonUrl: this.fb.group({}),
       media: this.fb.group({}),
       plugin: this.fb.group({}),
       textMedium: this.fb.group({}),
-      titleButton: this.fb.group({}),
+      title: this.fb.group({}),
     });
 
     this.subscription?.unsubscribe();
@@ -87,6 +89,20 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
         type: embedding.type,
       },
     });
+  }
+
+  private initButtonUrlForm(embedding: PageEmbeddingEntity): void {
+    this.initTranslatableControl(
+      this.form.controls.buttonUrl,
+      'button',
+      embedding
+    );
+
+    this.initValueControl(
+      this.form.controls.buttonUrl,
+      'url',
+      embedding
+    );
   }
 
   private initMultiMediaForm(embedding: PageEmbeddingEntity): void {
@@ -124,7 +140,7 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
   }
 
   private initTextMediumForm(embedding: PageEmbeddingEntity) {
-    this.initContentControl(
+    this.initTranslatableControl(
       this.form.controls.textMedium,
       'text',
       embedding
@@ -143,33 +159,27 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
         })
       );
     }
-
   }
 
-  private initTitleButtonForm(embedding: PageEmbeddingEntity): void {
-    this.initContentControl(
-      this.form.controls.titleButton,
+  private initTitleForm(embedding: PageEmbeddingEntity): void {
+    this.initTranslatableControl(
+      this.form.controls.title,
       'title',
       embedding
     );
-    this.initContentControl(
-      this.form.controls.titleButton,
-      'button',
-      embedding
-    );
   }
 
-  private initContentControl(
+  private initTranslatableControl(
     formGroup: FormGroup<{}>,
     field: PageEmbeddingFormFieldType,
     embedding: PageEmbeddingEntity
   ) {
     const attribute = this.findAttribute(field, embedding);
     if (attribute) {
-      attribute?.content
+      attribute?.translatable
         ? formGroup.addControl(field,
             this.fb.group({
-              value: [attribute.content],
+              value: [attribute.translatable],
               type: {
                 id: attribute.type?.id,
                 code: attribute.type?.code,
@@ -177,17 +187,37 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
             })
           )
         : this.translationService
-            .translatable(attribute, 'content')
+            .translatable(attribute, 'translatable')
             .pipe(take(1))
-            .subscribe((content) =>
+            .subscribe(translatable =>
               formGroup.addControl(field, this.fb.group({
-                value: [content],
+                value: [translatable],
                 type: {
                   id: attribute.type?.id,
                   code: attribute.type?.code
                 }
               }))
             );
+    }
+  }
+
+  private initValueControl(
+    formGroup: FormGroup<{}>,
+    field: PageEmbeddingFormFieldType,
+    embedding: PageEmbeddingEntity
+  ) {
+    const attribute = this.findAttribute(field, embedding);
+
+    if (attribute) {
+      formGroup.addControl(field,
+        this.fb.group({
+          value: [attribute.value],
+          type: {
+            id: attribute.type?.id,
+            code: attribute.type?.code,
+          }
+        })
+      )
     }
   }
 
@@ -223,69 +253,113 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
   private createAttributeValues(): Maybe<Maybe<PageAttributeEntity>[]> {
     const attributes: PageAttributeEntity[] = [];
 
-    if (this.hasControl(this.form.controls.titleButton, 'button')) {
-      attributes.push(this.createContentValue(this.form.controls.titleButton, 'button'));
+    if (this.hasControl(this.form.controls.buttonUrl, 'button')) {
+      const attribute = this.createTranslatableValue(this.form.controls.buttonUrl, 'button');
+      if (attribute) {
+        attributes.push(attribute);
+      }
     }
 
     if (this.hasControl(this.form.controls.textMedium, 'text')) {
-      attributes.push(this.createContentValue(this.form.controls.textMedium, 'text'));
+      const attribute = this.createTranslatableValue(this.form.controls.textMedium, 'text');
+      if (attribute) {
+        attributes.push(attribute);
+      }
     }
 
-    if (this.hasControl(this.form.controls.titleButton, 'title')) {
-      attributes.push(this.createContentValue(this.form.controls.titleButton, 'title'));
+    if (this.hasControl(this.form.controls.title, 'title')) {
+      const attribute = this.createTranslatableValue(this.form.controls.title, 'title');
+      if (attribute) {
+        attributes.push(attribute);
+      }
     }
 
     if (this.hasControl(this.form.controls.textMedium, 'media')) {
-      attributes.push(this.createMediaValue(this.form.controls.textMedium, 'media'));
+      const attribute = this.createMediaValue(this.form.controls.textMedium, 'media');
+      if (attribute) {
+        attributes.push(attribute);
+      }
     }
 
     if (this.hasControl(this.form.controls.media, 'multimedia')) {
-      attributes.push(this.createMediaValue(this.form.controls.media, 'multimedia'));
+      const attribute = this.createMediaValue(this.form.controls.media, 'multimedia');
+      if (attribute) {
+        attributes.push(attribute);
+      }
     }
 
     if (this.hasControl(this.form.controls.plugin, 'plugin')) {
-      attributes.push(this.createPluginValue());
+      const attribute = this.createPluginValue();
+      if (attribute) {
+        attributes.push(attribute);
+      }
+    }
+
+    if (this.hasControl(this.form.controls.buttonUrl, 'url')) {
+      const attribute = this.createNonTranslatableValue(this.form.controls.buttonUrl, 'url')
+      if (attribute) {
+        attributes.push(attribute);
+      }
     }
 
     return attributes;
   }
   
-  private createContentValue(
+  private createTranslatableValue(
     parent: FormGroup<{}>,
     field: string
-  ): PageAttributeEntity {
+  ): Maybe<PageAttributeEntity> {
     const group = parent.get(field);
-    return {
-      content: group?.get('value')?.value as unknown as string,
-      type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
-    };
+    return group?.get('value')?.value
+      ? {
+          translatable: group?.get('value')?.value as unknown as string,
+          type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
+        }
+      : undefined;
   }
 
   private createMediaValue(
     parent: FormGroup<{}>,
     field: string
-  ): PageAttributeEntity {
+  ): Maybe<PageAttributeEntity> {
     const group = parent.get(field);
-    return {
-      references: (group?.get('value')?.value as unknown as MediaEntity[])?.map(media => ({
-        media
-      })),
-      type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
-    }
+    return group?.get('value')?.value 
+      ? {
+          references: (group?.get('value')?.value as unknown as MediaEntity[])?.map(media => ({
+            media
+          })),
+          type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
+        }
+      : undefined;
   }
 
-  private createPluginValue(): PageAttributeEntity {
+  private createPluginValue(): Maybe<PageAttributeEntity> {
     const group = this.form.controls.plugin.get('plugin');
-    return         {
-      references: [
-        {
-          plugin: {
-            id: group?.get('value')?.value as unknown as string
-          }
+    return group?.get('value')?.value
+      ? {
+          references: [
+            {
+              plugin: {
+                id: group?.get('value')?.value as unknown as string
+              }
+            }
+          ],
+          type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
         }
-      ],
-      type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
-    }
+      : undefined;
+  }
+
+  private createNonTranslatableValue(
+    parent: FormGroup<{}>,
+    field: string
+  ): Maybe<PageAttributeEntity> {
+    const group = parent.get(field);
+    return group?.get('value')?.value 
+      ? {
+          value: group?.get('value')?.value as unknown as string,
+          type: group?.get('type')?.value as unknown as PageAttributeTypeEntity
+        }
+      : undefined;
   }
 
   public ngOnDestroy(): void {

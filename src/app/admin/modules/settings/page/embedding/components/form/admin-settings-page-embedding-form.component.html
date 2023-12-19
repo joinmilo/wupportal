@@ -22,23 +22,37 @@
       </mat-form-field>
     </app-row>
   }
-  @if (hasControl(form.controls.titleButton, 'title')
-    || hasControl(form.controls.titleButton, 'button')) {
+
+  @if (hasControl(form.controls.title, 'title')) {
+  <app-row
+    columns="2"
+    [formGroup]="form.controls.title">
+    <mat-form-field
+        appearance="outline">
+        <mat-label appLabel="title"></mat-label>
+        <input matInput [formControl]="getControl(form.controls.title, 'title')">
+      </mat-form-field>
+  </app-row>
+}
+
+  @if (hasControl(form.controls.buttonUrl, 'button')
+    || hasControl(form.controls.buttonUrl, 'url')) {
     <app-row
       columns="2"
-      [formGroup]="form.controls.titleButton">
-      @if (hasControl(form.controls.titleButton, 'title')) {
+      [formGroup]="form.controls.buttonUrl">
+      @if (hasControl(form.controls.buttonUrl, 'button')) {
         <mat-form-field
           appearance="outline">
-          <mat-label appLabel="title"></mat-label>
-          <input matInput [formControl]="getControl(form.controls.titleButton, 'title')">
+          <mat-label appLabel="buttonText"></mat-label>
+          <input matInput [formControl]="getControl(form.controls.buttonUrl, 'button')">
         </mat-form-field>
       }
-      @if (hasControl(form.controls.titleButton, 'button')) {
+
+      @if (hasControl(form.controls.buttonUrl, 'url')) {
         <mat-form-field
           appearance="outline">
           <mat-label appLabel="buttonUrl"></mat-label>
-          <input matInput [formControl]="getControl(form.controls.titleButton, 'button')">
+          <input matInput [formControl]="getControl(form.controls.buttonUrl, 'url')">
         </mat-form-field>
       }
     </app-row>

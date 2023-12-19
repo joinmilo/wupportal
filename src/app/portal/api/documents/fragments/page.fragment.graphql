@@ -14,9 +14,10 @@ fragment Page on PageEntity {
     order
     attributes {
       id
+      value
       translatables {
         id
-        content
+        translatable
         language {
           ...Language
         }

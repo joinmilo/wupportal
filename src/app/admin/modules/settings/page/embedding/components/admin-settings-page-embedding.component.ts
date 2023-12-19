@@ -111,7 +111,8 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
           order,
           attributes: input.embedding.attributes?.map(attribute => ({
             id: attribute?.id,
-            content: attribute?.content,
+            translatable: attribute?.translatable,
+            value: attribute?.value,
             references: attribute?.references?.map(reference => ({
               id: reference?.id,
               plugin: reference?.plugin?.id

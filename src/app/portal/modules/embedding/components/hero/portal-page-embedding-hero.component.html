@@ -4,16 +4,18 @@
     <div>
       <div id="wrapper">
         <div id="container">
-          <span id="text">{{element?.title | translatable: "content" | async}}</span>
+          <span id="text">{{element?.title | translatable: 'translatable' | async}}</span>
         </div>
       </div>
 
-      <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+      <p [innerHTML]="element?.text | translatable: 'translatable' | async"></p>
 
-      @if (element?.button) {
+      @if (element?.url) {
         <a mat-raised-button
-          [routerLink]="element?.button | translatable: 'content' | async"
-          appLabel="learnMore">
+          [href]="element?.url"
+          [appLabel]="element?.button
+            ? (element?.button | translatable: 'translatable' | async)
+            : 'learnMore'">
         </a>
       }
     </div>

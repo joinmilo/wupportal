@@ -5,12 +5,12 @@
     <section>
       @if (element?.title) {
         <h1 class="mat-headline-4">
-          {{ element?.title | translatable: 'content' | async }}
+          {{ element?.title | translatable: 'translatable' | async }}
         </h1>
       }
   
       @if (element?.text) {
-        <p [innerHTML]="element?.text | translatable: 'content' | async"></p>
+        <p [innerHTML]="element?.text | translatable: 'translatable' | async"></p>
       }
     </section>
   </div>

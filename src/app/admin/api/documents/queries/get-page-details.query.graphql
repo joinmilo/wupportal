@@ -18,7 +18,8 @@ query getPageDetails(
 
       attributes {
         id
-        content
+        translatable
+        value
 
         references {
           id
@@ -34,7 +35,7 @@ query getPageDetails(
 
         translatables {
           id
-          content 
+          translatable 
           language {
             ...Language
           }
