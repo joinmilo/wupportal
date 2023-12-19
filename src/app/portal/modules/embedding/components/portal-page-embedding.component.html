@@ -1,6 +1,13 @@
 <div>
   @for (group of groups; track group) {
     @switch (group?.type?.code) {
+
+      @case ('text_banner') {
+        <app-portal-page-embedding-banner
+          [embeddings]="group.embeddings">
+        </app-portal-page-embedding-banner>
+      }
+
       @case ('box') {
         <app-portal-page-embedding-box
           [embeddings]="group.embeddings">

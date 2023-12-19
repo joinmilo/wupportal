@@ -1,0 +1,13 @@
+@for (element of elements; track element) {
+  <section>
+    @if (element?.title) {
+      <h1 class="mat-headline-4">
+        {{ element?.title | translatable: 'content' | async }}
+      </h1>
+    }
+
+    @if (element?.text) {
+      <span [innerHTML]="element?.text | translatable: 'content' | async"></span>
+    }
+  </section>
+}
