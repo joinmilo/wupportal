@@ -14,7 +14,6 @@ export class PortalPageEmbeddingPluginComponent {
   @Input({ required: true })
   public set embeddings(embeddings: Maybe<Maybe<PageEmbeddingEntity>[]>) {
     this.elements = mapEmbeddingsToAttributes(embeddings);
-    console.log(this.elements)
   }
 
   public elements?: Maybe<Maybe<PageEmbeddingAttributes>[]>;

@@ -13,9 +13,7 @@ export class PortalPageEmbeddingTextMediaComponent {
   
   @Input({ required: true })
   public set embeddings(embeddings: Maybe<Maybe<PageEmbeddingEntity>[]>) {
-    console.log(embeddings)
     this.elements = mapEmbeddingsToAttributes(embeddings);
-
   }
 
   public elements: Maybe<Maybe<PageEmbeddingAttributes>[]> = [];
