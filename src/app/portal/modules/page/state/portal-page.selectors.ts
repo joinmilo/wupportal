@@ -8,8 +8,3 @@ export const selectPage = createSelector(
   selectPortalPageState,
   state => state.page
 );
-
-export const selectPageMedia = createSelector(
-  selectPortalPageState,
-  state => state.page?.uploads?.map(upload => upload?.media ?? {})
-);

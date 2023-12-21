@@ -1,4 +1,4 @@
-<app-page-title [title]="page | translatable: 'name' | async">
+<app-page-title [title]="page?.label">
 </app-page-title>
 
 <button mat-flat-button color="primary" [routerLink]="['form']">

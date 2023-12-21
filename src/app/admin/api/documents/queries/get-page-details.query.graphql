@@ -4,12 +4,7 @@ query getPageDetails(
     id
     slug
     isLanding
-    name
-    content
-    shortDescription
-    metaDescription
-    callText
-    callUrl
+    label
 
     embeddings {
       id
@@ -58,24 +53,6 @@ query getPageDetails(
               ...Language
             }
           }
-      }
-    }
-
-    uploads {
-      id
-      title
-      media {
-        ...Media
-      }
-    }
-
-    translatables {
-      id
-      name
-      content
-      shortDescription
-      language {
-        ...Language
       }
     }
   }

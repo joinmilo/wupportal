@@ -8,8 +8,3 @@ export const selectAdminSettingsPageDetailsLanding = createSelector(
   selectAdminSettingsPageDetailsLandingState,
   state => state.details
 );
-
-export const selectAdminSettingsPageDetailsLandingMedia = createSelector(
-  selectAdminSettingsPageDetailsLandingState,
-  state => state.details?.uploads?.map(upload => upload?.media ?? {})
-);

@@ -1,36 +1,19 @@
-<div>
-  <section class="border-box">
-    <app-details-title titleLabel="media" [link]="['./form']"
-      linkIcon="pen-to-square">
-    </app-details-title>
-    <app-media-slider *ngIf="media && media.length"
-      [media]="media" titleType="NONE"></app-media-slider>
-  </section>
-</div>
+<!-- TODO: Create a proper details view for embeddings displaying all attributes -->
+<div class="border-box">
+  <app-details-title titleLabel="content" [link]="['./form']"
+    linkIcon="pen-to-square">
+  </app-details-title>
 
-<div>
-  <section class="border-box">
-    <app-details-title titleLabel="shortDescription"
-      [link]="['./form']" linkIcon="pen-to-square">
-    </app-details-title>
-    <p
-      [innerHtml]="page | translatable : 'shortDescription' | async">
-    </p>
-  </section>
-
-  <section class="border-box">
-    <app-details-title titleLabel="description"
-      [link]="['./form']" linkIcon="pen-to-square">
-    </app-details-title>
-    <p #contentParagraph
-      [innerHtml]="page | translatable : 'content' | async"></p>
-    <a
-      *ngIf="expanded"
-      mat-button (click)="toggleShowMore()"
-      appLabel="showLess"></a>
-    <a
-      *ngIf="contentParagraph.scrollHeight > contentParagraph.clientHeight"
-      mat-button (click)="toggleShowMore()"
-      appLabel="showMore"></a>
+  <section>
+    @for(embedding of page?.embeddings; track embedding) {
+      <article>
+        <strong>
+          {{ embedding?.label }}
+        </strong>
+        <small>
+          {{ embedding?.type | translatable: 'name' | async }}
+        </small>
+      </article>
+    }
   </section>
 </div>

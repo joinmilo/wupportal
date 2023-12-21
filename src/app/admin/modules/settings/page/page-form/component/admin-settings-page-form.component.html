@@ -6,46 +6,16 @@
   <app-form-step titleLabel="content" [formGroup]="contentForm">
     <app-row columns="2">
       <mat-form-field appearance="outline">
-        <mat-label appLabel="name"></mat-label>
-        <input matInput formControlName="name">
+        <mat-label appLabel="label"></mat-label>
+        <input matInput formControlName="label">
       </mat-form-field>
     </app-row>
 
-    <app-row columns="1">
-      <app-ck-editor-form formControlName="content"></app-ck-editor-form>
-    </app-row>
-  </app-form-step>
-
-  <app-form-step titleLabel="media" [formGroup]="uploadsForm">
-    <app-media-form [titleToggle]="true" formControlName="uploads">
-    </app-media-form>
-  </app-form-step>
-
-  <app-form-step titleLabel="shortDescription" [formGroup]="shortDescriptionForm">
-    <app-row columns="2">
-      <mat-form-field appearance="outline">
-        <mat-label appLabel="shortDescription"></mat-label>
-        <textarea matInput formControlName="shortDescription" rows="5">
-        </textarea>
-      </mat-form-field>
-    </app-row>
+    <app-admin-settings-page-embedding formControlName="embeddings">
+    </app-admin-settings-page-embedding>
   </app-form-step>
 
   <app-form-step titleLabel="additionalInfo" [formGroup]="additionalInfoForm">
-    <app-row columns="2">
-      <mat-form-field appearance="outline">
-        <mat-label appLabel="callText"></mat-label>
-        <input matInput formControlName="callText">
-      </mat-form-field>
-    </app-row>
-
-    <app-row columns="2">
-      <mat-form-field appearance="outline">
-        <mat-label appLabel="callUrl"></mat-label>
-        <input matInput formControlName="callUrl">
-      </mat-form-field>
-    </app-row>
-
     <app-row columns="2">
       <mat-form-field appearance="outline">
         <mat-label appLabel="metaDescription"></mat-label>
@@ -53,11 +23,6 @@
         </textarea>
       </mat-form-field>
     </app-row>
-  </app-form-step>
-
-  <app-form-step titleLabel="pageContent" [formGroup]="embeddingsForm">
-    <app-admin-settings-page-embedding formControlName="embeddings">
-    </app-admin-settings-page-embedding>
   </app-form-step>
 
 </app-form-stepper>

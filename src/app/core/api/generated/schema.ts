@@ -4364,22 +4364,17 @@ export type PageEmbeddingTypeTranslatableEntityInput = {
 
 export type PageEntity = {
   __typename?: 'PageEntity';
-  callText?: Maybe<Scalars['String']['output']>;
-  callUrl?: Maybe<Scalars['String']['output']>;
-  content?: Maybe<Scalars['String']['output']>;
   created?: Maybe<Scalars['OffsetDateTime']['output']>;
   embeddings?: Maybe<Array<Maybe<PageEmbeddingEntity>>>;
   id?: Maybe<Scalars['String']['output']>;
   isLanding?: Maybe<Scalars['Boolean']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
   menuItems?: Maybe<Array<Maybe<MenuItemEntity>>>;
   metaDescription?: Maybe<Scalars['String']['output']>;
   modified?: Maybe<Scalars['OffsetDateTime']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
   searchStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   shortDescription?: Maybe<Scalars['String']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
-  translatables?: Maybe<Array<Maybe<PageTranslatableEntity>>>;
-  uploads?: Maybe<Array<Maybe<PageMediaEntity>>>;
   visitorStatistics?: Maybe<Array<Maybe<AnalyticsDto>>>;
   visitors?: Maybe<Array<Maybe<PageVisitorEntity>>>;
 };
@@ -4399,63 +4394,17 @@ export type PageEntityVisitorStatisticsArgs = {
 };
 
 export type PageEntityInput = {
-  callText?: InputMaybe<Scalars['String']['input']>;
-  callUrl?: InputMaybe<Scalars['String']['input']>;
-  content?: InputMaybe<Scalars['String']['input']>;
   created?: InputMaybe<Scalars['OffsetDateTime']['input']>;
   embeddings?: InputMaybe<Array<InputMaybe<PageEmbeddingEntityInput>>>;
   id?: InputMaybe<Scalars['String']['input']>;
   isLanding?: InputMaybe<Scalars['Boolean']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
   menuItems?: InputMaybe<Array<InputMaybe<MenuItemEntityInput>>>;
   metaDescription?: InputMaybe<Scalars['String']['input']>;
   modified?: InputMaybe<Scalars['OffsetDateTime']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
   shortDescription?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
-  translatables?: InputMaybe<Array<InputMaybe<PageTranslatableEntityInput>>>;
-  uploads?: InputMaybe<Array<InputMaybe<PageMediaEntityInput>>>;
   visitors?: InputMaybe<Array<InputMaybe<PageVisitorEntityInput>>>;
-};
-
-export type PageMediaEntity = {
-  __typename?: 'PageMediaEntity';
-  created?: Maybe<Scalars['OffsetDateTime']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
-  media?: Maybe<MediaEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']['output']>;
-  page?: Maybe<PageEntity>;
-  title?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type PageMediaEntityInput = {
-  created?: InputMaybe<Scalars['OffsetDateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  media?: InputMaybe<MediaEntityInput>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']['input']>;
-  page?: InputMaybe<PageEntityInput>;
-  title?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type PageTranslatableEntity = {
-  __typename?: 'PageTranslatableEntity';
-  callText?: Maybe<Scalars['String']['output']>;
-  content?: Maybe<Scalars['String']['output']>;
-  created?: Maybe<Scalars['OffsetDateTime']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
-  language?: Maybe<LanguageEntity>;
-  modified?: Maybe<Scalars['OffsetDateTime']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  shortDescription?: Maybe<Scalars['String']['output']>;
-};
-
-export type PageTranslatableEntityInput = {
-  callText?: InputMaybe<Scalars['String']['input']>;
-  content?: InputMaybe<Scalars['String']['input']>;
-  created?: InputMaybe<Scalars['OffsetDateTime']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
-  modified?: InputMaybe<Scalars['OffsetDateTime']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  shortDescription?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PageVisitorEntity = {

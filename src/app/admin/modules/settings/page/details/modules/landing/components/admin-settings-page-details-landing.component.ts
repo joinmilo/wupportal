@@ -34,16 +34,7 @@ export class AdminSettingsPageDetailsLandingComponent implements OnInit, OnDestr
       tap(params => this.store.dispatch(AdminSettingsPageDetailsLandingActions.getDetails(params[slug] || ''))),
       switchMap(() => this.store.select(selectAdminSettingsPageDetailsLanding)),
       takeUntil(this.destroy)
-    ).subscribe(page => {
-      this.page = page;
-      this.media = page?.uploads?.map(pageMedia => pageMedia?.media)
-        ?.slice(0, 10) as MediaEntity[];
-    });
-  }
-
-  toggleShowMore() {
-    this.contentParagraph?.nativeElement.classList.toggle('expanded');
-    this.expanded = !this.expanded;
+    ).subscribe(page => this.page = page);
   }
 
   ngOnDestroy(): void {

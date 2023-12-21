@@ -29,7 +29,7 @@ export class AdminSettingsPageEffects {
 
   deletePage = createEffect(() => this.actions.pipe(
     ofType(AdminSettingsPageActions.deletePage),
-    switchMap(action => this.dialog.open(ConfirmDeleteComponent, { data: action.page?.name})
+    switchMap(action => this.dialog.open(ConfirmDeleteComponent, { data: action.page?.label })
       .afterClosed().pipe(
         switchMap(confirmed => confirmed
           ? of(action.page)

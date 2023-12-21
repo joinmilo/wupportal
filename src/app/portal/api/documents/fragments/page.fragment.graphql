@@ -1,14 +1,7 @@
 fragment Page on PageEntity {
   id
-  callUrl
+  label
   slug
-  uploads {
-    id
-    title
-    media {
-      ...Media
-    }
-  }
   embeddings {
     id
     order
@@ -43,18 +36,6 @@ fragment Page on PageEntity {
     type {
       id
       code
-    }
-  }
-  translatables {
-    id
-    callText
-    content
-    shortDescription
-    name
-    language {
-      id
-      locale
-      name
     }
   }
 }
