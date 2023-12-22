@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe, PageEmbeddingEntity, PageEmbeddingTypeEntity } from 'src/app/core/api/generated/schema';
-import { TranslationService } from 'src/app/core/services/translation.service';
 import { AdminSettingsPageEmbeddingActions } from '../state/admin-settings-page-embedding.actions';
 import { AdminSettingsPageEmbeddingDialogComponent } from './dialog/admin-settings-page-embedding-dialog.component';
 
@@ -48,7 +47,6 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
     private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
     private store: Store,
-    private translationService: TranslationService,
   ) {
     this.store.dispatch(AdminSettingsPageEmbeddingActions.getPlugins());
   }
@@ -159,6 +157,7 @@ export class AdminSettingsPageEmbeddingComponent implements ControlValueAccessor
           embedding,
           expanded: false,
         }));
+      this.emit();
       this.cdr.detectChanges();
     }
   }
