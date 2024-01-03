@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
-import { AnalyticsDto, Maybe } from 'src/app/core/api/generated/schema';
+import { AnalyticsDto, AnalyticsEntry, Maybe } from 'src/app/core/api/generated/schema';
 import { maxRatingConfig } from 'src/app/core/constants/configuration.constants';
 import { CoreUserActions } from 'src/app/core/state/actions/core-user.actions';
 import { selectConfiguration } from 'src/app/core/state/selectors/core.selectors';
@@ -15,7 +15,11 @@ import { selectIsAuthenticated } from 'src/app/core/state/selectors/user.selecto
 export class RatingComponent {
 
   @Input()
-  public ratings?: Maybe<AnalyticsDto>;
+  public set ratings(ratings: Maybe<AnalyticsDto>) {
+    this.series = ratings?.series?.reverse();
+  }
+
+  public series?: Maybe<Maybe<AnalyticsEntry>[]>;
 
   @Input()
   public currentValue?: Maybe<number>;
