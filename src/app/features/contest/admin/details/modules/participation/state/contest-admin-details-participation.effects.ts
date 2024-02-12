@@ -81,7 +81,7 @@ export class ContestAdminDetailsParticipationEffects {
     )
   );
 
-  ParticipationDeleted = createEffect(() =>
+  participationDeleted = createEffect(() =>
     this.actions.pipe(
       ofType(ContestAdminDetailsParticipationActions.participationDeleted),
       map(() =>
@@ -96,15 +96,12 @@ export class ContestAdminDetailsParticipationEffects {
   changePlacement = createEffect(() =>
     this.actions.pipe(
       ofType(ContestAdminDetailsParticipationActions.changePlacement),
-      switchMap((action) => {
-        const entityInput = {
+      switchMap((action) => this.saveContestParticipationService.mutate({
+        entity: {
           id: action.participation?.id,
           placement: action.participation?.placement || null,
-        };
-        return this.saveContestParticipationService.mutate({
-          entity: entityInput,
-        });
-      }),
+        },
+      })),
       map(() => ContestAdminDetailsParticipationActions.placementChanged())
     )
   );
@@ -112,15 +109,12 @@ export class ContestAdminDetailsParticipationEffects {
   changeApproved = createEffect(() =>
     this.actions.pipe(
       ofType(ContestAdminDetailsParticipationActions.changeApproved),
-      switchMap((action) => {
-        const entityInput = {
+      switchMap((action) => this.saveContestParticipationService.mutate({
+        entity: {
           id: action.participation?.id,
           approved: !action.participation?.approved,
-        };
-        return this.saveContestParticipationService.mutate({
-          entity: entityInput,
-        });
-      }),
+        },
+      })),
       map(() => ContestAdminDetailsParticipationActions.approvedChanged())
     )
   );

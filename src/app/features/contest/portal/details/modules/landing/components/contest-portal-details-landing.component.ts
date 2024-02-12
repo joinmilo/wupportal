@@ -9,7 +9,7 @@ import {
 } from 'src/app/core/api/generated/schema';
 import { slug } from 'src/app/core/constants/queryparam.constants';
 import { SchemaService } from 'src/app/core/services/schema.service';
-import { participationFormRoute } from '../../../constants/contest-details.constant';
+import { participationRoute, voteRoute } from '../../../constants/contest-details.constant';
 import { ContestPortalDetailsLandingActions } from '../state/portal-contest-details-landing.actions';
 import { selectContestDetails, selectMaxParticipationsReached } from '../state/portal-contest-details-landing.selectors';
 
@@ -30,7 +30,8 @@ export class ContestPortalDetailsLandingComponent implements OnInit, OnDestroy {
   
   public maxParticipationsReached = this.store.select(selectMaxParticipationsReached);
 
-  public participationFormRoute = participationFormRoute;
+  public participationRoute = participationRoute;
+  public voteRoute = voteRoute;
 
   private destroy = new Subject<void>();
 

@@ -23,7 +23,7 @@
             <img src="assets/draw.svg" />
             <a mat-raised-button color="primary"
               [appLabel]="(maxParticipationsReached | async) ? 'maxParticipationsReached' : 'participate'"
-              [routerLink]="[participationFormRoute]"
+              [routerLink]="[participationRoute]"
               [disabled]="(maxParticipationsReached | async)">
             </a>
           </section>
@@ -34,7 +34,7 @@
             <img src="assets/vote.svg" />
             <a mat-raised-button color="primary"
                appLabel="vote"
-               [routerLink]="'participations'">
+               [routerLink]="voteRoute">
             </a>
           </section>
         }

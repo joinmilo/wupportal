@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   standalone: true,
 })
 export class ConfettiComponent {
+
+  public amount = 20;
 }

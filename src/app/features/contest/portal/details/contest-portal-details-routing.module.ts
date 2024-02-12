@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from 'src/app/core/guards/auth-guard.service';
-import { commentsRoute, participationFormRoute, participationsRoute, winnersRoute } from './constants/contest-details.constant';
+import { commentsRoute, participationRoute, voteRoute, winnersRoute } from './constants/contest-details.constant';
 import { ContestPortalDetailsCommentsComponent } from './modules/comments/components/contest-portal-details-comments.component';
 import { ContestPortalDetailsParticipationFormComponent } from './modules/participation-form/components/portal-contest-details-participation-form.component';
 import { ContestPortalDetailsVoteComponent } from './modules/vote/components/contest-portal-details-vote.component';
@@ -14,13 +14,13 @@ const routes: Routes = [
       .then((imported) => imported.ContestPortalDetailsLandingModule),
   },
     {
-    path: participationsRoute,
+    path: voteRoute,
     loadChildren: () => import('./modules/vote/contest-portal-details-vote.module')
       .then((imported) => imported.ContestPortalDetailsVoteModule),
         component: ContestPortalDetailsVoteComponent
   },
   {
-    path: participationFormRoute,
+    path: participationRoute,
     loadChildren: () => import('./modules/participation-form/contest-portal-details-participation-form.module')
       .then((imported) => imported.ContestPortalDetailsParticipationFormModule),
         component: ContestPortalDetailsParticipationFormComponent,

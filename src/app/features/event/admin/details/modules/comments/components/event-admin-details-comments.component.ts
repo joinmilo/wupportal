@@ -3,14 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { EventCommentEntity, FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
+import { slug } from 'src/app/core/constants/queryparam.constants';
 import { TranslationService } from 'src/app/core/services/translation.service';
 import { Period } from 'src/app/core/typings/period';
 import { Column, RowAction } from 'src/app/shared/widgets/table/typings/table';
 import { EventAdminDetailsCommentsActions } from '../state/event-admin-details-comments.actions';
 import { selectEventAdminDetailsComments } from '../state/event-admin-details-comments.selectors';
-import { slug } from './../../../../../../../core/constants/queryparam.constants';
-
-
 
 @Component({
   selector: 'app-event-admin-details-comments',

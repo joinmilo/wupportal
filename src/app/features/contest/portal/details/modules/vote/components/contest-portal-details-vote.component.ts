@@ -108,7 +108,7 @@ export class ContestPortalDetailsVoteComponent implements OnInit, OnDestroy {
         (vote) => vote?.userContext?.id == this.currentUser?.id
       ).length != 0
     ) {
-      actionInfo.label = 'allreadyVoted';
+      actionInfo.label = 'alreadyVoted';
       actionInfo.disabled = true;
     }
     return actionInfo;

@@ -104,6 +104,8 @@ export class SchemaService {
     switch(entity) {
       case 'ArticleEntity':
         return this.articleArrayToSchema(data as ArticleEntity[]);
+      case 'ContestEntity':
+        return this.contestArrayToSchema(data as ContestEntity[]);
       case 'DealEntity':
         return this.dealArrayToSchema(data as DealEntity[]); 
       case 'EventEntity':
@@ -114,8 +116,6 @@ export class SchemaService {
         return this.pageArrayToSchema(data as PageEntity[]);  
       case 'UserContextEntity':
         return this.userContextArrayToSchema(data as UserContextEntity[]);
-      case 'ContestEntity':
-        return this.contestArrayToSchema(data as ContestEntity[]);        
       default:
         return undefined;
     }
@@ -128,6 +128,8 @@ export class SchemaService {
     switch(entity) {
       case 'ArticleEntity':
         return this.articleToSchema(data as ArticleEntity);
+      case 'ContestEntity':
+        return this.contestToSchema(data as ContestEntity);
       case 'DealEntity':
         return this.dealToSchema(data as DealEntity);
       case 'EventEntity':
@@ -140,8 +142,6 @@ export class SchemaService {
         return this.pageToSchema(data as PageEntity);
       case 'UserContextEntity':
         return this.userContextToSchema(data as UserContextEntity);
-      case 'ContestEntity':
-        return this.contestToSchema(data as ContestEntity);        
       default:
         return undefined;
     }
@@ -203,12 +203,12 @@ export class SchemaService {
         entity?.contact?.email,
         entity?.contact?.name,
         entity?.contact?.phone,
-        ),
+      ),
       entity?.content,
       entity?.voteEndDate,
       entity?.created,
       this.getParticipantOfContest(entity)
-      );
+    );
   }
 
   private getParticipantOfContest = (entity?: Maybe<ContestEntity>): Maybe<Maybe<PersonSchema>[]> => {
