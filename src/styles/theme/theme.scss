@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 @import 'ngx-cinlib/styles/theme-palette.scss';
-@import 'ngx-cinlib/styles/mobile-mixins.scss';
 
 @include mat.core();
 

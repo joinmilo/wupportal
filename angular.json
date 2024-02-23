@@ -30,7 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/variables.scss",
+              "ngx-cinlib/styles/variables.scss",
               "ngx-cinlib/styles/theme-palette.scss",
               "src/styles/theme/theme.scss",
               "ngx-cinlib/styles/components.scss",
@@ -107,7 +107,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/variables.scss",
+              "ngx-cinlib/styles/variables.scss",
               "ngx-cinlib/styles/theme-palette.scss",
               "src/styles/theme/theme.scss",
               "ngx-cinlib/styles/components.scss",
