@@ -124,6 +124,11 @@ export class CoreEffects implements OnInitEffects {
     })),
   ), { dispatch: false });
 
+  changeLanguage = createEffect(() => this.actions.pipe(
+    ofType(CoreActions.changeLanguage),
+    tap(action => this.translationService.setCurrentLanguage(action.language)),
+  ), { dispatch: false });
+
   setSidenav = createEffect(() => this.actions.pipe(
     ofType(CoreActions.setSidenavComponent),
     tap(action => this.sidenavService.open(action.sidenav)),
