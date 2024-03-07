@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 import { SchemaService } from 'src/app/core/services/schema.service';
-import { PortalActions } from 'src/app/portal/state/portal.actions';
 import { selectPortalMenu } from 'src/app/portal/state/portal.selectors';
+import { portalMenuRoute } from 'src/app/portal/utils/navigation.utils';
 
 @Component({
   selector: 'app-portal-footer-desktop',
@@ -26,8 +26,8 @@ export class PortalFooterDesktopComponent implements OnDestroy {
       ?.subscribe(items => this.schemaService.addFooterSchema(items));
    }
   
-  public navigate(item: Maybe<MenuItemEntity>) {
-    this.store.dispatch(PortalActions.navigateMenu(item));
+   public route(item: Maybe<MenuItemEntity>): string[] {
+    return portalMenuRoute(item);
   }
 
   public ngOnDestroy(): void {

@@ -5,7 +5,7 @@ import { Observable, map, of } from 'rxjs';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
 import { portalUrl } from 'src/app/core/constants/module.constants';
 import { GetMenuGQL } from 'src/app/portal/api/generated/get-menu.query.generated';
-import { PortalActions } from 'src/app/portal/state/portal.actions';
+import { portalMenuRoute } from 'src/app/portal/utils/navigation.utils';
 
 
 @Component({
@@ -51,7 +51,7 @@ export class PortalMenuOverlayComponent implements OnInit {
     return icon as SolidIconsType;
   }
 
-  public route(item: Maybe<MenuItemEntity>) {
-    this.store.dispatch(PortalActions.navigateMenu(item));
+  public route(item: Maybe<MenuItemEntity>): string[] {
+    return portalMenuRoute(item);
   }
 }

@@ -3,7 +3,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Maybe, MenuItemEntity } from 'src/app/core/api/generated/schema';
-import { PortalActions } from '../../../../state/portal.actions';
+import { portalMenuRoute } from 'src/app/portal/utils/navigation.utils';
 import { selectPortalHeaderOnlyMenu, selectPortalMenu } from '../../../../state/portal.selectors';
 
 @Component({
@@ -49,8 +49,8 @@ export class PortalMenuAccordionComponent implements OnInit, OnChanges {
     return items?.sort((i1, i2) => (i1?.order || 0) - (i2?.order || 0));
   }
   
-  public navigate(item: Maybe<MenuItemEntity>) {
+  public route(item: Maybe<MenuItemEntity>): string[] {
     this.panel?.closeAll();
-    this.store.dispatch(PortalActions.navigateMenu(item));
+    return portalMenuRoute(item);
   }
 }

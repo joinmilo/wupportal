@@ -8,7 +8,6 @@ export const PortalActions = createActionGroup({
 
     'set menu': (menuItems: MenuItemEntity[]) => ({ menuItems }),
 
-    'navigate menu': (item: Maybe<MenuItemEntity>) => ({ item }),
     'navigate details': (slug?: Maybe<string>, feature?: Maybe<PluginEntity>) => ({ slug, feature }),
     'not found': emptyProps(),
   },

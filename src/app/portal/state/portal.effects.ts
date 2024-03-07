@@ -26,17 +26,6 @@ export class PortalEffects implements OnInitEffects {
     tap(action => this.router.navigate(['portal', action.feature?.code, action.slug ])),
   ), { dispatch: false });
 
-  navigateMenu = createEffect(() => this.actions.pipe(
-    ofType(PortalActions.navigateMenu),
-    tap(action => {
-      action?.item?.plugin?.code
-        ? this.router.navigate(['/', portalUrl, action.item.plugin.code])
-        : action?.item?.page?.slug
-          ? this.router.navigate(['/', portalUrl, action.item.page.slug])
-          : this.router.navigate(['/', portalUrl, '404']);
-    }),
-  ), { dispatch: false });
-
   notFound = createEffect(() => this.actions.pipe(
     ofType(PortalActions.notFound),
     tap(() => this.router.navigate(['/', portalUrl, '404'])),

@@ -26,7 +26,7 @@
       <ng-template #entries>
         <a class="subItem"
           mat-menu-item
-          [routerLink]="['/', portalUrl, subItem?.plugin?.code]">
+          [routerLink]="route(subItem)">
           <cin-icon [icon]="['fas', icon(subItem?.icon)]"></cin-icon>
           <section>
             <span>{{ subItem | translatable: 'name' | async }}</span>
