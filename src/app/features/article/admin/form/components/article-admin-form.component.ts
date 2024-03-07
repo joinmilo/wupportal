@@ -57,7 +57,7 @@ export class ArticleAdminFormComponent implements OnInit, OnDestroy {
       filter(article => !!article?.id),
       takeUntil(this.destroy),
     ).subscribe(article => {
-      
+
       this.contentForm.patchValue({
         id: article?.id,
         name: article?.name,

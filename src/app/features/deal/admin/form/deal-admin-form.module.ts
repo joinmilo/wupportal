@@ -31,6 +31,7 @@ const components = [
 
 const framework = [
   CommonModule,
+  ReactiveFormsModule,
 ];
 
 const materials = [
@@ -41,7 +42,6 @@ const materials = [
   MatSelectModule,
   FormsModule,
   MatRadioModule,
-  ReactiveFormsModule,
 ];
 
 const modules = [

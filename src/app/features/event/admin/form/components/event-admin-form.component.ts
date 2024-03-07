@@ -6,21 +6,21 @@ import { Period } from 'ngx-cinlib/core';
 import { CinValidators } from 'ngx-cinlib/forms/validators';
 import { Subject, filter, switchMap, takeUntil, tap } from 'rxjs';
 import {
-    AddressEntity,
-    ContactEntity,
-    EventMediaEntity,
-    Maybe,
-    OrganisationEntity,
-    UserContextEntity
+  AddressEntity,
+  ContactEntity,
+  EventMediaEntity,
+  Maybe,
+  OrganisationEntity,
+  UserContextEntity
 } from 'src/app/core/api/generated/schema';
 import { slug } from 'src/app/core/constants/queryparam.constants';
 import { ContactOptionEntity } from 'src/app/shared/form/contact/typings/contact-form';
 import { EventAdminFormActions } from '../state/event-admin-form.actions';
 import {
-    selectCategories,
-    selectEvent,
-    selectOrganisations,
-    selectTargetGroups,
+  selectCategories,
+  selectEvent,
+  selectOrganisations,
+  selectTargetGroups,
 } from '../state/event-admin-form.selectors';
 
 @Component({
@@ -30,8 +30,8 @@ import {
 })
 export class EventAdminFormComponent implements OnInit, OnDestroy {
   public contentForm = this.fb.group({
-    id: [undefined as Maybe<string>],
-    name: [undefined as Maybe<string>, [Validators.required]],
+    id: ['' as Maybe<string>],
+    name: ['' as Maybe<string>, [Validators.required]],
     categoryId: [undefined as Maybe<string>, [Validators.required]],
     content: [undefined as Maybe<string>, [Validators.required]],
   });
@@ -108,14 +108,13 @@ export class EventAdminFormComponent implements OnInit, OnDestroy {
   private init(): void {
     this.store
       .select(selectOrganisations)
+      .pipe(takeUntil(this.destroy))
       .subscribe((organisations) => (this.userOrganisations = organisations));
 
     this.activatedRoute.params
       .pipe(
         filter((params) => !!params[slug]),
-        tap((params) =>
-          this.store.dispatch(EventAdminFormActions.getEvent(params[slug]))
-        ),
+        tap((params) => this.store.dispatch(EventAdminFormActions.getEvent(params[slug]))),
         switchMap(() => this.store.select(selectEvent)),
         filter((event) => !!event?.id),
         takeUntil(this.destroy)
@@ -127,15 +126,13 @@ export class EventAdminFormComponent implements OnInit, OnDestroy {
             contact: event.contact,
           },
         ]);
-        this.contentForm.patchValue(
-          {
-            id: event?.id,
-            name: event?.name,
-            categoryId: event?.category?.id,
-            content: event?.content,
-          },
-          { emitEvent: false }
-        );
+
+        this.contentForm.patchValue({
+          id: event?.id,
+          name: event?.name,
+          categoryId: event?.category?.id,
+          content: event?.content,
+        }, { emitEvent: false });
 
         this.scheduleForm.patchValue(
           {
