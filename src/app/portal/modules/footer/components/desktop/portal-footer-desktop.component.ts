@@ -34,4 +34,5 @@ export class PortalFooterDesktopComponent implements OnDestroy {
     this.destroy.next();
     this.destroy.complete();
   }
+
 }
