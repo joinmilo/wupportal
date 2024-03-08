@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { logoConfig, logoTextConfig } from '../../constants/configuration.constants';
 import { selectConfiguration } from '../../state/selectors/core.selectors';
@@ -14,7 +14,7 @@ export class LogoComponent {
   public url?: string[] = ['/'];
 
   @Input()
-  public showIoconText = true;
+  public showIconText = true;
 
   public logoConfig = this.store.select(selectConfiguration(logoConfig)); 
 
@@ -23,5 +23,11 @@ export class LogoComponent {
   constructor(
     private store: Store,
   ) { }
+
+
+  @HostListener('window:scroll', ['$event'])
+  public onScroll(): void {
+    this.showIconText = window?.scrollY === 0;
+  }
   
 }

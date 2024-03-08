@@ -42,3 +42,7 @@ button {
 cin-icon {
   display: flex;
 }
+
+a[mat-stroked-button] {
+  border-color: var(--color-primary);
+}

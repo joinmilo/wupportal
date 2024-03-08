@@ -1,9 +1,13 @@
 @import 'ngx-cinlib/styles/mobile-mixins.scss';
 
 mat-toolbar {
-  background-color: white;
-  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-background);
   height: 100%;
+}
+
+.scrolled {
+  // background-color: white;
+  box-shadow: 0px 2px 8px 0px var(--color-box-shadow);
 }
 
 app-portal-header-desktop,

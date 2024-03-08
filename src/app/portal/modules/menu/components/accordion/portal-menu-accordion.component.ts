@@ -50,7 +50,11 @@ export class PortalMenuAccordionComponent implements OnInit, OnChanges {
   }
   
   public route(item: Maybe<MenuItemEntity>): string[] {
-    this.panel?.closeAll();
     return portalMenuRoute(item);
+  }
+
+  public collapse(): void {
+    this.panel?.closeAll();
+    this.itemSelected.emit();
   }
 }

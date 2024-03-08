@@ -8,7 +8,8 @@
     </mat-expansion-panel-header>
     <div class="submenu">
       <a *ngFor="let subItem of sort(menuItem.subMenuItems)"
-        [routerLink]="route(subItem)">
+        [routerLink]="route(subItem)"
+        (click)="collapse()">
         {{subItem | translatable: 'name' | async}}
       </a>
     </div>
