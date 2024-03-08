@@ -18,7 +18,6 @@ export class AdminSettingsConfigurationComponent {
     {
       icon: 'pen-to-square',
       callback: row => this.store.dispatch(AdminSettingsConfiguratioActions.saveConfiguration(row)),
-      disable: row => !!row?.media,
       tooltipLabel: 'edit',
       inlineEdit: true
     },
