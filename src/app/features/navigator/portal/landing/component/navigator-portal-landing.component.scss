@@ -2,26 +2,34 @@
 
 header {
   display: flex;
-  justify-content: center;
-  min-height: 80vh;
   gap: 5rem;
+  min-height: 80vh;
   flex-flow: row-reverse;
+  margin: 2rem;
+  justify-content: center;
 
   img {
-    max-width: 40%;
+    max-width: 30%;
     @include responsive(phone) {
       display: none;
     }
   }
 
-  cin-page-title{
-    width: min-content;
+  cin-page-title {
+    width: 75%;
+    @include responsive(phone) {
+      width: calc(100% - var(--gap));
+    }
   }
 
   section {
     display: flex;
     align-self: center;
     justify-content: center;
+
+    @include responsive(phone) {
+      align-self: auto;  
+    }
 
     div {
       display: flex;
