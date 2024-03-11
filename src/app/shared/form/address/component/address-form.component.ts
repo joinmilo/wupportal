@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import {
   AsyncValidator,
   ControlValueAccessor,
@@ -32,9 +32,11 @@ import { selectSuburbs } from '../state/address-form.selectors';
     },
   ],
 })
-export class AddressFormComponent
-  implements ControlValueAccessor, OnDestroy, AsyncValidator
-{
+export class AddressFormComponent implements ControlValueAccessor, OnDestroy, AsyncValidator {
+
+  @Input()
+  public overwrite = false;
+
   public form = this.fb.group(
     {
       id: [''],
@@ -82,7 +84,7 @@ export class AddressFormComponent
         address
           ? this.onChange?.({
               ...address,
-              id: this.form.value.id,
+              id: this.overwrite ? this.form.value.id : undefined,
               suburb: this.form.controls.suburb.value ? { id: this.form.controls.suburb.value } : null,
             })
           : this.form.setErrors({ addressInvalid: true });
