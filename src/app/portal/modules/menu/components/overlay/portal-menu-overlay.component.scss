@@ -33,16 +33,16 @@ cin-icon {
     gap: .25rem;
   }
 
-  cin-icon:first-of-type {
+  .menu-icon {
     width: 1.5rem;
   }
 
-  cin-icon:last-of-type {
+  .link-icon {
     color: transparent;
     transform: translateX(-.5rem);
   }
 
-  &:hover cin-icon:last-of-type {
+  &:hover .link-icon {
     color: inherit;
     transform: translateX(0rem);
     transition: color 0.4s, transform 0.4s;
