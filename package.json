@@ -1,6 +1,6 @@
 {
   "name": "wooportal",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -34,7 +34,7 @@
     "graphql": "^16.8.1",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
-    "ngx-cinlib": "^0.1.21",
+    "ngx-cinlib": "^0.1.22",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.2",
     "zone.js": "^0.14.2"
