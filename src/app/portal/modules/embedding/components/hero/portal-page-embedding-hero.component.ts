@@ -16,7 +16,7 @@ export class PortalPagEmbeddingHeroComponent implements OnDestroy {
   public set embeddings(embeddings: Maybe<Maybe<PageEmbeddingEntity>[]>) {
     this.element = mapEmbeddingToAttributes(embeddings?.[0]);
 
-    this.translationService.translatable(this.element?.title, 'translatable')
+    this.translationService.watchTranslatable(this.element?.title, 'translatable')
       .pipe(takeUntil(this.destroy))
       .subscribe(title => this.resizeTitleElement(title));
   }

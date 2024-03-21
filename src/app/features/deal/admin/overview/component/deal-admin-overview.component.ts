@@ -45,7 +45,7 @@ export class DealAdminOverviewComponent {
     {
       field: 'translatables.name',
       label: 'deals',
-      value: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.watchTranslatable(row.translatables, 'name')
     },
     {
       field: 'creator.user.email',

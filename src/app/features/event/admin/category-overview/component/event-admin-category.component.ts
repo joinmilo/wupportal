@@ -39,7 +39,7 @@ export class EventAdminCategoryComponent implements OnInit {
     {
       field: 'translatables.name',
       label: 'category',
-      value: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.watchTranslatable(row.translatables, 'name')
     },
     {
       field: 'icon',

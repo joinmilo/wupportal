@@ -8,7 +8,7 @@ import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/e
 import { EventFilterActions } from '../../state/event-filter.actions';
 
 @Component({
-  selector: 'app-event-filter-free>',
+  selector: 'app-event-filter-free',
   templateUrl: './event-filter-free.component.html',
   styleUrls: ['./event-filter-free.component.scss']
 })

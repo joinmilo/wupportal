@@ -33,7 +33,7 @@ export class AdminSettingsLabelComponent {
     {
       field: 'content',
       label: 'content',
-      value: (row) => this.translationService.translatable(row.translatables, 'content'),
+      value: (row) => this.translationService.watchTranslatable(row.translatables, 'content'),
       editable: true,
     },
   ];

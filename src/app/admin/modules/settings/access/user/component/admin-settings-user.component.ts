@@ -63,7 +63,7 @@ export class AdminSettingsUserComponent {
       label: 'roles',
       value: row => row.roles?.length
         ? combineLatest(
-            row.roles?.map(r => this.translationService.translatable(r, 'name'))
+            row.roles?.map(r => this.translationService.watchTranslatable(r, 'name'))
           ).pipe(map(result => result.join(', ')))
         : null
     },

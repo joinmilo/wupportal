@@ -45,12 +45,12 @@ export class AdminSettingsPrivilegeApplicationOverviewComponent {
     {
       field: 'content',
       label: 'content',
-      value: row => this.translationService.translatable(row.translatables, 'content')
+      value: row => this.translationService.watchTranslatable(row.translatables, 'content')
     },
     {
       field: 'privilege.name',
       label: 'privilege',
-      value: row => this.translationService.translatable(row?.privilege?.translatables, 'name')
+      value: row => this.translationService.watchTranslatable(row?.privilege?.translatables, 'name')
     },
   ];
   

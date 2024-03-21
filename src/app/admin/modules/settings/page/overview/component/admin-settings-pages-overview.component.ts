@@ -54,7 +54,7 @@ export class AdminSettingsPagesOverviewComponent {
     {
       field: 'menuItems',
       label: 'menu',
-      value: row => this.translationService.translatable(
+      value: row => this.translationService.watchTranslatable(
         row.menuItems?.[0]?.translatables, 'name')
     },
   ];

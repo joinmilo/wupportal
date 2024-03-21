@@ -52,7 +52,7 @@ export class OrganisationAdminDetailsCommentsComponent implements OnInit, OnDest
     {
       field: 'translatables.content',
       label: 'content',
-      value: row => this.translationService.translatable(row.translatables, 'content')
+      value: row => this.translationService.watchTranslatable(row.translatables, 'content')
     },
   ];
 

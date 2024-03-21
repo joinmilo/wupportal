@@ -89,14 +89,14 @@ export class AdminSettingsPageMenuFormComponent implements ControlValueAccessor,
         parent: menuItem.parent
       });
   
-      this.translationService.translatable(menuItem, 'name')
+      this.translationService.watchTranslatable(menuItem, 'name')
         .pipe(takeUntil(this.destroy))
         .subscribe(name => this.form.patchValue({
           id: menuItem.id,
           name
         }));
   
-      this.translationService.translatable(menuItem, 'shortDescription')
+      this.translationService.watchTranslatable(menuItem, 'shortDescription')
         .pipe(takeUntil(this.destroy))
         .subscribe(shortDescription => this.form.patchValue({
           id: menuItem.id,

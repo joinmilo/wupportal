@@ -39,12 +39,12 @@ export class ReportAdminOverviewComponent {
     {
       field: 'translatables.content',
       label: 'content',
-      value: row => this.translationService.translatable(row.translatables, 'content')
+      value: row => this.translationService.watchTranslatable(row.translatables, 'content')
     },
     {
       field: 'type.translatables.name',
       label: 'type',
-      value: row => this.translationService.translatable(row.type?.translatables, 'name')
+      value: row => this.translationService.watchTranslatable(row.type?.translatables, 'name')
     },
     {
       field: 'modified',

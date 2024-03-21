@@ -31,7 +31,7 @@ export class NavigatorPortalDetailsQuestionsChoiceComponent {
 
   public toNewPage(choice: Maybe<NavigatorChoiceEntity>){
     let choiceName: Maybe<string>;
-    this.translationService.translatable(choice?.translatables, 'name').subscribe(name => choiceName = name);
+    this.translationService.watchTranslatable(choice?.translatables, 'name').subscribe(name => choiceName = name);
 
     this.store.select(selectNavigatorStateInputs).subscribe(inputs => {
       this.inputs = inputs.slice(0, (inputs.findIndex(input => input.value == (choice?.parent?.slug ?? '')) + 1));

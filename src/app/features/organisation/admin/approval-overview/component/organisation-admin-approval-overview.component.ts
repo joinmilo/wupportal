@@ -58,7 +58,7 @@ export class OrganisationAdminApprovalOverviewComponent {
       field: 'description',
       label: 'description',
       type: 'HTML',
-      value: (row: OrganisationEntity) => this.translationService.translatable(row, 'description')
+      value: (row: OrganisationEntity) => this.translationService.watchTranslatable(row, 'description')
     },
     {
       field: 'approved',

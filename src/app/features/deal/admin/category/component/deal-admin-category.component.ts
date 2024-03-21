@@ -5,8 +5,8 @@ import { TranslationService } from 'ngx-cinlib/i18n';
 import { AuthService } from 'ngx-cinlib/security';
 import { Column, RowAction } from 'ngx-cinlib/tables';
 import {
-    DealCategoryEntity,
-    FilterSortPaginateInput,
+  DealCategoryEntity,
+  FilterSortPaginateInput,
 } from 'src/app/core/api/generated/schema';
 import { Privilege } from 'src/app/core/typings/privilege';
 import { DealAdminCategoryActions } from '../state/deal-admin-category.actions';
@@ -44,7 +44,7 @@ export class DealAdminCategoryComponent implements OnInit {
       field: 'translatables.name',
       label: 'category',
       value: (row) =>
-        this.translationService.translatable(row.translatables, 'name'),
+        this.translationService.watchTranslatable(row.translatables, 'name'),
     },
     {
       field: 'icon',

@@ -39,7 +39,7 @@ export class EventAdminTargetGroupComponent implements OnInit{
     {
       field: 'translatables.name',
       label: 'targetGroup',
-      value: row => this.translationService.translatable(row.translatables, 'name')
+      value: row => this.translationService.watchTranslatable(row.translatables, 'name')
     }
   ];
   

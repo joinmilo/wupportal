@@ -25,9 +25,9 @@ export class AdminLandingComponent implements OnInit, OnDestroy {
     .pipe(
       map(milestones => milestones?.map(milestone => (
         {
-          title: this.translationService.translatable(milestone.translatables, 'title'),
+          title: this.translationService.watchTranslatable(milestone.translatables, 'title'),
           elements: milestone.elements?.map(element =>
-            this.translationService.translatable(element?.translatables, 'name')),
+            this.translationService.watchTranslatable(element?.translatables, 'name')),
           pictureUrl: milestone.uploads?.[0]?.media?.url
         })) as FlipCardSliderInput[]
       ),

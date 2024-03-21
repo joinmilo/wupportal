@@ -6,12 +6,12 @@ import { Store } from '@ngrx/store';
 import { TranslationService } from 'ngx-cinlib/i18n';
 import { Subscription, take } from 'rxjs';
 import {
-    Maybe,
-    MediaEntity,
-    PageAttributeEntity,
-    PageAttributeTypeEntity,
-    PageEmbeddingEntity,
-    PageEmbeddingTypeEntity,
+  Maybe,
+  MediaEntity,
+  PageAttributeEntity,
+  PageAttributeTypeEntity,
+  PageEmbeddingEntity,
+  PageEmbeddingTypeEntity,
 } from 'src/app/core/api/generated/schema';
 import { selectPlugins } from '../../state/admin-settings-page-embedding.selectors';
 import { PageEmbeddingFormFieldType } from '../../typings/page-embeddings-form';
@@ -187,7 +187,7 @@ export class AdminSettingsPageEmbeddingFormComponent implements OnDestroy {
             })
           )
         : this.translationService
-            .translatable(attribute, 'translatable')
+            .watchTranslatable(attribute, 'translatable')
             .pipe(take(1))
             .subscribe(translatable =>
               formGroup.addControl(field, this.fb.group({

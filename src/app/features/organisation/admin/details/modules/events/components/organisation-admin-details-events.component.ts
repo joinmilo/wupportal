@@ -45,7 +45,7 @@ export class OrganisationAdminDetailsEventsComponent implements OnInit, OnDestro
     {
       field: 'name',
       label: 'activities',
-      // value: row => this.translationService.translatable(row.translatables, 'name')
+      // value: row => this.translationService.watchTranslatable(row.translatables, 'name')
     },
     {
       field: 'contact.name',

@@ -52,7 +52,7 @@ export class EventAdminDetailsCommentsComponent implements OnInit, OnDestroy {
     {
       field: 'translatables.content',
       label: 'content',
-      value: row => this.translationService.translatable(row.translatables, 'content')
+      value: row => this.translationService.watchTranslatable(row.translatables, 'content')
     },
   ];
 
