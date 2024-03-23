@@ -17,7 +17,7 @@ RUN \
   npm install && \
   npm run -- build && \
   mkdir -p /usr/share/webapps && \
-  mv dist/wooportal /usr/share/webapps/wooportal && \
+  mv dist/wooportal/browser /usr/share/webapps/wooportal && \
   #
   # deploy
   echo \
