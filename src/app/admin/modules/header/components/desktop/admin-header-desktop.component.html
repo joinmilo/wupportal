@@ -3,7 +3,7 @@
 
 <button mat-icon-button [matMenuTriggerFor]="userMenu">
   <cin-media-avatar  
-    *ngif="(currentUser | asyc) as currentUser"
+    *ngIf="(currentUser | async) as currentUser"
     [media]="currentUser | profilePicture"
     [name]="currentUser?.user?.firstName || currentUser?.user?.lastName">
   </cin-media-avatar>
