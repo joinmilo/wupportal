@@ -205,22 +205,6 @@ figure {
   }
 }
 
-.media-dialog {
-  .mat-mdc-dialog-container .mat-mdc-dialog-surface {
-    background-color: transparent;
-    box-shadow: none;
-    max-width: none;
-    height: 100vh;
-    width: 100vw;
-  }
-}
-
-.media-form-dialog {
-  .mat-mdc-dialog-container .mat-mdc-dialog-surface {
-    background-color: var(--color-background);
-  }
-}
-
 ::-webkit-scrollbar {
   height: .5em;
   width: .5em;
