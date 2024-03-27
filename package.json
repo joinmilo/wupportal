@@ -1,6 +1,6 @@
 {
   "name": "wooportal",
-  "version": "1.4.3-RC1",
+  "version": "1.4.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
