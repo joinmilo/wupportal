@@ -25,27 +25,21 @@ export class PortalParticipateEffects {
       search: action.query,
 
       expression: {
-        conjunction: {
+        conjunction: {          
+          operator: ConjunctionOperator.And,
           operands: [
             {
-              conjunction: {
-                operator: ConjunctionOperator.And,
-                operands: [
-                  {
-                    entity: {
-                      path: 'members.userContext.id',
-                      operator: QueryOperator.NotEqual,
-                      value: user?.id,
-                    },
-                  },
-                  {
-                    entity: {
-                      path: 'approved',
-                      operator: QueryOperator.Equal,
-                      value: true,
-                    },
-                  },
-                ],
+              entity: {
+                path: 'members.userContext.id',
+                operator: QueryOperator.NotEqual,
+                value: user?.id,
+              },
+            },
+            {
+              entity: {
+                path: 'approved',
+                operator: QueryOperator.Equal,
+                value: true,
               },
             },
           ],
