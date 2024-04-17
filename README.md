@@ -1,4 +1,4 @@
-# Wooportal client
+# Milo client
 
 ## Schema and services
 Everytime a graphql file is written, the services need to be re-generated.

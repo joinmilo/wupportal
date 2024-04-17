@@ -1,6 +1,6 @@
 FROM alpine:latest
 LABEL maintainer info@codeschluss.de
-COPY / /tmp/wooportal
+COPY / /tmp/milo
 RUN \
   #
   # packages
@@ -12,19 +12,19 @@ RUN \
   npm \
   python3 && \
   #
-  # wooportal
-  cd /tmp/wooportal && \
+  # milo
+  cd /tmp/milo && \
   npm install && \
   npm run -- build && \
   mkdir -p /usr/share/webapps && \
-  mv dist/wooportal/browser /usr/share/webapps/wooportal && \
+  mv dist/milo/browser /usr/share/webapps/milo && \
   #
   # deploy
   echo \
   'server {'  \
     'listen 80;' \
     'listen [::]:80;' \
-    'root /usr/share/webapps/wooportal;' \
+    'root /usr/share/webapps/milo;' \
     'location / {' \
       'try_files $uri /index.html;' \
     '}' \
