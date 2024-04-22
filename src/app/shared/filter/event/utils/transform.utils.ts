@@ -1,9 +1,11 @@
+import { Maybe } from 'ngx-cinlib/core';
+import { Filter } from 'ngx-cinlib/filters';
 import { FilterSortPaginateInput, QueryOperator } from 'src/app/core/api/generated/schema';
-import { EventFilterQueryDefinition, EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
+import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { createListParam } from 'src/app/core/utils/params.utils';
 
-export const createEventParams = (queryParams?: EventFilterQueryParams) => {
+export const transformFn = (queryParams?: Maybe<{ [key: string]: string }>): Filter => {
   const params = {
     expression: {
       conjunction: {
@@ -48,14 +50,14 @@ export const createEventParams = (queryParams?: EventFilterQueryParams) => {
             entity: {
               path: 'schedules.startDate',
               operator: QueryOperator.GreaterOrEqual,
-              value: queryParams?.start
+              value: queryParams[FilterQueryDefinition.startDate]
             }
           },
           {
             entity: {
               path: 'schedules.startDate',
               operator: QueryOperator.LessOrEqual,
-              value: queryParams?.end
+              value: queryParams[FilterQueryDefinition.endDate]
             }
           }
         )

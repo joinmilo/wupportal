@@ -5,7 +5,7 @@
     (events)="selectedEvents($event)">
   </app-event-calendar>
 
-  <section *ngIf="events?.length">
+  <section *ngIf="filteredEvents?.length">
     <app-card-slider
       entity="EventEntity"
       [data]="filteredEvents">

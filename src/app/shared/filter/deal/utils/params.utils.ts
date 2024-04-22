@@ -1,7 +1,9 @@
+import { Maybe } from 'ngx-cinlib/core';
+import { Filter } from 'ngx-cinlib/filters';
 import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
-import { DealFilterQueryDefinition, DealFilterQueryParams } from 'src/app/core/typings/filter-params/deal-filter-param';
+import { DealFilterQueryDefinition } from 'src/app/core/typings/filter-params/deal-filter-param';
 
-export const createDealParams = (queryParams?: DealFilterQueryParams) => {
+export const transformFn = (queryParams?: Maybe<{ [key: string]: string }>): Filter => {
   const params = {
     expression: {
       conjunction: {

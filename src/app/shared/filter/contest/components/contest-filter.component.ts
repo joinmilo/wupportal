@@ -1,13 +1,11 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { collapse } from 'ngx-cinlib/core';
-import { Subject, debounceTime, filter, take, takeUntil } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Maybe, collapse } from 'ngx-cinlib/core';
+import { Subject, takeUntil } from 'rxjs';
 import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
 
-import { ContestFilterQueryParams } from 'src/app/core/typings/filter-params/contest-filter-param';
-import { ContestFilterActions } from '../state/contest-filter.actions';
-import { selectContestFilterParams, selectFiltersActive, selectRawFilterParams } from '../state/contest-filter.selector';
+import { FilterService } from 'ngx-cinlib/filters';
+import { ContestFilterQueryDefinition, ContestFilterQueryParams } from 'src/app/core/typings/filter-params/contest-filter-param';
+import { transformFn } from '../utils/transform.utils';
 
 @Component({
   selector: 'app-contest-filter',
@@ -23,46 +21,23 @@ export class ContestFilterComponent implements OnInit, OnDestroy {
   public paramsUpdated = new EventEmitter<FilterSortPaginateInput>();
 
   @Output()
-  public rawParamsUpdated = new EventEmitter<ContestFilterQueryParams>();
-
-  public filtersActive = this.store.select(selectFiltersActive);
+  public rawParamsUpdated = new EventEmitter<Maybe<ContestFilterQueryParams>>();
 
   private destroy = new Subject<void>();
   
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private store: Store,
-  ) {
-    this.store.dispatch(ContestFilterActions.init());
-  }
+    private filterService: FilterService,
+  ) { }
   
   public ngOnInit(): void {
-    this.store.select(selectContestFilterParams)
-      .pipe(
-        filter(params => !!params),
-        takeUntil(this.destroy)
-      )
-      .subscribe(params => this.paramsUpdated.emit(params));
+    this.filterService.init(ContestFilterQueryDefinition);
 
-    this.store.select(selectRawFilterParams)
-      .pipe(
-        filter(params => !!params),
-        takeUntil(this.destroy)
-      )
-      .subscribe(params => this.rawParamsUpdated.emit(params));
-  }
-
-  @HostListener('window:popstate', ['$event'])
-  public onBrowserNavigation(): void {
-    this.activatedRoute.queryParams
-      .pipe(
-        debounceTime(0), //TODO: race condition between browser navigation and queryparams
-        take(1)
-      ).subscribe(params => this.store.dispatch(ContestFilterActions.browserNavigated(params)));
-  }
-
-  public clearFilters(): void {
-    this.store.dispatch(ContestFilterActions.clearAll());
+    this.filterService.queryParams()
+      .pipe(takeUntil(this.destroy))
+      .subscribe(params => {
+        this.rawParamsUpdated.next(params);
+        this.paramsUpdated.next(transformFn(params));
+      });
   }
 
   public ngOnDestroy(): void {

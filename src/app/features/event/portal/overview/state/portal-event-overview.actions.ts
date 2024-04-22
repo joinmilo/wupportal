@@ -12,7 +12,7 @@ export const PortalEventOverviewActions = createActionGroup({
     'set overview data': (events: PageableList_EventEntity) => ({ events }),
 
     'update params': (params: FilterSortPaginateInput) => ({ params }),
-    'update raw params': (params: EventFilterQueryParams) => ({ params }),
+    'update raw params': (params?: Maybe<EventFilterQueryParams>) => ({ params }),
 
     'day selected': (day: Period) => ({ day }),
     'month selected': (month?: Period) => ({ month }),

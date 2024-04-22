@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { FilterAreaComponent } from 'ngx-cinlib/filters/filter-area';
+import { FilterAreaComponent, FilterService } from 'ngx-cinlib/filters';
 import { I18nDirective, TranslatablePipe } from 'ngx-cinlib/i18n';
 import { CoreModule } from 'src/app/core/core.module';
 import { SuburbFilterModule } from '../suburb/suburb-filter.module';
@@ -59,6 +59,9 @@ const libs = [
   TranslatablePipe,
 ];
 
+const providers = [
+  FilterService,
+]
 @NgModule({
   declarations: [...components],
   imports: [
@@ -68,5 +71,6 @@ const libs = [
     ...libs,
   ],
   exports: [...components],
+  providers: [...providers],
 })
 export class DealFilterModule { }

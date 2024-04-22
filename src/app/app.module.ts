@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ScrollRestorationService } from 'ngx-cinlib/core';
 import { LanguageInterceptor } from 'ngx-cinlib/i18n';
 import { LoadingInterceptor } from 'ngx-cinlib/layouts/loading';
 import { SidenavContainerComponent } from 'ngx-cinlib/modals/sidenav';
@@ -93,6 +94,8 @@ const providers = [
     provide: LOCALE_ID,
     useValue: 'de-DE'
   },
+
+  ScrollRestorationService,
 ];
 
 @NgModule({

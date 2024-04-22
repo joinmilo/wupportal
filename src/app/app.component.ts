@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ScrollRestorationService } from 'ngx-cinlib/core';
 import { FavIconService } from './core/services/favicon.service';
 import { SchemaService } from './core/services/schema.service';
 import { ThemeService } from './core/services/theme.service';
@@ -17,6 +18,7 @@ export class AppComponent {
     public themeService: ThemeService,
     public favIconService: FavIconService,
     public schemaService: SchemaService,
+    public scrollRestorationService: ScrollRestorationService,
   ) { }
 
 }

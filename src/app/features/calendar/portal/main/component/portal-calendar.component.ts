@@ -17,7 +17,7 @@ export class PortalCalendarComponent {
 
   public filteredEvents?: Maybe<EventEntity>[];
   
-  public params?: EventFilterQueryParams;
+  public params?: Maybe<EventFilterQueryParams>;
   
   public title?: string;
 

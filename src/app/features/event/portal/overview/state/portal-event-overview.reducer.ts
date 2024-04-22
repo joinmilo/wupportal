@@ -6,7 +6,7 @@ import { PortalEventOverviewActions } from './portal-event-overview.actions';
 export interface PortalEventOverviewState {
   overviewData?: PageableList_EventEntity,
   params: FilterSortPaginateInput,
-  rawFilterParams?: EventFilterQueryParams,
+  rawFilterParams?: Maybe<EventFilterQueryParams>,
   schedules?: Maybe<EventScheduleEntity>[],
   sponsoredEvent?: Maybe<EventEntity>,
 }

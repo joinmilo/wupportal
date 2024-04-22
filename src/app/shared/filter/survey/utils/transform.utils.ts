@@ -1,7 +1,9 @@
+import { Maybe } from 'ngx-cinlib/core';
+import { Filter } from 'ngx-cinlib/filters';
 import { FilterSortPaginateInput, QueryOperator } from 'src/app/core/api/generated/schema';
-import { SurveyFilterQueryDefinition, SurveyFilterQueryParams } from 'src/app/core/typings/filter-params/survey-filter-param';
+import { SurveyFilterQueryDefinition } from 'src/app/core/typings/filter-params/survey-filter-param';
 
-export const createSurveyParams = (queryParams?: SurveyFilterQueryParams) => {
+export const transformFn = (queryParams?: Maybe<{ [key: string]: string }>): Filter => {
   const params = {
     expression: {
       conjunction: {

@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { FilterAreaComponent } from 'ngx-cinlib/filters/filter-area';
+import { FilterAreaComponent, FilterService } from 'ngx-cinlib/filters';
 import { I18nDirective, TranslatablePipe } from 'ngx-cinlib/i18n';
 import { CoreModule } from 'src/app/core/core.module';
 import { ContestFilterComponent } from './components/contest-filter.component';
@@ -16,7 +16,6 @@ import { ContestFilterTypesComponent } from './components/types/contest-filter-t
 import { contestFilterStateKey } from './constants/contest.filter.constants';
 import { ContestFilterEffects } from './state/contest-filter.effects';
 import { contestFilterReducer } from './state/contest-filter.reducer';
-
 
 const components = [
   ContestFilterComponent,
@@ -49,6 +48,10 @@ const libs = [
   TranslatablePipe,
 ];
 
+const providers = [
+  FilterService,
+]
+
 @NgModule({
   declarations: [...components],
   imports: [
@@ -58,5 +61,6 @@ const libs = [
     ...libs,
   ],
   exports: [...components],
+  providers: [...providers],
 })
 export class ContestFilterModule { }

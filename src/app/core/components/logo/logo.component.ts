@@ -24,7 +24,6 @@ export class LogoComponent {
     private store: Store,
   ) { }
 
-
   @HostListener('window:scroll', ['$event'])
   public onScroll(): void {
     this.showIconText = window?.scrollY === 0;

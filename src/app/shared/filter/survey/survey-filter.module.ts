@@ -5,18 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { DateRangeFilterComponent } from 'ngx-cinlib/filters/date-range';
-import { FilterAreaComponent } from 'ngx-cinlib/filters/filter-area';
+import { DateRangeFilterComponent, FilterAreaComponent, FilterService } from 'ngx-cinlib/filters';
 import { I18nDirective } from 'ngx-cinlib/i18n';
 import { CoreModule } from 'src/app/core/core.module';
 import { SuburbFilterModule } from '../suburb/suburb-filter.module';
 import { SurveyFilterPastComponent } from './components/past/survey-filter-past.component';
 import { SurveyFilterComponent } from './components/survey-filter.component';
-import { surveyFilterStateKey } from './constants/survey-filter.constants';
-import { SurveyFilterEffects } from './state/survey-filter.effects';
-import { surveyFilterReducer } from './state/survey-filter.reducer';
 
 const components = [
   SurveyFilterComponent,
@@ -41,14 +35,14 @@ const modules = [
 ];
 
 const libs = [
-  StoreModule.forFeature(surveyFilterStateKey, surveyFilterReducer),
-  EffectsModule.forFeature([SurveyFilterEffects]),
-
   DateRangeFilterComponent,
   FilterAreaComponent,
   I18nDirective,
 ];
 
+const providers = [
+  FilterService,
+]
 @NgModule({
   declarations: [...components],
   imports: [
@@ -58,5 +52,6 @@ const libs = [
     ...libs,
   ],
   exports: [...components],
+  providers: [...providers],
 })
 export class SurveyFilterModule { }

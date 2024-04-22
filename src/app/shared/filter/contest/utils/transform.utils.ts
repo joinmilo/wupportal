@@ -1,8 +1,10 @@
+import { Maybe } from 'ngx-cinlib/core';
+import { Filter } from 'ngx-cinlib/filters';
 import { FilterSortPaginateInput } from 'src/app/core/api/generated/schema';
-import { ContestFilterQueryDefinition, ContestFilterQueryParams } from 'src/app/core/typings/filter-params/contest-filter-param';
+import { ContestFilterQueryDefinition } from 'src/app/core/typings/filter-params/contest-filter-param';
 import { createListParam } from 'src/app/core/utils/params.utils';
 
-export const createContestParams = (queryParams: ContestFilterQueryParams) => {
+export const transformFn = (queryParams?: Maybe<{ [key: string]: string }>): Filter => {
   const params = {
     expression: {
       conjunction: {
@@ -11,7 +13,7 @@ export const createContestParams = (queryParams: ContestFilterQueryParams) => {
     }
   } as FilterSortPaginateInput;
 
-  if (queryParams[ContestFilterQueryDefinition.contestTypes]) {
+  if (queryParams?.[ContestFilterQueryDefinition.contestTypes]) {
 
     params.expression?.conjunction?.operands?.push(
       createListParam(

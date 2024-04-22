@@ -1,19 +1,17 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Period, collapse } from 'ngx-cinlib/core';
-import { Subject, debounceTime, filter, take, takeUntil } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { collapse } from 'ngx-cinlib/core';
+import { FilterService } from 'ngx-cinlib/filters';
+import { Subject, takeUntil } from 'rxjs';
 import { FilterSortPaginateInput, Maybe } from 'src/app/core/api/generated/schema';
-import { EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
-import { EventFilterActions } from 'src/app/shared/filter/event/state/event-filter.actions';
-import { selectEventFilterParams, selectFiltersActive, selectRawFilterParams } from 'src/app/shared/filter/event/state/event-filter.selectors';
+import { EventFilterQueryDefinition, EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
+import { transformFn } from '../utils/transform.utils';
 
 @Component({
   selector: 'app-event-filter',
   templateUrl: './event-filter.component.html',
   styleUrls: ['./event-filter.component.scss'],
   animations: [
-     collapse()
+    collapse()
   ],
 })
 export class EventFilterComponent implements OnInit, OnDestroy {
@@ -22,59 +20,26 @@ export class EventFilterComponent implements OnInit, OnDestroy {
   public paramsUpdated = new EventEmitter<FilterSortPaginateInput>();
 
   @Output()
-  public rawParamsUpdated = new EventEmitter<EventFilterQueryParams>();
+  public rawParamsUpdated = new EventEmitter<Maybe<EventFilterQueryParams>>();
 
   public disbleDateFilter = false;
-  
-  public filtersActive = this.store.select(selectFiltersActive);
 
   private destroy = new Subject<void>();
   
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private store: Store,
-  ) {
-    this.store.dispatch(EventFilterActions.init());
-  }
+    private filterService: FilterService,
+  ) { }
   
   public ngOnInit(): void {
-    this.store.select(selectEventFilterParams)
-      .pipe(
-        filter(params => !!params),
-        takeUntil(this.destroy)
-      )
-      .subscribe(params => this.paramsUpdated.emit(params));
+    this.filterService.init(EventFilterQueryDefinition);
 
-    this.store.select(selectRawFilterParams)
-      .pipe(
-        filter(params => !!params),
-        takeUntil(this.destroy)
-      )
+    this.filterService.queryParams()
+      .pipe(takeUntil(this.destroy))
       .subscribe(params => {
-        this.disbleDateFilter = !!params?.past;
-        this.rawParamsUpdated.emit(params);
+        this.rawParamsUpdated.next(params);
+        this.paramsUpdated.next(transformFn(params));
+        this.disbleDateFilter = !!params?.[EventFilterQueryDefinition.past];
       });
-  }
-
-  public periodSelected(period?: Maybe<Period>): void {
-    this.store.dispatch(EventFilterActions.selectedPeriod(period));
-  }
-
-  public suburbSelected(suburbIds?: Maybe<string[]>): void {
-    this.store.dispatch(EventFilterActions.selectedSuburbs(suburbIds));
-  }
-
-  @HostListener('window:popstate', ['$event'])
-  public onBrowserNavigation(): void {
-    this.activatedRoute.queryParams
-      .pipe(
-        debounceTime(0), //TODO: race condition between browser navigation and queryparams
-        take(1)
-    ).subscribe(params => this.store.dispatch(EventFilterActions.browserNavigated(params)));
-  }
-
-  public clearFilters(): void {
-    this.store.dispatch(EventFilterActions.clearAll());
   }
 
   public ngOnDestroy(): void {

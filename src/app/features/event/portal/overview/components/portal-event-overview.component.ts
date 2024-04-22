@@ -6,6 +6,7 @@ import { SchemaService } from 'src/app/core/services/schema.service';
 import { EventFilterQueryParams } from 'src/app/core/typings/filter-params/event-filter-param';
 import { OverviewDisplayType } from 'src/app/core/typings/filter-params/overview-display';
 
+import { Maybe } from 'ngx-cinlib/core';
 import { RadioButtonInput } from 'ngx-cinlib/forms/radio-button';
 import { Subject, takeUntil } from 'rxjs';
 import { PortalEventOverviewActions } from '../state/portal-event-overview.actions';
@@ -66,7 +67,7 @@ export class PortalEventOverviewComponent implements OnDestroy {
     this.store.dispatch(PortalEventOverviewActions.updateParams(params));
   }
 
-  public updateRawParams(params: EventFilterQueryParams) {
+  public updateRawParams(params: Maybe<EventFilterQueryParams>) {
     this.store.dispatch(PortalEventOverviewActions.updateRawParams(params));
   }
 

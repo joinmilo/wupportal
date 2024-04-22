@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { FilterService } from 'ngx-cinlib/filters';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { EventFilterQueryDefinition } from 'src/app/core/typings/filter-params/event-filter-param';
@@ -28,21 +29,21 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
   public targetGroups = this.store.select(selectTargetGroups);
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private filterService: FilterService,
     private router: Router,
     private store: Store,
   ) {
-    this.store.dispatch(EventFilterActions.getTargetGroups())
+    this.store.dispatch(EventFilterActions.getTargetGroups());
     this.watchValueChange();
   }
 
   public ngOnInit(): void {
-    this.queryParamKey && this.activatedRoute.queryParams
+    this.filterService.queryParams()
       .pipe(takeUntil(this.destroy))
       .subscribe(params => {
-        const value = typeof params[this.queryParamKey] === 'string'
+        const value = typeof params?.[this.queryParamKey] === 'string'
           ? [params[this.queryParamKey]]
-          : params[this.queryParamKey];
+          : params?.[this.queryParamKey];
 
         this.control.setValue(value, {
           emitEvent: false,
@@ -54,18 +55,8 @@ export class EventFilterTargetgroupComponent implements OnInit, OnDestroy {
     this.control.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe((ids: Maybe<string[]>) => {
-        if (this.queryParamKey) {
-          this.router.navigate([], {
-            
-            queryParams: {
-              [this.queryParamKey]: ids
-            },
-            queryParamsHandling: 'merge',
-          });
-        }
-
         this.valueChanged.emit(ids);
-        this.store.dispatch(EventFilterActions.selectedTargetGroups(ids));
+        this.filterService.updateParam(this.queryParamKey, ids);
       });
   }
 

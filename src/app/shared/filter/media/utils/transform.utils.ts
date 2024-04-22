@@ -1,10 +1,13 @@
 
+import { Maybe } from 'ngx-cinlib/core';
+import { Filter } from 'ngx-cinlib/filters';
 import { FilterSortPaginateInput, QueryOperator } from 'src/app/core/api/generated/schema';
-import { MediaFilterQueryDefinition, MediaFilterQueryParams } from 'src/app/core/typings/filter-params/media-filter-param';
+import { MediaFilterQueryDefinition } from 'src/app/core/typings/filter-params/media-filter-param';
 import { createListParam } from 'src/app/core/utils/params.utils';
 import { MimeTypeFilterOptions } from '../typing/media-filter';
 
-export const createMediaParams = (queryParams?: MediaFilterQueryParams) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const transformFn = (queryParams?: Maybe<{ [key: string]: any }>): Filter => {
   const params = {
     expression: {
       conjunction: {

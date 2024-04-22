@@ -1,10 +1,12 @@
 
+import { Maybe } from 'ngx-cinlib/core';
+import { Filter } from 'ngx-cinlib/filters';
 import { FilterSortPaginateInput, QueryOperator } from 'src/app/core/api/generated/schema';
-import { ArticleFilterQueryDefinition, ArticleFilterQueryParams } from 'src/app/core/typings/filter-params/article-filter-param';
+import { ArticleFilterQueryDefinition } from 'src/app/core/typings/filter-params/article-filter-param';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
 import { createListParam } from 'src/app/core/utils/params.utils';
 
-export const createArticleParams = (queryParams?: ArticleFilterQueryParams) => {
+export const transformFn = (queryParams?: Maybe<{ [key: string]: string }>): Filter => {
   const params = {
     expression: {
       conjunction: {
@@ -30,14 +32,14 @@ export const createArticleParams = (queryParams?: ArticleFilterQueryParams) => {
         entity: {
           path: 'modified',
           operator: QueryOperator.GreaterOrEqual,
-          value: queryParams?.start
+          value: queryParams[FilterQueryDefinition.startDate]
         }
       },
       {
         entity: {
           path: 'modified',
           operator: QueryOperator.LessOrEqual,
-          value: queryParams?.end
+          value: queryParams[FilterQueryDefinition.endDate]
         }
       }
     )

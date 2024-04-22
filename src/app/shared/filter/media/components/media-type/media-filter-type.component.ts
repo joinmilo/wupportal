@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { FilterService } from 'ngx-cinlib/filters';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { MediaFilterQueryDefinition } from 'src/app/core/typings/filter-params/media-filter-param';
-import { MediaFilterActions } from '../../state/media-filter.actions';
 import { MimeTypeFilterOptions } from '../../typing/media-filter';
 
 @Component({
@@ -30,23 +28,21 @@ export class MediaFilterTypeComponent implements OnInit, OnDestroy {
       key.toLowerCase(),
       value.toLowerCase()
     ])
-  )
+  );
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private store: Store,
+    private filterService: FilterService,
   ) {
     this.watchValueChange();
   }
 
   public ngOnInit(): void {
-    this.queryParamKey && this.activatedRoute.queryParams
+    this.filterService.queryParams()
       .pipe(takeUntil(this.destroy))
       .subscribe(params => {
-        const value = typeof params[this.queryParamKey] === 'string'
+        const value = typeof params?.[this.queryParamKey] === 'string'
           ? [params[this.queryParamKey]]
-          : params[this.queryParamKey];
+          : params?.[this.queryParamKey];
 
         this.control.setValue(value, {
           emitEvent: false,
@@ -58,18 +54,8 @@ export class MediaFilterTypeComponent implements OnInit, OnDestroy {
     this.control.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe((mimeTypes: Maybe<string[]>) => {
-        if (this.queryParamKey) {
-          this.router.navigate([], {
-
-            queryParams: {
-              [this.queryParamKey || '']: mimeTypes
-            },
-            queryParamsHandling: 'merge',
-          });
-        }
-
+        this.filterService.updateParam(this.queryParamKey, mimeTypes);
         this.valueChanged.emit(mimeTypes);
-        this.store.dispatch(MediaFilterActions.selectedMediaTypes(mimeTypes));
       });
   }
 

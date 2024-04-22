@@ -1,13 +1,11 @@
 <section class="filter">
   <cin-date-range-filter
     [initValue]="period"
-    [queryParam]="false"
     (valueChanged)="updatePeriod($event)">
   </cin-date-range-filter>
 
   <cin-interval-filter
     [initValue]="interval"
-    [queryParam]="false"
     (valueChanged)="updateInterval($event)">
   </cin-interval-filter>
 </section>

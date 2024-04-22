@@ -8,17 +8,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { FilterAreaComponent } from 'ngx-cinlib/filters/filter-area';
+import { FilterAreaComponent, FilterService } from 'ngx-cinlib/filters';
 import { I18nDirective } from 'ngx-cinlib/i18n';
 import { CoreModule } from 'src/app/core/core.module';
 import { SuburbFilterModule } from '../suburb/suburb-filter.module';
 import { OrganisationFilterActiveComponent } from './components/active/organisation-filter-active.component';
 import { OrganisationFilterComponent } from './components/organisation-filter.component';
-import { organisationFilterStateKey } from './constants/organisation-filter.constants';
-import { OrganisationFilterEffects } from './state/organisation-filter.effects';
-import { organisationFilterReducer } from './state/organisation-filter.reducer';
 
 const components = [
   OrganisationFilterComponent,
@@ -46,13 +41,13 @@ const modules = [
 ];
 
 const libs = [
-  EffectsModule.forFeature([OrganisationFilterEffects]),
-  StoreModule.forFeature(organisationFilterStateKey, organisationFilterReducer),
-
   FilterAreaComponent,
   I18nDirective,
-  
 ];
+
+const providers = [
+  FilterService,
+]
 
 @NgModule({
   declarations: [...components],
@@ -63,5 +58,6 @@ const libs = [
     ...libs,
   ],
   exports: [...components],
+  providers: [...providers],
 })
 export class OrganisationFilterModule { }

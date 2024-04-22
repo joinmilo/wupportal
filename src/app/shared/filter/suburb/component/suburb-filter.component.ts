@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { FilterService } from 'ngx-cinlib/filters';
 import { Subject, takeUntil } from 'rxjs';
 import { Maybe } from 'src/app/core/api/generated/schema';
 import { FilterQueryDefinition } from 'src/app/core/typings/filter-params/filter-param';
@@ -28,21 +28,20 @@ export class SuburbFilterComponent implements OnInit, OnDestroy {
   public suburbs = this.store.select(selectSuburbs);
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private filterService: FilterService,
     private store: Store,
   ) {
-    this.store.dispatch(SuburbFilterActions.getSuburbs())
+    this.store.dispatch(SuburbFilterActions.getSuburbs());
     this.watchValueChange();
   }
   
   public ngOnInit(): void {
-    this.queryParamKey && this.activatedRoute.queryParams
+    this.filterService.queryParams()
       .pipe(takeUntil(this.destroy))
       .subscribe(params => {
-        const value = typeof params[this.queryParamKey] === 'string'
+        const value = typeof params?.[this.queryParamKey] === 'string'
           ? [params[this.queryParamKey]]
-          : params[this.queryParamKey];
+          : params?.[this.queryParamKey];
 
         this.control.setValue(value, {
           emitEvent: false,
@@ -54,16 +53,7 @@ export class SuburbFilterComponent implements OnInit, OnDestroy {
     this.control.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe((ids: Maybe<string[]>) => {
-        if (this.queryParamKey) {
-          this.router.navigate([], {
-            
-            queryParams: {
-              [this.queryParamKey || '']: ids
-            },
-            queryParamsHandling: 'merge',
-          });
-        }
-
+        this.filterService.updateParam(this.queryParamKey, ids)
         this.valueChanged.emit(ids);
       });
   }

@@ -1,6 +1,4 @@
-<cin-filter-area
-  [filtersActive]="filtersActive | async"
-  (filtersCleared)="clearFilters()">
+<cin-filter-area>
 
   <!-- The parent content, e.g. display filters, etc. -->
   <ng-content></ng-content>
@@ -11,8 +9,7 @@
     <app-article-filter-category>
     </app-article-filter-category>
     
-    <cin-date-range-filter
-      (valueChanged)="periodSelected($event)">
+    <cin-date-range-filter>
     </cin-date-range-filter>
 
   </ng-container>
